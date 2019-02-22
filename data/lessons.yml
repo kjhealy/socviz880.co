@@ -1,68 +1,30 @@
 lessons:
   
-  - title: "Orientation"
+  - title: "Looking at Data"
     date: "Week 1"
-
-  - title: "Get Up and Running in R"
-    date: "Week 2"
-    reading: "02-reading"
-
-  - title: "Look at Data"
-    date: "Week 3"
-    reading: "03-reading"
-
-  - title: "Ways of Seeing"    
-    date: "Week 4"
-    reading: "05-reading"
-    assignment: "05-problem-set"
-
-  - title: "Make a Graph"
-    date: "Week 5"
-    reading: "06-reading"
-    assignment: "06-problem-set"
+    reading: "01-reading"
 
   - title: "Mapping Data to Visual Elements"    
+    date: "Week 2"
+    reading: "02-reading"
+    assignment: "02-code"
+
+  - title: "Tables, Text, Labels, Notes"
+    date: "Week 3"
+    reading: "03-reading"
+    assignment: "03-code"
+
+  - title: "Models"
+    date: "Week 4"
+    reading: "04-reading"
+    assignment: "04-code"
+
+  - title: "Maps"
+    date: "Week 5"
+    reading: "05-reading"
+    assignment: "05-code"
+    
+  - title: "Polishing"
     date: "Week 6"
-    reading: "07-reading"
-    assignment: "07-problem-set"
-
-  - title: "Faceting and Transforming Data"    
-    date: "Week 7"
-    reading: "08-reading"
-    assignment: "08-problem-set"
-
-  - title: "Pipelines and Summaries"
-    date: "Week 8"
-    reading: "09-reading"
-    assignment: "09-problem-set"
-
-  - title: "Text, Labels, Annotations"
-    date: "Week 10"
-    reading: "10-reading"
-    assignment: "10-problem-set"
-
-  - title: "Draw Maps"
-    date: "Week 11"
-    reading: "11-reading"
-    assignment: "11-problem-set"
-
-  - title: "Statistical Models"
-    date: "Week 12"
-    reading: "12-reading"
-    assignment: "12-problem-set"
-    
-  - title: "Refining Plots"
-    date: "Week 13"
-    reading: "13-reading"
-    assignment: "13-problem-set"
-    
-  - title: "Moving Pictures"
-    date: "Week 14"
-    reading: "14-reading"
-    assignment: "14-problem-set"
-
-  - title: "Presenting your Work I"
-    date: "Week 15"
-    reading: "15-reading"
-    assignment: "15-problem-set"
-    
+    reading: "06-reading"
+    assignment: "06-code"    

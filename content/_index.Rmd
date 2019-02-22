@@ -1,9 +1,9 @@
 ---
-title: "Visualizing Society"
+title: "Data Visualization"
 author: "Kieran Healy"
 ---
 
-^[{-} `r blogdown::shortcode("courseinfo")`] This is the course website for SOCIOL 1xxFS: Visualizing Society (Fall 2019). The course teaches you the how and why of visualizing social science data using modern tools. Learn more by reading [the syllabus](syllabus/).
+^[{-} `r blogdown::shortcode("courseinfo")`] This is the course website for SOCIOL 880: Data Visualization (Spring 2019). This is a graduate mini-seminar (i.e. a half-semester course), and the companion to the [Data Management](https://datamgmt.org) mini taught in the first half of the semester. It teaches the how and why of visualizing social science data using R and ggplot2. Learn more by reading [the syllabus](syllabus/).
 
 <figure>
 [![](/images/vax-excerpt.png)](/images/vax-excerpt.png)

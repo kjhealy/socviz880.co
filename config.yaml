@@ -1,6 +1,6 @@
-baseURL: "https://visualizingsociety.com/"
+baseURL: "https://socviz880.co/"
 languageCode: en-us
-title: Visualizing Society
+title: Data Visualization
 theme: "kjh-tufte-hugo"
 googleAnalytics: ""
 ignoreFiles:
@@ -43,14 +43,14 @@ params:
     github: kjhealy
     office: "Soc/Psych 255"
   course:
-    number: SOCIOL 1xxFS
-    semester: Fall 2019
-    days: "TBA"
-    time: "TBA"
-    location: "TBA"
+    number: SOCIOL 880
+    semester: Spring 2019
+    days: "Thursdays"
+    time: "10:00am-12:30pm"
+    location: "Soc/Psych 248"
     twitter: kjhealy
-    dates: "Fall 2019"
-    github: "kjhealy/visualizingsociety.com"
+    dates: "February 28th-April 11th, 2019 "
+    github: "kjhealy/socviz880.co"
     copyrightYear: "2019"
     contactDetails: >-
       Office hours: By appointment.
@@ -60,13 +60,13 @@ params:
   school:
     name: Sociology Department
     url: "https://sociology.duke.edu"
-  description: "Learn why and how to visualize data"
+  description: "Data Visualization with R"
   primaryColor: "#DA5B69"
   secondaryColor: "#F9983E"
   credits: >-
   logo:
     url: /images/dataviz_hires.png
-    alt: Visualizing Society
+    alt: Data Visualization
   meta:
     twitterSite: "@kjhealy"
     twitterCreator: "@kjhealy"

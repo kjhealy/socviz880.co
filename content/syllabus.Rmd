@@ -18,7 +18,7 @@ library(pander)
 
 # Course objectives
 
-This class will teach you how to use modern, widely-used tools to create insightful, beautiful, reproducible visualizations of social science data. We will also put the theory and practice of visualization into context throughout the semester. By that I mean that we will think about different ways of looking at social science data, about where data comes from in the first place, and the implications of choosing to represent it in different ways.
+This class will teach you how to use modern, widely-used tools to create insightful, beautiful, reproducible visualizations of social science data. We will also put the theory and practice of visualization into context. By that I mean that we will think about different ways of looking at social science data, about where data comes from in the first place, and the implications of choosing to represent it in different ways.
 
 By the end of the course you will
 
@@ -27,16 +27,13 @@ By the end of the course you will
   while others may fail to inform or actively mislead.
 - Know how to create a wide range of plots in R using ggplot2.
 - Know how to refine plots for effective presentation.
-- Have an understanding of ethical and conceptual questions
-  surrounding the collection and presentation of quantitative data in
-  social science and beyond.
 
 # Core Texts
 
-I strongly recommend you buy two books: 
+I strongly recommend (but do not require) you buy two books: 
 
-- [@Healy:2019] [Draft version free online; print version at [Amazon](https://amzn.to/2vfAixM)]
-- [@WickhamGrolemund:2017] [Free online; print version at [Amazon](https://www.amazon.com/R-Data-Science-Hadley-Wickham/dp/1491910399/)]
+- [@Healy:2019] [Draft version free online; print version at [Amazon](https://amzn.to/2vfAixM) and all good bookshops.]
+- [@WickhamGrolemund:2017] [Free online; print version at [Amazon](https://www.amazon.com/R-Data-Science-Hadley-Wickham/dp/1491910399/) and all good bookshops.]
 
 You should also be aware of:
 
@@ -61,8 +58,7 @@ We will also read other material as we go. I will make it available to you befor
 
 # Software
 
-We will do all of our visualization work in this class using the programming language [R](https://cran.r-project.org/). We will use [RStudio](https://www.rstudio.com/) to manage our code and projects. R and R Studio are widely used tools for data analysis in academia and industry.
-
+We will do all of our visualization work in this class using [R](https://cran.r-project.org/). We will use [RStudio](https://www.rstudio.com/) to manage our code and projects. 
 
 You will need to install some software first. Here is what to do:
 
@@ -90,26 +86,3 @@ With these packages available, you can then install one last library of material
 devtools::install_github("kjhealy/socviz")
 ```
 
-# Course policies
-
-- Attendance is required. I am a reasonable person; if you need to be absent please _let me know in advance_ insofar as that is possible.
-- Do the assigned readings in advance of class. 
-- Submit memos, problem sets, or other assigned work by 11:59pm the day they are due. 
-- You will need to bring a laptop to class and use it for note-taking and in-class work. 
-- Because it is hard even for me to compete with the entirety of human knowledge, friendship, entertainment, and retailing options available online, I may occasionally ask you to close the laptop. 
-- If I find you're engaging in non-class-related laptop use that is distracting to me or other students, I will warn you about it once. After that I'll penalize your grade.
-
-
-# Required Work and Grading
-
-There are three kinds of [assignments](assignments/) for the course: memos, problem sets, and projects. 
-
-- Each week you will write one short reflection memo (250 to 500 words) on the reading. Together these will account for 25% of your grade. Memos are due on the _Sunday_ of each week. 
-- Problem sets will let you practice your visualization skills. Five problem sets will together be worth 25% of your grade. Problem sets are due on _Fridays_ the week after they are given out.
-- Midterm project: 25% of your grade. 
-- Final project: 25% of your grade. 
-
-
-# Duke Community Standard
-
-Like all classes at the university, this course is conducted under the Duke Community Standard. Duke University is a community dedicated to scholarship, leadership, and service and to the principles of honesty, fairness, respect, and accountability. Citizens of this community commit to reflect upon and uphold these principles in all academic and nonacademic endeavors, and to protect and promote a culture of integrity. To uphold the Duke Community Standard you will not lie, cheat, or steal in academic endeavors; you will conduct yourself honorably in all your endeavors; and you will act if the Standard is compromised.
