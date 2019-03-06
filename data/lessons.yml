@@ -1,8 +1,9 @@
 lessons:
   
-  - title: "Looking at Data"
+  - title: "Looking at Data / Up and Running"
     date: "Week 1"
-    reading: "01-reading"
+    class: "01-class"
+    assignment: "01-code"
 
   - title: "Mapping Data to Visual Elements"    
     date: "Week 2"
