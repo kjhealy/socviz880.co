@@ -78,7 +78,7 @@ edit_page:
   content_dir: ''
   repo_branch: master
   editable:
-    docs: true
+    docs: false
     page: false
     post: false
 
