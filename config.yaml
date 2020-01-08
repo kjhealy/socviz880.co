@@ -27,11 +27,7 @@ menu:
     - name: Reference
       url: /reference/
       weight: 4
-# Disable taxonomies
-taxonomies:
-  tag: ""
-  group: ""
-  category: ""
+disableKinds: ["taxonomy", "taxonomyTerm"]      
 params:
   author: Kieran Healy
   thumbnail: /images/dataviz_meta.png
@@ -44,12 +40,12 @@ params:
     office: "Soc/Psych 255"
   course:
     number: SOCIOL 880
-    semester: Spring 2019
+    semester: Spring 2020
     days: "Thursdays"
-    time: "10:00am-12:30pm"
-    location: "Soc/Psych 248"
+    time: "10:05am-12:35pm"
+    location: "Soc/Psych 329"
     twitter: kjhealy
-    dates: "February 28th-April 11th, 2019 "
+    dates: "January 10th-February 20th, 2020"
     github: "kjhealy/socviz880.co"
     copyrightYear: "2019"
     contactDetails: >-

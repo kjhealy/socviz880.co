@@ -153,7 +153,6 @@ p + geom_point() +
 ```{r ch-03-fig-lexp-gdp-13, fig.cap='Mapping aesthetics on a per-geom basis. Here color is mapped to continent for the points but not the smoother.', out.width="100%", fig.width=8.5, fig.height=5}
 
 p <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp))
-p + geom_point(mapping = aes(color = continent)) +
-    geom_smooth(method = "loess") +
+p + geom_point(mapping = aes(color = continent)) + geom_smooth(method = "loess") +
     scale_x_log10()
 ```

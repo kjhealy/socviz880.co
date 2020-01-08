@@ -15,7 +15,7 @@ lessons:
     reading: "03-reading"
     assignment: "03-code"
 
-  - title: "Models"
+  - title: "Working with Models"
     date: "Week 4"
     reading: "04-reading"
     assignment: "04-code"
@@ -25,7 +25,7 @@ lessons:
     reading: "05-reading"
     assignment: "05-code"
     
-  - title: "Polishing"
+  - title: "Polishing your Plots"
     date: "Week 6"
     reading: "06-reading"
     assignment: "06-code"    
