@@ -13,6 +13,13 @@ all: deploy
 
 clean:
 	rm -rf public/
+	rm -f content/*.html
+	rm -f content/assignment/*.html
+	rm -f content/class/*.html
+	rm -f content/reading/*.html
+	rm -f content/reference/*.html
+	rm -f content/schedule/*.html
+	rm -f content/syllabus/*.html
 
 build:
 	Rscript -e "blogdown::build_site()"

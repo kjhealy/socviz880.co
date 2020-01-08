@@ -1,9 +1,9 @@
 ---
 title: Syllabus
 slug: syllabus
-citeproc: false
-bibliography: ../static/bib/references.bib
-csl: ../static/bib/chicago-syllabus-no-bib.csl
+citeproc: true
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
 ---
 
 ```{r load-libraries, message=FALSE, warning=FALSE, include=FALSE}
@@ -83,7 +83,7 @@ R Studio should then download and install these packages for you. It may take a 
 With these packages available, you can then install one last library of material that's useful specifically for this book. It^[`github.com`] is hosted on GitHub,^[GitHub is a web-based service where users can host, develop, and share code. It uses git, a version control system that allows projects, or repositories, to preserve their history and incorporate changes from contributors in an organized way.] rather than R's central package repository, so we use a different function to fetch it.
 
 ```{r, echo=TRUE, eval=FALSE}
-install.packages("socviz")
+install.packages("socviz", repos = "http://cran.rstudio.com")
 ```
 
 # Schedule

@@ -1,12 +1,15 @@
 ---
-title: Reference
-slug: reference
+title: References
+menu:
+  reference:
+    parent: Reference
+    weight: 1
+type: docs
+weight: 2
 output:
   blogdown::html_page:
-    template: ../pandoc/toc-title_html.template
-    toc: true
+      toc: TRUE
 ---
-
 
 
 # Markdown

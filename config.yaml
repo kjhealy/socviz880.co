@@ -1,68 +1,70 @@
-baseURL: "https://socviz880.co/"
-languageCode: en-us
-title: Data Visualization
-theme: "kjh-tufte-hugo"
-googleAnalytics: ""
-ignoreFiles:
-  - \.Rmd$
-  - \.Rmarkdown$
-  - \.yaml$
-  - _files$
-  - _cache$
-  - \.csl$
+baseurl: https://socviz880.co/
+defaultContentLanguage: en
+title: "Data Visualization"
+theme: hugo-academic
+
+
+# ------------------
+# Building options
+# ------------------
 permalinks:
   post: "/:year/:month/:day/:slug/"
-buildFuture: true
-menu:
-  main:
-    - name: Syllabus
-      url: /syllabus/
-      weight: 1
-    - name: Assignments
-      url: /assignments/
-      weight: 3
-    - name: Schedule
-      url: /schedule/
-      weight: 2
-    - name: Reference
-      url: /reference/
-      weight: 4
-disableKinds: ["taxonomy", "taxonomyTerm"]      
-params:
-  author: Kieran Healy
-  thumbnail: /images/dataviz_meta.png
-  instructor: 
-    name: Kieran Healy
-    email: kjhealy@soc.duke.edu
-    url: "https://www.kieranhealy.org"
-    twitter: kjhealy
-    github: kjhealy
-    office: "Soc/Psych 255"
-  course:
-    number: SOCIOL 880
-    semester: Spring 2020
-    days: "Thursdays"
-    time: "10:05am-12:35pm"
-    location: "Soc/Psych 329"
-    twitter: kjhealy
-    dates: "January 10th-February 20th, 2020"
-    github: "kjhealy/socviz880.co"
-    copyrightYear: "2019"
-    contactDetails: >-
-      Office hours: By appointment.
-  university: 
-    name: Duke University
-    url: "https://www.duke.edu"
-  school:
-    name: Sociology Department
-    url: "https://sociology.duke.edu"
-  description: "Data Visualization with R"
-  primaryColor: "#DA5B69"
-  secondaryColor: "#F9983E"
-  credits: >-
-  logo:
-    url: /images/dataviz_hires.png
-    alt: Data Visualization
-  meta:
-    twitterSite: "@kjhealy"
-    twitterCreator: "@kjhealy"
+buildFuture: True
+
+# No taxonomy
+disableKinds:
+  - taxonomy
+  - taxonomyTerm
+markup:
+  defaultMarkdownHandler: goldmark
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    codeFences: false
+  tableOfContents:
+    startLevel: 2
+    endLevel: 4
+imaging:
+  resampleFilter: lanczos
+  quality: 90
+  anchor: smart
+
+
+copyright: ''
+enableGitInfo: true
+hasCJKLanguage: false
+defaultContentLanguageInSubdir: false
+removePathAccents: true
+paginate: 10
+enableEmoji: true
+footnotereturnlinkcontents: <sup>^</sup>
+
+
+# ----------------
+# Output options
+# ----------------
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+    - WebAppManifest
+  section:
+    - HTML
+    - RSS
+mediaTypes:
+  application/manifest+json:
+    suffixes:
+      - webmanifest
+outputFormats:
+  WebAppManifest:
+    mediaType: application/manifest+json
+    rel: manifest
+ignoreFiles:
+  - \.ipynb$
+  - .ipynb_checkpoints$
+  - \.Rmd$
+  - \.Rmarkdown$
+  - _files$
+  - _cache$
