@@ -4,6 +4,9 @@ slug: syllabus
 citeproc: true
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+      toc: TRUE
 ---
 
 ```{r load-libraries, message=FALSE, warning=FALSE, include=FALSE}
@@ -37,7 +40,7 @@ I strongly recommend (but do not require) you buy two books:
 
 You should also be aware of:
 
-- [@Wilke:2019] [Draft version free online; print version at  [Amazon](https://www.amazon.com/Fundamentals-Data-Visualization-Informative-Compelling/dp/1492031089), forthcoming]
+- [@Wilke:2019] [Draft version free online; print version at  [Amazon](https://www.amazon.com/Fundamentals-Data-Visualization-Informative-Compelling/dp/1492031089)]
 
 
 # Other Material 
