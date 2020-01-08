@@ -23,4 +23,4 @@ cta_note:
   label: Spring 2020<br>Sociology Department<br>Duke University
 ---
 
-**Data Visualization using R and ggplot2**
+**SOCIOL 880**
