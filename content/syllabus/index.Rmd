@@ -65,9 +65,9 @@ We will do all of our visualization work in this class using [R](https://cran.r-
 
 You will need to install some software first. Here is what to do:
 
-1. Get the most recent version of R. R is free and available for Windows, Mac, and Linux operating systems. Download^[`cloud.r-project.org`] the version of R compatible with your operating system. If you are running Windows or MacOS, you should choose one of the *precompiled binary* distributions (i.e., ready-to-run applications) linked at the top of the R Project's webpage. 
-2. Once^[`rstudio.com`] R is installed, download and install R Studio. R Studio is an "Integrated Development Environment", or IDE. This means it is a front-end for R that makes it much easier to work with. R Studio is also free, and available for Windows, Mac, and Linux platforms.
-3. Install^[`tidyverse.org`] the tidyverse library and several other add-on packages for R. These libraries provide useful functionality that we will take advantage of throughout the book. You can learn more about the tidyverse's family of packages at its website.
+1. Get the most recent version of R. R is free and available for Windows, Mac, and Linux operating systems. [Download](http://cloud.r-project.org) the version of R compatible with your operating system. If you are running Windows or MacOS, you should choose one of the *precompiled binary* distributions (i.e., ready-to-run applications) linked at the top of the R Project's webpage. 
+2. Once R is installed, [download and install R Studio](http://rstudio.com). R Studio is an "Integrated Development Environment", or IDE. This means it is a front-end for R that makes it much easier to work with. R Studio is also free, and available for Windows, Mac, and Linux platforms.
+3. [Install the tidyverse library](http://tidyverse.org) and several other add-on packages for R. These libraries provide useful functionality that we will take advantage of throughout the book. You can learn more about the tidyverse's family of packages at its website.
 
    To install the tidyverse, make sure you have an Internet connection and then launch R Studio. Type the following lines of code at R's command prompt, located in the window named "Console", and hit return. In the code below, the `<-` arrow is made up of two keystrokes, first `<` and then the short dash or minus symbol, `-`.
 
@@ -83,7 +83,7 @@ install.packages(my_packages, repos = "http://cran.rstudio.com")
 
 R Studio should then download and install these packages for you. It may take a little while to download everything.
 
-With these packages available, you can then install one last library of material that's useful specifically for this book. It^[`github.com`] is hosted on GitHub,^[GitHub is a web-based service where users can host, develop, and share code. It uses git, a version control system that allows projects, or repositories, to preserve their history and incorporate changes from contributors in an organized way.] rather than R's central package repository, so we use a different function to fetch it.
+With these packages available, you can then install one last library of material that's useful specifically for this course:
 
 ```{r, echo=TRUE, eval=FALSE}
 install.packages("socviz", repos = "http://cran.rstudio.com")
