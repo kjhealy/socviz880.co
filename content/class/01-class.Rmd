@@ -14,7 +14,7 @@ editor_options:
 
 # Slides
 
-[Slides from class (PDF)](/slides/01_look_at_data.pdf)
+[Slides from class (PDF)](/slides/01_dataviz_s20_looking_at_data.pdf)
 
 
 # Links
