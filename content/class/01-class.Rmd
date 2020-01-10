@@ -1,6 +1,8 @@
 ---
 title: "Look at Data / Up and Running in R and ggplot"
-date: "2018-09-04"
+linktitle: "1: Look at Data"
+date: "2020-01-10"
+class_date: "2020-01-10"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
@@ -8,17 +10,24 @@ output:
   blogdown::html_page:
     template: ../../pandoc/toc-title_html.template
     toc: true
+menu:
+  class:
+    parent: Class sessions
+    weight: 1
+type: docs
+weight: 1
+pdf: /slides/01_dataviz_s20_looking_at_data.pdf
+thumb: /slides/01_dataviz_s20_looking_at_data.png    
 editor_options: 
   chunk_output_type: console
 ---
 
-# Slides
+## Slides
 
-[Slides from class (PDF)](/slides/01_dataviz_s20_looking_at_data.pdf)
+`r blogdown::shortcode("slides")`
 
 
-# Links
+## Links
 
 - [The R Project for Statistical Computing](https://www.r-project.org/)
 - [R Studio](https://www.rstudio.com)
-

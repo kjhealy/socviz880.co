@@ -19,7 +19,11 @@ library(pander)
   `r blogdown::shortcode("courseinfo")`
 
 
-# Course objectives
+## Overview
+
+This is a half-semester graduate seminar. It's self-contained, but goes well with its companion on Data Management, taught in the second half on the semester.
+
+## Course objectives
 
 This class will teach you how to use modern, widely-used tools to create insightful, effective, reproducible visualizations of social science data. We will also put the theory and practice of visualization into context. By that I mean that we will think about different ways of looking at social science data, about where data comes from in the first place, and the implications of choosing to represent it in different ways.
 
@@ -31,7 +35,7 @@ By the end of the course you will
 - Know how to create a wide range of plots in R using ggplot2.
 - Know how to refine plots for effective presentation.
 
-# Core Texts
+## Core Texts
 
 I strongly recommend (but do not require) you buy two books: 
 
@@ -43,7 +47,7 @@ You should also be aware of:
 - [@Wilke:2019] [Draft version free online; print version at  [Amazon](https://www.amazon.com/Fundamentals-Data-Visualization-Informative-Compelling/dp/1492031089)]
 
 
-# Other Material 
+## Other Material 
 
 We may also read other material as we go. I will make it available to you beforehand. It will include material from the following books, amongst other sources:
 
@@ -59,7 +63,7 @@ We may also read other material as we go. I will make it available to you before
 - [@yau11:_visual_this]
 
 
-# Software
+## Software
 
 We will do all of our visualization work in this class using [R](https://cran.r-project.org/). We will use [RStudio](https://www.rstudio.com/) to manage our code and projects. 
 
@@ -89,7 +93,7 @@ With these packages available, you can then install one last library of material
 install.packages("socviz", repos = "http://cran.rstudio.com")
 ```
 
-# Schedule
+## Schedule
 
 `r blogdown::shortcode("topiclist")`
 
