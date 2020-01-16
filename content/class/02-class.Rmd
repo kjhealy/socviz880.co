@@ -1,0 +1,30 @@
+---
+title: "Get Started / Make Some Plots"
+linktitle: "2: Get Started"
+date: "2020-01-16"
+class_date: "2020-01-16"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+menu:
+  class:
+    parent: Class sessions
+    weight: 1
+type: docs
+weight: 1
+pdf: /slides/02_dataviz_s20_getting_started.pdf
+thumb: /slides/02_dataviz_s20_getting_started.png    
+editor_options: 
+  chunk_output_type: console
+---
+
+## Slides
+
+`r blogdown::shortcode("slides")`
+
+
+
