@@ -1,7 +1,7 @@
 ---
 title: "Tables, Text, Labels, Notes"
 linktitle: "3: Work with Geoms"
-date: "2020-01-23""
+date: "2020-01-23"
 class_date: "2020-01-23"
 citeproc: false
 bibliography: ../../static/bib/references.bib
