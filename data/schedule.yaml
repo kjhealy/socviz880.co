@@ -13,11 +13,13 @@ lessons:
 
   - title: "Tables, Text, Labels, Notes"
     date: "Week 3"
+    class: "03-class"
     reading: ""
     assignment: ""
 
   - title: "Working with Models"
     date: "Week 4"
+    class: "04-class"
     reading: ""
     assignment: ""
 
