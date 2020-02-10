@@ -1,0 +1,30 @@
+---
+title: "Maps"
+linktitle: "5: Make Maps"
+date: "2020-02-06"
+class_date: "2020-02-06"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+menu:
+  class:
+    parent: Class sessions
+    weight: 1
+type: docs
+weight: 1
+pdf: /slides/05_dataviz_s20_making_maps.pdf
+thumb: /slides/05_dataviz_s20_making_maps.png  
+editor_options: 
+  chunk_output_type: console
+---
+
+## Slides
+
+`r blogdown::shortcode("slides")`
+
+
+
