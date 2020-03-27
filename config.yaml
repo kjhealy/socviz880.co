@@ -1,4 +1,4 @@
-baseurl: "/"
+baseURL: "/"
 defaultContentLanguage: en
 title: "Estadística Multivariada"
 theme: hugo-academic
