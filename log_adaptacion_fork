@@ -13,3 +13,14 @@
 -
 
 ## modificar
+
+
+
+## deploy
+
+- conectar con repositorio github desde netlify
+- build command: anotar version de hugo, para eso
+  - primero desde terminal: hugo version, entrega algo como esto  Hugo Static Site Generator v0.68.1-98DC46E1/extended
+  - anotar esto en el build command requerido por netlify de la siguiente manera: hugo_0.68.1
+- publish directory: public
+- el Base directory puede quedar en blanco (not set)
