@@ -1,0 +1,15 @@
+# Log adaptación desde fork original
+
+## Para montar
+
+- 1 fork desde andrew heiss (original https://github.com/andrewheiss/evalsp20.classes.andrewheiss.com), pero genera una función que re-instala librerías de R en la misma carpeta del sitio (?), poco práctico. Por eso, voy al sitio de Healey que no tiene esa función y se hace fork desde ahí: https://github.com/kjhealy/socviz880.co
+- cambio nombre repositorio a multivaweb
+- clone en carpeta local multiva_web
+- cambio nombre Rproject a multivaweb
+- Problemas al compilar
+  - install.packages("blogdown") # reinstalar
+  - blogdown::update_hugo() # update hugo
+- problemas, finalmente se soluciona reemplazando el Makefile del root con un script simple (ver  actual) en lugar del set de instrucciones que había en el de Healey.
+-
+
+## modificar

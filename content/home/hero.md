@@ -5,10 +5,10 @@ headless: true
 active: true
 weight: 10
 
-title: "Data Visualization"
+title: "Estadística Multivariada"
 
 # Hero image (optional). Enter filename of an image in the `static/img/` folder.
-hero_media: dataviz_hires.png
+hero_media: hex_multiva.png
 
 design:
   background:
@@ -20,7 +20,7 @@ design:
     text_color_light: true
 
 cta_note:
-  label: Spring 2020<br>Sociology Department<br>Duke University
+  label: Primer Semestre<br>Departamento de Sociología<br>Universidad de Chile
 ---
 
-**SOCIOL 880**
+**SOC 01024 / 2020**

@@ -1,31 +1,14 @@
-SSH_USER = kjhealy@kjhealy.co
-DOCUMENT_ROOT = ~/public/socviz880.co/public_html
-PUBLIC_DIR = public/
-PREFIX = /Users/kjhealy/.pandoc
-BIB = /Users/kjhealy/Documents/bibs/socbib-pandoc.bib
-CSL = apsa
-OUTPUTDIR = public_html
-HTML_FILES := $(patsubst %.Rmd, %.html ,$(wildcard *.Rmd))
+.PHONY: build-and-serve clean-public rmd rmd-serve
+PUBLIC_DIR = public
 
-.PHONY : all
+build-and-serve:
+	hugo && hugo server
 
-all: deploy
-
-clean:
-	rm -rf public/
-	rm -f content/*.html
-	rm -f content/assignment/*.html
-	rm -f content/class/*.html
-	rm -f content/reading/*.html
-	rm -f content/reference/*.html
-	rm -f content/schedule/*.html
-	rm -f content/syllabus/*.html
-
-build:
+rmd:
 	Rscript -e "blogdown::build_site()"
 
-serve: build
-	Rscript -e "blogdown::serve_site()"
+rmd-serve: rmd
+	hugo server
 
-deploy: build
-	rsync --exclude='.DS_Store' -Prvzce 'ssh -p 22' $(PUBLIC_DIR) $(SSH_USER):$(DOCUMENT_ROOT) --delete-after
+clean-public:
+	rm -rf $(PUBLIC_DIR)

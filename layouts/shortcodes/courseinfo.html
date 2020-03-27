@@ -1,17 +1,17 @@
 <div class="row">
     <div class="col-md-4">
-        <h3>Instructor</h3>
+        <h3>Profesor</h3>
 
         <ul class="icon-list">
-            <li><i class="fas fa-user"></i> <a href="{{ .Site.Params.instructor.url }}" target="_blank" rel="noopener"> {{ .Site.Params.instructor.name }}</a></li>
-            <li><i class="fas fa-university"></i> {{ .Site.Params.instructor.office }}</li>
-            <li><i class="fas fa-envelope"></i> <a href="mailto:{{ .Site.Params.instructor.email }}"> {{ .Site.Params.instructor.email }}</a></li>
-            <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/{{ .Site.Params.instructor.twitter }}" target="_blank" rel="noopener"> @{{ .Site.Params.instructor.twitter }}</a></li>
+            <li><i class="fas fa-user"></i> <a href="{{ .Site.Params.Profesor.url }}" target="_blank" rel="noopener"> {{ .Site.Params.Profesor.name }}</a></li>
+            <li><i class="fas fa-university"></i> {{ .Site.Params.Profesor.office }}</li>
+            <li><i class="fas fa-envelope"></i> <a href="mailto:{{ .Site.Params.Profesor.email }}"> {{ .Site.Params.Profesor.email }}</a></li>
+            <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/{{ .Site.Params.Profesor.twitter }}" target="_blank" rel="noopener"> @{{ .Site.Params.Profesor.twitter }}</a></li>
         </ul>
     </div>
 
     <div class="col-md-4">
-        <h3>Course details</h3>
+        <h3>Horario</h3>
 
         <ul class="icon-list">
             <li><i class="far fa-calendar"></i> {{ .Site.Params.course.days }}</li>
@@ -22,9 +22,19 @@
         </ul>
     </div>
 
-    <div class="col-md-4 contact-policy">
-        <h3>Contacting me</h3>
+    <div class="col-md-4">
+        <h3>Equipo</h3>
 
-        <p>{{ .Site.Params.instructor.contact_policy | markdownify}}</p>
+        <p> Aquí apoyos docentes / ayudantes </p>
     </div>
+
+<br>
+
+<div class="contact-policy">
+  <h3>Contacto</h3>
+
+      <p>{{ .Site.Params.Profesor.contact_policy | markdownify}}</p>
+
+</div>
+
 </div>

@@ -37,7 +37,7 @@ font_size: "L"
 site_type: "Course"
 
 # Description for social sharing and search engines. If undefined, superuser role is used in place.
-description: "Data Visualization with R and ggplot"
+description: "Estadística Multivariada - Sociología FACSO UChile"
 
 # Display a logo in navigation bar rather than title (optional).
 #   To enable, place an image in `static/img/` and reference its filename below. To disable, set the value to "".
@@ -53,7 +53,7 @@ logo: ""
 highlight: true
 
 # Add support for highlighting additional languages
-highlight_languages: 
+highlight_languages:
   - r
 
 # highlight_style: "github-gist"  # For supported styles, see https://cdnjs.com/libraries/highlight.js/
@@ -89,35 +89,35 @@ edit_page:
 ## Additionally, for organizations, these details may be used to enrich search engine results.
 ############################
 
-author: Kieran Healy
+author: Juan Carlos Castillo
 
-instructor: 
-  name: Kieran Healy
-  email: kjhealy@soc.duke.edu
-  url: "https://kieranhealy.org"
-  twitter: kjhealy
-  github: kjhealy
-  office: "255 Sociology/Psychology"
+Profesor:
+  name: Juan Carlos Castillo
+  email: juancastillov@uchile.cl
+  url: "https://jc-castillo.com"
+  twitter: juankcastillo
+  github: juancarloscastillo
+  office: "325 Edificio Nuevo FACSO"
   contact_policy: >-
     If you have questions or want to discuss things that we're doing in class, it's best to use the course Slack. I strongly encourage you not to be shy about raising queries or asking for help in the &#35;general channel. For other matters (such as absences, etc), email me.
 
 course:
-  number: "SOCIOL 880"
-  semester: "Spring 2020"
-  days: "Thursdays"
+  number: "SOC 01024"
+  semester: "Primer semestre"
+  days: "Viernes"
   time: "10:05am - 12:35pm"
-  location: "Soc-Psych 329"
-  dates: "January 10th - February 20th"
-  github: "kjhealy/socviz880.co"
+  location: "Online"
+  dates: "Marzo-Julio 2020"
+  github: "juancarloscastillo/multivariada"
   copyrightYear: "2020"
 
-university: 
-  name: Duke University
-  url: "https://www.duke.edu"
+university:
+  name: Universidad de Chile
+  url: "https://www.uchile.cl/"
 
 school:
-  name: Sociology Department
-  url: "https://sociology.duke.edu/"
+  name: Departamento de Sociología
+  url: "http://www.facso.uchile.cl/sociologia"
 
 
 ############################
@@ -128,7 +128,7 @@ school:
 sharing_image: "social-image.png"
 
 # Twitter username (without @). Used when a visitor shares your site on Twitter.
-twitter: "kjhealy"
+twitter: "juankcastillo"
 
 
 ############################
