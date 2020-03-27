@@ -1,4 +1,4 @@
-baseURL: "/"
+baseurl: https://multivariada.netlify.com/
 defaultContentLanguage: en
 title: "Estadística Multivariada"
 theme: hugo-academic
