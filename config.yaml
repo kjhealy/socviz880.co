@@ -1,4 +1,4 @@
-baseurl: https://socviz880.co/
+baseurl: "/"
 defaultContentLanguage: en
 title: "Estadística Multivariada"
 theme: hugo-academic
