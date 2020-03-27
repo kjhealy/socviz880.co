@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Course materials | Estadística Multivariada</title>
+    <link>/</link>
+      <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <description>Course materials</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <image>
+      <url>/img/social-image.png</url>
+      <title>Course materials</title>
+      <link>/</link>
+    </image>
+    
+    <item>
+      <title>Maps</title>
+      <link>/class/05-class/</link>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>/class/05-class/</guid>
+      <description>
+&lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;!-- /BLOGDOWN-HEAD --&gt;
+
+&lt;h2&gt;Contents&lt;/h2&gt;
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#slides&#34;&gt;Slides&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;slides&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Slides&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;/slides/05_dataviz_s20_making_maps.pdf&#34;&gt;Download the slides from today’s class&lt;/a&gt;.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;a href=&#34;/slides/05_dataviz_s20_making_maps.pdf&#34;&gt;&lt;img src=&#34;/slides/05_dataviz_s20_making_maps.png&#34; alt=&#34;First slide&#34; /&gt;&lt;/a&gt;
+&lt;/figure&gt;
+
+
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Models and Pipelines</title>
+      <link>/class/04-class/</link>
+      <pubDate>Thu, 30 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/class/04-class/</guid>
+      <description>
+&lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;!-- /BLOGDOWN-HEAD --&gt;
+
+&lt;h2&gt;Contents&lt;/h2&gt;
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#slides&#34;&gt;Slides&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;slides&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Slides&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;/slides/04_dataviz_s20_work_with_models.pdf&#34;&gt;Download the slides from today’s class&lt;/a&gt;.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;a href=&#34;/slides/04_dataviz_s20_work_with_models.pdf&#34;&gt;&lt;img src=&#34;/slides/04_dataviz_s20_work_with_models.png&#34; alt=&#34;First slide&#34; /&gt;&lt;/a&gt;
+&lt;/figure&gt;
+
+
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Tables, Text, Labels, Notes</title>
+      <link>/class/03-class/</link>
+      <pubDate>Thu, 23 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/class/03-class/</guid>
+      <description>
+&lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;!-- /BLOGDOWN-HEAD --&gt;
+
+&lt;h2&gt;Contents&lt;/h2&gt;
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#slides&#34;&gt;Slides&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;slides&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Slides&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;/slides/03_dataviz_s20_work_with_geoms.pdf&#34;&gt;Download the slides from today’s class&lt;/a&gt;.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;a href=&#34;/slides/03_dataviz_s20_work_with_geoms.pdf&#34;&gt;&lt;img src=&#34;/slides/03_dataviz_s20_work_with_geoms.png&#34; alt=&#34;First slide&#34; /&gt;&lt;/a&gt;
+&lt;/figure&gt;
+
+
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Get Started / Make Some Plots</title>
+      <link>/class/02-class/</link>
+      <pubDate>Thu, 16 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/class/02-class/</guid>
+      <description>
+&lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;!-- /BLOGDOWN-HEAD --&gt;
+
+&lt;h2&gt;Contents&lt;/h2&gt;
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#slides&#34;&gt;Slides&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;slides&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Slides&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;/slides/02_dataviz_s20_getting_started.pdf&#34;&gt;Download the slides from today’s class&lt;/a&gt;.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;a href=&#34;/slides/02_dataviz_s20_getting_started.pdf&#34;&gt;&lt;img src=&#34;/slides/02_dataviz_s20_getting_started.png&#34; alt=&#34;First slide&#34; /&gt;&lt;/a&gt;
+&lt;/figure&gt;
+
+
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Look at Data / Up and Running in R and ggplot</title>
+      <link>/class/01-class/</link>
+      <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/class/01-class/</guid>
+      <description>
+&lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;!-- /BLOGDOWN-HEAD --&gt;
+
+&lt;h2&gt;Contents&lt;/h2&gt;
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#slides&#34;&gt;Slides&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#links&#34;&gt;Links&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;slides&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Slides&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;/slides/01_dataviz_s20_looking_at_data.pdf&#34;&gt;Download the slides from today’s class&lt;/a&gt;.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;a href=&#34;/slides/01_dataviz_s20_looking_at_data.pdf&#34;&gt;&lt;img src=&#34;/slides/01_dataviz_s20_looking_at_data.png&#34; alt=&#34;First slide&#34; /&gt;&lt;/a&gt;
+&lt;/figure&gt;
+
+
+&lt;/div&gt;
+&lt;div id=&#34;links&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Links&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.r-project.org/&#34;&gt;The R Project for Statistical Computing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.rstudio.com&#34;&gt;R Studio&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Problem set 1</title>
+      <link>/assignment/01-problem-set/</link>
+      <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
+      <guid>/assignment/01-problem-set/</guid>
+      <description>
+
+
+&lt;div id=&#34;task&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Task&lt;/h1&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Truth, Beauty, and Data</title>
+      <link>/reading/01-reading/</link>
+      <pubDate>Tue, 04 Sep 2018 00:00:00 +0000</pubDate>
+      <guid>/reading/01-reading/</guid>
+      <description>
+
+
+&lt;div id=&#34;required&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Required&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://socviz.co/lookatdata.html&#34;&gt;Chapter 1&lt;/a&gt; in Kieran Healy, &lt;em&gt;Data Visualization&lt;/em&gt; &lt;span class=&#34;citation&#34;&gt;[@Healy:2019]&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Chapters 2 and 3 in Alberto Cairo, &lt;em&gt;The Truthful Art&lt;/em&gt; &lt;span class=&#34;citation&#34;&gt;[@Cairo:2016]&lt;/span&gt; (&lt;em&gt;skim the introduction and chapter 1&lt;/em&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Code from Week 1</title>
+      <link>/assignment/01-code/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/assignment/01-code/</guid>
+      <description>
+
+
+&lt;div id=&#34;course-packet&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Course Packet&lt;/h1&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_packages &amp;lt;- c(&amp;quot;tidyverse&amp;quot;, &amp;quot;fs&amp;quot;, &amp;quot;devtools&amp;quot;)
+install.packages(my_packages)
+
+devtools::install_github(&amp;quot;kjhealy/socviz&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;rvest&amp;#39;:
+##   method            from
+##   read_xml.response xml2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ✔ ggplot2 3.2.1     ✔ purrr   0.3.2
+## ✔ tibble  2.1.2     ✔ dplyr   0.8.3
+## ✔ tidyr   1.0.0     ✔ stringr 1.4.0
+## ✔ readr   1.3.1     ✔ forcats 0.4.0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(socviz)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To extract the course packet to your desktop:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;setup_course_notes()&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;first-steps&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;First steps&lt;/h1&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(gapminder)
+
+gapminder&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,704 x 6
+##    country     continent  year lifeExp      pop gdpPercap
+##    &amp;lt;fct&amp;gt;       &amp;lt;fct&amp;gt;     &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;    &amp;lt;int&amp;gt;     &amp;lt;dbl&amp;gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.
+##  2 Afghanistan Asia       1957    30.3  9240934      821.
+##  3 Afghanistan Asia       1962    32.0 10267083      853.
+##  4 Afghanistan Asia       1967    34.0 11537966      836.
+##  5 Afghanistan Asia       1972    36.1 13079460      740.
+##  6 Afghanistan Asia       1977    38.4 14880372      786.
+##  7 Afghanistan Asia       1982    39.9 12881816      978.
+##  8 Afghanistan Asia       1987    40.8 13867957      852.
+##  9 Afghanistan Asia       1992    41.7 16317921      649.
+## 10 Afghanistan Asia       1997    41.8 22227415      635.
+## # … with 1,694 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y = lifeExp))
+
+p&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/assignment/01-code_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p + geom_point() &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-01-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y=lifeExp))
+p + geom_smooth()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using method = &amp;#39;gam&amp;#39; and formula &amp;#39;y ~ s(x, bs = &amp;quot;cs&amp;quot;)&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:ch-03-fig-lexp-gdp-02&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-02-1.png&#34; alt=&#34;Life Expectancy vs GDP, using a smoother.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 1: Life Expectancy vs GDP, using a smoother.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y=lifeExp))
+p + geom_point() + geom_smooth(method = &amp;quot;lm&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:ch-03-fig-lexp-gdp-04&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-04-1.png&#34; alt=&#34;Life Expectancy vs GDP, points and an ill-advised linear fit.&#34; width=&#34;100%&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 2: Life Expectancy vs GDP, points and an ill-advised linear fit.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y=lifeExp))
+p + geom_point() +
+    geom_smooth(method = &amp;quot;gam&amp;quot;) +
+    scale_x_log10()&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:ch-03-fig-lexp-gdp-05&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-05-1.png&#34; alt=&#34;Life Expectancy vs GDP scatterplot, with a GAM smoother and a log scale on the x-axis.&#34; width=&#34;100%&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 3: Life Expectancy vs GDP scatterplot, with a GAM smoother and a log scale on the x-axis.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;mapping-aesthetics-vs-setting-them&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Mapping aesthetics vs setting them&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y = lifeExp,
+                          color = &amp;quot;purple&amp;quot;))
+p + geom_point() +
+    geom_smooth(method = &amp;quot;loess&amp;quot;) +
+    scale_x_log10()&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:ch-03-fig-lexp-gdp-07&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-07-1.png&#34; alt=&#34;What has gone wrong here?&#34; width=&#34;768&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 4: What has gone wrong here?
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y = lifeExp))
+p + geom_point(color = &amp;quot;purple&amp;quot;) +
+    geom_smooth(method = &amp;quot;loess&amp;quot;) +
+    scale_x_log10()&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:ch-03-fig-lexp-gdp-08&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-08-1.png&#34; alt=&#34;Setting the color attribute of the points directly.&#34; width=&#34;100%&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 5: Setting the color attribute of the points directly.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y=lifeExp))
+p + geom_point(alpha = 0.3) + geom_smooth(method = &amp;quot;gam&amp;quot;) +
+    scale_x_log10(labels = scales::dollar) +
+    labs(x = &amp;quot;GDP Per Capita&amp;quot;, y = &amp;quot;Life Expectancy in Years&amp;quot;,
+         title = &amp;quot;Economic Growth and Life Expectancy&amp;quot;,
+         subtitle = &amp;quot;Data points are country-years&amp;quot;,
+         caption = &amp;quot;Source: Gapminder.&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:ch-03-fig-lexp-gdp-10&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-10-1.png&#34; alt=&#34;A more polished plot of Life Expectancy vs GDP.&#34; width=&#34;100%&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 6: A more polished plot of Life Expectancy vs GDP.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y = lifeExp,
+                          color = continent))
+p + geom_point() +
+    geom_smooth(method = &amp;quot;loess&amp;quot;) +
+    scale_x_log10()&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:ch-03-fig-lexp-gdp-11&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-11-1.png&#34; alt=&#34;Mapping the continent variable to the color aesthetic.&#34; width=&#34;100%&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 7: Mapping the continent variable to the color aesthetic.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y = lifeExp,
+                          color = continent,
+                          fill = continent))
+p + geom_point() +
+    geom_smooth(method = &amp;quot;loess&amp;quot;) +
+    scale_x_log10()&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:ch-03-fig-lexp-gdp-12&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-12-1.png&#34; alt=&#34;Mapping the continent variable to the color aesthetic, and correcting the error bars using the fill aesthetic.&#34; width=&#34;100%&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 8: Mapping the continent variable to the color aesthetic, and correcting the error bars using the fill aesthetic.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;aesthetics-can-be-mapped-per-geom&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Aesthetics can be mapped per geom&lt;/h1&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp))
+p + geom_point(mapping = aes(color = continent)) + geom_smooth(method = &amp;quot;loess&amp;quot;) +
+    scale_x_log10()&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:ch-03-fig-lexp-gdp-13&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-13-1.png&#34; alt=&#34;Mapping aesthetics on a per-geom basis. Here color is mapped to continent for the points but not the smoother.&#34; width=&#34;100%&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 9: Mapping aesthetics on a per-geom basis. Here color is mapped to continent for the points but not the smoother.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Midterm Prjoect</title>
+      <link>/assignment/01-project/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/assignment/01-project/</guid>
+      <description>
+
+
+&lt;div id=&#34;task&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Task&lt;/h1&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Schedule</title>
+      <link>/schedule/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/schedule/</guid>
+      <description>
+
+
+&lt;hr /&gt;
+&lt;table class=&#34;table schedule&#34; style=&#34;max-width:100%&#34;&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td align=&#34;right&#34; style=&#34;width:20%;text-align:right&#34;&gt;Week 1&lt;/td&gt;
+            &lt;td style=&#34;width:50%;text-align:left&#34;&gt;Looking at Data / Up and Running&lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;
+                &lt;font color=&#34;f1f1f1&#34;&gt;
+                    &lt;i class=&#34;fas fa-book-reader fa-lg&#34;&gt;&lt;/i&gt;&lt;/font&gt;
+            &lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;
+                &lt;font color=&#34;f1f1f1&#34;&gt;
+                    &lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt;&lt;/font&gt;
+            &lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;&lt;a href=&#34;/class/01-class/&#34;&gt;
+                    &lt;i class=&#34;fas fa-chalkboard-teacher fa-lg&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td align=&#34;right&#34; style=&#34;width:20%;text-align:right&#34;&gt;Week 2&lt;/td&gt;
+            &lt;td style=&#34;width:50%;text-align:left&#34;&gt;Mapping Data to Visual Elements&lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;
+                &lt;font color=&#34;f1f1f1&#34;&gt;
+                    &lt;i class=&#34;fas fa-book-reader fa-lg&#34;&gt;&lt;/i&gt;&lt;/font&gt;
+            &lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;
+                &lt;font color=&#34;f1f1f1&#34;&gt;
+                    &lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt;&lt;/font&gt;
+            &lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;&lt;a href=&#34;/class/02-class/&#34;&gt;
+                    &lt;i class=&#34;fas fa-chalkboard-teacher fa-lg&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td align=&#34;right&#34; style=&#34;width:20%;text-align:right&#34;&gt;Week 3&lt;/td&gt;
+            &lt;td style=&#34;width:50%;text-align:left&#34;&gt;Tables, Text, Labels, Notes&lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;
+                &lt;font color=&#34;f1f1f1&#34;&gt;
+                    &lt;i class=&#34;fas fa-book-reader fa-lg&#34;&gt;&lt;/i&gt;&lt;/font&gt;
+            &lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;
+                &lt;font color=&#34;f1f1f1&#34;&gt;
+                    &lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt;&lt;/font&gt;
+            &lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;&lt;a href=&#34;/class/03-class/&#34;&gt;
+                    &lt;i class=&#34;fas fa-chalkboard-teacher fa-lg&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td align=&#34;right&#34; style=&#34;width:20%;text-align:right&#34;&gt;Week 4&lt;/td&gt;
+            &lt;td style=&#34;width:50%;text-align:left&#34;&gt;Working with Models&lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;
+                &lt;font color=&#34;f1f1f1&#34;&gt;
+                    &lt;i class=&#34;fas fa-book-reader fa-lg&#34;&gt;&lt;/i&gt;&lt;/font&gt;
+            &lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;
+                &lt;font color=&#34;f1f1f1&#34;&gt;
+                    &lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt;&lt;/font&gt;
+            &lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;&lt;a href=&#34;/class/04-class/&#34;&gt;
+                    &lt;i class=&#34;fas fa-chalkboard-teacher fa-lg&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td align=&#34;right&#34; style=&#34;width:20%;text-align:right&#34;&gt;Week 5&lt;/td&gt;
+            &lt;td style=&#34;width:50%;text-align:left&#34;&gt;Maps&lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;
+                &lt;font color=&#34;f1f1f1&#34;&gt;
+                    &lt;i class=&#34;fas fa-book-reader fa-lg&#34;&gt;&lt;/i&gt;&lt;/font&gt;
+            &lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;
+                &lt;font color=&#34;f1f1f1&#34;&gt;
+                    &lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt;&lt;/font&gt;
+            &lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;
+                &lt;font color=&#34;f1f1f1&#34;&gt;
+                    &lt;i class=&#34;fas fa-chalkboard-teacher fa-lg&#34;&gt;&lt;/i&gt;&lt;/font&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td align=&#34;right&#34; style=&#34;width:20%;text-align:right&#34;&gt;Week 6&lt;/td&gt;
+            &lt;td style=&#34;width:50%;text-align:left&#34;&gt;Polishing your Plots&lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;
+                &lt;font color=&#34;f1f1f1&#34;&gt;
+                    &lt;i class=&#34;fas fa-book-reader fa-lg&#34;&gt;&lt;/i&gt;&lt;/font&gt;
+            &lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;
+                &lt;font color=&#34;f1f1f1&#34;&gt;
+                    &lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt;&lt;/font&gt;
+            &lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;
+                &lt;font color=&#34;f1f1f1&#34;&gt;
+                    &lt;i class=&#34;fas fa-chalkboard-teacher fa-lg&#34;&gt;&lt;/i&gt;&lt;/font&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+
+    &lt;/tbody&gt;
+
+&lt;/table&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>Syllabus</title>
+      <link>/syllabus/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/syllabus/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#overview&#34;&gt;Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#course-objectives&#34;&gt;Course objectives&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#core-texts&#34;&gt;Core Texts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#other-material&#34;&gt;Other Material&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#software&#34;&gt;Software&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#schedule&#34;&gt;Schedule&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;overview&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;This is a half-semester graduate seminar. It’s self-contained, but goes well with its companion on Data Management, taught in the second half on the semester.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;course-objectives&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Course objectives&lt;/h2&gt;
+&lt;p&gt;This class will teach you how to use modern, widely-used tools to create insightful, effective, reproducible visualizations of social science data. We will also put the theory and practice of visualization into context. By that I mean that we will think about different ways of looking at social science data, about where data comes from in the first place, and the implications of choosing to represent it in different ways.&lt;/p&gt;
+&lt;p&gt;By the end of the course you will&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Understand the basic principles behind effective data visualization.&lt;/li&gt;
+&lt;li&gt;Have a practical sense for why some graphs and figures work well,
+while others may fail to inform or actively mislead.&lt;/li&gt;
+&lt;li&gt;Know how to create a wide range of plots in R using ggplot2.&lt;/li&gt;
+&lt;li&gt;Know how to refine plots for effective presentation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;core-texts&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Core Texts&lt;/h2&gt;
+&lt;p&gt;I strongly recommend (but do not require) you buy two books:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;citation&#34;&gt;Kieran Healy, &lt;em&gt;Data Visualization: A Practical Introduction&lt;/em&gt; (Princeton: Princeton University Press, 2019), &lt;a href=&#34;http://socviz.co/&#34; role=&#34;doc-biblioref&#34;&gt;http://socviz.co/&lt;/a&gt;.&lt;/span&gt; [Draft version free online; print version at &lt;a href=&#34;https://amzn.to/2vfAixM&#34;&gt;Amazon&lt;/a&gt; and all good bookshops.]&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;citation&#34;&gt;Hadley Wickham and Garrett Grolemund, &lt;em&gt;R for Data Science: Import, Tidy, Transform, Visualize, and Model Data&lt;/em&gt; (Sebastopol, California: O’Reilly Media, 2017), &lt;a href=&#34;http://r4ds.had.co.nz/&#34; role=&#34;doc-biblioref&#34;&gt;http://r4ds.had.co.nz/&lt;/a&gt;.&lt;/span&gt; [Free online; print version at &lt;a href=&#34;https://www.amazon.com/R-Data-Science-Hadley-Wickham/dp/1491910399/&#34;&gt;Amazon&lt;/a&gt; and all good bookshops.]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You should also be aware of:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;citation&#34;&gt;Claus E. Wilke, &lt;em&gt;Fundamentals of Data Visualization&lt;/em&gt; (Sebastopol, California: O’Reilly Media, 2019), &lt;a href=&#34;https://serialmentor.com/dataviz/&#34; role=&#34;doc-biblioref&#34;&gt;https://serialmentor.com/dataviz/&lt;/a&gt;.&lt;/span&gt; [Draft version free online; print version at &lt;a href=&#34;https://www.amazon.com/Fundamentals-Data-Visualization-Informative-Compelling/dp/1492031089&#34;&gt;Amazon&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;other-material&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Other Material&lt;/h2&gt;
+&lt;p&gt;We may also read other material as we go. I will make it available to you beforehand. It will include material from the following books, amongst other sources:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;citation&#34;&gt;Whitney Battle-Baptiste and Britt Rusert, &lt;em&gt;W. E. B. Du Bois’s Data Portraits: Visualizing Black America&lt;/em&gt; (New York: Princeton Architectural Press, 2018).&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;citation&#34;&gt;Scott Berinato, &lt;em&gt;Good Charts: The HBR Guide to Making Smarter, More Persuasive Data Visualizations&lt;/em&gt; (Cambridge, MA: Harvard Business Review Press, 2016).&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;citation&#34;&gt;Alberto Cairo, &lt;em&gt;The Truthful Art: Data, Charts, and Maps for Communication&lt;/em&gt; (Berkeley, California: New Riders, 2016).&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;citation&#34;&gt;William S. Cleveland, &lt;em&gt;Visualizing Data&lt;/em&gt; (Hobart Press, 1994).&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;citation&#34;&gt;Stephen Few, &lt;em&gt;Now You See It: Simple Visualization Techniques for Quantitative Analysis&lt;/em&gt; (Oakland, CA: Analytics Press, 2009).&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;citation&#34;&gt;Ellen Lupton, &lt;em&gt;Thinking with Type: A Critical Guide for Designers, Writers, Editors, &amp;amp; Students&lt;/em&gt;, Second. (New York: Princeton Architectural Press, 2010).&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;citation&#34;&gt;Tamara Munzer, &lt;em&gt;Visualization Analysis and Design&lt;/em&gt;, AK Peters Visualization Series (Boca Raton, FL: CRC Press, 2014).&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;citation&#34;&gt;Edward R. Tufte, &lt;em&gt;The Visual Display of Quantitative Information&lt;/em&gt; (Cheshire, CT: Graphics Press, 1983).&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;citation&#34;&gt;Colin Ware, &lt;em&gt;Visual Thinking for Design&lt;/em&gt; (Waltham, MA: Morgan Kaufman, 2008).&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;citation&#34;&gt;Nathan Yau, &lt;em&gt;Visualize This: The Flowingdata Guide to Design, Visualization, and Statistics&lt;/em&gt; (New York: Wiley, 2011).&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;software&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Software&lt;/h2&gt;
+&lt;p&gt;We will do all of our visualization work in this class using &lt;a href=&#34;https://cran.r-project.org/&#34;&gt;R&lt;/a&gt;. We will use &lt;a href=&#34;https://www.rstudio.com/&#34;&gt;RStudio&lt;/a&gt; to manage our code and projects.&lt;/p&gt;
+&lt;p&gt;You will need to install some software first. Here is what to do:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;Get the most recent version of R. R is free and available for Windows, Mac, and Linux operating systems. &lt;a href=&#34;http://cloud.r-project.org&#34;&gt;Download&lt;/a&gt; the version of R compatible with your operating system. If you are running Windows or MacOS, you should choose one of the &lt;em&gt;precompiled binary&lt;/em&gt; distributions (i.e., ready-to-run applications) linked at the top of the R Project’s webpage.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Once R is installed, &lt;a href=&#34;http://rstudio.com&#34;&gt;download and install R Studio&lt;/a&gt;. R Studio is an “Integrated Development Environment”, or IDE. This means it is a front-end for R that makes it much easier to work with. R Studio is also free, and available for Windows, Mac, and Linux platforms.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://tidyverse.org&#34;&gt;Install the tidyverse library&lt;/a&gt; and several other add-on packages for R. These libraries provide useful functionality that we will take advantage of throughout the book. You can learn more about the tidyverse’s family of packages at its website.&lt;/p&gt;
+&lt;p&gt;To install the tidyverse, make sure you have an Internet connection and then launch R Studio. Type the following lines of code at R’s command prompt, located in the window named “Console”, and hit return. In the code below, the &lt;code&gt;&amp;lt;-&lt;/code&gt; arrow is made up of two keystrokes, first &lt;code&gt;&amp;lt;&lt;/code&gt; and then the short dash or minus symbol, &lt;code&gt;-&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_packages &amp;lt;- c(&amp;quot;tidyverse&amp;quot;, &amp;quot;broom&amp;quot;, &amp;quot;cowplot&amp;quot;, &amp;quot;drat&amp;quot;,
+                 &amp;quot;gapminder&amp;quot;, &amp;quot;GGally&amp;quot;, &amp;quot;ggforce&amp;quot;, &amp;quot;ggrepel&amp;quot;, &amp;quot;ggridges&amp;quot;, &amp;quot;gridExtra&amp;quot;,
+                 &amp;quot;here&amp;quot;, &amp;quot;interplot&amp;quot;, &amp;quot;margins&amp;quot;, &amp;quot;maps&amp;quot;, &amp;quot;mapproj&amp;quot;,
+                 &amp;quot;mapdata&amp;quot;, &amp;quot;MASS&amp;quot;, &amp;quot;quantreg&amp;quot;, &amp;quot;rlang&amp;quot;, &amp;quot;scales&amp;quot;,
+                 &amp;quot;survey&amp;quot;, &amp;quot;srvyr&amp;quot;, &amp;quot;devtools&amp;quot;)
+
+install.packages(my_packages, repos = &amp;quot;http://cran.rstudio.com&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;R Studio should then download and install these packages for you. It may take a little while to download everything.&lt;/p&gt;
+&lt;p&gt;With these packages available, you can then install one last library of material that’s useful specifically for this course:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;socviz&amp;quot;, repos = &amp;quot;http://cran.rstudio.com&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;schedule&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Schedule&lt;/h2&gt;
+&lt;table class=&#34;table schedule&#34; style=&#34;max-width:100%&#34;&gt;
+    &lt;tbody&gt;
+
+    &lt;/tbody&gt;
+
+&lt;/table&gt;
+
+&lt;p&gt;As the weeks go by, consult the &lt;a href=&#34;/schedule/&#34;&gt;Schedule Page&lt;/a&gt; for more information on weekly topics, problem sets, readings, and other materials. The schedule is likely to change as we go. Links to readings, assignments, and other materials from class will be posted on that page.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

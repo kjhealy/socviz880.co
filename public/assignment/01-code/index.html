@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en-us" 
+      xmlns:og="http://ogp.me/ns#" 
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.7.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Kieran Healy">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Course Packet my_packages &lt;- c(&quot;tidyverse&quot;, &quot;fs&quot;, &quot;devtools&quot;) install.packages(my_packages) devtools::install_github(&quot;kjhealy/socviz&quot;) library(tidyverse) ## Registered S3 method overwritten by &#39;rvest&#39;: ## method from ## read_xml.response xml2 ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ── ## ✔ ggplot2 3.2.1 ✔ purrr 0.3.2 ## ✔ tibble 2.1.2 ✔ dplyr 0.8.3 ## ✔ tidyr 1.0.0 ✔ stringr 1.4.0 ## ✔ readr 1.3.1 ✔ forcats 0.4.0 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ── ## ✖ dplyr::filter() masks stats::filter() ## ✖ dplyr::lag() masks stats::lag() library(socviz) To extract the course packet to your desktop:">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/assignment/01-code/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#CF4446">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="/assignment/01-code/">
+
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@juankcastillo">
+  <meta property="twitter:creator" content="@juankcastillo">
+  
+  <meta property="og:site_name" content="Estadística Multivariada">
+  <meta property="og:url" content="/assignment/01-code/">
+  <meta property="og:title" content="Code from Week 1 | Estadística Multivariada">
+  <meta property="og:description" content="Course Packet my_packages &lt;- c(&quot;tidyverse&quot;, &quot;fs&quot;, &quot;devtools&quot;) install.packages(my_packages) devtools::install_github(&quot;kjhealy/socviz&quot;) library(tidyverse) ## Registered S3 method overwritten by &#39;rvest&#39;: ## method from ## read_xml.response xml2 ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ── ## ✔ ggplot2 3.2.1 ✔ purrr 0.3.2 ## ✔ tibble 2.1.2 ✔ dplyr 0.8.3 ## ✔ tidyr 1.0.0 ✔ stringr 1.4.0 ## ✔ readr 1.3.1 ✔ forcats 0.4.0 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ── ## ✖ dplyr::filter() masks stats::filter() ## ✖ dplyr::lag() masks stats::lag() library(socviz) To extract the course packet to your desktop:"><meta property="og:image" content="/img/social-image.png">
+  <meta property="twitter:image" content="/img/social-image.png"><meta property="og:locale" content="en-us">
+  
+    
+    
+  
+
+  
+
+
+
+  
+
+
+  
+
+
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/img/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/img/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/img/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <meta name="application-name" content="SOC 01024: Estadística Multivariada" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="/img/mstile-144x144.png" />
+
+
+  <title>Code from Week 1 | Estadística Multivariada</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70"
+    data-target="#TableOfContents"
+    >
+
+    <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+    
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Estadística Multivariada</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Estadística Multivariada</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/syllabus/"><span>Programa</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/schedule/"><span>Planificación</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/reading/"><span>Lecturas</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/class/"><span>Sesiones</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/reference/"><span>Referencias</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://rstudio.cloud/" target="_blank" rel="noopener"><span>RStudio.cloud</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Code from Week 1</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    January 1, 0001
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+
+<div id="course-packet" class="section level1">
+<h1>Course Packet</h1>
+<pre class="r"><code>my_packages &lt;- c(&quot;tidyverse&quot;, &quot;fs&quot;, &quot;devtools&quot;)
+install.packages(my_packages)
+
+devtools::install_github(&quot;kjhealy/socviz&quot;)</code></pre>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;rvest&#39;:
+##   method            from
+##   read_xml.response xml2</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.2.1     ✔ purrr   0.3.2
+## ✔ tibble  2.1.2     ✔ dplyr   0.8.3
+## ✔ tidyr   1.0.0     ✔ stringr 1.4.0
+## ✔ readr   1.3.1     ✔ forcats 0.4.0</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(socviz)</code></pre>
+<p>To extract the course packet to your desktop:</p>
+<pre class="r"><code>setup_course_notes()</code></pre>
+</div>
+<div id="first-steps" class="section level1">
+<h1>First steps</h1>
+<pre class="r"><code>library(gapminder)
+
+gapminder</code></pre>
+<pre><code>## # A tibble: 1,704 x 6
+##    country     continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.
+##  2 Afghanistan Asia       1957    30.3  9240934      821.
+##  3 Afghanistan Asia       1962    32.0 10267083      853.
+##  4 Afghanistan Asia       1967    34.0 11537966      836.
+##  5 Afghanistan Asia       1972    36.1 13079460      740.
+##  6 Afghanistan Asia       1977    38.4 14880372      786.
+##  7 Afghanistan Asia       1982    39.9 12881816      978.
+##  8 Afghanistan Asia       1987    40.8 13867957      852.
+##  9 Afghanistan Asia       1992    41.7 16317921      649.
+## 10 Afghanistan Asia       1997    41.8 22227415      635.
+## # … with 1,694 more rows</code></pre>
+<pre class="r"><code>p &lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y = lifeExp))
+
+p</code></pre>
+<p><img src="/assignment/01-code_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>p + geom_point() </code></pre>
+<p><img src="/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-01-1.png" width="672" /></p>
+<pre class="r"><code>p &lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y=lifeExp))
+p + geom_smooth()</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<div class="figure"><span id="fig:ch-03-fig-lexp-gdp-02"></span>
+<img src="/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-02-1.png" alt="Life Expectancy vs GDP, using a smoother." width="672" />
+<p class="caption">
+Figure 1: Life Expectancy vs GDP, using a smoother.
+</p>
+</div>
+<pre class="r"><code>p &lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y=lifeExp))
+p + geom_point() + geom_smooth(method = &quot;lm&quot;) </code></pre>
+<div class="figure"><span id="fig:ch-03-fig-lexp-gdp-04"></span>
+<img src="/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-04-1.png" alt="Life Expectancy vs GDP, points and an ill-advised linear fit." width="100%" />
+<p class="caption">
+Figure 2: Life Expectancy vs GDP, points and an ill-advised linear fit.
+</p>
+</div>
+<pre class="r"><code>p &lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y=lifeExp))
+p + geom_point() +
+    geom_smooth(method = &quot;gam&quot;) +
+    scale_x_log10()</code></pre>
+<div class="figure"><span id="fig:ch-03-fig-lexp-gdp-05"></span>
+<img src="/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-05-1.png" alt="Life Expectancy vs GDP scatterplot, with a GAM smoother and a log scale on the x-axis." width="100%" />
+<p class="caption">
+Figure 3: Life Expectancy vs GDP scatterplot, with a GAM smoother and a log scale on the x-axis.
+</p>
+</div>
+<div id="mapping-aesthetics-vs-setting-them" class="section level2">
+<h2>Mapping aesthetics vs setting them</h2>
+<pre class="r"><code>p &lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y = lifeExp,
+                          color = &quot;purple&quot;))
+p + geom_point() +
+    geom_smooth(method = &quot;loess&quot;) +
+    scale_x_log10()</code></pre>
+<div class="figure"><span id="fig:ch-03-fig-lexp-gdp-07"></span>
+<img src="/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-07-1.png" alt="What has gone wrong here?" width="768" />
+<p class="caption">
+Figure 4: What has gone wrong here?
+</p>
+</div>
+<pre class="r"><code>p &lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y = lifeExp))
+p + geom_point(color = &quot;purple&quot;) +
+    geom_smooth(method = &quot;loess&quot;) +
+    scale_x_log10()</code></pre>
+<div class="figure"><span id="fig:ch-03-fig-lexp-gdp-08"></span>
+<img src="/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-08-1.png" alt="Setting the color attribute of the points directly." width="100%" />
+<p class="caption">
+Figure 5: Setting the color attribute of the points directly.
+</p>
+</div>
+<pre class="r"><code>p &lt;- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y=lifeExp))
+p + geom_point(alpha = 0.3) + geom_smooth(method = &quot;gam&quot;) +
+    scale_x_log10(labels = scales::dollar) +
+    labs(x = &quot;GDP Per Capita&quot;, y = &quot;Life Expectancy in Years&quot;,
+         title = &quot;Economic Growth and Life Expectancy&quot;,
+         subtitle = &quot;Data points are country-years&quot;,
+         caption = &quot;Source: Gapminder.&quot;)</code></pre>
+<div class="figure"><span id="fig:ch-03-fig-lexp-gdp-10"></span>
+<img src="/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-10-1.png" alt="A more polished plot of Life Expectancy vs GDP." width="100%" />
+<p class="caption">
+Figure 6: A more polished plot of Life Expectancy vs GDP.
+</p>
+</div>
+<pre class="r"><code>p &lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y = lifeExp,
+                          color = continent))
+p + geom_point() +
+    geom_smooth(method = &quot;loess&quot;) +
+    scale_x_log10()</code></pre>
+<div class="figure"><span id="fig:ch-03-fig-lexp-gdp-11"></span>
+<img src="/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-11-1.png" alt="Mapping the continent variable to the color aesthetic." width="100%" />
+<p class="caption">
+Figure 7: Mapping the continent variable to the color aesthetic.
+</p>
+</div>
+<pre class="r"><code>p &lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y = lifeExp,
+                          color = continent,
+                          fill = continent))
+p + geom_point() +
+    geom_smooth(method = &quot;loess&quot;) +
+    scale_x_log10()</code></pre>
+<div class="figure"><span id="fig:ch-03-fig-lexp-gdp-12"></span>
+<img src="/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-12-1.png" alt="Mapping the continent variable to the color aesthetic, and correcting the error bars using the fill aesthetic." width="100%" />
+<p class="caption">
+Figure 8: Mapping the continent variable to the color aesthetic, and correcting the error bars using the fill aesthetic.
+</p>
+</div>
+</div>
+</div>
+<div id="aesthetics-can-be-mapped-per-geom" class="section level1">
+<h1>Aesthetics can be mapped per geom</h1>
+<pre class="r"><code>p &lt;- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp))
+p + geom_point(mapping = aes(color = continent)) + geom_smooth(method = &quot;loess&quot;) +
+    scale_x_log10()</code></pre>
+<div class="figure"><span id="fig:ch-03-fig-lexp-gdp-13"></span>
+<img src="/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-13-1.png" alt="Mapping aesthetics on a per-geom basis. Here color is mapped to continent for the points but not the smoother." width="100%" />
+<p class="caption">
+Figure 9: Mapping aesthetics on a per-geom basis. Here color is mapped to continent for the points but not the smoother.
+</p>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="/authors/kjhealy/">Kieran Healy</a></h5>
+      
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  </div>
+</article>
+
+        
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/js/academic.min.e5c8525332f417fe3589df9a6b25b6c4.js"></script>
+
+    
+
+
+
+
+
+
+    
+    
+    <div class="container">
+        <footer>
+    <hr>
+
+    <div class="row course-info">
+        <div class="col-md-7">
+            <p>
+                <strong>SOC 01024: Estadística Multivariada (Primer semestre)</strong><br>
+
+                <a href="https://www.uchile.cl/" target="_blank" rel="noopener">Universidad de Chile</a> &emsp;&emsp;
+                <a href="http://www.facso.uchile.cl/sociologia" target="_blank" rel="noopener">Departamento de Sociología</a>
+            </p>
+
+            <p>
+                <a href="https://jc-castillo.com" target="_blank" rel="noopener"><i class="fas fa-user"></i>
+                    Juan Carlos Castillo</a> &emsp;&emsp;
+                <a href="mailto:juancastillov@uchile.cl"><i class="fas fa-envelope"></i>
+                    juancastillov@uchile.cl</a>
+            </p>
+
+            <p>
+                <i class="far fa-calendar-alt"></i> Viernes &emsp;&emsp;
+                <i class="far fa-clock"></i> 10:05am - 12:35pm <br>
+                <i class="fas fa-university"></i> Online
+            </p>
+        </div>
+
+        <div class="col-md-5 credits">
+            <p>All content licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+            
+            <p>Content <i class="fab fa-creative-commons"></i> 2020 <a href="https://jc-castillo.com" target="_blank" rel="noopener">Juan Carlos Castillo</a></p>                    
+            
+            <p><a href="https://github.com/juancarloscastillo/multivariada" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the source at GitHub.</a></p>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+
+    
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+---
+title: Syllabus
+slug: syllabus
+citeproc: true
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+      toc: TRUE
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#course-objectives">Course objectives</a></li>
+<li><a href="#core-texts">Core Texts</a></li>
+<li><a href="#other-material">Other Material</a></li>
+<li><a href="#software">Software</a></li>
+<li><a href="#schedule">Schedule</a></li>
+</ul>
+</div>
+
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>This is a half-semester graduate seminar. It’s self-contained, but goes well with its companion on Data Management, taught in the second half on the semester.</p>
+</div>
+<div id="course-objectives" class="section level2">
+<h2>Course objectives</h2>
+<p>This class will teach you how to use modern, widely-used tools to create insightful, effective, reproducible visualizations of social science data. We will also put the theory and practice of visualization into context. By that I mean that we will think about different ways of looking at social science data, about where data comes from in the first place, and the implications of choosing to represent it in different ways.</p>
+<p>By the end of the course you will</p>
+<ul>
+<li>Understand the basic principles behind effective data visualization.</li>
+<li>Have a practical sense for why some graphs and figures work well,
+while others may fail to inform or actively mislead.</li>
+<li>Know how to create a wide range of plots in R using ggplot2.</li>
+<li>Know how to refine plots for effective presentation.</li>
+</ul>
+</div>
+<div id="core-texts" class="section level2">
+<h2>Core Texts</h2>
+<p>I strongly recommend (but do not require) you buy two books:</p>
+<ul>
+<li><span class="citation">Kieran Healy, <em>Data Visualization: A Practical Introduction</em> (Princeton: Princeton University Press, 2019), <a href="http://socviz.co/" role="doc-biblioref">http://socviz.co/</a>.</span> [Draft version free online; print version at <a href="https://amzn.to/2vfAixM">Amazon</a> and all good bookshops.]</li>
+<li><span class="citation">Hadley Wickham and Garrett Grolemund, <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em> (Sebastopol, California: O’Reilly Media, 2017), <a href="http://r4ds.had.co.nz/" role="doc-biblioref">http://r4ds.had.co.nz/</a>.</span> [Free online; print version at <a href="https://www.amazon.com/R-Data-Science-Hadley-Wickham/dp/1491910399/">Amazon</a> and all good bookshops.]</li>
+</ul>
+<p>You should also be aware of:</p>
+<ul>
+<li><span class="citation">Claus E. Wilke, <em>Fundamentals of Data Visualization</em> (Sebastopol, California: O’Reilly Media, 2019), <a href="https://serialmentor.com/dataviz/" role="doc-biblioref">https://serialmentor.com/dataviz/</a>.</span> [Draft version free online; print version at <a href="https://www.amazon.com/Fundamentals-Data-Visualization-Informative-Compelling/dp/1492031089">Amazon</a>]</li>
+</ul>
+</div>
+<div id="other-material" class="section level2">
+<h2>Other Material</h2>
+<p>We may also read other material as we go. I will make it available to you beforehand. It will include material from the following books, amongst other sources:</p>
+<ul>
+<li><span class="citation">Whitney Battle-Baptiste and Britt Rusert, <em>W. E. B. Du Bois’s Data Portraits: Visualizing Black America</em> (New York: Princeton Architectural Press, 2018).</span></li>
+<li><span class="citation">Scott Berinato, <em>Good Charts: The HBR Guide to Making Smarter, More Persuasive Data Visualizations</em> (Cambridge, MA: Harvard Business Review Press, 2016).</span></li>
+<li><span class="citation">Alberto Cairo, <em>The Truthful Art: Data, Charts, and Maps for Communication</em> (Berkeley, California: New Riders, 2016).</span></li>
+<li><span class="citation">William S. Cleveland, <em>Visualizing Data</em> (Hobart Press, 1994).</span></li>
+<li><span class="citation">Stephen Few, <em>Now You See It: Simple Visualization Techniques for Quantitative Analysis</em> (Oakland, CA: Analytics Press, 2009).</span></li>
+<li><span class="citation">Ellen Lupton, <em>Thinking with Type: A Critical Guide for Designers, Writers, Editors, &amp; Students</em>, Second. (New York: Princeton Architectural Press, 2010).</span></li>
+<li><span class="citation">Tamara Munzer, <em>Visualization Analysis and Design</em>, AK Peters Visualization Series (Boca Raton, FL: CRC Press, 2014).</span></li>
+<li><span class="citation">Edward R. Tufte, <em>The Visual Display of Quantitative Information</em> (Cheshire, CT: Graphics Press, 1983).</span></li>
+<li><span class="citation">Colin Ware, <em>Visual Thinking for Design</em> (Waltham, MA: Morgan Kaufman, 2008).</span></li>
+<li><span class="citation">Nathan Yau, <em>Visualize This: The Flowingdata Guide to Design, Visualization, and Statistics</em> (New York: Wiley, 2011).</span></li>
+</ul>
+</div>
+<div id="software" class="section level2">
+<h2>Software</h2>
+<p>We will do all of our visualization work in this class using <a href="https://cran.r-project.org/">R</a>. We will use <a href="https://www.rstudio.com/">RStudio</a> to manage our code and projects.</p>
+<p>You will need to install some software first. Here is what to do:</p>
+<ol style="list-style-type: decimal">
+<li><p>Get the most recent version of R. R is free and available for Windows, Mac, and Linux operating systems. <a href="http://cloud.r-project.org">Download</a> the version of R compatible with your operating system. If you are running Windows or MacOS, you should choose one of the <em>precompiled binary</em> distributions (i.e., ready-to-run applications) linked at the top of the R Project’s webpage.</p></li>
+<li><p>Once R is installed, <a href="http://rstudio.com">download and install R Studio</a>. R Studio is an “Integrated Development Environment”, or IDE. This means it is a front-end for R that makes it much easier to work with. R Studio is also free, and available for Windows, Mac, and Linux platforms.</p></li>
+<li><p><a href="http://tidyverse.org">Install the tidyverse library</a> and several other add-on packages for R. These libraries provide useful functionality that we will take advantage of throughout the book. You can learn more about the tidyverse’s family of packages at its website.</p>
+<p>To install the tidyverse, make sure you have an Internet connection and then launch R Studio. Type the following lines of code at R’s command prompt, located in the window named “Console”, and hit return. In the code below, the <code>&lt;-</code> arrow is made up of two keystrokes, first <code>&lt;</code> and then the short dash or minus symbol, <code>-</code>.</p></li>
+</ol>
+<pre class="r"><code>my_packages &lt;- c(&quot;tidyverse&quot;, &quot;broom&quot;, &quot;cowplot&quot;, &quot;drat&quot;,
+                 &quot;gapminder&quot;, &quot;GGally&quot;, &quot;ggforce&quot;, &quot;ggrepel&quot;, &quot;ggridges&quot;, &quot;gridExtra&quot;,
+                 &quot;here&quot;, &quot;interplot&quot;, &quot;margins&quot;, &quot;maps&quot;, &quot;mapproj&quot;,
+                 &quot;mapdata&quot;, &quot;MASS&quot;, &quot;quantreg&quot;, &quot;rlang&quot;, &quot;scales&quot;,
+                 &quot;survey&quot;, &quot;srvyr&quot;, &quot;devtools&quot;)
+
+install.packages(my_packages, repos = &quot;http://cran.rstudio.com&quot;)</code></pre>
+<p>R Studio should then download and install these packages for you. It may take a little while to download everything.</p>
+<p>With these packages available, you can then install one last library of material that’s useful specifically for this course:</p>
+<pre class="r"><code>install.packages(&quot;socviz&quot;, repos = &quot;http://cran.rstudio.com&quot;)</code></pre>
+</div>
+<div id="schedule" class="section level2">
+<h2>Schedule</h2>
+{{% topiclist %}}
+<p>As the weeks go by, consult the <a href="/schedule/">Schedule Page</a> for more information on weekly topics, problem sets, readings, and other materials. The schedule is likely to change as we go. Links to readings, assignments, and other materials from class will be posted on that page.</p>
+</div>

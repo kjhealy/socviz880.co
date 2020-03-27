@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reading | Estadística Multivariada</title>
+    <link>/reading/</link>
+      <atom:link href="/reading/index.xml" rel="self" type="application/rss+xml" />
+    <description>Reading</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><lastBuildDate>Tue, 04 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/img/social-image.png</url>
+      <title>Reading</title>
+      <link>/reading/</link>
+    </image>
+    
+    <item>
+      <title>Truth, Beauty, and Data</title>
+      <link>/reading/01-reading/</link>
+      <pubDate>Tue, 04 Sep 2018 00:00:00 +0000</pubDate>
+      <guid>/reading/01-reading/</guid>
+      <description>
+
+
+&lt;div id=&#34;required&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Required&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://socviz.co/lookatdata.html&#34;&gt;Chapter 1&lt;/a&gt; in Kieran Healy, &lt;em&gt;Data Visualization&lt;/em&gt; &lt;span class=&#34;citation&#34;&gt;[@Healy:2019]&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Chapters 2 and 3 in Alberto Cairo, &lt;em&gt;The Truthful Art&lt;/em&gt; &lt;span class=&#34;citation&#34;&gt;[@Cairo:2016]&lt;/span&gt; (&lt;em&gt;skim the introduction and chapter 1&lt;/em&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

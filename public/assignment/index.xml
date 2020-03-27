@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Assignments | Estadística Multivariada</title>
+    <link>/assignment/</link>
+      <atom:link href="/assignment/index.xml" rel="self" type="application/rss+xml" />
+    <description>Assignments</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><lastBuildDate>Tue, 18 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/img/social-image.png</url>
+      <title>Assignments</title>
+      <link>/assignment/</link>
+    </image>
+    
+    <item>
+      <title>Problem set 1</title>
+      <link>/assignment/01-problem-set/</link>
+      <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
+      <guid>/assignment/01-problem-set/</guid>
+      <description>
+
+
+&lt;div id=&#34;task&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Task&lt;/h1&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Code from Week 1</title>
+      <link>/assignment/01-code/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/assignment/01-code/</guid>
+      <description>
+
+
+&lt;div id=&#34;course-packet&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Course Packet&lt;/h1&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_packages &amp;lt;- c(&amp;quot;tidyverse&amp;quot;, &amp;quot;fs&amp;quot;, &amp;quot;devtools&amp;quot;)
+install.packages(my_packages)
+
+devtools::install_github(&amp;quot;kjhealy/socviz&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;rvest&amp;#39;:
+##   method            from
+##   read_xml.response xml2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ✔ ggplot2 3.2.1     ✔ purrr   0.3.2
+## ✔ tibble  2.1.2     ✔ dplyr   0.8.3
+## ✔ tidyr   1.0.0     ✔ stringr 1.4.0
+## ✔ readr   1.3.1     ✔ forcats 0.4.0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(socviz)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To extract the course packet to your desktop:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;setup_course_notes()&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;first-steps&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;First steps&lt;/h1&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(gapminder)
+
+gapminder&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,704 x 6
+##    country     continent  year lifeExp      pop gdpPercap
+##    &amp;lt;fct&amp;gt;       &amp;lt;fct&amp;gt;     &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;    &amp;lt;int&amp;gt;     &amp;lt;dbl&amp;gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.
+##  2 Afghanistan Asia       1957    30.3  9240934      821.
+##  3 Afghanistan Asia       1962    32.0 10267083      853.
+##  4 Afghanistan Asia       1967    34.0 11537966      836.
+##  5 Afghanistan Asia       1972    36.1 13079460      740.
+##  6 Afghanistan Asia       1977    38.4 14880372      786.
+##  7 Afghanistan Asia       1982    39.9 12881816      978.
+##  8 Afghanistan Asia       1987    40.8 13867957      852.
+##  9 Afghanistan Asia       1992    41.7 16317921      649.
+## 10 Afghanistan Asia       1997    41.8 22227415      635.
+## # … with 1,694 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y = lifeExp))
+
+p&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/assignment/01-code_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p + geom_point() &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-01-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y=lifeExp))
+p + geom_smooth()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using method = &amp;#39;gam&amp;#39; and formula &amp;#39;y ~ s(x, bs = &amp;quot;cs&amp;quot;)&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:ch-03-fig-lexp-gdp-02&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-02-1.png&#34; alt=&#34;Life Expectancy vs GDP, using a smoother.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 1: Life Expectancy vs GDP, using a smoother.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y=lifeExp))
+p + geom_point() + geom_smooth(method = &amp;quot;lm&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:ch-03-fig-lexp-gdp-04&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-04-1.png&#34; alt=&#34;Life Expectancy vs GDP, points and an ill-advised linear fit.&#34; width=&#34;100%&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 2: Life Expectancy vs GDP, points and an ill-advised linear fit.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y=lifeExp))
+p + geom_point() +
+    geom_smooth(method = &amp;quot;gam&amp;quot;) +
+    scale_x_log10()&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:ch-03-fig-lexp-gdp-05&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-05-1.png&#34; alt=&#34;Life Expectancy vs GDP scatterplot, with a GAM smoother and a log scale on the x-axis.&#34; width=&#34;100%&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 3: Life Expectancy vs GDP scatterplot, with a GAM smoother and a log scale on the x-axis.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;mapping-aesthetics-vs-setting-them&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Mapping aesthetics vs setting them&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y = lifeExp,
+                          color = &amp;quot;purple&amp;quot;))
+p + geom_point() +
+    geom_smooth(method = &amp;quot;loess&amp;quot;) +
+    scale_x_log10()&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:ch-03-fig-lexp-gdp-07&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-07-1.png&#34; alt=&#34;What has gone wrong here?&#34; width=&#34;768&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 4: What has gone wrong here?
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y = lifeExp))
+p + geom_point(color = &amp;quot;purple&amp;quot;) +
+    geom_smooth(method = &amp;quot;loess&amp;quot;) +
+    scale_x_log10()&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:ch-03-fig-lexp-gdp-08&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-08-1.png&#34; alt=&#34;Setting the color attribute of the points directly.&#34; width=&#34;100%&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 5: Setting the color attribute of the points directly.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y=lifeExp))
+p + geom_point(alpha = 0.3) + geom_smooth(method = &amp;quot;gam&amp;quot;) +
+    scale_x_log10(labels = scales::dollar) +
+    labs(x = &amp;quot;GDP Per Capita&amp;quot;, y = &amp;quot;Life Expectancy in Years&amp;quot;,
+         title = &amp;quot;Economic Growth and Life Expectancy&amp;quot;,
+         subtitle = &amp;quot;Data points are country-years&amp;quot;,
+         caption = &amp;quot;Source: Gapminder.&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:ch-03-fig-lexp-gdp-10&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-10-1.png&#34; alt=&#34;A more polished plot of Life Expectancy vs GDP.&#34; width=&#34;100%&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 6: A more polished plot of Life Expectancy vs GDP.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y = lifeExp,
+                          color = continent))
+p + geom_point() +
+    geom_smooth(method = &amp;quot;loess&amp;quot;) +
+    scale_x_log10()&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:ch-03-fig-lexp-gdp-11&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-11-1.png&#34; alt=&#34;Mapping the continent variable to the color aesthetic.&#34; width=&#34;100%&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 7: Mapping the continent variable to the color aesthetic.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y = lifeExp,
+                          color = continent,
+                          fill = continent))
+p + geom_point() +
+    geom_smooth(method = &amp;quot;loess&amp;quot;) +
+    scale_x_log10()&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:ch-03-fig-lexp-gdp-12&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-12-1.png&#34; alt=&#34;Mapping the continent variable to the color aesthetic, and correcting the error bars using the fill aesthetic.&#34; width=&#34;100%&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 8: Mapping the continent variable to the color aesthetic, and correcting the error bars using the fill aesthetic.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;aesthetics-can-be-mapped-per-geom&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Aesthetics can be mapped per geom&lt;/h1&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp))
+p + geom_point(mapping = aes(color = continent)) + geom_smooth(method = &amp;quot;loess&amp;quot;) +
+    scale_x_log10()&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:ch-03-fig-lexp-gdp-13&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-13-1.png&#34; alt=&#34;Mapping aesthetics on a per-geom basis. Here color is mapped to continent for the points but not the smoother.&#34; width=&#34;100%&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 9: Mapping aesthetics on a per-geom basis. Here color is mapped to continent for the points but not the smoother.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Midterm Prjoect</title>
+      <link>/assignment/01-project/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/assignment/01-project/</guid>
+      <description>
+
+
+&lt;div id=&#34;task&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Task&lt;/h1&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
