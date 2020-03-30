@@ -1,8 +1,8 @@
 ---
 authors:
-- kjhealy
-name: Kieran Healy
+- JC
+name: Juan Castillo
 superuser: true
 ---
 
-Kieran Healy is Professor of Sociology at Duke University.
+Juan C. Castillo es profesor del Departamento de Sociología, Universidad de Chile.

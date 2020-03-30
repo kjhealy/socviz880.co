@@ -14,7 +14,7 @@ design:
   background:
     # Background gradient
     gradient_start: '#A52C60'
-    gradient_end: '#CF4446'
+    gradient_end: '#CF4420'
 
     # Text color (true=light or false=dark).
     text_color_light: true
