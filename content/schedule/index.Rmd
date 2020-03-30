@@ -1,7 +1,9 @@
 ---
-title: "Schedule"
+title: "Planificación"
 slug: schedule
 ---
+
+## Probando texto
 
 ---
 

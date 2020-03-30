@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Reading | Estadística Multivariada</title>
+    <title>Lecturas | Estadística Multivariada</title>
     <link>/reading/</link>
       <atom:link href="/reading/index.xml" rel="self" type="application/rss+xml" />
-    <description>Reading</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><lastBuildDate>Tue, 04 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <description>Lecturas</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <image>
       <url>/img/social-image.png</url>
-      <title>Reading</title>
+      <title>Lecturas</title>
       <link>/reading/</link>
     </image>
     

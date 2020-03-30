@@ -9007,7 +9007,7 @@ footer p {
   margin: 0 auto 1rem; }
 
 .article-style #TOC:before {
-  content: "Contents";
+  content: "Contenidos";
   font-size: 1.1rem;
   font-weight: 700;
   display: block;

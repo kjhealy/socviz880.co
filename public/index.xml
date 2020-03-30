@@ -13,64 +13,6 @@
     </image>
     
     <item>
-      <title>Maps</title>
-      <link>/class/05-class/</link>
-      <pubDate>Thu, 06 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>/class/05-class/</guid>
-      <description>
-&lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;!-- /BLOGDOWN-HEAD --&gt;
-
-&lt;h2&gt;Contents&lt;/h2&gt;
-&lt;div id=&#34;TOC&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#slides&#34;&gt;Slides&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-&lt;div id=&#34;slides&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Slides&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;/slides/05_dataviz_s20_making_maps.pdf&#34;&gt;Download the slides from today’s class&lt;/a&gt;.&lt;/p&gt;
-&lt;figure&gt;
-    &lt;a href=&#34;/slides/05_dataviz_s20_making_maps.pdf&#34;&gt;&lt;img src=&#34;/slides/05_dataviz_s20_making_maps.png&#34; alt=&#34;First slide&#34; /&gt;&lt;/a&gt;
-&lt;/figure&gt;
-
-
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Models and Pipelines</title>
-      <link>/class/04-class/</link>
-      <pubDate>Thu, 30 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/class/04-class/</guid>
-      <description>
-&lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;!-- /BLOGDOWN-HEAD --&gt;
-
-&lt;h2&gt;Contents&lt;/h2&gt;
-&lt;div id=&#34;TOC&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#slides&#34;&gt;Slides&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-&lt;div id=&#34;slides&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Slides&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;/slides/04_dataviz_s20_work_with_models.pdf&#34;&gt;Download the slides from today’s class&lt;/a&gt;.&lt;/p&gt;
-&lt;figure&gt;
-    &lt;a href=&#34;/slides/04_dataviz_s20_work_with_models.pdf&#34;&gt;&lt;img src=&#34;/slides/04_dataviz_s20_work_with_models.png&#34; alt=&#34;First slide&#34; /&gt;&lt;/a&gt;
-&lt;/figure&gt;
-
-
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Tables, Text, Labels, Notes</title>
       <link>/class/03-class/</link>
       <pubDate>Thu, 23 Jan 2020 00:00:00 +0000</pubDate>
@@ -79,7 +21,7 @@
 &lt;!-- BLOGDOWN-HEAD --&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
 
-&lt;h2&gt;Contents&lt;/h2&gt;
+&lt;h2&gt;Índice&lt;/h2&gt;
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#slides&#34;&gt;Slides&lt;/a&gt;&lt;/li&gt;
@@ -108,7 +50,7 @@
 &lt;!-- BLOGDOWN-HEAD --&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
 
-&lt;h2&gt;Contents&lt;/h2&gt;
+&lt;h2&gt;Índice&lt;/h2&gt;
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#slides&#34;&gt;Slides&lt;/a&gt;&lt;/li&gt;
@@ -129,7 +71,7 @@
     </item>
     
     <item>
-      <title>Look at Data / Up and Running in R and ggplot</title>
+      <title>Presentación</title>
       <link>/class/01-class/</link>
       <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
       <guid>/class/01-class/</guid>
@@ -137,16 +79,16 @@
 &lt;!-- BLOGDOWN-HEAD --&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
 
-&lt;h2&gt;Contents&lt;/h2&gt;
+&lt;h2&gt;Índice&lt;/h2&gt;
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#slides&#34;&gt;Slides&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#documento-presentación&#34;&gt;Documento presentación&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#links&#34;&gt;Links&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
-&lt;div id=&#34;slides&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Slides&lt;/h2&gt;
+&lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Documento presentación&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;/slides/01_dataviz_s20_looking_at_data.pdf&#34;&gt;Download the slides from today’s class&lt;/a&gt;.&lt;/p&gt;
 &lt;figure&gt;
@@ -166,47 +108,27 @@
     </item>
     
     <item>
-      <title>Problem set 1</title>
-      <link>/assignment/01-problem-set/</link>
-      <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
-      <guid>/assignment/01-problem-set/</guid>
-      <description>
-
-
-&lt;div id=&#34;task&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Task&lt;/h1&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Truth, Beauty, and Data</title>
-      <link>/reading/01-reading/</link>
-      <pubDate>Tue, 04 Sep 2018 00:00:00 +0000</pubDate>
-      <guid>/reading/01-reading/</guid>
-      <description>
-
-
-&lt;div id=&#34;required&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Required&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://socviz.co/lookatdata.html&#34;&gt;Chapter 1&lt;/a&gt; in Kieran Healy, &lt;em&gt;Data Visualization&lt;/em&gt; &lt;span class=&#34;citation&#34;&gt;[@Healy:2019]&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;Chapters 2 and 3 in Alberto Cairo, &lt;em&gt;The Truthful Art&lt;/em&gt; &lt;span class=&#34;citation&#34;&gt;[@Cairo:2016]&lt;/span&gt; (&lt;em&gt;skim the introduction and chapter 1&lt;/em&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Code from Week 1</title>
+      <title>Práctica 1</title>
       <link>/assignment/01-code/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
       <guid>/assignment/01-code/</guid>
       <description>
+&lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;!-- /BLOGDOWN-HEAD --&gt;
 
+&lt;h2&gt;Índice&lt;/h2&gt;
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#librerías&#34;&gt;Librerías&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#first-steps&#34;&gt;First steps&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#mapping-aesthetics-vs-setting-them&#34;&gt;Mapping aesthetics vs setting them&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#aesthetics-can-be-mapped-per-geom&#34;&gt;Aesthetics can be mapped per geom&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
 
-&lt;div id=&#34;course-packet&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Course Packet&lt;/h1&gt;
+&lt;div id=&#34;librerías&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Librerías&lt;/h1&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_packages &amp;lt;- c(&amp;quot;tidyverse&amp;quot;, &amp;quot;fs&amp;quot;, &amp;quot;devtools&amp;quot;)
 install.packages(my_packages)
 
@@ -252,7 +174,7 @@ gapminder&lt;/code&gt;&lt;/pre&gt;
 
 p&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/assignment/01-code_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p + geom_point() &lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p + geom_point()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-01-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
@@ -268,7 +190,7 @@ Figure 1: Life Expectancy vs GDP, using a smoother.
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y=lifeExp))
-p + geom_point() + geom_smooth(method = &amp;quot;lm&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
+p + geom_point() + geom_smooth(method = &amp;quot;lm&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:ch-03-fig-lexp-gdp-04&#34;&gt;&lt;/span&gt;
 &lt;img src=&#34;/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-04-1.png&#34; alt=&#34;Life Expectancy vs GDP, points and an ill-advised linear fit.&#34; width=&#34;100%&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
@@ -372,6 +294,38 @@ Figure 9: Mapping aesthetics on a per-geom basis. Here color is mapped to contin
     </item>
     
     <item>
+      <title>Problem set 1</title>
+      <link>/assignment/01-problem-set/</link>
+      <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
+      <guid>/assignment/01-problem-set/</guid>
+      <description>
+
+
+&lt;div id=&#34;task&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Task&lt;/h1&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Truth, Beauty, and Data</title>
+      <link>/reading/01-reading/</link>
+      <pubDate>Tue, 04 Sep 2018 00:00:00 +0000</pubDate>
+      <guid>/reading/01-reading/</guid>
+      <description>
+
+
+&lt;div id=&#34;required&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Required&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://socviz.co/lookatdata.html&#34;&gt;Chapter 1&lt;/a&gt; in Kieran Healy, &lt;em&gt;Data Visualization&lt;/em&gt; &lt;span class=&#34;citation&#34;&gt;[@Healy:2019]&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Chapters 2 and 3 in Alberto Cairo, &lt;em&gt;The Truthful Art&lt;/em&gt; &lt;span class=&#34;citation&#34;&gt;[@Cairo:2016]&lt;/span&gt; (&lt;em&gt;skim the introduction and chapter 1&lt;/em&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Midterm Prjoect</title>
       <link>/assignment/01-project/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -386,19 +340,21 @@ Figure 9: Mapping aesthetics on a per-geom basis. Here color is mapped to contin
     </item>
     
     <item>
-      <title>Schedule</title>
+      <title>Planificación</title>
       <link>/schedule/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>/schedule/</guid>
       <description>
 
 
+&lt;div id=&#34;probando-texto&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Probando texto&lt;/h2&gt;
 &lt;hr /&gt;
 &lt;table class=&#34;table schedule&#34; style=&#34;max-width:100%&#34;&gt;
     &lt;tbody&gt;
         &lt;tr&gt;
-            &lt;td align=&#34;right&#34; style=&#34;width:20%;text-align:right&#34;&gt;Week 1&lt;/td&gt;
-            &lt;td style=&#34;width:50%;text-align:left&#34;&gt;Looking at Data / Up and Running&lt;/td&gt;
+            &lt;td align=&#34;right&#34; style=&#34;width:20%;text-align:right&#34;&gt;&lt;/td&gt;
+            &lt;td style=&#34;width:50%;text-align:left&#34;&gt;UNIDAD 1&lt;/td&gt;
             &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;
                 &lt;font color=&#34;f1f1f1&#34;&gt;
                     &lt;i class=&#34;fas fa-book-reader fa-lg&#34;&gt;&lt;/i&gt;&lt;/font&gt;
@@ -407,6 +363,20 @@ Figure 9: Mapping aesthetics on a per-geom basis. Here color is mapped to contin
                 &lt;font color=&#34;f1f1f1&#34;&gt;
                     &lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt;&lt;/font&gt;
             &lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;
+                &lt;font color=&#34;f1f1f1&#34;&gt;
+                    &lt;i class=&#34;fas fa-chalkboard-teacher fa-lg&#34;&gt;&lt;/i&gt;&lt;/font&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td align=&#34;right&#34; style=&#34;width:20%;text-align:right&#34;&gt;Semana 1&lt;/td&gt;
+            &lt;td style=&#34;width:50%;text-align:left&#34;&gt;Presentación e introducción&lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;&lt;a
+                    href=&#34;/reading/01-reading/&#34;&gt;
+                    &lt;i class=&#34;fas fa-book-reader fa-lg&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;&lt;a
+                    href=&#34;/assignment/01-code/&#34;&gt;
+                    &lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;
             &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;&lt;a href=&#34;/class/01-class/&#34;&gt;
                     &lt;i class=&#34;fas fa-chalkboard-teacher fa-lg&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;
         &lt;/tr&gt;
@@ -489,19 +459,20 @@ Figure 9: Mapping aesthetics on a per-geom basis. Here color is mapped to contin
 
 &lt;/table&gt;
 
+&lt;/div&gt;
 </description>
     </item>
     
     <item>
-      <title>Syllabus</title>
-      <link>/syllabus/</link>
+      <title>Programa</title>
+      <link>/programa/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/syllabus/</guid>
+      <guid>/programa/</guid>
       <description>
 
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#overview&#34;&gt;Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#descripción-general&#34;&gt;Descripción general&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#course-objectives&#34;&gt;Course objectives&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#core-texts&#34;&gt;Core Texts&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#other-material&#34;&gt;Other Material&lt;/a&gt;&lt;/li&gt;
@@ -510,8 +481,8 @@ Figure 9: Mapping aesthetics on a per-geom basis. Here color is mapped to contin
 &lt;/ul&gt;
 &lt;/div&gt;
 
-&lt;div id=&#34;overview&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;div id=&#34;descripción-general&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Descripción general&lt;/h2&gt;
 &lt;p&gt;This is a half-semester graduate seminar. It’s self-contained, but goes well with its companion on Data Management, taught in the second half on the semester.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;course-objectives&#34; class=&#34;section level2&#34;&gt;

@@ -1,8 +1,8 @@
 ---
-title: Reading
+title: Lecturas
 menu:
   reading:
-    parent: Readings
+    parent: Lecturas
     weight: 1
 type: docs
 weight: 1

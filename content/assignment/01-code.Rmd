@@ -1,11 +1,27 @@
 ---
-title: "Code from Week 1"
-editor_options: 
+title: "Práctica 1"
+linktitle: "Práctica 1"
+date: "2020-01-10"
+class_date: "2020-03-31"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title2_html.template
+    toc: true
+menu:
+  class:
+    parent: Practicas
+    weight: 1
+type: docs
+weight: 1
+editor_options:
   chunk_output_type: console
 ---
 
 
-# Course Packet
+# Librerías
 
 ```{r load, eval = FALSE, echo = TRUE}
 
@@ -24,7 +40,7 @@ library(socviz)
 
 ```
 
-To extract the course packet to your desktop: 
+To extract the course packet to your desktop:
 
 ```{r extract, eval = FALSE, echo = TRUE}
 
@@ -54,7 +70,7 @@ p
 
 
 ```{r ch-03-fig-lexp-gdp-01}
-p + geom_point() 
+p + geom_point()
 ```
 
 
@@ -71,7 +87,7 @@ p + geom_smooth()
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y=lifeExp))
-p + geom_point() + geom_smooth(method = "lm") 
+p + geom_point() + geom_smooth(method = "lm")
 ```
 
 

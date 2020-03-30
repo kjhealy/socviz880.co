@@ -12,19 +12,16 @@ output:
     toc: true
 menu:
   class:
-    parent: Class sessions
+    parent: Contenidos
     weight: 1
 type: docs
 weight: 1
 pdf: /slides/02_dataviz_s20_getting_started.pdf
-thumb: /slides/02_dataviz_s20_getting_started.png    
-editor_options: 
+thumb: /slides/02_dataviz_s20_getting_started.png
+editor_options:
   chunk_output_type: console
 ---
 
 ## Slides
 
 `r blogdown::shortcode("slides")`
-
-
-
