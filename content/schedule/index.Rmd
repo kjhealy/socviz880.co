@@ -3,7 +3,12 @@ title: "Planificación"
 slug: schedule
 ---
 
-## Probando texto
+## Organización general del curso
+
+<embed src="/docs/Multiv2020prog_sesiones.pdf" type="application/pdf" width="100%" height="600px" />
+
+
+Ver en pantalla completa [AQUÍ](/docs/Multiv2020prog_sesiones.pdf)
 
 ---
 

@@ -6,12 +6,12 @@
             <li><i class="fas fa-user"></i> <a href="{{ .Site.Params.Profesor.url }}" target="_blank" rel="noopener"> {{ .Site.Params.Profesor.name }}</a></li>
             <li><i class="fas fa-university"></i> {{ .Site.Params.Profesor.office }}</li>
             <li><i class="fas fa-envelope"></i> <a href="mailto:{{ .Site.Params.Profesor.email }}"> {{ .Site.Params.Profesor.email }}</a></li>
-            <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/{{ .Site.Params.Profesor.twitter }}" target="_blank" rel="noopener"> @{{ .Site.Params.Profesor.twitter }}</a></li>
+            <li><i class="fab fa-github"></i> <a href="https://github.com/{{ .Site.Params.course.github }}" target="_blank" rel="noopener"> {{ .Site.Params.Profesor.github }}</a></li>
         </ul>
     </div>
 
     <div class="col-md-4">
-        <h3>Horario</h3>
+        <h3>Horario clases</h3>
 
         <ul class="icon-list">
             <li><i class="far fa-calendar"></i> {{ .Site.Params.course.days }}</li>
@@ -23,15 +23,19 @@
     </div>
 
     <div class="col-md-4">
-        <h3>Apoyos docentes</h3>
+        <h3>Horario prácticas</h3>
 
-        <p> Valentina Andrade </p>
-        <p> Julio Iturra  </p>
+        <ul class="icon-list">
+            <li><i class="far fa-calendar"></i> Sección 1: Jueves </li>
+            <li><i class="far fa-calendar"></i> Sección 2: Viernes </li>
+            <li><i class="far fa-clock"></i> 9:00 a 10:00</li>
+        </ul>
     </div>
 
-    <div class="col-md-4">
-        <h3>Ayudantes </h3>
-        <p> (aquí ayudantes)  </p>
+
+    <div class="apoyos">
+        <h3>Apoyos docentes:</h3> Valentina Andrade & Julio Iturra
+        <h3>Ayudantes:</h3> xxx
     </div>
 
 <br>

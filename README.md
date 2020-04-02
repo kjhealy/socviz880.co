@@ -1,5 +1,7 @@
-# SOCIOL 880: Data Visualization
+# Estadística multivariada - 2020
+### Departamento de Soiología, Universidad de Chile
 
-This repository contains the code for generating [socviz880.co](https://socviz880.co/).
+Este repositorio contiene el código para generar el sitio del curso [Estadística Multivariada](https://multivariada.netlify.com/)
 
-Various hugo and blogdown features borrowed more or less directly from [Andrew Heiss](https://www.andrewheiss.com) and his excellent [teaching](https://statsf18.classes.andrewheiss.com/) and [class](https://econw19.classes.andrewheiss.com/) [websites](https://datavizf18.classes.andrewheiss.com/).
+Varios elementos del sitio fueron tomados de
+[Andrew Heiss](https://www.andrewheiss.com) y de [Kieran Healey](https://kieranhealy.org/).
