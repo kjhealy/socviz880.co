@@ -701,6 +701,7 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#software&#34;&gt;Software&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#plataformas-de-comunicación-y-discusión&#34;&gt;Plataformas de comunicación y discusión&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#varios&#34;&gt;VARIOS&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#programación-de-sesiones&#34;&gt;Programación de sesiones&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
@@ -865,8 +866,19 @@ Se espera que los estudiantes sean capaces de:&lt;/p&gt;
 &lt;li&gt;En evaluación
 &lt;ul&gt;
 &lt;li&gt;Disquis&lt;/li&gt;
-&lt;li&gt;Canal Slack&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;varios&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;VARIOS&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Las clases en general se acompañan de documentos de presentación, que estarán disponibles antes de la sesión en la página de &lt;a href=&#34;/class/&#34;&gt;Materiales&lt;/a&gt;, y están desarrollados con base en Rmarkdown/XaringanRmarkdown/ Xaringan. Estos documentos no son:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;“la clase”&lt;/li&gt;
+&lt;li&gt;autoexplicativos (ni aspiran a serlo)&lt;/li&gt;
+&lt;li&gt;“el ppt” (ni mucho menos “la ppt”)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Políticas de participación y trato&lt;/strong&gt;: se espera y enfatiza la participación por distintos canales disponibles. También se enfatiza un trato respetuoso y horizontal. Quienes están tomando este curso serán referidos como participantes y/o estudiantes, evitar el uso de “l_s cabr_s” o “l_s chiquill_s”. Quien no se sienta tratad_ apropiadamente o vea que otr_s no lo estan siendo, se solicita reportar para solucionar la situación.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;programación-de-sesiones&#34; class=&#34;section level2&#34;&gt;

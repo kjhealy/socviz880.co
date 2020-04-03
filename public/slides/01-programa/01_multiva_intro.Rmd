@@ -114,6 +114,11 @@ class: inverse middle center
 
 
 ---
+# Estructura general
+
+![](plan.png)
+
+---
 class: roja, middle, center
 
 # Equipo
@@ -123,9 +128,14 @@ class: middle center
 ![](equipo.png)
 
 ---
+class: inverse, middle, center
 
+# Sitio web del curso:
 
+----
 
+# [multivariada.netlify.com](https://multivariada.netlify.com/)
+---
 
 
 class: inverse

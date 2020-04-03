@@ -158,7 +158,19 @@ Usaremos R 3.6 a través de la interfaz de RStudio. También realizaremos ejerci
 - Foros Ucursos
 - En evaluación
   - Disquis
-  - Canal Slack
+
+
+## VARIOS
+
+- Las clases en general se acompañan de documentos de presentación, que estarán disponibles antes de la sesión en la página de [Materiales](/class/), y están desarrollados con base en Rmarkdown/XaringanRmarkdown/ Xaringan. Estos documentos no son:
+
+  - “la clase”
+  - autoexplicativos (ni aspiran a serlo)
+  - “el ppt” (ni mucho menos “la ppt”)
+
+- **Políticas de participación y trato**: se espera y enfatiza la participación por distintos canales disponibles. También se enfatiza un trato respetuoso y horizontal. Quienes están tomando este curso serán referidos como participantes y/o estudiantes, evitar el uso de "l_s cabr_s" o "l_s chiquill_s". Quien no se sienta tratad_ apropiadamente o vea que otr_s no lo estan siendo, se solicita reportar para solucionar la situación.
+
+ 
 
 
 ## Programación de sesiones
