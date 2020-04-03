@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Investigación Social Abierta</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=".small[Juan Carlos Castillo    Departamento de Sociología - UCH / COES   ]" />
+    <link rel="stylesheet" href="https://multinivel.netlify.com/docpres/xaringan_custom/xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="https://multinivel.netlify.com/docpres/xaringan_custom/progress-bar.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: bottom, right, inverse
+
+
+
+
+
+&lt;!---
+Para correr en ATOM
+- open terminal, abrir R (simplemente, R y enter)
+- rmarkdown::render('static/docpres/07_interacciones/7interacciones.Rmd', 'xaringan::moon_reader')
+
+About macros.js: permite escalar las imágenes como [scale 50%](path to image), hay si que grabar ese archivo js en el directorio.
+---&gt;
+
+.pull-left[.center[
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+![:scale 70%](https://cienciasocialabierta.netlify.com/img/hex_multiva.png)]]
+
+.pull-right[
+# Ciencia Social Abierta
+### Juan Carlos Castillo
+### Sociología FACSO - UChile
+### 1er Sem 2020
+### [cienciasocialabierta.netlify.com](https://cienciasocialabierta.netlify.com)
+
+
+&lt;br&gt;
+
+## Sesión 1: Programa e introducción
+
+]
+
+---
+class: roja, middle, center
+
+
+# Motivación:
+
+## Crisis de apertura en ciencia: 
+## Acceso y reproducibilidad
+
+---
+class: inverse, middle, center
+
+# 1. Crisis de acceso
+
+---
+class: middle
+
+### El ciclo actual de publicación científica
+![](ciclocerrado.png)
+
+.small[
+(Adaptado de: [https://creativecommons.org/about/program-areas/open-access/](https://creativecommons.org/about/program-areas/open-access/))
+]
+
+---
+class: middle, center
+
+.pull-left[
+## Barreras de pago
+]
+.pull-right[
+.left[
+![:scale 80%](https://localist-images.azureedge.net/photos/723383/huge/3b15ca9bd709e6738e42326fa3f35ff4a3357bb9.jpg)
+]
+]
+
+
+
+---
+### Márgenes de ganancia
+
+
+![](profits.png)
+
+
+---
+## Beneficios acceso abierto
+
+.center[
+![:scale 65%](openbeneficios.png)
+]
+.small[
+(Adaptado de: [http://whyopenresearch.org/#](http://whyopenresearch.org/#))
+]
+
+---
+class: inverse, middle, center
+
+# 2. Crisis de reproducibilidad
+
+---
+
+¿Qué porcentaje de los estudios publicados son reproducibles?
+
+![](reproducibility_science.png)
+
+... alrededor de un 40% (varía por disciplina)
+
+---
+# ¿Por qué se ocurre la crisis de reproducibilidad?
+
+Algunas razones:
+
+- pobre documentación metodológica
+
+- sesgo hacia búsqueda y publicación de resultados significativos (p hacking), atribuido a la presión por publicar
+
+- en algunos casos, falseamiento de datos/análisis
+
+---
+class: roja, middle, center
+
+# Este curso
+
+---
+## Enfrentando la crisis
+
+- tema de **ética** científica y también de **eficiencia**
+
+--
+
+- por ahora en Chile, la apertura depende de la **voluntad de los investigadores**, pero revistas se hacen más exigentes y gobiernos extranjeros ya han implementado políticas de acceso y reproducibilidad.
+
+--
+
+- requiere de una serie de **herramientas metodológicas** que permitan reproducibilidad y acceso de la información científica
+
+--
+- En este curso, vamos a organizar los contenidos en base a dos sets de herramientas relacionadas con la crisis de apertura:
+
+ - herramientas de **acceso**
+ - herramientas de **reproducibilidad**
+
+ 
+-&gt; al [programa](https://cienciasocialabierta.netlify.com/)
+
+---
+class: inverse
+
+.pull-left[.center[
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+![:scale 70%](https://cienciasocialabierta.netlify.com/img/hex_multiva.png)]]
+
+.pull-right[
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+
+# Ciencia Social Abierta
+### Juan Carlos Castillo
+### Sociología FACSO - UChile
+### 1er Sem 2020
+### [cienciasocialabierta.netlify.com](https://cienciasocialabierta.netlify.com)
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://multinivel.netlify.com/docpres/xaringan_custom/macros.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "<div class=\"progress-bar-container\">   <div class=\"progress-bar\" style=\"width: calc(%current% / %total% * 100%);\">   </div> </div> ",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

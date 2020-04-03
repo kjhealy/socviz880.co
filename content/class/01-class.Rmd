@@ -24,10 +24,14 @@ editor_options:
 
 ## Documento presentación
 
-`r blogdown::shortcode("slides")`
+<iframe src=/slides/01-programa/01_multiva_intro.html height="500" width="775">
+</iframe>
+
+Acceso en pantalla completa [AQUÍ](/slides/01-programa/01_multiva_intro.html) 
 
 
-## Links
 
-- [The R Project for Statistical Computing](https://www.r-project.org/)
-- [R Studio](https://www.rstudio.com)
+
+## Lecturas
+
+- [Linares (2018) La explicación en sociología](../../docs/lecturas/linares 2018 Cap.2 Explicacion en sociologia.pdf)

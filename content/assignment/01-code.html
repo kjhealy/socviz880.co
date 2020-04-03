@@ -1,15 +1,18 @@
 ---
-title: "Práctica 1"
+title: "Práctica 1. Procesamiento de datos en R"
+subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
 linktitle: "Práctica 1"
 date: "2020-01-10"
-class_date: "2020-03-31"
+class_date: "2020-04-03"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
 output:
   blogdown::html_page:
-    template: ../../pandoc/toc-title2_html.template
+    template: ../../pandoc/toc-title_html.template
     toc: true
+    highlight: tango
+    number_sections: true
 menu:
   class:
     parent: Practicas
@@ -21,179 +24,317 @@ editor_options:
 ---
 
 <!-- BLOGDOWN-HEAD -->
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 <!-- /BLOGDOWN-HEAD -->
 
 <h2>Índice</h2>
 <div id="TOC">
 <ul>
-<li><a href="#librerías">Librerías</a></li>
-<li><a href="#first-steps">First steps</a><ul>
-<li><a href="#mapping-aesthetics-vs-setting-them">Mapping aesthetics vs setting them</a></li>
+<li><a href="#presentación"><span class="toc-section-number">1</span> Presentación</a></li>
+<li><a href="#preparacion-de-datos-con-elsoc-2016"><span class="toc-section-number">2</span> Preparacion de datos con ELSOC 2016</a><ul>
+<li><a href="#librerías-y-configuración"><span class="toc-section-number">2.1</span> Librerías y configuración</a><ul>
+<li><a href="#cargar-base-de-datos"><span class="toc-section-number">2.1.1</span> Cargar base de datos</a></li>
+<li><a href="#datos-perdidos"><span class="toc-section-number">2.1.2</span> Datos perdidos</a></li>
 </ul></li>
-<li><a href="#aesthetics-can-be-mapped-per-geom">Aesthetics can be mapped per geom</a></li>
+<li><a href="#recodificacion-variables-percepcion-de-meritocracia"><span class="toc-section-number">2.2</span> Recodificacion Variables percepcion de meritocracia</a></li>
+<li><a href="#recodificacion-variable-estatus-subjetivo"><span class="toc-section-number">2.3</span> Recodificacion variable Estatus subjetivo</a></li>
+<li><a href="#recodificacion-variables-estatus-objetivo"><span class="toc-section-number">2.4</span> Recodificacion variables Estatus objetivo</a><ul>
+<li><a href="#ingresos-del-hogar"><span class="toc-section-number">2.4.1</span> Ingresos del hogar</a></li>
+<li><a href="#educación"><span class="toc-section-number">2.4.2</span> Educación</a></li>
+</ul></li>
+<li><a href="#variables-control"><span class="toc-section-number">2.5</span> Variables control</a></li>
+</ul></li>
+<li><a href="#mantener-variables-relevantes"><span class="toc-section-number">3</span> Mantener variables relevantes</a></li>
 </ul>
 </div>
 
-<div id="librerías" class="section level1">
-<h1>Librerías</h1>
-<pre class="r"><code>my_packages &lt;- c(&quot;tidyverse&quot;, &quot;fs&quot;, &quot;devtools&quot;)
-install.packages(my_packages)
-
-devtools::install_github(&quot;kjhealy/socviz&quot;)</code></pre>
-<pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;rvest&#39;:
-##   method            from
-##   read_xml.response xml2</code></pre>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
-<pre><code>## ✔ ggplot2 3.2.1     ✔ purrr   0.3.2
-## ✔ tibble  2.1.2     ✔ dplyr   0.8.3
-## ✔ tidyr   1.0.0     ✔ stringr 1.4.0
-## ✔ readr   1.3.1     ✔ forcats 0.4.0</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>library(socviz)</code></pre>
-<p>To extract the course packet to your desktop:</p>
-<pre class="r"><code>setup_course_notes()</code></pre>
+<div id="presentación" class="section level1">
+<h1><span class="header-section-number">1</span> Presentación</h1>
+<p>El Estudio Longitudinal Social de Chile <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/0KIRBJ">(ELSOC)</a> es una encuesta desarrollada para analizar intertemporalmente la evolución del conflicto y cohesión en la sociedad chilena.</p>
+<p>Uno de los módulos de <strong>ELSOC</strong> es “Desigualdad y Legitimidad”. Este módulo busca estudiar las percepciones y atribuciones asociadas a las desigualdades sociales. Se ve motivado por el interés de comprender cómo las personas perciben, legitiman y reproducen las diferencias de ingresos, estatus y poder presentes en el Chile contemporáneo.</p>
+<p>El presente ejercicio tiene por objetivo el procesar los datos para obtener las variables relevante para el estudio de la <strong>Percepción de Meritocracia</strong>, entendida como el grado en que los individuos consideran que su sociedad cumple con los principios de una meritocracia, es decir, que funciona como un sistema que asigna recompensas en función del esfuerzo y las habilidades.</p>
 </div>
-<div id="first-steps" class="section level1">
-<h1>First steps</h1>
-<pre class="r"><code>library(gapminder)
-
-gapminder</code></pre>
-<pre><code>## # A tibble: 1,704 x 6
-##    country     continent  year lifeExp      pop gdpPercap
-##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
-##  1 Afghanistan Asia       1952    28.8  8425333      779.
-##  2 Afghanistan Asia       1957    30.3  9240934      821.
-##  3 Afghanistan Asia       1962    32.0 10267083      853.
-##  4 Afghanistan Asia       1967    34.0 11537966      836.
-##  5 Afghanistan Asia       1972    36.1 13079460      740.
-##  6 Afghanistan Asia       1977    38.4 14880372      786.
-##  7 Afghanistan Asia       1982    39.9 12881816      978.
-##  8 Afghanistan Asia       1987    40.8 13867957      852.
-##  9 Afghanistan Asia       1992    41.7 16317921      649.
-## 10 Afghanistan Asia       1997    41.8 22227415      635.
-## # … with 1,694 more rows</code></pre>
-<pre class="r"><code>p &lt;- ggplot(data = gapminder,
-            mapping = aes(x = gdpPercap,
-                          y = lifeExp))
-
-p</code></pre>
-<p><img src="/assignment/01-code_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre class="r"><code>p + geom_point()</code></pre>
-<p><img src="/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-01-1.png" width="672" /></p>
-<pre class="r"><code>p &lt;- ggplot(data = gapminder,
-            mapping = aes(x = gdpPercap,
-                          y=lifeExp))
-p + geom_smooth()</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
-<div class="figure"><span id="fig:ch-03-fig-lexp-gdp-02"></span>
-<img src="/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-02-1.png" alt="Life Expectancy vs GDP, using a smoother." width="672" />
-<p class="caption">
-Figure 1: Life Expectancy vs GDP, using a smoother.
-</p>
+<div id="preparacion-de-datos-con-elsoc-2016" class="section level1">
+<h1><span class="header-section-number">2</span> Preparacion de datos con ELSOC 2016</h1>
+<div id="librerías-y-configuración" class="section level2">
+<h2><span class="header-section-number">2.1</span> Librerías y configuración</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>()) <span class="co"># borrar todos los objetos en el enviorment</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw">options</span>(<span class="dt">scipen=</span><span class="dv">999</span>) <span class="co">#sin notacion cientifica</span></a></code></pre></div>
+<div id="cargar-base-de-datos" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Cargar base de datos</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">load</span>(<span class="st">&quot;https://multivariada.netlify.com/assignment/data/original/ELSOC_W01_v3.10.RData&quot;</span>)</a>
+<a class="sourceLine" id="cb6-2" title="2">elsoc &lt;-<span class="st"> </span>elsoc_<span class="dv">2016</span>; <span class="kw">remove</span>(elsoc_<span class="dv">2016</span>)</a></code></pre></div>
 </div>
-<pre class="r"><code>p &lt;- ggplot(data = gapminder,
-            mapping = aes(x = gdpPercap,
-                          y=lifeExp))
-p + geom_point() + geom_smooth(method = &quot;lm&quot;)</code></pre>
-<div class="figure"><span id="fig:ch-03-fig-lexp-gdp-04"></span>
-<img src="/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-04-1.png" alt="Life Expectancy vs GDP, points and an ill-advised linear fit." width="100%" />
-<p class="caption">
-Figure 2: Life Expectancy vs GDP, points and an ill-advised linear fit.
-</p>
-</div>
-<pre class="r"><code>p &lt;- ggplot(data = gapminder,
-            mapping = aes(x = gdpPercap,
-                          y=lifeExp))
-p + geom_point() +
-    geom_smooth(method = &quot;gam&quot;) +
-    scale_x_log10()</code></pre>
-<div class="figure"><span id="fig:ch-03-fig-lexp-gdp-05"></span>
-<img src="/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-05-1.png" alt="Life Expectancy vs GDP scatterplot, with a GAM smoother and a log scale on the x-axis." width="100%" />
-<p class="caption">
-Figure 3: Life Expectancy vs GDP scatterplot, with a GAM smoother and a log scale on the x-axis.
-</p>
-</div>
-<div id="mapping-aesthetics-vs-setting-them" class="section level2">
-<h2>Mapping aesthetics vs setting them</h2>
-<pre class="r"><code>p &lt;- ggplot(data = gapminder,
-            mapping = aes(x = gdpPercap,
-                          y = lifeExp,
-                          color = &quot;purple&quot;))
-p + geom_point() +
-    geom_smooth(method = &quot;loess&quot;) +
-    scale_x_log10()</code></pre>
-<div class="figure"><span id="fig:ch-03-fig-lexp-gdp-07"></span>
-<img src="/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-07-1.png" alt="What has gone wrong here?" width="768" />
-<p class="caption">
-Figure 4: What has gone wrong here?
-</p>
-</div>
-<pre class="r"><code>p &lt;- ggplot(data = gapminder,
-            mapping = aes(x = gdpPercap,
-                          y = lifeExp))
-p + geom_point(color = &quot;purple&quot;) +
-    geom_smooth(method = &quot;loess&quot;) +
-    scale_x_log10()</code></pre>
-<div class="figure"><span id="fig:ch-03-fig-lexp-gdp-08"></span>
-<img src="/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-08-1.png" alt="Setting the color attribute of the points directly." width="100%" />
-<p class="caption">
-Figure 5: Setting the color attribute of the points directly.
-</p>
-</div>
-<pre class="r"><code>p &lt;- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y=lifeExp))
-p + geom_point(alpha = 0.3) + geom_smooth(method = &quot;gam&quot;) +
-    scale_x_log10(labels = scales::dollar) +
-    labs(x = &quot;GDP Per Capita&quot;, y = &quot;Life Expectancy in Years&quot;,
-         title = &quot;Economic Growth and Life Expectancy&quot;,
-         subtitle = &quot;Data points are country-years&quot;,
-         caption = &quot;Source: Gapminder.&quot;)</code></pre>
-<div class="figure"><span id="fig:ch-03-fig-lexp-gdp-10"></span>
-<img src="/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-10-1.png" alt="A more polished plot of Life Expectancy vs GDP." width="100%" />
-<p class="caption">
-Figure 6: A more polished plot of Life Expectancy vs GDP.
-</p>
-</div>
-<pre class="r"><code>p &lt;- ggplot(data = gapminder,
-            mapping = aes(x = gdpPercap,
-                          y = lifeExp,
-                          color = continent))
-p + geom_point() +
-    geom_smooth(method = &quot;loess&quot;) +
-    scale_x_log10()</code></pre>
-<div class="figure"><span id="fig:ch-03-fig-lexp-gdp-11"></span>
-<img src="/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-11-1.png" alt="Mapping the continent variable to the color aesthetic." width="100%" />
-<p class="caption">
-Figure 7: Mapping the continent variable to the color aesthetic.
-</p>
-</div>
-<pre class="r"><code>p &lt;- ggplot(data = gapminder,
-            mapping = aes(x = gdpPercap,
-                          y = lifeExp,
-                          color = continent,
-                          fill = continent))
-p + geom_point() +
-    geom_smooth(method = &quot;loess&quot;) +
-    scale_x_log10()</code></pre>
-<div class="figure"><span id="fig:ch-03-fig-lexp-gdp-12"></span>
-<img src="/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-12-1.png" alt="Mapping the continent variable to the color aesthetic, and correcting the error bars using the fill aesthetic." width="100%" />
-<p class="caption">
-Figure 8: Mapping the continent variable to the color aesthetic, and correcting the error bars using the fill aesthetic.
-</p>
+<div id="datos-perdidos" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Datos perdidos</h3>
+<ul>
+<li>En ELSOC todos los valores -888 y -999 corresponden a valores para las categorias “No sabe” y “No responde”, respectivamente.</li>
+<li>Decidimos dejarlas como valores perdidos (NA)</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(elsoc)) {</a>
+<a class="sourceLine" id="cb7-2" title="2">  elsoc[,i][elsoc[,i] <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">888</span>)]  &lt;-<span class="st"> </span><span class="ot">NA</span> <span class="co">#Missing </span></a>
+<a class="sourceLine" id="cb7-3" title="3">  elsoc[,i][elsoc[,i] <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">999</span>)]  &lt;-<span class="st"> </span><span class="ot">NA</span> <span class="co">#Missing   </span></a>
+<a class="sourceLine" id="cb7-4" title="4">  }</a></code></pre></div>
 </div>
 </div>
+<div id="recodificacion-variables-percepcion-de-meritocracia" class="section level2">
+<h2><span class="header-section-number">2.2</span> Recodificacion Variables percepcion de meritocracia</h2>
+<ul>
+<li>[<code>c18_09</code>]: “Grado de acuerdo: Las personas son recompensadas por sus esfuerzos” (1 = Totalmente en desacuerdo; 5 = Totalmente de acuerdo)</li>
+<li>[<code>c18_10</code>]: “Grado de acuerdo: Las personas son recompensada por su inteligencia” (1 = Totalmente en desacuerdo; 5 = Totalmente de acuerdo)</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">elsoc<span class="op">$</span>c18_<span class="dv">09</span> &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(elsoc<span class="op">$</span>c18_<span class="dv">09</span>) </a>
+<a class="sourceLine" id="cb8-2" title="2">elsoc<span class="op">$</span>c18_<span class="dv">10</span> &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(elsoc<span class="op">$</span>c18_<span class="dv">10</span>) </a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="co"># Variables meritocracia promedio -----------------------------------------</span></a>
+<a class="sourceLine" id="cb8-4" title="4">elsoc &lt;-<span class="st"> </span><span class="kw">rename</span>(elsoc,<span class="dt">meffort=</span>c18_<span class="dv">09</span>) <span class="co"># cambio de nombre de la variable c18_09 a uno mas sustantivo </span></a>
+<a class="sourceLine" id="cb8-5" title="5">elsoc &lt;-<span class="st"> </span><span class="kw">rename</span>(elsoc,<span class="dt">mtalent=</span>c18_<span class="dv">10</span>) <span class="co"># cambio de nombre de la variable c18_10 a uno mas sustantivo </span></a>
+<a class="sourceLine" id="cb8-6" title="6"></a>
+<a class="sourceLine" id="cb8-7" title="7"><span class="co"># creamos un indice promedio de percepcion de meritocracia usando ambas preguntas</span></a>
+<a class="sourceLine" id="cb8-8" title="8">elsoc<span class="op">$</span>merit &lt;-<span class="st"> </span>(elsoc<span class="op">$</span>meffort<span class="op">+</span>elsoc<span class="op">$</span>mtalent)<span class="op">/</span><span class="dv">2</span> </a>
+<a class="sourceLine" id="cb8-9" title="9"></a>
+<a class="sourceLine" id="cb8-10" title="10"><span class="co"># re escalamos la variable de 1-5 a una de 0 a 100 (para facilitar interpretacion) </span></a>
+<a class="sourceLine" id="cb8-11" title="11">elsoc<span class="op">$</span>merit &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb8-12" title="12"><span class="st">  </span>(elsoc<span class="op">$</span>merit<span class="op">-</span><span class="kw">min</span>(elsoc<span class="op">$</span>merit,<span class="dt">na.rm=</span>T))<span class="op">/</span>(<span class="kw">max</span>(elsoc<span class="op">$</span>merit,<span class="dt">na.rm=</span>T)<span class="op">-</span><span class="kw">min</span>(elsoc<span class="op">$</span>merit,<span class="dt">na.rm=</span>T))<span class="op">*</span><span class="dv">100</span></a></code></pre></div>
 </div>
-<div id="aesthetics-can-be-mapped-per-geom" class="section level1">
-<h1>Aesthetics can be mapped per geom</h1>
-<pre class="r"><code>p &lt;- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp))
-p + geom_point(mapping = aes(color = continent)) + geom_smooth(method = &quot;loess&quot;) +
-    scale_x_log10()</code></pre>
-<div class="figure"><span id="fig:ch-03-fig-lexp-gdp-13"></span>
-<img src="/assignment/01-code_files/figure-html/ch-03-fig-lexp-gdp-13-1.png" alt="Mapping aesthetics on a per-geom basis. Here color is mapped to continent for the points but not the smoother." width="100%" />
-<p class="caption">
-Figure 9: Mapping aesthetics on a per-geom basis. Here color is mapped to continent for the points but not the smoother.
-</p>
+<div id="recodificacion-variable-estatus-subjetivo" class="section level2">
+<h2><span class="header-section-number">2.3</span> Recodificacion variable Estatus subjetivo</h2>
+<ul>
+<li>[<code>d01_01</code>]: “Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena” (0 = el nivel mas bajo; 10 = el nivel mas alto)</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">elsoc<span class="op">$</span>ess &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(elsoc<span class="op">$</span>d01_<span class="dv">01</span>) <span class="co"># Estatus Social Subjetivo</span></a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="kw">table</span>(elsoc<span class="op">$</span>ess)</a>
+<a class="sourceLine" id="cb9-3" title="3"><span class="kw">summary</span>(elsoc<span class="op">$</span>ess)</a></code></pre></div>
+<pre><code>## 
+##   0   1   2   3   4   5   6   7   8   9  10 
+##  44  84 207 439 677 975 310 116  37   4  22 
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##    0.00    3.00    5.00    4.33    5.00   10.00      12</code></pre>
 </div>
+<div id="recodificacion-variables-estatus-objetivo" class="section level2">
+<h2><span class="header-section-number">2.4</span> Recodificacion variables Estatus objetivo</h2>
+<div id="ingresos-del-hogar" class="section level3">
+<h3><span class="header-section-number">2.4.1</span> Ingresos del hogar</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">summary</span>(elsoc<span class="op">$</span>m29) <span class="co"># ingresos total ; NA == 587</span></a></code></pre></div>
+<pre><code>##       Min.    1st Qu.     Median       Mean    3rd Qu.       Max.       NA&#39;s 
+##          0     267500     420000    2477852     700000 4000000000        587</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">summary</span>(elsoc<span class="op">$</span>m30) <span class="co"># ingresos tramos </span></a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##   1.000   3.000   6.000   7.415  11.000  20.000    2479</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">summary</span>(elsoc<span class="op">$</span>nhogar1) <span class="co"># tamannio del hogar</span></a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   1.000   2.000   3.000   3.077   4.000  14.000</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">elsoc<span class="op">$</span>m29[elsoc<span class="op">$</span>m29<span class="op">==</span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb17-2" title="2"><span class="co"># Remplazar NA por media de categorias Ingreso -------------------------------#</span></a>
+<a class="sourceLine" id="cb17-3" title="3">elsoc<span class="op">$</span>mean_tramos &lt;-<span class="st"> </span><span class="ot">NA</span> <span class="co"># creamos una variable vacia</span></a>
+<a class="sourceLine" id="cb17-4" title="4"><span class="co"># remplazamos ...</span></a>
+<a class="sourceLine" id="cb17-5" title="5">elsoc<span class="op">$</span>mean_tramos[elsoc<span class="op">$</span>m30<span class="op">==</span><span class="dv">1</span>] &lt;-<span class="dv">110000</span></a>
+<a class="sourceLine" id="cb17-6" title="6">elsoc<span class="op">$</span>mean_tramos[elsoc<span class="op">$</span>m30<span class="op">==</span><span class="dv">2</span>] &lt;-<span class="fl">250000.5</span></a>
+<a class="sourceLine" id="cb17-7" title="7">elsoc<span class="op">$</span>mean_tramos[elsoc<span class="op">$</span>m30<span class="op">==</span><span class="dv">3</span>] &lt;-<span class="fl">305000.5</span></a>
+<a class="sourceLine" id="cb17-8" title="8">elsoc<span class="op">$</span>mean_tramos[elsoc<span class="op">$</span>m30<span class="op">==</span><span class="dv">4</span>] &lt;-<span class="fl">355000.5</span></a>
+<a class="sourceLine" id="cb17-9" title="9">elsoc<span class="op">$</span>mean_tramos[elsoc<span class="op">$</span>m30<span class="op">==</span><span class="dv">5</span>] &lt;-<span class="fl">400000.5</span></a>
+<a class="sourceLine" id="cb17-10" title="10">elsoc<span class="op">$</span>mean_tramos[elsoc<span class="op">$</span>m30<span class="op">==</span><span class="dv">6</span>] &lt;-<span class="fl">445000.5</span></a>
+<a class="sourceLine" id="cb17-11" title="11">elsoc<span class="op">$</span>mean_tramos[elsoc<span class="op">$</span>m30<span class="op">==</span><span class="dv">7</span>] &lt;-<span class="fl">490000.5</span></a>
+<a class="sourceLine" id="cb17-12" title="12">elsoc<span class="op">$</span>mean_tramos[elsoc<span class="op">$</span>m30<span class="op">==</span><span class="dv">8</span>] &lt;-<span class="fl">535000.5</span></a>
+<a class="sourceLine" id="cb17-13" title="13">elsoc<span class="op">$</span>mean_tramos[elsoc<span class="op">$</span>m30<span class="op">==</span><span class="dv">9</span>] &lt;-<span class="fl">585000.5</span></a>
+<a class="sourceLine" id="cb17-14" title="14">elsoc<span class="op">$</span>mean_tramos[elsoc<span class="op">$</span>m30<span class="op">==</span><span class="dv">10</span>]&lt;-<span class="fl">640000.5</span></a>
+<a class="sourceLine" id="cb17-15" title="15">elsoc<span class="op">$</span>mean_tramos[elsoc<span class="op">$</span>m30<span class="op">==</span><span class="dv">11</span>]&lt;-<span class="fl">700000.5</span></a>
+<a class="sourceLine" id="cb17-16" title="16">elsoc<span class="op">$</span>mean_tramos[elsoc<span class="op">$</span>m30<span class="op">==</span><span class="dv">12</span>]&lt;-<span class="fl">765000.5</span></a>
+<a class="sourceLine" id="cb17-17" title="17">elsoc<span class="op">$</span>mean_tramos[elsoc<span class="op">$</span>m30<span class="op">==</span><span class="dv">13</span>]&lt;-<span class="fl">845000.5</span></a>
+<a class="sourceLine" id="cb17-18" title="18">elsoc<span class="op">$</span>mean_tramos[elsoc<span class="op">$</span>m30<span class="op">==</span><span class="dv">14</span>]&lt;-<span class="fl">935000.5</span></a>
+<a class="sourceLine" id="cb17-19" title="19">elsoc<span class="op">$</span>mean_tramos[elsoc<span class="op">$</span>m30<span class="op">==</span><span class="dv">15</span>]&lt;-<span class="fl">1040000.5</span></a>
+<a class="sourceLine" id="cb17-20" title="20">elsoc<span class="op">$</span>mean_tramos[elsoc<span class="op">$</span>m30<span class="op">==</span><span class="dv">16</span>]&lt;-<span class="fl">1180000.5</span></a>
+<a class="sourceLine" id="cb17-21" title="21">elsoc<span class="op">$</span>mean_tramos[elsoc<span class="op">$</span>m30<span class="op">==</span><span class="dv">17</span>]&lt;-<span class="fl">1375000.5</span></a>
+<a class="sourceLine" id="cb17-22" title="22">elsoc<span class="op">$</span>mean_tramos[elsoc<span class="op">$</span>m30<span class="op">==</span><span class="dv">18</span>]&lt;-<span class="fl">1670000.5</span></a>
+<a class="sourceLine" id="cb17-23" title="23">elsoc<span class="op">$</span>mean_tramos[elsoc<span class="op">$</span>m30<span class="op">==</span><span class="dv">19</span>]&lt;-<span class="fl">2275000.5</span></a>
+<a class="sourceLine" id="cb17-24" title="24">elsoc<span class="op">$</span>mean_tramos[elsoc<span class="op">$</span>m30<span class="op">==</span><span class="dv">20</span>]&lt;-<span class="dv">3726106</span></a>
+<a class="sourceLine" id="cb17-25" title="25"><span class="kw">table</span>(elsoc<span class="op">$</span>mean_tramos) <span class="co"># chequeamos</span></a></code></pre></div>
+<pre><code>## 
+##    110000  250000.5  305000.5  355000.5  400000.5  445000.5  490000.5  535000.5 
+##        49        42        36        35        33        33        38        21 
+##  585000.5  640000.5  700000.5  765000.5  845000.5  935000.5 1040000.5 1180000.5 
+##        26        16        18        15        11        14        19        13 
+## 1375000.5 1670000.5 2275000.5   3726106 
+##         4        10         8         7</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">elsoc<span class="op">$</span>m29 &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="dt">test =</span> (<span class="kw">is.na</span>(elsoc<span class="op">$</span>m29)),<span class="co">#¿es el valor un NA? </span></a>
+<a class="sourceLine" id="cb19-2" title="2">                    <span class="dt">yes =</span> elsoc<span class="op">$</span>mean_tramos, <span class="co">#Si es verdadero, remplazar por el valor de mean_tramos</span></a>
+<a class="sourceLine" id="cb19-3" title="3">                    <span class="dt">no =</span> elsoc<span class="op">$</span>m29)<span class="co"># Si es falso, remplazar por el valor del m29</span></a>
+<a class="sourceLine" id="cb19-4" title="4"></a>
+<a class="sourceLine" id="cb19-5" title="5"><span class="kw">summary</span>(elsoc<span class="op">$</span>m29) <span class="co"># NA = 147</span></a></code></pre></div>
+<pre><code>##       Min.    1st Qu.     Median       Mean    3rd Qu.       Max.       NA&#39;s 
+##      20000     280000     445000    2182986     700000 4000000000        147</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># cambiamos el nombre de las variables inghogar = m29; nhogar=nhogar1</span></a>
+<a class="sourceLine" id="cb21-2" title="2">elsoc &lt;-<span class="st"> </span><span class="kw">rename</span>(elsoc, <span class="dt">inghogar=</span>m29, <span class="dt">nhogar=</span>nhogar1)       </a>
+<a class="sourceLine" id="cb21-3" title="3"><span class="co"># ingreso neto = ingreso del hogar / numero de personas en el hogar</span></a>
+<a class="sourceLine" id="cb21-4" title="4">elsoc<span class="op">$</span>ingneto   &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(elsoc<span class="op">$</span>inghogar<span class="op">/</span>elsoc<span class="op">$</span>nhogar) </a>
+<a class="sourceLine" id="cb21-5" title="5"><span class="co"># logaritmo natural del ingreso neto (para normalizar la distribucion sesgada del ingreso)</span></a>
+<a class="sourceLine" id="cb21-6" title="6">elsoc<span class="op">$</span>lningneto &lt;-<span class="st"> </span><span class="kw">log</span>(elsoc<span class="op">$</span>ingneto)                      </a>
+<a class="sourceLine" id="cb21-7" title="7"></a>
+<a class="sourceLine" id="cb21-8" title="8"><span class="kw">summary</span>(elsoc<span class="op">$</span>ingneto)</a></code></pre></div>
+<pre><code>##       Min.    1st Qu.     Median       Mean    3rd Qu.       Max.       NA&#39;s 
+##       7500      95000     150000    1028152     267500 2000000000        147</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">summary</span>(elsoc<span class="op">$</span>lningneto)</a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##   8.923  11.462  11.918  12.006  12.497  21.416     147</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="co">#---Deciles (ingreso per capita hogar)------------------------------------------------</span></a>
+<a class="sourceLine" id="cb25-2" title="2">elsoc &lt;-<span class="st"> </span>elsoc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">inc10h =</span> <span class="kw">ntile</span>(inghogar, <span class="dv">10</span>)) <span class="co"># Crear Deciles de ingreso</span></a>
+<a class="sourceLine" id="cb25-3" title="3">elsoc<span class="op">$</span>D10h &lt;-<span class="st"> </span><span class="kw">factor</span>(elsoc<span class="op">$</span>inc10h, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>), </a>
+<a class="sourceLine" id="cb25-4" title="4">                    <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;D01&quot;</span>,<span class="st">&quot;D02&quot;</span>,<span class="st">&quot;D03&quot;</span>,<span class="st">&quot;D04&quot;</span>,<span class="st">&quot;D05&quot;</span>,</a>
+<a class="sourceLine" id="cb25-5" title="5">                               <span class="st">&quot;D06&quot;</span>,<span class="st">&quot;D07&quot;</span>,<span class="st">&quot;D08&quot;</span>,<span class="st">&quot;D09&quot;</span>,<span class="st">&quot;D10&quot;</span>));<span class="kw">table</span>(elsoc<span class="op">$</span>D10h)</a></code></pre></div>
+<pre><code>## 
+## D01 D02 D03 D04 D05 D06 D07 D08 D09 D10 
+## 278 278 278 278 278 278 278 278 278 278</code></pre>
+</div>
+<div id="educación" class="section level3">
+<h3><span class="header-section-number">2.4.2</span> Educación</h3>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">table</span>(elsoc<span class="op">$</span>m01) <span class="co"># Educacion en ELSOC</span></a></code></pre></div>
+<pre><code>## 
+##   1   2   3   4   5   6   7   8   9  10 
+##  37 322 297 394 857 102 381 186 303  46</code></pre>
+<p><strong>Recodificación <a href="http://uis.unesco.org/sites/default/files/documents/isced-2011-sp.pdf">CINE 2011 (UNESCO)</a></strong></p>
+<pre><code>1.  Sin estudios                                = [CINE 0   ] =  1
+2.  Educacion Basica o Preparatoria incompleta  = [CINE 0   ] =  1
+3.  Educacion Basica o Preparatoria completa    = [CINE 1,2 ] =  2
+4.  Educacion Media o Humanidades incompleta    = [CINE 3   ] =  3
+5.  Educacion Media o Humanidades completa      = [CINE 3   ] =  3
+6.  Tecnico Superior incompleta                 = [CINE 5   ] =  4
+7.  Tecnico Superior completa                   = [CINE 5   ] =  4
+8.  Universitaria incompleta                    = [CINE 6   ] =  5
+9.  Universitaria completa                      = [CINE 6   ] =  6
+10. Estudios de posgrado (magister o doctorado) = [CINE 7, 8] =  6</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># recodificacion usando funcion &#39;recode&#39; de la libreria car   </span></a>
+<a class="sourceLine" id="cb30-2" title="2">elsoc<span class="op">$</span>edcine &lt;-<span class="st"> </span>car<span class="op">::</span><span class="kw">recode</span>(elsoc<span class="op">$</span>m01, <span class="st">&quot;c(1,2)=1; c(3)=2;c(4,5)=3;c(6,7)=4;c(8,9,10)=5&quot;</span>) </a>
+<a class="sourceLine" id="cb30-3" title="3"><span class="kw">round</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(elsoc<span class="op">$</span>edcine)), <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>## 
+##     1     2     3     4     5 
+## 0.123 0.102 0.428 0.165 0.183</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">elsoc<span class="op">$</span>edcine &lt;-<span class="st"> </span><span class="kw">factor</span>(elsoc<span class="op">$</span>edcine,</a>
+<a class="sourceLine" id="cb32-2" title="2">                       <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb32-3" title="3">                       <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;Primaria incompleta menos&quot;</span>,</a>
+<a class="sourceLine" id="cb32-4" title="4">                                <span class="st">&quot;Primaria y secundaria baja&quot;</span>,</a>
+<a class="sourceLine" id="cb32-5" title="5">                                <span class="st">&quot;Secundaria alta&quot;</span>,</a>
+<a class="sourceLine" id="cb32-6" title="6">                                <span class="st">&quot;Terciaria ciclo corto&quot;</span>,</a>
+<a class="sourceLine" id="cb32-7" title="7">                                <span class="st">&quot;Terciaria y Postgrado&quot;</span>))</a>
+<a class="sourceLine" id="cb32-8" title="8"></a>
+<a class="sourceLine" id="cb32-9" title="9"><span class="kw">table</span>(elsoc<span class="op">$</span>edcine) <span class="co">#chequeamos</span></a></code></pre></div>
+<pre><code>## 
+##  Primaria incompleta menos Primaria y secundaria baja 
+##                        359                        297 
+##            Secundaria alta      Terciaria ciclo corto 
+##                       1251                        483 
+##      Terciaria y Postgrado 
+##                        535</code></pre>
+</div>
+</div>
+<div id="variables-control" class="section level2">
+<h2><span class="header-section-number">2.5</span> Variables control</h2>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co">#---Sexo----</span></a>
+<a class="sourceLine" id="cb34-2" title="2">elsoc<span class="op">$</span>sexo &lt;-<span class="st"> </span>car<span class="op">::</span><span class="kw">recode</span>(elsoc<span class="op">$</span>m0_sexo, <span class="st">&quot;1=1;2=0&quot;</span>)</a>
+<a class="sourceLine" id="cb34-3" title="3">elsoc<span class="op">$</span>sexo &lt;-<span class="st"> </span><span class="kw">factor</span>(elsoc<span class="op">$</span>sexo, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Hombre&quot;</span>,<span class="st">&quot;Mujer&quot;</span>)) <span class="co"># Sexo</span></a>
+<a class="sourceLine" id="cb34-4" title="4"><span class="co">#Hombre=0</span></a>
+<a class="sourceLine" id="cb34-5" title="5"><span class="co">#Mujer=1</span></a>
+<a class="sourceLine" id="cb34-6" title="6"></a>
+<a class="sourceLine" id="cb34-7" title="7"><span class="co">#---Edad----</span></a>
+<a class="sourceLine" id="cb34-8" title="8">elsoc<span class="op">$</span>edad &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(elsoc<span class="op">$</span>m0_edad) <span class="co">#Edad</span></a>
+<a class="sourceLine" id="cb34-9" title="9"></a>
+<a class="sourceLine" id="cb34-10" title="10"><span class="co">#---Posicion Politica----</span></a>
+<a class="sourceLine" id="cb34-11" title="11"><span class="co"># PREGUNTA: &quot;Autoubicacion escala izquierda-derecha&quot; </span></a>
+<a class="sourceLine" id="cb34-12" title="12">  <span class="co"># (0 = izquierda; 10 = Derecha; 11 = Independiente; 12 =Ninguno)</span></a>
+<a class="sourceLine" id="cb34-13" title="13">elsoc<span class="op">$</span>ppolcat  &lt;-<span class="st"> </span>car<span class="op">::</span><span class="kw">recode</span>(elsoc<span class="op">$</span>c15, <span class="st">&quot;c(0,1,2,3,4)=1;5=2;c(6,7,8,9,10)=3;11=4;12=5&quot;</span>) </a>
+<a class="sourceLine" id="cb34-14" title="14">elsoc<span class="op">$</span>ppolcat  &lt;-<span class="st"> </span><span class="kw">factor</span>(elsoc<span class="op">$</span>ppolcat, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>), </a>
+<a class="sourceLine" id="cb34-15" title="15">                         <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Izquierda/Centro Izquierda&quot;</span>,</a>
+<a class="sourceLine" id="cb34-16" title="16">                                    <span class="st">&quot;Centro&quot;</span>,</a>
+<a class="sourceLine" id="cb34-17" title="17">                                    <span class="st">&quot;Derecha/Centro Derecha&quot;</span>,</a>
+<a class="sourceLine" id="cb34-18" title="18">                                    <span class="st">&quot;Independiente&quot;</span>,</a>
+<a class="sourceLine" id="cb34-19" title="19">                                    <span class="st">&quot;Ninguno&quot;</span>))</a></code></pre></div>
+</div>
+</div>
+<div id="mantener-variables-relevantes" class="section level1">
+<h1><span class="header-section-number">3</span> Mantener variables relevantes</h1>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="co"># selecccionamos las variables relevantes</span></a>
+<a class="sourceLine" id="cb35-2" title="2">elsoc_<span class="dv">16</span> &lt;-<span class="st"> </span>elsoc <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(merit,ess,edcine,lningneto,D10h, sexo, edad,ppolcat) </a>
+<a class="sourceLine" id="cb35-3" title="3"><span class="co"># dejamos solamente los casos con informacion completa (listwise deletion)</span></a>
+<a class="sourceLine" id="cb35-4" title="4">elsoc_<span class="dv">16</span> &lt;-<span class="st"> </span><span class="kw">na.omit</span>(elsoc_<span class="dv">16</span>)</a>
+<a class="sourceLine" id="cb35-5" title="5"><span class="kw">names</span>(elsoc_<span class="dv">16</span>) <span class="co"># comprobamos los nombres de variables</span></a></code></pre></div>
+<pre><code>## [1] &quot;merit&quot;     &quot;ess&quot;       &quot;edcine&quot;    &quot;lningneto&quot; &quot;D10h&quot;      &quot;sexo&quot;     
+## [7] &quot;edad&quot;      &quot;ppolcat&quot;</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw">head</span>(elsoc_<span class="dv">16</span>) <span class="co">#chequear</span></a></code></pre></div>
+<pre><code>##   merit ess                    edcine lningneto D10h   sexo edad       ppolcat
+## 1  75.0   5 Primaria incompleta menos  11.22524  D03 Hombre   64 Independiente
+## 2  75.0   5           Secundaria alta  12.42922  D06 Hombre   60       Ninguno
+## 3  50.0   3           Secundaria alta  11.31040  D06 Hombre   26       Ninguno
+## 4  75.0   6     Terciaria y Postgrado  13.54763  D08  Mujer   51       Ninguno
+## 5  62.5   4           Secundaria alta  13.10216  D06  Mujer   69       Ninguno
+## 6  75.0   5           Secundaria alta  13.10216  D06  Mujer   62 Independiente</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="co"># Guardar base de datos procesada ---------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb39-2" title="2"><span class="kw">save</span>(elsoc_<span class="dv">16</span>,<span class="dt">file =</span> <span class="st">&quot;data/proc/ELSOC_ess_merit2016.RData&quot;</span>)</a></code></pre></div>
 </div>

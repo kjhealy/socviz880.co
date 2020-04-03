@@ -91,7 +91,7 @@ Tendremos tres espacios principales de aprendizaje:
 
 3. **Trabajos**: se desarrollarán trabajos de investigación durante el semestre (ver sección evaluación abajo) que permitirán a l_s participantes aplicar contenidos y recibir retroalimentación de su desempeño. Los trabajos serán asesorados principalmente por ayudantes que se asignarán a cada grupo.
 
-## Evaluación (**actualizado**)
+## Evaluación (**actualizado**) (detalles en pestaña Trabajos)
 
 El curso tendrá tres instancias de evaluación:
 
@@ -106,8 +106,9 @@ La nota ponderada de los trabajos equivaldrá al 60% de la nota del curso y el e
 Nota mínima de aprobación: 4,0 (en escala de 1 a 7).
 
 Requisitos de eximición de examen:
-- contar con un promedio ponderado igual o superior a 5.5.
-- no tener nota bajo 4 en ninguno de los trabajos
+
+1. contar con un promedio ponderado igual o superior a 5.5.
+2. no tener nota bajo 4 en ninguno de los trabajos
 
 Requisitos para presentación a examen:
 

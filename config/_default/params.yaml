@@ -105,12 +105,11 @@ course:
   number: "SOC 01024"
   semester: "Primer semestre"
   days: "Viernes"
-  time: "10:30am - 12:0pm"
+  time: "10:30am - 12:00pm"
   location: "Online"
   dates: "Marzo-Julio 2020"
   github: "juancarloscastillo/multivariada"
   copyrightYear: "2020"
-  slack: "https://multivariada.slack.com/"
 
 university:
   name: Universidad de Chile
