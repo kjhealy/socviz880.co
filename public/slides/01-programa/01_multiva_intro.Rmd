@@ -14,15 +14,15 @@ output:
       beforeInit: "https://multinivel.netlify.com/docpres/xaringan_custom/macros.js"
     seal: false # esto omite title slide automática
 ---
-class: front     
-                  
+class: front
+
 ```{r eval=FALSE, include=FALSE}
 # Correr esto para que funcione el infinite moonreader, el root folder debe ser static para si dirigir solo "bajndo" en directorios hacia el bib y otros
 
 xaringan::inf_mr('/static/docpres/02_bases/2mlmbases.Rmd')
 ```
-         
-          
+
+
 ```{r setup, include=FALSE, cache = FALSE}
 require("knitr")
 options(htmltools.dir.version = FALSE)
@@ -44,13 +44,13 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 
 
 .pull-left[
-# Estadística Multivariada 
-## Juan Carlos Castillo 
+# Estadística Multivariada
+## Juan Carlos Castillo
 ## Sociología FACSO - UChile
 ## 1er Sem 2020
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
-    
+
 
 .pull-right[
 .right[
@@ -58,7 +58,7 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 ]
 <br>
 ## Sesión 1: Programa e introducción
-] 
+]
 
 
 
@@ -69,7 +69,7 @@ class: roja, middle, center
 
 # Presentación
 
-  
+
 ---
 # Ciclo de formación en métodos cuantitativos
 
@@ -91,7 +91,7 @@ class: inverse middle center
 ![:scale 55%](simple.png)
 
 ---
-# Estadística multivariada 
+# Estadística multivariada
 
 - Hechos sociales: **multicausales**
 
@@ -137,13 +137,13 @@ class: inverse, middle, center
 class: front
 
 .pull-left[
-# Estadística Multivariada 
-## Juan Carlos Castillo 
+# Estadística Multivariada
+## Juan Carlos Castillo
 ## Sociología FACSO - UChile
 ## 1er Sem 2020
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
-    
+
 
 .pull-right[
 .right[
@@ -151,5 +151,4 @@ class: front
 ![:scale 80%](https://multivariada.netlify.com/img/hex_multiva.png)
 ]
 
-] 
-
+]
