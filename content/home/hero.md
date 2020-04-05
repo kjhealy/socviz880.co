@@ -20,7 +20,7 @@ design:
     text_color_light: true
 
 cta_note:
-  label: Primer Semestre<br>Departamento de Sociología<br>Universidad de Chile
+  label: Primer Semestre<br>Departamento de Sociología<br>Universidad de Chile<br>[multivariada.netlify.com]()
 ---
 
 **SOC 01024 / 2020**

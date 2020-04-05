@@ -24,12 +24,16 @@ editor_options:
 
 ## Documento presentación
 
-<iframe src=/slides/01-programa/01_multiva_intro.html height="500" width="775">
+<iframe src=/slides/01-programa/01_multiva_intro.html height="500" width="870">
 </iframe>
 
-Acceso en pantalla completa [AQUÍ](/slides/01-programa/01_multiva_intro.html) 
+Acceso en pantalla completa [AQUÍ](/slides/01-programa/01_multiva_intro.html)
 
+## Video de clase
 
+<iframe src=https://www.dropbox.com/s/gzjyhje48pe4jkc/clase1_prueba3.mp4?raw=1
+ height="500" width="870">
+</iframe>
 
 
 ## Lecturas
