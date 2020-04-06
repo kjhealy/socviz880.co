@@ -29,9 +29,11 @@ editor_options:
 
 Para quienes no trabajan en R constantemente, va un primer tutorial abajo sobre instalación de R y RStudio, necesarios para poder desarrollar esta práctica:
 
-<iframe src=https://www.dropbox.com/s/30xlb1t7uifakaw/tutorialR_editedjc.mp4?raw=1
+<iframe src=https://www.dropbox.com/s/q0jg4pv3ihtf2qd/tutorialR_editedjc.mp4?raw=1
  height="500" width="870">
 </iframe>
+
+
 
 ## Antecedentes de los datos a utilizar
 
