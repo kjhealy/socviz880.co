@@ -112,8 +112,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;div id=&#34;tutorial-de-instalación-de-r&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.1&lt;/span&gt; Tutorial de instalación de R&lt;/h2&gt;
 &lt;p&gt;Para quienes no trabajan en R constantemente, va un primer tutorial abajo sobre instalación de R y RStudio, necesarios para poder desarrollar esta práctica:&lt;/p&gt;
-&lt;iframe src=&#34;https://www.dropbox.com/s/q0jg4pv3ihtf2qd/tutorialR_editedjc.mp4?raw=1&#34; height=&#34;500&#34; width=&#34;870&#34;&gt;
-&lt;/iframe&gt;
+&lt;div style=&#34;width: 100%; height: 600px; overflow: hidden;&#34;&gt;
+&lt;video  style=&#34;width: 100%;&#34; controls&gt;
+&lt;source src=&#34;https://www.dropbox.com/s/q0jg4pv3ihtf2qd/tutorialR_editedjc.mp4?raw=1&#34; type=&#34;video/mp4&#34;&gt;
+&lt;/video&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;antecedentes-de-los-datos-a-utilizar&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.2&lt;/span&gt; Antecedentes de los datos a utilizar&lt;/h2&gt;
