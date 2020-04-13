@@ -12,7 +12,7 @@ output:
     template: ../../pandoc/toc-title_html.template
     toc: true
     highlight: tango
-    number_sections: true
+    number_sections: FALSE
 menu:
   class:
     parent: Practicas
@@ -25,6 +25,41 @@ editor_options:
 
 # Presentación
 
+## Objetivo de la práctica
+
+El desarrollo de esta guía tiene por objetivo revisar algunos procedimientos básicos del procesamiento de datos con R, que son necesarios para luego poder aplicar los contenidos más específicos de este curso.
+
+En este curso vamos a distinguir **dos momentos** del trabajo con datos: procesamiento y análisis.
+
+  - **Procesamiento** corresponde a lo que se conoce generalmente como "limpieza", es decir, realizar las modificaciones necesarias para poder efectuar los análisis. Estas modificaciones previas al análisis son necesarias ya que los datos originales con los que se va a trabajar en general no vienen perfectamente adaptados a los análisis que se quieren hacer. Por lo tanto, en cuanto a datos también hacemos la distinción entre datos originales y datos procesados.
+
+  - **Análisis**: se relaciona principalmente con análisis descriptivos asociados a las preguntas de investigación y también modelamiento de datos para contrastar hipótesis de investigación.
+
+Tanto el procesamiento como el análisis quedan registrados en un documento de código, en este caso de código R (por lo general, un archivo con extensión .R). El documento de código de procesamiento posee 5 partes, más una sección de identificación inicial:
+
+0. Identificación y descripción general: Título, autor(es), fecha, información breve sobre el contenido del documento
+1. Librerías principales (de R) a utilizar en el análisis
+2. Carga de datos
+3. Selección de variables a utilizar
+4. Procesamiento de variables: en este punto, por cada variable
+  - Descriptivo general
+  - Recodificación de datos perdidos
+  - Recodificación de valores (en caso de ser necesario)
+  - Etiquetamiento /re-etiquetamiento (en caso de ser necesario)
+5. Generación de base de datos procesada para el análisis.
+
+Al final de esta práctica la idea es que cada un_ elabore y entienda su propio documento de procesamiento de datos.
+
+En el ejemplo vamos a procesar variables de meritocracia y estatus (objetivo y subjetivo) utilizando los datos de ELSOC.
+
+## Antecedentes de los datos a utilizar
+
+El Estudio Longitudinal Social de Chile [(ELSOC)](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/0KIRBJ) es una encuesta desarrollada para analizar intertemporalmente la evolución del conflicto y cohesión en la sociedad chilena.
+
+Uno de los módulos de **ELSOC** es "Desigualdad y Legitimidad". Este módulo busca estudiar las percepciones y atribuciones asociadas a las desigualdades sociales. Se ve motivado por el interés de comprender cómo las personas perciben, legitiman y reproducen las diferencias de ingresos, estatus y poder presentes en el Chile contemporáneo.
+
+El presente ejercicio tiene por objetivo el procesar los datos para obtener las variables relevante para el estudio de la **Percepción de Meritocracia**, entendida como el grado en que los individuos consideran que su sociedad cumple con los principios de una meritocracia, es decir, que funciona como un sistema que asigna recompensas en función del esfuerzo y las habilidades.
+
 ## Tutorial de instalación de R
 
 Para quienes no trabajan en R constantemente, va un primer tutorial abajo sobre instalación de R y RStudio, necesarios para poder desarrollar esta práctica:
@@ -35,38 +70,34 @@ Para quienes no trabajan en R constantemente, va un primer tutorial abajo sobre 
 </video>
 </div>
 
-
-
-
-
-## Antecedentes de los datos a utilizar
-
-El Estudio Longitudinal Social de Chile [(ELSOC)](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/0KIRBJ) es una encuesta desarrollada para analizar intertemporalmente la evolución del conflicto y cohesión en la sociedad chilena.
-
-Uno de los módulos de **ELSOC** es "Desigualdad y Legitimidad". Este módulo busca estudiar las percepciones y atribuciones asociadas a las desigualdades sociales. Se ve motivado por el interés de comprender cómo las personas perciben, legitiman y reproducen las diferencias de ingresos, estatus y poder presentes en el Chile contemporáneo.
-
-El presente ejercicio tiene por objetivo el procesar los datos para obtener las variables relevante para el estudio de la **Percepción de Meritocracia**, entendida como el grado en que los individuos consideran que su sociedad cumple con los principios de una meritocracia, es decir, que funciona como un sistema que asigna recompensas en función del esfuerzo y las habilidades.
-
 # Preparacion de datos con ELSOC 2016
 
 
-## Librerías y configuración
+## 1. Librerías
+
+Las librerías que vamos a utilizar principalmente son dplyr (ajuste general de datos) y ...
+De todas maneras se recomienda realizar un comentario con el signo **#** luego de la librería a cargar para recordar su contenido.
 
 ```{r}
-library(dplyr)
+library(dplyr) # ajuste general de datos
 rm(list=ls()) # borrar todos los objetos en el enviorment
 options(scipen=999) #sin notacion cientifica
 ```
 
+## 2. Cargar base de datos
 
-### Cargar base de datos
+Las bases de datos se pueden cargar de un archivo local o en línea. Para este caso utilizaremos un archivo en línea que viene en formato RData: **ELSOC_W01_v3.10.RData**.
+
+La base se agrega como un objeto al espacio de trabajo con el nombre original "elsoc_2016". Para facilitar los análisis se le cambia el nombre simplemente a elsoc con la segunda instrucción
 
 
 ```{r eval=FALSE}
-load("https://multivariada.netlify.com/assignment/data/original/ELSOC_W01_v3.10.RData")
+load("url(https://multivariada.netlify.com/assignment/data/original/ELSOC_W01_v3.10.RData"))
 elsoc <- elsoc_2016; remove(elsoc_2016)
 
 ```
+
+
 
 
 ```{r echo=FALSE}
@@ -78,6 +109,8 @@ elsoc <- elsoc_2016; remove(elsoc_2016)
 
 * En ELSOC todos los valores -888 y -999 corresponden a valores para las categorias "No sabe" y "No responde", respectivamente.
 * Decidimos dejarlas como valores perdidos (NA)
+
+
 ```{r}
 for (i in 1:ncol(elsoc)) {
   elsoc[,i][elsoc[,i] == c(-888)]  <- NA #Missing

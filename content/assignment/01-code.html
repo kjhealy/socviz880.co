@@ -12,7 +12,7 @@ output:
     template: ../../pandoc/toc-title_html.template
     toc: true
     highlight: tango
-    number_sections: true
+    number_sections: FALSE
 menu:
   class:
     parent: Practicas
@@ -91,31 +91,66 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2>Índice</h2>
 <div id="TOC">
 <ul>
-<li><a href="#presentación"><span class="toc-section-number">1</span> Presentación</a><ul>
-<li><a href="#tutorial-de-instalación-de-r"><span class="toc-section-number">1.1</span> Tutorial de instalación de R</a></li>
-<li><a href="#antecedentes-de-los-datos-a-utilizar"><span class="toc-section-number">1.2</span> Antecedentes de los datos a utilizar</a></li>
+<li><a href="#presentación">Presentación</a><ul>
+<li><a href="#objetivo-de-la-práctica">Objetivo de la práctica</a></li>
+<li><a href="#antecedentes-de-los-datos-a-utilizar">Antecedentes de los datos a utilizar</a></li>
+<li><a href="#tutorial-de-instalación-de-r">Tutorial de instalación de R</a></li>
 </ul></li>
-<li><a href="#preparacion-de-datos-con-elsoc-2016"><span class="toc-section-number">2</span> Preparacion de datos con ELSOC 2016</a><ul>
-<li><a href="#librerías-y-configuración"><span class="toc-section-number">2.1</span> Librerías y configuración</a><ul>
-<li><a href="#cargar-base-de-datos"><span class="toc-section-number">2.1.1</span> Cargar base de datos</a></li>
-<li><a href="#datos-perdidos"><span class="toc-section-number">2.1.2</span> Datos perdidos</a></li>
+<li><a href="#preparacion-de-datos-con-elsoc-2016">Preparacion de datos con ELSOC 2016</a><ul>
+<li><a href="#librerías">1. Librerías</a></li>
+<li><a href="#cargar-base-de-datos">2. Cargar base de datos</a><ul>
+<li><a href="#datos-perdidos">Datos perdidos</a></li>
 </ul></li>
-<li><a href="#recodificacion-variables-percepcion-de-meritocracia"><span class="toc-section-number">2.2</span> Recodificacion Variables percepcion de meritocracia</a></li>
-<li><a href="#recodificacion-variable-estatus-subjetivo"><span class="toc-section-number">2.3</span> Recodificacion variable Estatus subjetivo</a></li>
-<li><a href="#recodificacion-variables-estatus-objetivo"><span class="toc-section-number">2.4</span> Recodificacion variables Estatus objetivo</a><ul>
-<li><a href="#ingresos-del-hogar"><span class="toc-section-number">2.4.1</span> Ingresos del hogar</a></li>
-<li><a href="#educación"><span class="toc-section-number">2.4.2</span> Educación</a></li>
+<li><a href="#recodificacion-variables-percepcion-de-meritocracia">Recodificacion Variables percepcion de meritocracia</a></li>
+<li><a href="#recodificacion-variable-estatus-subjetivo">Recodificacion variable Estatus subjetivo</a></li>
+<li><a href="#recodificacion-variables-estatus-objetivo">Recodificacion variables Estatus objetivo</a><ul>
+<li><a href="#ingresos-del-hogar">Ingresos del hogar</a></li>
+<li><a href="#educación">Educación</a></li>
 </ul></li>
-<li><a href="#variables-control"><span class="toc-section-number">2.5</span> Variables control</a></li>
+<li><a href="#variables-control">Variables control</a></li>
 </ul></li>
-<li><a href="#mantener-variables-relevantes"><span class="toc-section-number">3</span> Mantener variables relevantes</a></li>
+<li><a href="#mantener-variables-relevantes">Mantener variables relevantes</a></li>
 </ul>
 </div>
 
 <div id="presentación" class="section level1">
-<h1><span class="header-section-number">1</span> Presentación</h1>
+<h1>Presentación</h1>
+<div id="objetivo-de-la-práctica" class="section level2">
+<h2>Objetivo de la práctica</h2>
+<p>El desarrollo de esta guía tiene por objetivo revisar algunos procedimientos básicos del procesamiento de datos con R, que son necesarios para luego poder aplicar los contenidos más específicos de este curso.</p>
+<p>En este curso vamos a distinguir <strong>dos momentos</strong> del trabajo con datos: procesamiento y análisis.</p>
+<ul>
+<li><p><strong>Procesamiento</strong> corresponde a lo que se conoce generalmente como “limpieza”, es decir, realizar las modificaciones necesarias para poder efectuar los análisis. Estas modificaciones previas al análisis son necesarias ya que los datos originales con los que se va a trabajar en general no vienen perfectamente adaptados a los análisis que se quieren hacer. Por lo tanto, en cuanto a datos también hacemos la distinción entre datos originales y datos procesados.</p></li>
+<li><p><strong>Análisis</strong>: se relaciona principalmente con análisis descriptivos asociados a las preguntas de investigación y también modelamiento de datos para contrastar hipótesis de investigación.</p></li>
+</ul>
+<p>Tanto el procesamiento como el análisis quedan registrados en un documento de código, en este caso de código R (por lo general, un archivo con extensión .R). El documento de código de procesamiento posee 5 partes, más una sección de identificación inicial:</p>
+<ol start="0" style="list-style-type: decimal">
+<li>Identificación y descripción general: Título, autor(es), fecha, información breve sobre el contenido del documento</li>
+<li>Librerías principales (de R) a utilizar en el análisis</li>
+<li>Carga de datos</li>
+<li>Selección de variables a utilizar</li>
+<li>Procesamiento de variables: en este punto, por cada variable</li>
+</ol>
+<ul>
+<li>Descriptivo general</li>
+<li>Recodificación de datos perdidos</li>
+<li>Recodificación de valores (en caso de ser necesario)</li>
+<li>Etiquetamiento /re-etiquetamiento (en caso de ser necesario)</li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li>Generación de base de datos procesada para el análisis.</li>
+</ol>
+<p>Al final de esta práctica la idea es que cada un_ elabore y entienda su propio documento de procesamiento de datos.</p>
+<p>En el ejemplo vamos a procesar variables de meritocracia y estatus (objetivo y subjetivo) utilizando los datos de ELSOC.</p>
+</div>
+<div id="antecedentes-de-los-datos-a-utilizar" class="section level2">
+<h2>Antecedentes de los datos a utilizar</h2>
+<p>El Estudio Longitudinal Social de Chile <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/0KIRBJ">(ELSOC)</a> es una encuesta desarrollada para analizar intertemporalmente la evolución del conflicto y cohesión en la sociedad chilena.</p>
+<p>Uno de los módulos de <strong>ELSOC</strong> es “Desigualdad y Legitimidad”. Este módulo busca estudiar las percepciones y atribuciones asociadas a las desigualdades sociales. Se ve motivado por el interés de comprender cómo las personas perciben, legitiman y reproducen las diferencias de ingresos, estatus y poder presentes en el Chile contemporáneo.</p>
+<p>El presente ejercicio tiene por objetivo el procesar los datos para obtener las variables relevante para el estudio de la <strong>Percepción de Meritocracia</strong>, entendida como el grado en que los individuos consideran que su sociedad cumple con los principios de una meritocracia, es decir, que funciona como un sistema que asigna recompensas en función del esfuerzo y las habilidades.</p>
+</div>
 <div id="tutorial-de-instalación-de-r" class="section level2">
-<h2><span class="header-section-number">1.1</span> Tutorial de instalación de R</h2>
+<h2>Tutorial de instalación de R</h2>
 <p>Para quienes no trabajan en R constantemente, va un primer tutorial abajo sobre instalación de R y RStudio, necesarios para poder desarrollar esta práctica:</p>
 <div style="width: 100%; height: 600px; overflow: hidden;">
 <video  style="width: 100%;" controls>
@@ -123,18 +158,14 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </video>
 </div>
 </div>
-<div id="antecedentes-de-los-datos-a-utilizar" class="section level2">
-<h2><span class="header-section-number">1.2</span> Antecedentes de los datos a utilizar</h2>
-<p>El Estudio Longitudinal Social de Chile <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/0KIRBJ">(ELSOC)</a> es una encuesta desarrollada para analizar intertemporalmente la evolución del conflicto y cohesión en la sociedad chilena.</p>
-<p>Uno de los módulos de <strong>ELSOC</strong> es “Desigualdad y Legitimidad”. Este módulo busca estudiar las percepciones y atribuciones asociadas a las desigualdades sociales. Se ve motivado por el interés de comprender cómo las personas perciben, legitiman y reproducen las diferencias de ingresos, estatus y poder presentes en el Chile contemporáneo.</p>
-<p>El presente ejercicio tiene por objetivo el procesar los datos para obtener las variables relevante para el estudio de la <strong>Percepción de Meritocracia</strong>, entendida como el grado en que los individuos consideran que su sociedad cumple con los principios de una meritocracia, es decir, que funciona como un sistema que asigna recompensas en función del esfuerzo y las habilidades.</p>
-</div>
 </div>
 <div id="preparacion-de-datos-con-elsoc-2016" class="section level1">
-<h1><span class="header-section-number">2</span> Preparacion de datos con ELSOC 2016</h1>
-<div id="librerías-y-configuración" class="section level2">
-<h2><span class="header-section-number">2.1</span> Librerías y configuración</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
+<h1>Preparacion de datos con ELSOC 2016</h1>
+<div id="librerías" class="section level2">
+<h2>1. Librerías</h2>
+<p>Las librerías que vamos a utilizar principalmente son dplyr (ajuste general de datos) y …
+De todas maneras se recomienda realizar un comentario con el signo <strong>#</strong> luego de la librería a cargar para recordar su contenido.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(dplyr) <span class="co"># ajuste general de datos</span></a></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:stats&#39;:
@@ -145,13 +176,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##     intersect, setdiff, setequal, union</code></pre>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>()) <span class="co"># borrar todos los objetos en el enviorment</span></a>
 <a class="sourceLine" id="cb5-2" title="2"><span class="kw">options</span>(<span class="dt">scipen=</span><span class="dv">999</span>) <span class="co">#sin notacion cientifica</span></a></code></pre></div>
-<div id="cargar-base-de-datos" class="section level3">
-<h3><span class="header-section-number">2.1.1</span> Cargar base de datos</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">load</span>(<span class="st">&quot;https://multivariada.netlify.com/assignment/data/original/ELSOC_W01_v3.10.RData&quot;</span>)</a>
-<a class="sourceLine" id="cb6-2" title="2">elsoc &lt;-<span class="st"> </span>elsoc_<span class="dv">2016</span>; <span class="kw">remove</span>(elsoc_<span class="dv">2016</span>)</a></code></pre></div>
 </div>
+<div id="cargar-base-de-datos" class="section level2">
+<h2>2. Cargar base de datos</h2>
+<p>Las bases de datos se pueden cargar de un archivo local o en línea. Para este caso utilizaremos un archivo en línea que viene en formato RData: <strong>ELSOC_W01_v3.10.RData</strong>.</p>
+<p>La base se agrega como un objeto al espacio de trabajo con el nombre original “elsoc_2016”. Para facilitar los análisis se le cambia el nombre simplemente a elsoc con la segunda instrucción</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">load</span>(<span class="st">&quot;url(https://multivariada.netlify.com/assignment/data/original/ELSOC_W01_v3.10.RData&quot;</span>)<span class="er">)</span></a>
+<a class="sourceLine" id="cb6-2" title="2">elsoc &lt;-<span class="st"> </span>elsoc_<span class="dv">2016</span>; <span class="kw">remove</span>(elsoc_<span class="dv">2016</span>)</a></code></pre></div>
 <div id="datos-perdidos" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> Datos perdidos</h3>
+<h3>Datos perdidos</h3>
 <ul>
 <li>En ELSOC todos los valores -888 y -999 corresponden a valores para las categorias “No sabe” y “No responde”, respectivamente.</li>
 <li>Decidimos dejarlas como valores perdidos (NA)</li>
@@ -163,7 +196,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="recodificacion-variables-percepcion-de-meritocracia" class="section level2">
-<h2><span class="header-section-number">2.2</span> Recodificacion Variables percepcion de meritocracia</h2>
+<h2>Recodificacion Variables percepcion de meritocracia</h2>
 <ul>
 <li>[<code>c18_09</code>]: “Grado de acuerdo: Las personas son recompensadas por sus esfuerzos” (1 = Totalmente en desacuerdo; 5 = Totalmente de acuerdo)</li>
 <li>[<code>c18_10</code>]: “Grado de acuerdo: Las personas son recompensada por su inteligencia” (1 = Totalmente en desacuerdo; 5 = Totalmente de acuerdo)</li>
@@ -182,7 +215,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb8-12" title="12"><span class="st">  </span>(elsoc<span class="op">$</span>merit<span class="op">-</span><span class="kw">min</span>(elsoc<span class="op">$</span>merit,<span class="dt">na.rm=</span>T))<span class="op">/</span>(<span class="kw">max</span>(elsoc<span class="op">$</span>merit,<span class="dt">na.rm=</span>T)<span class="op">-</span><span class="kw">min</span>(elsoc<span class="op">$</span>merit,<span class="dt">na.rm=</span>T))<span class="op">*</span><span class="dv">100</span></a></code></pre></div>
 </div>
 <div id="recodificacion-variable-estatus-subjetivo" class="section level2">
-<h2><span class="header-section-number">2.3</span> Recodificacion variable Estatus subjetivo</h2>
+<h2>Recodificacion variable Estatus subjetivo</h2>
 <ul>
 <li>[<code>d01_01</code>]: “Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena” (0 = el nivel mas bajo; 10 = el nivel mas alto)</li>
 </ul>
@@ -196,9 +229,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##    0.00    3.00    5.00    4.33    5.00   10.00      12</code></pre>
 </div>
 <div id="recodificacion-variables-estatus-objetivo" class="section level2">
-<h2><span class="header-section-number">2.4</span> Recodificacion variables Estatus objetivo</h2>
+<h2>Recodificacion variables Estatus objetivo</h2>
 <div id="ingresos-del-hogar" class="section level3">
-<h3><span class="header-section-number">2.4.1</span> Ingresos del hogar</h3>
+<h3>Ingresos del hogar</h3>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">summary</span>(elsoc<span class="op">$</span>m29) <span class="co"># ingresos total ; NA == 587</span></a></code></pre></div>
 <pre><code>##       Min.    1st Qu.     Median       Mean    3rd Qu.       Max.       NA&#39;s 
 ##          0     267500     420000    2477852     700000 4000000000        587</code></pre>
@@ -270,7 +303,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## 278 278 278 278 278 278 278 278 278 278</code></pre>
 </div>
 <div id="educación" class="section level3">
-<h3><span class="header-section-number">2.4.2</span> Educación</h3>
+<h3>Educación</h3>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">table</span>(elsoc<span class="op">$</span>m01) <span class="co"># Educacion en ELSOC</span></a></code></pre></div>
 <pre><code>## 
 ##   1   2   3   4   5   6   7   8   9  10 
@@ -311,7 +344,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="variables-control" class="section level2">
-<h2><span class="header-section-number">2.5</span> Variables control</h2>
+<h2>Variables control</h2>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co">#---Sexo----</span></a>
 <a class="sourceLine" id="cb34-2" title="2">elsoc<span class="op">$</span>sexo &lt;-<span class="st"> </span>car<span class="op">::</span><span class="kw">recode</span>(elsoc<span class="op">$</span>m0_sexo, <span class="st">&quot;1=1;2=0&quot;</span>)</a>
 <a class="sourceLine" id="cb34-3" title="3">elsoc<span class="op">$</span>sexo &lt;-<span class="st"> </span><span class="kw">factor</span>(elsoc<span class="op">$</span>sexo, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Hombre&quot;</span>,<span class="st">&quot;Mujer&quot;</span>)) <span class="co"># Sexo</span></a>
@@ -334,7 +367,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="mantener-variables-relevantes" class="section level1">
-<h1><span class="header-section-number">3</span> Mantener variables relevantes</h1>
+<h1>Mantener variables relevantes</h1>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="co"># selecccionamos las variables relevantes</span></a>
 <a class="sourceLine" id="cb35-2" title="2">elsoc_<span class="dv">16</span> &lt;-<span class="st"> </span>elsoc <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(merit,ess,edcine,lningneto,D10h, sexo, edad,ppolcat)</a>
 <a class="sourceLine" id="cb35-3" title="3"><span class="co"># dejamos solamente los casos con informacion completa (listwise deletion)</span></a>
