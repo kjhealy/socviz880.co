@@ -19,27 +19,29 @@
       <guid>/assignment/01-code/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 &lt;style type=&#34;text/css&#34;&gt;
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre &gt; code.sourceCode { white-space: pre; position: relative; }
+pre &gt; code.sourceCode &gt; span { display: inline-block; line-height: 1.25; }
+pre &gt; code.sourceCode &gt; span:empty { height: 1.2em; }
+code.sourceCode &gt; span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre &gt; code.sourceCode { white-space: pre-wrap; }
+pre &gt; code.sourceCode &gt; span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code &gt; span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code &gt; span &gt; a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -48,9 +50,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { background-color: #f8f8f8; }
+  {  background-color: #f8f8f8; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre &gt; code.sourceCode &gt; span &gt; a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -86,19 +88,26 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;h2&gt;Índice&lt;/h2&gt;
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#presentación&#34;&gt;Presentación&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#presentación&#34;&gt;Presentación&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#objetivo-de-la-práctica&#34;&gt;Objetivo de la práctica&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#antecedentes-de-los-datos-a-utilizar&#34;&gt;Antecedentes de los datos a utilizar&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#tutorial-de-instalación-de-r&#34;&gt;Tutorial de instalación de R&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#preparacion-de-datos-con-elsoc-2016&#34;&gt;Preparacion de datos con ELSOC 2016&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#preparacion-de-datos-con-elsoc-2016&#34;&gt;Preparacion de datos con ELSOC 2016&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#librerías&#34;&gt;1. Librerías&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#cargar-base-de-datos&#34;&gt;2. Cargar base de datos&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#datos-perdidos&#34;&gt;Datos perdidos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#cargar-base-de-datos&#34;&gt;2. Cargar base de datos&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ajuste-y-generación-de-variables&#34;&gt;Ajuste y generación de variables&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#selección-y-renombre-de-variables&#34;&gt;Selección y renombre de variables&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#datos-perdidos&#34;&gt;Datos perdidos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#recodificación-de-variables&#34;&gt;Recodificación de variables&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#recodificacion-variables-percepcion-de-meritocracia&#34;&gt;Recodificacion Variables percepcion de meritocracia&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#recodificacion-variable-estatus-subjetivo&#34;&gt;Recodificacion variable Estatus subjetivo&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#recodificacion-variables-estatus-objetivo&#34;&gt;Recodificacion variables Estatus objetivo&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#recodificacion-variables-estatus-objetivo&#34;&gt;Recodificacion variables Estatus objetivo&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#ingresos-del-hogar&#34;&gt;Ingresos del hogar&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#educación&#34;&gt;Educación&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
@@ -156,67 +165,162 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;/div&gt;
 &lt;div id=&#34;preparacion-de-datos-con-elsoc-2016&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Preparacion de datos con ELSOC 2016&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Recomendación general:&lt;/strong&gt; cargar en el preámbulo las librerías que más se utilizan durante el análisis. Si alguna función de una librería se utiliza pocas veces, es mejor utilizar una segunda forma de acceder a las funciones sin necesidad de cargar la librería. Por ejemplo, si quiero utilizar la función para recodificar &lt;code&gt;recode&lt;/code&gt; de la librería &lt;code&gt;car&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;car&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(1,2)=1; c(3)=2;c(4,5)=3;c(6,7)=4;c(8,9,10)=5&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;En este caso, la lógica es librería::función, y no se requiere cargar la librería pero sí &lt;strong&gt;debe estar previamente instalada&lt;/strong&gt;. Para esto debemos ejecutar el siguiente código.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb2&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb2-1&#34;&gt;&lt;a href=&#34;#cb2-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;install.packages&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;car&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;div id=&#34;librerías&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;1. Librerías&lt;/h2&gt;
 &lt;p&gt;Las librerías que vamos a utilizar principalmente son dplyr (ajuste general de datos) y …
-De todas maneras se recomienda realizar un comentario con el signo &lt;strong&gt;#&lt;/strong&gt; luego de la librería a cargar para recordar su contenido.&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;library&lt;/span&gt;(dplyr) &lt;span class=&#34;co&#34;&gt;# ajuste general de datos&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Attaching package: &amp;#39;dplyr&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:stats&amp;#39;:
-## 
-##     filter, lag&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:base&amp;#39;:
-## 
-##     intersect, setdiff, setequal, union&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb5&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb5-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;rm&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;list=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;ls&lt;/span&gt;()) &lt;span class=&#34;co&#34;&gt;# borrar todos los objetos en el enviorment&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb5-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;options&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;scipen=&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;999&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;#sin notacion cientifica&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+De todas maneras se recomienda realizar un comentario con el signo &lt;code&gt;**#**&lt;/code&gt; luego de la librería a cargar para recordar su contenido.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb3&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb3-1&#34;&gt;&lt;a href=&#34;#cb3-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;library&lt;/span&gt;(dplyr)      &lt;span class=&#34;co&#34;&gt;# ajuste general de datos&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb3-2&#34;&gt;&lt;a href=&#34;#cb3-2&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;library&lt;/span&gt;(sjmisc)     &lt;span class=&#34;co&#34;&gt;# descripcion de variables etiquetadas  &lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb3-3&#34;&gt;&lt;a href=&#34;#cb3-3&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;rm&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;list=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;ls&lt;/span&gt;())  &lt;span class=&#34;co&#34;&gt;# borrar todos los objetos en el environment&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb3-4&#34;&gt;&lt;a href=&#34;#cb3-4&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;options&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;scipen=&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;999&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;#sin notacion cientifica&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;cargar-base-de-datos&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;2. Cargar base de datos&lt;/h2&gt;
 &lt;p&gt;Las bases de datos se pueden cargar de un archivo local o en línea. Para este caso utilizaremos un archivo en línea que viene en formato RData: &lt;strong&gt;ELSOC_W01_v3.10.RData&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;La base se agrega como un objeto al espacio de trabajo con el nombre original “elsoc_2016”. Para facilitar los análisis se le cambia el nombre simplemente a elsoc con la segunda instrucción&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb6&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb6-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;load&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;url(https://multivariada.netlify.com/assignment/data/original/ELSOC_W01_v3.10.RData&amp;quot;&lt;/span&gt;)&lt;span class=&#34;er&#34;&gt;)&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb6-2&#34; title=&#34;2&#34;&gt;elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;elsoc_&lt;span class=&#34;dv&#34;&gt;2016&lt;/span&gt;; &lt;span class=&#34;kw&#34;&gt;remove&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;2016&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;div id=&#34;datos-perdidos&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Datos perdidos&lt;/h3&gt;
+&lt;p&gt;La base se agrega como un objeto al espacio de trabajo con el nombre original “&lt;code&gt;elsoc_2016&lt;/code&gt;”. Para facilitar los análisis se le cambia el nombre simplemente a &lt;code&gt;elsoc&lt;/code&gt; con la segunda instrucción&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb4&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb4-1&#34;&gt;&lt;a href=&#34;#cb4-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;#cargamos la base de datos desde internet&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb4-2&#34;&gt;&lt;a href=&#34;#cb4-2&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;load&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;url&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;https://multivariada.netlify.com/assignment/data/original/ELSOC_W01_v3.10.RData&amp;quot;&lt;/span&gt;)) &lt;/span&gt;
+&lt;span id=&#34;cb4-3&#34;&gt;&lt;a href=&#34;#cb4-3&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;#creamos un objeto llamado elsoc que es identico a elsoc_2016, luego eliminamos elsoc_2016&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb4-4&#34;&gt;&lt;a href=&#34;#cb4-4&#34;&gt;&lt;/a&gt;elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;elsoc_&lt;span class=&#34;dv&#34;&gt;2016&lt;/span&gt;; &lt;span class=&#34;kw&#34;&gt;remove&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;2016&lt;/span&gt;) &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Y realizamos un chequeo básico de la lectura de datos: nombres de las variables y tamaño de la base en términos de casos y variables (en este ejemplo, 2927 casos y 383 variables).&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb5&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb5-1&#34;&gt;&lt;a href=&#34;#cb5-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;dim&lt;/span&gt;(elsoc) &lt;span class=&#34;co&#34;&gt;# dimension de la base&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2927  383&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Y si se quiere revisar en formato de planilla de datos:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb7&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb7-1&#34;&gt;&lt;a href=&#34;#cb7-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;View&lt;/span&gt;(elsoc)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ajuste-y-generación-de-variables&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Ajuste y generación de variables&lt;/h1&gt;
+&lt;p&gt;Esta parte inicial del análisis es usualmente la más tediosa y la más larga, y consiste en dejar los datos listos para ser analizados. Los procedimientos usuales son selección y renombramiento de las variables, identificación de casos perdidos, recodificaciones y generación de índices simples.&lt;/p&gt;
+&lt;div id=&#34;selección-y-renombre-de-variables&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Selección y renombre de variables&lt;/h2&gt;
+&lt;p&gt;Este paso es opcional y consiste en crear un subset de datos para continuar con los análisis, en lugar de hacerlo con la base completa. Para ello:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Se identifica el nombre de las variables. Esto aparece en el libro de códigos y/o en el cuestionario, o también se puede hacer buscando en la base de datos mediante alguna palabra clave asociada a la pregunta. Por ejemplo, si queremos buscar variables asociadas a educación, utilizamos la función &lt;code&gt;find_var&lt;/code&gt;, de &lt;code&gt;sjmisc&lt;/code&gt; (entrega nombre de la variable en columna var.name)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb8&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb8-1&#34;&gt;&lt;a href=&#34;#cb8-1&#34;&gt;&lt;/a&gt;sjmisc&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;find_var&lt;/span&gt;(elsoc,&lt;span class=&#34;st&#34;&gt;&amp;quot;mensual&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;##   col.nr var.name                                    var.label
+## 1    292      m13         Ingreso mensual entrevistado (monto)
+## 2    293      m14 Ingreso mensual del entrevistado (en tramos)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;datos-perdidos&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Datos perdidos&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;En ELSOC todos los valores -888 y -999 corresponden a valores para las categorias “No sabe” y “No responde”, respectivamente.&lt;/li&gt;
 &lt;li&gt;Decidimos dejarlas como valores perdidos (NA)&lt;/li&gt;
+&lt;li&gt;el operador &lt;code&gt;%in%&lt;/code&gt; sirve para decir “dentro de”, en este caso ¿dentro de la variable encontramos valores -888 o -999? Si es VERDADERO, se transforma en un &lt;code&gt;NA&lt;/code&gt;, si es falso no realiza ninguna acción. El código de abajo ejemplifica este tipo de procedimiento.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb7&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb7-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; (i &lt;span class=&#34;cf&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;ncol&lt;/span&gt;(elsoc)) {&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb7-2&#34; title=&#34;2&#34;&gt;  elsoc[,i][elsoc[,i] &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;888&lt;/span&gt;)]  &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt; &lt;span class=&#34;co&#34;&gt;#Missing&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb7-3&#34; title=&#34;3&#34;&gt;  elsoc[,i][elsoc[,i] &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;999&lt;/span&gt;)]  &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt; &lt;span class=&#34;co&#34;&gt;#Missing&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb7-4&#34; title=&#34;4&#34;&gt;  }&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb10&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb10-1&#34;&gt;&lt;a href=&#34;#cb10-1&#34;&gt;&lt;/a&gt;datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;variable[datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;variable &lt;span class=&#34;op&#34;&gt;%in%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;888&lt;/span&gt;,&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;999&lt;/span&gt;)] &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Entonces, aplicamos las siguientes línea de código para identificar y recodificar los datos perdidos como &lt;code&gt;NA&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb11&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb11-1&#34;&gt;&lt;a href=&#34;#cb11-1&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt;[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%in%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;888&lt;/span&gt;,&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;999&lt;/span&gt;)]  &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt; &lt;span class=&#34;co&#34;&gt;# meritocracia esfuerzo &lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb11-2&#34;&gt;&lt;a href=&#34;#cb11-2&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%in%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;888&lt;/span&gt;,&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;999&lt;/span&gt;)]  &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt; &lt;span class=&#34;co&#34;&gt;# meritocracia talento&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb11-3&#34;&gt;&lt;a href=&#34;#cb11-3&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb11-4&#34;&gt;&lt;a href=&#34;#cb11-4&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt;[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%in%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;888&lt;/span&gt;,&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;999&lt;/span&gt;)]  &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt; &lt;span class=&#34;co&#34;&gt;# estatus subjetivo&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb11-5&#34;&gt;&lt;a href=&#34;#cb11-5&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29 &lt;span class=&#34;op&#34;&gt;%in%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;888&lt;/span&gt;,&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;999&lt;/span&gt;)]        &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt; &lt;span class=&#34;co&#34;&gt;# ingreso familiar &lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb11-6&#34;&gt;&lt;a href=&#34;#cb11-6&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30 &lt;span class=&#34;op&#34;&gt;%in%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;888&lt;/span&gt;,&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;999&lt;/span&gt;)]        &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt; &lt;span class=&#34;co&#34;&gt;# ingreso familiar en tramos&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb11-7&#34;&gt;&lt;a href=&#34;#cb11-7&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;nhogar1[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;nhogar1 &lt;span class=&#34;op&#34;&gt;%in%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;888&lt;/span&gt;,&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;999&lt;/span&gt;)]&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt; &lt;span class=&#34;co&#34;&gt;# personas en el hogar&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb11-8&#34;&gt;&lt;a href=&#34;#cb11-8&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01 &lt;span class=&#34;op&#34;&gt;%in%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;888&lt;/span&gt;,&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;999&lt;/span&gt;)] &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt;        &lt;span class=&#34;co&#34;&gt;# nivel educacional&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb11-9&#34;&gt;&lt;a href=&#34;#cb11-9&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb11-10&#34;&gt;&lt;a href=&#34;#cb11-10&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_sexo[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_sexo &lt;span class=&#34;op&#34;&gt;%in%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;888&lt;/span&gt;,&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;999&lt;/span&gt;)] &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt; &lt;span class=&#34;co&#34;&gt;# sexo&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb11-11&#34;&gt;&lt;a href=&#34;#cb11-11&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_edad[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_edad &lt;span class=&#34;op&#34;&gt;%in%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;888&lt;/span&gt;,&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;999&lt;/span&gt;)] &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt; &lt;span class=&#34;co&#34;&gt;# edad&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb11-12&#34;&gt;&lt;a href=&#34;#cb11-12&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c15[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c15 &lt;span class=&#34;op&#34;&gt;%in%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;888&lt;/span&gt;,&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;999&lt;/span&gt;)]         &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt; &lt;span class=&#34;co&#34;&gt;# autoposicionamiento politico&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
+&lt;div id=&#34;recodificación-de-variables&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Recodificación de variables&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Introducción&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;En el caso de trabajar con R, el ajuste de las variables pasa por atender el distinto tipo de estructura, usualmente numérico (vector) o variable categórica (factor). Esta definición establece diferencias claras; por ejemplo, no se puede hacer un promedio con un factor, y los vectores númericos no tienen etiquetas. Dado que el límite entre lo categórico y lo continuo muchas veces es más relativo en ciencias sociales, para algunas operaciones resulta más eficiente contar con variables numéricas que puedan tener etiquetas, y que luego puedan ser transformadas a factor para operaciones específicas. En R este formato intermedio se denomina “vector atómico” o “vector etiquetado”.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb12&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb12-1&#34;&gt;&lt;a href=&#34;#cb12-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;str&lt;/span&gt;(elsoc[,&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;)]) &lt;span class=&#34;co&#34;&gt;#observamos las primeras 10 columnas de nuestra base de datos&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;#39;data.frame&amp;#39;:    2927 obs. of  10 variables:
+##  $ idencuesta: num  1101011 1101012 1101013 1101021 1101022 ...
+##   ..- attr(*, &amp;quot;label&amp;quot;)= chr &amp;quot;Folio identificador del encuestado&amp;quot;
+##   ..- attr(*, &amp;quot;format.stata&amp;quot;)= chr &amp;quot;%12.0g&amp;quot;
+##  $ ola       : num  1 1 1 1 1 1 1 1 1 1 ...
+##   ..- attr(*, &amp;quot;label&amp;quot;)= chr &amp;quot;Ola de Encuesta&amp;quot;
+##   ..- attr(*, &amp;quot;format.stata&amp;quot;)= chr &amp;quot;%8.0g&amp;quot;
+##   ..- attr(*, &amp;quot;labels&amp;quot;)= Named num  1 2
+##   .. ..- attr(*, &amp;quot;names&amp;quot;)= chr  &amp;quot;2016&amp;quot; &amp;quot;2017&amp;quot;
+##  $ version   : num  201631 201631 201631 201631 201631 ...
+##   ..- attr(*, &amp;quot;label&amp;quot;)= chr &amp;quot;Version de Base de Datos&amp;quot;
+##   ..- attr(*, &amp;quot;format.stata&amp;quot;)= chr &amp;quot;%20.0g&amp;quot;
+##   ..- attr(*, &amp;quot;labels&amp;quot;)= Named num 201631
+##   .. ..- attr(*, &amp;quot;names&amp;quot;)= chr &amp;quot;Ola 2016 Version 3.1&amp;quot;
+##  $ muestra   : num  1 1 1 1 1 1 1 1 1 1 ...
+##   ..- attr(*, &amp;quot;label&amp;quot;)= chr &amp;quot;Muestra de Participantes en Encuesta&amp;quot;
+##   ..- attr(*, &amp;quot;format.stata&amp;quot;)= chr &amp;quot;%19.0g&amp;quot;
+##   ..- attr(*, &amp;quot;labels&amp;quot;)= Named num  1 2
+##   .. ..- attr(*, &amp;quot;names&amp;quot;)= chr  &amp;quot;Muestra Original&amp;quot; &amp;quot;Muestra de Refresco&amp;quot;
+##  $ t01       : num  1 3 3 3 2 2 3 3 2 3 ...
+##   ..- attr(*, &amp;quot;label&amp;quot;)= chr &amp;quot;Cuanto confia usted en sus vecinos&amp;quot;
+##   ..- attr(*, &amp;quot;format.stata&amp;quot;)= chr &amp;quot;%21.0g&amp;quot;
+##   ..- attr(*, &amp;quot;labels&amp;quot;)= Named num  -999 -888 1 2 3 4 5
+##   .. ..- attr(*, &amp;quot;names&amp;quot;)= chr  &amp;quot;No Responde (no leer)&amp;quot; &amp;quot;No Sabe (no leer)&amp;quot; &amp;quot;Muy poco&amp;quot; &amp;quot;Poco&amp;quot; ...
+##  $ t02_01    : num  2 2 2 2 1 3 4 4 3 3 ...
+##   ..- attr(*, &amp;quot;label&amp;quot;)= chr &amp;quot;Grado de acuerdo: Este es el barrio ideal para mi&amp;quot;
+##   ..- attr(*, &amp;quot;format.stata&amp;quot;)= chr &amp;quot;%30.0g&amp;quot;
+##   ..- attr(*, &amp;quot;labels&amp;quot;)= Named num  -999 -888 1 2 3 4 5
+##   .. ..- attr(*, &amp;quot;names&amp;quot;)= chr  &amp;quot;No Responde (no leer)&amp;quot; &amp;quot;No Sabe (no leer)&amp;quot; &amp;quot;Totalmente en desacuerdo&amp;quot; &amp;quot;En desacuerdo&amp;quot; ...
+##  $ t02_02    : num  3 4 1 3 2 2 3 4 3 2 ...
+##   ..- attr(*, &amp;quot;label&amp;quot;)= chr &amp;quot;Grado de acuerdo: Me siento integrado/a en este barrio&amp;quot;
+##   ..- attr(*, &amp;quot;format.stata&amp;quot;)= chr &amp;quot;%30.0g&amp;quot;
+##   ..- attr(*, &amp;quot;labels&amp;quot;)= Named num  -999 -888 1 2 3 4 5
+##   .. ..- attr(*, &amp;quot;names&amp;quot;)= chr  &amp;quot;No Responde (no leer)&amp;quot; &amp;quot;No Sabe (no leer)&amp;quot; &amp;quot;Totalmente en desacuerdo&amp;quot; &amp;quot;En desacuerdo&amp;quot; ...
+##  $ t02_03    : num  3 1 2 4 1 3 3 3 5 3 ...
+##   ..- attr(*, &amp;quot;label&amp;quot;)= chr &amp;quot;Grado de acuerdo: Me identifico con la gente de este barrio&amp;quot;
+##   ..- attr(*, &amp;quot;format.stata&amp;quot;)= chr &amp;quot;%30.0g&amp;quot;
+##   ..- attr(*, &amp;quot;labels&amp;quot;)= Named num  -999 -888 1 2 3 4 5
+##   .. ..- attr(*, &amp;quot;names&amp;quot;)= chr  &amp;quot;No Responde (no leer)&amp;quot; &amp;quot;No Sabe (no leer)&amp;quot; &amp;quot;Totalmente en desacuerdo&amp;quot; &amp;quot;En desacuerdo&amp;quot; ...
+##  $ t02_04    : num  3 3 2 4 1 4 3 3 5 4 ...
+##   ..- attr(*, &amp;quot;label&amp;quot;)= chr &amp;quot;Grado de acuerdo: Este barrio es parte de mi&amp;quot;
+##   ..- attr(*, &amp;quot;format.stata&amp;quot;)= chr &amp;quot;%30.0g&amp;quot;
+##   ..- attr(*, &amp;quot;labels&amp;quot;)= Named num  -999 -888 1 2 3 4 5
+##   .. ..- attr(*, &amp;quot;names&amp;quot;)= chr  &amp;quot;No Responde (no leer)&amp;quot; &amp;quot;No Sabe (no leer)&amp;quot; &amp;quot;Totalmente en desacuerdo&amp;quot; &amp;quot;En desacuerdo&amp;quot; ...
+##  $ t03_01    : num  1 5 5 4 5 4 1 3 2 2 ...
+##   ..- attr(*, &amp;quot;label&amp;quot;)= chr &amp;quot;Grado de acuerdo: En este barrio es facil hacer amigos&amp;quot;
+##   ..- attr(*, &amp;quot;format.stata&amp;quot;)= chr &amp;quot;%30.0g&amp;quot;
+##   ..- attr(*, &amp;quot;labels&amp;quot;)= Named num  -999 -888 1 2 3 4 5
+##   .. ..- attr(*, &amp;quot;names&amp;quot;)= chr  &amp;quot;No Responde (no leer)&amp;quot; &amp;quot;No Sabe (no leer)&amp;quot; &amp;quot;Totalmente en desacuerdo&amp;quot; &amp;quot;En desacuerdo&amp;quot; ...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;En este caso, vemos que los diez vectores se definen como “haven_labelled”, que hace referencia a vectores numéricos etiquetados. Esto ocurre en el proceso de conversión mediante el paquete &lt;code&gt;haven&lt;/code&gt;, que transforma de esta manera a los valores numéricos con etiqueta que vienen de Stata (.dta) o SPSS (.sav).&lt;/p&gt;
+&lt;p&gt;Los vectores que que aparecen aquí se caracterizan por una serie de atributos (attr):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;label:&lt;/strong&gt; etiqueta de la variable&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;format.stata:&lt;/strong&gt; formato de la etiqueta de la variable&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;labels&lt;/strong&gt;: niveles de respuesta de la variable (values) que están numerados&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;names:&lt;/strong&gt; nombre de las etiquetas de los valores.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Estos atributos luego van a facilitar algunas operaciones de recodificación y de descripción de los datos.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;recodificacion-variables-percepcion-de-meritocracia&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Recodificacion Variables percepcion de meritocracia&lt;/h2&gt;
+&lt;p&gt;En ELSOC, las variables que permiten medir la percepción de las personas con respecto al funcionamiento de la meritocracia en Chile son las siguientes:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;[&lt;code&gt;c18_09&lt;/code&gt;]: “Grado de acuerdo: Las personas son recompensadas por sus esfuerzos” (1 = Totalmente en desacuerdo; 5 = Totalmente de acuerdo)&lt;/li&gt;
 &lt;li&gt;[&lt;code&gt;c18_10&lt;/code&gt;]: “Grado de acuerdo: Las personas son recompensada por su inteligencia” (1 = Totalmente en desacuerdo; 5 = Totalmente de acuerdo)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb8&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-1&#34; title=&#34;1&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;as.numeric&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-2&#34; title=&#34;2&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;as.numeric&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;co&#34;&gt;# Variables meritocracia promedio -----------------------------------------&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-4&#34; title=&#34;4&#34;&gt;elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(elsoc,&lt;span class=&#34;dt&#34;&gt;meffort=&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# cambio de nombre de la variable c18_09 a uno mas sustantivo&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-5&#34; title=&#34;5&#34;&gt;elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(elsoc,&lt;span class=&#34;dt&#34;&gt;mtalent=&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# cambio de nombre de la variable c18_10 a uno mas sustantivo&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-6&#34; title=&#34;6&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-7&#34; title=&#34;7&#34;&gt;&lt;span class=&#34;co&#34;&gt;# creamos un indice promedio de percepcion de meritocracia usando ambas preguntas&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-8&#34; title=&#34;8&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;merit &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;meffort&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mtalent)&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-9&#34; title=&#34;9&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-10&#34; title=&#34;10&#34;&gt;&lt;span class=&#34;co&#34;&gt;# re escalamos la variable de 1-5 a una de 0 a 100 (para facilitar interpretacion)&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-11&#34; title=&#34;11&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;merit &amp;lt;-&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-12&#34; title=&#34;12&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;merit&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;min&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;merit,&lt;span class=&#34;dt&#34;&gt;na.rm=&lt;/span&gt;T))&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;max&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;merit,&lt;span class=&#34;dt&#34;&gt;na.rm=&lt;/span&gt;T)&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;min&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;merit,&lt;span class=&#34;dt&#34;&gt;na.rm=&lt;/span&gt;T))&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;100&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb14&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb14-1&#34;&gt;&lt;a href=&#34;#cb14-1&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;as.numeric&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# Nos aseguramos de convertir las escalas liker a numericas&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb14-2&#34;&gt;&lt;a href=&#34;#cb14-2&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;as.numeric&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# Nos aseguramos de convertir las escalas liker a numericas&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb14-3&#34;&gt;&lt;a href=&#34;#cb14-3&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;# Variables meritocracia promedio -----------------------------------------&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb14-4&#34;&gt;&lt;a href=&#34;#cb14-4&#34;&gt;&lt;/a&gt;elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;dplyr&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(elsoc,&lt;span class=&#34;dt&#34;&gt;meffort=&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# cambio de nombre de la variable c18_09 a uno mas sustantivo&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb14-5&#34;&gt;&lt;a href=&#34;#cb14-5&#34;&gt;&lt;/a&gt;elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;dplyr&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(elsoc,&lt;span class=&#34;dt&#34;&gt;mtalent=&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# cambio de nombre de la variable c18_10 a uno mas sustantivo&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb14-6&#34;&gt;&lt;a href=&#34;#cb14-6&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb14-7&#34;&gt;&lt;a href=&#34;#cb14-7&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;# creamos un indice promedio de percepcion de meritocracia usando ambas preguntas&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb14-8&#34;&gt;&lt;a href=&#34;#cb14-8&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;merit &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;meffort&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mtalent)&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb14-9&#34;&gt;&lt;a href=&#34;#cb14-9&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb14-10&#34;&gt;&lt;a href=&#34;#cb14-10&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;# re escalamos la variable de 1-5 a una de 0 a 100 (para facilitar interpretacion)&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb14-11&#34;&gt;&lt;a href=&#34;#cb14-11&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;merit &amp;lt;-&lt;/span&gt;
+&lt;span id=&#34;cb14-12&#34;&gt;&lt;a href=&#34;#cb14-12&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;merit&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;min&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;merit,&lt;span class=&#34;dt&#34;&gt;na.rm=&lt;/span&gt;T))&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;max&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;merit,&lt;span class=&#34;dt&#34;&gt;na.rm=&lt;/span&gt;T)&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;min&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;merit,&lt;span class=&#34;dt&#34;&gt;na.rm=&lt;/span&gt;T))&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;100&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;recodificacion-variable-estatus-subjetivo&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Recodificacion variable Estatus subjetivo&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;[&lt;code&gt;d01_01&lt;/code&gt;]: “Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena” (0 = el nivel mas bajo; 10 = el nivel mas alto)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb9&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-1&#34; title=&#34;1&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ess &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;as.numeric&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# Estatus Social Subjetivo&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;table&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ess)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ess)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb15&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb15-1&#34;&gt;&lt;a href=&#34;#cb15-1&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ess &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;as.numeric&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# Estatus Social Subjetivo&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb15-2&#34;&gt;&lt;a href=&#34;#cb15-2&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;table&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ess)&lt;/span&gt;
+&lt;span id=&#34;cb15-3&#34;&gt;&lt;a href=&#34;#cb15-3&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ess)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ##   0   1   2   3   4   5   6   7   8   9  10 
 ##  44  84 207 439 677 975 310 116  37   4  22 
@@ -227,40 +331,53 @@ De todas maneras se recomienda realizar un comentario con el signo &lt;strong&gt
 &lt;h2&gt;Recodificacion variables Estatus objetivo&lt;/h2&gt;
 &lt;div id=&#34;ingresos-del-hogar&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Ingresos del hogar&lt;/h3&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb11&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb11-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29) &lt;span class=&#34;co&#34;&gt;# ingresos total ; NA == 587&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Esta variable en general tiene dos formas de preguntarse: en el monto directo en pesos, o en rangos de ingreso. Hay una tercera variante donde se pregunta por el monto directo, y quienes no responden luego se les pregunta por el rango. Este último es el caso de ELSOC.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;[&lt;code&gt;m29&lt;/code&gt;] = ¿Cuál es el ingreso mensual que usted recibe por su actividad laboral, ocupación u oficio? (Ingreso líquido, es decir, después de descuentos de impuestos, salud, previsión u otros)&lt;/li&gt;
+&lt;li&gt;[&lt;code&gt;m30&lt;/code&gt;] = A continuación le presentamos un listado de rangos de ingreso. ¿Podría usted indicarme en cuál de ellos se encuentra considerando su ingreso líquido, es decir, su ingreso después de descuentos de impuestos, salud, previsión u otros?&lt;/li&gt;
+&lt;li&gt;[&lt;code&gt;nhogar1&lt;/code&gt;] = Tamaño del hogar (en número de personas)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Como estas variables en general tienen muchos datos perdidos, para poder aprovechar la información lo ideal es combinarlas. Una posibilidad es la siguiente:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Crear una variable de ingresos en pesos a partir de la pregunta de rangos, mediante la imputación del promedio del rango.&lt;/li&gt;
+&lt;li&gt;Combinar las variables de ingreso
+(&lt;code&gt;m30&lt;/code&gt; &lt;span class=&#34;math inline&#34;&gt;\(\rightarrow\)&lt;/span&gt; &lt;code&gt;m29&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Para tener mayor sensibilidad a las implicancias del ingreso, crear una variable de ingreso equivalente por hogar, dividiendo la variable de ingreso por el número de personas del hogar ((&lt;code&gt;m29&lt;/code&gt;+&lt;code&gt;m30&lt;/code&gt;)/&lt;code&gt;nhogar1&lt;/code&gt;).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb17&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb17-1&#34;&gt;&lt;a href=&#34;#cb17-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29) &lt;span class=&#34;co&#34;&gt;# ingresos total ; NA == 587&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;##       Min.    1st Qu.     Median       Mean    3rd Qu.       Max.       NA&amp;#39;s 
 ##          0     267500     420000    2477852     700000 4000000000        587&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb13&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb13-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30) &lt;span class=&#34;co&#34;&gt;# ingresos tramos&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb19&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb19-1&#34;&gt;&lt;a href=&#34;#cb19-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30) &lt;span class=&#34;co&#34;&gt;# ingresos tramos&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&amp;#39;s 
 ##   1.000   3.000   6.000   7.415  11.000  20.000    2479&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb15&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb15-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;nhogar1) &lt;span class=&#34;co&#34;&gt;# tamannio del hogar&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb21&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb21-1&#34;&gt;&lt;a href=&#34;#cb21-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;nhogar1) &lt;span class=&#34;co&#34;&gt;# tamannio del hogar&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   1.000   2.000   3.000   3.077   4.000  14.000&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb17&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-1&#34; title=&#34;1&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;co&#34;&gt;# Remplazar NA por media de categorias Ingreso -------------------------------#&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-3&#34; title=&#34;3&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt; &lt;span class=&#34;co&#34;&gt;# creamos una variable vacia&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-4&#34; title=&#34;4&#34;&gt;&lt;span class=&#34;co&#34;&gt;# remplazamos ...&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-5&#34; title=&#34;5&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;dv&#34;&gt;110000&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-6&#34; title=&#34;6&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;250000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-7&#34; title=&#34;7&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;305000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-8&#34; title=&#34;8&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;4&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;355000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-9&#34; title=&#34;9&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;400000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-10&#34; title=&#34;10&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;6&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;445000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-11&#34; title=&#34;11&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;7&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;490000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-12&#34; title=&#34;12&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;8&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;535000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-13&#34; title=&#34;13&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;9&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;585000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-14&#34; title=&#34;14&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;640000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-15&#34; title=&#34;15&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;11&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;700000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-16&#34; title=&#34;16&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;12&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;765000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-17&#34; title=&#34;17&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;13&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;845000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-18&#34; title=&#34;18&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;14&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;935000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-19&#34; title=&#34;19&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;15&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;1040000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-20&#34; title=&#34;20&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;1180000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-21&#34; title=&#34;21&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;17&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;1375000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-22&#34; title=&#34;22&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;18&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;1670000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-23&#34; title=&#34;23&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;19&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;2275000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-24&#34; title=&#34;24&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;20&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;dv&#34;&gt;3726106&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-25&#34; title=&#34;25&#34;&gt;&lt;span class=&#34;kw&#34;&gt;table&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos) &lt;span class=&#34;co&#34;&gt;# chequeamos&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb23&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb23-1&#34;&gt;&lt;a href=&#34;#cb23-1&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-2&#34;&gt;&lt;a href=&#34;#cb23-2&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;# Remplazar NA por media de categorias Ingreso -------------------------------#&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-3&#34;&gt;&lt;a href=&#34;#cb23-3&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt; &lt;span class=&#34;co&#34;&gt;# creamos una variable vacia&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-4&#34;&gt;&lt;a href=&#34;#cb23-4&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;# remplazamos ...&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-5&#34;&gt;&lt;a href=&#34;#cb23-5&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;dv&#34;&gt;110000&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-6&#34;&gt;&lt;a href=&#34;#cb23-6&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;250000.5&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-7&#34;&gt;&lt;a href=&#34;#cb23-7&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;305000.5&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-8&#34;&gt;&lt;a href=&#34;#cb23-8&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;4&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;355000.5&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-9&#34;&gt;&lt;a href=&#34;#cb23-9&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;400000.5&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-10&#34;&gt;&lt;a href=&#34;#cb23-10&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;6&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;445000.5&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-11&#34;&gt;&lt;a href=&#34;#cb23-11&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;7&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;490000.5&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-12&#34;&gt;&lt;a href=&#34;#cb23-12&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;8&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;535000.5&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-13&#34;&gt;&lt;a href=&#34;#cb23-13&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;9&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;585000.5&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-14&#34;&gt;&lt;a href=&#34;#cb23-14&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;640000.5&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-15&#34;&gt;&lt;a href=&#34;#cb23-15&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;11&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;700000.5&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-16&#34;&gt;&lt;a href=&#34;#cb23-16&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;12&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;765000.5&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-17&#34;&gt;&lt;a href=&#34;#cb23-17&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;13&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;845000.5&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-18&#34;&gt;&lt;a href=&#34;#cb23-18&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;14&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;935000.5&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-19&#34;&gt;&lt;a href=&#34;#cb23-19&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;15&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;1040000.5&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-20&#34;&gt;&lt;a href=&#34;#cb23-20&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;1180000.5&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-21&#34;&gt;&lt;a href=&#34;#cb23-21&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;17&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;1375000.5&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-22&#34;&gt;&lt;a href=&#34;#cb23-22&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;18&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;1670000.5&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-23&#34;&gt;&lt;a href=&#34;#cb23-23&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;19&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;2275000.5&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-24&#34;&gt;&lt;a href=&#34;#cb23-24&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;20&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;dv&#34;&gt;3726106&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb23-25&#34;&gt;&lt;a href=&#34;#cb23-25&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;table&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos) &lt;span class=&#34;co&#34;&gt;# chequeamos&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ##    110000  250000.5  305000.5  355000.5  400000.5  445000.5  490000.5  535000.5 
 ##        49        42        36        35        33        33        38        21 
@@ -268,41 +385,63 @@ De todas maneras se recomienda realizar un comentario con el signo &lt;strong&gt
 ##        26        16        18        15        11        14        19        13 
 ## 1375000.5 1670000.5 2275000.5   3726106 
 ##         4        10         8         7&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb19&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb19-1&#34; title=&#34;1&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;ifelse&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;test =&lt;/span&gt; (&lt;span class=&#34;kw&#34;&gt;is.na&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29)),&lt;span class=&#34;co&#34;&gt;#¿es el valor un NA?&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb19-2&#34; title=&#34;2&#34;&gt;                    &lt;span class=&#34;dt&#34;&gt;yes =&lt;/span&gt; elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos, &lt;span class=&#34;co&#34;&gt;#Si es verdadero, remplazar por el valor de mean_tramos&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb19-3&#34; title=&#34;3&#34;&gt;                    &lt;span class=&#34;dt&#34;&gt;no =&lt;/span&gt; elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29)&lt;span class=&#34;co&#34;&gt;# Si es falso, remplazar por el valor del m29&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb19-4&#34; title=&#34;4&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb19-5&#34; title=&#34;5&#34;&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29) &lt;span class=&#34;co&#34;&gt;# NA = 147&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb25&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb25-1&#34;&gt;&lt;a href=&#34;#cb25-1&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;ifelse&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;test =&lt;/span&gt; (&lt;span class=&#34;kw&#34;&gt;is.na&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29)),&lt;span class=&#34;co&#34;&gt;#¿es el valor un NA?&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb25-2&#34;&gt;&lt;a href=&#34;#cb25-2&#34;&gt;&lt;/a&gt;                    &lt;span class=&#34;dt&#34;&gt;yes =&lt;/span&gt; elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos, &lt;span class=&#34;co&#34;&gt;#Si es verdadero, remplazar por el valor de mean_tramos&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb25-3&#34;&gt;&lt;a href=&#34;#cb25-3&#34;&gt;&lt;/a&gt;                    &lt;span class=&#34;dt&#34;&gt;no =&lt;/span&gt; elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29)&lt;span class=&#34;co&#34;&gt;# Si es falso, remplazar por el valor del m29&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb25-4&#34;&gt;&lt;a href=&#34;#cb25-4&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb25-5&#34;&gt;&lt;a href=&#34;#cb25-5&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29) &lt;span class=&#34;co&#34;&gt;# NA = 147&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;##       Min.    1st Qu.     Median       Mean    3rd Qu.       Max.       NA&amp;#39;s 
 ##      20000     280000     445000    2182986     700000 4000000000        147&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb21&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb21-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;# cambiamos el nombre de las variables inghogar = m29; nhogar=nhogar1&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb21-2&#34; title=&#34;2&#34;&gt;elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(elsoc, &lt;span class=&#34;dt&#34;&gt;inghogar=&lt;/span&gt;m29, &lt;span class=&#34;dt&#34;&gt;nhogar=&lt;/span&gt;nhogar1)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb21-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;co&#34;&gt;# ingreso neto = ingreso del hogar / numero de personas en el hogar&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb21-4&#34; title=&#34;4&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ingneto   &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;as.numeric&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;inghogar&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;nhogar)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb21-5&#34; title=&#34;5&#34;&gt;&lt;span class=&#34;co&#34;&gt;# logaritmo natural del ingreso neto (para normalizar la distribucion sesgada del ingreso)&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb21-6&#34; title=&#34;6&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;lningneto &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;log&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ingneto)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb21-7&#34; title=&#34;7&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb21-8&#34; title=&#34;8&#34;&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ingneto)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb27&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb27-1&#34;&gt;&lt;a href=&#34;#cb27-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;# cambiamos el nombre de las variables inghogar = m29; nhogar=nhogar1&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb27-2&#34;&gt;&lt;a href=&#34;#cb27-2&#34;&gt;&lt;/a&gt;elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;dplyr&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(elsoc, &lt;span class=&#34;dt&#34;&gt;inghogar=&lt;/span&gt;m29, &lt;span class=&#34;dt&#34;&gt;nhogar=&lt;/span&gt;nhogar1)&lt;/span&gt;
+&lt;span id=&#34;cb27-3&#34;&gt;&lt;a href=&#34;#cb27-3&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;# ingreso neto = ingreso del hogar / numero de personas en el hogar&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb27-4&#34;&gt;&lt;a href=&#34;#cb27-4&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ingneto   &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;as.numeric&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;inghogar&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;nhogar)&lt;/span&gt;
+&lt;span id=&#34;cb27-5&#34;&gt;&lt;a href=&#34;#cb27-5&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;# logaritmo natural del ingreso neto (para normalizar la distribucion sesgada del ingreso)&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb27-6&#34;&gt;&lt;a href=&#34;#cb27-6&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;lningneto &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;log&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ingneto)&lt;/span&gt;
+&lt;span id=&#34;cb27-7&#34;&gt;&lt;a href=&#34;#cb27-7&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb27-8&#34;&gt;&lt;a href=&#34;#cb27-8&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ingneto)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;##       Min.    1st Qu.     Median       Mean    3rd Qu.       Max.       NA&amp;#39;s 
 ##       7500      95000     150000    1028152     267500 2000000000        147&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb23&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb23-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;lningneto)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb29&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb29-1&#34;&gt;&lt;a href=&#34;#cb29-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;lningneto)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&amp;#39;s 
 ##   8.923  11.462  11.918  12.006  12.497  21.416     147&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb25&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#---Deciles (ingreso per capita hogar)------------------------------------------------&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-2&#34; title=&#34;2&#34;&gt;elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;elsoc &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;mutate&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;inc10h =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;ntile&lt;/span&gt;(inghogar, &lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;)) &lt;span class=&#34;co&#34;&gt;# Crear Deciles de ingreso&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-3&#34; title=&#34;3&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;D10h &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;factor&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;inc10h, &lt;span class=&#34;dt&#34;&gt;levels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;4&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;6&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;7&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;8&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;9&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;),&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-4&#34; title=&#34;4&#34;&gt;                    &lt;span class=&#34;dt&#34;&gt;labels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;D01&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D02&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D03&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D04&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D05&amp;quot;&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-5&#34; title=&#34;5&#34;&gt;                               &lt;span class=&#34;st&#34;&gt;&amp;quot;D06&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D07&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D08&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D09&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D10&amp;quot;&lt;/span&gt;));&lt;span class=&#34;kw&#34;&gt;table&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;D10h)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb31&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb31-1&#34;&gt;&lt;a href=&#34;#cb31-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;#---Deciles (ingreso per capita hogar)------------------------------------------------&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb31-2&#34;&gt;&lt;a href=&#34;#cb31-2&#34;&gt;&lt;/a&gt;elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;elsoc &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;dplyr&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;mutate&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;inc10h =&lt;/span&gt; dplyr&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;ntile&lt;/span&gt;(inghogar, &lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;)) &lt;span class=&#34;co&#34;&gt;# Crear Deciles de ingreso&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb31-3&#34;&gt;&lt;a href=&#34;#cb31-3&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;D10h &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;factor&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;inc10h, &lt;span class=&#34;dt&#34;&gt;levels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;4&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;6&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;7&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;8&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;9&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;),&lt;/span&gt;
+&lt;span id=&#34;cb31-4&#34;&gt;&lt;a href=&#34;#cb31-4&#34;&gt;&lt;/a&gt;                    &lt;span class=&#34;dt&#34;&gt;labels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;D01&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D02&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D03&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D04&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D05&amp;quot;&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb31-5&#34;&gt;&lt;a href=&#34;#cb31-5&#34;&gt;&lt;/a&gt;                               &lt;span class=&#34;st&#34;&gt;&amp;quot;D06&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D07&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D08&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D09&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D10&amp;quot;&lt;/span&gt;));&lt;span class=&#34;kw&#34;&gt;table&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;D10h)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## D01 D02 D03 D04 D05 D06 D07 D08 D09 D10 
 ## 278 278 278 278 278 278 278 278 278 278&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;educación&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Educación&lt;/h3&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb27&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb27-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;table&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01) &lt;span class=&#34;co&#34;&gt;# Educacion en ELSOC&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;[&lt;code&gt;m01&lt;/code&gt;] = ¿Cuál es su nivel educacional? Indique el tipo de estudio actual (si estudia actualmente) o el último tipo aprobado (si no estudia actualmente).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb33&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb33-1&#34;&gt;&lt;a href=&#34;#cb33-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;table&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01) &lt;span class=&#34;co&#34;&gt;# Educacion en ELSOC&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ##   1   2   3   4   5   6   7   8   9  10 
 ##  37 322 297 394 857 102 381 186 303  46&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb35&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb35-1&#34;&gt;&lt;a href=&#34;#cb35-1&#34;&gt;&lt;/a&gt;sjmisc&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Nivel educacional (x) &amp;lt;numeric&amp;gt;
+## # total N=2927  valid N=2925  mean=5.26  sd=2.20
+## 
+##   val                                       label frq raw.prc valid.prc cum.prc
+##  -999                       No Responde (no leer)   0    0.00      0.00    0.00
+##  -888                           No Sabe (no leer)   0    0.00      0.00    0.00
+##     1                                Sin estudios  37    1.26      1.26    1.26
+##     2  Educacion Basica o Preparatoria incompleta 322   11.00     11.01   12.27
+##     3    Educacion Basica o Preparatoria completa 297   10.15     10.15   22.43
+##     4    Educacion Media o Humanidades incompleta 394   13.46     13.47   35.90
+##     5      Educacion Media o Humanidades completa 857   29.28     29.30   65.20
+##     6                 Tecnica Superior incompleta 102    3.48      3.49   68.68
+##     7                   Tecnica Superior completa 381   13.02     13.03   81.71
+##     8                    Universitaria incompleta 186    6.35      6.36   88.07
+##     9                      Universitaria completa 303   10.35     10.36   98.43
+##    10 Estudios de posgrado (magister o doctorado)  46    1.57      1.57  100.00
+##    NA                                        &amp;lt;NA&amp;gt;   2    0.07        NA      NA&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Recodificación &lt;a href=&#34;http://uis.unesco.org/sites/default/files/documents/isced-2011-sp.pdf&#34;&gt;CINE 2011 (UNESCO)&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;1.  Sin estudios                                = [CINE 0   ] =  1
 2.  Educacion Basica o Preparatoria incompleta  = [CINE 0   ] =  1
@@ -314,63 +453,95 @@ De todas maneras se recomienda realizar un comentario con el signo &lt;strong&gt
 8.  Universitaria incompleta                    = [CINE 6   ] =  5
 9.  Universitaria completa                      = [CINE 6   ] =  6
 10. Estudios de posgrado (magister o doctorado) = [CINE 7, 8] =  6&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb30&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb30-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;# recodificacion usando funcion &amp;#39;recode&amp;#39; de la libreria car&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb30-2&#34; title=&#34;2&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;car&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(1,2)=1; c(3)=2;c(4,5)=3;c(6,7)=4;c(8,9,10)=5&amp;quot;&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb30-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;kw&#34;&gt;round&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;prop.table&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;table&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine)), &lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb38&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb38-1&#34;&gt;&lt;a href=&#34;#cb38-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;# recodificacion usando funcion &amp;#39;recode&amp;#39; de la libreria car&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb38-2&#34;&gt;&lt;a href=&#34;#cb38-2&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;car&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(1,2)=1; c(3)=2;c(4,5)=3;c(6,7)=4;c(8,9,10)=5&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb38-3&#34;&gt;&lt;a href=&#34;#cb38-3&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;round&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;prop.table&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;table&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine)), &lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ##     1     2     3     4     5 
 ## 0.123 0.102 0.428 0.165 0.183&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb32&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-1&#34; title=&#34;1&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;factor&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-2&#34; title=&#34;2&#34;&gt;                       &lt;span class=&#34;dt&#34;&gt;levels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;4&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt;),&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-3&#34; title=&#34;3&#34;&gt;                       &lt;span class=&#34;dt&#34;&gt;labels=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Primaria incompleta menos&amp;quot;&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-4&#34; title=&#34;4&#34;&gt;                                &lt;span class=&#34;st&#34;&gt;&amp;quot;Primaria y secundaria baja&amp;quot;&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-5&#34; title=&#34;5&#34;&gt;                                &lt;span class=&#34;st&#34;&gt;&amp;quot;Secundaria alta&amp;quot;&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-6&#34; title=&#34;6&#34;&gt;                                &lt;span class=&#34;st&#34;&gt;&amp;quot;Terciaria ciclo corto&amp;quot;&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-7&#34; title=&#34;7&#34;&gt;                                &lt;span class=&#34;st&#34;&gt;&amp;quot;Terciaria y Postgrado&amp;quot;&lt;/span&gt;))&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-8&#34; title=&#34;8&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-9&#34; title=&#34;9&#34;&gt;&lt;span class=&#34;kw&#34;&gt;table&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine) &lt;span class=&#34;co&#34;&gt;#chequeamos&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb40&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb40-1&#34;&gt;&lt;a href=&#34;#cb40-1&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;factor&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine,&lt;/span&gt;
+&lt;span id=&#34;cb40-2&#34;&gt;&lt;a href=&#34;#cb40-2&#34;&gt;&lt;/a&gt;                       &lt;span class=&#34;dt&#34;&gt;levels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;4&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt;),&lt;/span&gt;
+&lt;span id=&#34;cb40-3&#34;&gt;&lt;a href=&#34;#cb40-3&#34;&gt;&lt;/a&gt;                       &lt;span class=&#34;dt&#34;&gt;labels=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Primaria incompleta menos&amp;quot;&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb40-4&#34;&gt;&lt;a href=&#34;#cb40-4&#34;&gt;&lt;/a&gt;                                &lt;span class=&#34;st&#34;&gt;&amp;quot;Primaria y secundaria baja&amp;quot;&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb40-5&#34;&gt;&lt;a href=&#34;#cb40-5&#34;&gt;&lt;/a&gt;                                &lt;span class=&#34;st&#34;&gt;&amp;quot;Secundaria alta&amp;quot;&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb40-6&#34;&gt;&lt;a href=&#34;#cb40-6&#34;&gt;&lt;/a&gt;                                &lt;span class=&#34;st&#34;&gt;&amp;quot;Terciaria ciclo corto&amp;quot;&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb40-7&#34;&gt;&lt;a href=&#34;#cb40-7&#34;&gt;&lt;/a&gt;                                &lt;span class=&#34;st&#34;&gt;&amp;quot;Terciaria y Postgrado&amp;quot;&lt;/span&gt;))&lt;/span&gt;
+&lt;span id=&#34;cb40-8&#34;&gt;&lt;a href=&#34;#cb40-8&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb40-9&#34;&gt;&lt;a href=&#34;#cb40-9&#34;&gt;&lt;/a&gt;sjmisc&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine) &lt;span class=&#34;co&#34;&gt;#chequeamos&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
-##  Primaria incompleta menos Primaria y secundaria baja 
-##                        359                        297 
-##            Secundaria alta      Terciaria ciclo corto 
-##                       1251                        483 
-##      Terciaria y Postgrado 
-##                        535&lt;/code&gt;&lt;/pre&gt;
+## x &amp;lt;categorical&amp;gt;
+## # total N=2927  valid N=2925  mean=3.18  sd=1.21
+## 
+##                         val  frq raw.prc valid.prc cum.prc
+##   Primaria incompleta menos  359   12.27     12.27   12.27
+##  Primaria y secundaria baja  297   10.15     10.15   22.43
+##             Secundaria alta 1251   42.74     42.77   65.20
+##       Terciaria ciclo corto  483   16.50     16.51   81.71
+##       Terciaria y Postgrado  535   18.28     18.29  100.00
+##                        &amp;lt;NA&amp;gt;    2    0.07        NA      NA&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;variables-control&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Variables control&lt;/h2&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb34&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#---Sexo----&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-2&#34; title=&#34;2&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;car&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_sexo, &lt;span class=&#34;st&#34;&gt;&amp;quot;1=1;2=0&amp;quot;&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-3&#34; title=&#34;3&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;factor&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo, &lt;span class=&#34;dt&#34;&gt;levels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;), &lt;span class=&#34;dt&#34;&gt;labels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Hombre&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;Mujer&amp;quot;&lt;/span&gt;)) &lt;span class=&#34;co&#34;&gt;# Sexo&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-4&#34; title=&#34;4&#34;&gt;&lt;span class=&#34;co&#34;&gt;#Hombre=0&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-5&#34; title=&#34;5&#34;&gt;&lt;span class=&#34;co&#34;&gt;#Mujer=1&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-6&#34; title=&#34;6&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-7&#34; title=&#34;7&#34;&gt;&lt;span class=&#34;co&#34;&gt;#---Edad----&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-8&#34; title=&#34;8&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edad &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;as.numeric&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_edad) &lt;span class=&#34;co&#34;&gt;#Edad&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-9&#34; title=&#34;9&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-10&#34; title=&#34;10&#34;&gt;&lt;span class=&#34;co&#34;&gt;#---Posicion Politica----&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-11&#34; title=&#34;11&#34;&gt;&lt;span class=&#34;co&#34;&gt;# PREGUNTA: &amp;quot;Autoubicacion escala izquierda-derecha&amp;quot;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-12&#34; title=&#34;12&#34;&gt;  &lt;span class=&#34;co&#34;&gt;# (0 = izquierda; 10 = Derecha; 11 = Independiente; 12 =Ninguno)&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-13&#34; title=&#34;13&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ppolcat  &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;car&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c15, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(0,1,2,3,4)=1;5=2;c(6,7,8,9,10)=3;11=4;12=5&amp;quot;&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-14&#34; title=&#34;14&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ppolcat  &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;factor&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ppolcat, &lt;span class=&#34;dt&#34;&gt;levels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;4&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt;),&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-15&#34; title=&#34;15&#34;&gt;                         &lt;span class=&#34;dt&#34;&gt;labels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Izquierda/Centro Izquierda&amp;quot;&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-16&#34; title=&#34;16&#34;&gt;                                    &lt;span class=&#34;st&#34;&gt;&amp;quot;Centro&amp;quot;&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-17&#34; title=&#34;17&#34;&gt;                                    &lt;span class=&#34;st&#34;&gt;&amp;quot;Derecha/Centro Derecha&amp;quot;&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-18&#34; title=&#34;18&#34;&gt;                                    &lt;span class=&#34;st&#34;&gt;&amp;quot;Independiente&amp;quot;&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-19&#34; title=&#34;19&#34;&gt;                                    &lt;span class=&#34;st&#34;&gt;&amp;quot;Ninguno&amp;quot;&lt;/span&gt;))&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;[&lt;code&gt;m0_sexo&lt;/code&gt;] = Indicar el sexo del entrevistado.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;[&lt;code&gt;m0_edad&lt;/code&gt;] = ¿Cuáles su edad? (años cumplidos).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;[&lt;code&gt;c15&lt;/code&gt;] = Cambiando de tema, tradicionalmente en nuestro país la gente define las posiciones políticas como más cercanas a la izquierda, al centro o a la derecha.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb42&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb42-1&#34;&gt;&lt;a href=&#34;#cb42-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;#---Sexo----&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb42-2&#34;&gt;&lt;a href=&#34;#cb42-2&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;car&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_sexo, &lt;span class=&#34;st&#34;&gt;&amp;quot;1=1;2=0&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb42-3&#34;&gt;&lt;a href=&#34;#cb42-3&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;factor&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo, &lt;span class=&#34;dt&#34;&gt;levels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;), &lt;span class=&#34;dt&#34;&gt;labels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Hombre&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;Mujer&amp;quot;&lt;/span&gt;)) &lt;span class=&#34;co&#34;&gt;# Sexo&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb42-4&#34;&gt;&lt;a href=&#34;#cb42-4&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;#Hombre=0&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb42-5&#34;&gt;&lt;a href=&#34;#cb42-5&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;#Mujer=1&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb42-6&#34;&gt;&lt;a href=&#34;#cb42-6&#34;&gt;&lt;/a&gt;sjmisc&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo) &lt;span class=&#34;co&#34;&gt;#chequeamos &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## x &amp;lt;categorical&amp;gt;
+## # total N=2927  valid N=2927  mean=1.40  sd=0.49
+## 
+##     val  frq raw.prc valid.prc cum.prc
+##  Hombre 1764   60.27     60.27   60.27
+##   Mujer 1163   39.73     39.73  100.00
+##    &amp;lt;NA&amp;gt;    0    0.00        NA      NA&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb44&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb44-1&#34;&gt;&lt;a href=&#34;#cb44-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;#---Edad----&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb44-2&#34;&gt;&lt;a href=&#34;#cb44-2&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edad &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;as.numeric&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_edad) &lt;span class=&#34;co&#34;&gt;#Edad&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb44-3&#34;&gt;&lt;a href=&#34;#cb44-3&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edad) &lt;span class=&#34;co&#34;&gt;#chequeamos&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   18.00   33.00   46.00   46.09   58.00   88.00&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb46&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb46-1&#34;&gt;&lt;a href=&#34;#cb46-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;#---Posicion Politica----&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb46-2&#34;&gt;&lt;a href=&#34;#cb46-2&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;# PREGUNTA: &amp;quot;Autoubicacion escala izquierda-derecha&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb46-3&#34;&gt;&lt;a href=&#34;#cb46-3&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;co&#34;&gt;# (0 = izquierda; 10 = Derecha; 11 = Independiente; 12 =Ninguno)&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb46-4&#34;&gt;&lt;a href=&#34;#cb46-4&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ppolcat  &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;car&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c15, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(0,1,2,3,4)=1;5=2;c(6,7,8,9,10)=3;11=4;12=5&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb46-5&#34;&gt;&lt;a href=&#34;#cb46-5&#34;&gt;&lt;/a&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ppolcat  &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;factor&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ppolcat, &lt;span class=&#34;dt&#34;&gt;levels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;4&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt;),&lt;/span&gt;
+&lt;span id=&#34;cb46-6&#34;&gt;&lt;a href=&#34;#cb46-6&#34;&gt;&lt;/a&gt;                         &lt;span class=&#34;dt&#34;&gt;labels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Izquierda/Centro Izquierda&amp;quot;&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb46-7&#34;&gt;&lt;a href=&#34;#cb46-7&#34;&gt;&lt;/a&gt;                                    &lt;span class=&#34;st&#34;&gt;&amp;quot;Centro&amp;quot;&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb46-8&#34;&gt;&lt;a href=&#34;#cb46-8&#34;&gt;&lt;/a&gt;                                    &lt;span class=&#34;st&#34;&gt;&amp;quot;Derecha/Centro Derecha&amp;quot;&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb46-9&#34;&gt;&lt;a href=&#34;#cb46-9&#34;&gt;&lt;/a&gt;                                    &lt;span class=&#34;st&#34;&gt;&amp;quot;Independiente&amp;quot;&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb46-10&#34;&gt;&lt;a href=&#34;#cb46-10&#34;&gt;&lt;/a&gt;                                    &lt;span class=&#34;st&#34;&gt;&amp;quot;Ninguno&amp;quot;&lt;/span&gt;))&lt;/span&gt;
+&lt;span id=&#34;cb46-11&#34;&gt;&lt;a href=&#34;#cb46-11&#34;&gt;&lt;/a&gt;sjmisc&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ppolcat) &lt;span class=&#34;co&#34;&gt;#chequeamos&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## x &amp;lt;categorical&amp;gt;
+## # total N=2927  valid N=2861  mean=3.20  sd=1.60
+## 
+##                         val  frq raw.prc valid.prc cum.prc
+##  Izquierda/Centro Izquierda  583   19.92     20.38   20.38
+##                      Centro  604   20.64     21.11   41.49
+##      Derecha/Centro Derecha  409   13.97     14.30   55.78
+##               Independiente  200    6.83      6.99   62.78
+##                     Ninguno 1065   36.39     37.22  100.00
+##                        &amp;lt;NA&amp;gt;   66    2.25        NA      NA&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;mantener-variables-relevantes&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Mantener variables relevantes&lt;/h1&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb35&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb35-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;# selecccionamos las variables relevantes&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb35-2&#34; title=&#34;2&#34;&gt;elsoc_&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;elsoc &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;dplyr&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;select&lt;/span&gt;(merit,ess,edcine,lningneto,D10h, sexo, edad,ppolcat)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb35-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;co&#34;&gt;# dejamos solamente los casos con informacion completa (listwise deletion)&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb35-4&#34; title=&#34;4&#34;&gt;elsoc_&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;na.omit&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb35-5&#34; title=&#34;5&#34;&gt;&lt;span class=&#34;kw&#34;&gt;names&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# comprobamos los nombres de variables&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;En última instancia se crea un &lt;strong&gt;subset&lt;/strong&gt; que contiene solo las variables que se van a utilizar en el análisis, mediante la función &lt;code&gt;select&lt;/code&gt; de &lt;code&gt;dplyr.&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb48&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb48-1&#34;&gt;&lt;a href=&#34;#cb48-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;# selecccionamos las variables relevantes&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb48-2&#34;&gt;&lt;a href=&#34;#cb48-2&#34;&gt;&lt;/a&gt;elsoc_&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;elsoc &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;dplyr&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;select&lt;/span&gt;(merit,ess,edcine,lningneto,D10h, sexo, edad,ppolcat)&lt;/span&gt;
+&lt;span id=&#34;cb48-3&#34;&gt;&lt;a href=&#34;#cb48-3&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;# dejamos solamente los casos con informacion completa (listwise deletion)&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb48-4&#34;&gt;&lt;a href=&#34;#cb48-4&#34;&gt;&lt;/a&gt;elsoc_&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;na.omit&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb48-5&#34;&gt;&lt;a href=&#34;#cb48-5&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;names&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# comprobamos los nombres de variables&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## [1] &amp;quot;merit&amp;quot;     &amp;quot;ess&amp;quot;       &amp;quot;edcine&amp;quot;    &amp;quot;lningneto&amp;quot; &amp;quot;D10h&amp;quot;      &amp;quot;sexo&amp;quot;     
 ## [7] &amp;quot;edad&amp;quot;      &amp;quot;ppolcat&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb37&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb37-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;head&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;#chequear&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb50&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb50-1&#34;&gt;&lt;a href=&#34;#cb50-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;head&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;#chequear&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;##   merit ess                    edcine lningneto D10h   sexo edad       ppolcat
 ## 1  75.0   5 Primaria incompleta menos  11.22524  D03 Hombre   64 Independiente
 ## 2  75.0   5           Secundaria alta  12.42922  D06 Hombre   60       Ninguno
@@ -378,8 +549,8 @@ De todas maneras se recomienda realizar un comentario con el signo &lt;strong&gt
 ## 4  75.0   6     Terciaria y Postgrado  13.54763  D08  Mujer   51       Ninguno
 ## 5  62.5   4           Secundaria alta  13.10216  D06  Mujer   69       Ninguno
 ## 6  75.0   5           Secundaria alta  13.10216  D06  Mujer   62 Independiente&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb39&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb39-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;# Guardar base de datos procesada ---------------------------------------------------------------&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb39-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;save&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt;,&lt;span class=&#34;dt&#34;&gt;file =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb52&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb52-1&#34;&gt;&lt;a href=&#34;#cb52-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;# Guardar base de datos procesada ---------------------------------------------------------------&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb52-2&#34;&gt;&lt;a href=&#34;#cb52-2&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;save&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt;,&lt;span class=&#34;dt&#34;&gt;file =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 </description>
     </item>
