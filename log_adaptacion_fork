@@ -17,7 +17,21 @@
 - se cambian los nombres de las páginas (en contents y respectivos Rmds) y los links respectivos del config(_default) menus.yaml, EXCEPTO schedule, que tiene una arquitectura muy distinta.
 - algunos como programa se modifican en el mismo Rmd, para schedule ir a data/schedule.yaml, ahí está la arquitectura de esto ligado a sesiones, slides, lecturas, etc.
 - para cambiar el ícono del tab, reemplazar el creado en icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2, carpeta resources/images/images
-- en hero.md se puede cambiar el color/gradiente del banner de la portada 
+- en hero.md se puede cambiar el color/gradiente del banner de la portada
+- en assets/scss/custom.css se agrega:
+.sidenote {
+  width: 30%;
+  float: right;
+  clear: right;
+  margin-right: -35%;
+  font-size: 0.8rem;
+  font-family: courier;
+  color: #BC1A1A;
+}
+
+Esto para crear notas al margen de la siguiente manera:
+<span class="sidenote">Several variations of this sentence are known.</span>
+
 
 ## deploy
 

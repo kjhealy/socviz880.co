@@ -27,9 +27,6 @@ editor_options:
 knitr::opts_chunk$set(cache = TRUE)
 ```
 
-```{css, echo=FALSE}
-pre, code {white-space:pre !important; overflow-x:auto}
-```
 
 # Presentación
 
@@ -174,6 +171,10 @@ proc_elsoc <- elsoc_2016 %>% select(c18_09, # percepción meritocracia esfuerzo
                           m01,    # nivel educacional
                           m0_sexo,# sexo
                           m0_edad)# edad
+
+# Comprobar
+names(proc_elsoc)
+
 ```
 
 ## 4. Procesamiento de variables

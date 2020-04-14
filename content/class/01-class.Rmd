@@ -24,12 +24,14 @@ editor_options:
 
 ## Documento presentación
 
-<iframe src=/slides/01-programa/01_multiva_intro.html height="500" width="870">
+<span class="sidenote">Para ver en pantalla completa click [**aquí**](/slides/01-programa/01_multiva_intro.html). Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. </span>
+
+<iframe src=/slides/01-programa/01_multiva_intro.html height="550" width=100% allowfullscreen="true">
 </iframe>
 
-Acceso en pantalla completa [AQUÍ](/slides/01-programa/01_multiva_intro.html)
-
 ## Video de clase
+
+<span class="sidenote">Este video es una edición de la clase efectuada vía Zoom el día viernes 3 de Abril </span>
 
 <div style="width: 100%; height: 600px; overflow: hidden;">
 <video  style="width: 100%;" controls>
