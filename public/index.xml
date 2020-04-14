@@ -132,23 +132,24 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;li&gt;&lt;a href=&#34;#antecedentes-de-los-datos-a-utilizar&#34;&gt;Antecedentes de los datos a utilizar&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#tutorial-de-instalación-de-r&#34;&gt;Tutorial de instalación de R&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#preparacion-de-datos-con-elsoc-2016&#34;&gt;Preparacion de datos con ELSOC 2016&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#librerías&#34;&gt;1. Librerías&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#cargar-base-de-datos&#34;&gt;2. Cargar base de datos&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#datos-perdidos&#34;&gt;Datos perdidos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#procesamiento-de-datos-elsoc-2016&#34;&gt;Procesamiento de datos ELSOC 2016&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#librerías-principales-de-r-a-utilizar-en-el-análisis&#34;&gt;1. Librerías principales (de R) a utilizar en el análisis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#cargar-base-de-datos&#34;&gt;2. Cargar base de datos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#selección-de-variables-a-utilizar&#34;&gt;3. Selección de variables a utilizar&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#procesamiento-de-variables&#34;&gt;4. Procesamiento de variables&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#percepción-de-meritocracia&#34;&gt;4.1 Percepción de meritocracia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#estatus-subjetivo&#34;&gt;4.3. Estatus subjetivo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#sexo&#34;&gt;4.4. Sexo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#edad&#34;&gt;4.5 Edad&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#recodificacion-variables-percepcion-de-meritocracia&#34;&gt;Recodificacion Variables percepcion de meritocracia&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#recodificacion-variable-estatus-subjetivo&#34;&gt;Recodificacion variable Estatus subjetivo&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#recodificacion-variables-estatus-objetivo&#34;&gt;Recodificacion variables Estatus objetivo&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#ingresos-del-hogar&#34;&gt;Ingresos del hogar&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#educación&#34;&gt;Educación&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#generación-de-base-de-datos-procesada-para-el-análisis&#34;&gt;5. Generación de base de datos procesada para el análisis&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#variables-control&#34;&gt;Variables control&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#mantener-variables-relevantes&#34;&gt;Mantener variables relevantes&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
+&lt;style type=&#34;text/css&#34;&gt;
+pre, code {white-space:pre !important; overflow-x:auto}
+&lt;/style&gt;
 &lt;div id=&#34;presentación&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Presentación&lt;/h1&gt;
 &lt;div id=&#34;objetivo-de-la-práctica&#34; class=&#34;section level2&#34;&gt;
@@ -159,31 +160,31 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Procesamiento&lt;/strong&gt; corresponde a lo que se conoce generalmente como “limpieza”, es decir, realizar las modificaciones necesarias para poder efectuar los análisis. Estas modificaciones previas al análisis son necesarias ya que los datos originales con los que se va a trabajar en general no vienen perfectamente adaptados a los análisis que se quieren hacer. Por lo tanto, en cuanto a datos también hacemos la distinción entre datos originales y datos procesados.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Análisis&lt;/strong&gt;: se relaciona principalmente con análisis descriptivos asociados a las preguntas de investigación y también modelamiento de datos para contrastar hipótesis de investigación.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Tanto el procesamiento como el análisis quedan registrados en un documento de código, en este caso de código R (por lo general, un archivo con extensión .R). El documento de código de procesamiento posee 5 partes, más una sección de identificación inicial:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/produccion.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Tanto el procesamiento como el análisis quedan registrados en un documento de código, en este caso de código R (por lo general, un archivo con extensión .R).&lt;/p&gt;
+&lt;p&gt;El documento de &lt;strong&gt;código de procesamiento&lt;/strong&gt; posee 5 partes, más una sección de identificación inicial:&lt;/p&gt;
 &lt;ol start=&#34;0&#34; style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;Identificación y descripción general: Título, autor(es), fecha, información breve sobre el contenido del documento&lt;/li&gt;
-&lt;li&gt;Librerías principales (de R) a utilizar en el análisis&lt;/li&gt;
-&lt;li&gt;Carga de datos&lt;/li&gt;
+&lt;li&gt;Librerías: cargar librerías a utilizar&lt;/li&gt;
+&lt;li&gt;Datos: carga de datos&lt;/li&gt;
 &lt;li&gt;Selección de variables a utilizar&lt;/li&gt;
-&lt;li&gt;Procesamiento de variables: en este punto, por cada variable&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;Descriptivo general&lt;/li&gt;
-&lt;li&gt;Recodificación de datos perdidos&lt;/li&gt;
-&lt;li&gt;Recodificación de valores (en caso de ser necesario)&lt;/li&gt;
-&lt;li&gt;Etiquetamiento /re-etiquetamiento (en caso de ser necesario)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ol start=&#34;5&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Procesamiento de variables: en este punto, por cada variable se realiza lo siguiente:
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;Descriptivo&lt;/li&gt;
+&lt;li&gt;Recodificación: (datos perdidos y valores (en caso de ser necesario)&lt;/li&gt;
+&lt;li&gt;Etiquetamiento: de variable y valores (en caso de ser necesario)&lt;/li&gt;
+&lt;li&gt;Otros ajustes&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
 &lt;li&gt;Generación de base de datos procesada para el análisis.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Al final de esta práctica la idea es que cada un_ elabore y entienda su propio documento de procesamiento de datos.&lt;/p&gt;
-&lt;p&gt;En el ejemplo vamos a procesar variables de meritocracia y estatus (objetivo y subjetivo) utilizando los datos de ELSOC.&lt;/p&gt;
+&lt;p&gt;En el ejemplo vamos a procesar variables de meritocracia y estatus (objetivo y subjetivo) utilizando los datos de la encuesta &lt;a href=&#34;https://coes.cl/encuesta-panel/&#34;&gt;ELSOC&lt;/a&gt; .&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;antecedentes-de-los-datos-a-utilizar&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Antecedentes de los datos a utilizar&lt;/h2&gt;
-&lt;p&gt;El Estudio Longitudinal Social de Chile &lt;a href=&#34;https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/0KIRBJ&#34;&gt;(ELSOC)&lt;/a&gt; es una encuesta desarrollada para analizar intertemporalmente la evolución del conflicto y cohesión en la sociedad chilena.&lt;/p&gt;
+&lt;p&gt;El Estudio Longitudinal Social de Chile (ELSOC) es una encuesta desarrollada para analizar longitudinalmente la evolución del conflicto y cohesión en la sociedad chilena.&lt;/p&gt;
 &lt;p&gt;Uno de los módulos de &lt;strong&gt;ELSOC&lt;/strong&gt; es “Desigualdad y Legitimidad”. Este módulo busca estudiar las percepciones y atribuciones asociadas a las desigualdades sociales. Se ve motivado por el interés de comprender cómo las personas perciben, legitiman y reproducen las diferencias de ingresos, estatus y poder presentes en el Chile contemporáneo.&lt;/p&gt;
-&lt;p&gt;El presente ejercicio tiene por objetivo el procesar los datos para obtener las variables relevante para el estudio de la &lt;strong&gt;Percepción de Meritocracia&lt;/strong&gt;, entendida como el grado en que los individuos consideran que su sociedad cumple con los principios de una meritocracia, es decir, que funciona como un sistema que asigna recompensas en función del esfuerzo y las habilidades.&lt;/p&gt;
+&lt;p&gt;El presente ejercicio tiene por objetivo el procesar los datos para obtener las variables relevantes para el estudio de la &lt;strong&gt;Percepción de Meritocracia&lt;/strong&gt;, entendida como el grado en que los individuos consideran que su sociedad cumple con los principios de una meritocracia, es decir, que funciona como un sistema que asigna recompensas en función del esfuerzo y las habilidades. Para ello, junto con variables de meritocracia, consideraremos también variables de estatus (educación y estatus subjetivo), y variables de caracterización sociodemográfica (sexo y edad).&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;tutorial-de-instalación-de-r&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Tutorial de instalación de R&lt;/h2&gt;
@@ -195,156 +196,206 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id=&#34;preparacion-de-datos-con-elsoc-2016&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Preparacion de datos con ELSOC 2016&lt;/h1&gt;
-&lt;div id=&#34;librerías&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;1. Librerías&lt;/h2&gt;
-&lt;p&gt;Las librerías que vamos a utilizar principalmente son dplyr (ajuste general de datos) y …
-De todas maneras se recomienda realizar un comentario con el signo &lt;strong&gt;#&lt;/strong&gt; luego de la librería a cargar para recordar su contenido.&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;library&lt;/span&gt;(dplyr) &lt;span class=&#34;co&#34;&gt;# ajuste general de datos&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Attaching package: &amp;#39;dplyr&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:stats&amp;#39;:
-## 
-##     filter, lag&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:base&amp;#39;:
-## 
-##     intersect, setdiff, setequal, union&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb5&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb5-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;rm&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;list=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;ls&lt;/span&gt;()) &lt;span class=&#34;co&#34;&gt;# borrar todos los objetos en el enviorment&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb5-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;options&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;scipen=&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;999&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;#sin notacion cientifica&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div id=&#34;procesamiento-de-datos-elsoc-2016&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Procesamiento de datos ELSOC 2016&lt;/h1&gt;
+&lt;div id=&#34;librerías-principales-de-r-a-utilizar-en-el-análisis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;1. Librerías principales (de R) a utilizar en el análisis&lt;/h2&gt;
+&lt;p&gt;Como sabemos, la lógica de R es instalar librerías (solo 1 vez, con &lt;code&gt;install.packages(&#34;librería&#34;)&lt;/code&gt;), y luego cargarlas cada vez que es necesario usarlas (con &lt;code&gt;library(librería)&lt;/code&gt;). El problema de esto es que a veces no se sabe claramente qué librerías están instaladas y cuales no, lo que va a arrojar error al cargarlas. Y, como sucede en R, existe una librería para solucionar este problema que se llama &lt;code&gt;pacman&lt;/code&gt; (package manager). Lo que hace &lt;code&gt;pacman&lt;/code&gt; es cargar la librería, y si no está instalada, la instala y la carga:&lt;/p&gt;
+&lt;p&gt;Para utilizar la primera vez (si es que no está instalada):&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;install.packages&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;pacman&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Y en adelante, las librerías se cargan así:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb2&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb2-1&#34; title=&#34;1&#34;&gt;pacman&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;p_load&lt;/span&gt;(dplyr, sjmisc, car, sjlabelled, stargazer)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Para esta sesión vamos a utilizar Las librerías que vamos a utilizar son:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;dplyr&lt;/code&gt;: ajuste general de datos&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sjmisc&lt;/code&gt;: descripción y exploración de base de datos&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;car&lt;/code&gt;: principalmente la función &lt;code&gt;recode&lt;/code&gt; para recodificar/agrupar valores de variable&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stargazer&lt;/code&gt;: para tabla descriptiva&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;cargar-base-de-datos&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;2. Cargar base de datos&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Ajustar espacio de trabajo&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Previo a la carga de nuestra base de datos, se recomienda ejecutar los siguientes comandos:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb3&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb3-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;rm&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;list=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;ls&lt;/span&gt;())       &lt;span class=&#34;co&#34;&gt;# borrar todos los objetos en el espacio de trabajo&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb3-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;options&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;scipen=&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;999&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# valores sin notación científica&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;La función &lt;code&gt;rm(list=ls())&lt;/code&gt; permite comenzar con un espacio de trabajo (environment) vacío y sin otros objetos. Así también, la función &lt;code&gt;options(scipen=999)&lt;/code&gt; desactiva la notación científica, es decir, veremos los valores numéricos con todos sus decimales.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Datos&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Las bases de datos se pueden cargar de un archivo local o en línea. Para este caso utilizaremos un archivo en línea que viene en formato RData: &lt;strong&gt;ELSOC_W01_v3.10.RData&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;La base se agrega como un objeto al espacio de trabajo con el nombre original “elsoc_2016”. Para facilitar los análisis se le cambia el nombre simplemente a elsoc con la segunda instrucción&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb6&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb6-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;load&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;url(https://multivariada.netlify.com/assignment/data/original/ELSOC_W01_v3.10.RData&amp;quot;&lt;/span&gt;)&lt;span class=&#34;er&#34;&gt;)&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb6-2&#34; title=&#34;2&#34;&gt;elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;elsoc_&lt;span class=&#34;dv&#34;&gt;2016&lt;/span&gt;; &lt;span class=&#34;kw&#34;&gt;remove&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;2016&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;div id=&#34;datos-perdidos&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Datos perdidos&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;En ELSOC todos los valores -888 y -999 corresponden a valores para las categorias “No sabe” y “No responde”, respectivamente.&lt;/li&gt;
-&lt;li&gt;Decidimos dejarlas como valores perdidos (NA)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb7&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb7-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; (i &lt;span class=&#34;cf&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;ncol&lt;/span&gt;(elsoc)) {&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb7-2&#34; title=&#34;2&#34;&gt;  elsoc[,i][elsoc[,i] &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;888&lt;/span&gt;)]  &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt; &lt;span class=&#34;co&#34;&gt;#Missing&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb7-3&#34; title=&#34;3&#34;&gt;  elsoc[,i][elsoc[,i] &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;999&lt;/span&gt;)]  &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt; &lt;span class=&#34;co&#34;&gt;#Missing&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb7-4&#34; title=&#34;4&#34;&gt;  }&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb4&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb4-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#cargamos la base de datos desde internet&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb4-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;load&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;url&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;https://multivariada.netlify.com/assignment/data/original/ELSOC_W01_v3.10.RData&amp;quot;&lt;/span&gt;))&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;La base de datos aparece como un objeto en nuestro espacio de trabajo, con el nombre original con la que fue guardada (elsoc_2016):&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/basecargada.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Realizamos un chequeo básico de la lectura de datos: nombres de las variables y tamaño de la base en términos de casos y variables (en este ejemplo, 2927 casos y 383 variables).&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb5&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb5-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;dim&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;2016&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# dimension de la base&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2927  383&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Y si se quiere revisar en formato de planilla de datos:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb7&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb7-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;View&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;2016&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
+&lt;div id=&#34;selección-de-variables-a-utilizar&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;3. Selección de variables a utilizar&lt;/h2&gt;
+&lt;p&gt;Este paso consiste en crear un subset reducido de datos que contenga solo las variables de interés. Para ello:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Se identifica el nombre de las variables que registran la información de preguntas o items del instrumento: esto aparece en el libro de códigos y/o en el cuestionario, o también se puede hacer buscando en la base de datos mediante alguna palabra clave asociada a la pregunta. Por ejemplo, si queremos buscar variables asociadas a educación, utilizamos la función &lt;code&gt;find_var&lt;/code&gt; (de &lt;code&gt;sjmisc&lt;/code&gt;, librería que cargamos en el paso 1), que nos entrega nombre de la variable en columna var.name. Por ejemplo, si buscamos alguna variable asociada al concepto &lt;em&gt;esfuerzo&lt;/em&gt;:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb8&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;find_var&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;data =&lt;/span&gt; elsoc_&lt;span class=&#34;dv&#34;&gt;2016&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;esfuerzo&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;##   col.nr var.name
+## 1    158   c18_09
+##                                                            var.label
+## 1 Grado de acuerdo: Las personas son recompensadas por sus esfuerzos&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Nos informa que esta variable es la &lt;code&gt;c18_09&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Mediante la función &lt;code&gt;select&lt;/code&gt; de &lt;code&gt;dplyr&lt;/code&gt;, seleccionamos cada una de nuestras variables de interés y creamos una nueva base con el nombre &lt;code&gt;proc_elsoc&lt;/code&gt;, donde “proc” hace referencia a base procesada:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb10&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-1&#34; title=&#34;1&#34;&gt;proc_elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;elsoc_&lt;span class=&#34;dv&#34;&gt;2016&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;select&lt;/span&gt;(c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt;, &lt;span class=&#34;co&#34;&gt;# percepción meritocracia esfuerzo&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-2&#34; title=&#34;2&#34;&gt;                          c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;, &lt;span class=&#34;co&#34;&gt;# percepción meritocracia talento&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-3&#34; title=&#34;3&#34;&gt;                          d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt;, &lt;span class=&#34;co&#34;&gt;# estatus social subjetivo&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-4&#34; title=&#34;4&#34;&gt;                          m01,    &lt;span class=&#34;co&#34;&gt;# nivel educacional&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-5&#34; title=&#34;5&#34;&gt;                          m0_sexo,&lt;span class=&#34;co&#34;&gt;# sexo&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-6&#34; title=&#34;6&#34;&gt;                          m0_edad)&lt;span class=&#34;co&#34;&gt;# edad&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;div id=&#34;recodificacion-variables-percepcion-de-meritocracia&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Recodificacion Variables percepcion de meritocracia&lt;/h2&gt;
+&lt;div id=&#34;procesamiento-de-variables&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;4. Procesamiento de variables&lt;/h2&gt;
+&lt;p&gt;Para el procesamiento de cada variables se seguirá el siguiente flujo de trabajo:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;Descriptivo general&lt;/li&gt;
+&lt;li&gt;Recodificación: de casos perdidos y otros valores (en caso necesario)&lt;/li&gt;
+&lt;li&gt;Etiquetado: cambio de nombres de variables y valores (en caso necesario)&lt;/li&gt;
+&lt;li&gt;Otros ajustes&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Y se recomienda también un descriptivo final para revisar que el procesamiento de cada variable está ok.&lt;/p&gt;
+&lt;div id=&#34;percepción-de-meritocracia&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;4.1 Percepción de meritocracia&lt;/h3&gt;
+&lt;p&gt;En ELSOC, las variables que permiten medir la percepción de las personas con respecto al funcionamiento de la meritocracia en Chile son las siguientes:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;[&lt;code&gt;c18_09&lt;/code&gt;]: “Grado de acuerdo: Las personas son recompensadas por sus esfuerzos” (1 = Totalmente en desacuerdo; 5 = Totalmente de acuerdo)&lt;/li&gt;
-&lt;li&gt;[&lt;code&gt;c18_10&lt;/code&gt;]: “Grado de acuerdo: Las personas son recompensada por su inteligencia” (1 = Totalmente en desacuerdo; 5 = Totalmente de acuerdo)&lt;/li&gt;
+&lt;li&gt;[&lt;code&gt;c18_10&lt;/code&gt;]: “Grado de acuerdo: Las personas son recompensadas por su inteligencia” (1 = Totalmente en desacuerdo; 5 = Totalmente de acuerdo)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb8&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-1&#34; title=&#34;1&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;as.numeric&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-2&#34; title=&#34;2&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;as.numeric&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;co&#34;&gt;# Variables meritocracia promedio -----------------------------------------&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-4&#34; title=&#34;4&#34;&gt;elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(elsoc,&lt;span class=&#34;dt&#34;&gt;meffort=&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# cambio de nombre de la variable c18_09 a uno mas sustantivo&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-5&#34; title=&#34;5&#34;&gt;elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(elsoc,&lt;span class=&#34;dt&#34;&gt;mtalent=&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# cambio de nombre de la variable c18_10 a uno mas sustantivo&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-6&#34; title=&#34;6&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-7&#34; title=&#34;7&#34;&gt;&lt;span class=&#34;co&#34;&gt;# creamos un indice promedio de percepcion de meritocracia usando ambas preguntas&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-8&#34; title=&#34;8&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;merit &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;meffort&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mtalent)&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-9&#34; title=&#34;9&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-10&#34; title=&#34;10&#34;&gt;&lt;span class=&#34;co&#34;&gt;# re escalamos la variable de 1-5 a una de 0 a 100 (para facilitar interpretacion)&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-11&#34; title=&#34;11&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;merit &amp;lt;-&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-12&#34; title=&#34;12&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;merit&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;min&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;merit,&lt;span class=&#34;dt&#34;&gt;na.rm=&lt;/span&gt;T))&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;max&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;merit,&lt;span class=&#34;dt&#34;&gt;na.rm=&lt;/span&gt;T)&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;min&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;merit,&lt;span class=&#34;dt&#34;&gt;na.rm=&lt;/span&gt;T))&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;100&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;recodificacion-variable-estatus-subjetivo&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Recodificacion variable Estatus subjetivo&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;a. Descriptivo&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Para los descriptivos se utilizará la función &lt;code&gt;frq&lt;/code&gt;, de la librería &lt;code&gt;sjmisc&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb11&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb11-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Grado de acuerdo: Las personas son recompensadas por sus esfuerzos (x) &amp;lt;numeric&amp;gt;
+## # total N=2927  valid N=2927  mean=-3.06  sd=71.66
+## 
+##   val                          label  frq raw.prc valid.prc cum.prc
+##  -999          No Responde (no leer)    4    0.14      0.14    0.14
+##  -888              No Sabe (no leer)   14    0.48      0.48    0.61
+##     1       Totalmente en desacuerdo  357   12.20     12.20   12.81
+##     2                  En desacuerdo 1331   45.47     45.47   58.28
+##     3 Ni de acuerdo ni en desacuerdo  497   16.98     16.98   75.26
+##     4                     De acuerdo  646   22.07     22.07   97.34
+##     5          Totalmente de acuerdo   78    2.66      2.66  100.00
+##    NA                           &amp;lt;NA&amp;gt;    0    0.00        NA      NA&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb13&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb13-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Grado de acuerdo: Las personas son recompensada por su inteligencia (x) &amp;lt;numeric&amp;gt;
+## # total N=2927  valid N=2927  mean=-3.42  sd=74.36
+## 
+##   val                          label  frq raw.prc valid.prc cum.prc
+##  -999          No Responde (no leer)    2    0.07      0.07    0.07
+##  -888              No Sabe (no leer)   18    0.61      0.61    0.68
+##     1       Totalmente en desacuerdo  288    9.84      9.84   10.52
+##     2                  En desacuerdo 1163   39.73     39.73   50.26
+##     3 Ni de acuerdo ni en desacuerdo  559   19.10     19.10   69.35
+##     4                     De acuerdo  814   27.81     27.81   97.16
+##     5          Totalmente de acuerdo   83    2.84      2.84  100.00
+##    NA                           &amp;lt;NA&amp;gt;    0    0.00        NA      NA&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;En ambas variables vemos valores asociados a la opción “No responde” (-999) y “No sabe” (-888), que corresponde definirlos como casos perdidos (en el caso de R, como casos NA). El resto de los valores y etiquetas se encuentran en orden, así que en la recodificiación solo nos haremos cargo de los casos perdidos.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;b. Recodificación&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Para recodificar utilizamos la función &lt;code&gt;recode&lt;/code&gt;, de la librería &lt;code&gt;car&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb15&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb15-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(-888,-999)=NA&amp;quot;&lt;/span&gt;)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb15-2&#34; title=&#34;2&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(-888,-999)=NA&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;c - Etiquetado&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Vamos a dar un nombre más sustantivo a las variables con la función &lt;code&gt;rename&lt;/code&gt;, de la librería &lt;code&gt;dplyr&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb16&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb16-1&#34; title=&#34;1&#34;&gt;proc_elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;proc_elsoc &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;mesfuerzo&amp;quot;&lt;/span&gt;=c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt;, &lt;span class=&#34;co&#34;&gt;# meritocracia esfuerzo&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb16-2&#34; title=&#34;2&#34;&gt;                          &lt;span class=&#34;st&#34;&gt;&amp;quot;mtalento&amp;quot;&lt;/span&gt; =c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# meritocracia talento&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;d. Otros ajustes&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Para este caso vamos a crear una variable que sea el promedio de los dos items de meritocracia.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb17&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;pmerit &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mesfuerzo&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mtalento)&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;pmerit)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&amp;#39;s 
+##   1.000   2.000   2.500   2.654   3.500   5.000      29&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Revisión final&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Nuevamente un descriptivo de cada variable para confirmar que el procesamiento está ok:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb19&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb19-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mesfuerzo)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Grado de acuerdo: Las personas son recompensadas por sus esfuerzos (x) &amp;lt;numeric&amp;gt;
+## # total N=2927  valid N=2909  mean=2.57  sd=1.05
+## 
+##   val                          label  frq raw.prc valid.prc cum.prc
+##  -999          No Responde (no leer)    0    0.00      0.00    0.00
+##  -888              No Sabe (no leer)    0    0.00      0.00    0.00
+##     1       Totalmente en desacuerdo  357   12.20     12.27   12.27
+##     2                  En desacuerdo 1331   45.47     45.75   58.03
+##     3 Ni de acuerdo ni en desacuerdo  497   16.98     17.08   75.11
+##     4                     De acuerdo  646   22.07     22.21   97.32
+##     5          Totalmente de acuerdo   78    2.66      2.68  100.00
+##    NA                           &amp;lt;NA&amp;gt;   18    0.61        NA      NA&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb21&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb21-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mtalento)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Grado de acuerdo: Las personas son recompensada por su inteligencia (x) &amp;lt;numeric&amp;gt;
+## # total N=2927  valid N=2907  mean=2.74  sd=1.06
+## 
+##   val                          label  frq raw.prc valid.prc cum.prc
+##  -999          No Responde (no leer)    0    0.00      0.00    0.00
+##  -888              No Sabe (no leer)    0    0.00      0.00    0.00
+##     1       Totalmente en desacuerdo  288    9.84      9.91    9.91
+##     2                  En desacuerdo 1163   39.73     40.01   49.91
+##     3 Ni de acuerdo ni en desacuerdo  559   19.10     19.23   69.14
+##     4                     De acuerdo  814   27.81     28.00   97.14
+##     5          Totalmente de acuerdo   83    2.84      2.86  100.00
+##    NA                           &amp;lt;NA&amp;gt;   20    0.68        NA      NA&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb23&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb23-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;pmerit)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Grado de acuerdo: Las personas son recompensadas por sus esfuerzos (x) &amp;lt;numeric&amp;gt;
+## # total N=2927  valid N=2898  mean=2.65  sd=0.97
+## 
+##     val                          label  frq raw.prc valid.prc cum.prc
+##  -999.0          No Responde (no leer)    0    0.00      0.00    0.00
+##  -888.0              No Sabe (no leer)    0    0.00      0.00    0.00
+##     1.0       Totalmente en desacuerdo  243    8.30      8.39    8.39
+##     1.5                            1.5   79    2.70      2.73   11.11
+##     2.0                  En desacuerdo 1041   35.57     35.92   47.03
+##     2.5                            2.5  222    7.58      7.66   54.69
+##     3.0 Ni de acuerdo ni en desacuerdo  536   18.31     18.50   73.19
+##     3.5                            3.5  169    5.77      5.83   79.02
+##     4.0                     De acuerdo  528   18.04     18.22   97.24
+##     4.5                            4.5   38    1.30      1.31   98.55
+##     5.0          Totalmente de acuerdo   42    1.43      1.45  100.00
+##      NA                           &amp;lt;NA&amp;gt;   29    0.99        NA      NA&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;educación&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;4.2. Educación&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li&gt;[&lt;code&gt;d01_01&lt;/code&gt;]: “Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena” (0 = el nivel mas bajo; 10 = el nivel mas alto)&lt;/li&gt;
+&lt;li&gt;[&lt;code&gt;m01&lt;/code&gt;] = ¿Cuál es su nivel educacional? Indique el tipo de estudio actual (si estudia actualmente) o el último tipo aprobado (si no estudia actualmente).&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb9&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-1&#34; title=&#34;1&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ess &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;as.numeric&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# Estatus Social Subjetivo&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;table&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ess)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ess)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;a. Descriptivo&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb25&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
-##   0   1   2   3   4   5   6   7   8   9  10 
-##  44  84 207 439 677 975 310 116  37   4  22 
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&amp;#39;s 
-##    0.00    3.00    5.00    4.33    5.00   10.00      12&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;recodificacion-variables-estatus-objetivo&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Recodificacion variables Estatus objetivo&lt;/h2&gt;
-&lt;div id=&#34;ingresos-del-hogar&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Ingresos del hogar&lt;/h3&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb11&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb11-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29) &lt;span class=&#34;co&#34;&gt;# ingresos total ; NA == 587&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;code&gt;##       Min.    1st Qu.     Median       Mean    3rd Qu.       Max.       NA&amp;#39;s 
-##          0     267500     420000    2477852     700000 4000000000        587&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb13&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb13-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30) &lt;span class=&#34;co&#34;&gt;# ingresos tramos&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;code&gt;##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&amp;#39;s 
-##   1.000   3.000   6.000   7.415  11.000  20.000    2479&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb15&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb15-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;nhogar1) &lt;span class=&#34;co&#34;&gt;# tamannio del hogar&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;code&gt;##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   1.000   2.000   3.000   3.077   4.000  14.000&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb17&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-1&#34; title=&#34;1&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;co&#34;&gt;# Remplazar NA por media de categorias Ingreso -------------------------------#&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-3&#34; title=&#34;3&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;NA&lt;/span&gt; &lt;span class=&#34;co&#34;&gt;# creamos una variable vacia&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-4&#34; title=&#34;4&#34;&gt;&lt;span class=&#34;co&#34;&gt;# remplazamos ...&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-5&#34; title=&#34;5&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;dv&#34;&gt;110000&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-6&#34; title=&#34;6&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;250000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-7&#34; title=&#34;7&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;305000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-8&#34; title=&#34;8&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;4&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;355000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-9&#34; title=&#34;9&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;400000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-10&#34; title=&#34;10&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;6&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;445000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-11&#34; title=&#34;11&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;7&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;490000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-12&#34; title=&#34;12&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;8&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;535000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-13&#34; title=&#34;13&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;9&lt;/span&gt;] &amp;lt;-&lt;span class=&#34;fl&#34;&gt;585000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-14&#34; title=&#34;14&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;640000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-15&#34; title=&#34;15&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;11&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;700000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-16&#34; title=&#34;16&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;12&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;765000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-17&#34; title=&#34;17&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;13&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;845000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-18&#34; title=&#34;18&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;14&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;935000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-19&#34; title=&#34;19&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;15&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;1040000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-20&#34; title=&#34;20&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;1180000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-21&#34; title=&#34;21&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;17&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;1375000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-22&#34; title=&#34;22&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;18&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;1670000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-23&#34; title=&#34;23&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;19&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;fl&#34;&gt;2275000.5&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-24&#34; title=&#34;24&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos[elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m30&lt;span class=&#34;op&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;20&lt;/span&gt;]&amp;lt;-&lt;span class=&#34;dv&#34;&gt;3726106&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-25&#34; title=&#34;25&#34;&gt;&lt;span class=&#34;kw&#34;&gt;table&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos) &lt;span class=&#34;co&#34;&gt;# chequeamos&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;code&gt;## 
-##    110000  250000.5  305000.5  355000.5  400000.5  445000.5  490000.5  535000.5 
-##        49        42        36        35        33        33        38        21 
-##  585000.5  640000.5  700000.5  765000.5  845000.5  935000.5 1040000.5 1180000.5 
-##        26        16        18        15        11        14        19        13 
-## 1375000.5 1670000.5 2275000.5   3726106 
-##         4        10         8         7&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb19&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb19-1&#34; title=&#34;1&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;ifelse&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;test =&lt;/span&gt; (&lt;span class=&#34;kw&#34;&gt;is.na&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29)),&lt;span class=&#34;co&#34;&gt;#¿es el valor un NA?&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb19-2&#34; title=&#34;2&#34;&gt;                    &lt;span class=&#34;dt&#34;&gt;yes =&lt;/span&gt; elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mean_tramos, &lt;span class=&#34;co&#34;&gt;#Si es verdadero, remplazar por el valor de mean_tramos&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb19-3&#34; title=&#34;3&#34;&gt;                    &lt;span class=&#34;dt&#34;&gt;no =&lt;/span&gt; elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29)&lt;span class=&#34;co&#34;&gt;# Si es falso, remplazar por el valor del m29&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb19-4&#34; title=&#34;4&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb19-5&#34; title=&#34;5&#34;&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m29) &lt;span class=&#34;co&#34;&gt;# NA = 147&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;code&gt;##       Min.    1st Qu.     Median       Mean    3rd Qu.       Max.       NA&amp;#39;s 
-##      20000     280000     445000    2182986     700000 4000000000        147&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb21&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb21-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;# cambiamos el nombre de las variables inghogar = m29; nhogar=nhogar1&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb21-2&#34; title=&#34;2&#34;&gt;elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(elsoc, &lt;span class=&#34;dt&#34;&gt;inghogar=&lt;/span&gt;m29, &lt;span class=&#34;dt&#34;&gt;nhogar=&lt;/span&gt;nhogar1)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb21-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;co&#34;&gt;# ingreso neto = ingreso del hogar / numero de personas en el hogar&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb21-4&#34; title=&#34;4&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ingneto   &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;as.numeric&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;inghogar&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;nhogar)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb21-5&#34; title=&#34;5&#34;&gt;&lt;span class=&#34;co&#34;&gt;# logaritmo natural del ingreso neto (para normalizar la distribucion sesgada del ingreso)&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb21-6&#34; title=&#34;6&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;lningneto &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;log&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ingneto)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb21-7&#34; title=&#34;7&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb21-8&#34; title=&#34;8&#34;&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ingneto)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;code&gt;##       Min.    1st Qu.     Median       Mean    3rd Qu.       Max.       NA&amp;#39;s 
-##       7500      95000     150000    1028152     267500 2000000000        147&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb23&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb23-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;lningneto)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;code&gt;##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&amp;#39;s 
-##   8.923  11.462  11.918  12.006  12.497  21.416     147&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb25&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#---Deciles (ingreso per capita hogar)------------------------------------------------&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-2&#34; title=&#34;2&#34;&gt;elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;elsoc &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;mutate&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;inc10h =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;ntile&lt;/span&gt;(inghogar, &lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;)) &lt;span class=&#34;co&#34;&gt;# Crear Deciles de ingreso&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-3&#34; title=&#34;3&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;D10h &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;factor&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;inc10h, &lt;span class=&#34;dt&#34;&gt;levels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;4&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;6&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;7&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;8&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;9&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;),&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-4&#34; title=&#34;4&#34;&gt;                    &lt;span class=&#34;dt&#34;&gt;labels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;D01&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D02&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D03&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D04&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D05&amp;quot;&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-5&#34; title=&#34;5&#34;&gt;                               &lt;span class=&#34;st&#34;&gt;&amp;quot;D06&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D07&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D08&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D09&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;D10&amp;quot;&lt;/span&gt;));&lt;span class=&#34;kw&#34;&gt;table&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;D10h)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## D01 D02 D03 D04 D05 D06 D07 D08 D09 D10 
-## 278 278 278 278 278 278 278 278 278 278&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;educación&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Educación&lt;/h3&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb27&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb27-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;table&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01) &lt;span class=&#34;co&#34;&gt;# Educacion en ELSOC&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;code&gt;## 
-##   1   2   3   4   5   6   7   8   9  10 
-##  37 322 297 394 857 102 381 186 303  46&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Recodificación &lt;a href=&#34;http://uis.unesco.org/sites/default/files/documents/isced-2011-sp.pdf&#34;&gt;CINE 2011 (UNESCO)&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+## Nivel educacional (x) &amp;lt;numeric&amp;gt;
+## # total N=2927  valid N=2927  mean=4.57  sd=26.34
+## 
+##   val                                       label frq raw.prc valid.prc cum.prc
+##  -999                       No Responde (no leer)   2    0.07      0.07    0.07
+##  -888                           No Sabe (no leer)   0    0.00      0.00    0.07
+##     1                                Sin estudios  37    1.26      1.26    1.33
+##     2  Educacion Basica o Preparatoria incompleta 322   11.00     11.00   12.33
+##     3    Educacion Basica o Preparatoria completa 297   10.15     10.15   22.48
+##     4    Educacion Media o Humanidades incompleta 394   13.46     13.46   35.94
+##     5      Educacion Media o Humanidades completa 857   29.28     29.28   65.22
+##     6                 Tecnica Superior incompleta 102    3.48      3.48   68.71
+##     7                   Tecnica Superior completa 381   13.02     13.02   81.72
+##     8                    Universitaria incompleta 186    6.35      6.35   88.08
+##     9                      Universitaria completa 303   10.35     10.35   98.43
+##    10 Estudios de posgrado (magister o doctorado)  46    1.57      1.57  100.00
+##    NA                                        &amp;lt;NA&amp;gt;   0    0.00        NA      NA&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;b. Recodificación&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Datos perdidos:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb27&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb27-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(-888,-999)=NA&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Valores&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Recodificación de acuerdo a las categorías &lt;a href=&#34;http://uis.unesco.org/sites/default/files/documents/isced-2011-sp.pdf&#34;&gt;CINE 2011 (UNESCO)&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;1.  Sin estudios                                = [CINE 0   ] =  1
 2.  Educacion Basica o Preparatoria incompleta  = [CINE 0   ] =  1
 3.  Educacion Basica o Preparatoria completa    = [CINE 1,2 ] =  2
@@ -355,72 +406,237 @@ De todas maneras se recomienda realizar un comentario con el signo &lt;strong&gt
 8.  Universitaria incompleta                    = [CINE 6   ] =  5
 9.  Universitaria completa                      = [CINE 6   ] =  6
 10. Estudios de posgrado (magister o doctorado) = [CINE 7, 8] =  6&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb30&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb30-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;# recodificacion usando funcion &amp;#39;recode&amp;#39; de la libreria car&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb30-2&#34; title=&#34;2&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;car&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(1,2)=1; c(3)=2;c(4,5)=3;c(6,7)=4;c(8,9,10)=5&amp;quot;&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb30-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;kw&#34;&gt;round&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;prop.table&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;table&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine)), &lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb29&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb29-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;# recodificacion usando funcion &amp;#39;recode&amp;#39; de la libreria car&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb29-2&#34; title=&#34;2&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;car&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(1,2)=1; c(3)=2;c(4,5)=3;c(6,7)=4;c(8,9,10)=5&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Comprobar con un nuevo descriptivo:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb30&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb30-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
-##     1     2     3     4     5 
-## 0.123 0.102 0.428 0.165 0.183&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb32&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-1&#34; title=&#34;1&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;factor&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-2&#34; title=&#34;2&#34;&gt;                       &lt;span class=&#34;dt&#34;&gt;levels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;4&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt;),&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-3&#34; title=&#34;3&#34;&gt;                       &lt;span class=&#34;dt&#34;&gt;labels=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Primaria incompleta menos&amp;quot;&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-4&#34; title=&#34;4&#34;&gt;                                &lt;span class=&#34;st&#34;&gt;&amp;quot;Primaria y secundaria baja&amp;quot;&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-5&#34; title=&#34;5&#34;&gt;                                &lt;span class=&#34;st&#34;&gt;&amp;quot;Secundaria alta&amp;quot;&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-6&#34; title=&#34;6&#34;&gt;                                &lt;span class=&#34;st&#34;&gt;&amp;quot;Terciaria ciclo corto&amp;quot;&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-7&#34; title=&#34;7&#34;&gt;                                &lt;span class=&#34;st&#34;&gt;&amp;quot;Terciaria y Postgrado&amp;quot;&lt;/span&gt;))&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-8&#34; title=&#34;8&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-9&#34; title=&#34;9&#34;&gt;&lt;span class=&#34;kw&#34;&gt;table&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine) &lt;span class=&#34;co&#34;&gt;#chequeamos&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+## Nivel educacional (x) &amp;lt;numeric&amp;gt;
+## # total N=2927  valid N=2925  mean=3.18  sd=1.21
+## 
+##   val                                       label  frq raw.prc valid.prc
+##  -999                       No Responde (no leer)    0    0.00      0.00
+##  -888                           No Sabe (no leer)    0    0.00      0.00
+##     1                                Sin estudios  359   12.27     12.27
+##     2  Educacion Basica o Preparatoria incompleta  297   10.15     10.15
+##     3    Educacion Basica o Preparatoria completa 1251   42.74     42.77
+##     4    Educacion Media o Humanidades incompleta  483   16.50     16.51
+##     5      Educacion Media o Humanidades completa  535   18.28     18.29
+##     6                 Tecnica Superior incompleta    0    0.00      0.00
+##     7                   Tecnica Superior completa    0    0.00      0.00
+##     8                    Universitaria incompleta    0    0.00      0.00
+##     9                      Universitaria completa    0    0.00      0.00
+##    10 Estudios de posgrado (magister o doctorado)    0    0.00      0.00
+##    NA                                        &amp;lt;NA&amp;gt;    2    0.07        NA
+##  cum.prc
+##     0.00
+##     0.00
+##    12.27
+##    22.43
+##    65.20
+##    81.71
+##   100.00
+##   100.00
+##   100.00
+##   100.00
+##   100.00
+##   100.00
+##       NA&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Se observa que los valores coinciden con la recodificación (los casos se acumulan entre las categorías 1 y 5), pero las etiquetas ahora no coinciden; se soluciona en el siguiente paso.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;c. Etiquetado&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Para re-etiquetar valores usamos la función &lt;code&gt;set_labels&lt;/code&gt;, de la librería &lt;code&gt;sjlabelled&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb32&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;set_labels&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-2&#34; title=&#34;2&#34;&gt;            &lt;span class=&#34;dt&#34;&gt;labels=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;( &lt;span class=&#34;st&#34;&gt;&amp;quot;Primaria incompleta menos&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-3&#34; title=&#34;3&#34;&gt;                      &lt;span class=&#34;st&#34;&gt;&amp;quot;Primaria y secundaria baja&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-4&#34; title=&#34;4&#34;&gt;                      &lt;span class=&#34;st&#34;&gt;&amp;quot;Secundaria alta&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-5&#34; title=&#34;5&#34;&gt;                      &lt;span class=&#34;st&#34;&gt;&amp;quot;Terciaria ciclo corto&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;4&lt;/span&gt;,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-6&#34; title=&#34;6&#34;&gt;                      &lt;span class=&#34;st&#34;&gt;&amp;quot;Terciaria y Postgrado&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt;))&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Y finalmente renombramos la variable con un nombre más sustantivo&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb33&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb33-1&#34; title=&#34;1&#34;&gt;proc_elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(proc_elsoc,&lt;span class=&#34;st&#34;&gt;&amp;quot;edcine&amp;quot;&lt;/span&gt;=m01)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;estatus-subjetivo&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;4.3. Estatus subjetivo&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;a. Descriptivo&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;[&lt;code&gt;d01_01&lt;/code&gt;]: “Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena” (0 = el nivel mas bajo; 10 = el nivel mas alto)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb34&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt;)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
-##  Primaria incompleta menos Primaria y secundaria baja 
-##                        359                        297 
-##            Secundaria alta      Terciaria ciclo corto 
-##                       1251                        483 
-##      Terciaria y Postgrado 
-##                        535&lt;/code&gt;&lt;/pre&gt;
+## Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena (x) &amp;lt;numeric&amp;gt;
+## # total N=2927  valid N=2927  mean=0.63  sd=57.67
+## 
+##   val                 label frq raw.prc valid.prc cum.prc
+##  -999 No Responde (no leer)   1    0.03      0.03    0.03
+##  -888     No Sabe (no leer)  11    0.38      0.38    0.41
+##     0   0 El nivel mas bajo  44    1.50      1.50    1.91
+##     1                     1  84    2.87      2.87    4.78
+##     2                     2 207    7.07      7.07   11.86
+##     3                     3 439   15.00     15.00   26.85
+##     4                     4 677   23.13     23.13   49.98
+##     5                     5 975   33.31     33.31   83.29
+##     6                     6 310   10.59     10.59   93.88
+##     7                     7 116    3.96      3.96   97.85
+##     8                     8  37    1.26      1.26   99.11
+##     9                     9   4    0.14      0.14   99.25
+##    10  10 El nivel mas alto  22    0.75      0.75  100.00
+##    NA                  &amp;lt;NA&amp;gt;   0    0.00        NA      NA
+## 
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -999.0000    3.0000    5.0000    0.6338    5.0000   10.0000&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;b. Recodificación&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb36&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb36-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(-888,-999)=NA&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;c. Etiquetado&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cambio de nombre de variable a etiqueta más sustantiva ess (estatus social subjetivo)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb37&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb37-1&#34; title=&#34;1&#34;&gt;proc_elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;proc_elsoc &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;ess&amp;quot;&lt;/span&gt;=d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# estatus social subjetivo&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;sexo&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;4.4. Sexo&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;[&lt;code&gt;m0_sexo&lt;/code&gt;] = Indicar el sexo del entrevistado.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;a. Descriptivo&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb38&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb38-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_sexo)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Sexo del entrevistado (x) &amp;lt;numeric&amp;gt;
+## # total N=2927  valid N=2927  mean=1.60  sd=0.49
+## 
+##  val  label  frq raw.prc valid.prc cum.prc
+##    1 Hombre 1163   39.73     39.73   39.73
+##    2  Mujer 1764   60.27     60.27  100.00
+##   NA   &amp;lt;NA&amp;gt;    0    0.00        NA      NA&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;b. Recodificación&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;En general esta variable no tiene problemas de casos perdidos ni de etiquetas, pero de todas maneras vamos a hacer un cambio de acuerdo a convenciones en análisis de datos, donde por lo general hombres tienen valor 0 y mujeres 1:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb40&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb40-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_sexo &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;car&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_sexo, &lt;span class=&#34;st&#34;&gt;&amp;quot;1=0;2=1&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;c. Etiquetado&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Y ahora cambiamos las etiquetas de acuerdo a la recodificación anterior:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb41&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb41-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_sexo &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;set_labels&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_sexo,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb41-2&#34; title=&#34;2&#34;&gt;            &lt;span class=&#34;dt&#34;&gt;labels=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;( &lt;span class=&#34;st&#34;&gt;&amp;quot;Hombre&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb41-3&#34; title=&#34;3&#34;&gt;                      &lt;span class=&#34;st&#34;&gt;&amp;quot;Mujer&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;))&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;También el nombre de la variable a algo más simple:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb42&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb42-1&#34; title=&#34;1&#34;&gt;proc_elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(proc_elsoc,&lt;span class=&#34;st&#34;&gt;&amp;quot;sexo&amp;quot;&lt;/span&gt;=m0_sexo)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Revisar con un nuevo descriptivo:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb43&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb43-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Sexo del entrevistado (x) &amp;lt;numeric&amp;gt;
+## # total N=2927  valid N=2927  mean=0.60  sd=0.49
+## 
+##  val  label  frq raw.prc valid.prc cum.prc
+##    0 Hombre 1163   39.73     39.73   39.73
+##    1  Mujer 1764   60.27     60.27  100.00
+##   NA   &amp;lt;NA&amp;gt;    0    0.00        NA      NA&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;edad&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;4.5 Edad&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;[&lt;code&gt;m0_edad&lt;/code&gt;] = ¿Cuáles su edad? (años cumplidos).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;a. Descriptivo&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb45&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb45-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_edad)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Edad del entrevistado (x) &amp;lt;numeric&amp;gt;
+## # total N=2927  valid N=2927  mean=46.09  sd=15.29
+## 
+##   val                 label frq raw.prc valid.prc cum.prc
+##  -999 No Responde (no leer)   0    0.00      0.00    0.00
+##  -888     No Sabe (no leer)   0    0.00      0.00    0.00
+##    18                    18  19    0.65      0.65    0.65
+##    19                    19  32    1.09      1.09    1.74
+##    20                    20  26    0.89      0.89    2.63
+##    21                    21  39    1.33      1.33    3.96
+##    22                    22  49    1.67      1.67    5.64
+##    23                    23  44    1.50      1.50    7.14
+##    24                    24  51    1.74      1.74    8.88
+##    25                    25  46    1.57      1.57   10.45
+##    26                    26  44    1.50      1.50   11.96
+##    27                    27  51    1.74      1.74   13.70
+##    28                    28  58    1.98      1.98   15.68
+##    29                    29  47    1.61      1.61   17.29
+##    30                    30  66    2.25      2.25   19.54
+##    31                    31  48    1.64      1.64   21.18
+##    32                    32  64    2.19      2.19   23.37
+##    33                    33  55    1.88      1.88   25.25
+##    34                    34  55    1.88      1.88   27.13
+##    35                    35  67    2.29      2.29   29.42
+##    36                    36  70    2.39      2.39   31.81
+##    37                    37  46    1.57      1.57   33.38
+##    38                    38  57    1.95      1.95   35.33
+##    39                    39  37    1.26      1.26   36.59
+##    40                    40  57    1.95      1.95   38.54
+##    41                    41  58    1.98      1.98   40.52
+##    42                    42  67    2.29      2.29   42.81
+##    43                    43  54    1.84      1.84   44.65
+##    44                    44  45    1.54      1.54   46.19
+##    45                    45  53    1.81      1.81   48.00
+##    46                    46  77    2.63      2.63   50.63
+##    47                    47  56    1.91      1.91   52.55
+##    48                    48  72    2.46      2.46   55.01
+##    49                    49  53    1.81      1.81   56.82
+##    50                    50  69    2.36      2.36   59.17
+##    51                    51  55    1.88      1.88   61.05
+##    52                    52  69    2.36      2.36   63.41
+##    53                    53  57    1.95      1.95   65.36
+##    54                    54  76    2.60      2.60   67.95
+##    55                    55  72    2.46      2.46   70.41
+##    56                    56  76    2.60      2.60   73.01
+##    57                    57  53    1.81      1.81   74.82
+##    58                    58  57    1.95      1.95   76.77
+##    59                    59  44    1.50      1.50   78.27
+##    60                    60  57    1.95      1.95   80.22
+##    61                    61  33    1.13      1.13   81.35
+##    62                    62  33    1.13      1.13   82.47
+##    63                    63  49    1.67      1.67   84.15
+##    64                    64  39    1.33      1.33   85.48
+##    65                    65  60    2.05      2.05   87.53
+##    66                    66  39    1.33      1.33   88.86
+##    67                    67  39    1.33      1.33   90.19
+##    68                    68  35    1.20      1.20   91.39
+##    69                    69  32    1.09      1.09   92.48
+##    70                    70  37    1.26      1.26   93.75
+##    71                    71  29    0.99      0.99   94.74
+##    72                    72  28    0.96      0.96   95.70
+##    73                    73  42    1.43      1.43   97.13
+##    74                    74  39    1.33      1.33   98.46
+##    75                    75  37    1.26      1.26   99.73
+##    77                    77   1    0.03      0.03   99.76
+##    78                    78   3    0.10      0.10   99.86
+##    80                    80   1    0.03      0.03   99.90
+##    81                    81   1    0.03      0.03   99.93
+##    88                    88   2    0.07      0.07  100.00
+##    NA                  &amp;lt;NA&amp;gt;   0    0.00        NA      NA&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;b. Recodificación&lt;/em&gt;: no es necesario en este caso&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;c. Etiquetado&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Cambio del nombre de la variable a algo más simple:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb47&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb47-1&#34; title=&#34;1&#34;&gt;proc_elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(proc_elsoc,&lt;span class=&#34;st&#34;&gt;&amp;quot;edad&amp;quot;&lt;/span&gt;=m0_edad)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id=&#34;variables-control&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Variables control&lt;/h2&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb34&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#---Sexo----&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-2&#34; title=&#34;2&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;car&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_sexo, &lt;span class=&#34;st&#34;&gt;&amp;quot;1=1;2=0&amp;quot;&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-3&#34; title=&#34;3&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;factor&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo, &lt;span class=&#34;dt&#34;&gt;levels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;), &lt;span class=&#34;dt&#34;&gt;labels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Hombre&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;Mujer&amp;quot;&lt;/span&gt;)) &lt;span class=&#34;co&#34;&gt;# Sexo&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-4&#34; title=&#34;4&#34;&gt;&lt;span class=&#34;co&#34;&gt;#Hombre=0&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-5&#34; title=&#34;5&#34;&gt;&lt;span class=&#34;co&#34;&gt;#Mujer=1&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-6&#34; title=&#34;6&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-7&#34; title=&#34;7&#34;&gt;&lt;span class=&#34;co&#34;&gt;#---Edad----&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-8&#34; title=&#34;8&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edad &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;as.numeric&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_edad) &lt;span class=&#34;co&#34;&gt;#Edad&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-9&#34; title=&#34;9&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-10&#34; title=&#34;10&#34;&gt;&lt;span class=&#34;co&#34;&gt;#---Posicion Politica----&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-11&#34; title=&#34;11&#34;&gt;&lt;span class=&#34;co&#34;&gt;# PREGUNTA: &amp;quot;Autoubicacion escala izquierda-derecha&amp;quot;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-12&#34; title=&#34;12&#34;&gt;  &lt;span class=&#34;co&#34;&gt;# (0 = izquierda; 10 = Derecha; 11 = Independiente; 12 =Ninguno)&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-13&#34; title=&#34;13&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ppolcat  &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;car&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c15, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(0,1,2,3,4)=1;5=2;c(6,7,8,9,10)=3;11=4;12=5&amp;quot;&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-14&#34; title=&#34;14&#34;&gt;elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ppolcat  &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;factor&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ppolcat, &lt;span class=&#34;dt&#34;&gt;levels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;4&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt;),&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-15&#34; title=&#34;15&#34;&gt;                         &lt;span class=&#34;dt&#34;&gt;labels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Izquierda/Centro Izquierda&amp;quot;&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-16&#34; title=&#34;16&#34;&gt;                                    &lt;span class=&#34;st&#34;&gt;&amp;quot;Centro&amp;quot;&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-17&#34; title=&#34;17&#34;&gt;                                    &lt;span class=&#34;st&#34;&gt;&amp;quot;Derecha/Centro Derecha&amp;quot;&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-18&#34; title=&#34;18&#34;&gt;                                    &lt;span class=&#34;st&#34;&gt;&amp;quot;Independiente&amp;quot;&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-19&#34; title=&#34;19&#34;&gt;                                    &lt;span class=&#34;st&#34;&gt;&amp;quot;Ninguno&amp;quot;&lt;/span&gt;))&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div id=&#34;generación-de-base-de-datos-procesada-para-el-análisis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;5. Generación de base de datos procesada para el análisis&lt;/h2&gt;
+&lt;p&gt;Antes de guardar la base procesada, revisamos nuevamente todas las variables con una tabla descriptiva general mediante la función &lt;code&gt;stargazer&lt;/code&gt; (de la librería homónima)&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb48&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb48-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;stargazer&lt;/span&gt;(proc_elsoc, &lt;span class=&#34;dt&#34;&gt;type=&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;text&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## ===============================================================
+## Statistic   N    Mean   St. Dev.  Min  Pctl(25) Pctl(75)  Max  
+## ---------------------------------------------------------------
+## mesfuerzo 2,909  2.573   1.047   1.000  2.000    3.000   5.000 
+## mtalento  2,907  2.739   1.060   1.000  2.000    4.000   5.000 
+## ess       2,915  4.330   1.567   0.000  3.000    5.000   10.000
+## edcine    2,925  3.184   1.207   1.000  3.000    4.000   5.000 
+## sexo      2,927  0.603   0.489     0      0        1       1   
+## edad      2,927 46.091   15.287   18      33       58      88  
+## c15       2,927 -13.195 139.051  -999     5        12      12  
+## pmerit    2,898  2.654   0.969   1.000  2.000    3.500   5.000 
+## ---------------------------------------------------------------&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Guardar base de datos procesada: en carpeta local&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb50&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb50-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;save&lt;/span&gt;(proc_elsoc,&lt;span class=&#34;dt&#34;&gt;file =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;[ruta hacia carpeta local/ELSOC_ess_merit2016.RData&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;En este caso, seguimos una estructura de carpetas de datos, separando en una carpeta los datos originales, y en otra (proc) los datos procesados:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb51&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb51-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;save&lt;/span&gt;(proc_elsoc,&lt;span class=&#34;dt&#34;&gt;file =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;mantener-variables-relevantes&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Mantener variables relevantes&lt;/h1&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb35&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb35-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;# selecccionamos las variables relevantes&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb35-2&#34; title=&#34;2&#34;&gt;elsoc_&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;elsoc &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;dplyr&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;select&lt;/span&gt;(merit,ess,edcine,lningneto,D10h, sexo, edad,ppolcat)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb35-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;co&#34;&gt;# dejamos solamente los casos con informacion completa (listwise deletion)&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb35-4&#34; title=&#34;4&#34;&gt;elsoc_&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;na.omit&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb35-5&#34; title=&#34;5&#34;&gt;&lt;span class=&#34;kw&#34;&gt;names&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# comprobamos los nombres de variables&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;merit&amp;quot;     &amp;quot;ess&amp;quot;       &amp;quot;edcine&amp;quot;    &amp;quot;lningneto&amp;quot; &amp;quot;D10h&amp;quot;      &amp;quot;sexo&amp;quot;     
-## [7] &amp;quot;edad&amp;quot;      &amp;quot;ppolcat&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb37&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb37-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;head&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;#chequear&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;code&gt;##   merit ess                    edcine lningneto D10h   sexo edad       ppolcat
-## 1  75.0   5 Primaria incompleta menos  11.22524  D03 Hombre   64 Independiente
-## 2  75.0   5           Secundaria alta  12.42922  D06 Hombre   60       Ninguno
-## 3  50.0   3           Secundaria alta  11.31040  D06 Hombre   26       Ninguno
-## 4  75.0   6     Terciaria y Postgrado  13.54763  D08  Mujer   51       Ninguno
-## 5  62.5   4           Secundaria alta  13.10216  D06  Mujer   69       Ninguno
-## 6  75.0   5           Secundaria alta  13.10216  D06  Mujer   62 Independiente&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb39&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb39-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;# Guardar base de datos procesada ---------------------------------------------------------------&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb39-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;save&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;16&lt;/span&gt;,&lt;span class=&#34;dt&#34;&gt;file =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 </description>
     </item>
