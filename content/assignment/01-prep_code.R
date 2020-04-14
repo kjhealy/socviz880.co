@@ -156,4 +156,3 @@ stargazer(proc_elsoc, type="text")
 
 ## ------------------------------------------------------------------------
 save(proc_elsoc,file = "data/proc/ELSOC_ess_merit2016.RData")
-
