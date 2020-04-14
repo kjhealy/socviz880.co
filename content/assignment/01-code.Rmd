@@ -27,7 +27,6 @@ editor_options:
 knitr::opts_chunk$set(cache = TRUE)
 ```
 
-
 # Presentación
 
 ## Objetivo de la práctica
