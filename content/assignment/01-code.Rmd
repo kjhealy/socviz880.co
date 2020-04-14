@@ -1,5 +1,5 @@
 ---
-title: "Práctica 1. Procesamiento de datos en R"
+title: "Práctica 1. Preparación de datos en R"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
 linktitle: "Práctica 1"
 date: "2020-01-10"
@@ -35,11 +35,11 @@ pre, code {white-space:pre !important; overflow-x:auto}
 
 ## Objetivo de la práctica
 
-El desarrollo de esta guía tiene por objetivo revisar algunos procedimientos básicos del procesamiento de datos con R, que son necesarios para luego poder aplicar los contenidos más específicos de este curso.
+El desarrollo de esta guía tiene por objetivo revisar algunos procedimientos básicos de la preparación de datos con R, que son necesarios para luego poder aplicar los contenidos más específicos de este curso.
 
 En este curso vamos a distinguir **dos momentos** del trabajo con datos: procesamiento y análisis.
 
-  - **Procesamiento** corresponde a lo que se conoce generalmente como "limpieza", es decir, realizar las modificaciones necesarias para poder efectuar los análisis. Estas modificaciones previas al análisis son necesarias ya que los datos originales con los que se va a trabajar en general no vienen perfectamente adaptados a los análisis que se quieren hacer. Por lo tanto, en cuanto a datos también hacemos la distinción entre datos originales y datos procesados.
+  - **Preparación** corresponde a lo que se conoce generalmente como "limpieza", es decir, realizar las modificaciones necesarias para poder efectuar los análisis. Estas modificaciones previas al análisis son necesarias ya que los datos originales con los que se va a trabajar en general no vienen perfectamente adaptados a los análisis que se quieren hacer. Por lo tanto, en cuanto a datos también hacemos la distinción entre datos originales y datos procesados.
 
   - **Análisis**: se relaciona principalmente con análisis descriptivos asociados a las preguntas de investigación y también modelamiento de datos para contrastar hipótesis de investigación.
 
@@ -47,9 +47,9 @@ En este curso vamos a distinguir **dos momentos** del trabajo con datos: procesa
 ![](/images/produccion.png)
 
 
-Tanto el procesamiento como el análisis quedan registrados en un documento de código, en este caso de código R (por lo general, un archivo con extensión .R).
+Tanto la preparación como el análisis (que son parte del concepto más general de procesamiento) quedan registrados en un documento de código, en este caso de código R (por lo general, un archivo con extensión .R).
 
-El documento de **código de procesamiento** posee 5 partes, más una sección de identificación inicial:
+El documento de **código de preparación** posee 5 partes, más una sección de identificación inicial:
 
 0. Identificación y descripción general: Título, autor(es), fecha, información breve sobre el contenido del documento
 1. Librerías: cargar librerías a utilizar
@@ -64,7 +64,7 @@ El documento de **código de procesamiento** posee 5 partes, más una sección d
 
 5. Generación de base de datos procesada para el análisis.
 
-Al final de esta práctica la idea es que cada un_ elabore y entienda su propio documento de procesamiento de datos.
+Al final de esta práctica la idea es que cada un_ elabore y entienda su propio documento de preparación de datos.
 
 En el ejemplo vamos a procesar variables de meritocracia y estatus (objetivo y subjetivo) utilizando los datos de la encuesta [ELSOC](https://coes.cl/encuesta-panel/) .
 
@@ -87,7 +87,7 @@ Para quienes no trabajan en R constantemente, va un primer tutorial abajo sobre 
 </div>
 
 
-# Procesamiento de datos ELSOC 2016
+# Preparación de datos ELSOC 2016
 
 ## 1. Librerías principales (de R) a utilizar en el análisis
 

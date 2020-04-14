@@ -235,14 +235,14 @@
   
   <meta property="og:site_name" content="Estadística Multivariada">
   <meta property="og:url" content="/assignment/01-code/">
-  <meta property="og:title" content="Práctica 1. Procesamiento de datos en R | Estadística Multivariada">
+  <meta property="og:title" content="Práctica 1. Preparación de datos en R | Estadística Multivariada">
   <meta property="og:description" content="a.sourceLine { display: inline-block; line-height: 1.25; } a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; } a.sourceLine:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } a.sourceLine { text-indent: -1em; padding-left: 1em; } } pre."><meta property="og:image" content="/img/social-image.png">
   <meta property="twitter:image" content="/img/social-image.png"><meta property="og:locale" content="en-us">
   
     
       <meta property="article:published_time" content="2020-01-10T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2020-04-13T16:17:34-04:00">
+    <meta property="article:modified_time" content="2020-04-14T11:37:47-04:00">
   
 
   
@@ -269,7 +269,7 @@
   <meta name="msapplication-TileImage" content="/img/mstile-144x144.png" />
 
 
-  <title>Práctica 1. Procesamiento de datos en R | Estadística Multivariada</title>
+  <title>Práctica 1. Preparación de datos en R | Estadística Multivariada</title>
 
 </head>
 
@@ -547,7 +547,7 @@
             <article class="article">
 
                 <div class="docs-article-container">
-                    <h1>Práctica 1. Procesamiento de datos en R</h1>
+                    <h1>Práctica 1. Preparación de datos en R</h1>
 
                     
 
@@ -634,7 +634,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#antecedentes-de-los-datos-a-utilizar">Antecedentes de los datos a utilizar</a></li>
 <li><a href="#tutorial-de-instalación-de-r">Tutorial de instalación de R</a></li>
 </ul></li>
-<li><a href="#procesamiento-de-datos-elsoc-2016">Procesamiento de datos ELSOC 2016</a><ul>
+<li><a href="#preparación-de-datos-elsoc-2016">Preparación de datos ELSOC 2016</a><ul>
 <li><a href="#librerías-principales-de-r-a-utilizar-en-el-análisis">1. Librerías principales (de R) a utilizar en el análisis</a></li>
 <li><a href="#cargar-base-de-datos">2. Cargar base de datos</a></li>
 <li><a href="#selección-de-variables-a-utilizar">3. Selección de variables a utilizar</a></li>
@@ -656,15 +656,15 @@ pre, code {white-space:pre !important; overflow-x:auto}
 <h1>Presentación</h1>
 <div id="objetivo-de-la-práctica" class="section level2">
 <h2>Objetivo de la práctica</h2>
-<p>El desarrollo de esta guía tiene por objetivo revisar algunos procedimientos básicos del procesamiento de datos con R, que son necesarios para luego poder aplicar los contenidos más específicos de este curso.</p>
+<p>El desarrollo de esta guía tiene por objetivo revisar algunos procedimientos básicos de la preparación de datos con R, que son necesarios para luego poder aplicar los contenidos más específicos de este curso.</p>
 <p>En este curso vamos a distinguir <strong>dos momentos</strong> del trabajo con datos: procesamiento y análisis.</p>
 <ul>
-<li><p><strong>Procesamiento</strong> corresponde a lo que se conoce generalmente como “limpieza”, es decir, realizar las modificaciones necesarias para poder efectuar los análisis. Estas modificaciones previas al análisis son necesarias ya que los datos originales con los que se va a trabajar en general no vienen perfectamente adaptados a los análisis que se quieren hacer. Por lo tanto, en cuanto a datos también hacemos la distinción entre datos originales y datos procesados.</p></li>
+<li><p><strong>Preparación</strong> corresponde a lo que se conoce generalmente como “limpieza”, es decir, realizar las modificaciones necesarias para poder efectuar los análisis. Estas modificaciones previas al análisis son necesarias ya que los datos originales con los que se va a trabajar en general no vienen perfectamente adaptados a los análisis que se quieren hacer. Por lo tanto, en cuanto a datos también hacemos la distinción entre datos originales y datos procesados.</p></li>
 <li><p><strong>Análisis</strong>: se relaciona principalmente con análisis descriptivos asociados a las preguntas de investigación y también modelamiento de datos para contrastar hipótesis de investigación.</p></li>
 </ul>
 <p><img src="/images/produccion.png" /></p>
-<p>Tanto el procesamiento como el análisis quedan registrados en un documento de código, en este caso de código R (por lo general, un archivo con extensión .R).</p>
-<p>El documento de <strong>código de procesamiento</strong> posee 5 partes, más una sección de identificación inicial:</p>
+<p>Tanto la preparación como el análisis (que son parte del concepto más general de procesamiento) quedan registrados en un documento de código, en este caso de código R (por lo general, un archivo con extensión .R).</p>
+<p>El documento de <strong>código de preparación</strong> posee 5 partes, más una sección de identificación inicial:</p>
 <ol start="0" style="list-style-type: decimal">
 <li>Identificación y descripción general: Título, autor(es), fecha, información breve sobre el contenido del documento</li>
 <li>Librerías: cargar librerías a utilizar</li>
@@ -679,7 +679,7 @@ pre, code {white-space:pre !important; overflow-x:auto}
 </ol></li>
 <li>Generación de base de datos procesada para el análisis.</li>
 </ol>
-<p>Al final de esta práctica la idea es que cada un_ elabore y entienda su propio documento de procesamiento de datos.</p>
+<p>Al final de esta práctica la idea es que cada un_ elabore y entienda su propio documento de preparación de datos.</p>
 <p>En el ejemplo vamos a procesar variables de meritocracia y estatus (objetivo y subjetivo) utilizando los datos de la encuesta <a href="https://coes.cl/encuesta-panel/">ELSOC</a> .</p>
 </div>
 <div id="antecedentes-de-los-datos-a-utilizar" class="section level2">
@@ -698,8 +698,8 @@ pre, code {white-space:pre !important; overflow-x:auto}
 </div>
 </div>
 </div>
-<div id="procesamiento-de-datos-elsoc-2016" class="section level1">
-<h1>Procesamiento de datos ELSOC 2016</h1>
+<div id="preparación-de-datos-elsoc-2016" class="section level1">
+<h1>Preparación de datos ELSOC 2016</h1>
 <div id="librerías-principales-de-r-a-utilizar-en-el-análisis" class="section level2">
 <h2>1. Librerías principales (de R) a utilizar en el análisis</h2>
 <p>Como sabemos, la lógica de R es instalar librerías (solo 1 vez, con <code>install.packages("librería")</code>), y luego cargarlas cada vez que es necesario usarlas (con <code>library(librería)</code>). El problema de esto es que a veces no se sabe claramente qué librerías están instaladas y cuales no, lo que va a arrojar error al cargarlas. Y, como sucede en R, existe una librería para solucionar este problema que se llama <code>pacman</code> (package manager). Lo que hace <code>pacman</code> es cargar la librería, y si no está instalada, la instala y la carga:</p>
@@ -1151,7 +1151,7 @@ pre, code {white-space:pre !important; overflow-x:auto}
                 </div>
 
                 <div class="body-footer">
-                    <p>Last updated on April 13, 2020</p>
+                    <p>Last updated on April 14, 2020</p>
 
                     
 

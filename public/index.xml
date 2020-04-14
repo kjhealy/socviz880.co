@@ -54,7 +54,7 @@
     </item>
     
     <item>
-      <title>Práctica 1. Procesamiento de datos en R</title>
+      <title>Práctica 1. Preparación de datos en R</title>
       <link>/assignment/01-code/</link>
       <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
       <guid>/assignment/01-code/</guid>
@@ -132,7 +132,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;li&gt;&lt;a href=&#34;#antecedentes-de-los-datos-a-utilizar&#34;&gt;Antecedentes de los datos a utilizar&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#tutorial-de-instalación-de-r&#34;&gt;Tutorial de instalación de R&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#procesamiento-de-datos-elsoc-2016&#34;&gt;Procesamiento de datos ELSOC 2016&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#preparación-de-datos-elsoc-2016&#34;&gt;Preparación de datos ELSOC 2016&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#librerías-principales-de-r-a-utilizar-en-el-análisis&#34;&gt;1. Librerías principales (de R) a utilizar en el análisis&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#cargar-base-de-datos&#34;&gt;2. Cargar base de datos&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#selección-de-variables-a-utilizar&#34;&gt;3. Selección de variables a utilizar&lt;/a&gt;&lt;/li&gt;
@@ -154,15 +154,15 @@ pre, code {white-space:pre !important; overflow-x:auto}
 &lt;h1&gt;Presentación&lt;/h1&gt;
 &lt;div id=&#34;objetivo-de-la-práctica&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Objetivo de la práctica&lt;/h2&gt;
-&lt;p&gt;El desarrollo de esta guía tiene por objetivo revisar algunos procedimientos básicos del procesamiento de datos con R, que son necesarios para luego poder aplicar los contenidos más específicos de este curso.&lt;/p&gt;
+&lt;p&gt;El desarrollo de esta guía tiene por objetivo revisar algunos procedimientos básicos de la preparación de datos con R, que son necesarios para luego poder aplicar los contenidos más específicos de este curso.&lt;/p&gt;
 &lt;p&gt;En este curso vamos a distinguir &lt;strong&gt;dos momentos&lt;/strong&gt; del trabajo con datos: procesamiento y análisis.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Procesamiento&lt;/strong&gt; corresponde a lo que se conoce generalmente como “limpieza”, es decir, realizar las modificaciones necesarias para poder efectuar los análisis. Estas modificaciones previas al análisis son necesarias ya que los datos originales con los que se va a trabajar en general no vienen perfectamente adaptados a los análisis que se quieren hacer. Por lo tanto, en cuanto a datos también hacemos la distinción entre datos originales y datos procesados.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Preparación&lt;/strong&gt; corresponde a lo que se conoce generalmente como “limpieza”, es decir, realizar las modificaciones necesarias para poder efectuar los análisis. Estas modificaciones previas al análisis son necesarias ya que los datos originales con los que se va a trabajar en general no vienen perfectamente adaptados a los análisis que se quieren hacer. Por lo tanto, en cuanto a datos también hacemos la distinción entre datos originales y datos procesados.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Análisis&lt;/strong&gt;: se relaciona principalmente con análisis descriptivos asociados a las preguntas de investigación y también modelamiento de datos para contrastar hipótesis de investigación.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;img src=&#34;/images/produccion.png&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Tanto el procesamiento como el análisis quedan registrados en un documento de código, en este caso de código R (por lo general, un archivo con extensión .R).&lt;/p&gt;
-&lt;p&gt;El documento de &lt;strong&gt;código de procesamiento&lt;/strong&gt; posee 5 partes, más una sección de identificación inicial:&lt;/p&gt;
+&lt;p&gt;Tanto la preparación como el análisis (que son parte del concepto más general de procesamiento) quedan registrados en un documento de código, en este caso de código R (por lo general, un archivo con extensión .R).&lt;/p&gt;
+&lt;p&gt;El documento de &lt;strong&gt;código de preparación&lt;/strong&gt; posee 5 partes, más una sección de identificación inicial:&lt;/p&gt;
 &lt;ol start=&#34;0&#34; style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;Identificación y descripción general: Título, autor(es), fecha, información breve sobre el contenido del documento&lt;/li&gt;
 &lt;li&gt;Librerías: cargar librerías a utilizar&lt;/li&gt;
@@ -177,7 +177,7 @@ pre, code {white-space:pre !important; overflow-x:auto}
 &lt;/ol&gt;&lt;/li&gt;
 &lt;li&gt;Generación de base de datos procesada para el análisis.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Al final de esta práctica la idea es que cada un_ elabore y entienda su propio documento de procesamiento de datos.&lt;/p&gt;
+&lt;p&gt;Al final de esta práctica la idea es que cada un_ elabore y entienda su propio documento de preparación de datos.&lt;/p&gt;
 &lt;p&gt;En el ejemplo vamos a procesar variables de meritocracia y estatus (objetivo y subjetivo) utilizando los datos de la encuesta &lt;a href=&#34;https://coes.cl/encuesta-panel/&#34;&gt;ELSOC&lt;/a&gt; .&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;antecedentes-de-los-datos-a-utilizar&#34; class=&#34;section level2&#34;&gt;
@@ -196,8 +196,8 @@ pre, code {white-space:pre !important; overflow-x:auto}
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id=&#34;procesamiento-de-datos-elsoc-2016&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Procesamiento de datos ELSOC 2016&lt;/h1&gt;
+&lt;div id=&#34;preparación-de-datos-elsoc-2016&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Preparación de datos ELSOC 2016&lt;/h1&gt;
 &lt;div id=&#34;librerías-principales-de-r-a-utilizar-en-el-análisis&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;1. Librerías principales (de R) a utilizar en el análisis&lt;/h2&gt;
 &lt;p&gt;Como sabemos, la lógica de R es instalar librerías (solo 1 vez, con &lt;code&gt;install.packages(&#34;librería&#34;)&lt;/code&gt;), y luego cargarlas cada vez que es necesario usarlas (con &lt;code&gt;library(librería)&lt;/code&gt;). El problema de esto es que a veces no se sabe claramente qué librerías están instaladas y cuales no, lo que va a arrojar error al cargarlas. Y, como sucede en R, existe una librería para solucionar este problema que se llama &lt;code&gt;pacman&lt;/code&gt; (package manager). Lo que hace &lt;code&gt;pacman&lt;/code&gt; es cargar la librería, y si no está instalada, la instala y la carga:&lt;/p&gt;
