@@ -71,42 +71,38 @@ Para quienes no trabajan en R constantemente, va un primer tutorial abajo sobre 
 </div>
 
 
-
-
 # Preparacion de datos con ELSOC 2016
 
-**Recomendación general:** cargar en el preámbulo las librerías que más se utilizan durante el análisis. Si alguna función de una librería se utiliza pocas veces, es mejor utilizar una segunda forma de acceder a las funciones sin necesidad de cargar la librería. Por ejemplo, si quiero utilizar la función para recodificar `recode` de la librería `car`:
+## 1. Librerías principales (de R) a utilizar en el análisis
 
+Las librerías que vamos a utilizar principalmente son `dplyr` (ajuste general de datos), `sjmisc` (descripción y exploración de base de datos) y `car` (principalmente la función `recode` para recodificar/agrupar valores de variable). Una de las ventajas de utilizar R, es la posibilidad de emplear distintas librería. No obstante, para este ejercicio se ha decidido reducir al máximo el uso de librerías para evitar confusiones con el objetivo de que la lectura del código sea lo más intuitivo posible. Para el caso de las librerías, se recomienda utilizar el signo **`#`** para comentar y dejar en claro el contenido/función que cumplirá cada una de éstas en nuestro trabajo. 
 
-```{r, eval=FALSE, include=TRUE}
-elsoc$edcine <- car::recode(elsoc$m01, "c(1,2)=1; c(3)=2;c(4,5)=3;c(6,7)=4;c(8,9,10)=5")
-```
-
-En este caso, la lógica es librería::función, y no se requiere cargar la librería pero sí **debe estar previamente instalada**. Para esto debemos ejecutar el siguiente código.
-
-```{r, eval=FALSE, include=TRUE}
-install.packages("car")
-```
-
-
-## 1. Librerías
-
-Las librerías que vamos a utilizar principalmente son dplyr (ajuste general de datos) y ...
-De todas maneras se recomienda realizar un comentario con el signo `**#**` luego de la librería a cargar para recordar su contenido.
-
+**Por ejemplo:**
 ```{r message=FALSE, warning=FALSE}
-library(dplyr)      # ajuste general de datos
-library(sjmisc)     # descripcion de variables etiquetadas  
-rm(list=ls())  # borrar todos los objetos en el environment
-options(scipen=999) #sin notacion cientifica
+library(dplyr)      # Ajuste general de datos
+library(sjmisc)     # Descripcion de variables etiquetadas  
+library(car)        # Recodificacion de variables
 ```
 
 ## 2. Cargar base de datos
 
+
+**Espacio de trabajo**
+
+Previo a la carga de nuestra base de datos, ejecutamos las siguientes líneas:
+
+```{r}
+rm(list=ls())       # borrar todos los objetos en el espacio de trabajo
+options(scipen=999) # valores sin notacion cientifica
+```
+
+La función `rm(list=ls())` permite comenzar con un espacio de trabajo (environment) vacío y sin otros objetos. Así también, la función `options(scipen=999)` desactiva la notación científica, es decir, veremos los valores numéricos con todos sus decimales.
+
+**Datos**
+
 Las bases de datos se pueden cargar de un archivo local o en línea. Para este caso utilizaremos un archivo en línea que viene en formato RData: **ELSOC_W01_v3.10.RData**.
 
 La base se agrega como un objeto al espacio de trabajo con el nombre original "`elsoc_2016`". Para facilitar los análisis se le cambia el nombre simplemente a `elsoc` con la segunda instrucción
-
 
 ```{r eval=TRUE}
 #cargamos la base de datos desde internet
@@ -126,62 +122,49 @@ Y si se quiere revisar en formato de planilla de datos:
 View(elsoc)
 ```
 
-# Ajuste y generación de variables
+
+## 3. Selección de variables a utilizar
 
 Esta parte inicial del análisis es usualmente la más tediosa y la más larga, y consiste en dejar los datos listos para ser analizados. Los procedimientos usuales son selección y renombramiento de las variables, identificación de casos perdidos, recodificaciones y generación de índices simples.
 
-
-## Selección y renombre de variables
 
 Este paso es opcional y consiste en crear un subset de datos para continuar con los análisis, en lugar de hacerlo con la base completa. Para ello:
 
 1. Se identifica el nombre de las variables. Esto aparece en el libro de códigos y/o en el cuestionario, o también se puede hacer buscando en la base de datos mediante alguna palabra clave asociada a la pregunta. Por ejemplo, si queremos buscar variables asociadas a educación, utilizamos la función `find_var`, de `sjmisc` (entrega nombre de la variable en columna var.name)
 
 ```{r}
-sjmisc::find_var(elsoc,"mensual")
+sjmisc::find_var(data = elsoc,"educacional")
+sjmisc::find_var(data = elsoc,"Ingreso")
 ```
 
-## Datos perdidos 
-
-* En ELSOC todos los valores -888 y -999 corresponden a valores para las categorias "No sabe" y "No responde", respectivamente.
-* Decidimos dejarlas como valores perdidos (NA)
-* el operador `%in%` sirve para decir "dentro de", en este caso ¿dentro de la variable encontramos valores -888 o -999? Si es VERDADERO, se transforma en un `NA`, si es falso no realiza ninguna acción. El código de abajo ejemplifica este tipo de procedimiento.
-
-
-```{r, include=TRUE, eval=FALSE}
-datos$variable[datos$variable %in% c(-888,-999)] <- NA
-```
-
-Entonces, aplicamos las siguientes línea de código para identificar y recodificar los datos perdidos como `NA`
+Mediante la función `select` de `dplyr`, seleccionamos cada una de nuestras variables de interés.
 
 ```{r}
-elsoc$c18_09[elsoc$c18_09 %in% c(-888,-999)]  <- NA # meritocracia esfuerzo 
-elsoc$c18_10[elsoc$c18_10 %in% c(-888,-999)]  <- NA # meritocracia talento
-
-elsoc$d01_01[elsoc$d01_01 %in% c(-888,-999)]  <- NA # estatus subjetivo
-elsoc$m29[elsoc$m29 %in% c(-888,-999)]        <- NA # ingreso familiar 
-elsoc$m30[elsoc$m30 %in% c(-888,-999)]        <- NA # ingreso familiar en tramos
-elsoc$nhogar1[elsoc$nhogar1 %in% c(-888,-999)]<- NA # personas en el hogar
-elsoc$m01[elsoc$m01 %in% c(-888,-999)] <- NA        # nivel educacional
-
-elsoc$m0_sexo[elsoc$m0_sexo %in% c(-888,-999)] <- NA # sexo
-elsoc$m0_edad[elsoc$m0_edad %in% c(-888,-999)] <- NA # edad
-elsoc$c15[elsoc$c15 %in% c(-888,-999)]         <- NA # autoposicionamiento politico
+elsoc <- elsoc %>% select(c18_09, # meritocracia esfuerzo
+                          c18_10, # meritocracia talento
+                          d01_01, # estatus social subjetivo
+                          m29,    # ingreso familiar 
+                          m30,    # ingreso familiar en tramos
+                          nhogar1,# personas en el hogar
+                          m01,    # nivel educacional
+                          m0_sexo,# sexo
+                          m0_edad,# edad
+                          c15)    # autoposicionamiento eje izquierda-derecha
 ```
 
 
-## Recodificación de variables
+## 4. Procesamiento de variables
 
 **Introducción**
 
 En el caso de trabajar con R, el ajuste de las variables pasa por atender el distinto tipo de estructura, usualmente numérico (vector) o variable categórica (factor). Esta definición establece diferencias claras; por ejemplo, no se puede hacer un promedio con un factor, y los vectores númericos no tienen etiquetas. Dado que el límite entre lo categórico y lo continuo muchas veces es más relativo en ciencias sociales, para algunas operaciones resulta más eficiente contar con variables numéricas que puedan tener etiquetas, y que luego puedan ser transformadas a factor para operaciones específicas. En R este formato intermedio se denomina "vector atómico" o "vector etiquetado".
 
 ```{r}
-str(elsoc[,c(1:10)]) #observamos las primeras 10 columnas de nuestra base de datos
+str(elsoc)
 ```
 
 
-En este caso, vemos que los diez vectores se definen como "haven_labelled", que hace referencia a vectores numéricos etiquetados. Esto ocurre en el proceso de conversión mediante el paquete `haven`, que transforma de esta manera a los valores numéricos con etiqueta que vienen de Stata (.dta) o SPSS (.sav).
+En este caso, vemos que los diez vectores se definen como "numeric", pero que además podemos observar otra serie de atributos que hacen referencia a vectores numéricos etiquetados. Esto ocurre en el proceso de conversión mediante el paquete `haven` que transforma de esta manera a los valores numéricos con etiqueta que vienen de Stata (.dta) o SPSS (.sav). Esto se debe a que la base de datos fue previamente procesada empleando este paquete, para luego ser guardada en formato `.RData`.
 
 Los vectores que que aparecen aquí se caracterizan por una serie de atributos (attr):
 
@@ -192,41 +175,96 @@ Los vectores que que aparecen aquí se caracterizan por una serie de atributos (
 
 Estos atributos luego van a facilitar algunas operaciones de recodificación y de descripción de los datos.
 
-## Recodificacion Variables percepcion de meritocracia
+**Datos perdidos** 
+
+En ELSOC todos los valores -888 y -999 corresponden a valores para las categorias "No sabe" y "No responde", respectivamente. Para efecto de este ejercicio, hemos decidimos dejarlas como valores perdidos (`NA`)
+
+En el ejemplo de posible observar el uso del operador `%in%`, el cual nos permite  decir "dentro de". En este caso, ¿es posible encontrar valores -888 o -999 dentro de nuestra variavle? Si es VERDADERO, se procede a remplazar dicho valor por un `NA`, si es FALSO no se realiza ningún procedimiento.
+
+```{r, include=TRUE, eval=FALSE}
+datos$variable[datos$variable %in% c(-888,-999)] <- NA
+```
+
+
+### A. Recodificacion Variables percepcion de meritocracia
 
 En ELSOC, las variables que permiten medir la percepción de las personas con respecto al funcionamiento de la meritocracia en Chile son las siguientes:
 
-* [`c18_09`]: "Grado de acuerdo: Las personas son recompensadas por sus esfuerzos"  (1 = Totalmente en desacuerdo; 5 = Totalmente de acuerdo)
+* [`c18_09`]: "Grado de acuerdo: Las personas son recompensadas por sus esfuerzos" (1 = Totalmente en desacuerdo; 5 = Totalmente de acuerdo)
 * [`c18_10`]: "Grado de acuerdo: Las personas son recompensada por su inteligencia" (1 = Totalmente en desacuerdo; 5 = Totalmente de acuerdo)
 
-```{r}
-elsoc$c18_09 <- as.numeric(elsoc$c18_09) # Nos aseguramos de convertir las escalas liker a numericas
-elsoc$c18_10 <- as.numeric(elsoc$c18_10) # Nos aseguramos de convertir las escalas liker a numericas
-# Variables meritocracia promedio -----------------------------------------
-elsoc <- dplyr::rename(elsoc,meffort=c18_09) # cambio de nombre de la variable c18_09 a uno mas sustantivo
-elsoc <- dplyr::rename(elsoc,mtalent=c18_10) # cambio de nombre de la variable c18_10 a uno mas sustantivo
+1. Descriptivo general
 
+```{r}
+summary(elsoc$c18_09)
+summary(elsoc$c18_10)
+```
+
+2. Recodificación de datos perdidos
+
+```{r}
+elsoc$c18_09[elsoc$c18_09 %in% c(-888,-999)]  <- NA  
+elsoc$c18_10[elsoc$c18_10 %in% c(-888,-999)]  <- NA  
+```
+
+3. Creación de variable promedio
+
+**Nos aseguramos de convertir las escalas likert a numericas**
+```{r}
+elsoc$c18_09<-  as.numeric(elsoc$c18_09) 
+elsoc$c18_10<-  as.numeric(elsoc$c18_10) 
+```
+
+**Variable índice promedio percepción de meritocracia**
+```{r}
 # creamos un indice promedio de percepcion de meritocracia usando ambas preguntas
-elsoc$merit <- (elsoc$meffort+elsoc$mtalent)/2
+elsoc$merit <- (elsoc$c18_09+elsoc$c18_10)/2
 
 # re escalamos la variable de 1-5 a una de 0 a 100 (para facilitar interpretacion)
 elsoc$merit <-
   (elsoc$merit-min(elsoc$merit,na.rm=T))/(max(elsoc$merit,na.rm=T)-min(elsoc$merit,na.rm=T))*100
+summary(elsoc$merit)
 ```
 
-## Recodificacion variable Estatus subjetivo
+4. Renombrar variables
+
+```{r}
+elsoc <- elsoc %>% rename("mesfuerzo"=c18_09, # meritocracia esfuerzo
+                          "mtalento" =c18_10, # meritocracia talento
+                          "pmerit"   =merit)  # meritocracia promedio
+```
+
+### B. Recodificacion variable Estatus subjetivo
 
 * [`d01_01`]: "Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena" (0 = el nivel mas bajo; 10 = el nivel mas alto)
 
+1. Descriptivo general
+
 ```{r, results='hold'}
-elsoc$ess <- as.numeric(elsoc$d01_01) # Estatus Social Subjetivo
-table(elsoc$ess)
-summary(elsoc$ess)
+sjmisc::frq(elsoc$d01_01)
+summary(elsoc$d01_01)
 ```
 
-## Recodificacion variables Estatus objetivo
+2. Recodificación de datos perdidos
 
-### Ingresos del hogar
+```{r}
+elsoc$d01_01[elsoc$d01_01 %in% c(-888,-999)]  <- NA  
+```
+
+**Nos aseguramos de convertir la variable a numérica**
+```{r}
+elsoc$d01_01 <- as.numeric(elsoc$d01_01) 
+```
+
+3. Renombrar variable
+
+```{r}
+elsoc <- elsoc %>% rename("ess"=d01_01) # estatus social subjetivo
+```
+
+### C. Recodificacion variables Estatus objetivo
+
+#### C.1.Ingresos del hogar
 
 Esta variable en general tiene dos formas de preguntarse: en el monto directo en pesos, o en rangos de ingreso. Hay una tercera variante donde se pregunta por el monto directo, y quienes no responden luego se les pregunta por el rango. Este último es el caso de ELSOC. 
 
@@ -236,74 +274,113 @@ Esta variable en general tiene dos formas de preguntarse: en el monto directo en
 
 Como estas variables en general tienen muchos datos perdidos, para poder aprovechar la información lo ideal es combinarlas. Una posibilidad es la siguiente:
 
-1. Crear una variable de ingresos en pesos a partir de la pregunta de rangos, mediante la imputación del promedio del rango.
-2. Combinar las variables de ingreso 
+* Crear una variable de ingresos en pesos a partir de la pregunta de rangos, mediante la imputación del promedio del rango.
+* Combinar las variables de ingreso 
 (`m30` $\rightarrow$ `m29`)
-3. Para tener mayor sensibilidad a las implicancias del ingreso, crear una variable de ingreso equivalente por hogar, dividiendo la variable de ingreso por el número de personas del hogar ((`m29`+`m30`)/`nhogar1`).
+* Para tener mayor sensibilidad a las implicancias del ingreso, crear una variable de ingreso equivalente por hogar, dividiendo la variable de ingreso por el número de personas del hogar ((`m29`+`m30`)/`nhogar1`).
 
+
+1. Descriptivos
 
 ```{r}
-summary(elsoc$m29) # ingresos total ; NA == 587
-summary(elsoc$m30) # ingresos tramos
+summary(elsoc$m29)     # ingresos total
+sjmisc::frq(elsoc$m30) # ingresos tramos
 summary(elsoc$nhogar1) # tamannio del hogar
-
-elsoc$m29[elsoc$m29==0] <- NA
-# Remplazar NA por media de categorias Ingreso -------------------------------#
-elsoc$mean_tramos <- NA # creamos una variable vacia
-# remplazamos ...
-elsoc$mean_tramos[elsoc$m30==1] <-110000
-elsoc$mean_tramos[elsoc$m30==2] <-250000.5
-elsoc$mean_tramos[elsoc$m30==3] <-305000.5
-elsoc$mean_tramos[elsoc$m30==4] <-355000.5
-elsoc$mean_tramos[elsoc$m30==5] <-400000.5
-elsoc$mean_tramos[elsoc$m30==6] <-445000.5
-elsoc$mean_tramos[elsoc$m30==7] <-490000.5
-elsoc$mean_tramos[elsoc$m30==8] <-535000.5
-elsoc$mean_tramos[elsoc$m30==9] <-585000.5
-elsoc$mean_tramos[elsoc$m30==10]<-640000.5
-elsoc$mean_tramos[elsoc$m30==11]<-700000.5
-elsoc$mean_tramos[elsoc$m30==12]<-765000.5
-elsoc$mean_tramos[elsoc$m30==13]<-845000.5
-elsoc$mean_tramos[elsoc$m30==14]<-935000.5
-elsoc$mean_tramos[elsoc$m30==15]<-1040000.5
-elsoc$mean_tramos[elsoc$m30==16]<-1180000.5
-elsoc$mean_tramos[elsoc$m30==17]<-1375000.5
-elsoc$mean_tramos[elsoc$m30==18]<-1670000.5
-elsoc$mean_tramos[elsoc$m30==19]<-2275000.5
-elsoc$mean_tramos[elsoc$m30==20]<-3726106
-table(elsoc$mean_tramos) # chequeamos
-
-elsoc$m29 <- ifelse(test = (is.na(elsoc$m29)),#¿es el valor un NA?
-                    yes = elsoc$mean_tramos, #Si es verdadero, remplazar por el valor de mean_tramos
-                    no = elsoc$m29)# Si es falso, remplazar por el valor del m29
-
-summary(elsoc$m29) # NA = 147
-
-# cambiamos el nombre de las variables inghogar = m29; nhogar=nhogar1
-elsoc <- dplyr::rename(elsoc, inghogar=m29, nhogar=nhogar1)
-# ingreso neto = ingreso del hogar / numero de personas en el hogar
-elsoc$ingneto   <- as.numeric(elsoc$inghogar/elsoc$nhogar)
-# logaritmo natural del ingreso neto (para normalizar la distribucion sesgada del ingreso)
-elsoc$lningneto <- log(elsoc$ingneto)
-
-summary(elsoc$ingneto)
-summary(elsoc$lningneto)
-
-#---Deciles (ingreso per capita hogar)------------------------------------------------
-elsoc <- elsoc %>% dplyr::mutate(inc10h = dplyr::ntile(inghogar, 10)) # Crear Deciles de ingreso
-elsoc$D10h <- factor(elsoc$inc10h, levels = c(1,2,3,4,5,6,7,8,9,10),
-                    labels = c("D01","D02","D03","D04","D05",
-                               "D06","D07","D08","D09","D10"));table(elsoc$D10h)
 ```
 
-### Educación
+2. Recodificación de datos perdidos
+
+```{r}
+elsoc$m29[elsoc$m29 %in% c(-888,-999)]      <- NA  
+elsoc$m30[elsoc$m30 %in% c(-888,-999)]      <- NA  
+elsoc$nhogar1[elsoc$nhogar1 %in% c(-888,-999)]  <- NA  
+```
+
+3. Recodificación de valores 
+
+**Promedio de cada tramo de ingreso** 
+
+```{r}
+# Remplazar NA por media de categorias Ingreso -------------------------------#
+# remplazamos ...
+elsoc$m30[elsoc$m30==1] <-110000
+elsoc$m30[elsoc$m30==2] <-250000.5
+elsoc$m30[elsoc$m30==3] <-305000.5
+elsoc$m30[elsoc$m30==4] <-355000.5
+elsoc$m30[elsoc$m30==5] <-400000.5
+elsoc$m30[elsoc$m30==6] <-445000.5
+elsoc$m30[elsoc$m30==7] <-490000.5
+elsoc$m30[elsoc$m30==8] <-535000.5
+elsoc$m30[elsoc$m30==9] <-585000.5
+elsoc$m30[elsoc$m30==10]<-640000.5
+elsoc$m30[elsoc$m30==11]<-700000.5
+elsoc$m30[elsoc$m30==12]<-765000.5
+elsoc$m30[elsoc$m30==13]<-845000.5
+elsoc$m30[elsoc$m30==14]<-935000.5
+elsoc$m30[elsoc$m30==15]<-1040000.5
+elsoc$m30[elsoc$m30==16]<-1180000.5
+elsoc$m30[elsoc$m30==17]<-1375000.5
+elsoc$m30[elsoc$m30==18]<-1670000.5
+elsoc$m30[elsoc$m30==19]<-2275000.5
+elsoc$m30[elsoc$m30==20]<-3726106
+table(elsoc$m30) # chequeamos
+```
+
+**Remplazamos los NA de `m29` por los valores de `m30`**
+
+* En el caso de que en `m29` no exista dato, se remplaza por el valor del promedio del tramo de ingreso en la variable `m30`.
+
+```{r}
+elsoc$m29 <- ifelse(test = (is.na(elsoc$m29)), # ¿es el valor un NA?
+                    yes = elsoc$m30,           # Si es VERDADERO, remplazar por el valor de m30
+                    no = elsoc$m29)            # Si es FALSO, remplazar por el valor del m29
+```
+
+4. Creación de variables nuevas
+
+**Ingreso neto = ingreso del hogar / numero de personas en el hogar**
+```{r}
+elsoc$ingneto   <- as.numeric(elsoc$m29/elsoc$nhogar1)
+```
+
+**Logaritmo natural del ingreso neto (para normalizar la distribucion sesgada del ingreso)**
+
+Con la función `log` una variable logaritmizada de ingreso según la variable `ingneto`, la cual llamaremos `lningneto`.
+```{r}
+elsoc$lningneto <- log(elsoc$ingneto)
+```
+
+**En base a la variable `ingneto`, podemos crear los deciles (ingreso per capita hogar)**
+
+Con la función `ntile` de `dplyr` creamos los deciles de ingreso según la variable `ingneto`, la cual llamaremos `inc10h`.
+```{r}
+elsoc$inc10h <-  dplyr::ntile(elsoc$ingneto, 10) # Crear Deciles de ingreso
+```
+
+5. Etiquetamiento 
+
+**Deciles ingreso del hogar**
+```{r}
+elsoc$D10h <- factor(elsoc$inc10h, 
+                     levels = c(1,2,3,4,5,6,7,8,9,10),
+                     labels = c("D01","D02","D03","D04","D05","D06","D07","D08","D09","D10"))
+```
+
+#### C.2. Educación
 
 * [`m01`] = ¿Cuál es su nivel educacional? Indique el tipo de estudio actual (si estudia actualmente) o el último tipo aprobado (si no estudia actualmente). 
 
+1. Descriptivo general
 ```{r}
-table(elsoc$m01) # Educacion en ELSOC
 sjmisc::frq(elsoc$m01)
 ```
+
+2. Recodificación de datos perdidos
+```{r}
+elsoc$m01[elsoc$m01 %in% c(-888,-999)]      <- NA  
+```
+
+3. Recodificación de valores
 
 **Recodificación [CINE 2011 (UNESCO)](http://uis.unesco.org/sites/default/files/documents/isced-2011-sp.pdf)**
 
@@ -319,69 +396,107 @@ sjmisc::frq(elsoc$m01)
 9.  Universitaria completa                      = [CINE 6   ] =  6
 10. Estudios de posgrado (magister o doctorado) = [CINE 7, 8] =  6
 ```
-
 ```{r}
 # recodificacion usando funcion 'recode' de la libreria car
-elsoc$edcine <- car::recode(elsoc$m01, "c(1,2)=1; c(3)=2;c(4,5)=3;c(6,7)=4;c(8,9,10)=5")
-round(prop.table(table(elsoc$edcine)), 3)
-
-elsoc$edcine <- factor(elsoc$edcine,
-                       levels = c(1,2,3,4,5),
-                       labels=c("Primaria incompleta menos",
-                                "Primaria y secundaria baja",
-                                "Secundaria alta",
-                                "Terciaria ciclo corto",
-                                "Terciaria y Postgrado"))
-
-sjmisc::frq(elsoc$edcine) #chequeamos
+elsoc$m01 <- car::recode(elsoc$m01, "c(1,2)=1; c(3)=2;c(4,5)=3;c(6,7)=4;c(8,9,10)=5")
 ```
 
-## Variables control
+4. Etiquetamiento 
+
+```{r}
+elsoc$m01 <- factor(elsoc$m01,
+                    levels = c(1,2,3,4,5),
+                    labels=c("Primaria incompleta menos",
+                             "Primaria y secundaria baja",
+                             "Secundaria alta",
+                             "Terciaria ciclo corto",
+                             "Terciaria y Postgrado"))
+```
+
+5. Renombrar variable
+
+```{r}
+elsoc <- rename(elsoc,"edcine"=m01)
+```
+
+
+### D. Variables control
 
 * [`m0_sexo`]	=	Indicar el sexo del entrevistado.
 
 * [`m0_edad`]	=	¿Cuáles su edad? (años cumplidos).
 
-* [`c15`]    	=	Cambiando de tema, tradicionalmente en nuestro país la gente define las posiciones políticas como más cercanas a la izquierda, al centro o a la derecha. 
+* [`c15`]    	=	Cambiando de tema, tradicionalmente en nuestro país la gente define las posiciones políticas como más cercanas a la izquierda, al centro o a la derecha.  (0 = izquierda; 10 = Derecha; 11 = Independiente; 12 =Ninguno)
+
+
+1. Descriptivo general
 
 ```{r}
-#---Sexo----
-elsoc$sexo <- car::recode(elsoc$m0_sexo, "1=1;2=0")
-elsoc$sexo <- factor(elsoc$sexo, levels = c(0,1), labels = c("Hombre","Mujer")) # Sexo
-#Hombre=0
-#Mujer=1
-sjmisc::frq(elsoc$sexo) #chequeamos 
-#---Edad----
-elsoc$edad <- as.numeric(elsoc$m0_edad) #Edad
-summary(elsoc$edad) #chequeamos
-#---Posicion Politica----
-# PREGUNTA: "Autoubicacion escala izquierda-derecha"
-  # (0 = izquierda; 10 = Derecha; 11 = Independiente; 12 =Ninguno)
-elsoc$ppolcat  <- car::recode(elsoc$c15, "c(0,1,2,3,4)=1;5=2;c(6,7,8,9,10)=3;11=4;12=5")
-elsoc$ppolcat  <- factor(elsoc$ppolcat, levels = c(1,2,3,4,5),
+sjmisc::frq(elsoc$m0_sexo)
+summary(elsoc$m0_edad)
+sjmisc::frq(elsoc$c15)
+```
+
+2. Recodificación de datos perdidos
+
+```{r}
+elsoc$m0_sexo[elsoc$m0_sexo %in% c(-888,-999)] <- NA  
+elsoc$m0_edad[elsoc$m0_edad %in% c(-888,-999)] <- NA  
+elsoc$c15[elsoc$c15 %in% c(-888,-999)]         <- NA  
+```
+
+
+3. Recodificación de valores
+
+```{r}
+elsoc$m0_sexo <- car::recode(elsoc$m0_sexo, "1=1;2=0")
+elsoc$c15  <- car::recode(elsoc$c15, "c(0,1,2,3,4)=1;5=2;c(6,7,8,9,10)=3;11=4;12=5")
+```
+
+4. Etiquetamiento
+
+```{r}
+elsoc$m0_sexo <- factor(elsoc$m0_sexo, levels = c(0,1), labels = c("Hombre","Mujer")) 
+elsoc$c15  <- factor(elsoc$c15, levels = c(1,2,3,4,5),
                          labels = c("Izquierda/Centro Izquierda",
                                     "Centro",
                                     "Derecha/Centro Derecha",
                                     "Independiente",
                                     "Ninguno"))
-sjmisc::frq(elsoc$ppolcat) #chequeamos
+```
+
+5. Renombrar variables
+
+```{r}
+elsoc <- dplyr::rename(elsoc,"sexo"=m0_sexo,
+                             "edad"=m0_edad,
+                             "ppolcat"=c15)
 ```
 
 
-# Mantener variables relevantes
+# 5. Generación de base de datos procesada para el análisis
 
 En última instancia se crea un **subset** que contiene solo las variables que se van a utilizar en el análisis, mediante la función `select` de `dplyr.`
 
 ```{r}
 # selecccionamos las variables relevantes
-elsoc_16 <- elsoc %>% dplyr::select(merit,ess,edcine,lningneto,D10h, sexo, edad,ppolcat)
-# dejamos solamente los casos con informacion completa (listwise deletion)
-elsoc_16 <- na.omit(elsoc_16)
-names(elsoc_16) # comprobamos los nombres de variables
-head(elsoc_16) #chequear
+elsoc_16 <- elsoc %>% dplyr::select(pmerit,ess,edcine,lningneto,D10h,sexo,edad,ppolcat)
 ```
 
+Dejamos solamente los casos con informacion completa (listwise deletion) usando la función `na.omit()`
+
 ```{r}
-# Guardar base de datos procesada ---------------------------------------------------------------
+elsoc_16 <- na.omit(elsoc_16)
+```
+
+**Revisión final:**
+```{r}
+names(elsoc_16) # Nombre de variable 
+head(elsoc_16)  # chequear
+```
+
+**Guardar base de datos procesada** 
+
+```{r}
 save(elsoc_16,file = "data/proc/ELSOC_ess_merit2016.RData")
 ```
