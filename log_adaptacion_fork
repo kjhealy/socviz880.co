@@ -32,7 +32,7 @@
 Esto para crear notas al margen de la siguiente manera:
 <span class="sidenote">Several variations of this sentence are known.</span>
 
-- Sobre tema scroll en chunks: hay ajustes por defecto en el archivo _root.scss referidos a esto, que son los tags "pre" y "code", que no funcionan; se reemplazan por lo siguiente:
+- Sobre tema scroll en chunks: hay ajustes por defecto en el archivo  _root.scss, pero esto no surge efecto al modificar haciendo deploy, porque es una carpeta que tiene su propio git. Por lo tanto se modifican en custom.css
 
 pre code, pre, code {
   white-space: pre !important;
