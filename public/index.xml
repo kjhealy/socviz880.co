@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Course materials | Estadística Multivariada</title>
-    <link>/</link>
-      <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://multivariada.netlify.com/</link>
+      <atom:link href="https://multivariada.netlify.com/index.xml" rel="self" type="application/rss+xml" />
     <description>Course materials</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <image>
-      <url>/img/social-image.png</url>
+      <url>https://multivariada.netlify.com/img/social-image.png</url>
       <title>Course materials</title>
-      <link>/</link>
+      <link>https://multivariada.netlify.com/</link>
     </image>
     
     <item>
       <title>Presentación</title>
-      <link>/class/01-class/</link>
+      <link>https://multivariada.netlify.com/class/01-class/</link>
       <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/class/01-class/</guid>
+      <guid>https://multivariada.netlify.com/class/01-class/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
@@ -32,8 +32,8 @@
 
 &lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Documento presentación&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/01-programa/01_multiva_intro.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
-&lt;iframe src=&#34;/slides/01-programa/01_multiva_intro.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;https://multivariada.netlify.com/slides/01-programa/01_multiva_intro.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
+&lt;iframe src=&#34;https://multivariada.netlify.com/slides/01-programa/01_multiva_intro.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;div id=&#34;video-de-clase&#34; class=&#34;section level2&#34;&gt;
@@ -56,9 +56,9 @@
     
     <item>
       <title>Práctica 1. Preparación de datos en R</title>
-      <link>/assignment/01-code/</link>
+      <link>https://multivariada.netlify.com/assignment/01-code/</link>
       <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/assignment/01-code/</guid>
+      <guid>https://multivariada.netlify.com/assignment/01-code/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
 &lt;style type=&#34;text/css&#34;&gt;
@@ -158,7 +158,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Preparación&lt;/strong&gt; corresponde a lo que se conoce generalmente como “limpieza”, es decir, realizar las modificaciones necesarias para poder efectuar los análisis. Estas modificaciones previas al análisis son necesarias ya que los datos originales con los que se va a trabajar en general no vienen perfectamente adaptados a los análisis que se quieren hacer. Por lo tanto, en cuanto a datos también hacemos la distinción entre datos originales y datos procesados.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Análisis&lt;/strong&gt;: se relaciona principalmente con análisis descriptivos asociados a las preguntas de investigación y también modelamiento de datos para contrastar hipótesis de investigación.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;/images/produccion.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.com/images/produccion.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Tanto la preparación como el análisis (que son parte del concepto más general de procesamiento) quedan registrados en un documento de código, en este caso de código R (por lo general, un archivo con extensión .R).&lt;/p&gt;
 &lt;p&gt;El documento de &lt;strong&gt;código de preparación&lt;/strong&gt; posee 5 partes, más una sección de identificación inicial:&lt;/p&gt;
 &lt;ol start=&#34;0&#34; style=&#34;list-style-type: decimal&#34;&gt;
@@ -223,7 +223,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb4&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb4-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#cargamos la base de datos desde internet&lt;/span&gt;&lt;/a&gt;
 &lt;a class=&#34;sourceLine&#34; id=&#34;cb4-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;load&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;url&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;https://multivariada.netlify.com/assignment/data/original/ELSOC_W01_v3.10.RData&amp;quot;&lt;/span&gt;))&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;La base de datos aparece como un objeto en nuestro espacio de trabajo, con el nombre original con la que fue guardada (elsoc_2016):&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/basecargada.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.com/images/basecargada.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Realizamos un chequeo básico de la lectura de datos: nombres de las variables y tamaño de la base en términos de casos y variables (en este ejemplo, 2927 casos y 383 variables).&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb5&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb5-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;dim&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;2016&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# dimension de la base&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 2927  383&lt;/code&gt;&lt;/pre&gt;
@@ -644,9 +644,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
     
     <item>
       <title>Material 1. Procesamiento de datos en R</title>
-      <link>/assignment/01material/prep-datos/</link>
+      <link>https://multivariada.netlify.com/assignment/01material/prep-datos/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/assignment/01material/prep-datos/</guid>
+      <guid>https://multivariada.netlify.com/assignment/01material/prep-datos/</guid>
       <description>
 
 
@@ -890,16 +890,16 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
     
     <item>
       <title>Planificación</title>
-      <link>/schedule/</link>
+      <link>https://multivariada.netlify.com/schedule/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/schedule/</guid>
+      <guid>https://multivariada.netlify.com/schedule/</guid>
       <description>
 
 
 &lt;div id=&#34;organización-general-del-curso&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Organización general del curso&lt;/h2&gt;
-&lt;embed src=&#34;/docs/Multiv2020prog_sesiones.pdf&#34; type=&#34;application/pdf&#34; width=&#34;100%&#34; height=&#34;600px&#34; /&gt;
-&lt;p&gt;Ver en pantalla completa &lt;a href=&#34;/docs/Multiv2020prog_sesiones.pdf&#34;&gt;AQUÍ&lt;/a&gt;&lt;/p&gt;
+&lt;embed src=&#34;https://multivariada.netlify.com/docs/Multiv2020prog_sesiones.pdf&#34; type=&#34;application/pdf&#34; width=&#34;100%&#34; height=&#34;600px&#34; /&gt;
+&lt;p&gt;Ver en pantalla completa &lt;a href=&#34;https://multivariada.netlify.com/docs/Multiv2020prog_sesiones.pdf&#34;&gt;AQUÍ&lt;/a&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;div style=&#34;width:130%&#34;&gt;
 
@@ -928,12 +928,12 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
             &lt;td align=&#34;right&#34; style=&#34;width:20%;text-align:right&#34;&gt;Semana 1&lt;/td&gt;
             &lt;td style=&#34;width:50%;text-align:left&#34;&gt;Presentación e introducción&lt;/td&gt;
             &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;&lt;a
-                    href=&#34;/class/01-class/#Lecturas&#34;&gt;
+                    href=&#34;https://multivariada.netlify.com/class/01-class/#Lecturas&#34;&gt;
                     &lt;i class=&#34;fas fa-book-reader fa-lg&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;
             &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;&lt;a
-                    href=&#34;/assignment/01-code/&#34;&gt;
+                    href=&#34;https://multivariada.netlify.com/assignment/01-code/&#34;&gt;
                     &lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;
-            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;&lt;a href=&#34;/class/01-class/&#34;&gt;
+            &lt;td align=&#34;center&#34; style=&#34;width:10%;text-align:center&#34;&gt;&lt;a href=&#34;https://multivariada.netlify.com/class/01-class/&#34;&gt;
                     &lt;i class=&#34;fas fa-chalkboard-teacher fa-lg&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;
         &lt;/tr&gt;
 
@@ -947,9 +947,9 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
     
     <item>
       <title>Programa</title>
-      <link>/programa/</link>
+      <link>https://multivariada.netlify.com/programa/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/programa/</guid>
+      <guid>https://multivariada.netlify.com/programa/</guid>
       <description>
 
 &lt;div id=&#34;TOC&#34;&gt;
@@ -1146,7 +1146,7 @@ Se espera que los estudiantes sean capaces de:&lt;/p&gt;
 &lt;div id=&#34;varios&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;VARIOS&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Las clases en general se acompañan de documentos de presentación, que estarán disponibles antes de la sesión en la página de &lt;a href=&#34;/class/&#34;&gt;Materiales&lt;/a&gt;, y están desarrollados con base en Rmarkdown/XaringanRmarkdown/ Xaringan. Estos documentos no son:&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;Las clases en general se acompañan de documentos de presentación, que estarán disponibles antes de la sesión en la página de &lt;a href=&#34;https://multivariada.netlify.com/class/&#34;&gt;Materiales&lt;/a&gt;, y están desarrollados con base en Rmarkdown/XaringanRmarkdown/ Xaringan. Estos documentos no son:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;“la clase”&lt;/li&gt;
 &lt;li&gt;autoexplicativos (ni aspiran a serlo)&lt;/li&gt;
@@ -1157,16 +1157,16 @@ Se espera que los estudiantes sean capaces de:&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;programación-de-sesiones&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Programación de sesiones&lt;/h2&gt;
-&lt;p&gt;Visitar la página de &lt;a href=&#34;/schedule/&#34;&gt;Planificación&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Visitar la página de &lt;a href=&#34;https://multivariada.netlify.com/schedule/&#34;&gt;Planificación&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
     
     <item>
       <title>Truth, Beauty, and Data</title>
-      <link>/reading/01-reading/</link>
+      <link>https://multivariada.netlify.com/reading/01-reading/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/reading/01-reading/</guid>
+      <guid>https://multivariada.netlify.com/reading/01-reading/</guid>
       <description>
 
 
