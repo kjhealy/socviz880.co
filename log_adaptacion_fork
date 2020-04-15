@@ -32,6 +32,20 @@
 Esto para crear notas al margen de la siguiente manera:
 <span class="sidenote">Several variations of this sentence are known.</span>
 
+- Sobre tema scroll en chunks: hay ajustes por defecto en el archivo _root.scss referidos a esto, que son los tags "pre" y "code", que no funcionan; se reemplazan por lo siguiente:
+
+pre code, pre, code {
+  white-space: pre !important;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  word-break: keep-all !important;
+  word-wrap: initial !important;
+    max-height: 300px;
+    font-family: $sta-font-mono, monospace;
+    color: #c7254e;
+    background-color: #f9f2f4;
+}
+
 
 ## deploy
 
