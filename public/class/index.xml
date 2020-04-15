@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Material | Estadística Multivariada</title>
-    <link>https://multivariada.netlify.com/class/</link>
-      <atom:link href="https://multivariada.netlify.com/class/index.xml" rel="self" type="application/rss+xml" />
+    <link>/class/</link>
+      <atom:link href="/class/index.xml" rel="self" type="application/rss+xml" />
     <description>Material</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <image>
-      <url>https://multivariada.netlify.com/img/social-image.png</url>
+      <url>/img/social-image.png</url>
       <title>Material</title>
-      <link>https://multivariada.netlify.com/class/</link>
+      <link>/class/</link>
     </image>
     
     <item>
       <title>Presentación</title>
-      <link>https://multivariada.netlify.com/class/01-class/</link>
+      <link>/class/01-class/</link>
       <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>https://multivariada.netlify.com/class/01-class/</guid>
+      <guid>/class/01-class/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
@@ -32,8 +32,8 @@
 
 &lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Documento presentación&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;https://multivariada.netlify.com/slides/01-programa/01_multiva_intro.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
-&lt;iframe src=&#34;https://multivariada.netlify.com/slides/01-programa/01_multiva_intro.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/01-programa/01_multiva_intro.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
+&lt;iframe src=&#34;/slides/01-programa/01_multiva_intro.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;div id=&#34;video-de-clase&#34; class=&#34;section level2&#34;&gt;
