@@ -132,3 +132,22 @@ a.sidenote:link { color:#548BB5; text-decoration:none; font-weight:normal; }
 .sidenote a:link{
     color:#548BB5;
 }
+
+video {
+  width: 100%;
+  height: auto;
+  max-height: 800px;
+}
+
+
+pre code, pre, code {
+  white-space: pre !important;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  word-break: keep-all !important;
+  word-wrap: initial !important;
+    max-height: 300px;
+    font-family: $sta-font-mono, monospace;
+    color: #c7254e;
+    background-color: #f9f2f4;
+}
