@@ -10,32 +10,9 @@
 [context.branch-deploy.environment]
   HUGO_VERSION = "0.68.1"
 
-[context.deploy-preview.environment]
-  HUGO_VERSION = "0.68.1"
-
 [context.deploy-preview]
   command = "hugo -b $DEPLOY_PRIME_URL --buildFuture"
 
 [context.branch-deploy]
   HUGO_VERSION = "0.68.1"
-
 #  command = "hugo -b $DEPLOY_PRIME_URL --buildFuture"
-
-[context.branch-deploy.environment]
-  NODE_ENV = "development"
-
-  # Branch deploy context:
-  # All deploys that are not from a pull/merge request
-  # or from the production branch will inherit these settings.
-
-  # Branch Deploy context: all deploys that are not from a pull/merge request or
-  # from the Production branch will inherit these settings.
-
-  # Specific branch context:
-  # Deploys from this branch will take these settings
-  # and override their current ones.
-[context.feature]
-  command = "make feature"
-
-[context."features/branch"]
-  command = "gulp"
