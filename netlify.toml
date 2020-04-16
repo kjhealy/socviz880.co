@@ -17,4 +17,18 @@
   command = "hugo -b $DEPLOY_PRIME_URL --buildFuture"
 
 [context.branch-deploy]
-  command = "hugo -b $DEPLOY_PRIME_URL --buildFuture"
+#  command = "hugo -b $DEPLOY_PRIME_URL --buildFuture"
+  command = "make staging"
+  # Branch deploy context:
+  # All deploys that are not from a pull/merge request
+  # or from the production branch will inherit these settings.
+
+
+  # Specific branch context:
+  # Deploys from this branch will take these settings
+  # and override their current ones.
+[context.feature]
+  command = "make feature"
+
+[context."features/branch"]
+  command = "gulp"
