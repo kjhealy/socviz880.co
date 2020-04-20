@@ -1,5 +1,5 @@
 ---
-title: "Práctica 2. Estadística Descriptiva y Correlacional"
+title: "Práctica 2. Descripción de variables"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
 author: "Valentina Andrade"
 linktitle: "Práctica 2: Descripción de variables"
@@ -94,70 +94,51 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="#objetivo-de-la-práctica">Objetivo de la práctica</a></li>
 <li><a href="#código-de-análisis">Código de análisis</a><ul>
-<li><a href="#librerías-principales-de-r-a-utilizar-en-el-análisis">1. Librerías principales (de R) a utilizar en el análisis</a></li>
+<li><a href="#librerías">1. Librerías</a></li>
 <li><a href="#cargar-base-de-datos">2. Cargar base de datos</a></li>
 <li><a href="#descripción-de-variables">3. Descripción de variables</a><ul>
 <li><a href="#tabla-descriptiva-de-variables-para-sección-metodológica">3.1 Tabla descriptiva de variables para sección metodológica</a></li>
 <li><a href="#exploración-de-asociación-entre-variables">3.2 Exploración de asociación entre variables</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#resumen">RESUMEN</a></li>
+<li><a href="#resumen-práctica-2-descripción-de-variables">Resumen Práctica 2: Descripción de variables</a></li>
 </ul>
 </div>
 
 <div id="objetivo-de-la-práctica" class="section level1">
 <h1>Objetivo de la práctica</h1>
-<p>Esta segunda práctica tiene por objetivo repasar algunos conceptos básicos de los cursos anteriores de <strong>Estadística Descriptiva</strong> y <strong>Estadística Correlacional</strong>. Asume como base el desarrollo de la práctica 1, a la cual se hará referencia permanente.</p>
-<p>En la <strong>práctica 1</strong> se desarrolló un código de preparación de datos que generó una base de datos procesada para el análisis. En esta <strong>práctica 2</strong> comenzamos con el segundo momento de procesamiento de datos, que es el análisis propiamente tal. El análisis as su vez tiene dos fases: descripción de variables y contraste de hipótesis. En esta práctica veremos la descripción de variables (ver <a href="/assignment/01-code#flujo">esquema de práctica 1</a>).</p>
-<p>Al igual que el código de preparación, el código de análisis posee una estructura definida. En este caso son 4 partes, donde las primeras son similares al código de preparación:</p>
+<p>Esta segunda práctica tiene por objetivo repasar algunos conceptos básicos de los cursos anteriores de <strong>Estadística Descriptiva</strong> y <strong>Estadística Correlacional</strong>. Asume como base el desarrollo de la <a href="/assignment/01-code">Práctica 1</a>, a la cual se hará referencia permanente.</p>
+<p>En la <a href="/assignment/01-code">Práctica 1</a> se desarrolló un código de preparación de datos que generó una base de datos procesada para el análisis. En esta <strong>Práctica 2</strong> comenzamos con el segundo momento de procesamiento de datos, que es el análisis propiamente tal. El análisis se divide en descripción de variables y contraste de hipótesis. En esta práctica nos enfocaremos en la primera fase, que llega hasta el punto 3 del código de análisis:</p>
+<p><img src="/images/produccion2.png" /></p>
+<p>Al igual que el Código de Preparación, el Código de Análisis posee una estructura definida. En este caso son 4 partes, donde las primeras son similares al código de preparación:</p>
 <ol start="0" style="list-style-type: decimal">
 <li>Identificación y descripción general: Título, autor(es), fecha, información breve sobre el contenido del documento</li>
-<li>Librerías principales (de R) a utilizar en el análisis</li>
-<li>Carga de datos (que son los preparados en la fase anterior)</li>
-<li>Descripción de variables</li>
-</ol>
+<li><strong>Librerías</strong> principales (de R) a utilizar en el análisis</li>
+<li><strong>Datos</strong> (que provienen de los preparados en la fase anterior)</li>
+<li><strong>Descripción de variables</strong>
 <ul>
 <li>Tabla general de variables para la sección metodológica del reporte</li>
-<li>Exploración de variables uni y bi-variada</li>
-</ul>
-<ol start="4" style="list-style-type: decimal">
-<li>Contraste de hipótesis / inferencia estadística según la técnica que corresponda</li>
+<li>Exploración descriptiva de relaciones entre variables</li>
+</ul></li>
+<li><strong>Contraste de hipótesis</strong> / inferencia estadística según la técnica que corresponda</li>
 </ol>
-<p>Al final de esta práctica la idea es que cada un_ pueda avanzar hasta el <strong>punto 3</strong> del código de análisis. El punto 4 (contraste de hipótesis) se desarrollará más adelante en este curso con énfasis en la técnica de regresión.</p>
-<p>(XX Agregar esquema de flujo de reporte asociado al flujo de análisis)</p>
+<p>Al final de esta práctica la idea es que cada un_ pueda avanzar hasta el <strong>punto 3</strong> del Código de Análisis. El punto 4 (contraste de hipótesis) se desarrollará más adelante en este curso con énfasis en la técnica de regresión.</p>
 </div>
 <div id="código-de-análisis" class="section level1">
 <h1>Código de análisis</h1>
-<div id="librerías-principales-de-r-a-utilizar-en-el-análisis" class="section level2">
-<h2>1. Librerías principales (de R) a utilizar en el análisis</h2>
+<div id="librerías" class="section level2">
+<h2>1. Librerías</h2>
 <p>La explicación de esta parte del código se encuentra en la sección correspondiente de la <a href="/assignment/01-code#librerias">práctica 1</a>.</p>
-<p><strong>(X Revisar si todas son necesarias luego de las modificaciones)</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">pacman<span class="op">::</span><span class="kw">p_load</span>(<span class="st">&quot;knitr&quot;</span>, <span class="co">#Generacion de informes dinamicos</span></a>
-<a class="sourceLine" id="cb1-2" title="2">               <span class="st">&quot;dplyr&quot;</span>, <span class="co">#Manipulacion de datos</span></a>
-<a class="sourceLine" id="cb1-3" title="3">               <span class="st">&quot;Rmisc&quot;</span>, <span class="co"># Resumen de estadisticos univariados</span></a>
-<a class="sourceLine" id="cb1-4" title="4">               <span class="st">&quot;kableExtra&quot;</span>, <span class="co">#Tablas</span></a>
-<a class="sourceLine" id="cb1-5" title="5">               <span class="st">&quot;sjPlot&quot;</span>,<span class="co">#Tablas</span></a>
-<a class="sourceLine" id="cb1-6" title="6">               <span class="st">&quot;stargazer&quot;</span>, <span class="co">#Tablas</span></a>
-<a class="sourceLine" id="cb1-7" title="7">               <span class="st">&quot;ggplot2&quot;</span>, <span class="co">#Graficos</span></a>
-<a class="sourceLine" id="cb1-8" title="8">               <span class="st">&quot;gridExtra&quot;</span>, <span class="co">#Graficos</span></a>
-<a class="sourceLine" id="cb1-9" title="9">               <span class="st">&quot;scales&quot;</span>, <span class="co">#Graficos con porcentaje</span></a>
-<a class="sourceLine" id="cb1-10" title="10">               <span class="st">&quot;car&quot;</span>, <span class="co">#Recodificacion de variables</span></a>
-<a class="sourceLine" id="cb1-11" title="11">               <span class="st">&quot;summarytools&quot;</span>,</a>
-<a class="sourceLine" id="cb1-12" title="12">               <span class="st">&quot;sjmisc&quot;</span>,</a>
-<a class="sourceLine" id="cb1-13" title="13">               corrplot)</a>
-<a class="sourceLine" id="cb1-14" title="14"></a>
-<a class="sourceLine" id="cb1-15" title="15"><span class="co"># Librerias para analisis correlacional</span></a>
-<a class="sourceLine" id="cb1-16" title="16"></a>
-<a class="sourceLine" id="cb1-17" title="17">pacman<span class="op">::</span><span class="kw">p_load</span>(<span class="st">&quot;ggpubr&quot;</span>, <span class="co">#Graficos de dispersion</span></a>
-<a class="sourceLine" id="cb1-18" title="18">               <span class="st">&quot;plyr&quot;</span>, <span class="co">#Resume estadisticos por grupo</span></a>
-<a class="sourceLine" id="cb1-19" title="19">               <span class="st">&quot;Publish&quot;</span>,<span class="co">#Intervalos de confianza</span></a>
-<a class="sourceLine" id="cb1-20" title="20">               <span class="st">&quot;Rmisc&quot;</span>, <span class="co">#summarise</span></a>
-<a class="sourceLine" id="cb1-21" title="21">               <span class="st">&quot;psych&quot;</span>,  <span class="co">#D cohen</span></a>
-<a class="sourceLine" id="cb1-22" title="22">               <span class="st">&quot;sjstats&quot;</span>) <span class="co"># Pruebas Anova, Eta, Cramer&#39;s V, Phi, Spearman&#39;s, Rho, Kendall&#39;s y  Pearson)</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">pacman<span class="op">::</span><span class="kw">p_load</span>(dplyr, <span class="co">#Manipulacion de datos</span></a>
+<a class="sourceLine" id="cb1-2" title="2">              stargazer, <span class="co">#Tablas</span></a>
+<a class="sourceLine" id="cb1-3" title="3">              summarytools, <span class="co"># Tablas</span></a>
+<a class="sourceLine" id="cb1-4" title="4">              sjmisc, <span class="co"># Tablas</span></a>
+<a class="sourceLine" id="cb1-5" title="5">              kableExtra, <span class="co">#Tablas</span></a>
+<a class="sourceLine" id="cb1-6" title="6">              sjPlot, <span class="co">#Tablas y gráficos</span></a>
+<a class="sourceLine" id="cb1-7" title="7">              corrplot) <span class="co"># Correlaciones</span></a></code></pre></div>
 </div>
 <div id="cargar-base-de-datos" class="section level2">
 <h2>2. Cargar base de datos</h2>
-<p><strong>Datos</strong></p>
 <p>Vamos a cargar la base de datos <strong>ELSOC_ess_merit2016.Rproc_elsoc</strong>, que generamos durante la práctica 1. Se puede llamar desde el directorio en que la guardaron dando la ruta completa, o también para esta práctica la podemos llamar directamente desde nuestro sitio web:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://multivariada.netlify.app/proc_elsoc/proc/ELSOC_ess_merit2016.RData&quot;</span>)) <span class="co">#Cargar base de datos</span></a></code></pre></div>
 <ul>
@@ -180,13 +161,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="descripción-de-variables" class="section level2">
 <h2>3. Descripción de variables</h2>
-<p>Los reportes de investigación poseen una sección de metodología, donde se presentan los datos, las variables y los métodos de análisis. En la sección de variables en la metodología por lo general se presenta una <strong>tabla descriptiva</strong> de variables, y eventualmente una <strong>tabla de correlaciones</strong> bivariadas entre todas las variables.</p>
+<p>Los resultados referidos a descripción de variables se presentan en dos momentos del reporte de investigación:</p>
+<ul>
+<li><p>en la sección de <em>metodología</em>, cuando se presentan las variables del estudio en una <strong>tabla descriptiva</strong> de variables.</p></li>
+<li><p>en la sección de <em>análisis</em>, que en general comienza con una exploración de <strong>asociaciones entre variables</strong>, también conocido como análisis descriptivo.</p></li>
+</ul>
 <div id="tabla-descriptiva-de-variables-para-sección-metodológica" class="section level3">
 <h3>3.1 Tabla descriptiva de variables para sección metodológica</h3>
-<p>En esta primera parte del análisis descriptivo se genera una tabla resumen general de todas las variables de la investigación. Esta tabla es la que se incluye en la sección de “Metodología” del artículo, donde corresponde presentar las variables a utilizar.</p>
 <p>A continuación se presentan dos opciones de generar esta tabla descriptiva de variables con distintas librerías de R.</p>
-<p><strong>a. Tabla descriptiva con stargazer</strong></p>
-<p>La función <code>stargazer</code> permitirá mostrar los principales estadísticos descriptivos univariados de las variables: medidas de tendencia central (media), de dispersión (desviación estándar) y posición (mínimo, máximo, percentiles).</p>
+<p><strong>a. Tabla descriptiva con <code>stargazer</code></strong><span class="sidenote">stargazer</span></p>
+<p>La función <code>stargazer</code> (de la librería del mismo nombre) permitirá mostrar los principales estadísticos descriptivos univariados de las variables: medidas de tendencia central (media), de dispersión (desviación estándar) y posición (mínimo, máximo, percentiles).</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">stargazer</span>(proc_elsoc,<span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ## ==============================================================
@@ -202,10 +186,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## --------------------------------------------------------------</code></pre>
 <p>Algunas observaciones sobre esta tabla:</p>
 <ul>
-<li><p>La opción type=“text” permite que podamos ver los resultados directamente en la consola, de manera bastante rudimentaria. Con otras opciones que veremos más adelante se puede estilizar para su publicación.</p></li>
+<li><p>La opción <code>type="text"</code> permite que podamos ver los resultados directamente en la consola, de manera bastante rudimentaria. Con otras opciones que veremos más adelante se puede estilizar para su publicación.</p></li>
 <li><p>Una distinción relevante a considerar cuando se describen variables es si estas son <strong>categóricas</strong> o <strong>continuas</strong>. La definición de si una variables es tratada como categórica o continua es algo que hace el/la autor/a del reporte, sin embargo hay variables nominales como sexo que claramente corresponden a categóricas, y por lo tanto no corresponde hacer un promedio entre ambas. Sin embargo, como esta variable está codificada 0 (hombre) y 1 (mujer), en este caso lo que indica el valor de la columna promedio (Mean=0.60) es la proporción de mujeres vs hombres. En otras palabras, hay un 60% de mujeres y 40% de hombres en la muestra.</p></li>
 </ul>
-<p><strong>b. Tabla descriptiva con <code>summarytools</code></strong></p>
+<p><strong>b. Tablas descriptivas con <code>summarytools</code></strong><span class="sidenote">summarytools</span></p>
 <p>Esta librería ofrece distintas opciones de descriptivos. En primer lugar veremos la función <code>descr</code>, que arroja un resultado similar al de stargazer:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">descr</span>(proc_elsoc)</a></code></pre></div>
 <pre><code>## Descriptive Statistics  
@@ -230,7 +214,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##          Kurtosis     -0.98     -0.62      1.16       -0.79      -1.03     -0.78     -1.82
 ##           N.Valid   2927.00   2925.00   2915.00     2909.00    2907.00   2898.00   2927.00
 ##         Pct.Valid    100.00     99.93     99.59       99.39      99.32     99.01    100.00</code></pre>
-<p>En principio no parece una muy buena opción, pero tiene la ventaja que luego su publicación es más fluida que con stargazer. Entonces primero haremos algunos ajustes:</p>
+<p>En principio no parece una muy buena opción, pero tiene la ventaja que luego su publicación es más fluida que con stargazer. Entonces primero haremos algunos ajustes, como mostrar menos estadísticos (opción <code>stats="common"</code>, transponer filas y columnas (<code>transpose</code>), y sacar el título (<code>headings</code>) que trae por defecto:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">summarytools<span class="op">::</span><span class="kw">descr</span>(proc_elsoc, <span class="dt">stats=</span><span class="st">&quot;common&quot;</span>, <span class="dt">transpose=</span><span class="ot">TRUE</span>, <span class="dt">headings=</span><span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## 
 ##                    Mean   Std.Dev     Min   Median     Max   N.Valid   Pct.Valid
@@ -242,8 +226,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##        mtalento    2.74      1.06    1.00     3.00    5.00   2907.00       99.32
 ##          pmerit    2.65      0.97    1.00     2.50    5.00   2898.00       99.01
 ##            sexo    0.60      0.49    0.00     1.00    1.00   2927.00      100.00</code></pre>
-<p>Ahora aparecen menos estadísticos (opción common), se cambia el orden de filas/columnas similar al de stargazer (transpose), y se le saca el título (headings).</p>
-<p>Con esto queda lista para publicación, que se puede visualizar así:</p>
+<p>Con esto queda lista para publicación, que se puede visualizar agregando las funciones <code>view</code> y <code>descr</code>:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">view</span>(<span class="kw">descr</span>(proc_elsoc, <span class="dt">stats=</span><span class="st">&quot;common&quot;</span>, <span class="dt">transpose=</span><span class="ot">TRUE</span>, <span class="dt">headings=</span><span class="ot">FALSE</span>))</a></code></pre></div>
 <p>Y aparece este resultado en el visor:</p>
 <table>
@@ -332,7 +315,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>Una segunda función de la librería <code>summarytools</code> es <code>dfSummary</code>, que nos ofrece una tabla aún más detallada, con gráficos para cada variable, las frecuencias para cada valor, y las etiquetas de las variables, por lo que es muy recomendable.</p>
+<p>Una segunda función de la librería <code>summarytools</code> es <code>dfSummary</code><span class="sidenote">summarytools::dfSummary</span>, que nos ofrece una tabla aún más detallada, con gráficos para cada variable, las frecuencias para cada valor, y las etiquetas de las variables, por lo que es muy recomendable.</p>
 <p>Se específica de la siguiente manera:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">dfSummary</span>(proc_elsoc, <span class="dt">plain.ascii =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## ### Data Frame Summary  
@@ -525,13 +508,15 @@ IQR (CV) : 1.5 (0.4)</td>
 </table>
 <p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 0.9.6 (<a href='https://www.r-project.org/'>R</a> version 3.6.0)<br/>2020-04-19</p>
 </div>
-<p><em>Sobre casos perdidos (NAs)</em></p>
-<p>Hasta ahora hemos mantenido los casos perdidos en la base de datos, ya que son importantes de reportar en la tabla general de variables. Sin embargo, de aquí en adelante se recomienda trabajar solo con casos completos, es decir, sacar los casos perdidos. Para comprobar que esto funciona bien:</p>
+<p><strong>Nota sobre casos perdidos (NAs)</strong></p>
+<p>Hasta ahora hemos mantenido los casos perdidos en la base de datos, ya que son importantes de reportar en la tabla general de variables. Sin embargo, de aquí en adelante se recomienda trabajar solo con casos completos, es decir, <strong>sacar los casos perdidos</strong>. El procedimiento recomendado es el siguiente:</p>
 <ul>
+<li>respaldar la base de datos original en el espacio de trabajo (por si queremos en adelante realizar algún análisis referido a casos perdidos), la dejaremos con el nombre proc_elsoc_original.</li>
 <li>contamos el número de casos con el comando <code>dim</code></li>
 <li>contamos el número de casos perdidos con <code>sum(is.na(proc_elsoc))</code></li>
 <li>borramos los casos perdidos con <code>proc_elsoc &lt;-na.omit(proc_elsoc)</code></li>
-<li>y contamos nuevamente con dim para asegurarnos que se borraron</li>
+<li>contamos nuevamente con <code>dim</code> para asegurarnos que se borraron</li>
+<li>y por temas de funcionamiento de R, al realizar la operación de sacar casos perdidos, se borra toda la información de las etiquetas (labels), así que las recuperamos de la base original con el compando <code>copy_labels</code>, de la librería <code>sjlabelled</code>.</li>
 </ul>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">proc_elsoc_original &lt;-proc_elsoc</a>
 <a class="sourceLine" id="cb17-2" title="2"><span class="kw">dim</span>(proc_elsoc)</a></code></pre></div>
@@ -545,18 +530,18 @@ IQR (CV) : 1.5 (0.4)</td>
 </div>
 <div id="exploración-de-asociación-entre-variables" class="section level3">
 <h3>3.2 Exploración de asociación entre variables</h3>
-<p>Esta sección corresponde a la sección de <em>Análisis</em> del reporte de investigación, usualmente sirve como antecedente para la sección siguiente que es el contraste de hipótesis mediante modelos estadísticos inferenciales (como anova o regresión).</p>
-<p>Las hipótesis de investigación corresponden por lo general a asociación entre variables, y en esta sección la exploración se relaciona con esta asociación según la naturaleza de las variables que se asocian.</p>
+<p>Dado que las hipótesis de investigación corresponden a asociación entre variables, antes de realizar el contraste de hipótesis se suele presentar un análisis descriptivio que explora las asociaciones entre variables.</p>
+<p>La forma de explorar las asociaciones entre variables dependen de la naturaleza de las variables que se asocian:</p>
 <ul>
 <li>Variables categóricas: tabla de contingencia</li>
 <li>Variable categórica y continua: tabla de promedios por cada categoría</li>
 <li>Variables continuas: correlaciones.</li>
 </ul>
-<p>En esta sección también es muy relevante la visualización de datos mediante gráficos, lo que se dejará para una práctica posterior.</p>
+<p>En esta sección también es muy relevante la visualización de datos mediante gráficos, por lo que incluiremos algunos.</p>
 <p>El uso tanto de tablas como de gráficos en el reporte queda a discreción del/a autor/a. La pregunta que orienta esta decisión es: ¿Me permite enriquecer la discusión de los resultados en relación a las hipótesis planteadas?</p>
 <div id="tablas-de-contingencia-para-variables-categóricas" class="section level4">
 <h4>Tablas de contingencia para variables categóricas</h4>
-<p>Para tablas de contingencia categóricas utilizaremos la función sjt.xtab, de la librería <code>sjPlot</code>. Veamos primero una especificación simple:</p>
+<p>Para tablas de contingencia categóricas utilizaremos la función sjt.xtab, de la librería <code>sjPlot</code>. Veamos primero una especificación simple: <span class="sidenote">sjPlot::sjt.xtab</span></p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">sjt.xtab</span>(proc_elsoc<span class="op">$</span>edcine, proc_elsoc<span class="op">$</span>sexo)</a></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
@@ -667,7 +652,7 @@ Total
 </td>
 </tr>
 </table>
-<p>Al ejecutar el comando, el resultado aparece automáticamente en el visor de RStudio. A esta tabla podemos también agregar porcentajes de filas y/o columnas, según sea lo más relevante analizar. En general se recomienda agregar solo un porcentaje, de otra manera la tabla se satura de información. Además, vamos a quitar el pie de la tabla, a menos que sea relevante para las hipótesis de investigación.</p>
+<p>Al ejecutar el comando, el resultado aparece automáticamente en el visor de RStudio. A esta tabla podemos también agregar porcentajes de filas y/o columnas, según sea lo más relevante analizar. En general se recomienda agregar solo un porcentaje, de otra manera la tabla se satura de información. Además, vamos a quitar el pie de la tabla (conviene dejarlo solo si hay hipótesis asociadas al cruce simple entre las dos variables).</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">sjt.xtab</span>(proc_elsoc<span class="op">$</span>edcine, proc_elsoc<span class="op">$</span>sexo,</a>
 <a class="sourceLine" id="cb25-2" title="2">        <span class="dt">show.col.prc=</span><span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb25-3" title="3">        <span class="dt">show.summary=</span><span class="ot">FALSE</span></a>
@@ -780,17 +765,17 @@ Total
 </div>
 <div id="tablas-de-promedio-de-variable-continua-por-una-categóricas" class="section level4">
 <h4>Tablas de promedio de variable continua por una categóricas</h4>
-<p>En ejemplo vamos a explorar datos de nuestra variable de percepción de meritocracia pmerit por los niveles educacionales edcine.</p>
-<p>Una forma rápida de explorar esto es mediante la función tapply, que nos entrega de manera simple el promedio de una variable por otra:</p>
+<p>En ejemplo vamos a explorar datos de nuestra variable de percepción de meritocracia <em>pmerit</em> por los niveles educacionales <em>edcine</em>.</p>
+<p>Una forma rápida de explorar esto es mediante la función <code>tapply</code>, que nos entrega de manera simple el promedio de una variable por otra:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">tapply</span>(proc_elsoc<span class="op">$</span>pmerit, proc_elsoc<span class="op">$</span>edcine, mean)</a></code></pre></div>
 <pre><code>##        1        2        3        4        5 
 ## 2.968481 2.697595 2.662763 2.479079 2.559322</code></pre>
-<p>Si se estima conventiente este tipo de cruces se puede representar tambien en una tabla con más opciones de información y también de publicación.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">proc_elsoc <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-2" title="2"><span class="st">  </span><span class="kw">select</span>(pmerit,edcine) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(Educación=sjlabelled<span class="op">::</span><span class="kw">as_label</span>(edcine)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-4" title="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">Obs.=</span><span class="kw">n</span>(),<span class="dt">Promedio=</span><span class="kw">mean</span>(pmerit),<span class="dt">SD=</span><span class="kw">sd</span>(pmerit)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-5" title="5"><span class="st">  </span><span class="kw">kable</span>(, <span class="dt">format =</span> <span class="st">&quot;markdown&quot;</span>)</a></code></pre></div>
+<p>Aquí vemos en promedio de <em>pmerit</em> para cada uno de los 5 niveles de la variable educación <em>edcine</em>. Si se estima conveniente este tipo de cruces se puede representar también en una tabla con más opciones de información y también de publicación. Para esto utilizaremos una función algo más compleja de la librería <code>dplyr</code>.<span class="sidenote">dplyr</span> Esta librería permite aplicar una serie de funciones concatenadas y enlazadas mediante el operador <code>%&gt;%</code>. El sentido de cada función aparece comentado abajo:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">proc_elsoc <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se especifica la base de datos</span></a>
+<a class="sourceLine" id="cb28-2" title="2"><span class="st">  </span><span class="kw">select</span>(pmerit,edcine) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se seleccionan las variables</span></a>
+<a class="sourceLine" id="cb28-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(Educación=sjlabelled<span class="op">::</span><span class="kw">as_label</span>(edcine)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se agrupan por la variable categórica y se usan sus etiquetas con as_label</span></a>
+<a class="sourceLine" id="cb28-4" title="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">Obs.=</span><span class="kw">n</span>(),<span class="dt">Promedio=</span><span class="kw">mean</span>(pmerit),<span class="dt">SD=</span><span class="kw">sd</span>(pmerit)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se agregan las operaciones a presentar en la tabla</span></a>
+<a class="sourceLine" id="cb28-5" title="5"><span class="st">  </span><span class="kw">kable</span>(, <span class="dt">format =</span> <span class="st">&quot;markdown&quot;</span>) <span class="co"># se genera la tabla</span></a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -833,32 +818,31 @@ Total
 </tr>
 </tbody>
 </table>
-<p>Esta asocación también se puede representar de mejor manera con un gráfico, en este caso de cajas o boxplot mediante la función <code>sjp.grpfrq</code> de <code>sjPlot</code>:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">sjp.grpfrq</span>(proc_elsoc<span class="op">$</span>pmerit,proc_elsoc<span class="op">$</span>edcine,  <span class="dt">type =</span> <span class="st">&quot;box&quot;</span>)</a></code></pre></div>
-<pre><code>## Warning in rq.fit.br(wx, wy, tau = tau, ...): Solution may be nonunique
-
-## Warning in rq.fit.br(wx, wy, tau = tau, ...): Solution may be nonunique</code></pre>
+<p>Esta asocación también se puede representar de manera más simple con un gráfico, en este caso de cajas o boxplot mediante la función <code>sjp.grpfrq</code> de <code>sjPlot</code>:<span class="sidenote">sjPlot::sjp.grpfrq</span></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">sjp.grpfrq</span>(proc_elsoc<span class="op">$</span>pmerit,proc_elsoc<span class="op">$</span>edcine,</a>
+<a class="sourceLine" id="cb29-2" title="2">            <span class="dt">type =</span> <span class="st">&quot;box&quot;</span>)</a></code></pre></div>
 <p><img src="/assignment/02-code_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 </div>
 <div id="correlaciones-variables-continuas" class="section level4">
 <h4>Correlaciones (variables continuas)</h4>
-<p>Algunas notas sobre correlación:</p>
+<p><strong>Algunas notas sobre correlación:</strong></p>
 <ul>
-<li><p>El coeficiente de correlación mide la fuerza de la relación lineal entre dos variable continuas. Esta puede ser:</p>
+<li><p>El <em>coeficiente de correlación</em> mide la fuerza de la relación lineal entre dos variable continuas. Esta puede ser:</p>
 <ul>
-<li>positiva: a medida que aumenta una, aumenta la otra (ej: estatura y edad)</li>
-<li>negativa: a medida que una aumenta, disminuye la otra (ej: tiempo dedicado al estudio y probabilidad de reprobar)</li>
-<li>neutra: no hay asociación entre variables.</li>
+<li><em>positiva</em>: a medida que aumenta una, aumenta la otra (ej: estatura y edad)</li>
+<li><em>negativa</em>: a medida que una aumenta, disminuye la otra (ej: tiempo dedicado al estudio y probabilidad de reprobar)</li>
+<li><em>neutra</em>: no hay asociación entre variables.</li>
 </ul></li>
 <li><p>El rango de variación del coeficiente de correlación va desde -1 (correlación negativa perfecta) y 1 (correlación positiva perfecta).</p></li>
 <li><p>Existen diferentes formas de cálculo del coeficiente de correlación (Spearman, Kendall, Pearson).</p></li>
 <li><p>En el coeficiente de correlación se analiza tanto su tamaño como su significación estadística.</p></li>
 </ul>
-<p>En lo que sigue nos concentraremos en el coeficiente de correlación más utilizado que es el de Pearson, que se aplica cuando las variables son de naturaleza continua.</p>
+<p>En lo que sigue nos concentraremos en el coeficiente de correlación más utilizado que es el de <strong>Pearson</strong>, que se aplica cuando las variables son de naturaleza continua.</p>
 <p><strong>Tablas/matrices de correlación</strong></p>
-<p>Las correlaciones entre variables se presentan en general en modo de matrices de la siguiente manera: se aplica la función cor a la base de datos, y la guardamos en un objeto que le damos el nombre M.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">M &lt;-<span class="st"> </span><span class="kw">cor</span>(proc_elsoc)</a>
-<a class="sourceLine" id="cb31-2" title="2">M</a></code></pre></div>
+<p>Las correlaciones entre variables se presentan en general en modo de matrices, es decir, las variables se presentan en las filas y las columnas y en las celdas donde se cruzan los pares de variables se muestra su coeficiente de correlación.</p>
+<p>En su forma simple en R se aplica la función <code>cor</code> a la<span class="sidenote">cor</span> base de datos, y la guardamos en un objeto que le damos el nombre M para futuras operaciones:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">M &lt;-<span class="st"> </span><span class="kw">cor</span>(proc_elsoc)</a>
+<a class="sourceLine" id="cb30-2" title="2">M</a></code></pre></div>
 <pre><code>##              mesfuerzo    mtalento          ess      edcine        sexo
 ## mesfuerzo  1.000000000  0.69768811 -0.004312135 -0.12167659 -0.04480502
 ## mtalento   0.697688106  1.00000000  0.018447696 -0.10582754 -0.03759340
@@ -875,8 +859,8 @@ Total
 ## sexo       0.06121699 -0.044695146
 ## edad       1.00000000  0.092369792
 ## pmerit     0.09236979  1.000000000</code></pre>
-<p>Este es el reporte simple, pero no muy fácil de visualizar. De manera más amigable con la función sjt.corr:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">sjt.corr</span>(proc_elsoc)</a></code></pre></div>
+<p>Este es el reporte simple, pero no muy amigable a la vista. Para una versión más amable utilizamos la función sjt.corr<span class="sidenote">sjPlot::sjt.corr</span>:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">sjt.corr</span>(proc_elsoc)</a></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
@@ -1092,14 +1076,15 @@ Computed correlation used pearson-method with listwise-deletion.
 </td>
 </tr>
 </table>
+<p>Con esta mejor visualización, algunas observaciones sobre la matriz de correlaciones:</p>
 <ul>
 <li>En esta matriz las variables están representadas en las filas y en las columnas.</li>
 <li>Cada coeficiente expresa la correlación de una variable con otra. Por ejemplo, la correlación entre la variable de recompensa por esfuerzo y recompensa por inteligencia es 0.698.</li>
 <li>La información de cada coeficiente se repite sobre y bajo la diagonal, ya que es el mismo par de variables pero en el orden alterno.</li>
-<li>En la diagonal corresponde que todos los coeficientes sean 1, ya que la correlación de una variable consigo misma es perfectamente positiva. En esta tabla se omiten y aparece la diagonal vacía, ya que es información redundante. Por lo mismo, se suele eliminar el triangulo superior de la siguiente manera:</li>
+<li>En la diagonal corresponde que todos los coeficientes sean 1, ya que la correlación de una variable consigo misma es perfectamente positiva. En esta tabla se omiten y aparece la diagonal vacía, ya que es información redundante. Por lo mismo, también se recomienda eliminar el triangulo superior de la tabla (redundante) de la siguiente manera:</li>
 </ul>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="kw">sjt.corr</span>(proc_elsoc,</a>
-<a class="sourceLine" id="cb34-2" title="2">         <span class="dt">triangle =</span> <span class="st">&quot;lower&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">sjt.corr</span>(proc_elsoc,</a>
+<a class="sourceLine" id="cb33-2" title="2">         <span class="dt">triangle =</span> <span class="st">&quot;lower&quot;</span>)</a></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
@@ -1315,15 +1300,15 @@ Computed correlation used pearson-method with listwise-deletion.
 </td>
 </tr>
 </table>
-<p>Una seguna forma de presentar matrices de correlaciones es de manera más gráfica con la librería corrplot, cuya función homónima se aplica al objeto que generamos con la función cor (M):</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">corrplot.mixed</span>(M)</a></code></pre></div>
+<p>Una segunda forma de presentar matrices de correlaciones es de manera gráfica con la librería <code>corrplot</code>, cuya función <code>corrplot.mixed</code> <span class="sidenote">corrplot::corrplot.mixed</span>se aplica al objeto que generamos con la función <code>cor</code> (M):</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="kw">corrplot.mixed</span>(M)</a></code></pre></div>
 <p><img src="/assignment/02-code_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
-<p>Este gráfico/matriz representa la el grado de asociación entre variables con el tamaño del circulo e intensidad de colores, y el signo de la asociación con una gradiente de colores que va del azul (positivo) al rojo (negativo). También bajo la diagonal aparecen los indices de correlación entre pares de variables.</p>
+<p>Este gráfico/matriz representa el grado de asociación entre variables mediante el tamaño de los círculos e intensidad de colores, y el signo de la asociación se representa con una gradiente de colores que va del azul (positivo) al rojo (negativo). Bajo la diagonal aparecen los indices de correlación entre pares de variables.</p>
 <p>Finalmente, también se puede representar la correlación entre dos variables en un gráfico de nube de puntos o scatterplot:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="kw">names</span>(proc_elsoc)</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">names</span>(proc_elsoc)</a></code></pre></div>
 <pre><code>## [1] &quot;mesfuerzo&quot; &quot;mtalento&quot;  &quot;ess&quot;       &quot;edcine&quot;    &quot;sexo&quot;      &quot;edad&quot;     
 ## [7] &quot;pmerit&quot;</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="kw">plot_scatter</span>(proc_elsoc, edad, ess)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw">plot_scatter</span>(proc_elsoc, edad, ess)</a></code></pre></div>
 <p><img src="/assignment/02-code_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p>Donde:
 - cada punto representa un caso
@@ -1334,6 +1319,13 @@ Computed correlation used pearson-method with listwise-deletion.
 </div>
 </div>
 </div>
-<div id="resumen" class="section level1">
-<h1>RESUMEN</h1>
+<div id="resumen-práctica-2-descripción-de-variables" class="section level1">
+<h1>Resumen Práctica 2: Descripción de variables</h1>
+<p>En esta práctica revisamos los siguientes contenidos:</p>
+<ul>
+<li>tabla descriptiva general de variables</li>
+<li>tabla de asociación (o contingencia) entre dos variables categóricas</li>
+<li>tabla y gráfico de asociación entre variables categóricas y contínuas</li>
+<li>asociaciones entre pares de variables continuas mediante el índice de correlación.</li>
+</ul>
 </div>
