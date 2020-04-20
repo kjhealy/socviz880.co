@@ -72,7 +72,7 @@ pacman::p_load(dplyr, #Manipulacion de datos
 Vamos a cargar la base de datos **ELSOC_ess_merit2016.Rproc_elsoc**, que generamos durante la práctica 1. Se puede llamar desde el directorio en que la guardaron dando la ruta completa, o también para esta práctica la podemos llamar directamente desde nuestro sitio web:
 
 ```{r,eval=FALSE}
-load(url("https://multivariada.netlify.app/proc_elsoc/proc/ELSOC_ess_merit2016.RData")) #Cargar base de datos
+load(url("https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess_merit2016.RData")) #Cargar base de datos
 ```
 
 ```{r,message=FALSE,warning=FALSE, echo=FALSE}
