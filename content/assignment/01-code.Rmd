@@ -182,8 +182,15 @@ proc_elsoc <- elsoc_2016 %>% select(c18_09, # percepción meritocracia esfuerzo
 
 # Comprobar
 names(proc_elsoc)
-
 ```
+
+Mediante el comando `get_label` obtenemos el atributo label de las variables.
+
+```{r}
+sjlabelled::get_label(proc_elsoc)
+```
+
+Podemos ver que son muy largas, por lo tanto, es necesario cambiarlas por etiquetas más cortas. 
 
 ## 4. Procesamiento de variables
 
@@ -229,9 +236,21 @@ Vamos a dar un nombre más sustantivo a las variables  con la función `rename`,
 
 ```{r}
 proc_elsoc <- proc_elsoc %>% rename("mesfuerzo"=c18_09, # meritocracia esfuerzo
-                          "mtalento" =c18_10) # meritocracia talento
+                                    "mtalento" =c18_10) # meritocracia talento
 
 ```
+
+Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.
+
+```{r}
+get_label(proc_elsoc$mesfuerzo)
+proc_elsoc$mesfuerzo <- set_label(x = proc_elsoc$mesfuerzo,label = "Recompenda: esfuerzo")
+
+get_label(proc_elsoc$mtalento)
+proc_elsoc$mtalento  <- set_label(x = proc_elsoc$mtalento, label = "Recompenda: talento")
+```
+
+
 _d. Otros ajustes_
 
 Para este caso vamos a crear una variable que sea el promedio de los dos items de meritocracia.
@@ -241,6 +260,17 @@ proc_elsoc$pmerit <- (proc_elsoc$mesfuerzo+proc_elsoc$mtalento)/2
 summary(proc_elsoc$pmerit)
 ```
 
+```{r}
+get_label(proc_elsoc$pmerit) 
+```
+
+Vemos que todavía tiene la etiqueta de la variable "Recompensa: esfuerzo"
+
+```{r}
+proc_elsoc$pmerit  <- set_label(x = proc_elsoc$pmerit, label = "Meritocracia promedio")
+```
+
+
 _Revisión final_
 
 Nuevamente un descriptivo de cada variable para confirmar que el procesamiento está ok:
@@ -249,7 +279,6 @@ Nuevamente un descriptivo de cada variable para confirmar que el procesamiento e
 frq(proc_elsoc$mesfuerzo)
 frq(proc_elsoc$mtalento)
 frq(proc_elsoc$pmerit)
-
 ```
 
 #### 4.2. Educación
@@ -313,11 +342,19 @@ proc_elsoc$m01 <- set_labels(proc_elsoc$m01,
                       "Terciaria y Postgrado"=5))
 ```
 
-Y finalmente renombramos la variable con un nombre más sustantivo
+Luego renombramos la variable con un nombre más sustantivo
 
 ```{r}
 proc_elsoc <- rename(proc_elsoc,"edcine"=m01)
 ```
+
+Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.
+
+```{r}
+get_label(proc_elsoc$edcine)
+proc_elsoc$edcine <- set_label(x = proc_elsoc$edcine,label = "Educacion")
+```
+
 
 ### 4.3. Estatus subjetivo
 
@@ -345,6 +382,12 @@ _c. Etiquetado_
 proc_elsoc <- proc_elsoc %>% rename("ess"=d01_01) # estatus social subjetivo
 ```
 
+Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.
+
+```{r}
+get_label(proc_elsoc$ess)
+proc_elsoc$ess <- set_label(x = proc_elsoc$ess,label = "Estatus Social Subjetivo")
+```
 
 ### 4.4. Sexo
 
@@ -374,12 +417,20 @@ proc_elsoc$m0_sexo <- set_labels(proc_elsoc$m0_sexo,
                       "Mujer"=1))
 ```
 
+
 También el nombre de la variable a algo más simple:
 
 ```{r}
 proc_elsoc <- rename(proc_elsoc,"sexo"=m0_sexo)
-
 ```
+
+Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.
+
+```{r}
+get_label(proc_elsoc$sexo)
+proc_elsoc$sexo <- set_label(x = proc_elsoc$sexo,label = "Sexo")
+```
+
 
 Revisar con un nuevo descriptivo:
 
@@ -406,6 +457,13 @@ Cambio del nombre de la variable a algo más simple:
 
 ```{r}
 proc_elsoc <- rename(proc_elsoc,"edad"=m0_edad)
+```
+
+Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.
+
+```{r}
+get_label(proc_elsoc$edad)
+proc_elsoc$edad <- set_label(x = proc_elsoc$edad,label = "Edad")
 ```
 
 ## 5. Generación de base de datos procesada para el análisis
