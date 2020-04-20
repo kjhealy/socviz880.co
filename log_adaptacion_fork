@@ -56,3 +56,7 @@ pre code, pre, code {
 - publish directory: public
 - el Base directory puede quedar en blanco (not set)
 - add netlify.toml file, reemplazando las versiones de hugo donde corresponda
+- para deploy branches:
+  - en netlify, ir a settings de build&deploy, y en deploy context seleccionar branch deploy: all
+  - update en el toml lo referido a deploy branches, como aparece en este netlify.toml
+  - al hacer deploy, con una branch activa, debería entonces registrarse el deploy en el log de deploys. Para poder ver la branch online: nombre de la branch--multivariada.netilify.com
