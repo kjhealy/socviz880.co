@@ -194,7 +194,7 @@ Podemos ver que son muy largas, por lo tanto, es necesario cambiarlas por etique
 
 ## 4. Procesamiento de variables
 
-Para el procesamiento de cada variables se seguirá el siguiente flujo de trabajo:
+Para el procesamiento de cada variable se seguirá el siguiente flujo de trabajo:
 
 a. Descriptivo general
 b. Recodificación: de casos perdidos y otros valores (en caso necesario)
@@ -244,10 +244,10 @@ Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.
 
 ```{r}
 get_label(proc_elsoc$mesfuerzo)
-proc_elsoc$mesfuerzo <- set_label(x = proc_elsoc$mesfuerzo,label = "Recompenda: esfuerzo")
+proc_elsoc$mesfuerzo <- set_label(x = proc_elsoc$mesfuerzo,label = "Recompensa: esfuerzo")
 
 get_label(proc_elsoc$mtalento)
-proc_elsoc$mtalento  <- set_label(x = proc_elsoc$mtalento, label = "Recompenda: talento")
+proc_elsoc$mtalento  <- set_label(x = proc_elsoc$mtalento, label = "Recompensa: talento")
 ```
 
 
@@ -352,7 +352,7 @@ Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.
 
 ```{r}
 get_label(proc_elsoc$edcine)
-proc_elsoc$edcine <- set_label(x = proc_elsoc$edcine,label = "Educacion")
+proc_elsoc$edcine <- set_label(x = proc_elsoc$edcine,label = "Educación")
 ```
 
 
