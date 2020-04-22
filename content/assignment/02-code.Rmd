@@ -39,6 +39,7 @@ En la [Práctica 1](/assignment/01-code) se desarrolló un código de preparaci�
 
 ![](/images/produccion2.png)
 
+
 Al igual que el Código de Preparación, el Código de Análisis posee una estructura definida. En este caso son 4 partes, donde las primeras son similares al código de preparación:
 
 0. Identificación y descripción general: Título, autor(es), fecha, información breve sobre el contenido del documento
@@ -75,7 +76,7 @@ Vamos a cargar la base de datos **ELSOC_ess_merit2016.Rproc_elsoc**, que generam
 load(url("https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess_merit2016.RData")) #Cargar base de datos
 ```
 
-```{r,message=FALSE,warning=FALSE, echo=FALSE}
+```{r,message=FALSE,warning=FALSE, echo=FALSE, eval=FALSE}
 load("static/data/proc/ELSOC_ess_merit2016.RData") #Cargar base de datos
 ```
 
@@ -85,6 +86,7 @@ load("static/data/proc/ELSOC_ess_merit2016.RData") #Cargar base de datos
 names(proc_elsoc) # Muestra los nombres de las variables de la base de datos
 dim(proc_elsoc) # Dimensiones
 ```
+
 En el caso de esta base, `r dim(proc_elsoc)[1]` casos y `r dim(proc_elsoc)[2]` variables
 
 Recordando el contenido de cada variable preparada en la práctica 1:
@@ -141,12 +143,12 @@ summarytools::descr(proc_elsoc, stats="common", transpose=TRUE, headings=FALSE)
 Con esto queda lista para publicación, que se puede visualizar agregando las funciones `view` y `descr`:
 
 ```{r eval=FALSE}
-view(descr(proc_elsoc, stats="common", transpose=TRUE, headings=FALSE))
+view(summarytools::descr(proc_elsoc, stats="common", transpose=TRUE, headings=FALSE))
 ```
 Y aparece este resultado en el visor:
 
 ```{r results="asis", echo=FALSE}
-descr(proc_elsoc, stats="common", transpose=TRUE, headings=FALSE)
+summarytools::descr(proc_elsoc, stats="common", transpose=TRUE, headings=FALSE)
 ```
 
 Una segunda función de la librería `summarytools` es `dfSummary`<span class="sidenote">summarytools::dfSummary</span>, que nos ofrece una tabla aún más detallada, con gráficos para cada variable, las frecuencias para cada valor, y las etiquetas de las variables, por lo que es muy recomendable.
