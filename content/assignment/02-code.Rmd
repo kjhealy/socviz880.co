@@ -25,7 +25,7 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
-# knitr::opts_chunk$set(cache=TRUE)
+#knitr::opts_chunk$set(cache=TRUE)
 knitr::opts_knit$set(root.dir ="../../")
 
 Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
@@ -73,12 +73,12 @@ pacman::p_load(dplyr, #Manipulacion de datos
 
 Vamos a cargar la base de datos **ELSOC_ess_merit2016.Rproc_elsoc**, que generamos durante la práctica 1. Se puede llamar desde el directorio en que la guardaron dando la ruta completa, o también para esta práctica la podemos llamar directamente desde nuestro sitio web:
 
-```{r}
+```{r eval=FALSE}
 load(url("https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess_merit2016.RData")) #Cargar base de datos
 ```
 
-```{r,message=FALSE,warning=FALSE, echo=FALSE, eval=FALSE}
-load("static/data/proc/ELSOC_ess_merit2016.RData") #Cargar base de datos
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+load("content/assignment/data/proc/ELSOC_ess_merit2016.RData") #Cargar base de datos
 ```
 
 - Exploración inicial general de la base de datos
@@ -136,7 +136,7 @@ La opción básica de `descr` es la siguiente:
 sjmisc::descr(proc_elsoc)
 ```
 
-En este caso utilizamos la forma `librería::función` (`sjmisc::descr`), ya que la función `descr` también existe en otras librerías y así nos aseguramos que la función utilizada es de esa librería específica. 
+En este caso utilizamos la forma `librería::función` (`sjmisc::descr`), ya que la función `descr` también existe en otras librerías y así nos aseguramos que la función utilizada es de esa librería específica.
 
 Seleccionamos algunas columnas específicas con información más relevante con la opción `show`. Además, agregamos la función `kable` para obtener una tabla que luego sea fácilmente publicable en distintos formatos (a profundizar en una práctica posterior):
 
@@ -165,16 +165,16 @@ view(dfSummary(proc_elsoc, headings=FALSE))
 print(dfSummary(proc_elsoc, headings = FALSE), method = "render")
 ```
 
-**Nota sobre casos perdidos (NAs)**
+**Nota sobre casos perdidos (NAs)**<span class="sidenote">na.omit(data)</span>
 
-Hasta ahora hemos mantenido los casos perdidos en la base de datos, ya que son importantes de reportar en la tabla general de variables. Sin embargo, de aquí en adelante se recomienda trabajar solo con casos completos, es decir, **sacar los casos perdidos**. El procedimiento recomendado es el siguiente:
+Hasta ahora hemos mantenido los casos perdidos en la base de datos, ya que son importantes de reportar en la tabla general de variables. Sin embargo, de aquí en adelante se recomienda trabajar solo con casos completos, es decir, **sacar los casos perdidos**. El quitar los casos perdidos de una base de datos es muy simple con la función `na.omit`, pero para tomar precauciones y asegurarse que funciona se recomienda el siguiente procedimiento:
 
 - respaldar la base de datos original en el espacio de trabajo (por si queremos en adelante realizar algún análisis referido a casos perdidos), la dejaremos con el nombre proc_elsoc_original.
 - contamos el número de casos con el comando `dim`
 - contamos el número de casos perdidos con `sum(is.na(proc_elsoc))`
 - borramos los casos perdidos con `proc_elsoc <-na.omit(proc_elsoc)`
 - contamos nuevamente con `dim` para asegurarnos que se borraron
-- y por temas de funcionamiento de R, al realizar la operación de sacar casos perdidos, se borra toda la información de las etiquetas (labels), así que las recuperamos de la base original con el compando `copy_labels`, de la librería `sjlabelled`.
+- y por temas de funcionamiento de R, al realizar la operación de sacar casos perdidos, se borra toda la información de las etiquetas (labels), así que las recuperamos de la base original con el comando `copy_labels`, de la librería `sjlabelled`.
 
 ```{r}
 proc_elsoc_original <-proc_elsoc
@@ -197,7 +197,7 @@ La forma de explorar las asociaciones entre variables dependen de la naturaleza 
 
 En esta sección también es muy relevante la visualización de datos mediante gráficos, por lo que incluiremos algunos.
 
-El uso tanto de tablas como de gráficos en el reporte queda a discreción del/a autor/a. La pregunta que orienta esta decisión es: ¿Me permite enriquecer la discusión de los resultados en relación a las hipótesis planteadas?
+El uso tanto de tablas como de gráficos en el reporte queda a discreción del/a autor/a. La pregunta que orienta esta decisión es: _¿Me permite enriquecer la discusión de los resultados en relación a las hipótesis planteadas?_
 
 
 #### Tablas de contingencia para variables categóricas
@@ -302,7 +302,7 @@ corrplot.mixed(M)
 
 Este gráfico/matriz representa el grado de asociación entre variables mediante el tamaño de los círculos e intensidad de colores, y el signo de la asociación se representa con una gradiente de colores que va del azul (positivo) al rojo (negativo). Bajo la diagonal aparecen los indices de correlación entre pares de variables.
 
-Finalmente, también se puede representar la correlación entre dos variables en un gráfico de nube de puntos o scatterplot:
+Finalmente, también se puede representar la correlación entre dos variables en un gráfico de nube de puntos o scatterplot:<span class="sidenote">sjPlot::plot_scatter</span>
 
 ```{r}
 names(proc_elsoc)

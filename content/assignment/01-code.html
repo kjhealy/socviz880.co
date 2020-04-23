@@ -229,10 +229,25 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb10-8" title="8"><span class="co"># Comprobar</span></a>
 <a class="sourceLine" id="cb10-9" title="9"><span class="kw">names</span>(proc_elsoc)</a></code></pre></div>
 <pre><code>## [1] &quot;c18_09&quot;  &quot;c18_10&quot;  &quot;d01_01&quot;  &quot;m01&quot;     &quot;m0_sexo&quot; &quot;m0_edad&quot;</code></pre>
+<p>Mediante el comando <code>get_label</code> obtenemos el atributo label de las variables.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">sjlabelled<span class="op">::</span><span class="kw">get_label</span>(proc_elsoc)</a></code></pre></div>
+<pre><code>##                                                                   c18_09 
+##     &quot;Grado de acuerdo: Las personas son recompensadas por sus esfuerzos&quot; 
+##                                                                   c18_10 
+##    &quot;Grado de acuerdo: Las personas son recompensada por su inteligencia&quot; 
+##                                                                   d01_01 
+## &quot;Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena&quot; 
+##                                                                      m01 
+##                                                      &quot;Nivel educacional&quot; 
+##                                                                  m0_sexo 
+##                                                  &quot;Sexo del entrevistado&quot; 
+##                                                                  m0_edad 
+##                                                  &quot;Edad del entrevistado&quot;</code></pre>
+<p>Podemos ver que son muy largas, por lo tanto, es necesario cambiarlas por etiquetas más cortas.</p>
 </div>
 <div id="procesamiento-de-variables" class="section level2">
 <h2>4. Procesamiento de variables</h2>
-<p>Para el procesamiento de cada variables se seguirá el siguiente flujo de trabajo:</p>
+<p>Para el procesamiento de cada variable se seguirá el siguiente flujo de trabajo:</p>
 <ol style="list-style-type: lower-alpha">
 <li>Descriptivo general</li>
 <li>Recodificación: de casos perdidos y otros valores (en caso necesario)</li>
@@ -249,7 +264,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><em>a. Descriptivo</em></p>
 <p>Para los descriptivos se utilizará la función <code>frq</code>, de la librería <code>sjmisc</code>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>c18_<span class="dv">09</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>c18_<span class="dv">09</span>)</a></code></pre></div>
 <pre><code>## 
 ## Grado de acuerdo: Las personas son recompensadas por sus esfuerzos (x) &lt;numeric&gt;
 ## # total N=2927  valid N=2927  mean=-3.06  sd=71.66
@@ -263,7 +278,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##     4                     De acuerdo  646   22.07     22.07   97.34
 ##     5          Totalmente de acuerdo   78    2.66      2.66  100.00
 ##    NA                           &lt;NA&gt;    0    0.00        NA      NA</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>c18_<span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>c18_<span class="dv">10</span>)</a></code></pre></div>
 <pre><code>## 
 ## Grado de acuerdo: Las personas son recompensada por su inteligencia (x) &lt;numeric&gt;
 ## # total N=2927  valid N=2927  mean=-3.42  sd=74.36
@@ -280,23 +295,35 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>En ambas variables vemos valores asociados a la opción “No responde” (-999) y “No sabe” (-888), que corresponde definirlos como casos perdidos (en el caso de R, como casos NA). El resto de los valores y etiquetas se encuentran en orden, así que en la recodificiación solo nos haremos cargo de los casos perdidos.</p>
 <p><em>b. Recodificación</em></p>
 <p>Para recodificar utilizamos la función <code>recode</code>, de la librería <code>car</code></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">proc_elsoc<span class="op">$</span>c18_<span class="dv">09</span> &lt;-<span class="st"> </span><span class="kw">recode</span>(proc_elsoc<span class="op">$</span>c18_<span class="dv">09</span>, <span class="st">&quot;c(-888,-999)=NA&quot;</span>)</a>
-<a class="sourceLine" id="cb16-2" title="2">proc_elsoc<span class="op">$</span>c18_<span class="dv">10</span> &lt;-<span class="st"> </span><span class="kw">recode</span>(proc_elsoc<span class="op">$</span>c18_<span class="dv">10</span>, <span class="st">&quot;c(-888,-999)=NA&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">proc_elsoc<span class="op">$</span>c18_<span class="dv">09</span> &lt;-<span class="st"> </span><span class="kw">recode</span>(proc_elsoc<span class="op">$</span>c18_<span class="dv">09</span>, <span class="st">&quot;c(-888,-999)=NA&quot;</span>)</a>
+<a class="sourceLine" id="cb18-2" title="2">proc_elsoc<span class="op">$</span>c18_<span class="dv">10</span> &lt;-<span class="st"> </span><span class="kw">recode</span>(proc_elsoc<span class="op">$</span>c18_<span class="dv">10</span>, <span class="st">&quot;c(-888,-999)=NA&quot;</span>)</a></code></pre></div>
 <p><em>c - Etiquetado</em></p>
 <p>Vamos a dar un nombre más sustantivo a las variables con la función <code>rename</code>, de la librería <code>dplyr</code>:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">proc_elsoc &lt;-<span class="st"> </span>proc_elsoc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="st">&quot;mesfuerzo&quot;</span>=c18_<span class="dv">09</span>, <span class="co"># meritocracia esfuerzo</span></a>
-<a class="sourceLine" id="cb17-2" title="2">                          <span class="st">&quot;mtalento&quot;</span> =c18_<span class="dv">10</span>) <span class="co"># meritocracia talento</span></a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">proc_elsoc &lt;-<span class="st"> </span>proc_elsoc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="st">&quot;mesfuerzo&quot;</span>=c18_<span class="dv">09</span>, <span class="co"># meritocracia esfuerzo</span></a>
+<a class="sourceLine" id="cb19-2" title="2">                                    <span class="st">&quot;mtalento&quot;</span> =c18_<span class="dv">10</span>) <span class="co"># meritocracia talento</span></a></code></pre></div>
+<p>Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">get_label</span>(proc_elsoc<span class="op">$</span>mesfuerzo)</a></code></pre></div>
+<pre><code>## [1] &quot;Grado de acuerdo: Las personas son recompensadas por sus esfuerzos&quot;</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">proc_elsoc<span class="op">$</span>mesfuerzo &lt;-<span class="st"> </span><span class="kw">set_label</span>(<span class="dt">x =</span> proc_elsoc<span class="op">$</span>mesfuerzo,<span class="dt">label =</span> <span class="st">&quot;Recompensa: esfuerzo&quot;</span>)</a>
+<a class="sourceLine" id="cb22-2" title="2"></a>
+<a class="sourceLine" id="cb22-3" title="3"><span class="kw">get_label</span>(proc_elsoc<span class="op">$</span>mtalento)</a></code></pre></div>
+<pre><code>## [1] &quot;Grado de acuerdo: Las personas son recompensada por su inteligencia&quot;</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">proc_elsoc<span class="op">$</span>mtalento  &lt;-<span class="st"> </span><span class="kw">set_label</span>(<span class="dt">x =</span> proc_elsoc<span class="op">$</span>mtalento, <span class="dt">label =</span> <span class="st">&quot;Recompensa: talento&quot;</span>)</a></code></pre></div>
 <p><em>d. Otros ajustes</em></p>
 <p>Para este caso vamos a crear una variable que sea el promedio de los dos items de meritocracia.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">proc_elsoc<span class="op">$</span>pmerit &lt;-<span class="st"> </span>(proc_elsoc<span class="op">$</span>mesfuerzo<span class="op">+</span>proc_elsoc<span class="op">$</span>mtalento)<span class="op">/</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb18-2" title="2"><span class="kw">summary</span>(proc_elsoc<span class="op">$</span>pmerit)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">proc_elsoc<span class="op">$</span>pmerit &lt;-<span class="st"> </span>(proc_elsoc<span class="op">$</span>mesfuerzo<span class="op">+</span>proc_elsoc<span class="op">$</span>mtalento)<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb25-2" title="2"><span class="kw">summary</span>(proc_elsoc<span class="op">$</span>pmerit)</a></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
 ##   1.000   2.000   2.500   2.654   3.500   5.000      29</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">get_label</span>(proc_elsoc<span class="op">$</span>pmerit)</a></code></pre></div>
+<pre><code>## [1] &quot;Recompensa: esfuerzo&quot;</code></pre>
+<p>Vemos que todavía tiene la etiqueta de la variable “Recompensa: esfuerzo”</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">proc_elsoc<span class="op">$</span>pmerit  &lt;-<span class="st"> </span><span class="kw">set_label</span>(<span class="dt">x =</span> proc_elsoc<span class="op">$</span>pmerit, <span class="dt">label =</span> <span class="st">&quot;Meritocracia promedio&quot;</span>)</a></code></pre></div>
 <p><em>Revisión final</em></p>
 <p>Nuevamente un descriptivo de cada variable para confirmar que el procesamiento está ok:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>mesfuerzo)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>mesfuerzo)</a></code></pre></div>
 <pre><code>## 
-## Grado de acuerdo: Las personas son recompensadas por sus esfuerzos (x) &lt;numeric&gt;
+## Recompensa: esfuerzo (x) &lt;numeric&gt;
 ## # total N=2927  valid N=2909  mean=2.57  sd=1.05
 ## 
 ##   val                          label  frq raw.prc valid.prc cum.prc
@@ -308,9 +335,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##     4                     De acuerdo  646   22.07     22.21   97.32
 ##     5          Totalmente de acuerdo   78    2.66      2.68  100.00
 ##    NA                           &lt;NA&gt;   18    0.61        NA      NA</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>mtalento)</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>mtalento)</a></code></pre></div>
 <pre><code>## 
-## Grado de acuerdo: Las personas son recompensada por su inteligencia (x) &lt;numeric&gt;
+## Recompensa: talento (x) &lt;numeric&gt;
 ## # total N=2927  valid N=2907  mean=2.74  sd=1.06
 ## 
 ##   val                          label  frq raw.prc valid.prc cum.prc
@@ -322,9 +349,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##     4                     De acuerdo  814   27.81     28.00   97.14
 ##     5          Totalmente de acuerdo   83    2.84      2.86  100.00
 ##    NA                           &lt;NA&gt;   20    0.68        NA      NA</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>pmerit)</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>pmerit)</a></code></pre></div>
 <pre><code>## 
-## Grado de acuerdo: Las personas son recompensadas por sus esfuerzos (x) &lt;numeric&gt;
+## Meritocracia promedio (x) &lt;numeric&gt;
 ## # total N=2927  valid N=2898  mean=2.65  sd=0.97
 ## 
 ##     val                          label  frq raw.prc valid.prc cum.prc
@@ -346,7 +373,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>[<code>m01</code>] = ¿Cuál es su nivel educacional? Indique el tipo de estudio actual (si estudia actualmente) o el último tipo aprobado (si no estudia actualmente).</li>
 </ul>
 <p><em>a. Descriptivo</em></p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>m01)</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>m01)</a></code></pre></div>
 <pre><code>## 
 ## Nivel educacional (x) &lt;numeric&gt;
 ## # total N=2927  valid N=2927  mean=4.57  sd=26.34
@@ -369,7 +396,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Datos perdidos:</li>
 </ul>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">proc_elsoc<span class="op">$</span>m01 &lt;-<span class="st"> </span><span class="kw">recode</span>(proc_elsoc<span class="op">$</span>m01, <span class="st">&quot;c(-888,-999)=NA&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">proc_elsoc<span class="op">$</span>m01 &lt;-<span class="st"> </span><span class="kw">recode</span>(proc_elsoc<span class="op">$</span>m01, <span class="st">&quot;c(-888,-999)=NA&quot;</span>)</a></code></pre></div>
 <ul>
 <li>Valores</li>
 </ul>
@@ -384,10 +411,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 8.  Universitaria incompleta                    = [CINE 6   ] =  5
 9.  Universitaria completa                      = [CINE 6   ] =  6
 10. Estudios de posgrado (magister o doctorado) = [CINE 7, 8] =  6</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># recodificacion usando funcion &#39;recode&#39; de la libreria car</span></a>
-<a class="sourceLine" id="cb30-2" title="2">proc_elsoc<span class="op">$</span>m01 &lt;-<span class="st"> </span>car<span class="op">::</span><span class="kw">recode</span>(proc_elsoc<span class="op">$</span>m01, <span class="st">&quot;c(1,2)=1; c(3)=2;c(4,5)=3;c(6,7)=4;c(8,9,10)=5&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># recodificacion usando funcion &#39;recode&#39; de la libreria car</span></a>
+<a class="sourceLine" id="cb40-2" title="2">proc_elsoc<span class="op">$</span>m01 &lt;-<span class="st"> </span>car<span class="op">::</span><span class="kw">recode</span>(proc_elsoc<span class="op">$</span>m01, <span class="st">&quot;c(1,2)=1; c(3)=2;c(4,5)=3;c(6,7)=4;c(8,9,10)=5&quot;</span>)</a></code></pre></div>
 <p>Comprobar con un nuevo descriptivo:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>m01)</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>m01)</a></code></pre></div>
 <pre><code>## 
 ## Nivel educacional (x) &lt;numeric&gt;
 ## # total N=2927  valid N=2925  mean=3.18  sd=1.21
@@ -423,14 +450,18 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>Se observa que los valores coinciden con la recodificación (los casos se acumulan entre las categorías 1 y 5), pero las etiquetas ahora no coinciden; se soluciona en el siguiente paso.</p>
 <p><em>c. Etiquetado</em></p>
 <p>Para re-etiquetar valores usamos la función <code>set_labels</code>, de la librería <code>sjlabelled</code></p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">proc_elsoc<span class="op">$</span>m01 &lt;-<span class="st"> </span><span class="kw">set_labels</span>(proc_elsoc<span class="op">$</span>m01,</a>
-<a class="sourceLine" id="cb33-2" title="2">            <span class="dt">labels=</span><span class="kw">c</span>( <span class="st">&quot;Primaria incompleta menos&quot;</span>=<span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb33-3" title="3">                      <span class="st">&quot;Primaria y secundaria baja&quot;</span>=<span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb33-4" title="4">                      <span class="st">&quot;Secundaria alta&quot;</span>=<span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb33-5" title="5">                      <span class="st">&quot;Terciaria ciclo corto&quot;</span>=<span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb33-6" title="6">                      <span class="st">&quot;Terciaria y Postgrado&quot;</span>=<span class="dv">5</span>))</a></code></pre></div>
-<p>Y finalmente renombramos la variable con un nombre más sustantivo</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">proc_elsoc &lt;-<span class="st"> </span><span class="kw">rename</span>(proc_elsoc,<span class="st">&quot;edcine&quot;</span>=m01)</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">proc_elsoc<span class="op">$</span>m01 &lt;-<span class="st"> </span><span class="kw">set_labels</span>(proc_elsoc<span class="op">$</span>m01,</a>
+<a class="sourceLine" id="cb43-2" title="2">            <span class="dt">labels=</span><span class="kw">c</span>( <span class="st">&quot;Primaria incompleta menos&quot;</span>=<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb43-3" title="3">                      <span class="st">&quot;Primaria y secundaria baja&quot;</span>=<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb43-4" title="4">                      <span class="st">&quot;Secundaria alta&quot;</span>=<span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb43-5" title="5">                      <span class="st">&quot;Terciaria ciclo corto&quot;</span>=<span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb43-6" title="6">                      <span class="st">&quot;Terciaria y Postgrado&quot;</span>=<span class="dv">5</span>))</a></code></pre></div>
+<p>Luego renombramos la variable con un nombre más sustantivo</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">proc_elsoc &lt;-<span class="st"> </span><span class="kw">rename</span>(proc_elsoc,<span class="st">&quot;edcine&quot;</span>=m01)</a></code></pre></div>
+<p>Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="kw">get_label</span>(proc_elsoc<span class="op">$</span>edcine)</a></code></pre></div>
+<pre><code>## [1] &quot;Nivel educacional&quot;</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1">proc_elsoc<span class="op">$</span>edcine &lt;-<span class="st"> </span><span class="kw">set_label</span>(<span class="dt">x =</span> proc_elsoc<span class="op">$</span>edcine,<span class="dt">label =</span> <span class="st">&quot;Educación&quot;)</span></a></code></pre></div>
 </div>
 </div>
 <div id="estatus-subjetivo" class="section level3">
@@ -439,8 +470,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>[<code>d01_01</code>]: “Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena” (0 = el nivel mas bajo; 10 = el nivel mas alto)</li>
 </ul>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>d01_<span class="dv">01</span>)</a>
-<a class="sourceLine" id="cb35-2" title="2"><span class="kw">summary</span>(proc_elsoc<span class="op">$</span>d01_<span class="dv">01</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>d01_<span class="dv">01</span>)</a>
+<a class="sourceLine" id="cb48-2" title="2"><span class="kw">summary</span>(proc_elsoc<span class="op">$</span>d01_<span class="dv">01</span>)</a></code></pre></div>
 <pre><code>## 
 ## Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena (x) &lt;numeric&gt;
 ## # total N=2927  valid N=2927  mean=0.63  sd=57.67
@@ -464,12 +495,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
 ## -999.0000    3.0000    5.0000    0.6338    5.0000   10.0000</code></pre>
 <p><em>b. Recodificación</em></p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">proc_elsoc<span class="op">$</span>d01_<span class="dv">01</span> &lt;-<span class="st"> </span><span class="kw">recode</span>(proc_elsoc<span class="op">$</span>d01_<span class="dv">01</span>, <span class="st">&quot;c(-888,-999)=NA&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1">proc_elsoc<span class="op">$</span>d01_<span class="dv">01</span> &lt;-<span class="st"> </span><span class="kw">recode</span>(proc_elsoc<span class="op">$</span>d01_<span class="dv">01</span>, <span class="st">&quot;c(-888,-999)=NA&quot;</span>)</a></code></pre></div>
 <p><em>c. Etiquetado</em></p>
 <ul>
 <li>Cambio de nombre de variable a etiqueta más sustantiva ess (estatus social subjetivo)</li>
 </ul>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">proc_elsoc &lt;-<span class="st"> </span>proc_elsoc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="st">&quot;ess&quot;</span>=d01_<span class="dv">01</span>) <span class="co"># estatus social subjetivo</span></a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1">proc_elsoc &lt;-<span class="st"> </span>proc_elsoc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="st">&quot;ess&quot;</span>=d01_<span class="dv">01</span>) <span class="co"># estatus social subjetivo</span></a></code></pre></div>
+<p>Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="kw">get_label</span>(proc_elsoc<span class="op">$</span>ess)</a></code></pre></div>
+<pre><code>## [1] &quot;Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena&quot;</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1">proc_elsoc<span class="op">$</span>ess &lt;-<span class="st"> </span><span class="kw">set_label</span>(<span class="dt">x =</span> proc_elsoc<span class="op">$</span>ess,<span class="dt">label =</span> <span class="st">&quot;Estatus Social Subjetivo&quot;</span>)</a></code></pre></div>
 </div>
 <div id="sexo" class="section level3">
 <h3>4.4. Sexo</h3>
@@ -477,7 +512,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>[<code>m0_sexo</code>] = Indicar el sexo del entrevistado.</li>
 </ul>
 <p><em>a. Descriptivo</em></p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>m0_sexo)</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>m0_sexo)</a></code></pre></div>
 <pre><code>## 
 ## Sexo del entrevistado (x) &lt;numeric&gt;
 ## # total N=2927  valid N=2927  mean=1.60  sd=0.49
@@ -488,18 +523,22 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##   NA   &lt;NA&gt;    0    0.00        NA      NA</code></pre>
 <p><em>b. Recodificación</em></p>
 <p>En general esta variable no tiene problemas de casos perdidos ni de etiquetas, pero de todas maneras vamos a hacer un cambio de acuerdo a convenciones en análisis de datos, donde por lo general hombres tienen valor 0 y mujeres 1:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">proc_elsoc<span class="op">$</span>m0_sexo &lt;-<span class="st"> </span>car<span class="op">::</span><span class="kw">recode</span>(proc_elsoc<span class="op">$</span>m0_sexo, <span class="st">&quot;1=0;2=1&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1">proc_elsoc<span class="op">$</span>m0_sexo &lt;-<span class="st"> </span>car<span class="op">::</span><span class="kw">recode</span>(proc_elsoc<span class="op">$</span>m0_sexo, <span class="st">&quot;1=0;2=1&quot;</span>)</a></code></pre></div>
 <p><em>c. Etiquetado</em></p>
 <p>Y ahora cambiamos las etiquetas de acuerdo a la recodificación anterior:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">proc_elsoc<span class="op">$</span>m0_sexo &lt;-<span class="st"> </span><span class="kw">set_labels</span>(proc_elsoc<span class="op">$</span>m0_sexo,</a>
-<a class="sourceLine" id="cb42-2" title="2">            <span class="dt">labels=</span><span class="kw">c</span>( <span class="st">&quot;Hombre&quot;</span>=<span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb42-3" title="3">                      <span class="st">&quot;Mujer&quot;</span>=<span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1">proc_elsoc<span class="op">$</span>m0_sexo &lt;-<span class="st"> </span><span class="kw">set_labels</span>(proc_elsoc<span class="op">$</span>m0_sexo,</a>
+<a class="sourceLine" id="cb58-2" title="2">            <span class="dt">labels=</span><span class="kw">c</span>( <span class="st">&quot;Hombre&quot;</span>=<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb58-3" title="3">                      <span class="st">&quot;Mujer&quot;</span>=<span class="dv">1</span>))</a></code></pre></div>
 <p>También el nombre de la variable a algo más simple:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">proc_elsoc &lt;-<span class="st"> </span><span class="kw">rename</span>(proc_elsoc,<span class="st">&quot;sexo&quot;</span>=m0_sexo)</a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1">proc_elsoc &lt;-<span class="st"> </span><span class="kw">rename</span>(proc_elsoc,<span class="st">&quot;sexo&quot;</span>=m0_sexo)</a></code></pre></div>
+<p>Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="kw">get_label</span>(proc_elsoc<span class="op">$</span>sexo)</a></code></pre></div>
+<pre><code>## [1] &quot;Sexo del entrevistado&quot;</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1">proc_elsoc<span class="op">$</span>sexo &lt;-<span class="st"> </span><span class="kw">set_label</span>(<span class="dt">x =</span> proc_elsoc<span class="op">$</span>sexo,<span class="dt">label =</span> <span class="st">&quot;Sexo&quot;</span>)</a></code></pre></div>
 <p>Revisar con un nuevo descriptivo:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>sexo)</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>sexo)</a></code></pre></div>
 <pre><code>## 
-## Sexo del entrevistado (x) &lt;numeric&gt;
+## Sexo (x) &lt;numeric&gt;
 ## # total N=2927  valid N=2927  mean=0.60  sd=0.49
 ## 
 ##  val  label  frq raw.prc valid.prc cum.prc
@@ -513,7 +552,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>[<code>m0_edad</code>] = ¿Cuáles su edad? (años cumplidos).</li>
 </ul>
 <p><em>a. Descriptivo</em></p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>m0_edad)</a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="kw">frq</span>(proc_elsoc<span class="op">$</span>m0_edad)</a></code></pre></div>
 <pre><code>## 
 ## Edad del entrevistado (x) &lt;numeric&gt;
 ## # total N=2927  valid N=2927  mean=46.09  sd=15.29
@@ -588,13 +627,17 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p><em>b. Recodificación</em>: no es necesario en este caso</p>
 <p><em>c. Etiquetado</em></p>
 <p>Cambio del nombre de la variable a algo más simple:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1">proc_elsoc &lt;-<span class="st"> </span><span class="kw">rename</span>(proc_elsoc,<span class="st">&quot;edad&quot;</span>=m0_edad)</a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1">proc_elsoc &lt;-<span class="st"> </span><span class="kw">rename</span>(proc_elsoc,<span class="st">&quot;edad&quot;</span>=m0_edad)</a></code></pre></div>
+<p>Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="kw">get_label</span>(proc_elsoc<span class="op">$</span>edad)</a></code></pre></div>
+<pre><code>## [1] &quot;Edad del entrevistado&quot;</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1">proc_elsoc<span class="op">$</span>edad &lt;-<span class="st"> </span><span class="kw">set_label</span>(<span class="dt">x =</span> proc_elsoc<span class="op">$</span>edad,<span class="dt">label =</span> <span class="st">&quot;Edad&quot;</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="generación-de-base-de-datos-procesada-para-el-análisis" class="section level2">
 <h2>5. Generación de base de datos procesada para el análisis</h2>
 <p>Antes de guardar la base procesada, revisamos nuevamente todas las variables con una tabla descriptiva general mediante la función <code>stargazer</code> (de la librería homónima)</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1"><span class="kw">stargazer</span>(proc_elsoc, <span class="dt">type=</span><span class="st">&quot;text&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="kw">stargazer</span>(proc_elsoc, <span class="dt">type=</span><span class="st">&quot;text&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ## ==============================================================
 ## Statistic   N    Mean  St. Dev.  Min  Pctl(25) Pctl(75)  Max  
@@ -610,8 +653,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Guardar base de datos procesada: en carpeta local</li>
 </ul>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="kw">save</span>(proc_elsoc,<span class="dt">file =</span> <span class="st">&quot;[ruta hacia carpeta local/ELSOC_ess_merit2016.RData&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="kw">save</span>(proc_elsoc,<span class="dt">file =</span> <span class="st">&quot;[ruta hacia carpeta local/ELSOC_ess_merit2016.RData&quot;</span>)</a></code></pre></div>
 <p>En este caso, seguimos una estructura de carpetas de datos, separando en una carpeta los datos originales, y en otra (proc) los datos procesados:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="kw">save</span>(proc_elsoc,<span class="dt">file =</span> <span class="st">&quot;data/proc/ELSOC_ess_merit2016.RData&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1"><span class="kw">save</span>(proc_elsoc,<span class="dt">file =</span> <span class="st">&quot;content/assignment/data/proc/ELSOC_ess_merit2016.RData&quot;</span>)</a></code></pre></div>
 </div>
 </div>

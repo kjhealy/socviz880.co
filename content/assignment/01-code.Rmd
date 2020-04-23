@@ -24,6 +24,7 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir ="../../")
 knitr::opts_chunk$set(cache = TRUE)
 ```
 
@@ -191,7 +192,7 @@ Mediante el comando `get_label` obtenemos el atributo label de las variables.
 sjlabelled::get_label(proc_elsoc)
 ```
 
-Podemos ver que son muy largas, por lo tanto, es necesario cambiarlas por etiquetas más cortas. 
+Podemos ver que son muy largas, por lo tanto, es necesario cambiarlas por etiquetas más cortas.
 
 ## 4. Procesamiento de variables
 
@@ -262,7 +263,7 @@ summary(proc_elsoc$pmerit)
 ```
 
 ```{r}
-get_label(proc_elsoc$pmerit) 
+get_label(proc_elsoc$pmerit)
 ```
 
 Vemos que todavía tiene la etiqueta de la variable "Recompensa: esfuerzo"
@@ -464,7 +465,7 @@ Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.
 
 ```{r}
 get_label(proc_elsoc$edad)
-proc_elsoc$edad <- set_label(x = proc_elsoc$edad,label = "Edad") 
+proc_elsoc$edad <- set_label(x = proc_elsoc$edad,label = "Edad")
 ```
 
 ## 5. Generación de base de datos procesada para el análisis
@@ -486,5 +487,5 @@ En este caso, seguimos una estructura de carpetas de datos, separando en una car
 
 
 ```{r}
-save(proc_elsoc,file = "data/proc/ELSOC_ess_merit2016.RData")
+save(proc_elsoc,file = "content/assignment/data/proc/ELSOC_ess_merit2016.RData")
 ```

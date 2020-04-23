@@ -242,7 +242,7 @@
     
       <meta property="article:published_time" content="2020-01-10T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2020-04-23T11:14:15-04:00">
+    <meta property="article:modified_time" content="2020-04-23T11:33:20-04:00">
   
 
   
@@ -736,46 +736,28 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 
 ## ## Basic descriptive statistics
 ## 
-##        var    type
-##  mesfuerzo numeric
-##   mtalento numeric
-##        ess numeric
-##     edcine numeric
-##       sexo numeric
-##       edad numeric
-##     pmerit numeric
-##                                                                   label    n
-##      Grado de acuerdo: Las personas son recompensadas por sus esfuerzos 2909
-##     Grado de acuerdo: Las personas son recompensada por su inteligencia 2907
-##  Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena 2915
-##                                                       Nivel educacional 2925
-##                                                   Sexo del entrevistado 2927
-##                                                   Edad del entrevistado 2927
-##      Grado de acuerdo: Las personas son recompensadas por sus esfuerzos 2898
-##  NA.prc  mean    sd   se   md trimmed      range  skew
-##    0.61  2.57  1.05 0.02  2.0    2.56    4 (1-5)  0.42
-##    0.68  2.74  1.06 0.02  3.0    2.76    4 (1-5)  0.18
-##    0.41  4.33  1.57 0.03  5.0    4.36  10 (0-10) -0.01
-##    0.07  3.18  1.21 0.02  3.0    3.23    4 (1-5) -0.15
-##    0.00  0.60  0.49 0.01  1.0    0.63    1 (0-1) -0.42
-##    0.00 46.09 15.29 0.28 46.0   45.90 70 (18-88)  0.07
-##    0.99  2.65  0.97 0.02  2.5    2.66    4 (1-5)  0.26</code></pre>
+##        var    type                    label    n NA.prc  mean    sd   se   md
+##  mesfuerzo numeric     Recompensa: esfuerzo 2909   0.61  2.57  1.05 0.02  2.0
+##   mtalento numeric      Recompensa: talento 2907   0.68  2.74  1.06 0.02  3.0
+##        ess numeric Estatus Social Subjetivo 2915   0.41  4.33  1.57 0.03  5.0
+##     edcine numeric                Educación 2925   0.07  3.18  1.21 0.02  3.0
+##       sexo numeric                     Sexo 2927   0.00  0.60  0.49 0.01  1.0
+##       edad numeric                     Edad 2927   0.00 46.09 15.29 0.28 46.0
+##     pmerit numeric    Meritocracia promedio 2898   0.99  2.65  0.97 0.02  2.5
+##  trimmed      range  skew
+##     2.56    4 (1-5)  0.42
+##     2.76    4 (1-5)  0.18
+##     4.36  10 (0-10) -0.01
+##     3.23    4 (1-5) -0.15
+##     0.63    1 (0-1) -0.42
+##    45.90 70 (18-88)  0.07
+##     2.66    4 (1-5)  0.26</code></pre>
 <p>En este caso utilizamos la forma <code>librería::función</code> (<code>sjmisc::descr</code>), ya que la función <code>descr</code> también existe en otras librerías y así nos aseguramos que la función utilizada es de esa librería específica.</p>
 <p>Seleccionamos algunas columnas específicas con información más relevante con la opción <code>show</code>. Además, agregamos la función <code>kable</code> para obtener una tabla que luego sea fácilmente publicable en distintos formatos (a profundizar en una práctica posterior):</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">sjmisc<span class="op">::</span><span class="kw">descr</span>(proc_elsoc,</a>
 <a class="sourceLine" id="cb11-2" title="2">      <span class="dt">show =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>,<span class="st">&quot;range&quot;</span>, <span class="st">&quot;mean&quot;</span>, <span class="st">&quot;sd&quot;</span>, <span class="st">&quot;NA.prc&quot;</span>, <span class="st">&quot;n&quot;</span>))<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb11-3" title="3"><span class="st">      </span><span class="kw">kable</span>(.,<span class="st">&quot;markdown&quot;</span>)</a></code></pre></div>
 <table>
-<colgroup>
-<col width="2%" />
-<col width="7%" />
-<col width="53%" />
-<col width="3%" />
-<col width="7%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th align="left"></th>
@@ -792,7 +774,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td align="left">4</td>
 <td align="left">mesfuerzo</td>
-<td align="left">Grado de acuerdo: Las personas son recompensadas por sus esfuerzos</td>
+<td align="left">Recompensa: esfuerzo</td>
 <td align="right">2909</td>
 <td align="right">0.6149641</td>
 <td align="right">2.5727054</td>
@@ -802,7 +784,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <tr class="even">
 <td align="left">5</td>
 <td align="left">mtalento</td>
-<td align="left">Grado de acuerdo: Las personas son recompensada por su inteligencia</td>
+<td align="left">Recompensa: talento</td>
 <td align="right">2907</td>
 <td align="right">0.6832935</td>
 <td align="right">2.7389061</td>
@@ -812,7 +794,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td align="left">3</td>
 <td align="left">ess</td>
-<td align="left">Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena</td>
+<td align="left">Estatus Social Subjetivo</td>
 <td align="right">2915</td>
 <td align="right">0.4099761</td>
 <td align="right">4.3300172</td>
@@ -822,7 +804,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <tr class="even">
 <td align="left">2</td>
 <td align="left">edcine</td>
-<td align="left">Nivel educacional</td>
+<td align="left">Educación</td>
 <td align="right">2925</td>
 <td align="right">0.0683293</td>
 <td align="right">3.1839316</td>
@@ -832,7 +814,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td align="left">7</td>
 <td align="left">sexo</td>
-<td align="left">Sexo del entrevistado</td>
+<td align="left">Sexo</td>
 <td align="right">2927</td>
 <td align="right">0.0000000</td>
 <td align="right">0.6026648</td>
@@ -842,7 +824,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <tr class="even">
 <td align="left">1</td>
 <td align="left">edad</td>
-<td align="left">Edad del entrevistado</td>
+<td align="left">Edad</td>
 <td align="right">2927</td>
 <td align="right">0.0000000</td>
 <td align="right">46.0908780</td>
@@ -852,7 +834,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td align="left">6</td>
 <td align="left">pmerit</td>
-<td align="left">Grado de acuerdo: Las personas son recompensadas por sus esfuerzos</td>
+<td align="left">Meritocracia promedio</td>
 <td align="right">2898</td>
 <td align="right">0.9907755</td>
 <td align="right">2.6538992</td>
@@ -870,55 +852,55 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## **Dimensions:** 2927 x 7  
 ## **Duplicates:** 396  
 ## 
-## ---------------------------------------------------------------------------------------------------------------------------------------------------
-## No   Variable     Label                                 Stats / Values             Freqs (% of Valid)     Graph                Valid      Missing  
-## ---- ------------ ------------------------------------- -------------------------- ---------------------- -------------------- ---------- ---------
-## 1    mesfuerzo\   Grado de acuerdo: Las personas son    Mean (sd) : 2.6 (1)\       1 :  357 (12.3%)\      II \                 2909\      18\      
-##      [numeric]    recompensadas por sus esfuerzos       min &lt; med &lt; max:\          2 : 1331 (45.8%)\      IIIIIIIII \          (99.39%)   (0.61%)  
-##                                                         1 &lt; 2 &lt; 5\                 3 :  497 (17.1%)\      III \                                    
-##                                                         IQR (CV) : 1 (0.4)         4 :  646 (22.2%)\      IIII \                                   
-##                                                                                    5 :   78 ( 2.7%)                                                
+## ----------------------------------------------------------------------------------------------------------------------------------------
+## No   Variable     Label                      Stats / Values             Freqs (% of Valid)     Graph                Valid      Missing  
+## ---- ------------ -------------------------- -------------------------- ---------------------- -------------------- ---------- ---------
+## 1    mesfuerzo\   Recompensa: esfuerzo       Mean (sd) : 2.6 (1)\       1 :  357 (12.3%)\      II \                 2909\      18\      
+##      [numeric]                               min &lt; med &lt; max:\          2 : 1331 (45.8%)\      IIIIIIIII \          (99.39%)   (0.61%)  
+##                                              1 &lt; 2 &lt; 5\                 3 :  497 (17.1%)\      III \                                    
+##                                              IQR (CV) : 1 (0.4)         4 :  646 (22.2%)\      IIII \                                   
+##                                                                         5 :   78 ( 2.7%)                                                
 ## 
-## 2    mtalento\    Grado de acuerdo: Las personas son    Mean (sd) : 2.7 (1.1)\     1 :  288 ( 9.9%)\      I \                  2907\      20\      
-##      [numeric]    recompensada por su inteligencia      min &lt; med &lt; max:\          2 : 1163 (40.0%)\      IIIIIIII \           (99.32%)   (0.68%)  
-##                                                         1 &lt; 3 &lt; 5\                 3 :  559 (19.2%)\      III \                                    
-##                                                         IQR (CV) : 2 (0.4)         4 :  814 (28.0%)\      IIIII \                                  
-##                                                                                    5 :   83 ( 2.9%)                                                
+## 2    mtalento\    Recompensa: talento        Mean (sd) : 2.7 (1.1)\     1 :  288 ( 9.9%)\      I \                  2907\      20\      
+##      [numeric]                               min &lt; med &lt; max:\          2 : 1163 (40.0%)\      IIIIIIII \           (99.32%)   (0.68%)  
+##                                              1 &lt; 3 &lt; 5\                 3 :  559 (19.2%)\      III \                                    
+##                                              IQR (CV) : 2 (0.4)         4 :  814 (28.0%)\      IIIII \                                  
+##                                                                         5 :   83 ( 2.9%)                                                
 ## 
-## 3    ess\         Estatus Social Subjetivo: Donde se    Mean (sd) : 4.3 (1.6)\     11 distinct values     \                    2915\      12\      
-##      [numeric]    ubicaria ud. en la sociedad chilena   min &lt; med &lt; max:\                                 \ \ \ \ \ \ \ \ :\   (99.59%)   (0.41%)  
-##                                                         0 &lt; 5 &lt; 10\                                       \ \ \ \ \ \ . :\                         
-##                                                         IQR (CV) : 2 (0.4)                                \ \ \ \ . : :\                           
-##                                                                                                           \ \ \ \ : : : .\                         
-##                                                                                                           . : : : : : .                            
+## 3    ess\         Estatus Social Subjetivo   Mean (sd) : 4.3 (1.6)\     11 distinct values     \                    2915\      12\      
+##      [numeric]                               min &lt; med &lt; max:\                                 \ \ \ \ \ \ \ \ :\   (99.59%)   (0.41%)  
+##                                              0 &lt; 5 &lt; 10\                                       \ \ \ \ \ \ . :\                         
+##                                              IQR (CV) : 2 (0.4)                                \ \ \ \ . : :\                           
+##                                                                                                \ \ \ \ : : : .\                         
+##                                                                                                . : : : : : .                            
 ## 
-## 4    edcine\      Nivel educacional                     Mean (sd) : 3.2 (1.2)\     1 :  359 (12.3%)\      II \                 2925\      2\       
-##      [numeric]                                          min &lt; med &lt; max:\          2 :  297 (10.2%)\      II \                 (99.93%)   (0.07%)  
-##                                                         1 &lt; 3 &lt; 5\                 3 : 1251 (42.8%)\      IIIIIIII \                               
-##                                                         IQR (CV) : 1 (0.4)         4 :  483 (16.5%)\      III \                                    
-##                                                                                    5 :  535 (18.3%)       III                                      
+## 4    edcine\      Educación                  Mean (sd) : 3.2 (1.2)\     1 :  359 (12.3%)\      II \                 2925\      2\       
+##      [numeric]                               min &lt; med &lt; max:\          2 :  297 (10.2%)\      II \                 (99.93%)   (0.07%)  
+##                                              1 &lt; 3 &lt; 5\                 3 : 1251 (42.8%)\      IIIIIIII \                               
+##                                              IQR (CV) : 1 (0.4)         4 :  483 (16.5%)\      III \                                    
+##                                                                         5 :  535 (18.3%)       III                                      
 ## 
-## 5    sexo\        Sexo del entrevistado                 Min  : 0\                  0 : 1163 (39.7%)\      IIIIIII \            2927\      0\       
-##      [numeric]                                          Mean : 0.6\                1 : 1764 (60.3%)       IIIIIIIIIIII         (100%)     (0%)     
-##                                                         Max  : 1                                                                                   
+## 5    sexo\        Sexo                       Min  : 0\                  0 : 1163 (39.7%)\      IIIIIII \            2927\      0\       
+##      [numeric]                               Mean : 0.6\                1 : 1764 (60.3%)       IIIIIIIIIIII         (100%)     (0%)     
+##                                              Max  : 1                                                                                   
 ## 
-## 6    edad\        Edad del entrevistado                 Mean (sd) : 46.1 (15.3)\   63 distinct values     \                    2927\      0\       
-##      [numeric]                                          min &lt; med &lt; max:\                                 \ \ . . . : :\       (100%)     (0%)     
-##                                                         18 &lt; 46 &lt; 88\                                     . : : : : : .\                           
-##                                                         IQR (CV) : 25 (0.3)                               : : : : : : : :\                         
-##                                                                                                           : : : : : : : :\                         
-##                                                                                                           : : : : : : : : .                        
+## 6    edad\        Edad                       Mean (sd) : 46.1 (15.3)\   63 distinct values     \                    2927\      0\       
+##      [numeric]                               min &lt; med &lt; max:\                                 \ \ . . . : :\       (100%)     (0%)     
+##                                              18 &lt; 46 &lt; 88\                                     . : : : : : .\                           
+##                                              IQR (CV) : 25 (0.3)                               : : : : : : : :\                         
+##                                                                                                : : : : : : : :\                         
+##                                                                                                : : : : : : : : .                        
 ## 
-## 7    pmerit\      Grado de acuerdo: Las personas son    Mean (sd) : 2.7 (1)\       1.00 :  243 ( 8.4%)\   I \                  2898\      29\      
-##      [numeric]    recompensadas por sus esfuerzos       min &lt; med &lt; max:\          1.50 :   79 ( 2.7%)\   \                    (99.01%)   (0.99%)  
-##                                                         1 &lt; 2.5 &lt; 5\               2.00 : 1041 (35.9%)\   IIIIIII \                                
-##                                                         IQR (CV) : 1.5 (0.4)       2.50 :  222 ( 7.7%)\   I \                                      
-##                                                                                    3.00 :  536 (18.5%)\   III \                                    
-##                                                                                    3.50 :  169 ( 5.8%)\   I \                                      
-##                                                                                    4.00 :  528 (18.2%)\   III \                                    
-##                                                                                    4.50 :   38 ( 1.3%)\   \                                        
-##                                                                                    5.00 :   42 ( 1.5%)                                             
-## ---------------------------------------------------------------------------------------------------------------------------------------------------</code></pre>
+## 7    pmerit\      Meritocracia promedio      Mean (sd) : 2.7 (1)\       1.00 :  243 ( 8.4%)\   I \                  2898\      29\      
+##      [numeric]                               min &lt; med &lt; max:\          1.50 :   79 ( 2.7%)\   \                    (99.01%)   (0.99%)  
+##                                              1 &lt; 2.5 &lt; 5\               2.00 : 1041 (35.9%)\   IIIIIII \                                
+##                                              IQR (CV) : 1.5 (0.4)       2.50 :  222 ( 7.7%)\   I \                                      
+##                                                                         3.00 :  536 (18.5%)\   III \                                    
+##                                                                         3.50 :  169 ( 5.8%)\   I \                                      
+##                                                                         4.00 :  528 (18.2%)\   III \                                    
+##                                                                         4.50 :   38 ( 1.3%)\   \                                        
+##                                                                         5.00 :   42 ( 1.5%)                                             
+## ----------------------------------------------------------------------------------------------------------------------------------------</code></pre>
 <p>Es muy ancha para visualizar bien en la consola de R, pero en su versión más definitiva de publicación se verá así:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">view</span>(<span class="kw">dfSummary</span>(proc_elsoc, <span class="dt">headings=</span><span class="ot">FALSE</span>))</a></code></pre></div>
 <div class="container st-container">
@@ -940,14 +922,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <td align="center">1</td>
       <td align="left">mesfuerzo
 [numeric]</td>
-      <td align="left">Grado de acuerdo: Las personas son
-recompensadas por sus esfuerzos</td>
+      <td align="left">Recompensa: esfuerzo</td>
       <td align="left">Mean (sd) : 2.6 (1)
 min < med < max:
 1 < 2 < 5
 IQR (CV) : 1 (0.4)</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">357</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">12.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">2</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1331</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">45.8%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">3</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">497</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">17.1%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">4</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">646</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">22.2%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">5</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">78</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">2.7%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFEAAACACAQAAADZ5E03AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg5B6m83AAABFUlEQVR42u3bQQrCQBBEUUdyQXd6Qt15RF0JPYEQnfS0VfD/KiLig86ATbC9Tuqd/w2AWNMSX9y/ujGvbT4rfsXSv3XZ/fBzvm+VwaAhQlQJIkSVIEJUCSJElQyIq8Wg/mf/fi1uVDprf1yvDAZtQOzuxYfMpG9h0j/v0RX1h9Zg0BAhqgQRokoQIaoEEaJKEDNi1R9mhWuDQRsQD6/68x+gH1z1K46XwaAhQlQJIkSVIEJUCSJElSBmxKo/zArXBoM2IKY/1c9f/ZOf6s84bgaDhghRJYgQVYIIUSWIEFWCmBGr/jArXBsM2oC4sepX/Nl9iPhZ9bUOjcGgIUJUCSJElSBCVAkiRJUMiG57tGYGg4aY0Rtush1/8WudRQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yM1QxNTozMDoxNCswMDowMDknX8wAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjNUMTU6MzA6MTQrMDA6MDBIeudwAAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFEAAACACAQAAADZ5E03AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcSCQZeTFOwAAABFUlEQVR42u3bQQrCQBBEUUdyQXd6Qt15RF0JPYEQnfS0VfD/KiLig86ATbC9Tuqd/w2AWNMSX9y/ujGvbT4rfsXSv3XZ/fBzvm+VwaAhQlQJIkSVIEJUCSJElQyIq8Wg/mf/fi1uVDprf1yvDAZtQOzuxYfMpG9h0j/v0RX1h9Zg0BAhqgQRokoQIaoEEaJKEDNi1R9mhWuDQRsQD6/68x+gH1z1K46XwaAhQlQJIkSVIEJUCSJElSBmxKo/zArXBoM2IKY/1c9f/ZOf6s84bgaDhghRJYgQVYIIUSWIEFWCmBGr/jArXBsM2oC4sepX/Nl9iPhZ9bUOjcGgIUJUCSJElSBCVAkiRJUMiG57tGYGg4aY0Rtush1/8WudRQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yM1QxODowOTowNiswMDowMEDJY84AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjNUMTg6MDk6MDYrMDA6MDAxlNtyAAAAAElFTkSuQmCC"></td>
       <td align="center">2909
 (99.39%)</td>
       <td align="center">18
@@ -957,14 +938,13 @@ IQR (CV) : 1 (0.4)</td>
       <td align="center">2</td>
       <td align="left">mtalento
 [numeric]</td>
-      <td align="left">Grado de acuerdo: Las personas son
-recompensada por su inteligencia</td>
+      <td align="left">Recompensa: talento</td>
       <td align="left">Mean (sd) : 2.7 (1.1)
 min < med < max:
 1 < 3 < 5
 IQR (CV) : 2 (0.4)</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">288</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">9.9%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">2</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1163</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">40.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">3</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">559</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">19.2%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">4</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">814</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">28.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">5</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">83</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">2.9%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEkAAACACAQAAADtnYwrAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg5B6m83AAABBUlEQVR42u3bQQrCMBRFUSPdoDNdYZ11iToSfgqpSUmaO7hvFCnKgZ9AH8H0udFynw2QdC5L/LD+2VjPNIoRf3jJHz0OvraN8uwCHJwkSZIk0SJJkiRJtABJuxfdq15mj5JiA5hXM2MdAA4OSMr20nva5F5hcg09blzyQwUcnCRJkiTRIkmSJEm0SKqJ1bLICGvg4ICkbtWy3/Vhp2rZ81gABydJkiRJtEiSJEkSLZJqYrUsMsIaODgg6YJby9bSOfzWsv3AAAcnSZIkSbRIkiRJEi2SamK1LDLCGjg4IKlQLcf9hbGR9KuWczc5cHCSJEmSRIskSZIk0QIk0XscI8DBSarJF5uxHX9znfeJAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTIzVDE1OjMwOjE0KzAwOjAwOSdfzAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0yM1QxNTozMDoxNCswMDowMEh653AAAAAASUVORK5CYII="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEkAAACACAQAAADtnYwrAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcSCQZeTFOwAAABBUlEQVR42u3bQQrCMBRFUSPdoDNdYZ11iToSfgqpSUmaO7hvFCnKgZ9AH8H0udFynw2QdC5L/LD+2VjPNIoRf3jJHz0OvraN8uwCHJwkSZIk0SJJkiRJtABJuxfdq15mj5JiA5hXM2MdAA4OSMr20nva5F5hcg09blzyQwUcnCRJkiTRIkmSJEm0SKqJ1bLICGvg4ICkbtWy3/Vhp2rZ81gABydJkiRJtEiSJEkSLZJqYrUsMsIaODgg6YJby9bSOfzWsv3AAAcnSZIkSbRIkiRJEi2SamK1LDLCGjg4IKlQLcf9hbGR9KuWczc5cHCSJEmSRIskSZIk0QIk0XscI8DBSarJF5uxHX9znfeJAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTIzVDE4OjA5OjA2KzAwOjAwQMljzgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0yM1QxODowOTowNiswMDowMDGU23IAAAAASUVORK5CYII="></td>
       <td align="center">2907
 (99.32%)</td>
       <td align="center">20
@@ -974,14 +954,13 @@ IQR (CV) : 2 (0.4)</td>
       <td align="center">3</td>
       <td align="left">ess
 [numeric]</td>
-      <td align="left">Estatus Social Subjetivo: Donde se
-ubicaria ud. en la sociedad chilena</td>
+      <td align="left">Estatus Social Subjetivo</td>
       <td align="left">Mean (sd) : 4.3 (1.6)
 min < med < max:
 0 < 5 < 10
 IQR (CV) : 2 (0.4)</td>
       <td align="left" style="vertical-align:middle">11 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg5B6m83AAABjUlEQVR42u3cUU7CQBRAUWtYHgvQFcoC3J/++FGNHbkEaKnn/KmJNtcOecM0TB9PFM9rX8CjESwSLDrMv7j369lp8AdfphVqLJhfyuHi33IVx4Xvv697WQOWZCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYdPOnd047eyb0Do87HRd/st2HmpZZkpFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFg0VXOJfd2WDtypYPcfR3WjliSkWCRYJFgkWCRYJFgkWCRYJFgkWDRyp+BuGyrHyi52WBb3c5bkpFgkWCRYJFgkWCRYJFgkWDR2ZP+fzp7HAlbo61uVu7LkowEiwSLBIsEiwSLvo0VZq2//ZjDHmPWWvP9/s2+pz+y5r/Va1gkWCRYJFgkWCRY9JBjxcitZ7TdBbv1jLa7YJcZbwpfZ3emYF/OvTOnedo3m+9fze+wSaPGWBEJFgkWfQJ7OCCWoGvTPgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yM1QxNTozMDoxNCswMDowMDknX8wAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjNUMTU6MzA6MTQrMDA6MDBIeudwAAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcSCQZeTFOwAAABjUlEQVR42u3cUU7CQBRAUWtYHgvQFcoC3J/++FGNHbkEaKnn/KmJNtcOecM0TB9PFM9rX8CjESwSLDrMv7j369lp8AdfphVqLJhfyuHi33IVx4Xvv697WQOWZCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYdPOnd047eyb0Do87HRd/st2HmpZZkpFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFg0VXOJfd2WDtypYPcfR3WjliSkWCRYJFgkWCRYJFgkWCRYJFgkWDRyp+BuGyrHyi52WBb3c5bkpFgkWCRYJFgkWCRYJFgkWDR2ZP+fzp7HAlbo61uVu7LkowEiwSLBIsEiwSLvo0VZq2//ZjDHmPWWvP9/s2+pz+y5r/Va1gkWCRYJFgkWCRY9JBjxcitZ7TdBbv1jLa7YJcZbwpfZ3emYF/OvTOnedo3m+9fze+wSaPGWBEJFgkWfQJ7OCCWoGvTPgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yM1QxODowOTowNiswMDowMEDJY84AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjNUMTg6MDk6MDYrMDA6MDAxlNtyAAAAAElFTkSuQmCC"></td>
       <td align="center">2915
 (99.59%)</td>
       <td align="center">12
@@ -991,13 +970,13 @@ IQR (CV) : 2 (0.4)</td>
       <td align="center">4</td>
       <td align="left">edcine
 [numeric]</td>
-      <td align="left">Nivel educacional</td>
+      <td align="left">Educaci&#0243;n</td>
       <td align="left">Mean (sd) : 3.2 (1.2)
 min < med < max:
 1 < 3 < 5
 IQR (CV) : 1 (0.4)</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">359</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">12.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">2</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">297</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.2%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">3</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1251</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">42.8%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">4</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">483</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">16.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">5</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">535</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">18.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAE0AAACACAQAAADkdixRAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg827V+hAAABAUlEQVR42u3ZSw6CQBAFQDFc0J2eUHceUbcNCxk+DS2pXg0hkEoek/Ay3edSda5HA9C2nT5ePJs+vHuXx4mv7oe3bpMPv/NcoykcKBoaGhoaGhoaGtrCGf2A7/d7PT1dbCrH1+VYWwoHWpg2+NZeE4lmNtAJ2u8euvcWKRwoGhoaGhoaGhoa2vloKnIzJ6wLB1qYNqsi588jJDr7qDZzhpuwcKBoaGhoaGhoaGho56OpyM2csC4caGHayoqcea68qiLnbprCgaKhoaGhoaGhoaGdj6YiN3PCunCghWmbnCLnFOUNTpGztk7hQNHQ0NDQ0NDQ0NAWzr/00FpTOFC0JfMF+Bcdf3Rx2/IAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDQtMjNUMTU6MzA6MTUrMDA6MDCfUFR4AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA0LTIzVDE1OjMwOjE1KzAwOjAw7g3sxAAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAE0AAACACAQAAADkdixRAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcSCQZeTFOwAAABAUlEQVR42u3ZSw6CQBAFQDFc0J2eUHceUbcNCxk+DS2pXg0hkEoek/Ay3edSda5HA9C2nT5ePJs+vHuXx4mv7oe3bpMPv/NcoykcKBoaGhoaGhoaGtrCGf2A7/d7PT1dbCrH1+VYWwoHWpg2+NZeE4lmNtAJ2u8euvcWKRwoGhoaGhoaGhoa2vloKnIzJ6wLB1qYNqsi588jJDr7qDZzhpuwcKBoaGhoaGhoaGho56OpyM2csC4caGHayoqcea68qiLnbprCgaKhoaGhoaGhoaGdj6YiN3PCunCghWmbnCLnFOUNTpGztk7hQNHQ0NDQ0NDQ0NAWzr/00FpTOFC0JfMF+Bcdf3Rx2/IAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDQtMjNUMTg6MDk6MDYrMDA6MDBAyWPOAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA0LTIzVDE4OjA5OjA2KzAwOjAwMZTbcgAAAABJRU5ErkJggg=="></td>
       <td align="center">2925
 (99.93%)</td>
       <td align="center">2
@@ -1007,12 +986,12 @@ IQR (CV) : 1 (0.4)</td>
       <td align="center">5</td>
       <td align="left">sexo
 [numeric]</td>
-      <td align="left">Sexo del entrevistado</td>
+      <td align="left">Sexo</td>
       <td align="left">Min : 0
 Mean : 0.6
 Max : 1</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">0</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1163</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">39.7%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1764</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">60.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGcAAAA4CAQAAABKkC5QAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg827V+hAAAAoElEQVRo3u3YQQ5AMBBAURUXtOOE7ByR7dS2kv6O/3YiFT9pJabcUyZz7xcw5z85S7w4Oh2krbSsjouX+tbaIeb68FnJNps5ZOaQmUNmDpk5ZOaQmUNmDpk5ZK9ZwZf/7T2UOLwZcyIaJznJNps5ZNWn4Bzy8Ozh8ACmoG3qb3GyzWYOmTlk5pCZQ2YOmTlk5pCZQ2YOWeYp6PiSbTZzyB7k4wvWdn8hfAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yM1QxNTozMDoxNSswMDowMJ9QVHgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjNUMTU6MzA6MTUrMDA6MDDuDezEAAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGcAAAA4CAQAAABKkC5QAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcSCQZeTFOwAAAAoElEQVRo3u3YQQ5AMBBAURUXtOOE7ByR7dS2kv6O/3YiFT9pJabcUyZz7xcw5z85S7w4Oh2krbSsjouX+tbaIeb68FnJNps5ZOaQmUNmDpk5ZOaQmUNmDpk5ZK9ZwZf/7T2UOLwZcyIaJznJNps5ZNWn4Bzy8Ozh8ACmoG3qb3GyzWYOmTlk5pCZQ2YOmTlk5pCZQ2YOWeYp6PiSbTZzyB7k4wvWdn8hfAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yM1QxODowOTowNiswMDowMEDJY84AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjNUMTg6MDk6MDYrMDA6MDAxlNtyAAAAAElFTkSuQmCC"></td>
       <td align="center">2927
 (100%)</td>
       <td align="center">0
@@ -1022,13 +1001,13 @@ Max : 1</td>
       <td align="center">6</td>
       <td align="left">edad
 [numeric]</td>
-      <td align="left">Edad del entrevistado</td>
+      <td align="left">Edad</td>
       <td align="left">Mean (sd) : 46.1 (15.3)
 min < med < max:
 18 < 46 < 88
 IQR (CV) : 25 (0.3)</td>
       <td align="left" style="vertical-align:middle">63 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg827V+hAAABpUlEQVR42u3cS07CYBhAUTEsjwXoCnUB7k+nSJvQ2/RFc84MBkgu/YtfH1x+3yje934Dr0awSLDoev9g6/3Z96Q/+HHZ+G0N3L+B6+xXWcTt4fHPyDPHYklGgkWCRYJFgkWCRYJFgkWCRYJFi4xGYzPh/hPgOhaaJdecAIcfx54fxs7D9xTHGsftw6LNtrBpx76Ob8MleRs8c7RjXVNYktGMLWza4jrLEnw0a0lO+d461nfbcizJSLBIsEiwSLBIsEiwSLBIsEiw6OlodNaZcK4Js+RZp8J5LMlIsOgFToIM7Xla7yWD7Xmw25KMBIsEiwSLBIsEiwSLBIte8h/XMVtdRXaaYFsdUzlNsKF1trkTB1tnm7PTjwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEi/5djOLOtecert45xw8KrcmSjASLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBItOfM/30BK3zV/uX+PLeclRn3dZLxo19mGRYJFg0R9a2ilCnkriSwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yM1QxNTozMDoxNSswMDowMJ9QVHgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjNUMTU6MzA6MTUrMDA6MDDuDezEAAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcSCQZeTFOwAAABpUlEQVR42u3cS07CYBhAUTEsjwXoCnUB7k+nSJvQ2/RFc84MBkgu/YtfH1x+3yje934Dr0awSLDoev9g6/3Z96Q/+HHZ+G0N3L+B6+xXWcTt4fHPyDPHYklGgkWCRYJFgkWCRYJFgkWCRYJFi4xGYzPh/hPgOhaaJdecAIcfx54fxs7D9xTHGsftw6LNtrBpx76Ob8MleRs8c7RjXVNYktGMLWza4jrLEnw0a0lO+d461nfbcizJSLBIsEiwSLBIsEiwSLBIsEiw6OlodNaZcK4Js+RZp8J5LMlIsOgFToIM7Xla7yWD7Xmw25KMBIsEiwSLBIsEiwSLBIte8h/XMVtdRXaaYFsdUzlNsKF1trkTB1tnm7PTjwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEi/5djOLOtecert45xw8KrcmSjASLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBItOfM/30BK3zV/uX+PLeclRn3dZLxo19mGRYJFg0R9a2ilCnkriSwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yM1QxODowOTowNiswMDowMEDJY84AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjNUMTg6MDk6MDYrMDA6MDAxlNtyAAAAAElFTkSuQmCC"></td>
       <td align="center">2927
 (100%)</td>
       <td align="center">0
@@ -1038,14 +1017,13 @@ IQR (CV) : 25 (0.3)</td>
       <td align="center">7</td>
       <td align="left">pmerit
 [numeric]</td>
-      <td align="left">Grado de acuerdo: Las personas son
-recompensadas por sus esfuerzos</td>
+      <td align="left">Meritocracia promedio</td>
       <td align="left">Mean (sd) : 2.7 (1)
 min < med < max:
 1 < 2.5 < 5
 IQR (CV) : 1.5 (0.4)</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1.00</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">243</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">8.4%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1.50</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">79</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">2.7%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">2.00</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1041</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">35.9%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">2.50</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">222</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">7.7%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">3.00</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">536</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">18.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">3.50</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">169</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">5.8%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">4.00</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">528</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">18.2%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">4.50</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">38</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">1.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">5.00</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">42</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">1.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEIAAADiCAQAAABQQdmNAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg827V+hAAABYUlEQVR42u3czWrCQBgF0Kb4gt3ZJ2x3PmJdTZlIogHn5xLO3Ymoh3wjzGVIlr+P+fmcDYCoc6lf/OwukOvS+ofrL7ys3/ra/MCt85WIGAcEBAQEBAQEBESrPOwxe+8mt7PUG+yRbazebUeMIwKxWhO///NoX3YOI0r5Gb08I8YBAQEBAQEBAXEKhN5REjGOCMRO7+if72oehw5d2mf9B4gYBwQEBAQEBAQERKsoPyUR44hAHCo/vY9gDpSf/os1YhwQEBAQEBAQEKdA6B0lEeOIQDQ5dHm3lzQ4dHl/MUeMAwICAgICAgIColWUn5KIcUQgXpafEfe8vCg/YxZqxDggICAgICAgIE6B0DtKIsYRgXDoUhIxDggICAgICAgIiFZRfkoixhGB2Cg/Yx8ttnElRt3m/xQxJxAQEBAQEBAQZ0ToHXMTgdA7dhBzAgEBAQEBAQEB0QkRUH5CrgTE3NwBfx4zqTxDclkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDQtMjNUMTU6MzA6MTUrMDA6MDCfUFR4AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA0LTIzVDE1OjMwOjE1KzAwOjAw7g3sxAAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEIAAADiCAQAAABQQdmNAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcSCQZeTFOwAAABYUlEQVR42u3czWrCQBgF0Kb4gt3ZJ2x3PmJdTZlIogHn5xLO3Ymoh3wjzGVIlr+P+fmcDYCoc6lf/OwukOvS+ofrL7ys3/ra/MCt85WIGAcEBAQEBAQEBESrPOwxe+8mt7PUG+yRbazebUeMIwKxWhO///NoX3YOI0r5Gb08I8YBAQEBAQEBAXEKhN5REjGOCMRO7+if72oehw5d2mf9B4gYBwQEBAQEBAQERKsoPyUR44hAHCo/vY9gDpSf/os1YhwQEBAQEBAQEKdA6B0lEeOIQDQ5dHm3lzQ4dHl/MUeMAwICAgICAgIColWUn5KIcUQgXpafEfe8vCg/YxZqxDggICAgICAgIE6B0DtKIsYRgXDoUhIxDggICAgICAgIiFZRfkoixhGB2Cg/Yx8ttnElRt3m/xQxJxAQEBAQEBAQZ0ToHXMTgdA7dhBzAgEBAQEBAQEB0QkRUH5CrgTE3NwBfx4zqTxDclkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDQtMjNUMTg6MDk6MDYrMDA6MDBAyWPOAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA0LTIzVDE4OjA5OjA2KzAwOjAwMZTbcgAAAABJRU5ErkJggg=="></td>
       <td align="center">2898
 (99.01%)</td>
       <td align="center">29
@@ -1055,15 +1033,15 @@ IQR (CV) : 1.5 (0.4)</td>
 </table>
 <p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 0.9.6 (<a href='https://www.r-project.org/'>R</a> version 3.6.0)<br/>2020-04-23</p>
 </div>
-<p><strong>Nota sobre casos perdidos (NAs)</strong></p>
-<p>Hasta ahora hemos mantenido los casos perdidos en la base de datos, ya que son importantes de reportar en la tabla general de variables. Sin embargo, de aquí en adelante se recomienda trabajar solo con casos completos, es decir, <strong>sacar los casos perdidos</strong>. El procedimiento recomendado es el siguiente:</p>
+<p><strong>Nota sobre casos perdidos (NAs)</strong><span class="sidenote">na.omit(data)</span></p>
+<p>Hasta ahora hemos mantenido los casos perdidos en la base de datos, ya que son importantes de reportar en la tabla general de variables. Sin embargo, de aquí en adelante se recomienda trabajar solo con casos completos, es decir, <strong>sacar los casos perdidos</strong>. El quitar los casos perdidos de una base de datos es muy simple con la función <code>na.omit</code>, pero para tomar precauciones y asegurarse que funciona se recomienda el siguiente procedimiento:</p>
 <ul>
 <li>respaldar la base de datos original en el espacio de trabajo (por si queremos en adelante realizar algún análisis referido a casos perdidos), la dejaremos con el nombre proc_elsoc_original.</li>
 <li>contamos el número de casos con el comando <code>dim</code></li>
 <li>contamos el número de casos perdidos con <code>sum(is.na(proc_elsoc))</code></li>
 <li>borramos los casos perdidos con <code>proc_elsoc &lt;-na.omit(proc_elsoc)</code></li>
 <li>contamos nuevamente con <code>dim</code> para asegurarnos que se borraron</li>
-<li>y por temas de funcionamiento de R, al realizar la operación de sacar casos perdidos, se borra toda la información de las etiquetas (labels), así que las recuperamos de la base original con el compando <code>copy_labels</code>, de la librería <code>sjlabelled</code>.</li>
+<li>y por temas de funcionamiento de R, al realizar la operación de sacar casos perdidos, se borra toda la información de las etiquetas (labels), así que las recuperamos de la base original con el comando <code>copy_labels</code>, de la librería <code>sjlabelled</code>.</li>
 </ul>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">proc_elsoc_original &lt;-proc_elsoc</a>
 <a class="sourceLine" id="cb15-2" title="2"><span class="kw">dim</span>(proc_elsoc)</a></code></pre></div>
@@ -1085,7 +1063,7 @@ IQR (CV) : 1.5 (0.4)</td>
 <li>Variables continuas: correlaciones.</li>
 </ul>
 <p>En esta sección también es muy relevante la visualización de datos mediante gráficos, por lo que incluiremos algunos.</p>
-<p>El uso tanto de tablas como de gráficos en el reporte queda a discreción del/a autor/a. La pregunta que orienta esta decisión es: ¿Me permite enriquecer la discusión de los resultados en relación a las hipótesis planteadas?</p>
+<p>El uso tanto de tablas como de gráficos en el reporte queda a discreción del/a autor/a. La pregunta que orienta esta decisión es: <em>¿Me permite enriquecer la discusión de los resultados en relación a las hipótesis planteadas?</em></p>
 <div id="tablas-de-contingencia-para-variables-categóricas" class="section level4">
 <h4>Tablas de contingencia para variables categóricas</h4>
 <p>Para tablas de contingencia categóricas utilizaremos la función sjt.xtab, de la librería <code>sjPlot</code>. Veamos primero una especificación simple: <span class="sidenote">sjPlot::sjt.xtab</span></p>
@@ -1093,10 +1071,10 @@ IQR (CV) : 1.5 (0.4)</td>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2">
-Nivel educacional
+Educación
 </th>
 <th style="border-top:double; text-align:center; font-style:italic; font-weight:normal;" colspan="2">
-Sexo del<br>entrevistado
+Sexo
 </th>
 <th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; font-weight:bolder; font-style:italic; border-bottom:1px solid; " rowspan="2">
 Total
@@ -1207,10 +1185,10 @@ Total
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2">
-Nivel educacional
+Educación
 </th>
 <th style="border-top:double; text-align:center; font-style:italic; font-weight:normal;" colspan="2">
-Sexo del<br>entrevistado
+Sexo
 </th>
 <th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; font-weight:bolder; font-style:italic; border-bottom:1px solid; " rowspan="2">
 Total
@@ -1414,30 +1392,30 @@ Total
  
 </th>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Grado de acuerdo: Las personas son<br>recompensadas por sus esfuerzos
+Recompensa: esfuerzo
 </th>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Grado de acuerdo: Las personas son<br>recompensada por su inteligencia
+Recompensa: talento
 </th>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Estatus Social Subjetivo: Donde se<br>ubicaria ud. en la sociedad chilena
+Estatus Social Subjetivo
 </th>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Nivel educacional
+Educación
 </th>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Sexo del entrevistado
+Sexo
 </th>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Edad del entrevistado
+Edad
 </th>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Grado de acuerdo: Las personas son<br>recompensadas por sus esfuerzos
+Meritocracia promedio
 </th>
 </tr>
 <tr>
 <td style="font-style:italic;">
-Grado de acuerdo: Las personas son<br>recompensadas por sus esfuerzos
+Recompensa: esfuerzo
 </td>
 <td style="padding:0.2cm; text-align:center;">
  
@@ -1463,7 +1441,7 @@ Grado de acuerdo: Las personas son<br>recompensadas por sus esfuerzos
 </tr>
 <tr>
 <td style="font-style:italic;">
-Grado de acuerdo: Las personas son<br>recompensada por su inteligencia
+Recompensa: talento
 </td>
 <td style="padding:0.2cm; text-align:center;">
 0.698<span style="vertical-align:super;font-size:0.8em;">***</span>
@@ -1489,7 +1467,7 @@ Grado de acuerdo: Las personas son<br>recompensada por su inteligencia
 </tr>
 <tr>
 <td style="font-style:italic;">
-Estatus Social Subjetivo: Donde se<br>ubicaria ud. en la sociedad chilena
+Estatus Social Subjetivo
 </td>
 <td style="padding:0.2cm; text-align:center; color:#999999;">
 -0.004<span style="vertical-align:super;font-size:0.8em;"></span>
@@ -1515,7 +1493,7 @@ Estatus Social Subjetivo: Donde se<br>ubicaria ud. en la sociedad chilena
 </tr>
 <tr>
 <td style="font-style:italic;">
-Nivel educacional
+Educación
 </td>
 <td style="padding:0.2cm; text-align:center;">
 -0.122<span style="vertical-align:super;font-size:0.8em;">***</span>
@@ -1541,7 +1519,7 @@ Nivel educacional
 </tr>
 <tr>
 <td style="font-style:italic;">
-Sexo del entrevistado
+Sexo
 </td>
 <td style="padding:0.2cm; text-align:center;">
 -0.045<span style="vertical-align:super;font-size:0.8em;">*</span>
@@ -1567,7 +1545,7 @@ Sexo del entrevistado
 </tr>
 <tr>
 <td style="font-style:italic;">
-Edad del entrevistado
+Edad
 </td>
 <td style="padding:0.2cm; text-align:center;">
 0.096<span style="vertical-align:super;font-size:0.8em;">***</span>
@@ -1593,7 +1571,7 @@ Edad del entrevistado
 </tr>
 <tr>
 <td style="font-style:italic;">
-Grado de acuerdo: Las personas son<br>recompensadas por sus esfuerzos
+Meritocracia promedio
 </td>
 <td style="padding:0.2cm; text-align:center;">
 0.920<span style="vertical-align:super;font-size:0.8em;">***</span>
@@ -1638,30 +1616,30 @@ Computed correlation used pearson-method with listwise-deletion.
  
 </th>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Grado de acuerdo: Las personas son<br>recompensadas por sus esfuerzos
+Recompensa: esfuerzo
 </th>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Grado de acuerdo: Las personas son<br>recompensada por su inteligencia
+Recompensa: talento
 </th>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Estatus Social Subjetivo: Donde se<br>ubicaria ud. en la sociedad chilena
+Estatus Social Subjetivo
 </th>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Nivel educacional
+Educación
 </th>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Sexo del entrevistado
+Sexo
 </th>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Edad del entrevistado
+Edad
 </th>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Grado de acuerdo: Las personas son<br>recompensadas por sus esfuerzos
+Meritocracia promedio
 </th>
 </tr>
 <tr>
 <td style="font-style:italic;">
-Grado de acuerdo: Las personas son<br>recompensadas por sus esfuerzos
+Recompensa: esfuerzo
 </td>
 <td style="padding:0.2cm; text-align:center;">
  
@@ -1687,7 +1665,7 @@ Grado de acuerdo: Las personas son<br>recompensadas por sus esfuerzos
 </tr>
 <tr>
 <td style="font-style:italic;">
-Grado de acuerdo: Las personas son<br>recompensada por su inteligencia
+Recompensa: talento
 </td>
 <td style="padding:0.2cm; text-align:center;">
 0.698<span style="vertical-align:super;font-size:0.8em;">***</span>
@@ -1713,7 +1691,7 @@ Grado de acuerdo: Las personas son<br>recompensada por su inteligencia
 </tr>
 <tr>
 <td style="font-style:italic;">
-Estatus Social Subjetivo: Donde se<br>ubicaria ud. en la sociedad chilena
+Estatus Social Subjetivo
 </td>
 <td style="padding:0.2cm; text-align:center; color:#999999;">
 -0.004<span style="vertical-align:super;font-size:0.8em;"></span>
@@ -1739,7 +1717,7 @@ Estatus Social Subjetivo: Donde se<br>ubicaria ud. en la sociedad chilena
 </tr>
 <tr>
 <td style="font-style:italic;">
-Nivel educacional
+Educación
 </td>
 <td style="padding:0.2cm; text-align:center;">
 -0.122<span style="vertical-align:super;font-size:0.8em;">***</span>
@@ -1765,7 +1743,7 @@ Nivel educacional
 </tr>
 <tr>
 <td style="font-style:italic;">
-Sexo del entrevistado
+Sexo
 </td>
 <td style="padding:0.2cm; text-align:center;">
 -0.045<span style="vertical-align:super;font-size:0.8em;">*</span>
@@ -1791,7 +1769,7 @@ Sexo del entrevistado
 </tr>
 <tr>
 <td style="font-style:italic;">
-Edad del entrevistado
+Edad
 </td>
 <td style="padding:0.2cm; text-align:center;">
 0.096<span style="vertical-align:super;font-size:0.8em;">***</span>
@@ -1817,7 +1795,7 @@ Edad del entrevistado
 </tr>
 <tr>
 <td style="font-style:italic;">
-Grado de acuerdo: Las personas son<br>recompensadas por sus esfuerzos
+Meritocracia promedio
 </td>
 <td style="padding:0.2cm; text-align:center;">
 0.920<span style="vertical-align:super;font-size:0.8em;">***</span>
@@ -1851,7 +1829,7 @@ Computed correlation used pearson-method with listwise-deletion.
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">corrplot.mixed</span>(M)</a></code></pre></div>
 <p><img src="/assignment/02-code_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>Este gráfico/matriz representa el grado de asociación entre variables mediante el tamaño de los círculos e intensidad de colores, y el signo de la asociación se representa con una gradiente de colores que va del azul (positivo) al rojo (negativo). Bajo la diagonal aparecen los indices de correlación entre pares de variables.</p>
-<p>Finalmente, también se puede representar la correlación entre dos variables en un gráfico de nube de puntos o scatterplot:</p>
+<p>Finalmente, también se puede representar la correlación entre dos variables en un gráfico de nube de puntos o scatterplot:<span class="sidenote">sjPlot::plot_scatter</span></p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">names</span>(proc_elsoc)</a></code></pre></div>
 <pre><code>## [1] &quot;mesfuerzo&quot; &quot;mtalento&quot;  &quot;ess&quot;       &quot;edcine&quot;    &quot;sexo&quot;      &quot;edad&quot;     
 ## [7] &quot;pmerit&quot;</code></pre>
