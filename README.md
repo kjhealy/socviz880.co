@@ -1,5 +1,5 @@
 # Estadística multivariada - 2020
-### Departamento de Soiología, Universidad de Chile
+### Departamento de Sociología, Universidad de Chile
 
 Este repositorio contiene el código para generar el sitio del curso [Estadística Multivariada](https://multivariada.netlify.com/)
 
