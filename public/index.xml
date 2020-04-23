@@ -765,11 +765,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;h1&gt;Código de análisis&lt;/h1&gt;
 &lt;div id=&#34;librerías&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;1. Librerías&lt;/h2&gt;
-&lt;p&gt;La explicación de esta parte del código se encuentra en la sección correspondiente de la &lt;a href=&#34;/assignment/01-code#librerias&#34;&gt;práctica 1&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;La explicación de esta parte del código se encuentra en la sección correspondiente de la &lt;a href=&#34;/assignment/01-code#librerias&#34;&gt;práctica 1&lt;/a&gt;.&lt;span class=&#34;sidenote&#34;&gt;pacman::p_load&lt;/span&gt;&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;pacman&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;p_load&lt;/span&gt;(dplyr, &lt;span class=&#34;co&#34;&gt;#Manipulacion de datos&lt;/span&gt;&lt;/a&gt;
 &lt;a class=&#34;sourceLine&#34; id=&#34;cb1-2&#34; title=&#34;2&#34;&gt;              stargazer, &lt;span class=&#34;co&#34;&gt;#Tablas&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-3&#34; title=&#34;3&#34;&gt;              summarytools, &lt;span class=&#34;co&#34;&gt;# Tablas&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-4&#34; title=&#34;4&#34;&gt;              sjmisc, &lt;span class=&#34;co&#34;&gt;# Tablas&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-3&#34; title=&#34;3&#34;&gt;              sjmisc, &lt;span class=&#34;co&#34;&gt;# Tablas&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-4&#34; title=&#34;4&#34;&gt;              summarytools, &lt;span class=&#34;co&#34;&gt;# Tablas&lt;/span&gt;&lt;/a&gt;
 &lt;a class=&#34;sourceLine&#34; id=&#34;cb1-5&#34; title=&#34;5&#34;&gt;              kableExtra, &lt;span class=&#34;co&#34;&gt;#Tablas&lt;/span&gt;&lt;/a&gt;
 &lt;a class=&#34;sourceLine&#34; id=&#34;cb1-6&#34; title=&#34;6&#34;&gt;              sjPlot, &lt;span class=&#34;co&#34;&gt;#Tablas y gráficos&lt;/span&gt;&lt;/a&gt;
 &lt;a class=&#34;sourceLine&#34; id=&#34;cb1-7&#34; title=&#34;7&#34;&gt;              corrplot) &lt;span class=&#34;co&#34;&gt;# Correlaciones&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -826,135 +826,141 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;li&gt;&lt;p&gt;La opción &lt;code&gt;type=&#34;text&#34;&lt;/code&gt; permite que podamos ver los resultados directamente en la consola, de manera bastante rudimentaria. Con otras opciones que veremos más adelante se puede estilizar para su publicación.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Una distinción relevante a considerar cuando se describen variables es si estas son &lt;strong&gt;categóricas&lt;/strong&gt; o &lt;strong&gt;continuas&lt;/strong&gt;. La definición de si una variables es tratada como categórica o continua es algo que hace el/la autor/a del reporte, sin embargo hay variables nominales como sexo que claramente corresponden a categóricas, y por lo tanto no corresponde hacer un promedio entre ambas. Sin embargo, como esta variable está codificada 0 (hombre) y 1 (mujer), en este caso lo que indica el valor de la columna promedio (Mean=0.60) es la proporción de mujeres vs hombres. En otras palabras, hay un 60% de mujeres y 40% de hombres en la muestra.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;b. Tablas descriptivas con &lt;code&gt;summarytools&lt;/code&gt;&lt;/strong&gt;&lt;span class=&#34;sidenote&#34;&gt;summarytools&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Esta librería ofrece distintas opciones de descriptivos. En primer lugar veremos la función &lt;code&gt;descr&lt;/code&gt;, que arroja un resultado similar al de stargazer:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb9&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;descr&lt;/span&gt;(proc_elsoc)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;code&gt;## Descriptive Statistics  
-## proc_elsoc$Grado de acuerdo: Las personas son recompensadas por sus esfuerzos  
-## Label: Grado de acuerdo: Las personas son recompensadas por sus esfuerzos  
-## N: 2927  
-## 
-##                        edad    edcine       ess   mesfuerzo   mtalento    pmerit      sexo
-## ----------------- --------- --------- --------- ----------- ---------- --------- ---------
-##              Mean     46.09      3.18      4.33        2.57       2.74      2.65      0.60
-##           Std.Dev     15.29      1.21      1.57        1.05       1.06      0.97      0.49
-##               Min     18.00      1.00      0.00        1.00       1.00      1.00      0.00
-##                Q1     33.00      3.00      3.00        2.00       2.00      2.00      0.00
-##            Median     46.00      3.00      5.00        2.00       3.00      2.50      1.00
-##                Q3     58.00      4.00      5.00        3.00       4.00      3.50      1.00
-##               Max     88.00      5.00     10.00        5.00       5.00      5.00      1.00
-##               MAD     17.79      1.48      1.48        1.48       1.48      0.74      0.00
-##               IQR     25.00      1.00      2.00        1.00       2.00      1.50      1.00
-##                CV      0.33      0.38      0.36        0.41       0.39      0.37      0.81
-##          Skewness      0.07     -0.15     -0.01        0.42       0.18      0.26     -0.42
-##       SE.Skewness      0.05      0.05      0.05        0.05       0.05      0.05      0.05
-##          Kurtosis     -0.98     -0.62      1.16       -0.79      -1.03     -0.78     -1.82
-##           N.Valid   2927.00   2925.00   2915.00     2909.00    2907.00   2898.00   2927.00
-##         Pct.Valid    100.00     99.93     99.59       99.39      99.32     99.01    100.00&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;En principio no parece una muy buena opción, pero tiene la ventaja que luego su publicación es más fluida que con stargazer. Entonces primero haremos algunos ajustes, como mostrar menos estadísticos (opción &lt;code&gt;stats=&#34;common&#34;&lt;/code&gt;, transponer filas y columnas (&lt;code&gt;transpose&lt;/code&gt;), y sacar el título (&lt;code&gt;headings&lt;/code&gt;) que trae por defecto:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb11&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb11-1&#34; title=&#34;1&#34;&gt;summarytools&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;descr&lt;/span&gt;(proc_elsoc, &lt;span class=&#34;dt&#34;&gt;stats=&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;common&amp;quot;&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;transpose=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;TRUE&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;headings=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;b. Tablas descriptivas con &lt;code&gt;descr&lt;/code&gt;, librería sjmisc&lt;/strong&gt;&lt;span class=&#34;sidenote&#34;&gt;sjmisc::descr&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;La opción básica de &lt;code&gt;descr&lt;/code&gt; es la siguiente:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb9&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-1&#34; title=&#34;1&#34;&gt;sjmisc&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;descr&lt;/span&gt;(proc_elsoc)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
-##                    Mean   Std.Dev     Min   Median     Max   N.Valid   Pct.Valid
-## --------------- ------- --------- ------- -------- ------- --------- -----------
-##            edad   46.09     15.29   18.00    46.00   88.00   2927.00      100.00
-##          edcine    3.18      1.21    1.00     3.00    5.00   2925.00       99.93
-##             ess    4.33      1.57    0.00     5.00   10.00   2915.00       99.59
-##       mesfuerzo    2.57      1.05    1.00     2.00    5.00   2909.00       99.39
-##        mtalento    2.74      1.06    1.00     3.00    5.00   2907.00       99.32
-##          pmerit    2.65      0.97    1.00     2.50    5.00   2898.00       99.01
-##            sexo    0.60      0.49    0.00     1.00    1.00   2927.00      100.00&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Con esto queda lista para publicación, que se puede visualizar agregando las funciones &lt;code&gt;view&lt;/code&gt; y &lt;code&gt;descr&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb13&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb13-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;view&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;descr&lt;/span&gt;(proc_elsoc, &lt;span class=&#34;dt&#34;&gt;stats=&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;common&amp;quot;&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;transpose=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;TRUE&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;headings=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;))&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Y aparece este resultado en el visor:&lt;/p&gt;
+## ## Basic descriptive statistics
+## 
+##        var    type
+##  mesfuerzo numeric
+##   mtalento numeric
+##        ess numeric
+##     edcine numeric
+##       sexo numeric
+##       edad numeric
+##     pmerit numeric
+##                                                                   label    n
+##      Grado de acuerdo: Las personas son recompensadas por sus esfuerzos 2909
+##     Grado de acuerdo: Las personas son recompensada por su inteligencia 2907
+##  Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena 2915
+##                                                       Nivel educacional 2925
+##                                                   Sexo del entrevistado 2927
+##                                                   Edad del entrevistado 2927
+##      Grado de acuerdo: Las personas son recompensadas por sus esfuerzos 2898
+##  NA.prc  mean    sd   se   md trimmed      range  skew
+##    0.61  2.57  1.05 0.02  2.0    2.56    4 (1-5)  0.42
+##    0.68  2.74  1.06 0.02  3.0    2.76    4 (1-5)  0.18
+##    0.41  4.33  1.57 0.03  5.0    4.36  10 (0-10) -0.01
+##    0.07  3.18  1.21 0.02  3.0    3.23    4 (1-5) -0.15
+##    0.00  0.60  0.49 0.01  1.0    0.63    1 (0-1) -0.42
+##    0.00 46.09 15.29 0.28 46.0   45.90 70 (18-88)  0.07
+##    0.99  2.65  0.97 0.02  2.5    2.66    4 (1-5)  0.26&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;En este caso utilizamos la forma &lt;code&gt;librería::función&lt;/code&gt; (&lt;code&gt;sjmisc::descr&lt;/code&gt;), ya que la función &lt;code&gt;descr&lt;/code&gt; también existe en otras librerías y así nos aseguramos que la función utilizada es de esa librería específica.&lt;/p&gt;
+&lt;p&gt;Seleccionamos algunas columnas específicas con información más relevante con la opción &lt;code&gt;show&lt;/code&gt;. Además, agregamos la función &lt;code&gt;kable&lt;/code&gt; para obtener una tabla que luego sea fácilmente publicable en distintos formatos (a profundizar en una práctica posterior):&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb11&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb11-1&#34; title=&#34;1&#34;&gt;sjmisc&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;descr&lt;/span&gt;(proc_elsoc,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb11-2&#34; title=&#34;2&#34;&gt;      &lt;span class=&#34;dt&#34;&gt;show =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;label&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;range&amp;quot;&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;mean&amp;quot;&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;sd&amp;quot;&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;NA.prc&amp;quot;&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;n&amp;quot;&lt;/span&gt;))&lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb11-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;st&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;kable&lt;/span&gt;(.,&lt;span class=&#34;st&#34;&gt;&amp;quot;markdown&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;table&gt;
+&lt;colgroup&gt;
+&lt;col width=&#34;2%&#34; /&gt;
+&lt;col width=&#34;7%&#34; /&gt;
+&lt;col width=&#34;53%&#34; /&gt;
+&lt;col width=&#34;3%&#34; /&gt;
+&lt;col width=&#34;7%&#34; /&gt;
+&lt;col width=&#34;8%&#34; /&gt;
+&lt;col width=&#34;8%&#34; /&gt;
+&lt;col width=&#34;8%&#34; /&gt;
+&lt;/colgroup&gt;
 &lt;thead&gt;
 &lt;tr class=&#34;header&#34;&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Mean&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Std.Dev&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Min&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Median&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Max&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;N.Valid&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Pct.Valid&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;var&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;label&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;NA.prc&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;mean&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;sd&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;range&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;edad&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;46.09&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;15.29&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;18.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;46.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;88.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2927.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;100.00&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;4&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;mesfuerzo&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Grado de acuerdo: Las personas son recompensadas por sus esfuerzos&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2909&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.6149641&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.5727054&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.0466874&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;4 (1-5)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;edcine&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3.18&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1.21&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2925.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;99.93&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;5&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;mtalento&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Grado de acuerdo: Las personas son recompensada por su inteligencia&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2907&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.6832935&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.7389061&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.0596182&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;4 (1-5)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;ess&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;4.33&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1.57&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;10.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2915.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;99.59&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;ess&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2915&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.4099761&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4.3300172&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.5666965&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;10 (0-10)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;mesfuerzo&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2.57&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1.05&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2909.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;99.39&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;edcine&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Nivel educacional&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2925&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0683293&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.1839316&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.2066058&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;4 (1-5)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;mtalento&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2.74&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1.06&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2907.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;99.32&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;7&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;sexo&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Sexo del entrevistado&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2927&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0000000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.6026648&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.4894300&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;1 (0-1)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;pmerit&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2.65&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.97&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2.50&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2898.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;99.01&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;edad&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Edad del entrevistado&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2927&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0000000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;46.0908780&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;15.2867983&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;70 (18-88)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;sexo&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.60&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.49&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2927.00&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;100.00&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;6&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;pmerit&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Grado de acuerdo: Las personas son recompensadas por sus esfuerzos&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2898&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.9907755&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.6538992&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.9694792&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;4 (1-5)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;Una segunda función de la librería &lt;code&gt;summarytools&lt;/code&gt; es &lt;code&gt;dfSummary&lt;/code&gt;&lt;span class=&#34;sidenote&#34;&gt;summarytools::dfSummary&lt;/span&gt;, que nos ofrece una tabla aún más detallada, con gráficos para cada variable, las frecuencias para cada valor, y las etiquetas de las variables, por lo que es muy recomendable.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;c. Tabla descriptiva con &lt;code&gt;summarytools::dfSummary&lt;/code&gt;&lt;/strong&gt;&lt;span class=&#34;sidenote&#34;&gt;summarytools::dfSummary&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Esta tercera opción nos ofrece una tabla aún más detallada, con gráficos para cada variable, las frecuencias para cada valor, y las etiquetas de las variables, por lo que es muy recomendable.&lt;/p&gt;
 &lt;p&gt;Se específica de la siguiente manera:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb14&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb14-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;dfSummary&lt;/span&gt;(proc_elsoc, &lt;span class=&#34;dt&#34;&gt;plain.ascii =&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb12&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb12-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;dfSummary&lt;/span&gt;(proc_elsoc, &lt;span class=&#34;dt&#34;&gt;plain.ascii =&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## ### Data Frame Summary  
 ## #### proc_elsoc  
 ## **Dimensions:** 2927 x 7  
@@ -1010,7 +1016,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##                                                                                    5.00 :   42 ( 1.5%)                                             
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Es muy ancha para visualizar bien en la consola de R, pero en su versión más definitiva de publicación se verá así:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb16&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb16-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;view&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;dfSummary&lt;/span&gt;(proc_elsoc, &lt;span class=&#34;dt&#34;&gt;headings=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;))&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb14&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb14-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;view&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;dfSummary&lt;/span&gt;(proc_elsoc, &lt;span class=&#34;dt&#34;&gt;headings=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;))&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;div class=&#34;container st-container&#34;&gt;
 &lt;table class=&#34;table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline &#34;&gt;
   &lt;thead&gt;
@@ -1037,7 +1043,7 @@ min &lt; med &lt; max:
 1 &lt; 2 &lt; 5
 IQR (CV) : 1 (0.4)&lt;/td&gt;
       &lt;td align=&#34;left&#34; style=&#34;padding:0;vertical-align:middle&#34;&gt;&lt;table style=&#34;border-collapse:collapse;border:none;margin:0&#34;&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;1&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;357&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;12.3%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;2&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;1331&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;45.8%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;3&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;497&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;17.1%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;4&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;646&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;22.2%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;5&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;78&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;2.7%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;
-      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFEAAACACAQAAADZ5E03AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBQCNCIGNPNBAAABFUlEQVR42u3bQQrCQBBEUUdyQXd6Qt15RF0JPYEQnfS0VfD/KiLig86ATbC9Tuqd/w2AWNMSX9y/ujGvbT4rfsXSv3XZ/fBzvm+VwaAhQlQJIkSVIEJUCSJElQyIq8Wg/mf/fi1uVDprf1yvDAZtQOzuxYfMpG9h0j/v0RX1h9Zg0BAhqgQRokoQIaoEEaJKEDNi1R9mhWuDQRsQD6/68x+gH1z1K46XwaAhQlQJIkSVIEJUCSJElSBmxKo/zArXBoM2IKY/1c9f/ZOf6s84bgaDhghRJYgQVYIIUSWIEFWCmBGr/jArXBsM2oC4sepX/Nl9iPhZ9bUOjcGgIUJUCSJElSBCVAkiRJUMiG57tGYGg4aY0Rtush1/8WudRQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yMFQwMjo1MjozNCswMDowMF72ERMAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjBUMDI6NTI6MzQrMDA6MDAvq6mvAAAAAElFTkSuQmCC&#34;&gt;&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFEAAACACAQAAADZ5E03AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg5B6m83AAABFUlEQVR42u3bQQrCQBBEUUdyQXd6Qt15RF0JPYEQnfS0VfD/KiLig86ATbC9Tuqd/w2AWNMSX9y/ujGvbT4rfsXSv3XZ/fBzvm+VwaAhQlQJIkSVIEJUCSJElQyIq8Wg/mf/fi1uVDprf1yvDAZtQOzuxYfMpG9h0j/v0RX1h9Zg0BAhqgQRokoQIaoEEaJKEDNi1R9mhWuDQRsQD6/68x+gH1z1K46XwaAhQlQJIkSVIEJUCSJElSBmxKo/zArXBoM2IKY/1c9f/ZOf6s84bgaDhghRJYgQVYIIUSWIEFWCmBGr/jArXBsM2oC4sepX/Nl9iPhZ9bUOjcGgIUJUCSJElSBCVAkiRJUMiG57tGYGg4aY0Rtush1/8WudRQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yM1QxNTozMDoxNCswMDowMDknX8wAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjNUMTU6MzA6MTQrMDA6MDBIeudwAAAAAElFTkSuQmCC&#34;&gt;&lt;/td&gt;
       &lt;td align=&#34;center&#34;&gt;2909
 (99.39%)&lt;/td&gt;
       &lt;td align=&#34;center&#34;&gt;18
@@ -1054,7 +1060,7 @@ min &lt; med &lt; max:
 1 &lt; 3 &lt; 5
 IQR (CV) : 2 (0.4)&lt;/td&gt;
       &lt;td align=&#34;left&#34; style=&#34;padding:0;vertical-align:middle&#34;&gt;&lt;table style=&#34;border-collapse:collapse;border:none;margin:0&#34;&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;1&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;288&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;9.9%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;2&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;1163&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;40.0%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;3&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;559&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;19.2%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;4&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;814&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;28.0%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;5&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;83&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;2.9%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;
-      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEkAAACACAQAAADtnYwrAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBQCNCIGNPNBAAABBUlEQVR42u3bQQrCMBRFUSPdoDNdYZ11iToSfgqpSUmaO7hvFCnKgZ9AH8H0udFynw2QdC5L/LD+2VjPNIoRf3jJHz0OvraN8uwCHJwkSZIk0SJJkiRJtABJuxfdq15mj5JiA5hXM2MdAA4OSMr20nva5F5hcg09blzyQwUcnCRJkiTRIkmSJEm0SKqJ1bLICGvg4ICkbtWy3/Vhp2rZ81gABydJkiRJtEiSJEkSLZJqYrUsMsIaODgg6YJby9bSOfzWsv3AAAcnSZIkSbRIkiRJEi2SamK1LDLCGjg4IKlQLcf9hbGR9KuWczc5cHCSJEmSRIskSZIk0QIk0XscI8DBSarJF5uxHX9znfeJAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTIwVDAyOjUyOjM0KzAwOjAwXvYREwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0yMFQwMjo1MjozNCswMDowMC+rqa8AAAAASUVORK5CYII=&#34;&gt;&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEkAAACACAQAAADtnYwrAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg5B6m83AAABBUlEQVR42u3bQQrCMBRFUSPdoDNdYZ11iToSfgqpSUmaO7hvFCnKgZ9AH8H0udFynw2QdC5L/LD+2VjPNIoRf3jJHz0OvraN8uwCHJwkSZIk0SJJkiRJtABJuxfdq15mj5JiA5hXM2MdAA4OSMr20nva5F5hcg09blzyQwUcnCRJkiTRIkmSJEm0SKqJ1bLICGvg4ICkbtWy3/Vhp2rZ81gABydJkiRJtEiSJEkSLZJqYrUsMsIaODgg6YJby9bSOfzWsv3AAAcnSZIkSbRIkiRJEi2SamK1LDLCGjg4IKlQLcf9hbGR9KuWczc5cHCSJEmSRIskSZIk0QIk0XscI8DBSarJF5uxHX9znfeJAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTIzVDE1OjMwOjE0KzAwOjAwOSdfzAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0yM1QxNTozMDoxNCswMDowMEh653AAAAAASUVORK5CYII=&#34;&gt;&lt;/td&gt;
       &lt;td align=&#34;center&#34;&gt;2907
 (99.32%)&lt;/td&gt;
       &lt;td align=&#34;center&#34;&gt;20
@@ -1071,7 +1077,7 @@ min &lt; med &lt; max:
 0 &lt; 5 &lt; 10
 IQR (CV) : 2 (0.4)&lt;/td&gt;
       &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle&#34;&gt;11 distinct values&lt;/td&gt;
-      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBQCNCIGNPNBAAABjUlEQVR42u3cUU7CQBRAUWtYHgvQFcoC3J/++FGNHbkEaKnn/KmJNtcOecM0TB9PFM9rX8CjESwSLDrMv7j369lp8AdfphVqLJhfyuHi33IVx4Xvv697WQOWZCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYdPOnd047eyb0Do87HRd/st2HmpZZkpFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFg0VXOJfd2WDtypYPcfR3WjliSkWCRYJFgkWCRYJFgkWCRYJFgkWDRyp+BuGyrHyi52WBb3c5bkpFgkWCRYJFgkWCRYJFgkWDR2ZP+fzp7HAlbo61uVu7LkowEiwSLBIsEiwSLvo0VZq2//ZjDHmPWWvP9/s2+pz+y5r/Va1gkWCRYJFgkWCRY9JBjxcitZ7TdBbv1jLa7YJcZbwpfZ3emYF/OvTOnedo3m+9fze+wSaPGWBEJFgkWfQJ7OCCWoGvTPgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yMFQwMjo1MjozNCswMDowMF72ERMAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjBUMDI6NTI6MzQrMDA6MDAvq6mvAAAAAElFTkSuQmCC&#34;&gt;&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg5B6m83AAABjUlEQVR42u3cUU7CQBRAUWtYHgvQFcoC3J/++FGNHbkEaKnn/KmJNtcOecM0TB9PFM9rX8CjESwSLDrMv7j369lp8AdfphVqLJhfyuHi33IVx4Xvv697WQOWZCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYdPOnd047eyb0Do87HRd/st2HmpZZkpFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFg0VXOJfd2WDtypYPcfR3WjliSkWCRYJFgkWCRYJFgkWCRYJFgkWDRyp+BuGyrHyi52WBb3c5bkpFgkWCRYJFgkWCRYJFgkWDR2ZP+fzp7HAlbo61uVu7LkowEiwSLBIsEiwSLvo0VZq2//ZjDHmPWWvP9/s2+pz+y5r/Va1gkWCRYJFgkWCRY9JBjxcitZ7TdBbv1jLa7YJcZbwpfZ3emYF/OvTOnedo3m+9fze+wSaPGWBEJFgkWfQJ7OCCWoGvTPgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yM1QxNTozMDoxNCswMDowMDknX8wAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjNUMTU6MzA6MTQrMDA6MDBIeudwAAAAAElFTkSuQmCC&#34;&gt;&lt;/td&gt;
       &lt;td align=&#34;center&#34;&gt;2915
 (99.59%)&lt;/td&gt;
       &lt;td align=&#34;center&#34;&gt;12
@@ -1087,7 +1093,7 @@ min &lt; med &lt; max:
 1 &lt; 3 &lt; 5
 IQR (CV) : 1 (0.4)&lt;/td&gt;
       &lt;td align=&#34;left&#34; style=&#34;padding:0;vertical-align:middle&#34;&gt;&lt;table style=&#34;border-collapse:collapse;border:none;margin:0&#34;&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;1&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;359&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;12.3%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;2&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;297&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;10.2%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;3&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;1251&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;42.8%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;4&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;483&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;16.5%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;5&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;535&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;18.3%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;
-      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAE0AAACACAQAAADkdixRAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBQCNCIGNPNBAAABAUlEQVR42u3ZSw6CQBAFQDFc0J2eUHceUbcNCxk+DS2pXg0hkEoek/Ay3edSda5HA9C2nT5ePJs+vHuXx4mv7oe3bpMPv/NcoykcKBoaGhoaGhoaGtrCGf2A7/d7PT1dbCrH1+VYWwoHWpg2+NZeE4lmNtAJ2u8euvcWKRwoGhoaGhoaGhoa2vloKnIzJ6wLB1qYNqsi588jJDr7qDZzhpuwcKBoaGhoaGhoaGho56OpyM2csC4caGHayoqcea68qiLnbprCgaKhoaGhoaGhoaGdj6YiN3PCunCghWmbnCLnFOUNTpGztk7hQNHQ0NDQ0NDQ0NAWzr/00FpTOFC0JfMF+Bcdf3Rx2/IAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDQtMjBUMDI6NTI6MzQrMDA6MDBe9hETAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA0LTIwVDAyOjUyOjM0KzAwOjAwL6uprwAAAABJRU5ErkJggg==&#34;&gt;&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAE0AAACACAQAAADkdixRAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg827V+hAAABAUlEQVR42u3ZSw6CQBAFQDFc0J2eUHceUbcNCxk+DS2pXg0hkEoek/Ay3edSda5HA9C2nT5ePJs+vHuXx4mv7oe3bpMPv/NcoykcKBoaGhoaGhoaGtrCGf2A7/d7PT1dbCrH1+VYWwoHWpg2+NZeE4lmNtAJ2u8euvcWKRwoGhoaGhoaGhoa2vloKnIzJ6wLB1qYNqsi588jJDr7qDZzhpuwcKBoaGhoaGhoaGho56OpyM2csC4caGHayoqcea68qiLnbprCgaKhoaGhoaGhoaGdj6YiN3PCunCghWmbnCLnFOUNTpGztk7hQNHQ0NDQ0NDQ0NAWzr/00FpTOFC0JfMF+Bcdf3Rx2/IAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDQtMjNUMTU6MzA6MTUrMDA6MDCfUFR4AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA0LTIzVDE1OjMwOjE1KzAwOjAw7g3sxAAAAABJRU5ErkJggg==&#34;&gt;&lt;/td&gt;
       &lt;td align=&#34;center&#34;&gt;2925
 (99.93%)&lt;/td&gt;
       &lt;td align=&#34;center&#34;&gt;2
@@ -1102,7 +1108,7 @@ IQR (CV) : 1 (0.4)&lt;/td&gt;
 Mean : 0.6
 Max : 1&lt;/td&gt;
       &lt;td align=&#34;left&#34; style=&#34;padding:0;vertical-align:middle&#34;&gt;&lt;table style=&#34;border-collapse:collapse;border:none;margin:0&#34;&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;0&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;1163&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;39.7%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;1&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;1764&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;60.3%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;
-      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGcAAAA4CAQAAABKkC5QAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBQCNCIGNPNBAAAAoElEQVRo3u3YQQ5AMBBAURUXtOOE7ByR7dS2kv6O/3YiFT9pJabcUyZz7xcw5z85S7w4Oh2krbSsjouX+tbaIeb68FnJNps5ZOaQmUNmDpk5ZOaQmUNmDpk5ZK9ZwZf/7T2UOLwZcyIaJznJNps5ZNWn4Bzy8Ozh8ACmoG3qb3GyzWYOmTlk5pCZQ2YOmTlk5pCZQ2YOWeYp6PiSbTZzyB7k4wvWdn8hfAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yMFQwMjo1MjozNCswMDowMF72ERMAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjBUMDI6NTI6MzQrMDA6MDAvq6mvAAAAAElFTkSuQmCC&#34;&gt;&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGcAAAA4CAQAAABKkC5QAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg827V+hAAAAoElEQVRo3u3YQQ5AMBBAURUXtOOE7ByR7dS2kv6O/3YiFT9pJabcUyZz7xcw5z85S7w4Oh2krbSsjouX+tbaIeb68FnJNps5ZOaQmUNmDpk5ZOaQmUNmDpk5ZK9ZwZf/7T2UOLwZcyIaJznJNps5ZNWn4Bzy8Ozh8ACmoG3qb3GyzWYOmTlk5pCZQ2YOmTlk5pCZQ2YOWeYp6PiSbTZzyB7k4wvWdn8hfAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yM1QxNTozMDoxNSswMDowMJ9QVHgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjNUMTU6MzA6MTUrMDA6MDDuDezEAAAAAElFTkSuQmCC&#34;&gt;&lt;/td&gt;
       &lt;td align=&#34;center&#34;&gt;2927
 (100%)&lt;/td&gt;
       &lt;td align=&#34;center&#34;&gt;0
@@ -1118,7 +1124,7 @@ min &lt; med &lt; max:
 18 &lt; 46 &lt; 88
 IQR (CV) : 25 (0.3)&lt;/td&gt;
       &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle&#34;&gt;63 distinct values&lt;/td&gt;
-      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBQCNCIGNPNBAAABpUlEQVR42u3cS07CYBhAUTEsjwXoCnUB7k+nSJvQ2/RFc84MBkgu/YtfH1x+3yje934Dr0awSLDoev9g6/3Z96Q/+HHZ+G0N3L+B6+xXWcTt4fHPyDPHYklGgkWCRYJFgkWCRYJFgkWCRYJFi4xGYzPh/hPgOhaaJdecAIcfx54fxs7D9xTHGsftw6LNtrBpx76Ob8MleRs8c7RjXVNYktGMLWza4jrLEnw0a0lO+d461nfbcizJSLBIsEiwSLBIsEiwSLBIsEiw6OlodNaZcK4Js+RZp8J5LMlIsOgFToIM7Xla7yWD7Xmw25KMBIsEiwSLBIsEiwSLBIte8h/XMVtdRXaaYFsdUzlNsKF1trkTB1tnm7PTjwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEi/5djOLOtecert45xw8KrcmSjASLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBItOfM/30BK3zV/uX+PLeclRn3dZLxo19mGRYJFg0R9a2ilCnkriSwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yMFQwMjo1MjozNCswMDowMF72ERMAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjBUMDI6NTI6MzQrMDA6MDAvq6mvAAAAAElFTkSuQmCC&#34;&gt;&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg827V+hAAABpUlEQVR42u3cS07CYBhAUTEsjwXoCnUB7k+nSJvQ2/RFc84MBkgu/YtfH1x+3yje934Dr0awSLDoev9g6/3Z96Q/+HHZ+G0N3L+B6+xXWcTt4fHPyDPHYklGgkWCRYJFgkWCRYJFgkWCRYJFi4xGYzPh/hPgOhaaJdecAIcfx54fxs7D9xTHGsftw6LNtrBpx76Ob8MleRs8c7RjXVNYktGMLWza4jrLEnw0a0lO+d461nfbcizJSLBIsEiwSLBIsEiwSLBIsEiw6OlodNaZcK4Js+RZp8J5LMlIsOgFToIM7Xla7yWD7Xmw25KMBIsEiwSLBIsEiwSLBIte8h/XMVtdRXaaYFsdUzlNsKF1trkTB1tnm7PTjwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEi/5djOLOtecert45xw8KrcmSjASLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBItOfM/30BK3zV/uX+PLeclRn3dZLxo19mGRYJFg0R9a2ilCnkriSwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yM1QxNTozMDoxNSswMDowMJ9QVHgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjNUMTU6MzA6MTUrMDA6MDDuDezEAAAAAElFTkSuQmCC&#34;&gt;&lt;/td&gt;
       &lt;td align=&#34;center&#34;&gt;2927
 (100%)&lt;/td&gt;
       &lt;td align=&#34;center&#34;&gt;0
@@ -1135,7 +1141,7 @@ min &lt; med &lt; max:
 1 &lt; 2.5 &lt; 5
 IQR (CV) : 1.5 (0.4)&lt;/td&gt;
       &lt;td align=&#34;left&#34; style=&#34;padding:0;vertical-align:middle&#34;&gt;&lt;table style=&#34;border-collapse:collapse;border:none;margin:0&#34;&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;1.00&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;243&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;8.4%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;1.50&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;79&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;2.7%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;2.00&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;1041&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;35.9%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;2.50&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;222&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;7.7%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;3.00&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;536&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;18.5%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;3.50&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;169&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;5.8%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;4.00&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;528&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;18.2%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;4.50&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;38&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;1.3%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;5.00&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;42&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;1.5%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;
-      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEIAAADiCAQAAABQQdmNAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBQCNCIGNPNBAAABYUlEQVR42u3czWrCQBgF0Kb4gt3ZJ2x3PmJdTZlIogHn5xLO3Ymoh3wjzGVIlr+P+fmcDYCoc6lf/OwukOvS+ofrL7ys3/ra/MCt85WIGAcEBAQEBAQEBESrPOwxe+8mt7PUG+yRbazebUeMIwKxWhO///NoX3YOI0r5Gb08I8YBAQEBAQEBAXEKhN5REjGOCMRO7+if72oehw5d2mf9B4gYBwQEBAQEBAQERKsoPyUR44hAHCo/vY9gDpSf/os1YhwQEBAQEBAQEKdA6B0lEeOIQDQ5dHm3lzQ4dHl/MUeMAwICAgICAgIColWUn5KIcUQgXpafEfe8vCg/YxZqxDggICAgICAgIE6B0DtKIsYRgXDoUhIxDggICAgICAgIiFZRfkoixhGB2Cg/Yx8ttnElRt3m/xQxJxAQEBAQEBAQZ0ToHXMTgdA7dhBzAgEBAQEBAQEB0QkRUH5CrgTE3NwBfx4zqTxDclkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDQtMjBUMDI6NTI6MzQrMDA6MDBe9hETAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA0LTIwVDAyOjUyOjM0KzAwOjAwL6uprwAAAABJRU5ErkJggg==&#34;&gt;&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEIAAADiCAQAAABQQdmNAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg827V+hAAABYUlEQVR42u3czWrCQBgF0Kb4gt3ZJ2x3PmJdTZlIogHn5xLO3Ymoh3wjzGVIlr+P+fmcDYCoc6lf/OwukOvS+ofrL7ys3/ra/MCt85WIGAcEBAQEBAQEBESrPOwxe+8mt7PUG+yRbazebUeMIwKxWhO///NoX3YOI0r5Gb08I8YBAQEBAQEBAXEKhN5REjGOCMRO7+if72oehw5d2mf9B4gYBwQEBAQEBAQERKsoPyUR44hAHCo/vY9gDpSf/os1YhwQEBAQEBAQEKdA6B0lEeOIQDQ5dHm3lzQ4dHl/MUeMAwICAgICAgIColWUn5KIcUQgXpafEfe8vCg/YxZqxDggICAgICAgIE6B0DtKIsYRgXDoUhIxDggICAgICAgIiFZRfkoixhGB2Cg/Yx8ttnElRt3m/xQxJxAQEBAQEBAQZ0ToHXMTgdA7dhBzAgEBAQEBAQEB0QkRUH5CrgTE3NwBfx4zqTxDclkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDQtMjNUMTU6MzA6MTUrMDA6MDCfUFR4AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA0LTIzVDE1OjMwOjE1KzAwOjAw7g3sxAAAAABJRU5ErkJggg==&#34;&gt;&lt;/td&gt;
       &lt;td align=&#34;center&#34;&gt;2898
 (99.01%)&lt;/td&gt;
       &lt;td align=&#34;center&#34;&gt;29
@@ -1143,7 +1149,7 @@ IQR (CV) : 1.5 (0.4)&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;Generated by &lt;a href=&#39;https://github.com/dcomtois/summarytools&#39;&gt;summarytools&lt;/a&gt; 0.9.6 (&lt;a href=&#39;https://www.r-project.org/&#39;&gt;R&lt;/a&gt; version 3.6.0)&lt;br/&gt;2020-04-19&lt;/p&gt;
+&lt;p&gt;Generated by &lt;a href=&#39;https://github.com/dcomtois/summarytools&#39;&gt;summarytools&lt;/a&gt; 0.9.6 (&lt;a href=&#39;https://www.r-project.org/&#39;&gt;R&lt;/a&gt; version 3.6.0)&lt;br/&gt;2020-04-23&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Nota sobre casos perdidos (NAs)&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Hasta ahora hemos mantenido los casos perdidos en la base de datos, ya que son importantes de reportar en la tabla general de variables. Sin embargo, de aquí en adelante se recomienda trabajar solo con casos completos, es decir, &lt;strong&gt;sacar los casos perdidos&lt;/strong&gt;. El procedimiento recomendado es el siguiente:&lt;/p&gt;
@@ -1155,15 +1161,15 @@ IQR (CV) : 1.5 (0.4)&lt;/td&gt;
 &lt;li&gt;contamos nuevamente con &lt;code&gt;dim&lt;/code&gt; para asegurarnos que se borraron&lt;/li&gt;
 &lt;li&gt;y por temas de funcionamiento de R, al realizar la operación de sacar casos perdidos, se borra toda la información de las etiquetas (labels), así que las recuperamos de la base original con el compando &lt;code&gt;copy_labels&lt;/code&gt;, de la librería &lt;code&gt;sjlabelled&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb17&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-1&#34; title=&#34;1&#34;&gt;proc_elsoc_original &amp;lt;-proc_elsoc&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;dim&lt;/span&gt;(proc_elsoc)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb15&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb15-1&#34; title=&#34;1&#34;&gt;proc_elsoc_original &amp;lt;-proc_elsoc&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb15-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;dim&lt;/span&gt;(proc_elsoc)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 2927    7&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb19&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb19-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;sum&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;is.na&lt;/span&gt;(proc_elsoc))&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb17&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;sum&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;is.na&lt;/span&gt;(proc_elsoc))&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 81&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb21&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb21-1&#34; title=&#34;1&#34;&gt;proc_elsoc &amp;lt;-&lt;span class=&#34;kw&#34;&gt;na.omit&lt;/span&gt;(proc_elsoc)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb21-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;dim&lt;/span&gt;(proc_elsoc)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb19&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb19-1&#34; title=&#34;1&#34;&gt;proc_elsoc &amp;lt;-&lt;span class=&#34;kw&#34;&gt;na.omit&lt;/span&gt;(proc_elsoc)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb19-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;dim&lt;/span&gt;(proc_elsoc)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 2887    7&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb23&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb23-1&#34; title=&#34;1&#34;&gt;proc_elsoc &amp;lt;-sjlabelled&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;copy_labels&lt;/span&gt;(proc_elsoc,proc_elsoc_original)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb21&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb21-1&#34; title=&#34;1&#34;&gt;proc_elsoc &amp;lt;-sjlabelled&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;copy_labels&lt;/span&gt;(proc_elsoc,proc_elsoc_original)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;exploración-de-asociación-entre-variables&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;3.2 Exploración de asociación entre variables&lt;/h3&gt;
@@ -1179,7 +1185,7 @@ IQR (CV) : 1.5 (0.4)&lt;/td&gt;
 &lt;div id=&#34;tablas-de-contingencia-para-variables-categóricas&#34; class=&#34;section level4&#34;&gt;
 &lt;h4&gt;Tablas de contingencia para variables categóricas&lt;/h4&gt;
 &lt;p&gt;Para tablas de contingencia categóricas utilizaremos la función sjt.xtab, de la librería &lt;code&gt;sjPlot&lt;/code&gt;. Veamos primero una especificación simple: &lt;span class=&#34;sidenote&#34;&gt;sjPlot::sjt.xtab&lt;/span&gt;&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb24&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb24-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;sjt.xtab&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine, proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb22&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb22-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;sjt.xtab&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine, proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;table style=&#34;border-collapse:collapse; border:none;&#34;&gt;
 &lt;tr&gt;
 &lt;th style=&#34;border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;&#34; rowspan=&#34;2&#34;&gt;
@@ -1290,10 +1296,10 @@ Total
 &lt;/tr&gt;
 &lt;/table&gt;
 &lt;p&gt;Al ejecutar el comando, el resultado aparece automáticamente en el visor de RStudio. A esta tabla podemos también agregar porcentajes de filas y/o columnas, según sea lo más relevante analizar. En general se recomienda agregar solo un porcentaje, de otra manera la tabla se satura de información. Además, vamos a quitar el pie de la tabla (conviene dejarlo solo si hay hipótesis asociadas al cruce simple entre las dos variables).&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb25&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;sjt.xtab&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine, proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-2&#34; title=&#34;2&#34;&gt;        &lt;span class=&#34;dt&#34;&gt;show.col.prc=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;TRUE&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-3&#34; title=&#34;3&#34;&gt;        &lt;span class=&#34;dt&#34;&gt;show.summary=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-4&#34; title=&#34;4&#34;&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb23&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb23-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;sjt.xtab&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine, proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb23-2&#34; title=&#34;2&#34;&gt;        &lt;span class=&#34;dt&#34;&gt;show.col.prc=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;TRUE&lt;/span&gt;,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb23-3&#34; title=&#34;3&#34;&gt;        &lt;span class=&#34;dt&#34;&gt;show.summary=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb23-4&#34; title=&#34;4&#34;&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;table style=&#34;border-collapse:collapse; border:none;&#34;&gt;
 &lt;tr&gt;
 &lt;th style=&#34;border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;&#34; rowspan=&#34;2&#34;&gt;
@@ -1404,15 +1410,15 @@ Total
 &lt;h4&gt;Tablas de promedio de variable continua por una categóricas&lt;/h4&gt;
 &lt;p&gt;En ejemplo vamos a explorar datos de nuestra variable de percepción de meritocracia &lt;em&gt;pmerit&lt;/em&gt; por los niveles educacionales &lt;em&gt;edcine&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;Una forma rápida de explorar esto es mediante la función &lt;code&gt;tapply&lt;/code&gt;, que nos entrega de manera simple el promedio de una variable por otra:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb26&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb26-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;tapply&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;pmerit, proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine, mean)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb24&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb24-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;tapply&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;pmerit, proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine, mean)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;##        1        2        3        4        5 
 ## 2.968481 2.697595 2.662763 2.479079 2.559322&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Aquí vemos en promedio de &lt;em&gt;pmerit&lt;/em&gt; para cada uno de los 5 niveles de la variable educación &lt;em&gt;edcine&lt;/em&gt;. Si se estima conveniente este tipo de cruces se puede representar también en una tabla con más opciones de información y también de publicación. Para esto utilizaremos una función algo más compleja de la librería &lt;code&gt;dplyr&lt;/code&gt;.&lt;span class=&#34;sidenote&#34;&gt;dplyr&lt;/span&gt; Esta librería permite aplicar una serie de funciones concatenadas y enlazadas mediante el operador &lt;code&gt;%&amp;gt;%&lt;/code&gt;. El sentido de cada función aparece comentado abajo:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb28&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb28-1&#34; title=&#34;1&#34;&gt;proc_elsoc &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;co&#34;&gt;# se especifica la base de datos&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb28-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;select&lt;/span&gt;(pmerit,edcine) &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;co&#34;&gt;# se seleccionan las variables&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb28-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;dplyr&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;group_by&lt;/span&gt;(Educación=sjlabelled&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;as_label&lt;/span&gt;(edcine)) &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;co&#34;&gt;# se agrupan por la variable categórica y se usan sus etiquetas con as_label&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb28-4&#34; title=&#34;4&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;dplyr&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;summarise&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;Obs.=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;n&lt;/span&gt;(),&lt;span class=&#34;dt&#34;&gt;Promedio=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;mean&lt;/span&gt;(pmerit),&lt;span class=&#34;dt&#34;&gt;SD=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;sd&lt;/span&gt;(pmerit)) &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;co&#34;&gt;# se agregan las operaciones a presentar en la tabla&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb28-5&#34; title=&#34;5&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;kable&lt;/span&gt;(, &lt;span class=&#34;dt&#34;&gt;format =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;markdown&amp;quot;&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# se genera la tabla&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb26&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb26-1&#34; title=&#34;1&#34;&gt;proc_elsoc &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;co&#34;&gt;# se especifica la base de datos&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb26-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;select&lt;/span&gt;(pmerit,edcine) &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;co&#34;&gt;# se seleccionan las variables&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb26-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;dplyr&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;group_by&lt;/span&gt;(Educación=sjlabelled&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;as_label&lt;/span&gt;(edcine)) &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;co&#34;&gt;# se agrupan por la variable categórica y se usan sus etiquetas con as_label&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb26-4&#34; title=&#34;4&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;dplyr&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;summarise&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;Obs.=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;n&lt;/span&gt;(),&lt;span class=&#34;dt&#34;&gt;Promedio=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;mean&lt;/span&gt;(pmerit),&lt;span class=&#34;dt&#34;&gt;SD=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;sd&lt;/span&gt;(pmerit)) &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;co&#34;&gt;# se agregan las operaciones a presentar en la tabla&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb26-5&#34; title=&#34;5&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;kable&lt;/span&gt;(, &lt;span class=&#34;dt&#34;&gt;format =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;markdown&amp;quot;&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# se genera la tabla&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr class=&#34;header&#34;&gt;
@@ -1456,9 +1462,9 @@ Total
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;Esta asocación también se puede representar de manera más simple con un gráfico, en este caso de cajas o boxplot mediante la función &lt;code&gt;sjp.grpfrq&lt;/code&gt; de &lt;code&gt;sjPlot&lt;/code&gt;:&lt;span class=&#34;sidenote&#34;&gt;sjPlot::sjp.grpfrq&lt;/span&gt;&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb29&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb29-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;sjp.grpfrq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;pmerit,proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb29-2&#34; title=&#34;2&#34;&gt;            &lt;span class=&#34;dt&#34;&gt;type =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;box&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/02-code_files/figure-html/unnamed-chunk-18-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb27&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb27-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;sjp.grpfrq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;pmerit,proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb27-2&#34; title=&#34;2&#34;&gt;            &lt;span class=&#34;dt&#34;&gt;type =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;box&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&#34;/assignment/02-code_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;correlaciones-variables-continuas&#34; class=&#34;section level4&#34;&gt;
 &lt;h4&gt;Correlaciones (variables continuas)&lt;/h4&gt;
@@ -1478,8 +1484,8 @@ Total
 &lt;p&gt;&lt;strong&gt;Tablas/matrices de correlación&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Las correlaciones entre variables se presentan en general en modo de matrices, es decir, las variables se presentan en las filas y las columnas y en las celdas donde se cruzan los pares de variables se muestra su coeficiente de correlación.&lt;/p&gt;
 &lt;p&gt;En su forma simple en R se aplica la función &lt;code&gt;cor&lt;/code&gt; a la&lt;span class=&#34;sidenote&#34;&gt;cor&lt;/span&gt; base de datos, y la guardamos en un objeto que le damos el nombre M para futuras operaciones:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb30&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb30-1&#34; title=&#34;1&#34;&gt;M &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;cor&lt;/span&gt;(proc_elsoc)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb30-2&#34; title=&#34;2&#34;&gt;M&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb28&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb28-1&#34; title=&#34;1&#34;&gt;M &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;cor&lt;/span&gt;(proc_elsoc)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb28-2&#34; title=&#34;2&#34;&gt;M&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;##              mesfuerzo    mtalento          ess      edcine        sexo
 ## mesfuerzo  1.000000000  0.69768811 -0.004312135 -0.12167659 -0.04480502
 ## mtalento   0.697688106  1.00000000  0.018447696 -0.10582754 -0.03759340
@@ -1497,7 +1503,7 @@ Total
 ## edad       1.00000000  0.092369792
 ## pmerit     0.09236979  1.000000000&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Este es el reporte simple, pero no muy amigable a la vista. Para una versión más amable utilizamos la función sjt.corr&lt;span class=&#34;sidenote&#34;&gt;sjPlot::sjt.corr&lt;/span&gt;:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb32&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;sjt.corr&lt;/span&gt;(proc_elsoc)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb30&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb30-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;sjt.corr&lt;/span&gt;(proc_elsoc)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;table style=&#34;border-collapse:collapse; border:none;&#34;&gt;
 &lt;tr&gt;
 &lt;th style=&#34;font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;&#34;&gt;
@@ -1720,8 +1726,8 @@ Computed correlation used pearson-method with listwise-deletion.
 &lt;li&gt;La información de cada coeficiente se repite sobre y bajo la diagonal, ya que es el mismo par de variables pero en el orden alterno.&lt;/li&gt;
 &lt;li&gt;En la diagonal corresponde que todos los coeficientes sean 1, ya que la correlación de una variable consigo misma es perfectamente positiva. En esta tabla se omiten y aparece la diagonal vacía, ya que es información redundante. Por lo mismo, también se recomienda eliminar el triangulo superior de la tabla (redundante) de la siguiente manera:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb33&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb33-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;sjt.corr&lt;/span&gt;(proc_elsoc,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb33-2&#34; title=&#34;2&#34;&gt;         &lt;span class=&#34;dt&#34;&gt;triangle =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;lower&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb31&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb31-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;sjt.corr&lt;/span&gt;(proc_elsoc,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb31-2&#34; title=&#34;2&#34;&gt;         &lt;span class=&#34;dt&#34;&gt;triangle =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;lower&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;table style=&#34;border-collapse:collapse; border:none;&#34;&gt;
 &lt;tr&gt;
 &lt;th style=&#34;font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;&#34;&gt;
@@ -1938,15 +1944,15 @@ Computed correlation used pearson-method with listwise-deletion.
 &lt;/tr&gt;
 &lt;/table&gt;
 &lt;p&gt;Una segunda forma de presentar matrices de correlaciones es de manera gráfica con la librería &lt;code&gt;corrplot&lt;/code&gt;, cuya función &lt;code&gt;corrplot.mixed&lt;/code&gt; &lt;span class=&#34;sidenote&#34;&gt;corrplot::corrplot.mixed&lt;/span&gt;se aplica al objeto que generamos con la función &lt;code&gt;cor&lt;/code&gt; (M):&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb34&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;corrplot.mixed&lt;/span&gt;(M)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/02-code_files/figure-html/unnamed-chunk-22-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb32&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;corrplot.mixed&lt;/span&gt;(M)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&#34;/assignment/02-code_files/figure-html/unnamed-chunk-20-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Este gráfico/matriz representa el grado de asociación entre variables mediante el tamaño de los círculos e intensidad de colores, y el signo de la asociación se representa con una gradiente de colores que va del azul (positivo) al rojo (negativo). Bajo la diagonal aparecen los indices de correlación entre pares de variables.&lt;/p&gt;
 &lt;p&gt;Finalmente, también se puede representar la correlación entre dos variables en un gráfico de nube de puntos o scatterplot:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb35&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb35-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;names&lt;/span&gt;(proc_elsoc)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb33&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb33-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;names&lt;/span&gt;(proc_elsoc)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## [1] &amp;quot;mesfuerzo&amp;quot; &amp;quot;mtalento&amp;quot;  &amp;quot;ess&amp;quot;       &amp;quot;edcine&amp;quot;    &amp;quot;sexo&amp;quot;      &amp;quot;edad&amp;quot;     
 ## [7] &amp;quot;pmerit&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb37&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb37-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;plot_scatter&lt;/span&gt;(proc_elsoc, edad, ess)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/02-code_files/figure-html/unnamed-chunk-23-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb35&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb35-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;plot_scatter&lt;/span&gt;(proc_elsoc, edad, ess)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&#34;/assignment/02-code_files/figure-html/unnamed-chunk-21-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Donde:
 - cada punto representa un caso
 - la forma de la nube indica si la asociación es positiva, negativa o neutra:&lt;/p&gt;

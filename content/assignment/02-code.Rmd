@@ -56,7 +56,7 @@ Al final de esta práctica la idea es que cada un_ pueda avanzar hasta el **punt
 
 ## 1. Librerías
 
-La explicación de esta parte del código se encuentra en la sección correspondiente de la [práctica 1](/assignment/01-code#librerias).
+La explicación de esta parte del código se encuentra en la sección correspondiente de la [práctica 1](/assignment/01-code#librerias).<span class="sidenote">pacman::p_load</span>
 
 ```{r,message=FALSE,warning=FALSE}
 pacman::p_load(dplyr, #Manipulacion de datos
@@ -136,7 +136,7 @@ La opción básica de `descr` es la siguiente:
 sjmisc::descr(proc_elsoc)
 ```
 
-En este caso utilizamos la forma `librería::función` (`sjmisc::descr`), ya que la función `descr` también existe en otras librerías.
+En este caso utilizamos la forma `librería::función` (`sjmisc::descr`), ya que la función `descr` también existe en otras librerías y así nos aseguramos que la función utilizada es de esa librería específica. 
 
 Seleccionamos algunas columnas específicas con información más relevante con la opción `show`. Además, agregamos la función `kable` para obtener una tabla que luego sea fácilmente publicable en distintos formatos (a profundizar en una práctica posterior):
 
@@ -145,15 +145,7 @@ sjmisc::descr(proc_elsoc,
       show = c("label","range", "mean", "sd", "NA.prc", "n"))%>%
       kable(.,"markdown")
 ```
-
-```{r eval=FALSE}
-view(summarytools::descr(proc_elsoc, stats="common", transpose=TRUE, headings=FALSE))
-```
-Y aparece este resultado en el visor:
-
-```{r results="asis", echo=FALSE}
-summarytools::descr(proc_elsoc, stats="common", transpose=TRUE, headings=FALSE)
-```
+**c. Tabla descriptiva con `summarytools::dfSummary`**<span class="sidenote">summarytools::dfSummary</span>
 
 Esta tercera opción nos ofrece una tabla aún más detallada, con gráficos para cada variable, las frecuencias para cada valor, y las etiquetas de las variables, por lo que es muy recomendable.
 

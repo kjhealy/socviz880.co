@@ -242,7 +242,7 @@
     
       <meta property="article:published_time" content="2020-01-10T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2020-04-20T16:15:44-04:00">
+    <meta property="article:modified_time" content="2020-04-23T11:14:15-04:00">
   
 
   
@@ -669,11 +669,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h1>Código de análisis</h1>
 <div id="librerías" class="section level2">
 <h2>1. Librerías</h2>
-<p>La explicación de esta parte del código se encuentra en la sección correspondiente de la <a href="/assignment/01-code#librerias">práctica 1</a>.</p>
+<p>La explicación de esta parte del código se encuentra en la sección correspondiente de la <a href="/assignment/01-code#librerias">práctica 1</a>.<span class="sidenote">pacman::p_load</span></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">pacman<span class="op">::</span><span class="kw">p_load</span>(dplyr, <span class="co">#Manipulacion de datos</span></a>
 <a class="sourceLine" id="cb1-2" title="2">              stargazer, <span class="co">#Tablas</span></a>
-<a class="sourceLine" id="cb1-3" title="3">              summarytools, <span class="co"># Tablas</span></a>
-<a class="sourceLine" id="cb1-4" title="4">              sjmisc, <span class="co"># Tablas</span></a>
+<a class="sourceLine" id="cb1-3" title="3">              sjmisc, <span class="co"># Tablas</span></a>
+<a class="sourceLine" id="cb1-4" title="4">              summarytools, <span class="co"># Tablas</span></a>
 <a class="sourceLine" id="cb1-5" title="5">              kableExtra, <span class="co">#Tablas</span></a>
 <a class="sourceLine" id="cb1-6" title="6">              sjPlot, <span class="co">#Tablas y gráficos</span></a>
 <a class="sourceLine" id="cb1-7" title="7">              corrplot) <span class="co"># Correlaciones</span></a></code></pre></div>
@@ -730,135 +730,141 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><p>La opción <code>type="text"</code> permite que podamos ver los resultados directamente en la consola, de manera bastante rudimentaria. Con otras opciones que veremos más adelante se puede estilizar para su publicación.</p></li>
 <li><p>Una distinción relevante a considerar cuando se describen variables es si estas son <strong>categóricas</strong> o <strong>continuas</strong>. La definición de si una variables es tratada como categórica o continua es algo que hace el/la autor/a del reporte, sin embargo hay variables nominales como sexo que claramente corresponden a categóricas, y por lo tanto no corresponde hacer un promedio entre ambas. Sin embargo, como esta variable está codificada 0 (hombre) y 1 (mujer), en este caso lo que indica el valor de la columna promedio (Mean=0.60) es la proporción de mujeres vs hombres. En otras palabras, hay un 60% de mujeres y 40% de hombres en la muestra.</p></li>
 </ul>
-<p><strong>b. Tablas descriptivas con <code>summarytools</code></strong><span class="sidenote">summarytools</span></p>
-<p>Esta librería ofrece distintas opciones de descriptivos. En primer lugar veremos la función <code>descr</code>, que arroja un resultado similar al de stargazer:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">descr</span>(proc_elsoc)</a></code></pre></div>
-<pre><code>## Descriptive Statistics  
-## proc_elsoc$Grado de acuerdo: Las personas son recompensadas por sus esfuerzos  
-## Label: Grado de acuerdo: Las personas son recompensadas por sus esfuerzos  
-## N: 2927  
-## 
-##                        edad    edcine       ess   mesfuerzo   mtalento    pmerit      sexo
-## ----------------- --------- --------- --------- ----------- ---------- --------- ---------
-##              Mean     46.09      3.18      4.33        2.57       2.74      2.65      0.60
-##           Std.Dev     15.29      1.21      1.57        1.05       1.06      0.97      0.49
-##               Min     18.00      1.00      0.00        1.00       1.00      1.00      0.00
-##                Q1     33.00      3.00      3.00        2.00       2.00      2.00      0.00
-##            Median     46.00      3.00      5.00        2.00       3.00      2.50      1.00
-##                Q3     58.00      4.00      5.00        3.00       4.00      3.50      1.00
-##               Max     88.00      5.00     10.00        5.00       5.00      5.00      1.00
-##               MAD     17.79      1.48      1.48        1.48       1.48      0.74      0.00
-##               IQR     25.00      1.00      2.00        1.00       2.00      1.50      1.00
-##                CV      0.33      0.38      0.36        0.41       0.39      0.37      0.81
-##          Skewness      0.07     -0.15     -0.01        0.42       0.18      0.26     -0.42
-##       SE.Skewness      0.05      0.05      0.05        0.05       0.05      0.05      0.05
-##          Kurtosis     -0.98     -0.62      1.16       -0.79      -1.03     -0.78     -1.82
-##           N.Valid   2927.00   2925.00   2915.00     2909.00    2907.00   2898.00   2927.00
-##         Pct.Valid    100.00     99.93     99.59       99.39      99.32     99.01    100.00</code></pre>
-<p>En principio no parece una muy buena opción, pero tiene la ventaja que luego su publicación es más fluida que con stargazer. Entonces primero haremos algunos ajustes, como mostrar menos estadísticos (opción <code>stats="common"</code>, transponer filas y columnas (<code>transpose</code>), y sacar el título (<code>headings</code>) que trae por defecto:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">summarytools<span class="op">::</span><span class="kw">descr</span>(proc_elsoc, <span class="dt">stats=</span><span class="st">&quot;common&quot;</span>, <span class="dt">transpose=</span><span class="ot">TRUE</span>, <span class="dt">headings=</span><span class="ot">FALSE</span>)</a></code></pre></div>
+<p><strong>b. Tablas descriptivas con <code>descr</code>, librería sjmisc</strong><span class="sidenote">sjmisc::descr</span></p>
+<p>La opción básica de <code>descr</code> es la siguiente:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">sjmisc<span class="op">::</span><span class="kw">descr</span>(proc_elsoc)</a></code></pre></div>
 <pre><code>## 
-##                    Mean   Std.Dev     Min   Median     Max   N.Valid   Pct.Valid
-## --------------- ------- --------- ------- -------- ------- --------- -----------
-##            edad   46.09     15.29   18.00    46.00   88.00   2927.00      100.00
-##          edcine    3.18      1.21    1.00     3.00    5.00   2925.00       99.93
-##             ess    4.33      1.57    0.00     5.00   10.00   2915.00       99.59
-##       mesfuerzo    2.57      1.05    1.00     2.00    5.00   2909.00       99.39
-##        mtalento    2.74      1.06    1.00     3.00    5.00   2907.00       99.32
-##          pmerit    2.65      0.97    1.00     2.50    5.00   2898.00       99.01
-##            sexo    0.60      0.49    0.00     1.00    1.00   2927.00      100.00</code></pre>
-<p>Con esto queda lista para publicación, que se puede visualizar agregando las funciones <code>view</code> y <code>descr</code>:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">view</span>(<span class="kw">descr</span>(proc_elsoc, <span class="dt">stats=</span><span class="st">&quot;common&quot;</span>, <span class="dt">transpose=</span><span class="ot">TRUE</span>, <span class="dt">headings=</span><span class="ot">FALSE</span>))</a></code></pre></div>
-<p>Y aparece este resultado en el visor:</p>
+## ## Basic descriptive statistics
+## 
+##        var    type
+##  mesfuerzo numeric
+##   mtalento numeric
+##        ess numeric
+##     edcine numeric
+##       sexo numeric
+##       edad numeric
+##     pmerit numeric
+##                                                                   label    n
+##      Grado de acuerdo: Las personas son recompensadas por sus esfuerzos 2909
+##     Grado de acuerdo: Las personas son recompensada por su inteligencia 2907
+##  Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena 2915
+##                                                       Nivel educacional 2925
+##                                                   Sexo del entrevistado 2927
+##                                                   Edad del entrevistado 2927
+##      Grado de acuerdo: Las personas son recompensadas por sus esfuerzos 2898
+##  NA.prc  mean    sd   se   md trimmed      range  skew
+##    0.61  2.57  1.05 0.02  2.0    2.56    4 (1-5)  0.42
+##    0.68  2.74  1.06 0.02  3.0    2.76    4 (1-5)  0.18
+##    0.41  4.33  1.57 0.03  5.0    4.36  10 (0-10) -0.01
+##    0.07  3.18  1.21 0.02  3.0    3.23    4 (1-5) -0.15
+##    0.00  0.60  0.49 0.01  1.0    0.63    1 (0-1) -0.42
+##    0.00 46.09 15.29 0.28 46.0   45.90 70 (18-88)  0.07
+##    0.99  2.65  0.97 0.02  2.5    2.66    4 (1-5)  0.26</code></pre>
+<p>En este caso utilizamos la forma <code>librería::función</code> (<code>sjmisc::descr</code>), ya que la función <code>descr</code> también existe en otras librerías y así nos aseguramos que la función utilizada es de esa librería específica.</p>
+<p>Seleccionamos algunas columnas específicas con información más relevante con la opción <code>show</code>. Además, agregamos la función <code>kable</code> para obtener una tabla que luego sea fácilmente publicable en distintos formatos (a profundizar en una práctica posterior):</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">sjmisc<span class="op">::</span><span class="kw">descr</span>(proc_elsoc,</a>
+<a class="sourceLine" id="cb11-2" title="2">      <span class="dt">show =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>,<span class="st">&quot;range&quot;</span>, <span class="st">&quot;mean&quot;</span>, <span class="st">&quot;sd&quot;</span>, <span class="st">&quot;NA.prc&quot;</span>, <span class="st">&quot;n&quot;</span>))<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-3" title="3"><span class="st">      </span><span class="kw">kable</span>(.,<span class="st">&quot;markdown&quot;</span>)</a></code></pre></div>
 <table>
+<colgroup>
+<col width="2%" />
+<col width="7%" />
+<col width="53%" />
+<col width="3%" />
+<col width="7%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+</colgroup>
 <thead>
 <tr class="header">
-<th></th>
-<th align="right">Mean</th>
-<th align="right">Std.Dev</th>
-<th align="right">Min</th>
-<th align="right">Median</th>
-<th align="right">Max</th>
-<th align="right">N.Valid</th>
-<th align="right">Pct.Valid</th>
+<th align="left"></th>
+<th align="left">var</th>
+<th align="left">label</th>
+<th align="right">n</th>
+<th align="right">NA.prc</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="left">range</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>edad</td>
-<td align="right">46.09</td>
-<td align="right">15.29</td>
-<td align="right">18.00</td>
-<td align="right">46.00</td>
-<td align="right">88.00</td>
-<td align="right">2927.00</td>
-<td align="right">100.00</td>
+<td align="left">4</td>
+<td align="left">mesfuerzo</td>
+<td align="left">Grado de acuerdo: Las personas son recompensadas por sus esfuerzos</td>
+<td align="right">2909</td>
+<td align="right">0.6149641</td>
+<td align="right">2.5727054</td>
+<td align="right">1.0466874</td>
+<td align="left">4 (1-5)</td>
 </tr>
 <tr class="even">
-<td>edcine</td>
-<td align="right">3.18</td>
-<td align="right">1.21</td>
-<td align="right">1.00</td>
-<td align="right">3.00</td>
-<td align="right">5.00</td>
-<td align="right">2925.00</td>
-<td align="right">99.93</td>
+<td align="left">5</td>
+<td align="left">mtalento</td>
+<td align="left">Grado de acuerdo: Las personas son recompensada por su inteligencia</td>
+<td align="right">2907</td>
+<td align="right">0.6832935</td>
+<td align="right">2.7389061</td>
+<td align="right">1.0596182</td>
+<td align="left">4 (1-5)</td>
 </tr>
 <tr class="odd">
-<td>ess</td>
-<td align="right">4.33</td>
-<td align="right">1.57</td>
-<td align="right">0.00</td>
-<td align="right">5.00</td>
-<td align="right">10.00</td>
-<td align="right">2915.00</td>
-<td align="right">99.59</td>
+<td align="left">3</td>
+<td align="left">ess</td>
+<td align="left">Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena</td>
+<td align="right">2915</td>
+<td align="right">0.4099761</td>
+<td align="right">4.3300172</td>
+<td align="right">1.5666965</td>
+<td align="left">10 (0-10)</td>
 </tr>
 <tr class="even">
-<td>mesfuerzo</td>
-<td align="right">2.57</td>
-<td align="right">1.05</td>
-<td align="right">1.00</td>
-<td align="right">2.00</td>
-<td align="right">5.00</td>
-<td align="right">2909.00</td>
-<td align="right">99.39</td>
+<td align="left">2</td>
+<td align="left">edcine</td>
+<td align="left">Nivel educacional</td>
+<td align="right">2925</td>
+<td align="right">0.0683293</td>
+<td align="right">3.1839316</td>
+<td align="right">1.2066058</td>
+<td align="left">4 (1-5)</td>
 </tr>
 <tr class="odd">
-<td>mtalento</td>
-<td align="right">2.74</td>
-<td align="right">1.06</td>
-<td align="right">1.00</td>
-<td align="right">3.00</td>
-<td align="right">5.00</td>
-<td align="right">2907.00</td>
-<td align="right">99.32</td>
+<td align="left">7</td>
+<td align="left">sexo</td>
+<td align="left">Sexo del entrevistado</td>
+<td align="right">2927</td>
+<td align="right">0.0000000</td>
+<td align="right">0.6026648</td>
+<td align="right">0.4894300</td>
+<td align="left">1 (0-1)</td>
 </tr>
 <tr class="even">
-<td>pmerit</td>
-<td align="right">2.65</td>
-<td align="right">0.97</td>
-<td align="right">1.00</td>
-<td align="right">2.50</td>
-<td align="right">5.00</td>
-<td align="right">2898.00</td>
-<td align="right">99.01</td>
+<td align="left">1</td>
+<td align="left">edad</td>
+<td align="left">Edad del entrevistado</td>
+<td align="right">2927</td>
+<td align="right">0.0000000</td>
+<td align="right">46.0908780</td>
+<td align="right">15.2867983</td>
+<td align="left">70 (18-88)</td>
 </tr>
 <tr class="odd">
-<td>sexo</td>
-<td align="right">0.60</td>
-<td align="right">0.49</td>
-<td align="right">0.00</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">2927.00</td>
-<td align="right">100.00</td>
+<td align="left">6</td>
+<td align="left">pmerit</td>
+<td align="left">Grado de acuerdo: Las personas son recompensadas por sus esfuerzos</td>
+<td align="right">2898</td>
+<td align="right">0.9907755</td>
+<td align="right">2.6538992</td>
+<td align="right">0.9694792</td>
+<td align="left">4 (1-5)</td>
 </tr>
 </tbody>
 </table>
-<p>Una segunda función de la librería <code>summarytools</code> es <code>dfSummary</code><span class="sidenote">summarytools::dfSummary</span>, que nos ofrece una tabla aún más detallada, con gráficos para cada variable, las frecuencias para cada valor, y las etiquetas de las variables, por lo que es muy recomendable.</p>
+<p><strong>c. Tabla descriptiva con <code>summarytools::dfSummary</code></strong><span class="sidenote">summarytools::dfSummary</span></p>
+<p>Esta tercera opción nos ofrece una tabla aún más detallada, con gráficos para cada variable, las frecuencias para cada valor, y las etiquetas de las variables, por lo que es muy recomendable.</p>
 <p>Se específica de la siguiente manera:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">dfSummary</span>(proc_elsoc, <span class="dt">plain.ascii =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">dfSummary</span>(proc_elsoc, <span class="dt">plain.ascii =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## ### Data Frame Summary  
 ## #### proc_elsoc  
 ## **Dimensions:** 2927 x 7  
@@ -914,7 +920,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##                                                                                    5.00 :   42 ( 1.5%)                                             
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------</code></pre>
 <p>Es muy ancha para visualizar bien en la consola de R, pero en su versión más definitiva de publicación se verá así:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">view</span>(<span class="kw">dfSummary</span>(proc_elsoc, <span class="dt">headings=</span><span class="ot">FALSE</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">view</span>(<span class="kw">dfSummary</span>(proc_elsoc, <span class="dt">headings=</span><span class="ot">FALSE</span>))</a></code></pre></div>
 <div class="container st-container">
 <table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline ">
   <thead>
@@ -941,7 +947,7 @@ min < med < max:
 1 < 2 < 5
 IQR (CV) : 1 (0.4)</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">357</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">12.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">2</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1331</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">45.8%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">3</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">497</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">17.1%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">4</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">646</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">22.2%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">5</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">78</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">2.7%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFEAAACACAQAAADZ5E03AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBQCNCIGNPNBAAABFUlEQVR42u3bQQrCQBBEUUdyQXd6Qt15RF0JPYEQnfS0VfD/KiLig86ATbC9Tuqd/w2AWNMSX9y/ujGvbT4rfsXSv3XZ/fBzvm+VwaAhQlQJIkSVIEJUCSJElQyIq8Wg/mf/fi1uVDprf1yvDAZtQOzuxYfMpG9h0j/v0RX1h9Zg0BAhqgQRokoQIaoEEaJKEDNi1R9mhWuDQRsQD6/68x+gH1z1K46XwaAhQlQJIkSVIEJUCSJElSBmxKo/zArXBoM2IKY/1c9f/ZOf6s84bgaDhghRJYgQVYIIUSWIEFWCmBGr/jArXBsM2oC4sepX/Nl9iPhZ9bUOjcGgIUJUCSJElSBCVAkiRJUMiG57tGYGg4aY0Rtush1/8WudRQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yMFQwMjo1MjozNCswMDowMF72ERMAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjBUMDI6NTI6MzQrMDA6MDAvq6mvAAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFEAAACACAQAAADZ5E03AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg5B6m83AAABFUlEQVR42u3bQQrCQBBEUUdyQXd6Qt15RF0JPYEQnfS0VfD/KiLig86ATbC9Tuqd/w2AWNMSX9y/ujGvbT4rfsXSv3XZ/fBzvm+VwaAhQlQJIkSVIEJUCSJElQyIq8Wg/mf/fi1uVDprf1yvDAZtQOzuxYfMpG9h0j/v0RX1h9Zg0BAhqgQRokoQIaoEEaJKEDNi1R9mhWuDQRsQD6/68x+gH1z1K46XwaAhQlQJIkSVIEJUCSJElSBmxKo/zArXBoM2IKY/1c9f/ZOf6s84bgaDhghRJYgQVYIIUSWIEFWCmBGr/jArXBsM2oC4sepX/Nl9iPhZ9bUOjcGgIUJUCSJElSBCVAkiRJUMiG57tGYGg4aY0Rtush1/8WudRQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yM1QxNTozMDoxNCswMDowMDknX8wAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjNUMTU6MzA6MTQrMDA6MDBIeudwAAAAAElFTkSuQmCC"></td>
       <td align="center">2909
 (99.39%)</td>
       <td align="center">18
@@ -958,7 +964,7 @@ min < med < max:
 1 < 3 < 5
 IQR (CV) : 2 (0.4)</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">288</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">9.9%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">2</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1163</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">40.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">3</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">559</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">19.2%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">4</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">814</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">28.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">5</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">83</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">2.9%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEkAAACACAQAAADtnYwrAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBQCNCIGNPNBAAABBUlEQVR42u3bQQrCMBRFUSPdoDNdYZ11iToSfgqpSUmaO7hvFCnKgZ9AH8H0udFynw2QdC5L/LD+2VjPNIoRf3jJHz0OvraN8uwCHJwkSZIk0SJJkiRJtABJuxfdq15mj5JiA5hXM2MdAA4OSMr20nva5F5hcg09blzyQwUcnCRJkiTRIkmSJEm0SKqJ1bLICGvg4ICkbtWy3/Vhp2rZ81gABydJkiRJtEiSJEkSLZJqYrUsMsIaODgg6YJby9bSOfzWsv3AAAcnSZIkSbRIkiRJEi2SamK1LDLCGjg4IKlQLcf9hbGR9KuWczc5cHCSJEmSRIskSZIk0QIk0XscI8DBSarJF5uxHX9znfeJAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTIwVDAyOjUyOjM0KzAwOjAwXvYREwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0yMFQwMjo1MjozNCswMDowMC+rqa8AAAAASUVORK5CYII="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEkAAACACAQAAADtnYwrAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg5B6m83AAABBUlEQVR42u3bQQrCMBRFUSPdoDNdYZ11iToSfgqpSUmaO7hvFCnKgZ9AH8H0udFynw2QdC5L/LD+2VjPNIoRf3jJHz0OvraN8uwCHJwkSZIk0SJJkiRJtABJuxfdq15mj5JiA5hXM2MdAA4OSMr20nva5F5hcg09blzyQwUcnCRJkiTRIkmSJEm0SKqJ1bLICGvg4ICkbtWy3/Vhp2rZ81gABydJkiRJtEiSJEkSLZJqYrUsMsIaODgg6YJby9bSOfzWsv3AAAcnSZIkSbRIkiRJEi2SamK1LDLCGjg4IKlQLcf9hbGR9KuWczc5cHCSJEmSRIskSZIk0QIk0XscI8DBSarJF5uxHX9znfeJAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTIzVDE1OjMwOjE0KzAwOjAwOSdfzAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0yM1QxNTozMDoxNCswMDowMEh653AAAAAASUVORK5CYII="></td>
       <td align="center">2907
 (99.32%)</td>
       <td align="center">20
@@ -975,7 +981,7 @@ min < med < max:
 0 < 5 < 10
 IQR (CV) : 2 (0.4)</td>
       <td align="left" style="vertical-align:middle">11 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBQCNCIGNPNBAAABjUlEQVR42u3cUU7CQBRAUWtYHgvQFcoC3J/++FGNHbkEaKnn/KmJNtcOecM0TB9PFM9rX8CjESwSLDrMv7j369lp8AdfphVqLJhfyuHi33IVx4Xvv697WQOWZCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYdPOnd047eyb0Do87HRd/st2HmpZZkpFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFg0VXOJfd2WDtypYPcfR3WjliSkWCRYJFgkWCRYJFgkWCRYJFgkWDRyp+BuGyrHyi52WBb3c5bkpFgkWCRYJFgkWCRYJFgkWDR2ZP+fzp7HAlbo61uVu7LkowEiwSLBIsEiwSLvo0VZq2//ZjDHmPWWvP9/s2+pz+y5r/Va1gkWCRYJFgkWCRY9JBjxcitZ7TdBbv1jLa7YJcZbwpfZ3emYF/OvTOnedo3m+9fze+wSaPGWBEJFgkWfQJ7OCCWoGvTPgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yMFQwMjo1MjozNCswMDowMF72ERMAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjBUMDI6NTI6MzQrMDA6MDAvq6mvAAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg5B6m83AAABjUlEQVR42u3cUU7CQBRAUWtYHgvQFcoC3J/++FGNHbkEaKnn/KmJNtcOecM0TB9PFM9rX8CjESwSLDrMv7j369lp8AdfphVqLJhfyuHi33IVx4Xvv697WQOWZCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYdPOnd047eyb0Do87HRd/st2HmpZZkpFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFg0VXOJfd2WDtypYPcfR3WjliSkWCRYJFgkWCRYJFgkWCRYJFgkWDRyp+BuGyrHyi52WBb3c5bkpFgkWCRYJFgkWCRYJFgkWDR2ZP+fzp7HAlbo61uVu7LkowEiwSLBIsEiwSLvo0VZq2//ZjDHmPWWvP9/s2+pz+y5r/Va1gkWCRYJFgkWCRY9JBjxcitZ7TdBbv1jLa7YJcZbwpfZ3emYF/OvTOnedo3m+9fze+wSaPGWBEJFgkWfQJ7OCCWoGvTPgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yM1QxNTozMDoxNCswMDowMDknX8wAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjNUMTU6MzA6MTQrMDA6MDBIeudwAAAAAElFTkSuQmCC"></td>
       <td align="center">2915
 (99.59%)</td>
       <td align="center">12
@@ -991,7 +997,7 @@ min < med < max:
 1 < 3 < 5
 IQR (CV) : 1 (0.4)</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">359</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">12.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">2</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">297</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.2%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">3</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1251</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">42.8%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">4</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">483</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">16.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">5</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">535</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">18.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAE0AAACACAQAAADkdixRAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBQCNCIGNPNBAAABAUlEQVR42u3ZSw6CQBAFQDFc0J2eUHceUbcNCxk+DS2pXg0hkEoek/Ay3edSda5HA9C2nT5ePJs+vHuXx4mv7oe3bpMPv/NcoykcKBoaGhoaGhoaGtrCGf2A7/d7PT1dbCrH1+VYWwoHWpg2+NZeE4lmNtAJ2u8euvcWKRwoGhoaGhoaGhoa2vloKnIzJ6wLB1qYNqsi588jJDr7qDZzhpuwcKBoaGhoaGhoaGho56OpyM2csC4caGHayoqcea68qiLnbprCgaKhoaGhoaGhoaGdj6YiN3PCunCghWmbnCLnFOUNTpGztk7hQNHQ0NDQ0NDQ0NAWzr/00FpTOFC0JfMF+Bcdf3Rx2/IAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDQtMjBUMDI6NTI6MzQrMDA6MDBe9hETAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA0LTIwVDAyOjUyOjM0KzAwOjAwL6uprwAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAE0AAACACAQAAADkdixRAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg827V+hAAABAUlEQVR42u3ZSw6CQBAFQDFc0J2eUHceUbcNCxk+DS2pXg0hkEoek/Ay3edSda5HA9C2nT5ePJs+vHuXx4mv7oe3bpMPv/NcoykcKBoaGhoaGhoaGtrCGf2A7/d7PT1dbCrH1+VYWwoHWpg2+NZeE4lmNtAJ2u8euvcWKRwoGhoaGhoaGhoa2vloKnIzJ6wLB1qYNqsi588jJDr7qDZzhpuwcKBoaGhoaGhoaGho56OpyM2csC4caGHayoqcea68qiLnbprCgaKhoaGhoaGhoaGdj6YiN3PCunCghWmbnCLnFOUNTpGztk7hQNHQ0NDQ0NDQ0NAWzr/00FpTOFC0JfMF+Bcdf3Rx2/IAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDQtMjNUMTU6MzA6MTUrMDA6MDCfUFR4AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA0LTIzVDE1OjMwOjE1KzAwOjAw7g3sxAAAAABJRU5ErkJggg=="></td>
       <td align="center">2925
 (99.93%)</td>
       <td align="center">2
@@ -1006,7 +1012,7 @@ IQR (CV) : 1 (0.4)</td>
 Mean : 0.6
 Max : 1</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">0</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1163</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">39.7%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1764</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">60.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGcAAAA4CAQAAABKkC5QAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBQCNCIGNPNBAAAAoElEQVRo3u3YQQ5AMBBAURUXtOOE7ByR7dS2kv6O/3YiFT9pJabcUyZz7xcw5z85S7w4Oh2krbSsjouX+tbaIeb68FnJNps5ZOaQmUNmDpk5ZOaQmUNmDpk5ZK9ZwZf/7T2UOLwZcyIaJznJNps5ZNWn4Bzy8Ozh8ACmoG3qb3GyzWYOmTlk5pCZQ2YOmTlk5pCZQ2YOWeYp6PiSbTZzyB7k4wvWdn8hfAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yMFQwMjo1MjozNCswMDowMF72ERMAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjBUMDI6NTI6MzQrMDA6MDAvq6mvAAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGcAAAA4CAQAAABKkC5QAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg827V+hAAAAoElEQVRo3u3YQQ5AMBBAURUXtOOE7ByR7dS2kv6O/3YiFT9pJabcUyZz7xcw5z85S7w4Oh2krbSsjouX+tbaIeb68FnJNps5ZOaQmUNmDpk5ZOaQmUNmDpk5ZK9ZwZf/7T2UOLwZcyIaJznJNps5ZNWn4Bzy8Ozh8ACmoG3qb3GyzWYOmTlk5pCZQ2YOmTlk5pCZQ2YOWeYp6PiSbTZzyB7k4wvWdn8hfAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yM1QxNTozMDoxNSswMDowMJ9QVHgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjNUMTU6MzA6MTUrMDA6MDDuDezEAAAAAElFTkSuQmCC"></td>
       <td align="center">2927
 (100%)</td>
       <td align="center">0
@@ -1022,7 +1028,7 @@ min < med < max:
 18 < 46 < 88
 IQR (CV) : 25 (0.3)</td>
       <td align="left" style="vertical-align:middle">63 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBQCNCIGNPNBAAABpUlEQVR42u3cS07CYBhAUTEsjwXoCnUB7k+nSJvQ2/RFc84MBkgu/YtfH1x+3yje934Dr0awSLDoev9g6/3Z96Q/+HHZ+G0N3L+B6+xXWcTt4fHPyDPHYklGgkWCRYJFgkWCRYJFgkWCRYJFi4xGYzPh/hPgOhaaJdecAIcfx54fxs7D9xTHGsftw6LNtrBpx76Ob8MleRs8c7RjXVNYktGMLWza4jrLEnw0a0lO+d461nfbcizJSLBIsEiwSLBIsEiwSLBIsEiw6OlodNaZcK4Js+RZp8J5LMlIsOgFToIM7Xla7yWD7Xmw25KMBIsEiwSLBIsEiwSLBIte8h/XMVtdRXaaYFsdUzlNsKF1trkTB1tnm7PTjwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEi/5djOLOtecert45xw8KrcmSjASLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBItOfM/30BK3zV/uX+PLeclRn3dZLxo19mGRYJFg0R9a2ilCnkriSwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yMFQwMjo1MjozNCswMDowMF72ERMAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjBUMDI6NTI6MzQrMDA6MDAvq6mvAAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg827V+hAAABpUlEQVR42u3cS07CYBhAUTEsjwXoCnUB7k+nSJvQ2/RFc84MBkgu/YtfH1x+3yje934Dr0awSLDoev9g6/3Z96Q/+HHZ+G0N3L+B6+xXWcTt4fHPyDPHYklGgkWCRYJFgkWCRYJFgkWCRYJFi4xGYzPh/hPgOhaaJdecAIcfx54fxs7D9xTHGsftw6LNtrBpx76Ob8MleRs8c7RjXVNYktGMLWza4jrLEnw0a0lO+d461nfbcizJSLBIsEiwSLBIsEiwSLBIsEiw6OlodNaZcK4Js+RZp8J5LMlIsOgFToIM7Xla7yWD7Xmw25KMBIsEiwSLBIsEiwSLBIte8h/XMVtdRXaaYFsdUzlNsKF1trkTB1tnm7PTjwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEi/5djOLOtecert45xw8KrcmSjASLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBItOfM/30BK3zV/uX+PLeclRn3dZLxo19mGRYJFg0R9a2ilCnkriSwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNC0yM1QxNTozMDoxNSswMDowMJ9QVHgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDQtMjNUMTU6MzA6MTUrMDA6MDDuDezEAAAAAElFTkSuQmCC"></td>
       <td align="center">2927
 (100%)</td>
       <td align="center">0
@@ -1039,7 +1045,7 @@ min < med < max:
 1 < 2.5 < 5
 IQR (CV) : 1.5 (0.4)</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1.00</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">243</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">8.4%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1.50</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">79</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">2.7%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">2.00</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1041</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">35.9%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">2.50</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">222</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">7.7%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">3.00</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">536</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">18.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">3.50</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">169</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">5.8%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">4.00</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">528</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">18.2%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">4.50</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">38</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">1.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">5.00</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">42</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">1.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEIAAADiCAQAAABQQdmNAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBQCNCIGNPNBAAABYUlEQVR42u3czWrCQBgF0Kb4gt3ZJ2x3PmJdTZlIogHn5xLO3Ymoh3wjzGVIlr+P+fmcDYCoc6lf/OwukOvS+ofrL7ys3/ra/MCt85WIGAcEBAQEBAQEBESrPOwxe+8mt7PUG+yRbazebUeMIwKxWhO///NoX3YOI0r5Gb08I8YBAQEBAQEBAXEKhN5REjGOCMRO7+if72oehw5d2mf9B4gYBwQEBAQEBAQERKsoPyUR44hAHCo/vY9gDpSf/os1YhwQEBAQEBAQEKdA6B0lEeOIQDQ5dHm3lzQ4dHl/MUeMAwICAgICAgIColWUn5KIcUQgXpafEfe8vCg/YxZqxDggICAgICAgIE6B0DtKIsYRgXDoUhIxDggICAgICAgIiFZRfkoixhGB2Cg/Yx8ttnElRt3m/xQxJxAQEBAQEBAQZ0ToHXMTgdA7dhBzAgEBAQEBAQEB0QkRUH5CrgTE3NwBfx4zqTxDclkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDQtMjBUMDI6NTI6MzQrMDA6MDBe9hETAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA0LTIwVDAyOjUyOjM0KzAwOjAwL6uprwAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEIAAADiCAQAAABQQdmNAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBBcPHg827V+hAAABYUlEQVR42u3czWrCQBgF0Kb4gt3ZJ2x3PmJdTZlIogHn5xLO3Ymoh3wjzGVIlr+P+fmcDYCoc6lf/OwukOvS+ofrL7ys3/ra/MCt85WIGAcEBAQEBAQEBESrPOwxe+8mt7PUG+yRbazebUeMIwKxWhO///NoX3YOI0r5Gb08I8YBAQEBAQEBAXEKhN5REjGOCMRO7+if72oehw5d2mf9B4gYBwQEBAQEBAQERKsoPyUR44hAHCo/vY9gDpSf/os1YhwQEBAQEBAQEKdA6B0lEeOIQDQ5dHm3lzQ4dHl/MUeMAwICAgICAgIColWUn5KIcUQgXpafEfe8vCg/YxZqxDggICAgICAgIE6B0DtKIsYRgXDoUhIxDggICAgICAgIiFZRfkoixhGB2Cg/Yx8ttnElRt3m/xQxJxAQEBAQEBAQZ0ToHXMTgdA7dhBzAgEBAQEBAQEB0QkRUH5CrgTE3NwBfx4zqTxDclkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDQtMjNUMTU6MzA6MTUrMDA6MDCfUFR4AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA0LTIzVDE1OjMwOjE1KzAwOjAw7g3sxAAAAABJRU5ErkJggg=="></td>
       <td align="center">2898
 (99.01%)</td>
       <td align="center">29
@@ -1047,7 +1053,7 @@ IQR (CV) : 1.5 (0.4)</td>
     </tr>
   </tbody>
 </table>
-<p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 0.9.6 (<a href='https://www.r-project.org/'>R</a> version 3.6.0)<br/>2020-04-19</p>
+<p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 0.9.6 (<a href='https://www.r-project.org/'>R</a> version 3.6.0)<br/>2020-04-23</p>
 </div>
 <p><strong>Nota sobre casos perdidos (NAs)</strong></p>
 <p>Hasta ahora hemos mantenido los casos perdidos en la base de datos, ya que son importantes de reportar en la tabla general de variables. Sin embargo, de aquí en adelante se recomienda trabajar solo con casos completos, es decir, <strong>sacar los casos perdidos</strong>. El procedimiento recomendado es el siguiente:</p>
@@ -1059,15 +1065,15 @@ IQR (CV) : 1.5 (0.4)</td>
 <li>contamos nuevamente con <code>dim</code> para asegurarnos que se borraron</li>
 <li>y por temas de funcionamiento de R, al realizar la operación de sacar casos perdidos, se borra toda la información de las etiquetas (labels), así que las recuperamos de la base original con el compando <code>copy_labels</code>, de la librería <code>sjlabelled</code>.</li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">proc_elsoc_original &lt;-proc_elsoc</a>
-<a class="sourceLine" id="cb17-2" title="2"><span class="kw">dim</span>(proc_elsoc)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">proc_elsoc_original &lt;-proc_elsoc</a>
+<a class="sourceLine" id="cb15-2" title="2"><span class="kw">dim</span>(proc_elsoc)</a></code></pre></div>
 <pre><code>## [1] 2927    7</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">sum</span>(<span class="kw">is.na</span>(proc_elsoc))</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">sum</span>(<span class="kw">is.na</span>(proc_elsoc))</a></code></pre></div>
 <pre><code>## [1] 81</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">proc_elsoc &lt;-<span class="kw">na.omit</span>(proc_elsoc)</a>
-<a class="sourceLine" id="cb21-2" title="2"><span class="kw">dim</span>(proc_elsoc)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">proc_elsoc &lt;-<span class="kw">na.omit</span>(proc_elsoc)</a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="kw">dim</span>(proc_elsoc)</a></code></pre></div>
 <pre><code>## [1] 2887    7</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">proc_elsoc &lt;-sjlabelled<span class="op">::</span><span class="kw">copy_labels</span>(proc_elsoc,proc_elsoc_original)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">proc_elsoc &lt;-sjlabelled<span class="op">::</span><span class="kw">copy_labels</span>(proc_elsoc,proc_elsoc_original)</a></code></pre></div>
 </div>
 <div id="exploración-de-asociación-entre-variables" class="section level3">
 <h3>3.2 Exploración de asociación entre variables</h3>
@@ -1083,7 +1089,7 @@ IQR (CV) : 1.5 (0.4)</td>
 <div id="tablas-de-contingencia-para-variables-categóricas" class="section level4">
 <h4>Tablas de contingencia para variables categóricas</h4>
 <p>Para tablas de contingencia categóricas utilizaremos la función sjt.xtab, de la librería <code>sjPlot</code>. Veamos primero una especificación simple: <span class="sidenote">sjPlot::sjt.xtab</span></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">sjt.xtab</span>(proc_elsoc<span class="op">$</span>edcine, proc_elsoc<span class="op">$</span>sexo)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">sjt.xtab</span>(proc_elsoc<span class="op">$</span>edcine, proc_elsoc<span class="op">$</span>sexo)</a></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2">
@@ -1194,10 +1200,10 @@ Total
 </tr>
 </table>
 <p>Al ejecutar el comando, el resultado aparece automáticamente en el visor de RStudio. A esta tabla podemos también agregar porcentajes de filas y/o columnas, según sea lo más relevante analizar. En general se recomienda agregar solo un porcentaje, de otra manera la tabla se satura de información. Además, vamos a quitar el pie de la tabla (conviene dejarlo solo si hay hipótesis asociadas al cruce simple entre las dos variables).</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">sjt.xtab</span>(proc_elsoc<span class="op">$</span>edcine, proc_elsoc<span class="op">$</span>sexo,</a>
-<a class="sourceLine" id="cb25-2" title="2">        <span class="dt">show.col.prc=</span><span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb25-3" title="3">        <span class="dt">show.summary=</span><span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb25-4" title="4">)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">sjt.xtab</span>(proc_elsoc<span class="op">$</span>edcine, proc_elsoc<span class="op">$</span>sexo,</a>
+<a class="sourceLine" id="cb23-2" title="2">        <span class="dt">show.col.prc=</span><span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb23-3" title="3">        <span class="dt">show.summary=</span><span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb23-4" title="4">)</a></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2">
@@ -1308,15 +1314,15 @@ Total
 <h4>Tablas de promedio de variable continua por una categóricas</h4>
 <p>En ejemplo vamos a explorar datos de nuestra variable de percepción de meritocracia <em>pmerit</em> por los niveles educacionales <em>edcine</em>.</p>
 <p>Una forma rápida de explorar esto es mediante la función <code>tapply</code>, que nos entrega de manera simple el promedio de una variable por otra:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">tapply</span>(proc_elsoc<span class="op">$</span>pmerit, proc_elsoc<span class="op">$</span>edcine, mean)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">tapply</span>(proc_elsoc<span class="op">$</span>pmerit, proc_elsoc<span class="op">$</span>edcine, mean)</a></code></pre></div>
 <pre><code>##        1        2        3        4        5 
 ## 2.968481 2.697595 2.662763 2.479079 2.559322</code></pre>
 <p>Aquí vemos en promedio de <em>pmerit</em> para cada uno de los 5 niveles de la variable educación <em>edcine</em>. Si se estima conveniente este tipo de cruces se puede representar también en una tabla con más opciones de información y también de publicación. Para esto utilizaremos una función algo más compleja de la librería <code>dplyr</code>.<span class="sidenote">dplyr</span> Esta librería permite aplicar una serie de funciones concatenadas y enlazadas mediante el operador <code>%&gt;%</code>. El sentido de cada función aparece comentado abajo:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">proc_elsoc <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se especifica la base de datos</span></a>
-<a class="sourceLine" id="cb28-2" title="2"><span class="st">  </span><span class="kw">select</span>(pmerit,edcine) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se seleccionan las variables</span></a>
-<a class="sourceLine" id="cb28-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(Educación=sjlabelled<span class="op">::</span><span class="kw">as_label</span>(edcine)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se agrupan por la variable categórica y se usan sus etiquetas con as_label</span></a>
-<a class="sourceLine" id="cb28-4" title="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">Obs.=</span><span class="kw">n</span>(),<span class="dt">Promedio=</span><span class="kw">mean</span>(pmerit),<span class="dt">SD=</span><span class="kw">sd</span>(pmerit)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se agregan las operaciones a presentar en la tabla</span></a>
-<a class="sourceLine" id="cb28-5" title="5"><span class="st">  </span><span class="kw">kable</span>(, <span class="dt">format =</span> <span class="st">&quot;markdown&quot;</span>) <span class="co"># se genera la tabla</span></a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">proc_elsoc <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se especifica la base de datos</span></a>
+<a class="sourceLine" id="cb26-2" title="2"><span class="st">  </span><span class="kw">select</span>(pmerit,edcine) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se seleccionan las variables</span></a>
+<a class="sourceLine" id="cb26-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(Educación=sjlabelled<span class="op">::</span><span class="kw">as_label</span>(edcine)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se agrupan por la variable categórica y se usan sus etiquetas con as_label</span></a>
+<a class="sourceLine" id="cb26-4" title="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">Obs.=</span><span class="kw">n</span>(),<span class="dt">Promedio=</span><span class="kw">mean</span>(pmerit),<span class="dt">SD=</span><span class="kw">sd</span>(pmerit)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se agregan las operaciones a presentar en la tabla</span></a>
+<a class="sourceLine" id="cb26-5" title="5"><span class="st">  </span><span class="kw">kable</span>(, <span class="dt">format =</span> <span class="st">&quot;markdown&quot;</span>) <span class="co"># se genera la tabla</span></a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1360,9 +1366,9 @@ Total
 </tbody>
 </table>
 <p>Esta asocación también se puede representar de manera más simple con un gráfico, en este caso de cajas o boxplot mediante la función <code>sjp.grpfrq</code> de <code>sjPlot</code>:<span class="sidenote">sjPlot::sjp.grpfrq</span></p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">sjp.grpfrq</span>(proc_elsoc<span class="op">$</span>pmerit,proc_elsoc<span class="op">$</span>edcine,</a>
-<a class="sourceLine" id="cb29-2" title="2">            <span class="dt">type =</span> <span class="st">&quot;box&quot;</span>)</a></code></pre></div>
-<p><img src="/assignment/02-code_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">sjp.grpfrq</span>(proc_elsoc<span class="op">$</span>pmerit,proc_elsoc<span class="op">$</span>edcine,</a>
+<a class="sourceLine" id="cb27-2" title="2">            <span class="dt">type =</span> <span class="st">&quot;box&quot;</span>)</a></code></pre></div>
+<p><img src="/assignment/02-code_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 </div>
 <div id="correlaciones-variables-continuas" class="section level4">
 <h4>Correlaciones (variables continuas)</h4>
@@ -1382,8 +1388,8 @@ Total
 <p><strong>Tablas/matrices de correlación</strong></p>
 <p>Las correlaciones entre variables se presentan en general en modo de matrices, es decir, las variables se presentan en las filas y las columnas y en las celdas donde se cruzan los pares de variables se muestra su coeficiente de correlación.</p>
 <p>En su forma simple en R se aplica la función <code>cor</code> a la<span class="sidenote">cor</span> base de datos, y la guardamos en un objeto que le damos el nombre M para futuras operaciones:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">M &lt;-<span class="st"> </span><span class="kw">cor</span>(proc_elsoc)</a>
-<a class="sourceLine" id="cb30-2" title="2">M</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">M &lt;-<span class="st"> </span><span class="kw">cor</span>(proc_elsoc)</a>
+<a class="sourceLine" id="cb28-2" title="2">M</a></code></pre></div>
 <pre><code>##              mesfuerzo    mtalento          ess      edcine        sexo
 ## mesfuerzo  1.000000000  0.69768811 -0.004312135 -0.12167659 -0.04480502
 ## mtalento   0.697688106  1.00000000  0.018447696 -0.10582754 -0.03759340
@@ -1401,7 +1407,7 @@ Total
 ## edad       1.00000000  0.092369792
 ## pmerit     0.09236979  1.000000000</code></pre>
 <p>Este es el reporte simple, pero no muy amigable a la vista. Para una versión más amable utilizamos la función sjt.corr<span class="sidenote">sjPlot::sjt.corr</span>:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">sjt.corr</span>(proc_elsoc)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">sjt.corr</span>(proc_elsoc)</a></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
@@ -1624,8 +1630,8 @@ Computed correlation used pearson-method with listwise-deletion.
 <li>La información de cada coeficiente se repite sobre y bajo la diagonal, ya que es el mismo par de variables pero en el orden alterno.</li>
 <li>En la diagonal corresponde que todos los coeficientes sean 1, ya que la correlación de una variable consigo misma es perfectamente positiva. En esta tabla se omiten y aparece la diagonal vacía, ya que es información redundante. Por lo mismo, también se recomienda eliminar el triangulo superior de la tabla (redundante) de la siguiente manera:</li>
 </ul>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">sjt.corr</span>(proc_elsoc,</a>
-<a class="sourceLine" id="cb33-2" title="2">         <span class="dt">triangle =</span> <span class="st">&quot;lower&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="kw">sjt.corr</span>(proc_elsoc,</a>
+<a class="sourceLine" id="cb31-2" title="2">         <span class="dt">triangle =</span> <span class="st">&quot;lower&quot;</span>)</a></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
@@ -1842,15 +1848,15 @@ Computed correlation used pearson-method with listwise-deletion.
 </tr>
 </table>
 <p>Una segunda forma de presentar matrices de correlaciones es de manera gráfica con la librería <code>corrplot</code>, cuya función <code>corrplot.mixed</code> <span class="sidenote">corrplot::corrplot.mixed</span>se aplica al objeto que generamos con la función <code>cor</code> (M):</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="kw">corrplot.mixed</span>(M)</a></code></pre></div>
-<p><img src="/assignment/02-code_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">corrplot.mixed</span>(M)</a></code></pre></div>
+<p><img src="/assignment/02-code_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>Este gráfico/matriz representa el grado de asociación entre variables mediante el tamaño de los círculos e intensidad de colores, y el signo de la asociación se representa con una gradiente de colores que va del azul (positivo) al rojo (negativo). Bajo la diagonal aparecen los indices de correlación entre pares de variables.</p>
 <p>Finalmente, también se puede representar la correlación entre dos variables en un gráfico de nube de puntos o scatterplot:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">names</span>(proc_elsoc)</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">names</span>(proc_elsoc)</a></code></pre></div>
 <pre><code>## [1] &quot;mesfuerzo&quot; &quot;mtalento&quot;  &quot;ess&quot;       &quot;edcine&quot;    &quot;sexo&quot;      &quot;edad&quot;     
 ## [7] &quot;pmerit&quot;</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw">plot_scatter</span>(proc_elsoc, edad, ess)</a></code></pre></div>
-<p><img src="/assignment/02-code_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">plot_scatter</span>(proc_elsoc, edad, ess)</a></code></pre></div>
+<p><img src="/assignment/02-code_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>Donde:
 - cada punto representa un caso
 - la forma de la nube indica si la asociación es positiva, negativa o neutra:</p>
@@ -1881,7 +1887,7 @@ Computed correlation used pearson-method with listwise-deletion.
                 </div>
 
                 <div class="body-footer">
-                    <p>Last updated on April 20, 2020</p>
+                    <p>Last updated on April 23, 2020</p>
 
                     
 
