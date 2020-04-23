@@ -1,7 +1,7 @@
 ---
 title: "Práctica 1. Preparación de datos en R"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
-linktitle: "Práctica 1"
+linktitle: "Práctica 1: Preparación datos"
 date: "2020-01-10"
 class_date: "2020-04-03"
 citeproc: false
@@ -39,6 +39,7 @@ En este curso vamos a distinguir **dos momentos** del trabajo con datos: procesa
 
   - **Análisis**: se relaciona principalmente con análisis descriptivos asociados a las preguntas de investigación y también modelamiento de datos para contrastar hipótesis de investigación.
 
+#### Los procesos de preparación y análisis vinculados a datos y resultados se presentan en el siguiente esquema:{#flujo}
 
 ![](/images/produccion.png)
 
@@ -93,7 +94,7 @@ El presente ejercicio tiene por objetivo el procesar los datos para obtener las 
 
 # Preparación de datos ELSOC 2016
 
-## 1. Librerías principales (de R) a utilizar en el análisis
+## 1. Librerías principales (de R) a utilizar en el análisis{#librerias}
 
 Como sabemos, la lógica de R es instalar librerías (solo 1 vez, con `install.packages("librería")`), y luego cargarlas cada vez que es necesario usarlas (con `library(librería)`). El problema de esto es que a veces no se sabe claramente qué librerías están instaladas y cuales no, lo que va a arrojar error al cargarlas. Y, como sucede en R, existe una librería para solucionar este problema que se llama `pacman` (package manager). Lo que hace `pacman` es cargar la librería, y si no está instalada, la instala y la carga:
 

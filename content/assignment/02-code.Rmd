@@ -1,0 +1,337 @@
+---
+title: "Práctica 2. Descripción de variables"
+subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
+author: "Valentina Andrade"
+linktitle: "Práctica 2: Descripción de variables"
+date: "2020-01-10"
+class_date: "2020-04-23"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+    highlight: tango
+    number_sections: FALSE
+menu:
+  class:
+    parent: Practicas
+    weight: 1
+type: docs
+weight: 1
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+# knitr::opts_chunk$set(cache=TRUE)
+knitr::opts_knit$set(root.dir ="../../")
+
+Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
+```
+
+# Objetivo de la práctica
+
+Esta segunda práctica tiene por objetivo repasar algunos conceptos básicos de los cursos anteriores de **Estadística Descriptiva** y **Estadística Correlacional**. Asume como base el desarrollo de la [Práctica 1](/assignment/01-code), a la cual se hará referencia permanente.
+
+En la [Práctica 1](/assignment/01-code) se desarrolló un código de preparación de datos que generó una base de datos procesada para el análisis. En esta **Práctica 2** comenzamos con el segundo momento de procesamiento de datos, que es el análisis propiamente tal. El análisis se divide en descripción de variables y contraste de hipótesis. En esta práctica nos enfocaremos en la primera fase, que llega hasta el punto 3 del código de análisis:
+
+![](/images/produccion2.png)
+
+
+Al igual que el Código de Preparación, el Código de Análisis posee una estructura definida. En este caso son 4 partes, donde las primeras son similares al código de preparación:
+
+0. Identificación y descripción general: Título, autor(es), fecha, información breve sobre el contenido del documento
+1. **Librerías** principales (de R) a utilizar en el análisis
+2. **Datos** (que provienen de los preparados en la fase anterior)
+3. **Descripción de variables**
+    - Tabla general de variables para la sección metodológica del reporte
+    - Exploración descriptiva de relaciones entre variables
+4. **Contraste de hipótesis** / inferencia estadística según la técnica que corresponda
+
+Al final de esta práctica la idea es que cada un_ pueda avanzar hasta el **punto 3** del Código de Análisis. El punto 4 (contraste de hipótesis) se desarrollará más adelante en este curso con énfasis en la técnica de regresión.
+
+# Código de análisis
+
+## 1. Librerías
+
+La explicación de esta parte del código se encuentra en la sección correspondiente de la [práctica 1](/assignment/01-code#librerias).
+
+```{r,message=FALSE,warning=FALSE}
+pacman::p_load(dplyr, #Manipulacion de datos
+              stargazer, #Tablas
+              sjmisc, # Tablas
+              summarytools, # Tablas
+              kableExtra, #Tablas
+              sjPlot, #Tablas y gráficos
+              corrplot) # Correlaciones
+
+```
+
+## 2. Cargar base de datos
+
+Vamos a cargar la base de datos **ELSOC_ess_merit2016.Rproc_elsoc**, que generamos durante la práctica 1. Se puede llamar desde el directorio en que la guardaron dando la ruta completa, o también para esta práctica la podemos llamar directamente desde nuestro sitio web:
+
+```{r}
+load(url("https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess_merit2016.RData")) #Cargar base de datos
+```
+
+```{r,message=FALSE,warning=FALSE, echo=FALSE, eval=FALSE}
+load("static/data/proc/ELSOC_ess_merit2016.RData") #Cargar base de datos
+```
+
+- Exploración inicial general de la base de datos
+
+```{r}
+names(proc_elsoc) # Muestra los nombres de las variables de la base de datos
+dim(proc_elsoc) # Dimensiones
+```
+
+En el caso de esta base, `r dim(proc_elsoc)[1]` casos y `r dim(proc_elsoc)[2]` variables
+
+Recordando el contenido de cada variable preparada en la práctica 1:
+
+* [`merit`] = Indice promedio de percepción de meritocracia.
+
+* [`ess`] = Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena" (0 = el nivel mas bajo; 10 = el nivel mas alto)
+
+* [`edcine`] = Nivel educacional(1 = Primaria incompleta menos, 2 = Primaria y secundaria baja, 3 = Secundaria alta, 4 = Terciaria ciclo corto, 5 = Terciaria y Postgrado)
+
+* [`sexo`] = Sexo (O = Hombre; 1 = Mujer)
+
+* [`edad`] = ¿Cuáles su edad? (años cumplidos)
+
+## 3. Descripción de variables
+
+Los resultados referidos a descripción de variables se presentan en dos momentos del reporte de investigación:
+
+- en la sección de _metodología_, cuando se presentan las variables del estudio en una  **tabla descriptiva** de variables.
+
+- en la sección de _análisis_, que en general comienza con una exploración de **asociaciones entre variables**, también conocido como análisis descriptivo.
+
+### 3.1 Tabla descriptiva de variables para sección metodológica
+
+A continuación se presentan dos opciones de generar esta tabla descriptiva de variables con distintas librerías de R.
+
+**a. Tabla descriptiva con `stargazer`**<span class="sidenote">stargazer</span>
+
+La función `stargazer` (de la librería del mismo nombre) permitirá  mostrar los principales estadísticos descriptivos univariados de las variables:  medidas de tendencia central (media), de dispersión (desviación estándar) y posición (mínimo, máximo, percentiles).
+
+```{r}
+stargazer(proc_elsoc,type = "text")
+```
+
+Algunas observaciones sobre esta tabla:
+
+- La opción `type="text"` permite que podamos ver los resultados directamente en la consola, de manera bastante rudimentaria. Con otras opciones que veremos más adelante se puede estilizar para su publicación.
+
+- Una distinción relevante a considerar cuando se describen variables es si estas son **categóricas** o **continuas**. La definición de si una variables es tratada como categórica o continua es algo que hace el/la autor/a del reporte, sin embargo hay variables nominales como sexo que claramente corresponden a categóricas, y por lo tanto no corresponde hacer un promedio entre ambas. Sin embargo, como esta variable está codificada 0 (hombre) y 1 (mujer),  en este caso lo que indica el valor de la columna promedio (Mean=0.60) es la proporción de mujeres vs hombres. En otras palabras, hay un 60% de mujeres y 40% de hombres en la muestra.
+
+**b. Tablas descriptivas con `descr`, librería sjmisc**<span class="sidenote">sjmisc::descr</span>
+
+La opción básica de `descr` es la siguiente:
+
+```{r}
+sjmisc::descr(proc_elsoc)
+```
+
+En este caso utilizamos la forma `librería::función` (`sjmisc::descr`), ya que la función `descr` también existe en otras librerías.
+
+Seleccionamos algunas columnas específicas con información más relevante con la opción `show`. Además, agregamos la función `kable` para obtener una tabla que luego sea fácilmente publicable en distintos formatos (a profundizar en una práctica posterior):
+
+```{r}
+sjmisc::descr(proc_elsoc,
+      show = c("label","range", "mean", "sd", "NA.prc", "n"))%>%
+      kable(.,"markdown")
+```
+
+```{r eval=FALSE}
+view(summarytools::descr(proc_elsoc, stats="common", transpose=TRUE, headings=FALSE))
+```
+Y aparece este resultado en el visor:
+
+```{r results="asis", echo=FALSE}
+summarytools::descr(proc_elsoc, stats="common", transpose=TRUE, headings=FALSE)
+```
+
+Esta tercera opción nos ofrece una tabla aún más detallada, con gráficos para cada variable, las frecuencias para cada valor, y las etiquetas de las variables, por lo que es muy recomendable.
+
+Se específica de la siguiente manera:
+
+```{r}
+dfSummary(proc_elsoc, plain.ascii = FALSE)
+```
+
+Es muy ancha para visualizar bien en la consola de R, pero en su versión más definitiva de publicación se verá así:
+
+```{r eval=FALSE }
+view(dfSummary(proc_elsoc, headings=FALSE))
+```
+
+```{r echo=FALSE}
+print(dfSummary(proc_elsoc, headings = FALSE), method = "render")
+```
+
+**Nota sobre casos perdidos (NAs)**
+
+Hasta ahora hemos mantenido los casos perdidos en la base de datos, ya que son importantes de reportar en la tabla general de variables. Sin embargo, de aquí en adelante se recomienda trabajar solo con casos completos, es decir, **sacar los casos perdidos**. El procedimiento recomendado es el siguiente:
+
+- respaldar la base de datos original en el espacio de trabajo (por si queremos en adelante realizar algún análisis referido a casos perdidos), la dejaremos con el nombre proc_elsoc_original.
+- contamos el número de casos con el comando `dim`
+- contamos el número de casos perdidos con `sum(is.na(proc_elsoc))`
+- borramos los casos perdidos con `proc_elsoc <-na.omit(proc_elsoc)`
+- contamos nuevamente con `dim` para asegurarnos que se borraron
+- y por temas de funcionamiento de R, al realizar la operación de sacar casos perdidos, se borra toda la información de las etiquetas (labels), así que las recuperamos de la base original con el compando `copy_labels`, de la librería `sjlabelled`.
+
+```{r}
+proc_elsoc_original <-proc_elsoc
+dim(proc_elsoc)
+sum(is.na(proc_elsoc))
+proc_elsoc <-na.omit(proc_elsoc)
+dim(proc_elsoc)
+proc_elsoc <-sjlabelled::copy_labels(proc_elsoc,proc_elsoc_original)
+```
+
+### 3.2 Exploración de asociación entre variables
+
+Dado que las hipótesis de investigación corresponden a asociación entre variables, antes de realizar el contraste de hipótesis se suele presentar un análisis descriptivio que explora las asociaciones entre variables.
+
+La forma de explorar las asociaciones entre variables dependen de la naturaleza de las variables que se asocian:
+
+- Variables categóricas: tabla de contingencia
+- Variable categórica y continua: tabla de promedios por cada categoría
+- Variables continuas: correlaciones.
+
+En esta sección también es muy relevante la visualización de datos mediante gráficos, por lo que incluiremos algunos.
+
+El uso tanto de tablas como de gráficos en el reporte queda a discreción del/a autor/a. La pregunta que orienta esta decisión es: ¿Me permite enriquecer la discusión de los resultados en relación a las hipótesis planteadas?
+
+
+#### Tablas de contingencia para variables categóricas
+
+Para tablas de contingencia categóricas utilizaremos la función sjt.xtab, de la librería `sjPlot`. Veamos primero una especificación simple: <span class="sidenote">sjPlot::sjt.xtab</span>
+
+```{r}
+sjt.xtab(proc_elsoc$edcine, proc_elsoc$sexo)
+```
+
+Al ejecutar el comando, el resultado aparece automáticamente en el visor de RStudio. A esta tabla podemos también agregar porcentajes de filas y/o columnas, según sea lo más relevante analizar. En general se recomienda agregar solo un porcentaje, de otra manera la tabla se satura de información. Además, vamos a quitar el pie de la tabla (conviene dejarlo solo si hay hipótesis asociadas al cruce simple entre las dos variables).
+
+```{r}
+sjt.xtab(proc_elsoc$edcine, proc_elsoc$sexo,
+        show.col.prc=TRUE,
+        show.summary=FALSE
+)
+```
+
+#### Tablas de promedio de variable continua por una categóricas
+
+En ejemplo vamos a explorar datos de nuestra variable de percepción de meritocracia _pmerit_ por los niveles educacionales _edcine_.
+
+Una forma rápida de explorar esto es mediante la función `tapply`, que nos entrega de manera simple el promedio de una variable por otra:
+
+```{r}
+tapply(proc_elsoc$pmerit, proc_elsoc$edcine, mean)
+```
+
+Aquí vemos en promedio de _pmerit_ para cada uno de los 5 niveles de la variable educación _edcine_. Si se estima conveniente este tipo de cruces se puede representar también en una tabla con más opciones de información y también de publicación. Para esto utilizaremos una función algo más compleja de la librería `dplyr`.<span class="sidenote">dplyr</span> Esta librería permite aplicar una serie de funciones concatenadas y enlazadas mediante el operador `%>%`. El sentido de cada función aparece comentado abajo:
+
+```{r}
+proc_elsoc %>% # se especifica la base de datos
+  select(pmerit,edcine) %>% # se seleccionan las variables
+  dplyr::group_by(Educación=sjlabelled::as_label(edcine)) %>% # se agrupan por la variable categórica y se usan sus etiquetas con as_label
+  dplyr::summarise(Obs.=n(),Promedio=mean(pmerit),SD=sd(pmerit)) %>% # se agregan las operaciones a presentar en la tabla
+  kable(, format = "markdown") # se genera la tabla
+```
+
+
+Esta asocación también se puede representar de manera más simple con un gráfico, en este caso de cajas o boxplot mediante la función `sjp.grpfrq` de `sjPlot`:<span class="sidenote">sjPlot::sjp.grpfrq</span>
+
+```{r warning=FALSE}
+sjp.grpfrq(proc_elsoc$pmerit,proc_elsoc$edcine,
+            type = "box")
+```
+
+#### Correlaciones (variables continuas)
+
+**Algunas notas sobre correlación:**
+
+- El _coeficiente de correlación_ mide la fuerza de la relación lineal entre dos variable continuas. Esta puede ser:
+
+  - _positiva_: a medida que aumenta una, aumenta la otra (ej: estatura y edad)
+  - _negativa_: a medida que una aumenta, disminuye la otra (ej: tiempo dedicado al estudio y probabilidad de reprobar)
+  - _neutra_: no hay asociación entre variables.
+
+- El rango de variación del coeficiente de correlación va desde -1 (correlación negativa perfecta) y 1 (correlación positiva perfecta).
+
+- Existen diferentes formas de cálculo del coeficiente de correlación (Spearman, Kendall, Pearson).
+
+- En el coeficiente de correlación se analiza tanto su tamaño como su significación estadística.
+
+En lo que sigue nos concentraremos en el coeficiente de correlación más utilizado que es el de **Pearson**, que se aplica cuando las variables son de naturaleza continua.
+
+**Tablas/matrices de correlación**
+
+Las correlaciones entre variables se presentan en general en modo de matrices, es decir, las variables se presentan en las filas y las columnas y en las celdas donde se cruzan los pares de variables se muestra su coeficiente de correlación.
+
+En su forma simple en R se aplica la función `cor` a la<span class="sidenote">cor</span> base de datos, y la guardamos en un objeto que le damos el nombre M para futuras operaciones:
+
+
+```{r}
+M <- cor(proc_elsoc)
+M
+```
+
+Este es el reporte simple, pero no muy amigable a la vista. Para una versión más amable utilizamos la función sjt.corr<span class="sidenote">sjPlot::sjt.corr</span>:
+
+
+```{r}
+sjt.corr(proc_elsoc)
+```
+Con esta mejor visualización, algunas observaciones sobre la matriz de correlaciones:
+
+- En esta matriz las variables están representadas en las filas y en las columnas.
+- Cada coeficiente expresa la correlación de una variable con otra. Por ejemplo, la correlación entre la variable de recompensa por esfuerzo y recompensa por inteligencia es 0.698.
+- La información de cada coeficiente se repite sobre y bajo la diagonal, ya que es el mismo par de variables pero en el orden alterno.
+- En la diagonal corresponde que todos los coeficientes sean 1, ya que la correlación de una variable consigo misma es perfectamente positiva. En esta tabla se omiten y aparece la diagonal vacía, ya que es información redundante. Por lo mismo, también se recomienda eliminar el triangulo superior de la tabla (redundante) de la siguiente manera:
+
+```{r}
+sjt.corr(proc_elsoc,
+         triangle = "lower")
+```
+
+Una segunda forma de presentar matrices de correlaciones es de manera gráfica con la librería `corrplot`, cuya función `corrplot.mixed` <span class="sidenote">corrplot::corrplot.mixed</span>se aplica al objeto que generamos con la función `cor` (M):
+
+
+```{r}
+corrplot.mixed(M)
+```
+
+Este gráfico/matriz representa el grado de asociación entre variables mediante el tamaño de los círculos e intensidad de colores, y el signo de la asociación se representa con una gradiente de colores que va del azul (positivo) al rojo (negativo). Bajo la diagonal aparecen los indices de correlación entre pares de variables.
+
+Finalmente, también se puede representar la correlación entre dos variables en un gráfico de nube de puntos o scatterplot:
+
+```{r}
+names(proc_elsoc)
+plot_scatter(proc_elsoc, edad, ess)
+```
+
+Donde:
+- cada punto representa un caso
+- la forma de la nube indica si la asociación es positiva, negativa o neutra:
+
+![](https://www.onlinemath4all.com/images/scatterplot6.png)
+
+
+En el caso de nuestra nube de puntos entre edad y estatus social subjetivo, observamos que no hay asociación (lo que ya era indicado por su correlación de -0.07 observada en la matriz de correlaciones).
+
+
+# Resumen Práctica 2: Descripción de variables
+
+En esta práctica revisamos los siguientes contenidos:
+
+- tabla descriptiva general de variables
+- tabla de asociación (o contingencia) entre dos variables categóricas
+- tabla y gráfico de asociación entre variables categóricas y contínuas
+- asociaciones entre pares de variables continuas mediante el índice de correlación.

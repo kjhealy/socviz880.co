@@ -1,7 +1,7 @@
 ---
 title: "Práctica 1. Preparación de datos en R"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
-linktitle: "Práctica 1"
+linktitle: "Práctica 1: Preparación datos"
 date: "2020-01-10"
 class_date: "2020-04-03"
 citeproc: false
@@ -97,7 +97,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#video---tutoriales">Video - Tutoriales</a></li>
 </ul></li>
 <li><a href="#preparación-de-datos-elsoc-2016">Preparación de datos ELSOC 2016</a><ul>
-<li><a href="#librerías-principales-de-r-a-utilizar-en-el-análisis">1. Librerías principales (de R) a utilizar en el análisis</a></li>
+<li><a href="#librerias">1. Librerías principales (de R) a utilizar en el análisis</a></li>
 <li><a href="#cargar-base-de-datos">2. Cargar base de datos</a></li>
 <li><a href="#selección-de-variables-a-utilizar">3. Selección de variables a utilizar</a></li>
 <li><a href="#procesamiento-de-variables">4. Procesamiento de variables</a><ul>
@@ -121,6 +121,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong>Preparación</strong> corresponde a lo que se conoce generalmente como “limpieza”, es decir, realizar las modificaciones necesarias para poder efectuar los análisis. Estas modificaciones previas al análisis son necesarias ya que los datos originales con los que se va a trabajar en general no vienen perfectamente adaptados a los análisis que se quieren hacer. Por lo tanto, en cuanto a datos también hacemos la distinción entre datos originales y datos procesados.</p></li>
 <li><p><strong>Análisis</strong>: se relaciona principalmente con análisis descriptivos asociados a las preguntas de investigación y también modelamiento de datos para contrastar hipótesis de investigación.</p></li>
 </ul>
+<div id="flujo" class="section level4">
+<h4>Los procesos de preparación y análisis vinculados a datos y resultados se presentan en el siguiente esquema:</h4>
 <p><img src="/images/produccion.png" /></p>
 <p>Tanto la preparación como el análisis (que son parte del concepto más general de procesamiento) quedan registrados en un documento de código, en este caso de código R (por lo general, un archivo con extensión .R).</p>
 <p>El documento de <strong>código de preparación</strong> posee 5 partes, más una sección de identificación inicial:</p>
@@ -140,6 +142,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>Al final de esta práctica la idea es que cada un_ elabore y entienda su propio documento de preparación de datos.</p>
 <p>En el ejemplo vamos a procesar variables de meritocracia y estatus (objetivo y subjetivo) utilizando los datos de la encuesta <a href="https://coes.cl/encuesta-panel/">ELSOC</a> .</p>
+</div>
 </div>
 <div id="antecedentes-de-los-datos-a-utilizar" class="section level2">
 <h2>Antecedentes de los datos a utilizar</h2>
@@ -169,7 +172,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="preparación-de-datos-elsoc-2016" class="section level1">
 <h1>Preparación de datos ELSOC 2016</h1>
-<div id="librerías-principales-de-r-a-utilizar-en-el-análisis" class="section level2">
+<div id="librerias" class="section level2">
 <h2>1. Librerías principales (de R) a utilizar en el análisis</h2>
 <p>Como sabemos, la lógica de R es instalar librerías (solo 1 vez, con <code>install.packages("librería")</code>), y luego cargarlas cada vez que es necesario usarlas (con <code>library(librería)</code>). El problema de esto es que a veces no se sabe claramente qué librerías están instaladas y cuales no, lo que va a arrojar error al cargarlas. Y, como sucede en R, existe una librería para solucionar este problema que se llama <code>pacman</code> (package manager). Lo que hace <code>pacman</code> es cargar la librería, y si no está instalada, la instala y la carga:</p>
 <p>Para utilizar la primera vez (si es que no está instalada):</p>
