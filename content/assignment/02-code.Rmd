@@ -39,6 +39,7 @@ En la [Práctica 1](/assignment/01-code) se desarrolló un código de preparaci�
 
 ![](/images/produccion2.png)
 
+
 Al igual que el Código de Preparación, el Código de Análisis posee una estructura definida. En este caso son 4 partes, donde las primeras son similares al código de preparación:
 
 0. Identificación y descripción general: Título, autor(es), fecha, información breve sobre el contenido del documento
@@ -61,7 +62,7 @@ La explicación de esta parte del código se encuentra en la sección correspond
 pacman::p_load(dplyr, #Manipulacion de datos
               stargazer, #Tablas
               sjmisc, # Tablas
-              summarytools, # Tablas              
+              summarytools, # Tablas
               kableExtra, #Tablas
               sjPlot, #Tablas y gráficos
               corrplot) # Correlaciones
@@ -76,12 +77,17 @@ Vamos a cargar la base de datos **ELSOC_ess_merit2016.Rproc_elsoc**, que generam
 load(url("https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess_merit2016.RData")) #Cargar base de datos
 ```
 
+```{r,message=FALSE,warning=FALSE, echo=FALSE, eval=FALSE}
+load("static/data/proc/ELSOC_ess_merit2016.RData") #Cargar base de datos
+```
+
 - Exploración inicial general de la base de datos
 
 ```{r}
 names(proc_elsoc) # Muestra los nombres de las variables de la base de datos
 dim(proc_elsoc) # Dimensiones
 ```
+
 En el caso de esta base, `r dim(proc_elsoc)[1]` casos y `r dim(proc_elsoc)[2]` variables
 
 Recordando el contenido de cada variable preparada en la práctica 1:
@@ -124,7 +130,7 @@ Algunas observaciones sobre esta tabla:
 
 **b. Tablas descriptivas con `descr`, librería sjmisc**<span class="sidenote">sjmisc::descr</span>
 
-La opción básica de `descr` es la siguiente: 
+La opción básica de `descr` es la siguiente:
 
 ```{r}
 sjmisc::descr(proc_elsoc)
@@ -135,14 +141,19 @@ En este caso utilizamos la forma `librería::función` (`sjmisc::descr`), ya que
 Seleccionamos algunas columnas específicas con información más relevante con la opción `show`. Además, agregamos la función `kable` para obtener una tabla que luego sea fácilmente publicable en distintos formatos (a profundizar en una práctica posterior):
 
 ```{r}
-sjmisc::descr(proc_elsoc, 
-      show = c("label","range", "mean", "sd", "NA.prc", "n"))%>% 
+sjmisc::descr(proc_elsoc,
+      show = c("label","range", "mean", "sd", "NA.prc", "n"))%>%
       kable(.,"markdown")
 ```
 
+```{r eval=FALSE}
+view(summarytools::descr(proc_elsoc, stats="common", transpose=TRUE, headings=FALSE))
+```
+Y aparece este resultado en el visor:
 
-**c. Tabla descriptivas con `dfSummary`, librería `summarytools`**<span class="sidenote">dfSummary::summarytools</span>
-
+```{r results="asis", echo=FALSE}
+summarytools::descr(proc_elsoc, stats="common", transpose=TRUE, headings=FALSE)
+```
 
 Esta tercera opción nos ofrece una tabla aún más detallada, con gráficos para cada variable, las frecuencias para cada valor, y las etiquetas de las variables, por lo que es muy recomendable.
 
