@@ -780,6 +780,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;li&gt;&lt;a href=&#34;#tabla-descriptiva-de-variables-para-sección-metodológica&#34;&gt;3.1 Tabla descriptiva de variables para sección metodológica&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#exploración-de-asociación-entre-variables&#34;&gt;3.2 Exploración de asociación entre variables&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#nota-final-información-de-la-sesión-de-r&#34;&gt;Nota final: Información de la sesión de R&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#resumen-práctica-2-descripción-de-variables&#34;&gt;Resumen Práctica 2: Descripción de variables&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -815,7 +816,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;a class=&#34;sourceLine&#34; id=&#34;cb1-4&#34; title=&#34;4&#34;&gt;              summarytools, &lt;span class=&#34;co&#34;&gt;# Tablas&lt;/span&gt;&lt;/a&gt;
 &lt;a class=&#34;sourceLine&#34; id=&#34;cb1-5&#34; title=&#34;5&#34;&gt;              kableExtra, &lt;span class=&#34;co&#34;&gt;#Tablas&lt;/span&gt;&lt;/a&gt;
 &lt;a class=&#34;sourceLine&#34; id=&#34;cb1-6&#34; title=&#34;6&#34;&gt;              sjPlot, &lt;span class=&#34;co&#34;&gt;#Tablas y gráficos&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-7&#34; title=&#34;7&#34;&gt;              corrplot) &lt;span class=&#34;co&#34;&gt;# Correlaciones&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-7&#34; title=&#34;7&#34;&gt;              corrplot, &lt;span class=&#34;co&#34;&gt;# Correlaciones&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-8&#34; title=&#34;8&#34;&gt;              sessioninfo) &lt;span class=&#34;co&#34;&gt;# Información de la sesión de trabajo&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;cargar-base-de-datos&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;2. Cargar base de datos&lt;/h2&gt;
@@ -1974,13 +1976,141 @@ Computed correlation used pearson-method with listwise-deletion.
 ## [7] &amp;quot;pmerit&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb35&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb35-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;plot_scatter&lt;/span&gt;(proc_elsoc, edad, ess)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;img src=&#34;/assignment/02-code_files/figure-html/unnamed-chunk-21-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Donde:
-- cada punto representa un caso
-- la forma de la nube indica si la asociación es positiva, negativa o neutra:&lt;/p&gt;
+&lt;p&gt;Donde:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;cada punto representa un caso&lt;/li&gt;
+&lt;li&gt;la forma de la nube indica si la asociación es positiva, negativa o neutra:&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;&lt;img src=&#34;https://www.onlinemath4all.com/images/scatterplot6.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;En el caso de nuestra nube de puntos entre edad y estatus social subjetivo, observamos que no hay asociación (lo que ya era indicado por su correlación de -0.07 observada en la matriz de correlaciones).&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;nota-final-información-de-la-sesión-de-r&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Nota final: Información de la sesión de R&lt;/h2&gt;
+&lt;p&gt;R y sus librerías tienen distintas versiones. Esto puede representar algunos problemas de compatibilidad entre usuarios, por ejemplo, dos personas que trabajan en el mismo proyecto pero con distintas versiones (librerías y/o de R), pueden tener ocasionalmente complicaciones. Por eso, una buena práctica es registrar al final del código la información de la sesión. Y como siempre en R, varias maneras de hacer esto. Vamos con la más genérica que es muy simple: &lt;code&gt;sessionInfo()&lt;/code&gt; &lt;span class=&#34;sidenote&#34;&gt;sessionInfo()&lt;/span&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb36&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb36-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;sessionInfo&lt;/span&gt;()&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## R version 3.6.3 (2020-02-29)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 16.04.6 LTS
+## 
+## Matrix products: default
+## BLAS:   /usr/lib/libblas/libblas.so.3.6.0
+## LAPACK: /usr/lib/lapack/liblapack.so.3.6.0
+## 
+## locale:
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=es_CL.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=es_CL.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=es_CL.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=es_CL.UTF-8 LC_IDENTIFICATION=C       
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] corrplot_0.84      sjmisc_2.8.3       summarytools_0.9.6 sjstats_0.17.7    
+##  [5] psych_1.8.12       Publish_2019.12.04 prodlim_2018.04.18 ggpubr_0.2.5      
+##  [9] magrittr_1.5       car_3.0-2          carData_3.0-2      scales_1.0.0      
+## [13] gridExtra_2.3      ggplot2_3.2.1      stargazer_5.2.2    sjPlot_2.8.1      
+## [17] kableExtra_1.1.0   Rmisc_1.5          plyr_1.8.4         lattice_0.20-38   
+## [21] dplyr_0.8.3        knitr_1.28         pacman_0.5.1      
+## 
+## loaded via a namespace (and not attached):
+##  [1] TH.data_1.0-10     minqa_1.2.4        colorspace_1.4-1   pryr_0.1.4        
+##  [5] ggsignif_0.6.0     rio_0.5.16         sjlabelled_1.1.2   estimability_1.3  
+##  [9] parameters_0.4.1   base64enc_0.1-3    rstudioapi_0.10    ggrepel_0.8.1     
+## [13] mvtnorm_1.0-10     lubridate_1.7.4    xml2_1.2.0         codetools_0.2-16  
+## [17] splines_3.6.3      mnormt_1.5-5       zeallot_0.1.0      nloptr_1.2.1      
+## [21] ggeffects_0.14.0   broom_0.5.2        effectsize_0.0.1   readr_1.3.1       
+## [25] compiler_3.6.3     httr_1.4.0         emmeans_1.3.4      backports_1.1.4   
+## [29] assertthat_0.2.1   Matrix_1.2-17      lazyeval_0.2.2     htmltools_0.3.6   
+## [33] tools_3.6.3        coda_0.19-2        gtable_0.3.0       glue_1.3.1        
+## [37] Rcpp_1.0.2         cellranger_1.1.0   vctrs_0.2.1        nlme_3.1-139      
+## [41] blogdown_0.18      insight_0.8.0      xfun_0.12          stringr_1.4.0     
+## [45] openxlsx_4.1.0     lme4_1.1-21        rvest_0.3.3        lifecycle_0.1.0   
+## [49] MASS_7.3-51.4      zoo_1.8-5          hms_0.4.2          parallel_3.6.3    
+## [53] sandwich_2.5-1     yaml_2.2.0         curl_3.3           pander_0.6.3      
+## [57] stringi_1.4.3      bayestestR_0.4.0   checkmate_1.9.3    boot_1.3-22       
+## [61] zip_2.0.1          lava_1.6.5         matrixStats_0.54.0 rlang_0.4.0       
+## [65] pkgconfig_2.0.2    evaluate_0.14      purrr_0.3.2        rapportools_1.0   
+## [69] tidyselect_0.2.5   bookdown_0.18      R6_2.4.0           magick_2.1        
+## [73] generics_0.0.2     multcomp_1.4-13    pillar_1.4.1       haven_2.1.0       
+## [77] foreign_0.8-71     withr_2.1.2        survival_2.44-1.1  abind_1.4-5       
+## [81] tibble_2.1.2       performance_0.4.2  modelr_0.1.4       crayon_1.3.4      
+## [85] rmarkdown_2.1      grid_3.6.3         readxl_1.3.1       data.table_1.12.2 
+## [89] forcats_0.4.0      digest_0.6.20      webshot_0.5.1      xtable_1.8-4      
+## [93] tidyr_1.0.0        munsell_0.5.0      viridisLite_0.3.0  tcltk_3.6.3&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Acá vemos un listado de información muy completo, desde versión de R, sistema operativo, opciones de idioma local (LOCALE), y muchas librerías. Si optamos por esta versión de la información de la sesión, lo importante es fijarse en (a) version de R, y (b) de las librerías cargadas al principio, que aquí aparecen bajo “other attached packages”.&lt;/p&gt;
+&lt;p&gt;La segunda opción permite obtener información más precisa, con &lt;code&gt;sessioninfo&lt;/code&gt; &lt;span class=&#34;sidenote&#34;&gt;sessioninfo()&lt;/span&gt;(la única diferencia con la anterior en el nombre es que info es con minúscula &lt;code&gt;sessioninfo&lt;/code&gt;). Con un poco más de especificaciones de sintaxis se pueden obtener directamente los puntos (a) y (b) mencionados anteriormente:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb38&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb38-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;session_info&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;sessioninfo&amp;quot;&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;platform&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;##  setting  value                       
+##  version  R version 3.6.3 (2020-02-29)
+##  os       Ubuntu 16.04.6 LTS          
+##  system   x86_64, linux-gnu           
+##  ui       X11                         
+##  language en_US                       
+##  collate  en_US.UTF-8                 
+##  ctype    en_US.UTF-8                 
+##  tz       America/Santiago            
+##  date     2020-04-25&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb40&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb40-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;package_info&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;pkgs =&lt;/span&gt; (&lt;span class=&#34;kw&#34;&gt;.packages&lt;/span&gt;()), &lt;span class=&#34;dt&#34;&gt;dependencies =&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;##  package      * version    date       lib
+##  car          * 3.0-2      2018-08-23 [1]
+##  carData      * 3.0-2      2018-09-30 [1]
+##  corrplot     * 0.84       2017-10-16 [1]
+##  dplyr        * 0.8.3      2019-07-04 [1]
+##  ggplot2      * 3.2.1      2019-08-10 [1]
+##  ggpubr       * 0.2.5      2020-02-13 [1]
+##  gridExtra    * 2.3        2017-09-09 [1]
+##  kableExtra   * 1.1.0      2019-03-16 [1]
+##  knitr        * 1.28       2020-02-06 [1]
+##  lattice      * 0.20-38    2018-11-04 [1]
+##  magrittr     * 1.5        2014-11-22 [1]
+##  pacman       * 0.5.1      2019-03-11 [1]
+##  plyr         * 1.8.4      2016-06-08 [1]
+##  prodlim      * 2018.04.18 2018-04-18 [1]
+##  psych        * 1.8.12     2019-01-12 [1]
+##  Publish      * 2019.12.04 2019-12-04 [1]
+##  Rmisc        * 1.5        2013-10-22 [1]
+##  scales       * 1.0.0      2018-08-09 [1]
+##  sessioninfo  * 1.1.1      2018-11-05 [1]
+##  sjmisc       * 2.8.3      2020-01-10 [1]
+##  sjPlot       * 2.8.1      2019-12-03 [1]
+##  sjstats      * 0.17.7     2019-11-14 [1]
+##  stargazer    * 5.2.2      2018-05-30 [1]
+##  summarytools * 0.9.6      2020-04-11 [1]
+##  source                                
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.3)                        
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.0)                        
+##  CRAN (R 3.6.0)                        
+##  Github (dcomtois/summarytools@9af4c0a)
+## 
+## [1] /home/juank/Dropbox/Rlibrary
+## [2] /usr/local/lib/R/site-library
+## [3] /usr/lib/R/site-library
+## [4] /usr/lib/R/library&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;resumen-práctica-2-descripción-de-variables&#34; class=&#34;section level1&#34;&gt;

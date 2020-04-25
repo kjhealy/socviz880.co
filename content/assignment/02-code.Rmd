@@ -65,8 +65,8 @@ pacman::p_load(dplyr, #Manipulacion de datos
               summarytools, # Tablas
               kableExtra, #Tablas
               sjPlot, #Tablas y gráficos
-              corrplot) # Correlaciones
-
+              corrplot, # Correlaciones
+              sessioninfo) # Información de la sesión de trabajo
 ```
 
 ## 2. Cargar base de datos
@@ -311,6 +311,7 @@ plot_scatter(proc_elsoc, edad, ess)
 ```
 
 Donde:
+
 - cada punto representa un caso
 - la forma de la nube indica si la asociación es positiva, negativa o neutra:
 
@@ -319,6 +320,23 @@ Donde:
 
 En el caso de nuestra nube de puntos entre edad y estatus social subjetivo, observamos que no hay asociación (lo que ya era indicado por su correlación de -0.07 observada en la matriz de correlaciones).
 
+## Nota final: Información de la sesión de R
+
+R y sus librerías tienen distintas versiones. Esto puede representar algunos problemas de compatibilidad entre usuarios, por ejemplo, dos personas que trabajan en el mismo proyecto pero con distintas versiones (librerías y/o de R), pueden tener ocasionalmente complicaciones. Por eso, una buena práctica es registrar al final del código la información de la sesión. Y como siempre en R, varias maneras de hacer esto. Vamos con la más genérica que es muy simple: `sessionInfo()` <span class="sidenote">sessionInfo()</span>
+
+```{r}
+sessionInfo()
+```
+
+Acá vemos un listado de información muy completo, desde versión de R, sistema operativo, opciones de idioma local (LOCALE), y muchas librerías. Si optamos por esta versión de la información de la sesión, lo importante es fijarse en (a) version de R, y (b) de las librerías cargadas al principio, que aquí aparecen bajo "other attached packages".
+
+La segunda opción permite obtener información más precisa, con `sessioninfo` <span class="sidenote">sessioninfo()</span>(la única diferencia con la anterior en el nombre es que info es con minúscula `sessioninfo`). Con un poco más de especificaciones de sintaxis se pueden obtener directamente los puntos (a) y (b) mencionados anteriormente:
+
+```{r}
+session_info("sessioninfo")$platform
+package_info(pkgs = (.packages()), dependencies = FALSE)
+
+```
 
 # Resumen Práctica 2: Descripción de variables
 
