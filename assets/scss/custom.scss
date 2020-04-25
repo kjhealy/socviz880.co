@@ -117,6 +117,7 @@ td.mid-table-header {
     vertical-align: middle !important;
 }
 
+/* notas laterales*/
 
 .sidenote {
   width: 30%;
@@ -133,12 +134,15 @@ a.sidenote:link { color:#548BB5; text-decoration:none; font-weight:normal; }
     color:#548BB5;
 }
 
+/*ajuste tamaño video box */
+
 video {
   width: 100%;
   height: auto;
   max-height: 800px;
 }
 
+/* para scrolling en chunks output  */
 
 pre code, pre, code {
   white-space: pre !important;
@@ -151,4 +155,23 @@ pre code, pre, code {
     color: #c7254e;
     background-color: #f9f2f4;
   font-size: 0.9rem;
+}
+
+/* boxes - cuadros de texto con color */
+.box{
+  background-color:#FDDDC8;
+  font-size: 0.8rem;
+  font-family: courier;
+  color: #FFFFFF;
+}
+
+.sidebox {
+  width: 30%;
+  float: right;
+  clear: right;
+  margin-right: -35%;
+  font-size: 0.8rem;
+  font-family: courier;
+  color: #3D5486;
+  background-color:#FFFFDD;
 }

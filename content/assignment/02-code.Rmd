@@ -25,7 +25,7 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
-#knitr::opts_chunk$set(cache=TRUE)
+knitr::opts_chunk$set(cache=TRUE)
 knitr::opts_knit$set(root.dir ="../../")
 
 Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
@@ -73,11 +73,11 @@ pacman::p_load(dplyr, #Manipulacion de datos
 
 Vamos a cargar la base de datos **ELSOC_ess_merit2016.Rproc_elsoc**, que generamos durante la práctica 1. Se puede llamar desde el directorio en que la guardaron dando la ruta completa, o también para esta práctica la podemos llamar directamente desde nuestro sitio web:
 
-```{r eval=FALSE}
+```{r }
 load(url("https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess_merit2016.RData")) #Cargar base de datos
 ```
 
-```{r, message=FALSE, warning=FALSE, echo=FALSE}
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
 load("content/assignment/data/proc/ELSOC_ess_merit2016.RData") #Cargar base de datos
 ```
 
@@ -238,12 +238,13 @@ proc_elsoc %>% # se especifica la base de datos
 ```
 
 
-Esta asocación también se puede representar de manera más simple con un gráfico, en este caso de cajas o boxplot mediante la función `sjp.grpfrq` de `sjPlot`:<span class="sidenote">sjPlot::sjp.grpfrq</span>
+Esta asocación también se puede representar de manera más simple con un gráfico, en este caso de cajas o boxplot mediante la función `plot_grpfrq` de `sjPlot`:<span class="sidenote">sjPlot::plot_grpfrq</span>
 
 ```{r warning=FALSE}
-sjp.grpfrq(proc_elsoc$pmerit,proc_elsoc$edcine,
+plot_grpfrq(proc_elsoc$pmerit,proc_elsoc$edcine,
             type = "box")
 ```
+
 
 #### Correlaciones (variables continuas)
 
