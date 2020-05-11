@@ -1,0 +1,401 @@
+---
+title: "Práctica 3. Regresión Lineal Simple - Parte 1"
+subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
+author: "Valentina Andrade"
+linktitle: "Práctica 3. Regresión Lineal Simple - Parte 1"
+date: "2020-01-10"
+class_date: "2020-04-30"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+    highlight: tango
+    number_sections: FALSE
+menu:
+  class:
+    parent: Practicas
+    weight: 1
+type: docs
+weight: 1
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir ="../../")
+Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
+```
+
+# Presentación
+
+# - Objetivo de la práctica
+
+En esta práctica se abordan ejercicios iniciales de regresión simple. Para ello nos vamos a basar principalmente en la base CASEN-COVID19.
+
+En la [Práctica 1](/assignment/01-code) y [Práctica 2](/assignment/02-code) desarrollamos códigos que nos sirven de base para el procesamiento y exploración de nuestros datos. En esta **Práctica 3** comenzaremos con las primeras estimaciones de una regresión simple. 
+
+Al que en las práticas anteriores, **Práctica 3**  posee una estructura definida. En este caso son 2 partes, donde las primera resume el código de procesamiento y análisis:
+
+- Preparación y descriptivos datos de CASEN-COVID19.RData
+
+  0. Identificación y descripción general: Título, autor(es), fecha, información breve sobre el contenido del documento
+  1. **Librerías** principales (de R) a utilizar en el análisis
+  2. **Datos** (que provienen de los preparados en la fase anterior)
+  3. **Descripción de variables**
+    - Tabla general de variables para la sección metodológica del reporte
+    - Exploración descriptiva de relaciones entre variables
+    
+- Modelo de Regresión Simple
+
+  1. Correlación 
+  2. Medias condicionales
+  3. Residuos
+  4. Modelo y cálculo de parámetros
+  5. Estimación del modelo en R
+
+Al final de esta práctica la idea es que cada un_ pueda conocer los elementos principales de un modelo de regresión simple, junto con poder realizar la primera estimación de este. 
+
+## - Antecedentes de los datos 
+
+**CASEN-COVID19** consiste en una base de datos que resume a nivel comunal información sobre la población contagiada por el virus COVID19 y encuesta de Caracterización Socioeconómica Nacional (CASEN). 
+
+- [CASEN (2017)](http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php): su objetivo es medir pobreza, otorgando datos necesarios para la caracterización socioeconómica de individuos y hogares en Chile.  
+
+- [Datos Covid19 (2020)](https://github.com/MinCiencia/Datos-COVID19): presenta información detallada sobre los casos confirmados del virus COVID19 por comuna hasta el último informe epidemiológico entregrado por el gobierno de Chile (24 de abril de 2020). 
+
+
+# Preparación y descriptivos datos CASEN-COVID19.RData
+
+## 1. Librerías
+
+La explicación de esta parte del código se encuentra en la sección correspondiente de la [Práctica 1](/assignment/01-code#librerias).
+
+```{r,message=FALSE,warning=FALSE}
+pacman::p_load(dplyr, #Manipulacion de datos
+              stargazer, #Tablas
+              sjmisc, # Tablas
+              summarytools, # Tablas
+              kableExtra, #Tablas
+              sjPlot, #Tablas y gráficos
+              corrplot, # Correlaciones
+              ggplot2, #Graficos
+              plotly,#Graficos interactivos
+              texreg) #tablas regresion
+
+```
+
+## 2. Cargar base de datos
+
+Vamos a cargar la base de datos **CASEN-COVID19.RData**. Se puede llamar desde el directorio en que la guardaron dando la ruta completa, o también para esta práctica la podemos llamar directamente desde nuestro sitio web:
+
+```{r}
+load("content/assignment/data/proc/CASEN-COVID19.RData") #Cargar base de datos
+
+#load(url("https://multivariada.netlify.app/assignment/data/proc/CASEN-COVID19.RData")) 
+#Cargar base de datos
+```
+
+```{r,message=FALSE,warning=FALSE, echo=FALSE, eval=FALSE}
+load("/assignment/data/proc/CASEN-COVID19.RData") #Cargar base de datos
+
+casen_covid19 <- CASEN-COVID19; remove(CASEN-COVID19)
+```
+
+## 3. Procesamiento y descripción de variables
+
+### 3.1 Exploración y procesamiento de variables
+
+La explicación de esta parte del código se encuentra en la sección correspondiente de la [Práctica 1](/assignment/01-code#preparación-de-datos-elsoc-2016).
+
+```{r}
+names(casen_covid19) # Muestra los nombres de las variables de la base de datos
+
+dim(casen_covid19) # Dimensiones
+#324 observaciones --> 324 comunas
+#8 variables
+```
+
+En el caso de esta base, `r dim(casen_covid19)[1]` casos y `r dim(casen_covid19)[2]` variables
+
+La base de datos **casen_covid19** presenta las siguientes variables 
+
+* [`comuna`] = Nombre de la comuna
+
+* [`pop`] = Población de la comuna (número de habitantes)
+
+* [`casos_confirmados`] = Casos confirmados por COVID19 en la comuna (número de contagiados confirmados)
+
+* [`ingreso`] = Media de ingresos individuales a nivel comunal (en pesos)
+
+* [`anoescolaridad`] = Media de año de escolaridad a nivel comunal (en años alcanzados)
+
+* [`fonasaB`] = Cobertura de Fonasa B a nivel comunal (en porcentaje de afiliados)
+
+* [`isapre`] = Cobertura de Isapres a nivel comunal (en porcentaje de afiliados)
+
+
+Antes de pasar a describir las variables, se va a ponderar el número de `casos_confirmados` por `pop` de la comuna, a modo de capturar mejor la tasa de contagio según el número de habitantes. A través de `mutate`se calculará el el número de casos confirmados por cada 100.000 habitantes, dividido en la población de la comuna. 
+
+```{r}
+#Tasa de contagio comunal
+
+casen_covid19 <- casen_covid19 %>% mutate(t_contagio = (casos_confirmados*100000)/pop)
+```
+
+
+### 3.2 Tabla descriptiva de variables
+
+La explicación de esta parte del código se encuentra en la sección correspondiente de la [Práctica 2](/assignment/01-code#descripción-de-variables).
+
+**Tablas descriptivas con `dfSummary`, librería summarytools**<span class="sidenote">sjmisc::descr</span>
+
+```{r eval=FALSE }
+view(dfSummary(casen_covid19, headings=FALSE))
+```
+
+```{r echo=FALSE}
+print(dfSummary(casen_covid19, headings = FALSE), method = "render")
+```
+
+# El modelo de regresión simple
+
+*¿Tiene relación la tasa de contagio con la variables de comuna de residencia?*
+
+Para abordar esta pregunta, nos centraremos en una variable: `anoescolaridad`. En consecuencia, ¿tiene relación la **tasa de contagio** con la media de **años de escolaridad** de la comuna?
+
+## 1. Correlación
+
+La explicación de esta parte del código se encuentra en la sección correspondiente de la [Práctica 2](/assignment/01-code#exploración-de-asociación-entre-variables). Para esta sección profundizaremos en otras formas de representar la correlación
+
+
+Primero, veamos un gráfico de nube de puntos / scatter de ambas variables que realizaremos a través de la función `ggplot()`. 
+
+```{r}
+# 1. Se crea un gráfico scatterplot "g" con la librería ggplot
+
+# Y es nuestra variable dependiente
+# X = es nuestra variable independiente
+g=ggplot(casen_covid19, aes(x=anoescolaridad, y=t_contagio)) +
+  geom_point()
+
+#2. Se crea uno nuevo "gg" con la función ggplotly para añadir elementos interactivos (en este caso, las coordenadas de cada punto del gráfico)
+
+gg=ggplotly(g)
+gg
+
+
+#OpcionB: plot_scatter(casen_covid19, anoescolaridad, t_contagio)
+```
+
+Si recordamos el concepto de correlación donde:
+
+- cada punto representa un caso
+- la forma de la nube indica si la asociación es positiva, negativa o neutra
+
+![](/images/image1.png)
+
+
+En términos de correlación podemos decir se observa una posible asociación positiva. Como es poco definitorio el gráfico, podemos corroborar tal dirección de la relación con la función `sjt.corr` de `sjPlot` que nos muestra una matriz con todas las correlaciones de las variables. En este caso solo nos fijaremos en la intersección entre `t_contagio` y `anoescolaridad`
+
+```{r}
+
+casen_covid19 <- casen_covid19 %>% select(-comuna) #Excluimos comuna pues las correlaciones son entre variables numéricas y comuna es un carácter
+
+sjPlot::sjt.corr(casen_covid19,
+         triangle = "lower")
+
+##Op2: 
+#cor(casen_covid19$t_contagio, casen_covid19$anoescolaridad) #no muestra si es significativo
+```
+
+Tenemos una **correlación positiva** (dirección de la relación) y de un **tamaño de efecto grande** (magnitud de la relación), para ciencias sociales. Es decir, existe una asociación positiva entre ambas variables. 
+
+¿Qué indican los tres asteriscos que acompañan la correlación? [video]
+
+Ahora bien, ¿cómo se relaciona **más específcamente** la tasa de contagio del COVID19 y la media en años de escolaridad de la comuna?
+
+## 2. Medias condicionales
+
+Antes de avanzar desde la correlación al método de regresión es importante conocer el concepto de **media condicional**. 
+
+Como sabemos la tasa de contagio promedio es de 41.70 (casos) . Es decir, si conocemos a algun individuo que pertence a alguna comuna de la base de datos **CASEN-COVID19**, sabemos que la *tasa de contagio de su comuna* probablemente se encuentra cercana a 41.7 casos.
+
+¿Podemos mejorar nuestra estimación considerando la *media de escolaridad de su comuna*? Como la conocemos, si el sujeto nos dice que su comuna es *Quilpué* sabemos de ante mano que la media de años de escolaridad de su comuna es 12.39795 años.
+
+Lo que estamos haciendo es utilizar la información que conocemos de *X* para dar una estimación de *Y*, que sea más precisa que el promedio bruto.
+
+
+Si solo miramos nuestro gráfico de nube de puntos, podemos posicionarnos en el eje X cercano a 12 años y  encontraremos comunas donde su tasa de contagio va de 137 a 10 casos. 
+
+Sin embargo, con estos datos podemos calcular el promedio de Y para X = 12.39795 años promedio, que sería igual a 17.95 casos. En otras palabras, *la media condicional de Y cuando X=12.39795 es 17.95*.
+
+Con esto, uno podría calcular la media condicional para cada punto de *X* y hacer una estimación más precisa de *Y*. Sin embargo, este proceso todavía *no nos permite generalizar más precisamente la relación entre X e Y*
+
+**¿Cuántos casos (Y) comunales se aumenta según los años de escolaridad promedio de la comuna (X)?** Esta pregunta nos conduce al cálculo de una **recta lineal** que atraviese los puntos y que generalice la relación entre X e Y. Sobre la función `geom_smooth` que agregamos a nuestra nube de puntos: 
+
+  - `method = lm` nos permite visualizar una recta que resume la relación **lineal** entre `t_contagio` y `anoescolaridad`.
+  - `se = T` nos permite visualizar el intervalo de confianza alrededor de nuestra recta
+
+
+```{r}
+g2=ggplot(casen_covid19, aes(x=anoescolaridad, y=t_contagio)) +
+  geom_point() +
+  geom_smooth(method=lm, se=T)
+g2
+```
+
+
+## 3. Residuos
+
+En el gráfico anterior vemos que la línea resume la relación entre X e Y, pero claramente es una simplificación que **no abarca toda la variabilidad de los datos**. 
+
+Hay comunas que son atravesadas por la recta y con ello, la línea predice exáctamente su tasa de contagio basada en el promedio de años de escolaridad. Por ejemplo, hay comunas como *Talagante* donde su año de escolaridad es 11.038194 y su tasa de contagio es de 36.657787 casos, siendo atravesada por la recta. Sin embargo, hay comunas como *Punta Arenas* donde sus años de escolaridad son 11.656610 y sus tasas de contagio son cercanas a 409 casos.
+
+En consecuencia esta línea o "modelo predictivo" no representa tan bien la relación de tasa de contagio y año de escolaridad para Punta Arenas. A esto se refieren los **residuos**, que es la diferencia entre el valor predicho (o $\widehat{Y}$) y el observado $Y$. Por lo tanto, la mejor recta será aquella que minimice al máximo los residuos.
+
+
+![](/images/image2.png)
+
+
+El sentido de la recta que resume de mejor manera la relación entre dos variables es que **minimice la suma de todos los residuos**. ¿Cómo realizar este procedimiento? 
+
+- Para realizar la suma de los residuos estos se elevan al cuadrado, lo que se denomina **Suma de residuos al cuadrado** o $SS_{residual}$ 
+
+  -La razón es que si no se eleva al cuadrado, como hay residuos positivos y negativos, unos se cancelarían a otros y la suma es 0. 
+
+-De la infinita cantidad de rectas que se pueden trazar, siempre hay una que tiene un valor menor de $SS_{residual}$. 
+
+  -Este procedimiento es el que da nombre al proceso de estimación: residuos cuadrados ordinarios, o *OLS* (Ordinary Least Squares).
+
+## 4. Modelo y cálculo de parámetros
+
+El modelo de regresión entonces se relaciona con una **ecuación de la recta**, o recta de regresión, que se puede definir en términos simples de la siguiente manera:
+
+$$\widehat{Y}=b_{0} +b_{1}X $$
+
+Donde
+
+- $\widehat{Y}$ es el valor estimado de $Y$
+- $b_{0}$ es el **intercepto** de la recta (el valor de Y cuando X es 0)
+- $b_{1}$ es el coeficiente de regresión, que nos dice cuánto aumenta Y por cada punto que aumenta X (pendiente)
+
+
+**Cálculo de los parámetros del modelo de regresión**
+
+$b_{1}$, o comunmente llamado "beta de regresión" se obtiene de la siguiente manera:
+
+$$b_{1}=\frac{Cov(XY)}{VarX}$$
+En términos más suntantivos se puede entender como qué parte de la covariación que hay entre X e Y se relaciona con (la varianza de) X. Especificando la fórmula:
+
+
+$$b_{1}=\frac{\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {n-1}}{\frac{\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})} {n-1}}$$
+Y simplificando
+
+
+$$b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})}$$
+
+Como sabemos, la base para todos estos calculos es el valor de cada variable menos su promedio. Vamos a crear un vector en nuestra base de datos difx=$x-\bar{x}$ y dify=$y-\bar{y}$
+
+```{r}
+#difx
+casen_covid19$difx = casen_covid19$anoescolaridad-mean(casen_covid19$anoescolaridad)
+
+#dify
+casen_covid19$dify = casen_covid19$t_contagio-mean(casen_covid19$t_contagio)
+```
+
+Y ahora con esto podemos obtener la diferencia de productos cruzados dif_cru=$(x-\bar{x})*(y-\bar{y})$, así como la suma de cuadrados de X SSx=$(x-\bar{x})^2$
+
+
+```{r}
+#dif_cru
+casen_covid19$dif_cru=casen_covid19$difx*casen_covid19$dify
+
+#difx^2
+casen_covid19$SSx=(casen_covid19$difx)^2
+
+View(casen_covid19)
+```
+
+Y con esto podemos obtener la suma de productos cruzados y la suma de cuadrados de X
+
+
+```{r}
+sum(casen_covid19$dif_cru)
+
+sum(casen_covid19$SSx)
+
+```
+
+
+Reemplazando en la fórmula
+
+
+$$b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})}=\frac{7546.355}{539.6306}=13.9843$$
+
+Y con esto podemos obtener el valor de $b_{0}$
+
+$$b_{0}=\bar{Y}-b_{1}\bar{X}$$
+
+Sabemos por nuestra tabla de descriptivos que
+- Promedio de tasa de contagio($\bar{Y}$) =  41.702
+- Promedio de años de escolaridad($\bar{X}$) =  9.921
+
+$$b_{0}=41.702-(13.9843 * 9.921)= -97.036$$
+
+
+Completando la ecuación:
+
+$$\bar{Y}= (-97.04)+13.98X$$
+
+Esto nos permite estimar el valor de $Y$ (o su media condicional) basado en el puntaje $X$.
+
+Por ejemplo, cuál es el valor estimado de $Y$ dado $X=10$?
+
+## 5. Estimación del modelo de regresión simple en `R`
+
+La función para estimar regresión en `R` es `lm` (linear model). Su forma general es:
+
+```
+objeto=lm(dependiente ~ independiente, data=datos)
+```
+
+Donde
+
+- *objeto*: el nombre (cualquiera) que le damos al objeto donde se guardan los resultados de la estimación
+
+- *dependiente* / *independiente*: los nombres de las variables en los datos
+
+- *data*: el nombre del objeto de nuestros datos en R
+
+Estimamos la regresión con los datos de **CASEN-COVID19**:
+
+```{r}
+reg1 <-lm(t_contagio ~ anoescolaridad, data = casen_covid19)
+```
+
+Con esta operación ya estimamos nuestra primera regresión simple. Para ver la estimación de los parámetros principales (intercepto y pendiente) simplemente ejecutamos el nombre del objeto. Podremos notar que *"a mano"* calculamos tanto el intercepto como pendiente. 
+
+
+```{r}
+reg1
+```
+
+Mientras que la función `summary()` proporciona una gran cantidad de información sobre un modelo de regresión, a menudo necesitamos presentar nuestros hallazgos en tablas fáciles de leer, similares a las que se ven en las publicaciones de las revistas. 
+
+```{r}
+summary(reg1)
+```
+
+El paquete `textreg` que instalamos antes nos permite hacer precisamente eso.Veamos cómo mostrar la representación de un modelo de regresión en la pantalla utilizando la función `screenreg()` de `texreg`.
+
+```{r}
+texreg::screenreg(reg1)
+```
+
+
+Vemos que ambas tabla aparecen una serie de elementos adicionales, además de $b_{1}$ (años de escolaridad) y el intercepto o constante ("Constant"). Esto será tema del siguiente práctico. 

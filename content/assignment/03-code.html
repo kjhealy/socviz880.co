@@ -1,0 +1,835 @@
+---
+title: "Práctica 3. Regresión Lineal Simple - Parte 1"
+subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
+author: "Valentina Andrade"
+linktitle: "Práctica 3. Regresión Lineal Simple - Parte 1"
+date: "2020-01-10"
+class_date: "2020-04-30"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+    highlight: tango
+    number_sections: FALSE
+menu:
+  class:
+    parent: Practicas
+    weight: 1
+type: docs
+weight: 1
+editor_options:
+  chunk_output_type: console
+---
+
+<!-- BLOGDOWN-HEAD -->
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/plotly-binding/plotly.js"></script>
+<script src="/rmarkdown-libs/typedarray/typedarray.min.js"></script>
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="/rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/crosstalk/js/crosstalk.min.js"></script>
+<link href="/rmarkdown-libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/plotly-main/plotly-latest.min.js"></script>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<!-- /BLOGDOWN-HEAD -->
+
+<h2>Índice</h2>
+<div id="TOC">
+<ul>
+<li><a href="#presentación">Presentación</a></li>
+<li><a href="#objetivo-de-la-práctica">- Objetivo de la práctica</a><ul>
+<li><a href="#antecedentes-de-los-datos">- Antecedentes de los datos</a></li>
+</ul></li>
+<li><a href="#preparación-y-descriptivos-datos-casen-covid19.rdata">Preparación y descriptivos datos CASEN-COVID19.RData</a><ul>
+<li><a href="#librerías">1. Librerías</a></li>
+<li><a href="#cargar-base-de-datos">2. Cargar base de datos</a></li>
+<li><a href="#procesamiento-y-descripción-de-variables">3. Procesamiento y descripción de variables</a><ul>
+<li><a href="#exploración-y-procesamiento-de-variables">3.1 Exploración y procesamiento de variables</a></li>
+<li><a href="#tabla-descriptiva-de-variables">3.2 Tabla descriptiva de variables</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#el-modelo-de-regresión-simple">El modelo de regresión simple</a><ul>
+<li><a href="#correlación">1. Correlación</a></li>
+<li><a href="#medias-condicionales">2. Medias condicionales</a></li>
+<li><a href="#residuos">3. Residuos</a></li>
+<li><a href="#modelo-y-cálculo-de-parámetros">4. Modelo y cálculo de parámetros</a></li>
+<li><a href="#estimación-del-modelo-de-regresión-simple-en-r">5. Estimación del modelo de regresión simple en <code>R</code></a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="presentación" class="section level1">
+<h1>Presentación</h1>
+</div>
+<div id="objetivo-de-la-práctica" class="section level1">
+<h1>- Objetivo de la práctica</h1>
+<p>En esta práctica se abordan ejercicios iniciales de regresión simple. Para ello nos vamos a basar principalmente en la base CASEN-COVID19.</p>
+<p>En la <a href="/assignment/01-code">Práctica 1</a> y <a href="/assignment/02-code">Práctica 2</a> desarrollamos códigos que nos sirven de base para el procesamiento y exploración de nuestros datos. En esta <strong>Práctica 3</strong> comenzaremos con las primeras estimaciones de una regresión simple.</p>
+<p>Al que en las práticas anteriores, <strong>Práctica 3</strong> posee una estructura definida. En este caso son 2 partes, donde las primera resume el código de procesamiento y análisis:</p>
+<ul>
+<li><p>Preparación y descriptivos datos de CASEN-COVID19.RData</p>
+<ol start="0" style="list-style-type: decimal">
+<li>Identificación y descripción general: Título, autor(es), fecha, información breve sobre el contenido del documento</li>
+<li><strong>Librerías</strong> principales (de R) a utilizar en el análisis</li>
+<li><strong>Datos</strong> (que provienen de los preparados en la fase anterior)</li>
+<li><strong>Descripción de variables</strong></li>
+</ol>
+<ul>
+<li>Tabla general de variables para la sección metodológica del reporte</li>
+<li>Exploración descriptiva de relaciones entre variables</li>
+</ul></li>
+<li><p>Modelo de Regresión Simple</p>
+<ol style="list-style-type: decimal">
+<li>Correlación</li>
+<li>Medias condicionales</li>
+<li>Residuos</li>
+<li>Modelo y cálculo de parámetros</li>
+<li>Estimación del modelo en R</li>
+</ol></li>
+</ul>
+<p>Al final de esta práctica la idea es que cada un_ pueda conocer los elementos principales de un modelo de regresión simple, junto con poder realizar la primera estimación de este.</p>
+<div id="antecedentes-de-los-datos" class="section level2">
+<h2>- Antecedentes de los datos</h2>
+<p><strong>CASEN-COVID19</strong> consiste en una base de datos que resume a nivel comunal información sobre la población contagiada por el virus COVID19 y encuesta de Caracterización Socioeconómica Nacional (CASEN).</p>
+<ul>
+<li><p><a href="http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php">CASEN (2017)</a>: su objetivo es medir pobreza, otorgando datos necesarios para la caracterización socioeconómica de individuos y hogares en Chile.</p></li>
+<li><p><a href="https://github.com/MinCiencia/Datos-COVID19">Datos Covid19 (2020)</a>: presenta información detallada sobre los casos confirmados del virus COVID19 por comuna hasta el último informe epidemiológico entregrado por el gobierno de Chile (24 de abril de 2020).</p></li>
+</ul>
+</div>
+</div>
+<div id="preparación-y-descriptivos-datos-casen-covid19.rdata" class="section level1">
+<h1>Preparación y descriptivos datos CASEN-COVID19.RData</h1>
+<div id="librerías" class="section level2">
+<h2>1. Librerías</h2>
+<p>La explicación de esta parte del código se encuentra en la sección correspondiente de la <a href="/assignment/01-code#librerias">Práctica 1</a>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">pacman<span class="op">::</span><span class="kw">p_load</span>(dplyr, <span class="co">#Manipulacion de datos</span></a>
+<a class="sourceLine" id="cb1-2" title="2">              stargazer, <span class="co">#Tablas</span></a>
+<a class="sourceLine" id="cb1-3" title="3">              sjmisc, <span class="co"># Tablas</span></a>
+<a class="sourceLine" id="cb1-4" title="4">              summarytools, <span class="co"># Tablas</span></a>
+<a class="sourceLine" id="cb1-5" title="5">              kableExtra, <span class="co">#Tablas</span></a>
+<a class="sourceLine" id="cb1-6" title="6">              sjPlot, <span class="co">#Tablas y gráficos</span></a>
+<a class="sourceLine" id="cb1-7" title="7">              corrplot, <span class="co"># Correlaciones</span></a>
+<a class="sourceLine" id="cb1-8" title="8">              ggplot2, <span class="co">#Graficos</span></a>
+<a class="sourceLine" id="cb1-9" title="9">              plotly,<span class="co">#Graficos interactivos</span></a>
+<a class="sourceLine" id="cb1-10" title="10">              texreg) <span class="co">#tablas regresion</span></a></code></pre></div>
+</div>
+<div id="cargar-base-de-datos" class="section level2">
+<h2>2. Cargar base de datos</h2>
+<p>Vamos a cargar la base de datos <strong>CASEN-COVID19.RData</strong>. Se puede llamar desde el directorio en que la guardaron dando la ruta completa, o también para esta práctica la podemos llamar directamente desde nuestro sitio web:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">load</span>(<span class="st">&quot;content/assignment/data/proc/CASEN-COVID19.RData&quot;</span>) <span class="co">#Cargar base de datos</span></a>
+<a class="sourceLine" id="cb2-2" title="2"></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="co">#load(url(&quot;https://multivariada.netlify.app/assignment/data/proc/CASEN-COVID19.RData&quot;)) </span></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="co">#Cargar base de datos</span></a></code></pre></div>
+</div>
+<div id="procesamiento-y-descripción-de-variables" class="section level2">
+<h2>3. Procesamiento y descripción de variables</h2>
+<div id="exploración-y-procesamiento-de-variables" class="section level3">
+<h3>3.1 Exploración y procesamiento de variables</h3>
+<p>La explicación de esta parte del código se encuentra en la sección correspondiente de la <a href="/assignment/01-code#preparación-de-datos-elsoc-2016">Práctica 1</a>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">names</span>(casen_covid19) <span class="co"># Muestra los nombres de las variables de la base de datos</span></a></code></pre></div>
+<pre><code>## [1] &quot;comuna&quot;            &quot;pop&quot;               &quot;casos_confirmados&quot;
+## [4] &quot;ingresos&quot;          &quot;edad&quot;              &quot;anoescolaridad&quot;   
+## [7] &quot;fonasaB&quot;           &quot;isapre&quot;</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">dim</span>(casen_covid19) <span class="co"># Dimensiones</span></a></code></pre></div>
+<pre><code>## [1] 324   8</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co">#324 observaciones --&gt; 324 comunas</span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="co">#8 variables</span></a></code></pre></div>
+<p>En el caso de esta base, 324 casos y 8 variables</p>
+<p>La base de datos <strong>casen_covid19</strong> presenta las siguientes variables</p>
+<ul>
+<li><p>[<code>comuna</code>] = Nombre de la comuna</p></li>
+<li><p>[<code>pop</code>] = Población de la comuna (número de habitantes)</p></li>
+<li><p>[<code>casos_confirmados</code>] = Casos confirmados por COVID19 en la comuna (número de contagiados confirmados)</p></li>
+<li><p>[<code>ingreso</code>] = Media de ingresos individuales a nivel comunal (en pesos)</p></li>
+<li><p>[<code>anoescolaridad</code>] = Media de año de escolaridad a nivel comunal (en años alcanzados)</p></li>
+<li><p>[<code>fonasaB</code>] = Cobertura de Fonasa B a nivel comunal (en porcentaje de afiliados)</p></li>
+<li><p>[<code>isapre</code>] = Cobertura de Isapres a nivel comunal (en porcentaje de afiliados)</p></li>
+</ul>
+<p>Antes de pasar a describir las variables, se va a ponderar el número de <code>casos_confirmados</code> por <code>pop</code> de la comuna, a modo de capturar mejor la tasa de contagio según el número de habitantes. A través de <code>mutate</code>se calculará el el número de casos confirmados por cada 100.000 habitantes, dividido en la población de la comuna.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co">#Tasa de contagio comunal</span></a>
+<a class="sourceLine" id="cb8-2" title="2"></a>
+<a class="sourceLine" id="cb8-3" title="3">casen_covid19 &lt;-<span class="st"> </span>casen_covid19 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">t_contagio =</span> (casos_confirmados<span class="op">*</span><span class="dv">100000</span>)<span class="op">/</span>pop)</a></code></pre></div>
+</div>
+<div id="tabla-descriptiva-de-variables" class="section level3">
+<h3>3.2 Tabla descriptiva de variables</h3>
+<p>La explicación de esta parte del código se encuentra en la sección correspondiente de la <a href="/assignment/01-code#descripción-de-variables">Práctica 2</a>.</p>
+<p><strong>Tablas descriptivas con <code>dfSummary</code>, librería summarytools</strong><span class="sidenote">sjmisc::descr</span></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">view</span>(<span class="kw">dfSummary</span>(casen_covid19, <span class="dt">headings=</span><span class="ot">FALSE</span>))</a></code></pre></div>
+<div class="container st-container">
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline ">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>No</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Valid</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">1</td>
+      <td align="left">comuna
+[character]</td>
+      <td align="left">1. Algarrobo
+2. Alhue
+3. Alto Biobio
+4. Alto del Carmen
+5. Alto Hospicio
+6. Ancud
+7. Andacollo
+8. Angol
+9. Antofagasta
+10. Antuco
+[ 314 others ]</td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">314</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">96.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJ4AAAESBAMAAAD+rnFfAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqb39/f///+DdZCQAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AUHCC86zjX0mgAAAKhJREFUeNrt1TEBAkEQBEEsIGHAAfj3RoICfoJdrlpApX276Wq5l+LxeDwe74LX4k71wuPxeDzeAK/FbfHC4/F4PN4Ar8Wd6oXH4/F4vAFei9vihcfj8Xi8AV6L2+KFx+PxeLw/9FrcFi88Ho/H4w3wWtwWLzwej8fjDfBa3KleeDwej8cb4LW4LV54PB6PxxvgtbhTvUerr/d8d3rxeDweb7TX/od+7wN7UNebQeeBKwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNS0wN1QxMjo0Nzo1OC0wNDowMEKNG7IAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDUtMDdUMTI6NDc6NTgtMDQ6MDAz0KMOAAAAAElFTkSuQmCC"></td>
+      <td align="center">324
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+    <tr>
+      <td align="center">2</td>
+      <td align="left">pop
+[numeric]</td>
+      <td align="left">Mean (sd) : 59920.1 (90751.9)
+min < med < max:
+1233 < 21804.5 < 645909
+IQR (CV) : 48443.5 (1.5)</td>
+      <td align="left" style="vertical-align:middle">324 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AUHCC86zjX0mgAAAHJJREFUaN7t2bENgCAUQEFW0A3EDWT/3VRitJIIGGNxryBUFyC/IwS1FHNDZwc2p60FBoPBYDAYDAaDwWAwGAwGg8FgMBgMBvsdFs+mfmxfUt7C6rG2L8obrG1UvsNq566I1b7hQ+y69lg46YHFVwpqaQXGrT7TDokS4wAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNS0wN1QxMjo0Nzo1OC0wNDowMEKNG7IAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDUtMDdUMTI6NDc6NTgtMDQ6MDAz0KMOAAAAAElFTkSuQmCC"></td>
+      <td align="center">324
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+    <tr>
+      <td align="center">3</td>
+      <td align="left">casos_confirmados
+[numeric]</td>
+      <td align="left">Mean (sd) : 37.6 (90.8)
+min < med < max:
+0 < 6 < 688
+IQR (CV) : 23.5 (2.4)</td>
+      <td align="left" style="vertical-align:middle">89 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AUHCC86zjX0mgAAAG5JREFUaN7t2cEJgDAQRcG0oB0YS7D/3lQQVIwiu16EedfA8NlrSlGkujZ0yTZsnJZgMBgMBoPBYDAYDAaDwWAwGAwGg8FgMNhrLP1hd8TS836EZQ53wTLz2lhwXhsLznvA6rk7od9fN6x+UlGkGeEKLGYRVfMKAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA1LTA3VDEyOjQ3OjU4LTA0OjAwQo0bsgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNS0wN1QxMjo0Nzo1OC0wNDowMDPQow4AAAAASUVORK5CYII="></td>
+      <td align="center">324
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+    <tr>
+      <td align="center">4</td>
+      <td align="left">ingresos
+[numeric]</td>
+      <td align="left">Mean (sd) : 415148.9 (159553)
+min < med < max:
+227968.3 < 382166.2 < 1822152.2
+IQR (CV) : 102890.8 (0.4)</td>
+      <td align="left" style="vertical-align:middle">324 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AUHCC86zjX0mgAAAGJJREFUaN7t2bEJgEAMQNGs4AjGDXT/3a4wNoIg54GC7zchzetDItRTVvP0pMKWbQ8Gg8FgMBgMBoP9DzuOiyFYzRUGg8FgMBgMBoPBYDDYN7C+p+IFVivsZSxP3cNySKGeGoFJiMlDbFlXAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA1LTA3VDEyOjQ3OjU4LTA0OjAwQo0bsgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNS0wN1QxMjo0Nzo1OC0wNDowMDPQow4AAAAASUVORK5CYII="></td>
+      <td align="center">324
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+    <tr>
+      <td align="center">5</td>
+      <td align="left">edad
+[numeric]</td>
+      <td align="left">Mean (sd) : 38.9 (3.2)
+min < med < max:
+28.8 < 38.6 < 61.4
+IQR (CV) : 3.5 (0.1)</td>
+      <td align="left" style="vertical-align:middle">324 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AUHCC86zjX0mgAAAGxJREFUaN7t17EJgDAQQNGsEDcwbmD2383mTCGIIURQeL9JdY+UdylppHxtKdGa+7vFagSDwWAwGAwGg8FgMBjsG9h5+JcZ2BbvDoPBYDAYDAb7PdYWxRlYm4XBYO9hHeddP1afvxhYmVLSSAfMQpQQP8x+PwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNS0wN1QxMjo0Nzo1OC0wNDowMEKNG7IAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDUtMDdUMTI6NDc6NTgtMDQ6MDAz0KMOAAAAAElFTkSuQmCC"></td>
+      <td align="center">324
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+    <tr>
+      <td align="center">6</td>
+      <td align="left">anoescolaridad
+[numeric]</td>
+      <td align="left">Mean (sd) : 9.9 (1.3)
+min < med < max:
+6.8 < 9.7 < 15.9
+IQR (CV) : 1.6 (0.1)</td>
+      <td align="left" style="vertical-align:middle">321 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AUHCC86zjX0mgAAAIVJREFUaN7t18EJwCAMQFFXsBvUblD3361Q04MgMVVP5v+L4OEhuUhCoJFiq1Q6ozUNu/IbGBgYGBgYGBgYGBjYNpgsTWswUXxhMsE1WDluMDAwMDC/mOFfsWO5/0AwMDAwsL0x7V/5jWkPdInV+/Qk1lLAvg6ZtWDK5NtYqpLLGpss0EgPGuTF9JQcQhoAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDUtMDdUMTI6NDc6NTgtMDQ6MDBCjRuyAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA1LTA3VDEyOjQ3OjU4LTA0OjAwM9CjDgAAAABJRU5ErkJggg=="></td>
+      <td align="center">324
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+    <tr>
+      <td align="center">7</td>
+      <td align="left">fonasaB
+[numeric]</td>
+      <td align="left">Mean (sd) : 0.3 (0.1)
+min < med < max:
+0 < 0.3 < 0.8
+IQR (CV) : 0.1 (0.3)</td>
+      <td align="left" style="vertical-align:middle">322 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AUHCC86zjX0mgAAAIZJREFUaN7t2cENgCAMQNGugBsIG8j+u3HQcrAhJZQb/59MCC/KAaOI0EppWNaSn4uV+vaAedil674F+4wKBgYGBgYGBgYGBgYGBgYWxyb+lsxj1b9FMDAwMDAwrb+DdmBmLhgY2JGY7iv3DkwvTseyOecLYGU4d4zZT5YA1ke6+n/MUEIrNbenD+FoQ41eAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA1LTA3VDEyOjQ3OjU4LTA0OjAwQo0bsgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNS0wN1QxMjo0Nzo1OC0wNDowMDPQow4AAAAASUVORK5CYII="></td>
+      <td align="center">324
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+    <tr>
+      <td align="center">8</td>
+      <td align="left">isapre
+[numeric]</td>
+      <td align="left">Mean (sd) : 0.1 (0.1)
+min < med < max:
+0 < 0 < 0.8
+IQR (CV) : 0.1 (1.3)</td>
+      <td align="left" style="vertical-align:middle">302 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AUHCC86zjX0mgAAAGhJREFUaN7t2bENgDAMRUGvABskbAD770ZBKEDQmEiAdK9xd6WbH6FMtVWGJzVsWrZgMBgMBoPBYDAYDAaDwWAwGAwGg8Hew/b5owvW7gyDwb6J5ebOGyz3kf6KnabisR4r11jtUijTCmbYYC9acQU4AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA1LTA3VDEyOjQ3OjU4LTA0OjAwQo0bsgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNS0wN1QxMjo0Nzo1OC0wNDowMDPQow4AAAAASUVORK5CYII="></td>
+      <td align="center">324
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+    <tr>
+      <td align="center">9</td>
+      <td align="left">t_contagio
+[numeric]</td>
+      <td align="left">Mean (sd) : 41.7 (58.7)
+min < med < max:
+0 < 23.7 < 520.3
+IQR (CV) : 54.7 (1.4)</td>
+      <td align="left" style="vertical-align:middle">255 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AUHCC86zjX0mgAAAG1JREFUaN7t2bENgCAQQFFWcARxA9l/N6LQUJgYjliY9wvKl2uABFLSTLm1xerYUa5OGAwGg8FgMBgMBoPBYDAYDAaD/QgLviOPWHA+GAwGi2PtVNvXYPdaYLAvsImf3WdsuOTfbYqO5SUlzVQBeQZV1qVGzvQAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDUtMDdUMTI6NDc6NTgtMDQ6MDBCjRuyAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA1LTA3VDEyOjQ3OjU4LTA0OjAwM9CjDgAAAABJRU5ErkJggg=="></td>
+      <td align="center">324
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 0.9.6 (<a href='https://www.r-project.org/'>R</a> version 3.6.2)<br/>2020-05-07</p>
+</div>
+</div>
+</div>
+</div>
+<div id="el-modelo-de-regresión-simple" class="section level1">
+<h1>El modelo de regresión simple</h1>
+<p><em>¿Tiene relación la tasa de contagio con la variables de comuna de residencia?</em></p>
+<p>Para abordar esta pregunta, nos centraremos en una variable: <code>anoescolaridad</code>. En consecuencia, ¿tiene relación la <strong>tasa de contagio</strong> con la media de <strong>años de escolaridad</strong> de la comuna?</p>
+<div id="correlación" class="section level2">
+<h2>1. Correlación</h2>
+<p>La explicación de esta parte del código se encuentra en la sección correspondiente de la <a href="/assignment/01-code#exploración-de-asociación-entre-variables">Práctica 2</a>. Para esta sección profundizaremos en otras formas de representar la correlación</p>
+<p>Primero, veamos un gráfico de nube de puntos / scatter de ambas variables que realizaremos a través de la función <code>ggplot()</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># 1. Se crea un gráfico scatterplot &quot;g&quot; con la librería ggplot</span></a>
+<a class="sourceLine" id="cb10-2" title="2"></a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="co"># Y es nuestra variable dependiente</span></a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="co"># X = es nuestra variable independiente</span></a>
+<a class="sourceLine" id="cb10-5" title="5">g=<span class="kw">ggplot</span>(casen_covid19, <span class="kw">aes</span>(<span class="dt">x=</span>anoescolaridad, <span class="dt">y=</span>t_contagio)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb10-6" title="6"><span class="st">  </span><span class="kw">geom_point</span>()</a>
+<a class="sourceLine" id="cb10-7" title="7"></a>
+<a class="sourceLine" id="cb10-8" title="8"><span class="co">#2. Se crea uno nuevo &quot;gg&quot; con la función ggplotly para añadir elementos interactivos (en este caso, las coordenadas de cada punto del gráfico)</span></a>
+<a class="sourceLine" id="cb10-9" title="9"></a>
+<a class="sourceLine" id="cb10-10" title="10">gg=<span class="kw">ggplotly</span>(g)</a>
+<a class="sourceLine" id="cb10-11" title="11">gg</a></code></pre></div>
+<div id="htmlwidget-1" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"data":[{"x":[12.1764234161989,10.7682119205298,10.5958549222798,8.34375,8.46511627906977,10.6381578947368,12.0699906367041,10.9538461538462,10.9420289855072,9.82051282051282,11.6838760921366,10.6792452830189,10.5283018867925,11.3758389261745,11.2850725639254,10.9019607843137,9.64782608695652,10.5234899328859,11.0269541778976,10.6809176225235,7.47777777777778,9.35779816513761,10.7670454545455,11.3823940381928,10.8636129696346,9.20276497695852,8.82125603864734,9.46511627906977,9,9.92447129909366,8.19444444444444,9.80637254901961,10.0506329113924,10.2543352601156,9.25531914893617,9.0251572327044,8.4559585492228,8.05952380952381,11.9101613606629,10.7292576419214,12.2654545454545,10.3121387283237,11.0828729281768,12.5881796690307,11.4098798397864,9.84388185654008,9.47619047619048,9.95336787564767,9.90526315789474,9.43654822335025,10.6693548387097,10.0657276995305,10.3193277310924,11.311084624553,10.747619047619,8.88888888888889,9.91189427312775,8.89387755102041,10.6424452133795,11.7926829268293,10.3853658536585,11.3055555555556,11.9111111111111,11.4807692307692,10.9695340501792,9.53636363636364,9.22631578947368,10.0266666666667,9.41706161137441,9.46781115879828,12.397951142632,10.3089533417402,9.8860103626943,12.3486777668952,11.3861566484517,8.98571428571429,9.90540540540541,10.0376569037657,9.85608856088561,10.806784660767,8.77887788778878,11.2008830022075,9.75252525252525,10.3066298342541,9.81012658227848,9.64262295081967,8.57868020304569,9.56164383561644,9.92252510760402,9.68769716088328,9.99399399399399,9.23391812865497,8.28318584070797,9.84090909090909,9.75980392156863,8.53551912568306,8.72727272727273,10.3709198813056,9.35,9.41176470588235,8.72727272727273,8.93975903614458,8.58715596330275,9.03846153846154,9.3348623853211,9.17525773195876,10.2056074766355,11.4897119341564,10.3355855855856,9.09405940594059,7.60843373493976,8.39719626168224,8.67357512953368,8.21917808219178,7.6747572815534,7.52148997134671,8.98019801980198,9.04125412541254,8.31780821917808,8.48620689655172,10.6442307692308,9.43321299638989,10.0958904109589,9.95751633986928,8.75877192982456,9.30733944954128,8.47161572052402,9.38793103448276,8.71308016877637,10.2636248415716,8.31182795698925,8.38720538720539,9.72010869565217,8.7196261682243,9.38082191780822,9.47513812154696,9.51315789473684,12.1607065919862,10.736531986532,12.0739622641509,8.55555555555556,9.46491228070176,10.1480891719745,10.3937153419593,11.6458635703919,9.03883495145631,11.5034129692833,10.6571428571429,11.5486111111111,8.52121212121212,10.632967032967,9.48265895953757,8.74235807860262,9.51578947368421,8.94423791821561,9.35858585858586,10.5107746068725,9.24324324324324,9.69836065573771,9.25837320574163,8.74642857142857,9.56953642384106,8.36416184971098,8.72959183673469,8.93434343434343,8.82587064676617,8.755,8.7989417989418,8.43720930232558,8.15,11.5675049636003,8.45302013422819,9.14222222222222,9,9.75460122699386,8.99588477366255,9.86868686868687,11.0588235294118,9.59294117647059,9.12280701754386,9.85928143712575,10.4705188679245,9.96296296296296,10.0993975903614,9.744,9.12568306010929,9.38961038961039,9.74874371859296,8.11138014527845,10.2010050251256,9.10714285714286,9.88626907073509,8.51111111111111,9.95175438596491,9.44495412844037,8.71666666666667,8.44351464435147,8.55156950672646,8.88181818181818,8.62790697674419,9.4983606557377,9.70149253731343,10.5533208606174,8.9492385786802,8.59358288770053,8.54545454545454,9.05769230769231,9.83771929824561,8.71691176470588,11.1323251417769,10.3829401088929,9.42657342657343,9.22680412371134,9.23376623376623,9.32692307692308,8.04494382022472,8.46511627906977,9.25613079019073,9.6421568627451,9.14141414141414,10.4943433349729,10.153488372093,9.68543046357616,9.54460093896714,9.85561497326203,8.18226600985222,8.16346153846154,10.8078495502862,10.2249752229931,9.5448275862069,9.81379310344828,9.67058823529412,7.82352941176471,11.6566100984706,10.3172413793103,10.4869888475836,13.8231253577562,10.0287769784173,10.2760511882998,10.9552495697074,10.3891102257636,11.1709265175719,10.1458333333333,12.2295514511873,12.2729357798165,11.6929779600205,10.3026113671275,9.5778364116095,14.0934393638171,15.1568296795953,12.3737373737374,9.77680525164114,11.0351288056206,12.1439393939394,11.9870813397129,14.6587129428778,11.2,11.4387317909169,15.8801007556675,11.1935914552737,10.9619482496195,11.2262443438914,10.8130193905817,10.1933216168717,10.841046277666,12.4492099322799,9.87128712871287,15.5767690253672,11.4779735682819,12.4932432432432,11.3874345549738,9.3397913561848,10.7903494176373,9.94516129032258,10.5991803278689,10.4610591900312,9.81454545454545,11.2092307692308,9.98099762470309,9.75247524752475,9.68627450980392,9.34412955465587,9.53424657534247,11.0381944444444,9.25619834710744,9.61048689138577,10.2995780590717,11.3703703703704,11.3562242798354,9.42211055276382,9.44827586206897,8.95480225988701,9.29556650246305,9.30895795246801,9.53387533875339,9.54496402877698,9.3725782414307,9.1310861423221,9.53333333333333,9.44255319148936,11.4298612272195,6.76470588235294,7.69387755102041,11.2746022392457,9.45454545454546,9.63684210526316,9.7027027027027,8.78600823045267,9.0972972972973,9.4622641509434,8.76548672566372,9.81818181818182,9.22051282051282,9.26890756302521,9.54444444444444,8.92056074766355,7.92792792792793,9.82692307692308,8.48214285714286,9.88217967599411,8.74822695035461,9.13478260869565,8.09386281588448,8.87368421052632],"y":[25.9550798118704,30.0002307710059,11.4975567691865,0,0,520.308828465928,61.3071818662282,291.01245262588,0,51.2557662737058,18.3885339609953,38.3362085489745,39.1751843014352,102.729674200176,4.65749915582828,0,34.9357182783678,0,6.9647583228862,12.278763002333,0,0,0,7.2099208510911,9.34816055465753,0,0,0,0,54.8763757202524,0,4.27825789338581,24.0467193404328,7.42151745293521,0,0,8.2203041512536,22.8728270814273,21.2205288029088,10.2845389098389,28.3292292270479,0,16.604400166044,28.5025638471266,8.81147841922077,36.4033491081179,17.7572582793217,4.84425713316863,5.29955748694984,0,0,56.8289448759235,0,22.5474521379084,41.0516691235469,5.23587622388607,31.5943288179772,0,47.5398145947231,59.3119810201661,23.6621051386205,61.9997745462744,62.7702608453062,142.450142450142,7.18614511222363,0,7.53778313797912,0,28.336639274582,12.2197103928637,17.9549331178741,46.0635677234584,10.3809820409011,10.0495298255689,10.5576314707912,7.09421112372304,12.7697612054655,0,4.40528634361233,5.47885163269779,11.2153725372911,26.7053894814147,0,0,41.0284463894967,6.68806848582129,0,7.20616848021907,4.70883691728143,9.87784399591716,7.90248335539443,0,0,14.7819660014782,0,0,0,6.35792579029018,0,5.30560271646859,0,0,0,0,10.9122653862942,0,4.8666536889235,61.252766935334,35.751171843966,84.8716316571186,0,36.6666666666667,55.0478916657492,34.8796651552145,47.4479766827086,19.4418041994297,30.1235063761422,27.184378044084,21.4339299110492,24.7157686604053,18.9456443352523,0,28.6163971955931,14.0562248995984,17.7809388335704,80.395794681509,10.2727412810108,6.48298217179903,0,21.7664460340546,26.5898515399956,12.1914050594331,20.2047413793103,4.74585923781501,40.4440759539746,5.71037003197807,5.20833333333333,57.1207768425651,12.7156696786909,62.5137091467427,25.3356979984799,72.5163161711385,2.18579234972678,34.0920485310338,67.8519046509396,13.5327153393328,56.8379172061006,85.1368148614824,105.887553586298,0,15.5122934925929,0,0,5.90109760415437,4.43970875510566,36.3009347490698,14.1866691073839,0,42.3108218063466,41.8883257236208,16.1077284881286,35.785857429144,19.1772940838048,0,9.96810207336523,0,20.5592105263158,6.57678395264716,27.1100668714983,0,212.589665633428,117.711684846582,33.2317917474384,51.2689054088695,27.5092352432602,15.8315522837014,79.21837866385,83.4437736219506,36.3798051659323,0,106.58140154543,94.9945195469492,83.0679772947529,72.8080931943593,40.2927943052851,117.251621980771,38.0083618396047,59.6718050721034,126.763310147565,32.1472683281728,40.5153553196662,133.79000321096,7.64876854826373,33.0069314556057,94.5850082761882,0,0,0,16.4095831965868,36.9242130527093,15.5327741534638,155.073730510052,27.0974543240856,19.0507293707816,0,29.6691885476932,5.61261716338329,5.37028086568928,6.71411306566403,18.510900863842,14.7037200411704,21.1974186254652,0,0,0,0,0,0,0,12.0510966497951,160.313707398651,21.7580504786771,80.6451612903226,8.48392296597947,35.0262697022767,287.995810970022,75.8078271581541,4.90115994118608,3.99968002559795,0,0,19.5274360476469,0,409.201036736534,109.244845008876,29.4340257337482,120.839436586127,74.1939835424255,82.8273611062366,70.4048277596178,84.3023255813954,78.3395876049364,68.4274136214986,137.965016013797,72.6845490570922,70.0737762559233,65.2757492432093,67.6050386880397,64.8366117384192,104.607886709054,137.012798607305,77.0230587782217,84.2887656484967,66.1046533219445,62.9099299176468,107.517426616359,101.110358709869,78.3364193134881,124.248014250487,54.1204634607864,64.3909946838167,126.129297195823,91.5428120478758,66.5228446909175,114.02618737015,114.235038591903,76.2917581782453,137.43360820055,106.516552641316,52.5745079354648,37.5455910748766,52.6744772751216,45.7060000945641,23.2807189085999,94.9718668243558,48.3395809961602,52.5854513584575,15.7069327984921,28.246193825382,0,41.1748558880044,6.6997186118183,16.7322011210575,36.6577873359564,32.488628979857,27.3829379403052,47.177441095595,43.5393536385046,59.3978752531481,18.3587295759133,28.3254022207115,0,27.0672621464339,38.7096774193548,9.61630926050582,0,68.2887348879559,32.7632527357316,19.4325689856199,30.3720577069096,90.4860392967942,0,0,206.92363460609,260.981112044942,153.723357081621,24.3230095670504,57.8770691052205,92.5925925925926,138.467273792406,30.0769971126083,247.365024736502,32.8083989501312,0,23.7459186702286,73.882526782416,0,143.747005270724,0,60.442295385053,84.5814977973568,25.935851992738,150.40825096691,115.018074268814],"text":["anoescolaridad: 12.176423<br />t_contagio:  25.955080","anoescolaridad: 10.768212<br />t_contagio:  30.000231","anoescolaridad: 10.595855<br />t_contagio:  11.497557","anoescolaridad:  8.343750<br />t_contagio:   0.000000","anoescolaridad:  8.465116<br />t_contagio:   0.000000","anoescolaridad: 10.638158<br />t_contagio: 520.308828","anoescolaridad: 12.069991<br />t_contagio:  61.307182","anoescolaridad: 10.953846<br />t_contagio: 291.012453","anoescolaridad: 10.942029<br />t_contagio:   0.000000","anoescolaridad:  9.820513<br />t_contagio:  51.255766","anoescolaridad: 11.683876<br />t_contagio:  18.388534","anoescolaridad: 10.679245<br />t_contagio:  38.336209","anoescolaridad: 10.528302<br />t_contagio:  39.175184","anoescolaridad: 11.375839<br />t_contagio: 102.729674","anoescolaridad: 11.285073<br />t_contagio:   4.657499","anoescolaridad: 10.901961<br />t_contagio:   0.000000","anoescolaridad:  9.647826<br />t_contagio:  34.935718","anoescolaridad: 10.523490<br />t_contagio:   0.000000","anoescolaridad: 11.026954<br />t_contagio:   6.964758","anoescolaridad: 10.680918<br />t_contagio:  12.278763","anoescolaridad:  7.477778<br />t_contagio:   0.000000","anoescolaridad:  9.357798<br />t_contagio:   0.000000","anoescolaridad: 10.767045<br />t_contagio:   0.000000","anoescolaridad: 11.382394<br />t_contagio:   7.209921","anoescolaridad: 10.863613<br />t_contagio:   9.348161","anoescolaridad:  9.202765<br />t_contagio:   0.000000","anoescolaridad:  8.821256<br />t_contagio:   0.000000","anoescolaridad:  9.465116<br />t_contagio:   0.000000","anoescolaridad:  9.000000<br />t_contagio:   0.000000","anoescolaridad:  9.924471<br />t_contagio:  54.876376","anoescolaridad:  8.194444<br />t_contagio:   0.000000","anoescolaridad:  9.806373<br />t_contagio:   4.278258","anoescolaridad: 10.050633<br />t_contagio:  24.046719","anoescolaridad: 10.254335<br />t_contagio:   7.421517","anoescolaridad:  9.255319<br />t_contagio:   0.000000","anoescolaridad:  9.025157<br />t_contagio:   0.000000","anoescolaridad:  8.455959<br />t_contagio:   8.220304","anoescolaridad:  8.059524<br />t_contagio:  22.872827","anoescolaridad: 11.910161<br />t_contagio:  21.220529","anoescolaridad: 10.729258<br />t_contagio:  10.284539","anoescolaridad: 12.265455<br />t_contagio:  28.329229","anoescolaridad: 10.312139<br />t_contagio:   0.000000","anoescolaridad: 11.082873<br />t_contagio:  16.604400","anoescolaridad: 12.588180<br />t_contagio:  28.502564","anoescolaridad: 11.409880<br />t_contagio:   8.811478","anoescolaridad:  9.843882<br />t_contagio:  36.403349","anoescolaridad:  9.476190<br />t_contagio:  17.757258","anoescolaridad:  9.953368<br />t_contagio:   4.844257","anoescolaridad:  9.905263<br />t_contagio:   5.299557","anoescolaridad:  9.436548<br />t_contagio:   0.000000","anoescolaridad: 10.669355<br />t_contagio:   0.000000","anoescolaridad: 10.065728<br />t_contagio:  56.828945","anoescolaridad: 10.319328<br />t_contagio:   0.000000","anoescolaridad: 11.311085<br />t_contagio:  22.547452","anoescolaridad: 10.747619<br />t_contagio:  41.051669","anoescolaridad:  8.888889<br />t_contagio:   5.235876","anoescolaridad:  9.911894<br />t_contagio:  31.594329","anoescolaridad:  8.893878<br />t_contagio:   0.000000","anoescolaridad: 10.642445<br />t_contagio:  47.539815","anoescolaridad: 11.792683<br />t_contagio:  59.311981","anoescolaridad: 10.385366<br />t_contagio:  23.662105","anoescolaridad: 11.305556<br />t_contagio:  61.999775","anoescolaridad: 11.911111<br />t_contagio:  62.770261","anoescolaridad: 11.480769<br />t_contagio: 142.450142","anoescolaridad: 10.969534<br />t_contagio:   7.186145","anoescolaridad:  9.536364<br />t_contagio:   0.000000","anoescolaridad:  9.226316<br />t_contagio:   7.537783","anoescolaridad: 10.026667<br />t_contagio:   0.000000","anoescolaridad:  9.417062<br />t_contagio:  28.336639","anoescolaridad:  9.467811<br />t_contagio:  12.219710","anoescolaridad: 12.397951<br />t_contagio:  17.954933","anoescolaridad: 10.308953<br />t_contagio:  46.063568","anoescolaridad:  9.886010<br />t_contagio:  10.380982","anoescolaridad: 12.348678<br />t_contagio:  10.049530","anoescolaridad: 11.386157<br />t_contagio:  10.557631","anoescolaridad:  8.985714<br />t_contagio:   7.094211","anoescolaridad:  9.905405<br />t_contagio:  12.769761","anoescolaridad: 10.037657<br />t_contagio:   0.000000","anoescolaridad:  9.856089<br />t_contagio:   4.405286","anoescolaridad: 10.806785<br />t_contagio:   5.478852","anoescolaridad:  8.778878<br />t_contagio:  11.215373","anoescolaridad: 11.200883<br />t_contagio:  26.705389","anoescolaridad:  9.752525<br />t_contagio:   0.000000","anoescolaridad: 10.306630<br />t_contagio:   0.000000","anoescolaridad:  9.810127<br />t_contagio:  41.028446","anoescolaridad:  9.642623<br />t_contagio:   6.688068","anoescolaridad:  8.578680<br />t_contagio:   0.000000","anoescolaridad:  9.561644<br />t_contagio:   7.206168","anoescolaridad:  9.922525<br />t_contagio:   4.708837","anoescolaridad:  9.687697<br />t_contagio:   9.877844","anoescolaridad:  9.993994<br />t_contagio:   7.902483","anoescolaridad:  9.233918<br />t_contagio:   0.000000","anoescolaridad:  8.283186<br />t_contagio:   0.000000","anoescolaridad:  9.840909<br />t_contagio:  14.781966","anoescolaridad:  9.759804<br />t_contagio:   0.000000","anoescolaridad:  8.535519<br />t_contagio:   0.000000","anoescolaridad:  8.727273<br />t_contagio:   0.000000","anoescolaridad: 10.370920<br />t_contagio:   6.357926","anoescolaridad:  9.350000<br />t_contagio:   0.000000","anoescolaridad:  9.411765<br />t_contagio:   5.305603","anoescolaridad:  8.727273<br />t_contagio:   0.000000","anoescolaridad:  8.939759<br />t_contagio:   0.000000","anoescolaridad:  8.587156<br />t_contagio:   0.000000","anoescolaridad:  9.038462<br />t_contagio:   0.000000","anoescolaridad:  9.334862<br />t_contagio:  10.912265","anoescolaridad:  9.175258<br />t_contagio:   0.000000","anoescolaridad: 10.205607<br />t_contagio:   4.866654","anoescolaridad: 11.489712<br />t_contagio:  61.252767","anoescolaridad: 10.335586<br />t_contagio:  35.751172","anoescolaridad:  9.094059<br />t_contagio:  84.871632","anoescolaridad:  7.608434<br />t_contagio:   0.000000","anoescolaridad:  8.397196<br />t_contagio:  36.666667","anoescolaridad:  8.673575<br />t_contagio:  55.047892","anoescolaridad:  8.219178<br />t_contagio:  34.879665","anoescolaridad:  7.674757<br />t_contagio:  47.447977","anoescolaridad:  7.521490<br />t_contagio:  19.441804","anoescolaridad:  8.980198<br />t_contagio:  30.123506","anoescolaridad:  9.041254<br />t_contagio:  27.184378","anoescolaridad:  8.317808<br />t_contagio:  21.433930","anoescolaridad:  8.486207<br />t_contagio:  24.715769","anoescolaridad: 10.644231<br />t_contagio:  18.945644","anoescolaridad:  9.433213<br />t_contagio:   0.000000","anoescolaridad: 10.095890<br />t_contagio:  28.616397","anoescolaridad:  9.957516<br />t_contagio:  14.056225","anoescolaridad:  8.758772<br />t_contagio:  17.780939","anoescolaridad:  9.307339<br />t_contagio:  80.395795","anoescolaridad:  8.471616<br />t_contagio:  10.272741","anoescolaridad:  9.387931<br />t_contagio:   6.482982","anoescolaridad:  8.713080<br />t_contagio:   0.000000","anoescolaridad: 10.263625<br />t_contagio:  21.766446","anoescolaridad:  8.311828<br />t_contagio:  26.589852","anoescolaridad:  8.387205<br />t_contagio:  12.191405","anoescolaridad:  9.720109<br />t_contagio:  20.204741","anoescolaridad:  8.719626<br />t_contagio:   4.745859","anoescolaridad:  9.380822<br />t_contagio:  40.444076","anoescolaridad:  9.475138<br />t_contagio:   5.710370","anoescolaridad:  9.513158<br />t_contagio:   5.208333","anoescolaridad: 12.160707<br />t_contagio:  57.120777","anoescolaridad: 10.736532<br />t_contagio:  12.715670","anoescolaridad: 12.073962<br />t_contagio:  62.513709","anoescolaridad:  8.555556<br />t_contagio:  25.335698","anoescolaridad:  9.464912<br />t_contagio:  72.516316","anoescolaridad: 10.148089<br />t_contagio:   2.185792","anoescolaridad: 10.393715<br />t_contagio:  34.092049","anoescolaridad: 11.645864<br />t_contagio:  67.851905","anoescolaridad:  9.038835<br />t_contagio:  13.532715","anoescolaridad: 11.503413<br />t_contagio:  56.837917","anoescolaridad: 10.657143<br />t_contagio:  85.136815","anoescolaridad: 11.548611<br />t_contagio: 105.887554","anoescolaridad:  8.521212<br />t_contagio:   0.000000","anoescolaridad: 10.632967<br />t_contagio:  15.512293","anoescolaridad:  9.482659<br />t_contagio:   0.000000","anoescolaridad:  8.742358<br />t_contagio:   0.000000","anoescolaridad:  9.515789<br />t_contagio:   5.901098","anoescolaridad:  8.944238<br />t_contagio:   4.439709","anoescolaridad:  9.358586<br />t_contagio:  36.300935","anoescolaridad: 10.510775<br />t_contagio:  14.186669","anoescolaridad:  9.243243<br />t_contagio:   0.000000","anoescolaridad:  9.698361<br />t_contagio:  42.310822","anoescolaridad:  9.258373<br />t_contagio:  41.888326","anoescolaridad:  8.746429<br />t_contagio:  16.107728","anoescolaridad:  9.569536<br />t_contagio:  35.785857","anoescolaridad:  8.364162<br />t_contagio:  19.177294","anoescolaridad:  8.729592<br />t_contagio:   0.000000","anoescolaridad:  8.934343<br />t_contagio:   9.968102","anoescolaridad:  8.825871<br />t_contagio:   0.000000","anoescolaridad:  8.755000<br />t_contagio:  20.559211","anoescolaridad:  8.798942<br />t_contagio:   6.576784","anoescolaridad:  8.437209<br />t_contagio:  27.110067","anoescolaridad:  8.150000<br />t_contagio:   0.000000","anoescolaridad: 11.567505<br />t_contagio: 212.589666","anoescolaridad:  8.453020<br />t_contagio: 117.711685","anoescolaridad:  9.142222<br />t_contagio:  33.231792","anoescolaridad:  9.000000<br />t_contagio:  51.268905","anoescolaridad:  9.754601<br />t_contagio:  27.509235","anoescolaridad:  8.995885<br />t_contagio:  15.831552","anoescolaridad:  9.868687<br />t_contagio:  79.218379","anoescolaridad: 11.058824<br />t_contagio:  83.443774","anoescolaridad:  9.592941<br />t_contagio:  36.379805","anoescolaridad:  9.122807<br />t_contagio:   0.000000","anoescolaridad:  9.859281<br />t_contagio: 106.581402","anoescolaridad: 10.470519<br />t_contagio:  94.994520","anoescolaridad:  9.962963<br />t_contagio:  83.067977","anoescolaridad: 10.099398<br />t_contagio:  72.808093","anoescolaridad:  9.744000<br />t_contagio:  40.292794","anoescolaridad:  9.125683<br />t_contagio: 117.251622","anoescolaridad:  9.389610<br />t_contagio:  38.008362","anoescolaridad:  9.748744<br />t_contagio:  59.671805","anoescolaridad:  8.111380<br />t_contagio: 126.763310","anoescolaridad: 10.201005<br />t_contagio:  32.147268","anoescolaridad:  9.107143<br />t_contagio:  40.515355","anoescolaridad:  9.886269<br />t_contagio: 133.790003","anoescolaridad:  8.511111<br />t_contagio:   7.648769","anoescolaridad:  9.951754<br />t_contagio:  33.006931","anoescolaridad:  9.444954<br />t_contagio:  94.585008","anoescolaridad:  8.716667<br />t_contagio:   0.000000","anoescolaridad:  8.443515<br />t_contagio:   0.000000","anoescolaridad:  8.551570<br />t_contagio:   0.000000","anoescolaridad:  8.881818<br />t_contagio:  16.409583","anoescolaridad:  8.627907<br />t_contagio:  36.924213","anoescolaridad:  9.498361<br />t_contagio:  15.532774","anoescolaridad:  9.701493<br />t_contagio: 155.073731","anoescolaridad: 10.553321<br />t_contagio:  27.097454","anoescolaridad:  8.949239<br />t_contagio:  19.050729","anoescolaridad:  8.593583<br />t_contagio:   0.000000","anoescolaridad:  8.545455<br />t_contagio:  29.669189","anoescolaridad:  9.057692<br />t_contagio:   5.612617","anoescolaridad:  9.837719<br />t_contagio:   5.370281","anoescolaridad:  8.716912<br />t_contagio:   6.714113","anoescolaridad: 11.132325<br />t_contagio:  18.510901","anoescolaridad: 10.382940<br />t_contagio:  14.703720","anoescolaridad:  9.426573<br />t_contagio:  21.197419","anoescolaridad:  9.226804<br />t_contagio:   0.000000","anoescolaridad:  9.233766<br />t_contagio:   0.000000","anoescolaridad:  9.326923<br />t_contagio:   0.000000","anoescolaridad:  8.044944<br />t_contagio:   0.000000","anoescolaridad:  8.465116<br />t_contagio:   0.000000","anoescolaridad:  9.256131<br />t_contagio:   0.000000","anoescolaridad:  9.642157<br />t_contagio:   0.000000","anoescolaridad:  9.141414<br />t_contagio:  12.051097","anoescolaridad: 10.494343<br />t_contagio: 160.313707","anoescolaridad: 10.153488<br />t_contagio:  21.758050","anoescolaridad:  9.685430<br />t_contagio:  80.645161","anoescolaridad:  9.544601<br />t_contagio:   8.483923","anoescolaridad:  9.855615<br />t_contagio:  35.026270","anoescolaridad:  8.182266<br />t_contagio: 287.995811","anoescolaridad:  8.163462<br />t_contagio:  75.807827","anoescolaridad: 10.807850<br />t_contagio:   4.901160","anoescolaridad: 10.224975<br />t_contagio:   3.999680","anoescolaridad:  9.544828<br />t_contagio:   0.000000","anoescolaridad:  9.813793<br />t_contagio:   0.000000","anoescolaridad:  9.670588<br />t_contagio:  19.527436","anoescolaridad:  7.823529<br />t_contagio:   0.000000","anoescolaridad: 11.656610<br />t_contagio: 409.201037","anoescolaridad: 10.317241<br />t_contagio: 109.244845","anoescolaridad: 10.486989<br />t_contagio:  29.434026","anoescolaridad: 13.823125<br />t_contagio: 120.839437","anoescolaridad: 10.028777<br />t_contagio:  74.193984","anoescolaridad: 10.276051<br />t_contagio:  82.827361","anoescolaridad: 10.955250<br />t_contagio:  70.404828","anoescolaridad: 10.389110<br />t_contagio:  84.302326","anoescolaridad: 11.170927<br />t_contagio:  78.339588","anoescolaridad: 10.145833<br />t_contagio:  68.427414","anoescolaridad: 12.229551<br />t_contagio: 137.965016","anoescolaridad: 12.272936<br />t_contagio:  72.684549","anoescolaridad: 11.692978<br />t_contagio:  70.073776","anoescolaridad: 10.302611<br />t_contagio:  65.275749","anoescolaridad:  9.577836<br />t_contagio:  67.605039","anoescolaridad: 14.093439<br />t_contagio:  64.836612","anoescolaridad: 15.156830<br />t_contagio: 104.607887","anoescolaridad: 12.373737<br />t_contagio: 137.012799","anoescolaridad:  9.776805<br />t_contagio:  77.023059","anoescolaridad: 11.035129<br />t_contagio:  84.288766","anoescolaridad: 12.143939<br />t_contagio:  66.104653","anoescolaridad: 11.987081<br />t_contagio:  62.909930","anoescolaridad: 14.658713<br />t_contagio: 107.517427","anoescolaridad: 11.200000<br />t_contagio: 101.110359","anoescolaridad: 11.438732<br />t_contagio:  78.336419","anoescolaridad: 15.880101<br />t_contagio: 124.248014","anoescolaridad: 11.193591<br />t_contagio:  54.120463","anoescolaridad: 10.961948<br />t_contagio:  64.390995","anoescolaridad: 11.226244<br />t_contagio: 126.129297","anoescolaridad: 10.813019<br />t_contagio:  91.542812","anoescolaridad: 10.193322<br />t_contagio:  66.522845","anoescolaridad: 10.841046<br />t_contagio: 114.026187","anoescolaridad: 12.449210<br />t_contagio: 114.235039","anoescolaridad:  9.871287<br />t_contagio:  76.291758","anoescolaridad: 15.576769<br />t_contagio: 137.433608","anoescolaridad: 11.477974<br />t_contagio: 106.516553","anoescolaridad: 12.493243<br />t_contagio:  52.574508","anoescolaridad: 11.387435<br />t_contagio:  37.545591","anoescolaridad:  9.339791<br />t_contagio:  52.674477","anoescolaridad: 10.790349<br />t_contagio:  45.706000","anoescolaridad:  9.945161<br />t_contagio:  23.280719","anoescolaridad: 10.599180<br />t_contagio:  94.971867","anoescolaridad: 10.461059<br />t_contagio:  48.339581","anoescolaridad:  9.814545<br />t_contagio:  52.585451","anoescolaridad: 11.209231<br />t_contagio:  15.706933","anoescolaridad:  9.980998<br />t_contagio:  28.246194","anoescolaridad:  9.752475<br />t_contagio:   0.000000","anoescolaridad:  9.686275<br />t_contagio:  41.174856","anoescolaridad:  9.344130<br />t_contagio:   6.699719","anoescolaridad:  9.534247<br />t_contagio:  16.732201","anoescolaridad: 11.038194<br />t_contagio:  36.657787","anoescolaridad:  9.256198<br />t_contagio:  32.488629","anoescolaridad:  9.610487<br />t_contagio:  27.382938","anoescolaridad: 10.299578<br />t_contagio:  47.177441","anoescolaridad: 11.370370<br />t_contagio:  43.539354","anoescolaridad: 11.356224<br />t_contagio:  59.397875","anoescolaridad:  9.422111<br />t_contagio:  18.358730","anoescolaridad:  9.448276<br />t_contagio:  28.325402","anoescolaridad:  8.954802<br />t_contagio:   0.000000","anoescolaridad:  9.295567<br />t_contagio:  27.067262","anoescolaridad:  9.308958<br />t_contagio:  38.709677","anoescolaridad:  9.533875<br />t_contagio:   9.616309","anoescolaridad:  9.544964<br />t_contagio:   0.000000","anoescolaridad:  9.372578<br />t_contagio:  68.288735","anoescolaridad:  9.131086<br />t_contagio:  32.763253","anoescolaridad:  9.533333<br />t_contagio:  19.432569","anoescolaridad:  9.442553<br />t_contagio:  30.372058","anoescolaridad: 11.429861<br />t_contagio:  90.486039","anoescolaridad:  6.764706<br />t_contagio:   0.000000","anoescolaridad:  7.693878<br />t_contagio:   0.000000","anoescolaridad: 11.274602<br />t_contagio: 206.923635","anoescolaridad:  9.454545<br />t_contagio: 260.981112","anoescolaridad:  9.636842<br />t_contagio: 153.723357","anoescolaridad:  9.702703<br />t_contagio:  24.323010","anoescolaridad:  8.786008<br />t_contagio:  57.877069","anoescolaridad:  9.097297<br />t_contagio:  92.592593","anoescolaridad:  9.462264<br />t_contagio: 138.467274","anoescolaridad:  8.765487<br />t_contagio:  30.076997","anoescolaridad:  9.818182<br />t_contagio: 247.365025","anoescolaridad:  9.220513<br />t_contagio:  32.808399","anoescolaridad:  9.268908<br />t_contagio:   0.000000","anoescolaridad:  9.544444<br />t_contagio:  23.745919","anoescolaridad:  8.920561<br />t_contagio:  73.882527","anoescolaridad:  7.927928<br />t_contagio:   0.000000","anoescolaridad:  9.826923<br />t_contagio: 143.747005","anoescolaridad:  8.482143<br />t_contagio:   0.000000","anoescolaridad:  9.882180<br />t_contagio:  60.442295","anoescolaridad:  8.748227<br />t_contagio:  84.581498","anoescolaridad:  9.134783<br />t_contagio:  25.935852","anoescolaridad:  8.093863<br />t_contagio: 150.408251","anoescolaridad:  8.873684<br />t_contagio: 115.018074"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":43.1050228310502},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[6.30893613868721,16.3358704993332],"tickmode":"array","ticktext":["8","10","12","14","16"],"tickvals":[8,10,12,14,16],"categoryorder":"array","categoryarray":["8","10","12","14","16"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"anoescolaridad","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-26.0154414232964,546.324269889225],"tickmode":"array","ticktext":["0","100","200","300","400","500"],"tickvals":[0,100,200,300,400,500],"categoryorder":"array","categoryarray":["0","100","200","300","400","500"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"t_contagio","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"71507cc72077":{"x":{},"y":{},"type":"scatter"}},"cur_data":"71507cc72077","visdat":{"71507cc72077":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co">#OpcionB: plot_scatter(casen_covid19, anoescolaridad, t_contagio)</span></a></code></pre></div>
+<p>Si recordamos el concepto de correlación donde:</p>
+<ul>
+<li>cada punto representa un caso</li>
+<li>la forma de la nube indica si la asociación es positiva, negativa o neutra</li>
+</ul>
+<p><img src="/images/image1.png" /></p>
+<p>En términos de correlación podemos decir se observa una posible asociación positiva. Como es poco definitorio el gráfico, podemos corroborar tal dirección de la relación con la función <code>sjt.corr</code> de <code>sjPlot</code> que nos muestra una matriz con todas las correlaciones de las variables. En este caso solo nos fijaremos en la intersección entre <code>t_contagio</code> y <code>anoescolaridad</code></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">casen_covid19 &lt;-<span class="st"> </span>casen_covid19 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>comuna) <span class="co">#Excluimos comuna pues las correlaciones son entre variables numéricas y comuna es un carácter</span></a>
+<a class="sourceLine" id="cb12-2" title="2"></a>
+<a class="sourceLine" id="cb12-3" title="3">sjPlot<span class="op">::</span><span class="kw">sjt.corr</span>(casen_covid19,</a>
+<a class="sourceLine" id="cb12-4" title="4">         <span class="dt">triangle =</span> <span class="st">&quot;lower&quot;</span>)</a></code></pre></div>
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+ 
+</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+pop
+</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+casos_confirmados
+</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+ingresos
+</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+edad
+</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+anoescolaridad
+</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+fonasaB
+</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+isapre
+</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+t_contagio
+</th>
+</tr>
+<tr>
+<td style="font-style:italic;">
+pop
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+</tr>
+<tr>
+<td style="font-style:italic;">
+casos_confirmados
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.797<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+</tr>
+<tr>
+<td style="font-style:italic;">
+ingresos
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.364<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.377<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+</tr>
+<tr>
+<td style="font-style:italic;">
+edad
+</td>
+<td style="padding:0.2cm; text-align:center;">
+-0.295<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+-0.202<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+-0.127<span style="vertical-align:super;font-size:0.8em;">*</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+</tr>
+<tr>
+<td style="font-style:italic;">
+anoescolaridad
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.606<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.517<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.744<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+-0.343<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+</tr>
+<tr>
+<td style="font-style:italic;">
+fonasaB
+</td>
+<td style="padding:0.2cm; text-align:center;">
+-0.246<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+-0.246<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+-0.468<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.341<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+-0.353<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+</tr>
+<tr>
+<td style="font-style:italic;">
+isapre
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.481<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.460<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.901<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+-0.199<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.816<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+-0.427<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+</tr>
+<tr>
+<td style="font-style:italic;">
+t_contagio
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.238<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.512<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.210<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center; color:#999999;">
+-0.052<span style="vertical-align:super;font-size:0.8em;"></span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.308<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+-0.233<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.257<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+</tr>
+<tr>
+<td colspan="9" style="border-bottom:double black; border-top:1px solid black; font-style:italic; font-size:0.9em; text-align:right;">
+Computed correlation used pearson-method with listwise-deletion.
+</td>
+</tr>
+</table>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co">##Op2: </span></a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="co">#cor(casen_covid19$t_contagio, casen_covid19$anoescolaridad) #no muestra si es significativo</span></a></code></pre></div>
+<p>Tenemos una <strong>correlación positiva</strong> (dirección de la relación) y de un <strong>tamaño de efecto grande</strong> (magnitud de la relación), para ciencias sociales. Es decir, existe una asociación positiva entre ambas variables.</p>
+<p>¿Qué indican los tres asteriscos que acompañan la correlación? [video]</p>
+<p>Ahora bien, ¿cómo se relaciona <strong>más específcamente</strong> la tasa de contagio del COVID19 y la media en años de escolaridad de la comuna?</p>
+</div>
+<div id="medias-condicionales" class="section level2">
+<h2>2. Medias condicionales</h2>
+<p>Antes de avanzar desde la correlación al método de regresión es importante conocer el concepto de <strong>media condicional</strong>.</p>
+<p>Como sabemos la tasa de contagio promedio es de 41.70 (casos) . Es decir, si conocemos a algun individuo que pertence a alguna comuna de la base de datos <strong>CASEN-COVID19</strong>, sabemos que la <em>tasa de contagio de su comuna</em> probablemente se encuentra cercana a 41.7 casos.</p>
+<p>¿Podemos mejorar nuestra estimación considerando la <em>media de escolaridad de su comuna</em>? Como la conocemos, si el sujeto nos dice que su comuna es <em>Quilpué</em> sabemos de ante mano que la media de años de escolaridad de su comuna es 12.39795 años.</p>
+<p>Lo que estamos haciendo es utilizar la información que conocemos de <em>X</em> para dar una estimación de <em>Y</em>, que sea más precisa que el promedio bruto.</p>
+<p>Si solo miramos nuestro gráfico de nube de puntos, podemos posicionarnos en el eje X cercano a 12 años y encontraremos comunas donde su tasa de contagio va de 137 a 10 casos.</p>
+<p>Sin embargo, con estos datos podemos calcular el promedio de Y para X = 12.39795 años promedio, que sería igual a 17.95 casos. En otras palabras, <em>la media condicional de Y cuando X=12.39795 es 17.95</em>.</p>
+<p>Con esto, uno podría calcular la media condicional para cada punto de <em>X</em> y hacer una estimación más precisa de <em>Y</em>. Sin embargo, este proceso todavía <em>no nos permite generalizar más precisamente la relación entre X e Y</em></p>
+<p><strong>¿Cuántos casos (Y) comunales se aumenta según los años de escolaridad promedio de la comuna (X)?</strong> Esta pregunta nos conduce al cálculo de una <strong>recta lineal</strong> que atraviese los puntos y que generalice la relación entre X e Y. Sobre la función <code>geom_smooth</code> que agregamos a nuestra nube de puntos:</p>
+<ul>
+<li><code>method = lm</code> nos permite visualizar una recta que resume la relación <strong>lineal</strong> entre <code>t_contagio</code> y <code>anoescolaridad</code>.</li>
+<li><code>se = T</code> nos permite visualizar el intervalo de confianza alrededor de nuestra recta</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">g2=<span class="kw">ggplot</span>(casen_covid19, <span class="kw">aes</span>(<span class="dt">x=</span>anoescolaridad, <span class="dt">y=</span>t_contagio)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb14-3" title="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span>lm, <span class="dt">se=</span>T)</a>
+<a class="sourceLine" id="cb14-4" title="4">g2</a></code></pre></div>
+<p><img src="/assignment/03-code_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="residuos" class="section level2">
+<h2>3. Residuos</h2>
+<p>En el gráfico anterior vemos que la línea resume la relación entre X e Y, pero claramente es una simplificación que <strong>no abarca toda la variabilidad de los datos</strong>.</p>
+<p>Hay comunas que son atravesadas por la recta y con ello, la línea predice exáctamente su tasa de contagio basada en el promedio de años de escolaridad. Por ejemplo, hay comunas como <em>Talagante</em> donde su año de escolaridad es 11.038194 y su tasa de contagio es de 36.657787 casos, siendo atravesada por la recta. Sin embargo, hay comunas como <em>Punta Arenas</em> donde sus años de escolaridad son 11.656610 y sus tasas de contagio son cercanas a 409 casos.</p>
+<p>En consecuencia esta línea o “modelo predictivo” no representa tan bien la relación de tasa de contagio y año de escolaridad para Punta Arenas. A esto se refieren los <strong>residuos</strong>, que es la diferencia entre el valor predicho (o <span class="math inline">\(\widehat{Y}\)</span>) y el observado <span class="math inline">\(Y\)</span>. Por lo tanto, la mejor recta será aquella que minimice al máximo los residuos.</p>
+<p><img src="/images/image2.png" /></p>
+<p>El sentido de la recta que resume de mejor manera la relación entre dos variables es que <strong>minimice la suma de todos los residuos</strong>. ¿Cómo realizar este procedimiento?</p>
+<ul>
+<li><p>Para realizar la suma de los residuos estos se elevan al cuadrado, lo que se denomina <strong>Suma de residuos al cuadrado</strong> o <span class="math inline">\(SS_{residual}\)</span></p>
+<p>-La razón es que si no se eleva al cuadrado, como hay residuos positivos y negativos, unos se cancelarían a otros y la suma es 0.</p></li>
+</ul>
+<p>-De la infinita cantidad de rectas que se pueden trazar, siempre hay una que tiene un valor menor de <span class="math inline">\(SS_{residual}\)</span>.</p>
+<p>-Este procedimiento es el que da nombre al proceso de estimación: residuos cuadrados ordinarios, o <em>OLS</em> (Ordinary Least Squares).</p>
+</div>
+<div id="modelo-y-cálculo-de-parámetros" class="section level2">
+<h2>4. Modelo y cálculo de parámetros</h2>
+<p>El modelo de regresión entonces se relaciona con una <strong>ecuación de la recta</strong>, o recta de regresión, que se puede definir en términos simples de la siguiente manera:</p>
+<p><span class="math display">\[\widehat{Y}=b_{0} +b_{1}X \]</span></p>
+<p>Donde</p>
+<ul>
+<li><span class="math inline">\(\widehat{Y}\)</span> es el valor estimado de <span class="math inline">\(Y\)</span></li>
+<li><span class="math inline">\(b_{0}\)</span> es el <strong>intercepto</strong> de la recta (el valor de Y cuando X es 0)</li>
+<li><span class="math inline">\(b_{1}\)</span> es el coeficiente de regresión, que nos dice cuánto aumenta Y por cada punto que aumenta X (pendiente)</li>
+</ul>
+<p><strong>Cálculo de los parámetros del modelo de regresión</strong></p>
+<p><span class="math inline">\(b_{1}\)</span>, o comunmente llamado “beta de regresión” se obtiene de la siguiente manera:</p>
+<p><span class="math display">\[b_{1}=\frac{Cov(XY)}{VarX}\]</span>
+En términos más suntantivos se puede entender como qué parte de la covariación que hay entre X e Y se relaciona con (la varianza de) X. Especificando la fórmula:</p>
+<p><span class="math display">\[b_{1}=\frac{\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {n-1}}{\frac{\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})} {n-1}}\]</span>
+Y simplificando</p>
+<p><span class="math display">\[b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})}\]</span></p>
+<p>Como sabemos, la base para todos estos calculos es el valor de cada variable menos su promedio. Vamos a crear un vector en nuestra base de datos difx=<span class="math inline">\(x-\bar{x}\)</span> y dify=<span class="math inline">\(y-\bar{y}\)</span></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="co">#difx</span></a>
+<a class="sourceLine" id="cb15-2" title="2">casen_covid19<span class="op">$</span>difx =<span class="st"> </span>casen_covid19<span class="op">$</span>anoescolaridad<span class="op">-</span><span class="kw">mean</span>(casen_covid19<span class="op">$</span>anoescolaridad)</a>
+<a class="sourceLine" id="cb15-3" title="3"></a>
+<a class="sourceLine" id="cb15-4" title="4"><span class="co">#dify</span></a>
+<a class="sourceLine" id="cb15-5" title="5">casen_covid19<span class="op">$</span>dify =<span class="st"> </span>casen_covid19<span class="op">$</span>t_contagio<span class="op">-</span><span class="kw">mean</span>(casen_covid19<span class="op">$</span>t_contagio)</a></code></pre></div>
+<p>Y ahora con esto podemos obtener la diferencia de productos cruzados dif_cru=<span class="math inline">\((x-\bar{x})*(y-\bar{y})\)</span>, así como la suma de cuadrados de X SSx=<span class="math inline">\((x-\bar{x})^2\)</span></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co">#dif_cru</span></a>
+<a class="sourceLine" id="cb16-2" title="2">casen_covid19<span class="op">$</span>dif_cru=casen_covid19<span class="op">$</span>difx<span class="op">*</span>casen_covid19<span class="op">$</span>dify</a>
+<a class="sourceLine" id="cb16-3" title="3"></a>
+<a class="sourceLine" id="cb16-4" title="4"><span class="co">#difx^2</span></a>
+<a class="sourceLine" id="cb16-5" title="5">casen_covid19<span class="op">$</span>SSx=(casen_covid19<span class="op">$</span>difx)<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb16-6" title="6"></a>
+<a class="sourceLine" id="cb16-7" title="7"><span class="kw">View</span>(casen_covid19)</a></code></pre></div>
+<p>Y con esto podemos obtener la suma de productos cruzados y la suma de cuadrados de X</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">sum</span>(casen_covid19<span class="op">$</span>dif_cru)</a></code></pre></div>
+<pre><code>## [1] 7546.355</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">sum</span>(casen_covid19<span class="op">$</span>SSx)</a></code></pre></div>
+<pre><code>## [1] 539.6306</code></pre>
+<p>Reemplazando en la fórmula</p>
+<p><span class="math display">\[b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})}=\frac{7546.355}{539.6306}=13.9843\]</span></p>
+<p>Y con esto podemos obtener el valor de <span class="math inline">\(b_{0}\)</span></p>
+<p><span class="math display">\[b_{0}=\bar{Y}-b_{1}\bar{X}\]</span></p>
+<p>Sabemos por nuestra tabla de descriptivos que
+- Promedio de tasa de contagio(<span class="math inline">\(\bar{Y}\)</span>) = 41.702
+- Promedio de años de escolaridad(<span class="math inline">\(\bar{X}\)</span>) = 9.921</p>
+<p><span class="math display">\[b_{0}=41.702-(13.9843 * 9.921)= -97.036\]</span></p>
+<p>Completando la ecuación:</p>
+<p><span class="math display">\[\bar{Y}= (-97.04)+13.98X\]</span></p>
+<p>Esto nos permite estimar el valor de <span class="math inline">\(Y\)</span> (o su media condicional) basado en el puntaje <span class="math inline">\(X\)</span>.</p>
+<p>Por ejemplo, cuál es el valor estimado de <span class="math inline">\(Y\)</span> dado <span class="math inline">\(X=10\)</span>?</p>
+</div>
+<div id="estimación-del-modelo-de-regresión-simple-en-r" class="section level2">
+<h2>5. Estimación del modelo de regresión simple en <code>R</code></h2>
+<p>La función para estimar regresión en <code>R</code> es <code>lm</code> (linear model). Su forma general es:</p>
+<pre><code>objeto=lm(dependiente ~ independiente, data=datos)</code></pre>
+<p>Donde</p>
+<ul>
+<li><p><em>objeto</em>: el nombre (cualquiera) que le damos al objeto donde se guardan los resultados de la estimación</p></li>
+<li><p><em>dependiente</em> / <em>independiente</em>: los nombres de las variables en los datos</p></li>
+<li><p><em>data</em>: el nombre del objeto de nuestros datos en R</p></li>
+</ul>
+<p>Estimamos la regresión con los datos de <strong>CASEN-COVID19</strong>:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">reg1 &lt;-<span class="kw">lm</span>(t_contagio <span class="op">~</span><span class="st"> </span>anoescolaridad, <span class="dt">data =</span> casen_covid19)</a></code></pre></div>
+<p>Con esta operación ya estimamos nuestra primera regresión simple. Para ver la estimación de los parámetros principales (intercepto y pendiente) simplemente ejecutamos el nombre del objeto. Podremos notar que <em>“a mano”</em> calculamos tanto el intercepto como pendiente.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">reg1</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = t_contagio ~ anoescolaridad, data = casen_covid19)
+## 
+## Coefficients:
+##    (Intercept)  anoescolaridad  
+##         -97.04           13.98</code></pre>
+<p>Mientras que la función <code>summary()</code> proporciona una gran cantidad de información sobre un modelo de regresión, a menudo necesitamos presentar nuestros hallazgos en tablas fáciles de leer, similares a las que se ven en las publicaciones de las revistas.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">summary</span>(reg1)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = t_contagio ~ anoescolaridad, data = casen_covid19)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -65.60 -29.85 -13.71   9.64 468.58 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)     -97.036     24.069  -4.032 6.92e-05 ***
+## anoescolaridad   13.984      2.406   5.813 1.48e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 55.89 on 322 degrees of freedom
+## Multiple R-squared:  0.09497,    Adjusted R-squared:  0.09216 
+## F-statistic: 33.79 on 1 and 322 DF,  p-value: 1.479e-08</code></pre>
+<p>El paquete <code>textreg</code> que instalamos antes nos permite hacer precisamente eso.Veamos cómo mostrar la representación de un modelo de regresión en la pantalla utilizando la función <code>screenreg()</code> de <code>texreg</code>.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">texreg<span class="op">::</span><span class="kw">screenreg</span>(reg1)</a></code></pre></div>
+<pre><code>## 
+## ==========================
+##                 Model 1   
+## --------------------------
+## (Intercept)     -97.04 ***
+##                 (24.07)   
+## anoescolaridad   13.98 ***
+##                  (2.41)   
+## --------------------------
+## R^2               0.09    
+## Adj. R^2          0.09    
+## Num. obs.       324       
+## RMSE             55.89    
+## ==========================
+## *** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
+<p>Vemos que ambas tabla aparecen una serie de elementos adicionales, además de <span class="math inline">\(b_{1}\)</span> (años de escolaridad) y el intercepto o constante (“Constant”). Esto será tema del siguiente práctico.</p>
+</div>
+</div>
