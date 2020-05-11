@@ -21,6 +21,6 @@ slug: schedule
 10| **10. Regresión logística II** <br>- Estimación de parámetros <br>- Inferencia <br>- Predicción | Práctica 10: Estimación logística  | - [Camarero et al (2017) Regresión logística (30-52)](/docs/lecturas/Camarero_Odd_Ratio_LogitV2.pdf)
 17 | **11. Detección y manejo de irregularidades en modelos de regresión** <br> - Relaciones no lineales <br> -Transformaciones <br> - Centrado | Práctica 11: Chequeos de robustez | -   [Darlington & Hayes 2016 Cap16 Detecting and Managing Irregularities](/docs/lecturas/Darlington&Hayes_16irregularities.pdf) <br> - [Darlington & Hayes 2016 Cap12 Nonlinear relationships](/docs/lecturas/Darlington&Hayes_13nonlinear.pdf)
 24 | Repaso, pendientes y cierre de los contenidos | | [Wooldridge cap 6 Temas adicionales](/docs/lecturas/Wooldridge_6temasadicionales.pdf)
-31 | | **Trabajo 3**: Regresión logística, predictores categóricos y supuestos (grupal) (50%)
+31 | | **Trabajo 3**: Regresión logística, predictores categóricos y supuestos (grupal) 50%.
 
 Examen final: 10 de Agosto.
