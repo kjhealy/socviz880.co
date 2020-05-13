@@ -12,3 +12,28 @@ weight: 1
 Esta página contiene los materiales de los **contenidos** de cada sesión (documento de presentación, lecturas, links), y también las **guías prácticas**.
 
 Todo el material es accesible desde el menú de la izquierda <--
+
+# Instrucciones generales para las prácticas
+
+- Las prácticas se desarrollarán semana a semana en el horario correspondiente a cada sección (Jueves Sección 1, Viernes Sección 2, de 9:00 a 10:00); ver detalles en la [planificación del curso](/schedule).
+
+- Estas sesiones acompañarán el desarrollo de las guías prácticas disponibles en este sitio.
+
+- Los contenidos de las guías refieren a aplicaciones de análisis de datos de lo visto en clases la semana anterior
+
+- En las prácticas vamos a trabajar con el software R, Versión 4.0. Para su instalación consultar el video-tutorial disponible en la página de la práctica 1 (click [aquí](/assignment/01-code#videos_inicio))
+
+- Para poder tener una asesoría y monitoreo más cercano en el desarrollo de las guías, los estudiantes han sido divididos en grupos asignados a un/a ayudante (ver en UCursos)
+
+- El trabajo con estas guías se organiza en los siguientes momentos:
+
+  - cada estudiante realiza la guía de manera autónoma durante la semana correspondiente, antes de la sesión de práctica
+  - en caso de dudas, las realizan en los foros disponibles o se contactan directamente con su ayudante
+  - durante las sesiones prácticas, cada ayudante se reunirá con su grupo de estudiantes asignado para revisar la guía paso a paso y resolver dudas
+  - cada semana se completa un **reporte de progreso** (detalles abajo) que va a ser implementado en la plataforma de UCursos
+
+## Reportes de progreso
+
+Este curso se caracteriza por el desarrollo secuencial y acumulativo de aprendizajes. En otras palabras, va a ser muy difícil poder lograr los objetivos de aprendizaje posteriores sin haber logrado los objetivos de contenidos previos. Y nuevamente en otras palabras: es muy difícil aprender a multiplicar sin saber sumar. Por lo tanto, como equipo a cargo del curso nos interesa poder monitorear permanentemente el cumplimiento de objetivos de aprendizaje semana a semana para así poder prestar asesoría oportuna.
+
+El sistema de monitoreo de cumplimiento de objetivos se llevará a cabo mediante **reportes de progreso**. Estos reportes consisten en completar una encuesta simple y breve, donde se preguntará por el cumplimiento de los objetivos de las prácticas respectivas. La idea es que los puedan completar durante la semana en que se desarrolla la guía, a más tardar el día viernes.

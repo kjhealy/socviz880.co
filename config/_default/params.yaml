@@ -181,7 +181,7 @@ comments:
   #   0: Disabled
   #   1: Disqus (https://disqus.com)
   #   2: Commento (https://commento.io)
-  engine: 0
+  engine: 1
 
   # Which page types are commentable?
   commentable:
@@ -194,7 +194,7 @@ comments:
 
   # Configuration of Disqus.
   disqus:
-    shortname: ''  # Paste the shortname from your Disqus dashboard
+    shortname: 'multivariada-netlify-app'  # Paste the shortname from your Disqus dashboard
     show_count: true  # Show comment count in page header? (true/false)
 
   # Configuration of Commento.
