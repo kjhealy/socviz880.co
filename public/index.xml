@@ -55,6 +55,50 @@
     </item>
     
     <item>
+      <title>Bases</title>
+      <link>/class/02-class/</link>
+      <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/class/02-class/</guid>
+      <description>
+&lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;!-- /BLOGDOWN-HEAD --&gt;
+
+&lt;h2&gt;Índice&lt;/h2&gt;
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#documento-presentación&#34;&gt;Documento presentación&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#video-de-clase&#34;&gt;Video de clase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#lecturas&#34;&gt;Lecturas&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Documento presentación&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/02-bases/02_bases.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
+&lt;iframe src=&#34;/slides/02-bases/02_bases.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;div id=&#34;video-de-clase&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Video de clase&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt; Próximamente aquí &lt;/span&gt;&lt;/p&gt;
+&lt;!---
+&lt;div style=&#34;width: 100%; height: 600px; overflow: hidden;&#34;&gt;
+&lt;video  style=&#34;width: 100%;&#34; controls&gt;
+&lt;source src=&#34;https://www.dropbox.com/s/gzjyhje48pe4jkc/clase1_prueba3.mp4?raw=1&#34; type=&#34;video/mp4&#34;&gt;
+&lt;/video&gt;
+&lt;/div&gt;
+---&gt;
+&lt;/div&gt;
+&lt;div id=&#34;lecturas&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Lecturas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../docs/lecturas/moore_comprensiondelosdatos.pdf&#34;&gt;Moore: 1.Comprensión de los datos (1-54)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Práctica 1. Preparación de datos en R</title>
       <link>/assignment/01-code/</link>
       <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
@@ -190,15 +234,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;div id=&#34;video---tutoriales&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Video - Tutoriales&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Para quienes no trabajan en R constantemente, abajo un primer tutorial sobre instalación de R y RStudio, necesarios para poder desarrollar esta práctica:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div style=&#34;width: 100%; height: 600px; overflow: hidden;&#34;&gt;
-&lt;video  style=&#34;width: 100%;&#34; controls&gt;
-&lt;source src=&#34;https://www.dropbox.com/s/q0jg4pv3ihtf2qd/tutorialR_editedjc.mp4?raw=1&#34; type=&#34;video/mp4&#34;&gt;
-&lt;/video&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;También se agrega un segundo tutorial con instrucciones paso a paso para poder comenzar a realizar esta Práctica 1 usando RStudio:&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Si se requiere instalar R, ir al siguiente tutorial en la página de descripción del uso de R en las prácticas haciendo click &lt;a href=&#34;/class#installR&#34;&gt;aquí.&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;También se agrega un segundo tutorial con instrucciones paso a paso para poder comenzar a realizar esta Práctica 1 usando RStudio:&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div style=&#34;width: 100%; height: 600px; overflow: hidden;&#34;&gt;
 &lt;video  style=&#34;width: 100%;&#34; controls&gt;

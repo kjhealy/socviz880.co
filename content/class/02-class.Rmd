@@ -1,0 +1,46 @@
+---
+title: "Bases"
+linktitle: "2: Bases"
+date: "2020-01-10"
+class_date: "2020-05-15"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+menu:
+  class:
+    parent: Contenidos
+    weight: 1
+type: docs
+weight: 1
+pdf: /slides/01_dataviz_s20_looking_at_data.pdf
+thumb: /slides/01_dataviz_s20_looking_at_data.png
+editor_options:
+  chunk_output_type: console
+---
+
+## Documento presentación
+
+<span class="sidenote">Para ver en pantalla completa click [**aquí**](/slides/02-bases/02_bases.html). Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. </span>
+
+<iframe src=/slides/02-bases/02_bases.html height="550" width=100% allowfullscreen="true">
+</iframe>
+
+## Video de clase
+
+<span class="sidenote"> Próximamente aquí </span>
+
+<!---
+<div style="width: 100%; height: 600px; overflow: hidden;">
+<video  style="width: 100%;" controls>
+<source src="https://www.dropbox.com/s/gzjyhje48pe4jkc/clase1_prueba3.mp4?raw=1" type="video/mp4">
+</video>
+</div>
+--->
+
+## Lecturas
+
+- [Moore: 1.Comprensión de los datos (1-54)](../../docs/lecturas/moore_comprensiondelosdatos.pdf)

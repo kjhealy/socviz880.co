@@ -76,13 +76,7 @@ El presente ejercicio tiene por objetivo el procesar los datos para obtener las 
 
 ## Video - Tutoriales
 
-- Para quienes no trabajan en R constantemente, abajo un primer tutorial  sobre instalación de R y RStudio, necesarios para poder desarrollar esta práctica:
-
-<div style="width: 100%; height: 600px; overflow: hidden;">
-<video  style="width: 100%;" controls>
-<source src="https://www.dropbox.com/s/q0jg4pv3ihtf2qd/tutorialR_editedjc.mp4?raw=1" type="video/mp4">
-</video>
-</div>
+- Si se requiere instalar R, ir al siguiente tutorial en la página de descripción del uso de R en las prácticas haciendo click [aquí.](/class#installR)
 
 - También se agrega un segundo tutorial con instrucciones paso a paso para poder comenzar a realizar esta Práctica 1 usando RStudio:
 

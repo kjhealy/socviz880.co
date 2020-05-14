@@ -57,7 +57,7 @@ El carácter de apertura de R posee muchas ventajas, pero también conlleva comp
 Para minimizar estos posibles problemas en este curso, vamos a:
 
 - trabajar con la misma y última versión de R, que es la 4.0
-- documentar e informar la versión de R con la que estamos trabajando, y también la de las librerías. Las intrucciones de cómo hacer esto aparecen al final de la [Práctica 2](/assignment/02-code)
+- documentar e informar la versión de R con la que estamos trabajando, y también la de las librerías. Las instrucciones de cómo hacer esto aparecen al final de la [Práctica 2](/assignment/02-code)
 
 Y al momento de hacer consultas sobre problemas en la ejecución del código, adjuntar archivo con:
 
@@ -65,5 +65,12 @@ Y al momento de hacer consultas sobre problemas en la ejecución del código, ad
 2. Indicar línea del código
 3. Adjuntar el resultado del output de la información de la sesión (`sessionInfo()`)
 
+### Tutorial de instalación de R {#installR}
 
-{{ template "_internal/disqus.html" . }}
+- Para quienes no trabajan en R constantemente, abajo un primer tutorial  sobre instalación de R y RStudio, necesarios para poder desarrollar esta práctica:
+
+<div style="width: 100%; height: 600px; overflow: hidden;">
+<video  style="width: 100%;" controls>
+<source src="https://www.dropbox.com/s/q0jg4pv3ihtf2qd/tutorialR_editedjc.mp4?raw=1" type="video/mp4">
+</video>
+</div>
