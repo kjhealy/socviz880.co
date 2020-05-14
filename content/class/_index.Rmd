@@ -5,6 +5,12 @@ menu:
   class:
     parent: Material
     weight: 1
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+    highlight: tango
+    number_sections: FALSE
 type: docs
 weight: 1
 ---
@@ -13,7 +19,7 @@ Esta página contiene los materiales de los **contenidos** de cada sesión (docu
 
 Todo el material es accesible desde el menú de la izquierda <--
 
-# Instrucciones generales para las prácticas
+## Instrucciones generales para las prácticas
 
 - Las prácticas se desarrollarán semana a semana en el horario correspondiente a cada sección (Jueves Sección 1, Viernes Sección 2, de 9:00 a 10:00); ver detalles en la [planificación del curso](/schedule).
 
@@ -36,4 +42,28 @@ Todo el material es accesible desde el menú de la izquierda <--
 
 Este curso se caracteriza por el desarrollo secuencial y acumulativo de aprendizajes. En otras palabras, va a ser muy difícil poder lograr los objetivos de aprendizaje posteriores sin haber logrado los objetivos de contenidos previos. Y nuevamente en otras palabras: es muy difícil aprender a multiplicar sin saber sumar. Por lo tanto, como equipo a cargo del curso nos interesa poder monitorear permanentemente el cumplimiento de objetivos de aprendizaje semana a semana para así poder prestar asesoría oportuna.
 
-El sistema de monitoreo de cumplimiento de objetivos se llevará a cabo mediante **reportes de progreso**. Estos reportes consisten en completar una encuesta simple y breve, donde se preguntará por el cumplimiento de los objetivos de las prácticas respectivas. La idea es que los puedan completar durante la semana en que se desarrolla la guía, a más tardar el día viernes.
+El sistema de monitoreo de cumplimiento de objetivos se llevará a cabo mediante **reportes de progreso**. Un ejemplo de este reporte se ve así:
+
+![](/images/reporte_progreso.png)
+
+Los reportes consisten en completar una encuesta simple y breve, donde se preguntará por el cumplimiento de los objetivos de las prácticas respectivas. La idea es que los puedan completar durante la semana en que se desarrolla la guía, a más tardar el día viernes.
+
+## Notas sobre trabajo con software R
+
+Para los análisis estadísticos de este curso usamos el programa R, principalmente porque es gratuito, pero la principal razón es que es de código abierto. Esto quiere decir que cualquier persona puede revisar cómo está hecho y aportar con modificaciones y procedimientos nuevos, como son las librerías que realizan funciones específicas.
+
+El carácter de apertura de R posee muchas ventajas, pero también conlleva complicaciones. Se actualiza permanentemente, así como también las librerías, y esto puede generar problemas de compatibilidad y de fallas en ejecución del código de análisis.
+
+Para minimizar estos posibles problemas en este curso, vamos a:
+
+- trabajar con la misma y última versión de R, que es la 4.0
+- documentar e informar la versión de R con la que estamos trabajando, y también la de las librerías. Las intrucciones de cómo hacer esto aparecen al final de la [Práctica 2](/assignment/02-code)
+
+Y al momento de hacer consultas sobre problemas en la ejecución del código, adjuntar archivo con:
+
+1. Código completo hasta que se produce el problema
+2. Indicar línea del código
+3. Adjuntar el resultado del output de la información de la sesión (`sessionInfo()`)
+
+
+{{ template "_internal/disqus.html" . }}
