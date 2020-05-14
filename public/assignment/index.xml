@@ -19,27 +19,29 @@
       <guid>/assignment/01-code/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 &lt;style type=&#34;text/css&#34;&gt;
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre &gt; code.sourceCode { white-space: pre; position: relative; }
+pre &gt; code.sourceCode &gt; span { display: inline-block; line-height: 1.25; }
+pre &gt; code.sourceCode &gt; span:empty { height: 1.2em; }
+code.sourceCode &gt; span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre &gt; code.sourceCode { white-space: pre-wrap; }
+pre &gt; code.sourceCode &gt; span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code &gt; span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code &gt; span &gt; a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -48,9 +50,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { background-color: #f8f8f8; }
+  {  background-color: #f8f8f8; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre &gt; code.sourceCode &gt; span &gt; a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -86,16 +88,19 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;h2&gt;Índice&lt;/h2&gt;
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#presentación&#34;&gt;Presentación&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#presentación&#34;&gt;Presentación&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#objetivo-de-la-práctica&#34;&gt;Objetivo de la práctica&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#antecedentes-de-los-datos-a-utilizar&#34;&gt;Antecedentes de los datos a utilizar&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#video---tutoriales&#34;&gt;Video - Tutoriales&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#preparación-de-datos-elsoc-2016&#34;&gt;Preparación de datos ELSOC 2016&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#preparación-de-datos-elsoc-2016&#34;&gt;Preparación de datos ELSOC 2016&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#librerias&#34;&gt;1. Librerías principales (de R) a utilizar en el análisis&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#cargar-base-de-datos&#34;&gt;2. Cargar base de datos&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#selección-de-variables-a-utilizar&#34;&gt;3. Selección de variables a utilizar&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#procesamiento-de-variables&#34;&gt;4. Procesamiento de variables&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#procesamiento-de-variables&#34;&gt;4. Procesamiento de variables&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#percepción-de-meritocracia&#34;&gt;4.1 Percepción de meritocracia&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#estatus-subjetivo&#34;&gt;4.3. Estatus subjetivo&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#sexo&#34;&gt;4.4. Sexo&lt;/a&gt;&lt;/li&gt;
@@ -152,7 +157,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;/ul&gt;
 &lt;div style=&#34;width: 100%; height: 600px; overflow: hidden;&#34;&gt;
 &lt;video  style=&#34;width: 100%;&#34; controls&gt;
-&lt;source src=&#34;https://www.dropbox.com/s/q0jg4pv3ihtf2qd/tutorialR_editedjc.mp4?raw=1&#34; type=&#34;video/mp4&#34;&gt;
+&lt;!-- &lt;source src=&#34;https://www.dropbox.com/s/q0jg4pv3ihtf2qd/tutorialR_editedjc.mp4?raw=1&#34; type=&#34;video/mp4&#34;&gt; --&gt;
+&lt;source src=&#34;https://www.dropbox.com/s/goofz32r5htw6pt/tutorialR-4.0.mp4?raw=1&#34; type=&#34;video/mp4&#34;&gt;
 &lt;/video&gt;
 &lt;/div&gt;
 &lt;ul&gt;
@@ -171,9 +177,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;h2&gt;1. Librerías principales (de R) a utilizar en el análisis&lt;/h2&gt;
 &lt;p&gt;Como sabemos, la lógica de R es instalar librerías (solo 1 vez, con &lt;code&gt;install.packages(&#34;librería&#34;)&lt;/code&gt;), y luego cargarlas cada vez que es necesario usarlas (con &lt;code&gt;library(librería)&lt;/code&gt;). El problema de esto es que a veces no se sabe claramente qué librerías están instaladas y cuales no, lo que va a arrojar error al cargarlas. Y, como sucede en R, existe una librería para solucionar este problema que se llama &lt;code&gt;pacman&lt;/code&gt; (package manager). Lo que hace &lt;code&gt;pacman&lt;/code&gt; es cargar la librería, y si no está instalada, la instala y la carga:&lt;/p&gt;
 &lt;p&gt;Para utilizar la primera vez (si es que no está instalada):&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;install.packages&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;pacman&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;install.packages&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;pacman&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Y en adelante, las librerías se cargan así:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb2&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb2-1&#34; title=&#34;1&#34;&gt;pacman&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;p_load&lt;/span&gt;(dplyr, sjmisc, car, sjlabelled, stargazer)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb2&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb2-1&#34;&gt;&lt;a href=&#34;#cb2-1&#34;&gt;&lt;/a&gt;pacman&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;p_load&lt;/span&gt;(dplyr, sjmisc, car, sjlabelled, stargazer)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Para esta sesión vamos a utilizar Las librerías que vamos a utilizar son:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;dplyr&lt;/code&gt;: ajuste general de datos&lt;/li&gt;
@@ -186,20 +192,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;h2&gt;2. Cargar base de datos&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Ajustar espacio de trabajo&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Previo a la carga de nuestra base de datos, se recomienda ejecutar los siguientes comandos:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb3&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb3-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;rm&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;list=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;ls&lt;/span&gt;())       &lt;span class=&#34;co&#34;&gt;# borrar todos los objetos en el espacio de trabajo&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb3-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;options&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;scipen=&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;999&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# valores sin notación científica&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb3&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb3-1&#34;&gt;&lt;a href=&#34;#cb3-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;rm&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;list=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;ls&lt;/span&gt;())       &lt;span class=&#34;co&#34;&gt;# borrar todos los objetos en el espacio de trabajo&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb3-2&#34;&gt;&lt;a href=&#34;#cb3-2&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;options&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;scipen=&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;999&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# valores sin notación científica&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;La función &lt;code&gt;rm(list=ls())&lt;/code&gt; permite comenzar con un espacio de trabajo (environment) vacío y sin otros objetos. Así también, la función &lt;code&gt;options(scipen=999)&lt;/code&gt; desactiva la notación científica, es decir, veremos los valores numéricos con todos sus decimales.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Datos&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Las bases de datos se pueden cargar de un archivo local o en línea. Para este caso utilizaremos un archivo en línea que viene en formato RData: &lt;strong&gt;ELSOC_W01_v3.10.RData&lt;/strong&gt;.&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb4&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb4-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#cargamos la base de datos desde internet&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb4-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;load&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;url&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;https://multivariada.netlify.com/assignment/data/original/ELSOC_W01_v3.10.RData&amp;quot;&lt;/span&gt;))&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb4&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb4-1&#34;&gt;&lt;a href=&#34;#cb4-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;#cargamos la base de datos desde internet&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb4-2&#34;&gt;&lt;a href=&#34;#cb4-2&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;load&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;url&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;https://multivariada.netlify.com/assignment/data/original/ELSOC_W01_v3.10.RData&amp;quot;&lt;/span&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;La base de datos aparece como un objeto en nuestro espacio de trabajo, con el nombre original con la que fue guardada (elsoc_2016):&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/images/basecargada.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Realizamos un chequeo básico de la lectura de datos: nombres de las variables y tamaño de la base en términos de casos y variables (en este ejemplo, 2927 casos y 383 variables).&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb5&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb5-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;dim&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;2016&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# dimension de la base&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb5&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb5-1&#34;&gt;&lt;a href=&#34;#cb5-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;dim&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;2016&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# dimension de la base&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 2927  383&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Y si se quiere revisar en formato de planilla de datos:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb7&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb7-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;View&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;2016&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb7&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb7-1&#34;&gt;&lt;a href=&#34;#cb7-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;View&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;2016&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;selección-de-variables-a-utilizar&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;3. Selección de variables a utilizar&lt;/h2&gt;
@@ -207,25 +213,25 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;Se identifica el nombre de las variables que registran la información de preguntas o items del instrumento: esto aparece en el libro de códigos y/o en el cuestionario, o también se puede hacer buscando en la base de datos mediante alguna palabra clave asociada a la pregunta. Por ejemplo, si queremos buscar variables asociadas a educación, utilizamos la función &lt;code&gt;find_var&lt;/code&gt; (de &lt;code&gt;sjmisc&lt;/code&gt;, librería que cargamos en el paso 1), que nos entrega nombre de la variable en columna var.name. Por ejemplo, si buscamos alguna variable asociada al concepto &lt;em&gt;esfuerzo&lt;/em&gt;:&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb8&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;find_var&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;data =&lt;/span&gt; elsoc_&lt;span class=&#34;dv&#34;&gt;2016&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;esfuerzo&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb8&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb8-1&#34;&gt;&lt;a href=&#34;#cb8-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;find_var&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;data =&lt;/span&gt; elsoc_&lt;span class=&#34;dv&#34;&gt;2016&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;esfuerzo&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;##   col.nr var.name
 ## 1    158   c18_09
 ##                                                            var.label
 ## 1 Grado de acuerdo: Las personas son recompensadas por sus esfuerzos&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Nos informa que esta variable es la &lt;code&gt;c18_09&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Mediante la función &lt;code&gt;select&lt;/code&gt; de &lt;code&gt;dplyr&lt;/code&gt;, seleccionamos cada una de nuestras variables de interés y creamos una nueva base con el nombre &lt;code&gt;proc_elsoc&lt;/code&gt;, donde “proc” hace referencia a base procesada:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb10&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-1&#34; title=&#34;1&#34;&gt;proc_elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;elsoc_&lt;span class=&#34;dv&#34;&gt;2016&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;select&lt;/span&gt;(c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt;, &lt;span class=&#34;co&#34;&gt;# percepción meritocracia esfuerzo&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-2&#34; title=&#34;2&#34;&gt;                          c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;, &lt;span class=&#34;co&#34;&gt;# percepción meritocracia talento&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-3&#34; title=&#34;3&#34;&gt;                          d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt;, &lt;span class=&#34;co&#34;&gt;# estatus social subjetivo&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-4&#34; title=&#34;4&#34;&gt;                          m01,    &lt;span class=&#34;co&#34;&gt;# nivel educacional&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-5&#34; title=&#34;5&#34;&gt;                          m0_sexo,&lt;span class=&#34;co&#34;&gt;# sexo&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-6&#34; title=&#34;6&#34;&gt;                          m0_edad)&lt;span class=&#34;co&#34;&gt;# edad&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-7&#34; title=&#34;7&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-8&#34; title=&#34;8&#34;&gt;&lt;span class=&#34;co&#34;&gt;# Comprobar&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-9&#34; title=&#34;9&#34;&gt;&lt;span class=&#34;kw&#34;&gt;names&lt;/span&gt;(proc_elsoc)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb10&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb10-1&#34;&gt;&lt;a href=&#34;#cb10-1&#34;&gt;&lt;/a&gt;proc_elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;elsoc_&lt;span class=&#34;dv&#34;&gt;2016&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;select&lt;/span&gt;(c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt;, &lt;span class=&#34;co&#34;&gt;# percepción meritocracia esfuerzo&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb10-2&#34;&gt;&lt;a href=&#34;#cb10-2&#34;&gt;&lt;/a&gt;                          c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;, &lt;span class=&#34;co&#34;&gt;# percepción meritocracia talento&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb10-3&#34;&gt;&lt;a href=&#34;#cb10-3&#34;&gt;&lt;/a&gt;                          d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt;, &lt;span class=&#34;co&#34;&gt;# estatus social subjetivo&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb10-4&#34;&gt;&lt;a href=&#34;#cb10-4&#34;&gt;&lt;/a&gt;                          m01,    &lt;span class=&#34;co&#34;&gt;# nivel educacional&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb10-5&#34;&gt;&lt;a href=&#34;#cb10-5&#34;&gt;&lt;/a&gt;                          m0_sexo,&lt;span class=&#34;co&#34;&gt;# sexo&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb10-6&#34;&gt;&lt;a href=&#34;#cb10-6&#34;&gt;&lt;/a&gt;                          m0_edad)&lt;span class=&#34;co&#34;&gt;# edad&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb10-7&#34;&gt;&lt;a href=&#34;#cb10-7&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb10-8&#34;&gt;&lt;a href=&#34;#cb10-8&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;# Comprobar&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb10-9&#34;&gt;&lt;a href=&#34;#cb10-9&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;names&lt;/span&gt;(proc_elsoc)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## [1] &amp;quot;c18_09&amp;quot;  &amp;quot;c18_10&amp;quot;  &amp;quot;d01_01&amp;quot;  &amp;quot;m01&amp;quot;     &amp;quot;m0_sexo&amp;quot; &amp;quot;m0_edad&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Mediante el comando &lt;code&gt;get_label&lt;/code&gt; obtenemos el atributo label de las variables.&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb12&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb12-1&#34; title=&#34;1&#34;&gt;sjlabelled&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;get_label&lt;/span&gt;(proc_elsoc)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb12&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb12-1&#34;&gt;&lt;a href=&#34;#cb12-1&#34;&gt;&lt;/a&gt;sjlabelled&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;get_label&lt;/span&gt;(proc_elsoc)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;##                                                                   c18_09 
 ##     &amp;quot;Grado de acuerdo: Las personas son recompensadas por sus esfuerzos&amp;quot; 
 ##                                                                   c18_10 
@@ -259,7 +265,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;/ul&gt;
 &lt;p&gt;&lt;em&gt;a. Descriptivo&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Para los descriptivos se utilizará la función &lt;code&gt;frq&lt;/code&gt;, de la librería &lt;code&gt;sjmisc&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb14&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb14-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb14&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb14-1&#34;&gt;&lt;a href=&#34;#cb14-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## Grado de acuerdo: Las personas son recompensadas por sus esfuerzos (x) &amp;lt;numeric&amp;gt;
 ## # total N=2927  valid N=2927  mean=-3.06  sd=71.66
@@ -273,7 +279,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##     4                     De acuerdo  646   22.07     22.07   97.34
 ##     5          Totalmente de acuerdo   78    2.66      2.66  100.00
 ##    NA                           &amp;lt;NA&amp;gt;    0    0.00        NA      NA&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb16&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb16-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb16&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb16-1&#34;&gt;&lt;a href=&#34;#cb16-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## Grado de acuerdo: Las personas son recompensada por su inteligencia (x) &amp;lt;numeric&amp;gt;
 ## # total N=2927  valid N=2927  mean=-3.42  sd=74.36
@@ -290,33 +296,33 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;p&gt;En ambas variables vemos valores asociados a la opción “No responde” (-999) y “No sabe” (-888), que corresponde definirlos como casos perdidos (en el caso de R, como casos NA). El resto de los valores y etiquetas se encuentran en orden, así que en la recodificiación solo nos haremos cargo de los casos perdidos.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;b. Recodificación&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Para recodificar utilizamos la función &lt;code&gt;recode&lt;/code&gt;, de la librería &lt;code&gt;car&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb18&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb18-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(-888,-999)=NA&amp;quot;&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb18-2&#34; title=&#34;2&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(-888,-999)=NA&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb18&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb18-1&#34;&gt;&lt;a href=&#34;#cb18-1&#34;&gt;&lt;/a&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(-888,-999)=NA&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb18-2&#34;&gt;&lt;a href=&#34;#cb18-2&#34;&gt;&lt;/a&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(-888,-999)=NA&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;em&gt;c - Etiquetado&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Vamos a dar un nombre más sustantivo a las variables con la función &lt;code&gt;rename&lt;/code&gt;, de la librería &lt;code&gt;dplyr&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb19&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb19-1&#34; title=&#34;1&#34;&gt;proc_elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;proc_elsoc &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;mesfuerzo&amp;quot;&lt;/span&gt;=c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt;, &lt;span class=&#34;co&#34;&gt;# meritocracia esfuerzo&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb19-2&#34; title=&#34;2&#34;&gt;                                    &lt;span class=&#34;st&#34;&gt;&amp;quot;mtalento&amp;quot;&lt;/span&gt; =c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# meritocracia talento&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb19&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb19-1&#34;&gt;&lt;a href=&#34;#cb19-1&#34;&gt;&lt;/a&gt;proc_elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;proc_elsoc &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;mesfuerzo&amp;quot;&lt;/span&gt;=c18_&lt;span class=&#34;dv&#34;&gt;09&lt;/span&gt;, &lt;span class=&#34;co&#34;&gt;# meritocracia esfuerzo&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb19-2&#34;&gt;&lt;a href=&#34;#cb19-2&#34;&gt;&lt;/a&gt;                                    &lt;span class=&#34;st&#34;&gt;&amp;quot;mtalento&amp;quot;&lt;/span&gt; =c18_&lt;span class=&#34;dv&#34;&gt;10&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# meritocracia talento&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb20&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb20-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;get_label&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mesfuerzo)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb20&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb20-1&#34;&gt;&lt;a href=&#34;#cb20-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;get_label&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mesfuerzo)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Grado de acuerdo: Las personas son recompensadas por sus esfuerzos&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb22&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb22-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mesfuerzo &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;set_label&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mesfuerzo,&lt;span class=&#34;dt&#34;&gt;label =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Recompensa: esfuerzo&amp;quot;&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb22-2&#34; title=&#34;2&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb22-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;kw&#34;&gt;get_label&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mtalento)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb22&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb22-1&#34;&gt;&lt;a href=&#34;#cb22-1&#34;&gt;&lt;/a&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mesfuerzo &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;set_label&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mesfuerzo,&lt;span class=&#34;dt&#34;&gt;label =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Recompensa: esfuerzo&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb22-2&#34;&gt;&lt;a href=&#34;#cb22-2&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb22-3&#34;&gt;&lt;a href=&#34;#cb22-3&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;get_label&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mtalento)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Grado de acuerdo: Las personas son recompensada por su inteligencia&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb24&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb24-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mtalento  &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;set_label&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mtalento, &lt;span class=&#34;dt&#34;&gt;label =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Recompensa: talento&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb24&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb24-1&#34;&gt;&lt;a href=&#34;#cb24-1&#34;&gt;&lt;/a&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mtalento  &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;set_label&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mtalento, &lt;span class=&#34;dt&#34;&gt;label =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Recompensa: talento&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;em&gt;d. Otros ajustes&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Para este caso vamos a crear una variable que sea el promedio de los dos items de meritocracia.&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb25&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;pmerit &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mesfuerzo&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mtalento)&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;pmerit)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb25&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb25-1&#34;&gt;&lt;a href=&#34;#cb25-1&#34;&gt;&lt;/a&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;pmerit &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mesfuerzo&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mtalento)&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb25-2&#34;&gt;&lt;a href=&#34;#cb25-2&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;pmerit)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&amp;#39;s 
 ##   1.000   2.000   2.500   2.654   3.500   5.000      29&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb27&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb27-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;get_label&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;pmerit)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb27&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb27-1&#34;&gt;&lt;a href=&#34;#cb27-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;get_label&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;pmerit)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Recompensa: esfuerzo&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Vemos que todavía tiene la etiqueta de la variable “Recompensa: esfuerzo”&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb29&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb29-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;pmerit  &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;set_label&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;pmerit, &lt;span class=&#34;dt&#34;&gt;label =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Meritocracia promedio&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb29&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb29-1&#34;&gt;&lt;a href=&#34;#cb29-1&#34;&gt;&lt;/a&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;pmerit  &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;set_label&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;pmerit, &lt;span class=&#34;dt&#34;&gt;label =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Meritocracia promedio&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;em&gt;Revisión final&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Nuevamente un descriptivo de cada variable para confirmar que el procesamiento está ok:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb30&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb30-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mesfuerzo)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb30&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb30-1&#34;&gt;&lt;a href=&#34;#cb30-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mesfuerzo)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## Recompensa: esfuerzo (x) &amp;lt;numeric&amp;gt;
 ## # total N=2927  valid N=2909  mean=2.57  sd=1.05
@@ -330,7 +336,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##     4                     De acuerdo  646   22.07     22.21   97.32
 ##     5          Totalmente de acuerdo   78    2.66      2.68  100.00
 ##    NA                           &amp;lt;NA&amp;gt;   18    0.61        NA      NA&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb32&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mtalento)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb32&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb32-1&#34;&gt;&lt;a href=&#34;#cb32-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;mtalento)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## Recompensa: talento (x) &amp;lt;numeric&amp;gt;
 ## # total N=2927  valid N=2907  mean=2.74  sd=1.06
@@ -344,7 +350,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##     4                     De acuerdo  814   27.81     28.00   97.14
 ##     5          Totalmente de acuerdo   83    2.84      2.86  100.00
 ##    NA                           &amp;lt;NA&amp;gt;   20    0.68        NA      NA&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb34&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;pmerit)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb34&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb34-1&#34;&gt;&lt;a href=&#34;#cb34-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;pmerit)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## Meritocracia promedio (x) &amp;lt;numeric&amp;gt;
 ## # total N=2927  valid N=2898  mean=2.65  sd=0.97
@@ -368,7 +374,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;li&gt;[&lt;code&gt;m01&lt;/code&gt;] = ¿Cuál es su nivel educacional? Indique el tipo de estudio actual (si estudia actualmente) o el último tipo aprobado (si no estudia actualmente).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;em&gt;a. Descriptivo&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb36&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb36-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb36&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb36-1&#34;&gt;&lt;a href=&#34;#cb36-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## Nivel educacional (x) &amp;lt;numeric&amp;gt;
 ## # total N=2927  valid N=2927  mean=4.57  sd=26.34
@@ -391,7 +397,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;ul&gt;
 &lt;li&gt;Datos perdidos:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb38&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb38-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(-888,-999)=NA&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb38&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb38-1&#34;&gt;&lt;a href=&#34;#cb38-1&#34;&gt;&lt;/a&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(-888,-999)=NA&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;Valores&lt;/li&gt;
 &lt;/ul&gt;
@@ -406,10 +412,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 8.  Universitaria incompleta                    = [CINE 6   ] =  5
 9.  Universitaria completa                      = [CINE 6   ] =  6
 10. Estudios de posgrado (magister o doctorado) = [CINE 7, 8] =  6&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb40&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb40-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;# recodificacion usando funcion &amp;#39;recode&amp;#39; de la libreria car&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb40-2&#34; title=&#34;2&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;car&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(1,2)=1; c(3)=2;c(4,5)=3;c(6,7)=4;c(8,9,10)=5&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb40&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb40-1&#34;&gt;&lt;a href=&#34;#cb40-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;# recodificacion usando funcion &amp;#39;recode&amp;#39; de la libreria car&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb40-2&#34;&gt;&lt;a href=&#34;#cb40-2&#34;&gt;&lt;/a&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;car&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(1,2)=1; c(3)=2;c(4,5)=3;c(6,7)=4;c(8,9,10)=5&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Comprobar con un nuevo descriptivo:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb41&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb41-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb41&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb41-1&#34;&gt;&lt;a href=&#34;#cb41-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## Nivel educacional (x) &amp;lt;numeric&amp;gt;
 ## # total N=2927  valid N=2925  mean=3.18  sd=1.21
@@ -445,18 +451,18 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;p&gt;Se observa que los valores coinciden con la recodificación (los casos se acumulan entre las categorías 1 y 5), pero las etiquetas ahora no coinciden; se soluciona en el siguiente paso.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;c. Etiquetado&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Para re-etiquetar valores usamos la función &lt;code&gt;set_labels&lt;/code&gt;, de la librería &lt;code&gt;sjlabelled&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb43&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb43-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;set_labels&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb43-2&#34; title=&#34;2&#34;&gt;            &lt;span class=&#34;dt&#34;&gt;labels=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;( &lt;span class=&#34;st&#34;&gt;&amp;quot;Primaria incompleta menos&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb43-3&#34; title=&#34;3&#34;&gt;                      &lt;span class=&#34;st&#34;&gt;&amp;quot;Primaria y secundaria baja&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb43-4&#34; title=&#34;4&#34;&gt;                      &lt;span class=&#34;st&#34;&gt;&amp;quot;Secundaria alta&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb43-5&#34; title=&#34;5&#34;&gt;                      &lt;span class=&#34;st&#34;&gt;&amp;quot;Terciaria ciclo corto&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;4&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb43-6&#34; title=&#34;6&#34;&gt;                      &lt;span class=&#34;st&#34;&gt;&amp;quot;Terciaria y Postgrado&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt;))&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb43&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb43-1&#34;&gt;&lt;a href=&#34;#cb43-1&#34;&gt;&lt;/a&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;set_labels&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m01,&lt;/span&gt;
+&lt;span id=&#34;cb43-2&#34;&gt;&lt;a href=&#34;#cb43-2&#34;&gt;&lt;/a&gt;            &lt;span class=&#34;dt&#34;&gt;labels=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;( &lt;span class=&#34;st&#34;&gt;&amp;quot;Primaria incompleta menos&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb43-3&#34;&gt;&lt;a href=&#34;#cb43-3&#34;&gt;&lt;/a&gt;                      &lt;span class=&#34;st&#34;&gt;&amp;quot;Primaria y secundaria baja&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb43-4&#34;&gt;&lt;a href=&#34;#cb43-4&#34;&gt;&lt;/a&gt;                      &lt;span class=&#34;st&#34;&gt;&amp;quot;Secundaria alta&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb43-5&#34;&gt;&lt;a href=&#34;#cb43-5&#34;&gt;&lt;/a&gt;                      &lt;span class=&#34;st&#34;&gt;&amp;quot;Terciaria ciclo corto&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;4&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb43-6&#34;&gt;&lt;a href=&#34;#cb43-6&#34;&gt;&lt;/a&gt;                      &lt;span class=&#34;st&#34;&gt;&amp;quot;Terciaria y Postgrado&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Luego renombramos la variable con un nombre más sustantivo&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb44&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb44-1&#34; title=&#34;1&#34;&gt;proc_elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(proc_elsoc,&lt;span class=&#34;st&#34;&gt;&amp;quot;edcine&amp;quot;&lt;/span&gt;=m01)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb44&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb44-1&#34;&gt;&lt;a href=&#34;#cb44-1&#34;&gt;&lt;/a&gt;proc_elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(proc_elsoc,&lt;span class=&#34;st&#34;&gt;&amp;quot;edcine&amp;quot;&lt;/span&gt;=m01)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb45&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb45-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;get_label&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb45&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb45-1&#34;&gt;&lt;a href=&#34;#cb45-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;get_label&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Nivel educacional&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb47&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb47-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;set_label&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine,&lt;span class=&#34;dt&#34;&gt;label =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Educación&amp;quot;)&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb47&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb47-1&#34;&gt;&lt;a href=&#34;#cb47-1&#34;&gt;&lt;/a&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;set_label&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine,&lt;span class=&#34;dt&#34;&gt;label =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Educación&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;estatus-subjetivo&#34; class=&#34;section level3&#34;&gt;
@@ -465,8 +471,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;ul&gt;
 &lt;li&gt;[&lt;code&gt;d01_01&lt;/code&gt;]: “Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena” (0 = el nivel mas bajo; 10 = el nivel mas alto)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb48&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb48-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb48-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb48&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb48-1&#34;&gt;&lt;a href=&#34;#cb48-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb48-2&#34;&gt;&lt;a href=&#34;#cb48-2&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena (x) &amp;lt;numeric&amp;gt;
 ## # total N=2927  valid N=2927  mean=0.63  sd=57.67
@@ -490,16 +496,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
 ## -999.0000    3.0000    5.0000    0.6338    5.0000   10.0000&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;em&gt;b. Recodificación&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb50&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb50-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(-888,-999)=NA&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb50&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb50-1&#34;&gt;&lt;a href=&#34;#cb50-1&#34;&gt;&lt;/a&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;c(-888,-999)=NA&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;em&gt;c. Etiquetado&lt;/em&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Cambio de nombre de variable a etiqueta más sustantiva ess (estatus social subjetivo)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb51&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb51-1&#34; title=&#34;1&#34;&gt;proc_elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;proc_elsoc &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;ess&amp;quot;&lt;/span&gt;=d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# estatus social subjetivo&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb51&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb51-1&#34;&gt;&lt;a href=&#34;#cb51-1&#34;&gt;&lt;/a&gt;proc_elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;proc_elsoc &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;ess&amp;quot;&lt;/span&gt;=d01_&lt;span class=&#34;dv&#34;&gt;01&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# estatus social subjetivo&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb52&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb52-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;get_label&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ess)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb52&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb52-1&#34;&gt;&lt;a href=&#34;#cb52-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;get_label&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ess)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb54&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb54-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ess &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;set_label&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ess,&lt;span class=&#34;dt&#34;&gt;label =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Estatus Social Subjetivo&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb54&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb54-1&#34;&gt;&lt;a href=&#34;#cb54-1&#34;&gt;&lt;/a&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ess &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;set_label&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ess,&lt;span class=&#34;dt&#34;&gt;label =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Estatus Social Subjetivo&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;sexo&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;4.4. Sexo&lt;/h3&gt;
@@ -507,7 +513,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;li&gt;[&lt;code&gt;m0_sexo&lt;/code&gt;] = Indicar el sexo del entrevistado.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;em&gt;a. Descriptivo&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb55&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb55-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_sexo)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb55&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb55-1&#34;&gt;&lt;a href=&#34;#cb55-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_sexo)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## Sexo del entrevistado (x) &amp;lt;numeric&amp;gt;
 ## # total N=2927  valid N=2927  mean=1.60  sd=0.49
@@ -518,20 +524,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##   NA   &amp;lt;NA&amp;gt;    0    0.00        NA      NA&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;em&gt;b. Recodificación&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;En general esta variable no tiene problemas de casos perdidos ni de etiquetas, pero de todas maneras vamos a hacer un cambio de acuerdo a convenciones en análisis de datos, donde por lo general hombres tienen valor 0 y mujeres 1:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb57&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb57-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_sexo &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;car&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_sexo, &lt;span class=&#34;st&#34;&gt;&amp;quot;1=0;2=1&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb57&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb57-1&#34;&gt;&lt;a href=&#34;#cb57-1&#34;&gt;&lt;/a&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_sexo &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;car&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;recode&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_sexo, &lt;span class=&#34;st&#34;&gt;&amp;quot;1=0;2=1&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;em&gt;c. Etiquetado&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Y ahora cambiamos las etiquetas de acuerdo a la recodificación anterior:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb58&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb58-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_sexo &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;set_labels&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_sexo,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb58-2&#34; title=&#34;2&#34;&gt;            &lt;span class=&#34;dt&#34;&gt;labels=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;( &lt;span class=&#34;st&#34;&gt;&amp;quot;Hombre&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb58-3&#34; title=&#34;3&#34;&gt;                      &lt;span class=&#34;st&#34;&gt;&amp;quot;Mujer&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;))&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb58&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb58-1&#34;&gt;&lt;a href=&#34;#cb58-1&#34;&gt;&lt;/a&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_sexo &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;set_labels&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_sexo,&lt;/span&gt;
+&lt;span id=&#34;cb58-2&#34;&gt;&lt;a href=&#34;#cb58-2&#34;&gt;&lt;/a&gt;            &lt;span class=&#34;dt&#34;&gt;labels=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;( &lt;span class=&#34;st&#34;&gt;&amp;quot;Hombre&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb58-3&#34;&gt;&lt;a href=&#34;#cb58-3&#34;&gt;&lt;/a&gt;                      &lt;span class=&#34;st&#34;&gt;&amp;quot;Mujer&amp;quot;&lt;/span&gt;=&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;También el nombre de la variable a algo más simple:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb59&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb59-1&#34; title=&#34;1&#34;&gt;proc_elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(proc_elsoc,&lt;span class=&#34;st&#34;&gt;&amp;quot;sexo&amp;quot;&lt;/span&gt;=m0_sexo)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb59&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb59-1&#34;&gt;&lt;a href=&#34;#cb59-1&#34;&gt;&lt;/a&gt;proc_elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(proc_elsoc,&lt;span class=&#34;st&#34;&gt;&amp;quot;sexo&amp;quot;&lt;/span&gt;=m0_sexo)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb60&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb60-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;get_label&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb60&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb60-1&#34;&gt;&lt;a href=&#34;#cb60-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;get_label&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Sexo del entrevistado&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb62&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb62-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;set_label&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo,&lt;span class=&#34;dt&#34;&gt;label =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Sexo&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb62&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb62-1&#34;&gt;&lt;a href=&#34;#cb62-1&#34;&gt;&lt;/a&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;set_label&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo,&lt;span class=&#34;dt&#34;&gt;label =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Sexo&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Revisar con un nuevo descriptivo:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb63&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb63-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb63&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb63-1&#34;&gt;&lt;a href=&#34;#cb63-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## Sexo (x) &amp;lt;numeric&amp;gt;
 ## # total N=2927  valid N=2927  mean=0.60  sd=0.49
@@ -547,7 +553,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;li&gt;[&lt;code&gt;m0_edad&lt;/code&gt;] = ¿Cuáles su edad? (años cumplidos).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;em&gt;a. Descriptivo&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb65&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb65-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_edad)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb65&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb65-1&#34;&gt;&lt;a href=&#34;#cb65-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;frq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;m0_edad)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## Edad del entrevistado (x) &amp;lt;numeric&amp;gt;
 ## # total N=2927  valid N=2927  mean=46.09  sd=15.29
@@ -622,17 +628,17 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;p&gt;&lt;em&gt;b. Recodificación&lt;/em&gt;: no es necesario en este caso&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;c. Etiquetado&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Cambio del nombre de la variable a algo más simple:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb67&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb67-1&#34; title=&#34;1&#34;&gt;proc_elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(proc_elsoc,&lt;span class=&#34;st&#34;&gt;&amp;quot;edad&amp;quot;&lt;/span&gt;=m0_edad)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb67&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb67-1&#34;&gt;&lt;a href=&#34;#cb67-1&#34;&gt;&lt;/a&gt;proc_elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(proc_elsoc,&lt;span class=&#34;st&#34;&gt;&amp;quot;edad&amp;quot;&lt;/span&gt;=m0_edad)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb68&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb68-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;get_label&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edad)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb68&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb68-1&#34;&gt;&lt;a href=&#34;#cb68-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;get_label&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edad)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Edad del entrevistado&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb70&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb70-1&#34; title=&#34;1&#34;&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edad &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;set_label&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edad,&lt;span class=&#34;dt&#34;&gt;label =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Edad&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb70&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb70-1&#34;&gt;&lt;a href=&#34;#cb70-1&#34;&gt;&lt;/a&gt;proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edad &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;set_label&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edad,&lt;span class=&#34;dt&#34;&gt;label =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Edad&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;generación-de-base-de-datos-procesada-para-el-análisis&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;5. Generación de base de datos procesada para el análisis&lt;/h2&gt;
 &lt;p&gt;Antes de guardar la base procesada, revisamos nuevamente todas las variables con una tabla descriptiva general mediante la función &lt;code&gt;stargazer&lt;/code&gt; (de la librería homónima)&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb71&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb71-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;stargazer&lt;/span&gt;(proc_elsoc, &lt;span class=&#34;dt&#34;&gt;type=&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;text&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb71&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb71-1&#34;&gt;&lt;a href=&#34;#cb71-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;stargazer&lt;/span&gt;(proc_elsoc, &lt;span class=&#34;dt&#34;&gt;type=&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;text&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## ==============================================================
 ## Statistic   N    Mean  St. Dev.  Min  Pctl(25) Pctl(75)  Max  
@@ -648,9 +654,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;ul&gt;
 &lt;li&gt;Guardar base de datos procesada: en carpeta local&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb73&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb73-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;save&lt;/span&gt;(proc_elsoc,&lt;span class=&#34;dt&#34;&gt;file =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;[ruta hacia carpeta local/ELSOC_ess_merit2016.RData&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb73&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb73-1&#34;&gt;&lt;a href=&#34;#cb73-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;save&lt;/span&gt;(proc_elsoc,&lt;span class=&#34;dt&#34;&gt;file =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;[ruta hacia carpeta local/ELSOC_ess_merit2016.RData&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;En este caso, seguimos una estructura de carpetas de datos, separando en una carpeta los datos originales, y en otra (proc) los datos procesados:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb74&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb74-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;save&lt;/span&gt;(proc_elsoc,&lt;span class=&#34;dt&#34;&gt;file =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;content/assignment/data/proc/ELSOC_ess_merit2016.RData&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb74&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb74-1&#34;&gt;&lt;a href=&#34;#cb74-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;save&lt;/span&gt;(proc_elsoc,&lt;span class=&#34;dt&#34;&gt;file =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;content/assignment/data/proc/ELSOC_ess_merit2016.RData&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>
