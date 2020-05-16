@@ -31,15 +31,15 @@ editor_options:
 
 ## Video de clase
 
-<span class="sidenote"> Próximamente aquí </span>
-
 <!---
+<span class="sidenote"> Próximamente aquí </span>
+--->
+
 <div style="width: 100%; height: 600px; overflow: hidden;">
 <video  style="width: 100%;" controls>
-<source src="https://www.dropbox.com/s/gzjyhje48pe4jkc/clase1_prueba3.mp4?raw=1" type="video/mp4">
+<source src="https://www.dropbox.com/s/yhcs6ezewor4bjl/02bases_edit.mp4?raw=1" type="video/mp4">
 </video>
 </div>
---->
 
 ## Lecturas
 

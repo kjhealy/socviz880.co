@@ -670,7 +670,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="flujo" class="section level4">
 <h4>Los procesos de preparación y análisis vinculados a datos y resultados se presentan en el siguiente esquema:</h4>
 <p><img src="/images/produccion.png" /></p>
-<p>Tanto la preparación como el análisis (que son parte del concepto más general de procesamiento) quedan registrados en un documento de código, en este caso de código R (por lo general, un archivo con extensión .R).</p>
+<p>Tanto la preparación como el análisis (que son parte del concepto más general de procesamiento) quedan registrados en un documento de código, en este caso de código R<span class="sidenote">Archivo de código R: archivo con extensión .R donde se almacena el código de análisis. Para generarlo desde RStudio: menú File &gt; Save, y darle nombre (recordar: sin tilde ni ñ, y evitar espacios) </span></p>
 <p>El documento de <strong>código de preparación</strong> posee 5 partes, más una sección de identificación inicial:</p>
 <ol start="0" style="list-style-type: decimal">
 <li>Identificación y descripción general: Título, autor(es), fecha, información breve sobre el contenido del documento</li>
@@ -1190,9 +1190,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## pmerit    2,898 2.654   0.969   1.000  2.000    3.500   5.000 
 ## --------------------------------------------------------------</code></pre>
 <ul>
-<li>Guardar base de datos procesada: en carpeta local</li>
+<li>Guardar base de datos procesada: en carpeta local <span class="sidenote">La ruta hacia su carpeta local si está trabajando en windows debería ser algo como "C:/Users/Lenovo/Clases/y aquí nombre del archivo a grabar</span></li>
 </ul>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="kw">save</span>(proc_elsoc,<span class="dt">file =</span> <span class="st">&quot;[ruta hacia carpeta local/ELSOC_ess_merit2016.RData&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="kw">save</span>(proc_elsoc,<span class="dt">file =</span> <span class="st">&quot;[ruta hacia carpeta local en su computador]/ELSOC_ess_merit2016.RData&quot;</span>)</a></code></pre></div>
 <p>En este caso, seguimos una estructura de carpetas de datos, separando en una carpeta los datos originales, y en otra (proc) los datos procesados:</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1"><span class="kw">save</span>(proc_elsoc,<span class="dt">file =</span> <span class="st">&quot;content/assignment/data/proc/ELSOC_ess_merit2016.RData&quot;</span>)</a></code></pre></div>
 </div>

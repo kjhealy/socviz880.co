@@ -346,3 +346,6 @@ En esta práctica revisamos los siguientes contenidos:
 - tabla de asociación (o contingencia) entre dos variables categóricas
 - tabla y gráfico de asociación entre variables categóricas y contínuas
 - asociaciones entre pares de variables continuas mediante el índice de correlación.
+
+## Y recordar:
+### Al final de esta práctica responder el [**Reporte de Progreso**](/class#reporte) respectivo disponible en UCursos

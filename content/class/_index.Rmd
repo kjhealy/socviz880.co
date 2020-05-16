@@ -38,7 +38,7 @@ Todo el material es accesible desde el menú de la izquierda <--
   - durante las sesiones prácticas, cada ayudante se reunirá con su grupo de estudiantes asignado para revisar la guía paso a paso y resolver dudas
   - cada semana se completa un **reporte de progreso** (detalles abajo) que va a ser implementado en la plataforma de UCursos
 
-## Reportes de progreso
+## Reportes de progreso{#reporte}
 
 Este curso se caracteriza por el desarrollo secuencial y acumulativo de aprendizajes. En otras palabras, va a ser muy difícil poder lograr los objetivos de aprendizaje posteriores sin haber logrado los objetivos de contenidos previos. Y nuevamente en otras palabras: es muy difícil aprender a multiplicar sin saber sumar. Por lo tanto, como equipo a cargo del curso nos interesa poder monitorear permanentemente el cumplimiento de objetivos de aprendizaje semana a semana para así poder prestar asesoría oportuna.
 
@@ -57,13 +57,12 @@ El carácter de apertura de R posee muchas ventajas, pero también conlleva comp
 Para minimizar estos posibles problemas en este curso, vamos a:
 
 - trabajar con la misma y última versión de R, que es la 4.0
-- documentar e informar la versión de R con la que estamos trabajando, y también la de las librerías. Las instrucciones de cómo hacer esto aparecen al final de la [Práctica 2](/assignment/02-code)
+- evitar uso de tilde, ñ, espacios y mayusculas tanto en carpetas y archivos, así como también en los nombres de las variable
+- al momento de hacer consultas sobre problemas en la ejecución del código, adjuntar archivo con:
 
-Y al momento de hacer consultas sobre problemas en la ejecución del código, adjuntar archivo con:
-
-1. Código completo hasta que se produce el problema
-2. Indicar línea del código
-3. Adjuntar el resultado del output de la información de la sesión (`sessionInfo()`)
+  1. Código completo hasta que se produce el problema
+  2. Indicar línea del código donde se produce el problema
+  3. Adjuntar el resultado del output de la información de la sesión (`sessionInfo()`)
 
 ### Tutorial de instalación de R {#installR}
 

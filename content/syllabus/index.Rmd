@@ -113,13 +113,18 @@ Requisitos de eximición de examen:
 Requisitos para presentación a examen:
 
 - Podrán presentarse al examen de primera oportunidad los estudiantes que hayan obtenido una calificación final igual o superior a 3.5.
+-
 - El examen de segunda oportunidad será para aquellos estudiantes que presenten una nota igual o inferior a 3.5 o aquellos que en el examen de primera oportunidad no hubiesen logrado una nota igual o superior a 4.0.
 
-## Bibliografía Obligatoria
+## Bibliografía
+
+La bibliografía obligatoria para cada semana se presenta en el [programa del curso](/schedule/), desde donde se puede acceder directamente a los documentos. De todas maneras, abajo algunos textos comentados y referencias para cada unidad.
 
 ### Textos principales.
 
-Hay tres referencias principales recomendadas para este curso:
+Hay cuatro referencias principales recomendadas para este curso:
+
+- **Moore (2010) Estadística aplicada básica. Barcelona: Antoni Bosch**. No estaba en la bibliografía original, pero se incluye porque explica de manera bastante clara (y en español) una serie de análisis estadístico que sirven de base para este curso.
 
 - **Darlington, R. B., & Hayes, A. F. (2017). Regression analysis and linear models: concepts, applications, and implementation. Guilford Press.** Este libro me parece un muy buen texto para acompañar un curso de regresión en ciencias sociales, lamentablemente está en inglés y por lo tanto solo es bibliografía sugerida. Los capítulos más relevantes estarán a disposición,
 
@@ -127,8 +132,7 @@ Hay tres referencias principales recomendadas para este curso:
 
 - **Wickham, H., & Grolemund, G. (2016). R for data science: import, tidy, transform, visualize, and model data (First edition). Sebastopol: O’Reilly.** Libro con enfoque en el aprendizaje de R con técnicas que ciertamente van más allá del curso, pero muy util como referencia general. Además, está disponible también en español como ["R para ciencia de datos"](https://es.r4ds.hadley.nz/).
 
-
-**Abajo bilbiografía asociada a cada unidad**
+**Abajo bilbiografía recomendada para cada unidad**
 
 
 ### MODELOS CIENTÍFICOS (Unidad 1)
@@ -151,13 +155,13 @@ Hay tres referencias principales recomendadas para este curso:
 
 ## Software
 
-Usaremos R 3.6 a través de la interfaz de RStudio. También realizaremos ejercicios y prácticas online en RCloud.
+Usaremos R 4.0 a través de la interfaz de RStudio. También realizaremos ejercicios y prácticas online en RCloud.
 
 ## Plataformas de comunicación y discusión
 
 - Foros Ucursos
 - En evaluación
-  - Disquis
+  - Disqus
 
 
 ## VARIOS
@@ -170,7 +174,6 @@ Usaremos R 3.6 a través de la interfaz de RStudio. También realizaremos ejerci
 
 - **Políticas de participación y trato**: se espera y enfatiza la participación por distintos canales disponibles. También se enfatiza un trato respetuoso y horizontal. Quienes están tomando este curso serán referidos como participantes y/o estudiantes, evitar el uso de "l_s cabr_s" o "l_s chiquill_s". Quien no se sienta tratad_ apropiadamente o vea que otr_s no lo estan siendo, se solicita reportar para solucionar la situación.
 
- 
 
 
 ## Programación de sesiones

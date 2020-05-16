@@ -647,7 +647,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><a href="#nota-final-información-de-la-sesión-de-r">Nota final: Información de la sesión de R</a></li>
 </ul></li>
-<li><a href="#resumen-práctica-2-descripción-de-variables">Resumen Práctica 2: Descripción de variables</a></li>
+<li><a href="#resumen-práctica-2-descripción-de-variables">Resumen Práctica 2: Descripción de variables</a><ul>
+<li><a href="#y-recordar">Y recordar:</a><ul>
+<li><a href="#al-final-de-esta-práctica-responder-el-reporte-de-progreso-respectivo-disponible-en-ucursos">Al final de esta práctica responder el <span><strong>Reporte de Progreso</strong></span> respectivo disponible en UCursos</a></li>
+</ul></li>
+</ul></li>
 </ul>
 </div>
 
@@ -1855,7 +1859,7 @@ Computed correlation used pearson-method with listwise-deletion.
 <h2>Nota final: Información de la sesión de R</h2>
 <p>R y sus librerías tienen distintas versiones. Esto puede representar algunos problemas de compatibilidad entre usuarios, por ejemplo, dos personas que trabajan en el mismo proyecto pero con distintas versiones (librerías y/o de R), pueden tener ocasionalmente complicaciones. Por eso, una buena práctica es registrar al final del código la información de la sesión. Y como siempre en R, varias maneras de hacer esto. Vamos con la más genérica que es muy simple: <code>sessionInfo()</code> <span class="sidenote">sessionInfo()</span></p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
-<pre><code>## R version 3.6.3 (2020-02-29)
+<pre><code>## R version 4.0.0 (2020-04-24)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 16.04.6 LTS
 ## 
@@ -1875,43 +1879,44 @@ Computed correlation used pearson-method with listwise-deletion.
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] corrplot_0.84      sjmisc_2.8.3       summarytools_0.9.6 sjstats_0.17.7    
-##  [5] psych_1.8.12       Publish_2019.12.04 prodlim_2018.04.18 ggpubr_0.2.5      
-##  [9] magrittr_1.5       car_3.0-2          carData_3.0-2      scales_1.0.0      
-## [13] gridExtra_2.3      ggplot2_3.2.1      stargazer_5.2.2    sjPlot_2.8.1      
-## [17] kableExtra_1.1.0   Rmisc_1.5          plyr_1.8.4         lattice_0.20-38   
-## [21] dplyr_0.8.3        knitr_1.28         pacman_0.5.1      
+##  [1] sessioninfo_1.1.1  corrplot_0.84      sjmisc_2.8.4       summarytools_0.9.6
+##  [5] sjstats_0.18.0     psych_1.9.12.31    Publish_2019.12.04 prodlim_2019.11.13
+##  [9] ggpubr_0.3.0       magrittr_1.5       car_3.0-7          carData_3.0-3     
+## [13] scales_1.1.1       gridExtra_2.3      ggplot2_3.3.0      stargazer_5.2.2   
+## [17] sjPlot_2.8.3       kableExtra_1.1.0   Rmisc_1.5          plyr_1.8.6        
+## [21] lattice_0.20-41    dplyr_0.8.5        knitr_1.28         pacman_0.5.1      
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] TH.data_1.0-10     minqa_1.2.4        colorspace_1.4-1   pryr_0.1.4        
-##  [5] ggsignif_0.6.0     rio_0.5.16         sjlabelled_1.1.2   estimability_1.3  
-##  [9] parameters_0.4.1   base64enc_0.1-3    rstudioapi_0.10    ggrepel_0.8.1     
-## [13] mvtnorm_1.0-10     lubridate_1.7.4    xml2_1.2.0         codetools_0.2-16  
-## [17] splines_3.6.3      mnormt_1.5-5       zeallot_0.1.0      nloptr_1.2.1      
-## [21] ggeffects_0.14.0   broom_0.5.2        effectsize_0.0.1   readr_1.3.1       
-## [25] compiler_3.6.3     httr_1.4.0         emmeans_1.3.4      backports_1.1.4   
-## [29] assertthat_0.2.1   Matrix_1.2-17      lazyeval_0.2.2     htmltools_0.3.6   
-## [33] tools_3.6.3        coda_0.19-2        gtable_0.3.0       glue_1.3.1        
-## [37] Rcpp_1.0.2         cellranger_1.1.0   vctrs_0.2.1        nlme_3.1-139      
-## [41] blogdown_0.18      insight_0.8.0      xfun_0.12          stringr_1.4.0     
-## [45] openxlsx_4.1.0     lme4_1.1-21        rvest_0.3.3        lifecycle_0.1.0   
-## [49] MASS_7.3-51.4      zoo_1.8-5          hms_0.4.2          parallel_3.6.3    
-## [53] sandwich_2.5-1     yaml_2.2.0         curl_3.3           pander_0.6.3      
-## [57] stringi_1.4.3      bayestestR_0.4.0   checkmate_1.9.3    boot_1.3-22       
-## [61] zip_2.0.1          lava_1.6.5         matrixStats_0.54.0 rlang_0.4.0       
-## [65] pkgconfig_2.0.2    evaluate_0.14      purrr_0.3.2        rapportools_1.0   
-## [69] tidyselect_0.2.5   bookdown_0.18      R6_2.4.0           magick_2.1        
-## [73] generics_0.0.2     multcomp_1.4-13    pillar_1.4.1       haven_2.1.0       
-## [77] foreign_0.8-71     withr_2.1.2        survival_2.44-1.1  abind_1.4-5       
-## [81] tibble_2.1.2       performance_0.4.2  modelr_0.1.4       crayon_1.3.4      
-## [85] rmarkdown_2.1      grid_3.6.3         readxl_1.3.1       data.table_1.12.2 
-## [89] forcats_0.4.0      digest_0.6.20      webshot_0.5.1      xtable_1.8-4      
-## [93] tidyr_1.0.0        munsell_0.5.0      viridisLite_0.3.0  tcltk_3.6.3</code></pre>
+##  [5] ggsignif_0.6.0     ellipsis_0.3.0     rio_0.5.16         sjlabelled_1.1.4  
+##  [9] estimability_1.3   parameters_0.6.1   base64enc_0.1-3    rstudioapi_0.11   
+## [13] fansi_0.4.1        mvtnorm_1.1-0      lubridate_1.7.8    xml2_1.3.2        
+## [17] codetools_0.2-16   splines_4.0.0      mnormt_1.5-7       nloptr_1.2.2.1    
+## [21] ggeffects_0.14.3   broom_0.5.6        effectsize_0.3.0   readr_1.3.1       
+## [25] compiler_4.0.0     httr_1.4.1         emmeans_1.4.6      backports_1.1.7   
+## [29] assertthat_0.2.1   Matrix_1.2-18      cli_2.0.2          htmltools_0.4.0   
+## [33] tools_4.0.0        coda_0.19-3        gtable_0.3.0       glue_1.4.1        
+## [37] Rcpp_1.0.4.6       cellranger_1.1.0   vctrs_0.3.0        nlme_3.1-147      
+## [41] blogdown_0.18      insight_0.8.4      xfun_0.13          stringr_1.4.0     
+## [45] openxlsx_4.1.5     lme4_1.1-23        rvest_0.3.5        lifecycle_0.2.0   
+## [49] statmod_1.4.34     rstatix_0.5.0      MASS_7.3-51.6      zoo_1.8-8         
+## [53] hms_0.5.3          parallel_4.0.0     sandwich_2.5-1     yaml_2.2.1        
+## [57] curl_4.3           pander_0.6.3       stringi_1.4.6      bayestestR_0.6.0  
+## [61] checkmate_2.0.0    boot_1.3-25        zip_2.0.4          lava_1.6.7        
+## [65] rlang_0.4.6        pkgconfig_2.0.3    matrixStats_0.56.0 evaluate_0.14     
+## [69] purrr_0.3.4        rapportools_1.0    tidyselect_1.1.0   bookdown_0.18     
+## [73] R6_2.4.1           magick_2.3         generics_0.0.2     multcomp_1.4-13   
+## [77] pillar_1.4.4       haven_2.2.0        foreign_0.8-79     withr_2.2.0       
+## [81] survival_3.1-12    abind_1.4-5        tibble_3.0.1       performance_0.4.6 
+## [85] modelr_0.1.7       crayon_1.3.4       rmarkdown_2.1      grid_4.0.0        
+## [89] readxl_1.3.1       data.table_1.12.8  forcats_0.5.0      digest_0.6.25     
+## [93] webshot_0.5.2      xtable_1.8-4       tidyr_1.0.3        munsell_0.5.0     
+## [97] viridisLite_0.3.0  tcltk_4.0.0</code></pre>
 <p>Acá vemos un listado de información muy completo, desde versión de R, sistema operativo, opciones de idioma local (LOCALE), y muchas librerías. Si optamos por esta versión de la información de la sesión, lo importante es fijarse en (a) version de R, y (b) de las librerías cargadas al principio, que aquí aparecen bajo “other attached packages”.</p>
 <p>La segunda opción permite obtener información más precisa, con <code>sessioninfo</code> <span class="sidenote">sessioninfo()</span>(la única diferencia con la anterior en el nombre es que info es con minúscula <code>sessioninfo</code>). Con un poco más de especificaciones de sintaxis se pueden obtener directamente los puntos (a) y (b) mencionados anteriormente:</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="kw">session_info</span>(<span class="st">&quot;sessioninfo&quot;</span>)<span class="op">$</span>platform</a></code></pre></div>
 <pre><code>##  setting  value                       
-##  version  R version 3.6.3 (2020-02-29)
+##  version  R version 4.0.0 (2020-04-24)
 ##  os       Ubuntu 16.04.6 LTS          
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
@@ -1919,58 +1924,33 @@ Computed correlation used pearson-method with listwise-deletion.
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       America/Santiago            
-##  date     2020-04-25</code></pre>
+##  date     2020-05-16</code></pre>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="kw">package_info</span>(<span class="dt">pkgs =</span> (<span class="kw">.packages</span>()), <span class="dt">dependencies =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<pre><code>##  package      * version    date       lib
-##  car          * 3.0-2      2018-08-23 [1]
-##  carData      * 3.0-2      2018-09-30 [1]
-##  corrplot     * 0.84       2017-10-16 [1]
-##  dplyr        * 0.8.3      2019-07-04 [1]
-##  ggplot2      * 3.2.1      2019-08-10 [1]
-##  ggpubr       * 0.2.5      2020-02-13 [1]
-##  gridExtra    * 2.3        2017-09-09 [1]
-##  kableExtra   * 1.1.0      2019-03-16 [1]
-##  knitr        * 1.28       2020-02-06 [1]
-##  lattice      * 0.20-38    2018-11-04 [1]
-##  magrittr     * 1.5        2014-11-22 [1]
-##  pacman       * 0.5.1      2019-03-11 [1]
-##  plyr         * 1.8.4      2016-06-08 [1]
-##  prodlim      * 2018.04.18 2018-04-18 [1]
-##  psych        * 1.8.12     2019-01-12 [1]
-##  Publish      * 2019.12.04 2019-12-04 [1]
-##  Rmisc        * 1.5        2013-10-22 [1]
-##  scales       * 1.0.0      2018-08-09 [1]
-##  sessioninfo  * 1.1.1      2018-11-05 [1]
-##  sjmisc       * 2.8.3      2020-01-10 [1]
-##  sjPlot       * 2.8.1      2019-12-03 [1]
-##  sjstats      * 0.17.7     2019-11-14 [1]
-##  stargazer    * 5.2.2      2018-05-30 [1]
-##  summarytools * 0.9.6      2020-04-11 [1]
-##  source                                
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.3)                        
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.0)                        
-##  CRAN (R 3.6.0)                        
-##  Github (dcomtois/summarytools@9af4c0a)
+<pre><code>##  package      * version    date       lib source        
+##  car          * 3.0-7      2020-03-11 [1] CRAN (R 4.0.0)
+##  carData      * 3.0-3      2019-11-16 [1] CRAN (R 4.0.0)
+##  corrplot     * 0.84       2017-10-16 [1] CRAN (R 4.0.0)
+##  dplyr        * 0.8.5      2020-03-07 [1] CRAN (R 4.0.0)
+##  ggplot2      * 3.3.0      2020-03-05 [1] CRAN (R 4.0.0)
+##  ggpubr       * 0.3.0      2020-05-04 [1] CRAN (R 4.0.0)
+##  gridExtra    * 2.3        2017-09-09 [1] CRAN (R 4.0.0)
+##  kableExtra   * 1.1.0      2019-03-16 [1] CRAN (R 4.0.0)
+##  knitr        * 1.28       2020-02-06 [1] CRAN (R 4.0.0)
+##  lattice      * 0.20-41    2020-04-02 [1] CRAN (R 4.0.0)
+##  magrittr     * 1.5        2014-11-22 [1] CRAN (R 4.0.0)
+##  pacman       * 0.5.1      2019-03-11 [1] CRAN (R 4.0.0)
+##  plyr         * 1.8.6      2020-03-03 [1] CRAN (R 4.0.0)
+##  prodlim      * 2019.11.13 2019-11-17 [1] CRAN (R 4.0.0)
+##  psych        * 1.9.12.31  2020-01-08 [1] CRAN (R 4.0.0)
+##  Publish      * 2019.12.04 2019-12-04 [1] CRAN (R 4.0.0)
+##  Rmisc        * 1.5        2013-10-22 [1] CRAN (R 4.0.0)
+##  scales       * 1.1.1      2020-05-11 [1] CRAN (R 4.0.0)
+##  sessioninfo  * 1.1.1      2018-11-05 [1] CRAN (R 4.0.0)
+##  sjmisc       * 2.8.4      2020-04-03 [1] CRAN (R 4.0.0)
+##  sjPlot       * 2.8.3      2020-03-09 [1] CRAN (R 4.0.0)
+##  sjstats      * 0.18.0     2020-05-06 [1] CRAN (R 4.0.0)
+##  stargazer    * 5.2.2      2018-05-30 [1] CRAN (R 4.0.0)
+##  summarytools * 0.9.6      2020-03-02 [1] CRAN (R 4.0.0)
 ## 
 ## [1] /home/juank/Dropbox/Rlibrary
 ## [2] /usr/local/lib/R/site-library
@@ -1987,6 +1967,12 @@ Computed correlation used pearson-method with listwise-deletion.
 <li>tabla y gráfico de asociación entre variables categóricas y contínuas</li>
 <li>asociaciones entre pares de variables continuas mediante el índice de correlación.</li>
 </ul>
+<div id="y-recordar" class="section level2">
+<h2>Y recordar:</h2>
+<div id="al-final-de-esta-práctica-responder-el-reporte-de-progreso-respectivo-disponible-en-ucursos" class="section level3">
+<h3>Al final de esta práctica responder el <a href="/class#reporte"><strong>Reporte de Progreso</strong></a> respectivo disponible en UCursos</h3>
+</div>
+</div>
 </div>
 
                     </div>

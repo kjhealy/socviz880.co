@@ -45,7 +45,7 @@ En este curso vamos a distinguir **dos momentos** del trabajo con datos: procesa
 ![](/images/produccion.png)
 
 
-Tanto la preparación como el análisis (que son parte del concepto más general de procesamiento) quedan registrados en un documento de código, en este caso de código R (por lo general, un archivo con extensión .R).
+Tanto la preparación como el análisis (que son parte del concepto más general de procesamiento) quedan registrados en un documento de código, en este caso de código R<span class="sidenote">Archivo de código R: archivo con extensión .R donde se almacena el código de análisis. Para generarlo desde RStudio: menú File > Save, y darle nombre (recordar: sin tilde ni ñ, y evitar espacios) </span>
 
 El documento de **código de preparación** posee 5 partes, más una sección de identificación inicial:
 
@@ -427,7 +427,6 @@ get_label(proc_elsoc$sexo)
 proc_elsoc$sexo <- set_label(x = proc_elsoc$sexo,label = "Sexo")
 ```
 
-
 Revisar con un nuevo descriptivo:
 
 ```{r}
@@ -471,10 +470,10 @@ Antes de guardar la base procesada, revisamos nuevamente todas las variables con
 stargazer(proc_elsoc, type="text")
 ```
 
-- Guardar base de datos procesada: en carpeta local
+- Guardar base de datos procesada: en carpeta local <span class="sidenote">La ruta hacia su carpeta local si está trabajando en windows debería ser algo como "C:/Users/Lenovo/Clases/y aquí nombre del archivo a grabar</span>
 
 ```{r eval=FALSE}
-save(proc_elsoc,file = "[ruta hacia carpeta local/ELSOC_ess_merit2016.RData")
+save(proc_elsoc,file = "[ruta hacia carpeta local en su computador]/ELSOC_ess_merit2016.RData")
 ```
 
 En este caso, seguimos una estructura de carpetas de datos, separando en una carpeta los datos originales, y en otra (proc) los datos procesados:
