@@ -82,7 +82,7 @@ El presente ejercicio tiene por objetivo el procesar los datos para obtener las 
 
 <div style="width: 100%; height: 600px; overflow: hidden;">
 <video  style="width: 100%;" controls>
-<source src="https://www.dropbox.com/s/ima158qslox5h9c/practica1.mp4?raw=1" type="video/mp4">
+<source src="https://www.dropbox.com/s/dya7gr6jdc9nqfi/practica1_update.mp4?raw=1" type="video/mp4">
 </video>
 </div>
 
