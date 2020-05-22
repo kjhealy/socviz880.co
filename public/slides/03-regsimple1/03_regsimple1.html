@@ -47,6 +47,7 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 .right[
 ![:scale 70%](https://multivariada.netlify.com/img/hex_multiva.png)
 &lt;br&gt;
+&lt;br&gt;
 ## Sesión 3: Regresión simple (1)
 ]
 
@@ -260,15 +261,15 @@ class: roja, bottom
 
 
 ```r
-ggplotly(ggplot(datos, aes(x=juegos, y=puntos)) +
+ggplotly(ggplot(datos, aes(x=juegos_x, y=puntos_y)) +
   geom_point() +
   expand_limits(x=c(0,6), y=c(0,7)) + coord_fixed() +
   scale_x_continuous(breaks = seq(min(0), max(6), by = 1)) +
   scale_y_continuous(breaks = seq(min(0), max(6), by = 1)) )
 ```
 
-<div id="htmlwidget-36ff0758e9e92ae8b9d2" style="width:396px;height:396px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-36ff0758e9e92ae8b9d2">{"x":{"data":[{"x":[0,0,1,1,1,2,2,2,2,3,3,3,3,3,4,4,4,4,5,5,5,6,6],"y":[2,3,2,3,4,2,3,4,5,2,3,4,5,6,3,4,5,6,4,5,6,5,6],"text":["juegos: 0<br />puntos: 2","juegos: 0<br />puntos: 3","juegos: 1<br />puntos: 2","juegos: 1<br />puntos: 3","juegos: 1<br />puntos: 4","juegos: 2<br />puntos: 2","juegos: 2<br />puntos: 3","juegos: 2<br />puntos: 4","juegos: 2<br />puntos: 5","juegos: 3<br />puntos: 2","juegos: 3<br />puntos: 3","juegos: 3<br />puntos: 4","juegos: 3<br />puntos: 5","juegos: 3<br />puntos: 6","juegos: 4<br />puntos: 3","juegos: 4<br />puntos: 4","juegos: 4<br />puntos: 5","juegos: 4<br />puntos: 6","juegos: 5<br />puntos: 4","juegos: 5<br />puntos: 5","juegos: 5<br />puntos: 6","juegos: 6<br />puntos: 5","juegos: 6<br />puntos: 6"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"visible":false,"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.3059360730594,"r":7.30593607305936,"b":37.2602739726027,"l":31.4155251141553},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.3,6.3],"tickmode":"array","ticktext":["0","1","2","3","4","5","6"],"tickvals":[0,1,2,3,4,5,6],"categoryorder":"array","categoryarray":["0","1","2","3","4","5","6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"juegos","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"scaleanchor":"y","scaleratio":1,"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.35,7.35],"tickmode":"array","ticktext":["0","1","2","3","4","5","6"],"tickvals":[0,1,2,3,4,5,6],"categoryorder":"array","categoryarray":["0","1","2","3","4","5","6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"puntos","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"scaleanchor":"x","scaleratio":1,"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"9af6b150e0d":{"x":{},"y":{},"type":"scatter"},"9af3c3c2143":{"x":{},"y":{}}},"cur_data":"9af6b150e0d","visdat":{"9af6b150e0d":["function (y) ","x"],"9af3c3c2143":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d662db077e82706b124d" style="width:396px;height:396px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d662db077e82706b124d">{"x":{"data":[{"x":[0,0,1,1,1,2,2,2,2,3,3,3,3,3,4,4,4,4,5,5,5,6,6],"y":[2,3,2,3,4,2,3,4,5,2,3,4,5,6,3,4,5,6,4,5,6,5,6],"text":["juegos_x: 0<br />puntos_y: 2","juegos_x: 0<br />puntos_y: 3","juegos_x: 1<br />puntos_y: 2","juegos_x: 1<br />puntos_y: 3","juegos_x: 1<br />puntos_y: 4","juegos_x: 2<br />puntos_y: 2","juegos_x: 2<br />puntos_y: 3","juegos_x: 2<br />puntos_y: 4","juegos_x: 2<br />puntos_y: 5","juegos_x: 3<br />puntos_y: 2","juegos_x: 3<br />puntos_y: 3","juegos_x: 3<br />puntos_y: 4","juegos_x: 3<br />puntos_y: 5","juegos_x: 3<br />puntos_y: 6","juegos_x: 4<br />puntos_y: 3","juegos_x: 4<br />puntos_y: 4","juegos_x: 4<br />puntos_y: 5","juegos_x: 4<br />puntos_y: 6","juegos_x: 5<br />puntos_y: 4","juegos_x: 5<br />puntos_y: 5","juegos_x: 5<br />puntos_y: 6","juegos_x: 6<br />puntos_y: 5","juegos_x: 6<br />puntos_y: 6"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"visible":false,"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.3059360730594,"r":7.30593607305936,"b":37.2602739726027,"l":31.4155251141553},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.3,6.3],"tickmode":"array","ticktext":["0","1","2","3","4","5","6"],"tickvals":[0,1,2,3,4,5,6],"categoryorder":"array","categoryarray":["0","1","2","3","4","5","6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"juegos_x","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"scaleanchor":"y","scaleratio":1,"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.35,7.35],"tickmode":"array","ticktext":["0","1","2","3","4","5","6"],"tickvals":[0,1,2,3,4,5,6],"categoryorder":"array","categoryarray":["0","1","2","3","4","5","6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"puntos_y","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"scaleanchor":"x","scaleratio":1,"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"465885eef3c":{"x":{},"y":{},"type":"scatter"},"4658176bbcf6":{"x":{},"y":{}}},"cur_data":"465885eef3c","visdat":{"465885eef3c":["function (y) ","x"],"4658176bbcf6":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 ]
 ]
 
@@ -283,8 +284,8 @@ stargazer(datos, type = "html")
 
 &lt;table style="text-align:center"&gt;&lt;tr&gt;&lt;td colspan="8" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Statistic&lt;/td&gt;&lt;td&gt;N&lt;/td&gt;&lt;td&gt;Mean&lt;/td&gt;&lt;td&gt;St. Dev.&lt;/td&gt;&lt;td&gt;Min&lt;/td&gt;&lt;td&gt;Pctl(25)&lt;/td&gt;&lt;td&gt;Pctl(75)&lt;/td&gt;&lt;td&gt;Max&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td colspan="8" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;id&lt;/td&gt;&lt;td&gt;23&lt;/td&gt;&lt;td&gt;12.000&lt;/td&gt;&lt;td&gt;6.782&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;6.5&lt;/td&gt;&lt;td&gt;17.5&lt;/td&gt;&lt;td&gt;23&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;juegos&lt;/td&gt;&lt;td&gt;23&lt;/td&gt;&lt;td&gt;3.000&lt;/td&gt;&lt;td&gt;1.758&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;puntos&lt;/td&gt;&lt;td&gt;23&lt;/td&gt;&lt;td&gt;4.000&lt;/td&gt;&lt;td&gt;1.382&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;juegos_x&lt;/td&gt;&lt;td&gt;23&lt;/td&gt;&lt;td&gt;3.000&lt;/td&gt;&lt;td&gt;1.758&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;puntos_y&lt;/td&gt;&lt;td&gt;23&lt;/td&gt;&lt;td&gt;4.000&lt;/td&gt;&lt;td&gt;1.382&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td colspan="8" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 
@@ -388,30 +389,30 @@ datos_b
 .column[.content[
 
 ```
-##    id juegos puntos
-## 1   1      0      2
-## 2   2      0      3
-## 3   3      1      2
-## 4   4      1      3
-## 5   5      1      4
-## 6   6      2      2
-## 7   7      2      3
-## 8   8      2      4
-## 9   9      2      5
-## 10 10      3      2
-## 11 11      3      3
-## 12 12      3      4
-## 13 13      3      5
-## 14 14      3      6
-## 15 15      4      3
-## 16 16      4      4
-## 17 17      4      5
-## 18 18      4      6
-## 19 19      5      4
-## 20 20      5      5
-## 21 21      5      6
-## 22 22      6      5
-## 23 23      6      6
+##    id juegos_x puntos_y
+## 1   1        0        2
+## 2   2        0        3
+## 3   3        1        2
+## 4   4        1        3
+## 5   5        1        4
+## 6   6        2        2
+## 7   7        2        3
+## 8   8        2        4
+## 9   9        2        5
+## 10 10        3        2
+## 11 11        3        3
+## 12 12        3        4
+## 13 13        3        5
+## 14 14        3        6
+## 15 15        4        3
+## 16 16        4        4
+## 17 17        4        5
+## 18 18        4        6
+## 19 19        5        4
+## 20 20        5        5
+## 21 21        5        6
+## 22 22        6        5
+## 23 23        6        6
 ```
 ]]
 ---
@@ -424,7 +425,7 @@ count: false
 
 ```r
 datos_b &lt;-datos  
-*datos$p_juegos &lt;- mean(datos$juegos)
+*datos$p_x &lt;- mean(datos$juegos_x)
  
 datos_b
 ```
@@ -432,30 +433,30 @@ datos_b
 .column[.content[
 
 ```
-##    id juegos puntos
-## 1   1      0      2
-## 2   2      0      3
-## 3   3      1      2
-## 4   4      1      3
-## 5   5      1      4
-## 6   6      2      2
-## 7   7      2      3
-## 8   8      2      4
-## 9   9      2      5
-## 10 10      3      2
-## 11 11      3      3
-## 12 12      3      4
-## 13 13      3      5
-## 14 14      3      6
-## 15 15      4      3
-## 16 16      4      4
-## 17 17      4      5
-## 18 18      4      6
-## 19 19      5      4
-## 20 20      5      5
-## 21 21      5      6
-## 22 22      6      5
-## 23 23      6      6
+##    id juegos_x puntos_y
+## 1   1        0        2
+## 2   2        0        3
+## 3   3        1        2
+## 4   4        1        3
+## 5   5        1        4
+## 6   6        2        2
+## 7   7        2        3
+## 8   8        2        4
+## 9   9        2        5
+## 10 10        3        2
+## 11 11        3        3
+## 12 12        3        4
+## 13 13        3        5
+## 14 14        3        6
+## 15 15        4        3
+## 16 16        4        4
+## 17 17        4        5
+## 18 18        4        6
+## 19 19        5        4
+## 20 20        5        5
+## 21 21        5        6
+## 22 22        6        5
+## 23 23        6        6
 ```
 ]]
 ---
@@ -468,8 +469,8 @@ count: false
 
 ```r
 datos_b &lt;-datos  
-datos$p_juegos &lt;- mean(datos$juegos)  
-*datos$difx &lt;-datos$juegos-datos$p_juegos
+datos$p_x &lt;- mean(datos$juegos_x)  
+*datos$difx &lt;-datos$juegos_x-datos$p_x
  
 datos_b
 ```
@@ -477,30 +478,30 @@ datos_b
 .column[.content[
 
 ```
-##    id juegos puntos p_juegos
-## 1   1      0      2        3
-## 2   2      0      3        3
-## 3   3      1      2        3
-## 4   4      1      3        3
-## 5   5      1      4        3
-## 6   6      2      2        3
-## 7   7      2      3        3
-## 8   8      2      4        3
-## 9   9      2      5        3
-## 10 10      3      2        3
-## 11 11      3      3        3
-## 12 12      3      4        3
-## 13 13      3      5        3
-## 14 14      3      6        3
-## 15 15      4      3        3
-## 16 16      4      4        3
-## 17 17      4      5        3
-## 18 18      4      6        3
-## 19 19      5      4        3
-## 20 20      5      5        3
-## 21 21      5      6        3
-## 22 22      6      5        3
-## 23 23      6      6        3
+##    id juegos_x puntos_y p_x
+## 1   1        0        2   3
+## 2   2        0        3   3
+## 3   3        1        2   3
+## 4   4        1        3   3
+## 5   5        1        4   3
+## 6   6        2        2   3
+## 7   7        2        3   3
+## 8   8        2        4   3
+## 9   9        2        5   3
+## 10 10        3        2   3
+## 11 11        3        3   3
+## 12 12        3        4   3
+## 13 13        3        5   3
+## 14 14        3        6   3
+## 15 15        4        3   3
+## 16 16        4        4   3
+## 17 17        4        5   3
+## 18 18        4        6   3
+## 19 19        5        4   3
+## 20 20        5        5   3
+## 21 21        5        6   3
+## 22 22        6        5   3
+## 23 23        6        6   3
 ```
 ]]
 ---
@@ -513,9 +514,9 @@ count: false
 
 ```r
 datos_b &lt;-datos  
-datos$p_juegos &lt;- mean(datos$juegos)  
-datos$difx &lt;-datos$juegos-datos$p_juegos  
-*datos$p_puntos &lt;- mean(datos$puntos)
+datos$p_x &lt;- mean(datos$juegos_x)  
+datos$difx &lt;-datos$juegos_x-datos$p_x  
+*datos$p_y &lt;- mean(datos$puntos_y)
  
 datos_b
 ```
@@ -523,30 +524,30 @@ datos_b
 .column[.content[
 
 ```
-##    id juegos puntos p_juegos difx
-## 1   1      0      2        3   -3
-## 2   2      0      3        3   -3
-## 3   3      1      2        3   -2
-## 4   4      1      3        3   -2
-## 5   5      1      4        3   -2
-## 6   6      2      2        3   -1
-## 7   7      2      3        3   -1
-## 8   8      2      4        3   -1
-## 9   9      2      5        3   -1
-## 10 10      3      2        3    0
-## 11 11      3      3        3    0
-## 12 12      3      4        3    0
-## 13 13      3      5        3    0
-## 14 14      3      6        3    0
-## 15 15      4      3        3    1
-## 16 16      4      4        3    1
-## 17 17      4      5        3    1
-## 18 18      4      6        3    1
-## 19 19      5      4        3    2
-## 20 20      5      5        3    2
-## 21 21      5      6        3    2
-## 22 22      6      5        3    3
-## 23 23      6      6        3    3
+##    id juegos_x puntos_y p_x difx
+## 1   1        0        2   3   -3
+## 2   2        0        3   3   -3
+## 3   3        1        2   3   -2
+## 4   4        1        3   3   -2
+## 5   5        1        4   3   -2
+## 6   6        2        2   3   -1
+## 7   7        2        3   3   -1
+## 8   8        2        4   3   -1
+## 9   9        2        5   3   -1
+## 10 10        3        2   3    0
+## 11 11        3        3   3    0
+## 12 12        3        4   3    0
+## 13 13        3        5   3    0
+## 14 14        3        6   3    0
+## 15 15        4        3   3    1
+## 16 16        4        4   3    1
+## 17 17        4        5   3    1
+## 18 18        4        6   3    1
+## 19 19        5        4   3    2
+## 20 20        5        5   3    2
+## 21 21        5        6   3    2
+## 22 22        6        5   3    3
+## 23 23        6        6   3    3
 ```
 ]]
 ---
@@ -559,10 +560,10 @@ count: false
 
 ```r
 datos_b &lt;-datos  
-datos$p_juegos &lt;- mean(datos$juegos)  
-datos$difx &lt;-datos$juegos-datos$p_juegos  
-datos$p_puntos &lt;- mean(datos$puntos)  
-*datos$dify &lt;-datos$puntos-datos$p_puntos
+datos$p_x &lt;- mean(datos$juegos_x)  
+datos$difx &lt;-datos$juegos_x-datos$p_x  
+datos$p_y &lt;- mean(datos$puntos_y)  
+*datos$dify &lt;-datos$puntos_y-datos$p_y
  
 datos_b
 ```
@@ -570,30 +571,30 @@ datos_b
 .column[.content[
 
 ```
-##    id juegos puntos p_juegos difx p_puntos
-## 1   1      0      2        3   -3        4
-## 2   2      0      3        3   -3        4
-## 3   3      1      2        3   -2        4
-## 4   4      1      3        3   -2        4
-## 5   5      1      4        3   -2        4
-## 6   6      2      2        3   -1        4
-## 7   7      2      3        3   -1        4
-## 8   8      2      4        3   -1        4
-## 9   9      2      5        3   -1        4
-## 10 10      3      2        3    0        4
-## 11 11      3      3        3    0        4
-## 12 12      3      4        3    0        4
-## 13 13      3      5        3    0        4
-## 14 14      3      6        3    0        4
-## 15 15      4      3        3    1        4
-## 16 16      4      4        3    1        4
-## 17 17      4      5        3    1        4
-## 18 18      4      6        3    1        4
-## 19 19      5      4        3    2        4
-## 20 20      5      5        3    2        4
-## 21 21      5      6        3    2        4
-## 22 22      6      5        3    3        4
-## 23 23      6      6        3    3        4
+##    id juegos_x puntos_y p_x difx p_y
+## 1   1        0        2   3   -3   4
+## 2   2        0        3   3   -3   4
+## 3   3        1        2   3   -2   4
+## 4   4        1        3   3   -2   4
+## 5   5        1        4   3   -2   4
+## 6   6        2        2   3   -1   4
+## 7   7        2        3   3   -1   4
+## 8   8        2        4   3   -1   4
+## 9   9        2        5   3   -1   4
+## 10 10        3        2   3    0   4
+## 11 11        3        3   3    0   4
+## 12 12        3        4   3    0   4
+## 13 13        3        5   3    0   4
+## 14 14        3        6   3    0   4
+## 15 15        4        3   3    1   4
+## 16 16        4        4   3    1   4
+## 17 17        4        5   3    1   4
+## 18 18        4        6   3    1   4
+## 19 19        5        4   3    2   4
+## 20 20        5        5   3    2   4
+## 21 21        5        6   3    2   4
+## 22 22        6        5   3    3   4
+## 23 23        6        6   3    3   4
 ```
 ]]
 ---
@@ -606,10 +607,10 @@ count: false
 
 ```r
 datos_b &lt;-datos  
-datos$p_juegos &lt;- mean(datos$juegos)  
-datos$difx &lt;-datos$juegos-datos$p_juegos  
-datos$p_puntos &lt;- mean(datos$puntos)  
-datos$dify &lt;-datos$puntos-datos$p_puntos  
+datos$p_x &lt;- mean(datos$juegos_x)  
+datos$difx &lt;-datos$juegos_x-datos$p_x  
+datos$p_y &lt;- mean(datos$puntos_y)  
+datos$dify &lt;-datos$puntos_y-datos$p_y  
 *datos$dif_cru &lt;-datos$difx*datos$dify
  
 datos_b
@@ -618,30 +619,30 @@ datos_b
 .column[.content[
 
 ```
-##    id juegos puntos p_juegos difx p_puntos dify
-## 1   1      0      2        3   -3        4   -2
-## 2   2      0      3        3   -3        4   -1
-## 3   3      1      2        3   -2        4   -2
-## 4   4      1      3        3   -2        4   -1
-## 5   5      1      4        3   -2        4    0
-## 6   6      2      2        3   -1        4   -2
-## 7   7      2      3        3   -1        4   -1
-## 8   8      2      4        3   -1        4    0
-## 9   9      2      5        3   -1        4    1
-## 10 10      3      2        3    0        4   -2
-## 11 11      3      3        3    0        4   -1
-## 12 12      3      4        3    0        4    0
-## 13 13      3      5        3    0        4    1
-## 14 14      3      6        3    0        4    2
-## 15 15      4      3        3    1        4   -1
-## 16 16      4      4        3    1        4    0
-## 17 17      4      5        3    1        4    1
-## 18 18      4      6        3    1        4    2
-## 19 19      5      4        3    2        4    0
-## 20 20      5      5        3    2        4    1
-## 21 21      5      6        3    2        4    2
-## 22 22      6      5        3    3        4    1
-## 23 23      6      6        3    3        4    2
+##    id juegos_x puntos_y p_x difx p_y dify
+## 1   1        0        2   3   -3   4   -2
+## 2   2        0        3   3   -3   4   -1
+## 3   3        1        2   3   -2   4   -2
+## 4   4        1        3   3   -2   4   -1
+## 5   5        1        4   3   -2   4    0
+## 6   6        2        2   3   -1   4   -2
+## 7   7        2        3   3   -1   4   -1
+## 8   8        2        4   3   -1   4    0
+## 9   9        2        5   3   -1   4    1
+## 10 10        3        2   3    0   4   -2
+## 11 11        3        3   3    0   4   -1
+## 12 12        3        4   3    0   4    0
+## 13 13        3        5   3    0   4    1
+## 14 14        3        6   3    0   4    2
+## 15 15        4        3   3    1   4   -1
+## 16 16        4        4   3    1   4    0
+## 17 17        4        5   3    1   4    1
+## 18 18        4        6   3    1   4    2
+## 19 19        5        4   3    2   4    0
+## 20 20        5        5   3    2   4    1
+## 21 21        5        6   3    2   4    2
+## 22 22        6        5   3    3   4    1
+## 23 23        6        6   3    3   4    2
 ```
 ]]
 ---
@@ -654,10 +655,10 @@ count: false
 
 ```r
 datos_b &lt;-datos  
-datos$p_juegos &lt;- mean(datos$juegos)  
-datos$difx &lt;-datos$juegos-datos$p_juegos  
-datos$p_puntos &lt;- mean(datos$puntos)  
-datos$dify &lt;-datos$puntos-datos$p_puntos  
+datos$p_x &lt;- mean(datos$juegos_x)  
+datos$difx &lt;-datos$juegos_x-datos$p_x  
+datos$p_y &lt;- mean(datos$puntos_y)  
+datos$dify &lt;-datos$puntos_y-datos$p_y  
 datos$dif_cru &lt;-datos$difx*datos$dify  
 *datos$difx2 &lt;-datos$difx^2
  
@@ -667,30 +668,80 @@ datos_b
 .column[.content[
 
 ```
-##    id juegos puntos p_juegos difx p_puntos dify dif_cru
-## 1   1      0      2        3   -3        4   -2       6
-## 2   2      0      3        3   -3        4   -1       3
-## 3   3      1      2        3   -2        4   -2       4
-## 4   4      1      3        3   -2        4   -1       2
-## 5   5      1      4        3   -2        4    0       0
-## 6   6      2      2        3   -1        4   -2       2
-## 7   7      2      3        3   -1        4   -1       1
-## 8   8      2      4        3   -1        4    0       0
-## 9   9      2      5        3   -1        4    1      -1
-## 10 10      3      2        3    0        4   -2       0
-## 11 11      3      3        3    0        4   -1       0
-## 12 12      3      4        3    0        4    0       0
-## 13 13      3      5        3    0        4    1       0
-## 14 14      3      6        3    0        4    2       0
-## 15 15      4      3        3    1        4   -1      -1
-## 16 16      4      4        3    1        4    0       0
-## 17 17      4      5        3    1        4    1       1
-## 18 18      4      6        3    1        4    2       2
-## 19 19      5      4        3    2        4    0       0
-## 20 20      5      5        3    2        4    1       2
-## 21 21      5      6        3    2        4    2       4
-## 22 22      6      5        3    3        4    1       3
-## 23 23      6      6        3    3        4    2       6
+##    id juegos_x puntos_y p_x difx p_y dify dif_cru
+## 1   1        0        2   3   -3   4   -2       6
+## 2   2        0        3   3   -3   4   -1       3
+## 3   3        1        2   3   -2   4   -2       4
+## 4   4        1        3   3   -2   4   -1       2
+## 5   5        1        4   3   -2   4    0       0
+## 6   6        2        2   3   -1   4   -2       2
+## 7   7        2        3   3   -1   4   -1       1
+## 8   8        2        4   3   -1   4    0       0
+## 9   9        2        5   3   -1   4    1      -1
+## 10 10        3        2   3    0   4   -2       0
+## 11 11        3        3   3    0   4   -1       0
+## 12 12        3        4   3    0   4    0       0
+## 13 13        3        5   3    0   4    1       0
+## 14 14        3        6   3    0   4    2       0
+## 15 15        4        3   3    1   4   -1      -1
+## 16 16        4        4   3    1   4    0       0
+## 17 17        4        5   3    1   4    1       1
+## 18 18        4        6   3    1   4    2       2
+## 19 19        5        4   3    2   4    0       0
+## 20 20        5        5   3    2   4    1       2
+## 21 21        5        6   3    2   4    2       4
+## 22 22        6        5   3    3   4    1       3
+## 23 23        6        6   3    3   4    2       6
+```
+]]
+---
+class: split-40
+count: false
+ 
+
+ 
+.column[.content[
+
+```r
+datos_b &lt;-datos  
+datos$p_x &lt;- mean(datos$juegos_x)  
+datos$difx &lt;-datos$juegos_x-datos$p_x  
+datos$p_y &lt;- mean(datos$puntos_y)  
+datos$dify &lt;-datos$puntos_y-datos$p_y  
+datos$dif_cru &lt;-datos$difx*datos$dify  
+datos$difx2 &lt;-datos$difx^2  
+*datos$difx2 &lt;-datos$difx^2
+ 
+datos_b
+```
+]]
+.column[.content[
+
+```
+##    id juegos_x puntos_y p_x difx p_y dify dif_cru difx2
+## 1   1        0        2   3   -3   4   -2       6     9
+## 2   2        0        3   3   -3   4   -1       3     9
+## 3   3        1        2   3   -2   4   -2       4     4
+## 4   4        1        3   3   -2   4   -1       2     4
+## 5   5        1        4   3   -2   4    0       0     4
+## 6   6        2        2   3   -1   4   -2       2     1
+## 7   7        2        3   3   -1   4   -1       1     1
+## 8   8        2        4   3   -1   4    0       0     1
+## 9   9        2        5   3   -1   4    1      -1     1
+## 10 10        3        2   3    0   4   -2       0     0
+## 11 11        3        3   3    0   4   -1       0     0
+## 12 12        3        4   3    0   4    0       0     0
+## 13 13        3        5   3    0   4    1       0     0
+## 14 14        3        6   3    0   4    2       0     0
+## 15 15        4        3   3    1   4   -1      -1     1
+## 16 16        4        4   3    1   4    0       0     1
+## 17 17        4        5   3    1   4    1       1     1
+## 18 18        4        6   3    1   4    2       2     1
+## 19 19        5        4   3    2   4    0       0     4
+## 20 20        5        5   3    2   4    1       2     4
+## 21 21        5        6   3    2   4    2       4     4
+## 22 22        6        5   3    3   4    1       3     9
+## 23 23        6        6   3    3   4    2       6     9
 ```
 ]]
 
@@ -764,7 +815,7 @@ El valor estimado de puntos para una persona que ha jugado 3 veces es 4.
 .center[
 
 ```r
-ggplot(datos, aes(x=juegos, y=puntos)) + geom_point() +
+ggplot(datos, aes(x=juegos_x, y=puntos_y)) + geom_point() +
   geom_smooth(method=lm, se=FALSE) 
 ```
 
@@ -798,7 +849,7 @@ En nuestro ejemplo:
 
 
 ```r
-reg1 &lt;-lm(puntos ~ juegos, data = datos)
+reg1 &lt;-lm(puntos_y ~ juegos_x, data = datos)
 ```
 
 `reg1` es el objeto que almacena la información de nuestra estimación. Para un reporte simple:
@@ -818,10 +869,10 @@ reg1
 ```
 ## 
 ## Call:
-## lm(formula = puntos ~ juegos, data = datos)
+## lm(formula = puntos_y ~ juegos_x, data = datos)
 ## 
 ## Coefficients:
-## (Intercept)       juegos  
+## (Intercept)     juegos_x  
 ##         2.5          0.5
 ```
 
@@ -842,8 +893,8 @@ stargazer(reg1, type = "html")
 
 &lt;table style="text-align:center"&gt;&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan="1" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;puntos&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;juegos&lt;/td&gt;&lt;td&gt;0.500&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;puntos_y&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;juegos_x&lt;/td&gt;&lt;td&gt;0.500&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(0.132)&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td style="text-align:left"&gt;Constant&lt;/td&gt;&lt;td&gt;2.500&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;

@@ -97,7 +97,7 @@ El curso tendrá tres instancias de evaluación:
 
 - **Trabajo 1** (individual): Correlación y regresión simple (20%).
 - **Trabajo 2** (grupal): Regresión multiple e inferencia estadística (30%)
-- **Trabajo 3** (grupal): Regresión logística, predictores categóricos y supuestos
+- **Trabajo 3** (grupal): Regresión logística, predictores categóricos y supuestos (50%)
 
 La nota ponderada de los trabajos equivaldrá al 60% de la nota del curso y el examen final al 40% restante.
 
@@ -113,7 +113,6 @@ Requisitos de eximición de examen:
 Requisitos para presentación a examen:
 
 - Podrán presentarse al examen de primera oportunidad los estudiantes que hayan obtenido una calificación final igual o superior a 3.5.
--
 - El examen de segunda oportunidad será para aquellos estudiantes que presenten una nota igual o inferior a 3.5 o aquellos que en el examen de primera oportunidad no hubiesen logrado una nota igual o superior a 4.0.
 
 ## Bibliografía

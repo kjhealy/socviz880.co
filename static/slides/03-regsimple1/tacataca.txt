@@ -1,4 +1,4 @@
-id juegos puntos
+id juegos_x puntos_y
 1 0 2
 2 0 3
 3 1 2
