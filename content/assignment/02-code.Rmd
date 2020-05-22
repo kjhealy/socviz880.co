@@ -347,5 +347,6 @@ En esta práctica revisamos los siguientes contenidos:
 - tabla y gráfico de asociación entre variables categóricas y contínuas
 - asociaciones entre pares de variables continuas mediante el índice de correlación.
 
-## Y recordar:
-### Al final de esta práctica responder el [**Reporte de Progreso**](/class#reporte) respectivo disponible en UCursos
+# Reporte de progreso
+
+Completar el reporte de progreso correspondiente a esta práctica [aquí](https://forms.gle/qAfnj7h5a6HyEbrXA)
