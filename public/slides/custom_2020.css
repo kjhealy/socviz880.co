@@ -43,13 +43,13 @@ h1, h2, h3 {
   padding: 1em 2em 1em 2em;
 }
 .remark-slide-content h1 {
-    font-size: 3em;
+    font-size: 65px;
 }
 .remark-slide-content h2 {
-    font-size: 75px;
+    font-size: 55px;
 }
 .remark-slide-content h3 {
-    font-size: 65px;
+    font-size: 45px;
 }
 .remark-code, .remark-inline-code {
   font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;
@@ -229,6 +229,9 @@ th, td { padding: 5px; }
 }
 
 .small { font-size: 70%
+}
+
+.tiny { font-size: 50%
 }
 
 .red { font-color: #000

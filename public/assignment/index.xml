@@ -733,11 +733,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#nota-final-información-de-la-sesión-de-r&#34;&gt;Nota final: Información de la sesión de R&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#resumen-práctica-2-descripción-de-variables&#34;&gt;Resumen Práctica 2: Descripción de variables&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#y-recordar&#34;&gt;Y recordar:&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#al-final-de-esta-práctica-responder-el-reporte-de-progreso-respectivo-disponible-en-ucursos&#34;&gt;Al final de esta práctica responder el &lt;span&gt;&lt;strong&gt;Reporte de Progreso&lt;/strong&gt;&lt;/span&gt; respectivo disponible en UCursos&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#resumen-práctica-2-descripción-de-variables&#34;&gt;Resumen Práctica 2: Descripción de variables&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#reporte-de-progreso&#34;&gt;Reporte de progreso&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
@@ -2053,12 +2050,10 @@ Computed correlation used pearson-method with listwise-deletion.
 &lt;li&gt;tabla y gráfico de asociación entre variables categóricas y contínuas&lt;/li&gt;
 &lt;li&gt;asociaciones entre pares de variables continuas mediante el índice de correlación.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div id=&#34;y-recordar&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Y recordar:&lt;/h2&gt;
-&lt;div id=&#34;al-final-de-esta-práctica-responder-el-reporte-de-progreso-respectivo-disponible-en-ucursos&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Al final de esta práctica responder el &lt;a href=&#34;/class#reporte&#34;&gt;&lt;strong&gt;Reporte de Progreso&lt;/strong&gt;&lt;/a&gt; respectivo disponible en UCursos&lt;/h3&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+&lt;div id=&#34;reporte-de-progreso&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Reporte de progreso&lt;/h1&gt;
+&lt;p&gt;Completar el reporte de progreso correspondiente a esta práctica &lt;a href=&#34;https://forms.gle/qAfnj7h5a6HyEbrXA&#34;&gt;aquí&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>

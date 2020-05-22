@@ -99,6 +99,48 @@
     </item>
     
     <item>
+      <title>Regresión simple 1</title>
+      <link>/class/03-class/</link>
+      <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/class/03-class/</guid>
+      <description>
+&lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;!-- /BLOGDOWN-HEAD --&gt;
+
+&lt;h2&gt;Índice&lt;/h2&gt;
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#documento-presentación&#34;&gt;Documento presentación&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#video-de-clase&#34;&gt;Video de clase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#lecturas&#34;&gt;Lecturas&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Documento presentación&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/03-regsimple1/03_regsimple1.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
+&lt;iframe src=&#34;/slides/03-regsimple1/03_regsimple1.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;div id=&#34;video-de-clase&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Video de clase&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt; Próximamente aquí &lt;/span&gt;&lt;/p&gt;
+&lt;div style=&#34;width: 100%; height: 600px; overflow: hidden;&#34;&gt;
+&lt;video  style=&#34;width: 100%;&#34; controls&gt;
+&lt;source src=&#34; &#34; type=&#34;video/mp4&#34;&gt;
+&lt;/video&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;lecturas&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Lecturas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/docs/lecturas/moore_analisisderelaciones1.pdf&#34;&gt;Moore: 2. Análisis de relaciones (97-131)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Práctica 1. Preparación de datos en R</title>
       <link>/assignment/01-code/</link>
       <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
@@ -819,11 +861,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#nota-final-información-de-la-sesión-de-r&#34;&gt;Nota final: Información de la sesión de R&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#resumen-práctica-2-descripción-de-variables&#34;&gt;Resumen Práctica 2: Descripción de variables&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#y-recordar&#34;&gt;Y recordar:&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#al-final-de-esta-práctica-responder-el-reporte-de-progreso-respectivo-disponible-en-ucursos&#34;&gt;Al final de esta práctica responder el &lt;span&gt;&lt;strong&gt;Reporte de Progreso&lt;/strong&gt;&lt;/span&gt; respectivo disponible en UCursos&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#resumen-práctica-2-descripción-de-variables&#34;&gt;Resumen Práctica 2: Descripción de variables&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#reporte-de-progreso&#34;&gt;Reporte de progreso&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
@@ -2139,12 +2178,10 @@ Computed correlation used pearson-method with listwise-deletion.
 &lt;li&gt;tabla y gráfico de asociación entre variables categóricas y contínuas&lt;/li&gt;
 &lt;li&gt;asociaciones entre pares de variables continuas mediante el índice de correlación.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div id=&#34;y-recordar&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Y recordar:&lt;/h2&gt;
-&lt;div id=&#34;al-final-de-esta-práctica-responder-el-reporte-de-progreso-respectivo-disponible-en-ucursos&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Al final de esta práctica responder el &lt;a href=&#34;/class#reporte&#34;&gt;&lt;strong&gt;Reporte de Progreso&lt;/strong&gt;&lt;/a&gt; respectivo disponible en UCursos&lt;/h3&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+&lt;div id=&#34;reporte-de-progreso&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Reporte de progreso&lt;/h1&gt;
+&lt;p&gt;Completar el reporte de progreso correspondiente a esta práctica &lt;a href=&#34;https://forms.gle/qAfnj7h5a6HyEbrXA&#34;&gt;aquí&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
@@ -2674,7 +2711,7 @@ Se espera que los estudiantes sean capaces de:&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;bibliografía&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Bibliografía&lt;/h2&gt;
-&lt;p&gt;La bibliografía obligatoria para cada semana se presenta en el &lt;a href=&#34;/schedule/&#34;&gt;programa del curso&lt;/a&gt;, desde donde se puede acceder directamente a los documentos. De todas maneras, abajo algunos textos comentados y referencias para cada unidad.&lt;/p&gt;
+&lt;p&gt;La bibliografía obligatoria para cada semana se presenta en la &lt;a href=&#34;/schedule/&#34;&gt;planificación del curso&lt;/a&gt;, desde donde se puede acceder directamente a los documentos. De todas maneras, abajo algunos textos comentados y referencias para cada unidad.&lt;/p&gt;
 &lt;div id=&#34;textos-principales.&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Textos principales.&lt;/h3&gt;
 &lt;p&gt;Hay cuatro referencias principales recomendadas para este curso:&lt;/p&gt;
