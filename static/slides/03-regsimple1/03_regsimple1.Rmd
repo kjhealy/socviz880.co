@@ -225,25 +225,25 @@ class: roja, bottom
 ---
 # Objetivos centrales del modelo de regresión:
 
-1. **Conocer**= la variación de la variable dependiente de acuerdo a la variación de otra(s) variable(s) independiente(s)
+1. **Conocer**: la variación de la variable dependiente de acuerdo a la variación de otra(s) variable(s) independiente(s)
 
 2. **Predecir**: estimar el valor de una variable (dependiente) de acuerdo al valor de otra(s)
 
-3. **Inferir:** Establecer en que medida esta asociación es estadísticamente significativa
+3. **Inferir**: Establecer en que medida esta asociación es estadísticamente significativa
 
 
 ---
 # Objetivos centrales del modelo de regresión: Ejemplo
 
-1. Conocer: Ej: En qué medida el puntaje PSU influye en el éxito académico en la universidad?
+1. *Conocer*: Ej: En qué medida el puntaje PSU influye en el éxito académico en la universidad?
 
 --
 
-2. Predecir: Ej: Si una persona obtiene 600 puntos en la PSU, que promedio de notas en la universidad es probable que obtenga? (Atención: predicción no implica explicación)
+2. *Predecir*: Ej: Si una persona obtiene 600 puntos en la PSU, que promedio de notas en la universidad es probable que obtenga? (Atención: predicción no implica explicación)
 
 --
 
-3. Inferir: ¿Se puede generalizar a la población? ¿Con qué nivel de confianza?
+3. *Inferir*: ¿Se puede generalizar a la población? ¿Con qué nivel de confianza?
 
 
 ---
@@ -422,6 +422,7 @@ $$b_{0}=4-(3 * 0.5)=2.5$$
 Completando la ecuación:
 
 $$\widehat{Y}=2.5+0.5X$$
+Por cada unidad que aumenta la experiencia en juego (x), los puntos obtenidos(y) aumentan en 0.5. 
 
 ---
 # Cálculo basado en el ejemplo
