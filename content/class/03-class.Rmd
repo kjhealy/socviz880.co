@@ -7,7 +7,7 @@ citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
 output:
-  blogdown::html_page
+  blogdown::html_page:
     template: ../../pandoc/toc-title_html.template
     toc: true
 menu:
