@@ -13,6 +13,328 @@
     </image>
     
     <item>
+      <title>Práctica 3. Regresión simple 1</title>
+      <link>/assignment/03-code/</link>
+      <pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate>
+      <guid>/assignment/03-code/</guid>
+      <description>
+&lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;style type=&#34;text/css&#34;&gt;
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+&lt;/style&gt;
+&lt;!-- /BLOGDOWN-HEAD --&gt;
+
+&lt;h2&gt;Índice&lt;/h2&gt;
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#objetivo-de-la-práctica&#34;&gt;Objetivo de la práctica&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#sobre-hoja-de-código&#34;&gt;Sobre hoja de código&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#librerías&#34;&gt;Librerías&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#datos&#34;&gt;Datos&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#verificación-y-descriptivos&#34;&gt;Verificación y descriptivos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#experiencia-en-juegos-y-puntuación&#34;&gt;Experiencia en juegos y puntuación&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#medias-condicionales&#34;&gt;Medias condicionales&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#residuos&#34;&gt;Residuos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#modelo-de-regresión-y-cálculo-de-parámetros&#34;&gt;Modelo de regresión y cálculo de parámetros&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#cálculo-de-los-parámetros-del-modelo-de-regresión&#34;&gt;Cálculo de los parámetros del modelo de regresión&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#estimación-del-modelo-de-regresión-simple-en-r&#34;&gt;Estimación del modelo de regresión simple en &lt;strong&gt;R&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#reporte-de-progreso&#34;&gt;Reporte de progreso&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;objetivo-de-la-práctica&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Objetivo de la práctica&lt;/h1&gt;
+&lt;p&gt;En esta práctica se desarrollan ejercicios iniciales de regresión simple, que fueron presentados en la clase respectiva. El ejemplo a utilizar es del libro de Darlington &amp;amp; Hayes cap. 2 (The simple regression model).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;sobre-hoja-de-código&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Sobre hoja de código&lt;/h1&gt;
+&lt;p&gt;Como vimos en la práctica anterior, al momento de analizar los datos separamos el trabajo en dos hojas de código distintas: &lt;code&gt;preparacion.R&lt;/code&gt; (práctica 1) y &lt;code&gt;analisis.R&lt;/code&gt; (práctica 2). &lt;span class=&#34;sidenote&#34;&gt;Recordar nombres de archivos y directorios sin tildes, espacios ni ñ&lt;/span&gt;En este caso, los datos son simples y como es un ejemplo no realizaremos código de preparación, solo el correspondiente a análisis. Antes de comenzar, sugerimos crear un archivo de código en R con el nombre analisis: &lt;code&gt;R: File-&amp;gt; New File -&amp;gt; RScript&lt;/code&gt;, o simplemente &lt;code&gt;Ctrl + Shift + N.&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;librerías&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Librerías&lt;/h1&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;pacman&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;p_load&lt;/span&gt;(stargazer, ggplot2, ggplotly, dplyr)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplotly&amp;#39; is not available (for R version 4.0.0)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in p_install(package, character.only = TRUE, ...):&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
+## logical.return = TRUE, : there is no package called &amp;#39;ggplotly&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in pacman::p_load(stargazer, ggplot2, ggplotly, dplyr): Failed to install/load:
+## ggplotly&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;datos&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Datos&lt;/h1&gt;
+&lt;p&gt;Los datos a utilizar corresponden a un ejemplo ficticio de 23 casos (individuos) y sus datos en dos variables relacionadas con un juego (originalmente de mini-golf en el texto de referencia … pero pensemos en un ejemplo más cercano, de taca-taca). Las dos variables de esta base de datos son el número de veces que se ha jugado antes (juegos_x) y el número de goles o puntos ganados (puntos_y). El archivo de datos es &lt;code&gt;tacataca.txt&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Vamos a cargar estos datos en nuestro espacio de trabajo en R dándole el nombre simple de &lt;code&gt;datos&lt;/code&gt; Dos opciones de cargar los datos en R:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;bajarlos al computador local desde &lt;a href=&#34;https://multivariada.netlify.app/slides/03-regsimple1/tacataca.txt&#34;&gt;este link&lt;/a&gt; y luego llamarlos desde el directorio respectivo donde se guardaron:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb6&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb6-1&#34; title=&#34;1&#34;&gt;datos &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;read.csv&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;( ...ruta hacia el archivo ...)&lt;/span&gt;&lt;span class=&#34;ch&#34;&gt;\t&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;acataca.txt&amp;quot;&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;sep=&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;llamarlos directamente desde su ubicación en la web:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb7&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb7-1&#34; title=&#34;1&#34;&gt;datos &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;read.csv&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;https://multivariada.netlify.app/slides/03-regsimple1/tacataca.txt&amp;quot;&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;sep=&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Como es un archivo de texto simple (txt), los cargamos con la función &lt;code&gt;read.csv&lt;/code&gt;, para datos guardados en texto simple separados por coma. Como en el caso de nuestros datos la separación es por espacios en lugar de comas, agregamos esta información con la instrucción &lt;code&gt;sep=&#34;&#34;&lt;/code&gt;
+Para abrirlos datos recordemos que en la lógica de R se debe generar un objeto donde se guardan los datos. Este objeto puede tener cualquier nombre, en este caso lo llamaremos simplemente “datos”.&lt;/p&gt;
+&lt;div class=&#34;alert alert-info&#34;&gt;
+&lt;p&gt;&lt;strong&gt;Rutas:&lt;/strong&gt; ¿Cómo identifico la ruta hacia mi archivo? Dos maneras:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Botón derecho sobre el archivo -&amp;gt; propiedades, ahí aparece la ruta completa. Copiar y pegar donde corresponde en el archivo de R, no olvidar agregar al final el nombre completo del archivo.&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;&lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Más fácil: mouse sobre archivo, boton derecho, &lt;em&gt;copiar&lt;/em&gt; (o ctrl+c); luego, en el archivo de R, en el lugar que corresponde dar la ruta &lt;em&gt;pegar&lt;/em&gt; (o ctrl+v)&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;verificación-y-descriptivos&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Verificación y descriptivos&lt;/h2&gt;
+&lt;p&gt;Verificamos si los datos fueron correctamente cargados:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb8&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;View&lt;/span&gt;(datos)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&#34;../../slides/03-regsimple1/tacataca.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Tenemos entonces tres columnas:}&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;id&lt;/code&gt;: número único que identifica a cada sujeto&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;juegos_x&lt;/code&gt;: número de veces que ha jugado previamente&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;puntos_y&lt;/code&gt;: numero de puntos que obtuvo en el juego actual&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Generamos una tabla de descriptivos básicos con lo aprendido en la práctica de descripción de datos:&lt;/p&gt;
+&lt;p&gt;Y para publicar, usando la librería &lt;code&gt;stargazer&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb9&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;stargazer&lt;/span&gt;(datos, &lt;span class=&#34;dt&#34;&gt;type =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;text&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## ======================================================
+## Statistic N   Mean  St. Dev. Min Pctl(25) Pctl(75) Max
+## ------------------------------------------------------
+## id        23 12.000  6.782    1    6.5      17.5   23 
+## juegos_x  23 3.000   1.758    0     2        4      6 
+## puntos_y  23 4.000   1.382    2     3        5      6 
+## ------------------------------------------------------&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;En la tabla vemos los estadísticos básicos de las variables juegos y puntos, y además aparece la variable &lt;code&gt;id&lt;/code&gt;, que es el identificador y por lo tanto no tiene sentido que salga en la tabla. Para corregir, seleccionamos las variables de interés de &lt;code&gt;datos&lt;/code&gt; con el &lt;strong&gt;operador pipa %&amp;gt;%&lt;/strong&gt; &lt;span class=&#34;sidenote&#34;&gt;operador pipa %&amp;gt;%&lt;/span&gt;. Este operador permite unir distintas funciones en una misma línea de código, y es muy utilizado por librerías de manejo de datos como &lt;code&gt;dplyr&lt;/code&gt;. Por ejemplo, ahora la instrucción es “de la base de datos &lt;code&gt;datos&lt;/code&gt;” &amp;gt;%&amp;gt; “selecciona solo las columnas juegos y puntos”:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb11&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb11-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;stargazer&lt;/span&gt;(datos &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;select&lt;/span&gt;(juegos_x,puntos_y) , &lt;span class=&#34;dt&#34;&gt;type =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;text&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## =====================================================
+## Statistic N  Mean  St. Dev. Min Pctl(25) Pctl(75) Max
+## -----------------------------------------------------
+## juegos_x  23 3.000  1.758    0     2        4      6 
+## puntos_y  23 4.000  1.382    2     3        5      6 
+## -----------------------------------------------------&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;experiencia-en-juegos-y-puntuación&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Experiencia en juegos y puntuación&lt;/h2&gt;
+&lt;p&gt;La pregunta que nos hacemos para este ejercicio de demostración es: &lt;em&gt;¿tiene relación la experiencia previa (juegos jugados previamente) con el desempeño actual (puntos obtenidos)?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Veamos un gráfico de nube de puntos / scatter de ambas variables. Para eso, primero cargamos la librería &lt;code&gt;ggplot&lt;/code&gt;de R. Recordar que hay que instalarla primero si es que no se ha hecho previamente con &lt;code&gt;install.packages(&#34;ggplot&#34;)&lt;/code&gt;&lt;span class=&#34;sidenote&#34;&gt;ggplot&lt;/span&gt;. También agregamos ggplotly para incorporar elementos interactivos en el gráfico:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb13&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb13-1&#34; title=&#34;1&#34;&gt;g=&lt;span class=&#34;kw&#34;&gt;ggplot&lt;/span&gt;(datos, &lt;span class=&#34;kw&#34;&gt;aes&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x=&lt;/span&gt;juegos_x, &lt;span class=&#34;dt&#34;&gt;y=&lt;/span&gt;puntos_y)) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb13-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_point&lt;/span&gt;()&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Primero, sobre librerías y visualización: lo que hicimos fue crear un objeto gráfico scatterplot &lt;code&gt;g&lt;/code&gt; con la librería &lt;code&gt;ggplot&lt;/code&gt;..&lt;/p&gt;
+&lt;p&gt;En términos de correlación se observa una posible asociación positiva, que podemos corroborar con la función &lt;code&gt;cor&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb14&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb14-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;cor&lt;/span&gt;(datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;juegos_x,datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;puntos_y)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.636209&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tenemos una &lt;strong&gt;correlación positiva&lt;/strong&gt; (dirección de la relación) y de un &lt;strong&gt;tamaño de efecto grande&lt;/strong&gt; (magnitud de la relación), para ciencias sociales. Es decir, existe una asociación positiva entre ambas variables: a medida que aumenta la experiencia en juegos, aumentan también los puntos obtenidos en el partido de taca taca. Ahora bien, ¿cómo se relaciona &lt;strong&gt;más específcamente&lt;/strong&gt; la experiencia en juegos con los puntos obtenidos posteriormente?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;medias-condicionales&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Medias condicionales&lt;/h2&gt;
+&lt;p&gt;Antes de avanzar desde la correlación al método de regresión es importante conocer el concepto de &lt;strong&gt;media condicional&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Como sabemos el promedio de Y (puntos) es 4. Es decir, si conocemos a algún individuo que pertence al grupo de “datos”, sabemos que su puntaje se encuentra probablemente cercano a 4. ¿Podemos mejorar nuestra estimación utilizando el puntaje de X? Como lo conocemos, si el sujeto nos dice que ha jugado antes 6 veces, dada la información que conocemos probablemente vamos a estimar un puntaje superior de puntos, tal vez más cercano a 6.&lt;/p&gt;
+&lt;p&gt;Lo que estamos haciendo es utilizar la información que conocemos de X para dar una estimación de Y, que sea más precisa que el promedio bruto.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../slides/03-regsimple1/condmeans.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Mirando el gráfico de nube de puntos, sabemos que tres personas han jugado antes una vez, pero una de ellas tuvo 2 puntos, otra 3 y otra 4. Con estos datos podemos calcular la media de Y para X=1, que sería igual a 3. En otras palabras, &lt;em&gt;la media condicional de Y cuando X=3 es 1&lt;/em&gt;. Con esto, uno podría calcular la media condicional para cada punto de X y hacer una estimación más precisa de Y. Sin embargo, este proceso todavía &lt;em&gt;no nos permite generalizar más eficientemte&lt;/em&gt; la relación entre X e Y.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;¿Cuántos puntos (Y) se obtienen según la experiencia previa de juego (X)?&lt;/em&gt; Esta pregunta nos conduce al cálculo de una &lt;strong&gt;recta&lt;/strong&gt; que atraviese los puntos y que generalice la relación entre X e Y:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb16&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb16-1&#34; title=&#34;1&#34;&gt;g2=&lt;span class=&#34;kw&#34;&gt;ggplot&lt;/span&gt;(datos, &lt;span class=&#34;kw&#34;&gt;aes&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x=&lt;/span&gt;juegos_x, &lt;span class=&#34;dt&#34;&gt;y=&lt;/span&gt;puntos_y)) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb16-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_point&lt;/span&gt;() &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb16-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_smooth&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;method=&lt;/span&gt;lm, &lt;span class=&#34;dt&#34;&gt;se=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb16-4&#34; title=&#34;4&#34;&gt;g2&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&#34;/assignment/03-code_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;residuos&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Residuos&lt;/h2&gt;
+&lt;p&gt;En el gráfico anterior vemos que la línea resume la relación entre X e Y, pero claramente es una simplificación que &lt;strong&gt;no abarca toda la variabilidad de los datos&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Por ejemplo, para el sujeto cuya experiencia es haber jugado 1 vez y luego gana 3 puntos, esta línea predice exáctamente su puntaje basada en su experiencia. Sin embargo, el sujeto que ha jugado 3 veces y saca 6 puntos se encuentra más lejos de la línea y por lo tanto esta línea o “modelo predictivo” no representa tan bien su puntaje. A esto se refieren los &lt;em&gt;residuos&lt;/em&gt;, que es la diferencia entre el valor predicho (o &lt;span class=&#34;math inline&#34;&gt;\(\widehat{Y}\)&lt;/span&gt;) y el observado &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt;, siendo los valores predichos de Y los que pasan por la recta a la altura de cada valor de X. Por lo tanto, la mejor recta será aquella que minimice al máximo los residuos.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/slides/03-regsimple1/fig2-4woo.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;El sentido de la recta que resume de mejor manera la relación entre dos variables es que &lt;strong&gt;minimice la suma de todos los residuos&lt;/strong&gt;. ¿Cómo realizar este procedimiento?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Para realizar la suma de los residuos estos se elevan al cuadrado, lo que se denomina &lt;strong&gt;Suma de residuos al cuadrado&lt;/strong&gt; o &lt;span class=&#34;math inline&#34;&gt;\(SS_{residual}\)&lt;/span&gt;. Se eleva al cuadrado ya que como hay residuos positivos y negativos, unos cancelarían a otros y la suma seía 0, tal como sucede en la formula de la varianza.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;De la infinita cantidad de rectas que se pueden trazar, siempre hay una que tiene un valor menor de &lt;span class=&#34;math inline&#34;&gt;\(SS_{residual}\)&lt;/span&gt;. Este procedimiento es el que da nombre al proceso de estimación: mínimos (residuos) cuadrados ordinarios, o &lt;em&gt;OLS&lt;/em&gt; (Ordinary Least Squares).&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;modelo-de-regresión-y-cálculo-de-parámetros&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Modelo de regresión y cálculo de parámetros&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;El nombre regresión hace alusión a investigaciones sobre estaturas de padres e hij_s en el S.XIX. La estatura de hij_s de padres muy altos es en promedio menor, y si sus padres son baj_s, es mayor (en comparación con sus padres). Este fenómeno se conoce como “regresión hacia el promedio” &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;El modelo de regresión se representa con una ecuación de la recta, o recta de regresión. Esta recta representa los valores predichos para Y según los distintos valores de X:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\widehat{Y}=b_{0} +b_{1}X \]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Donde&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\widehat{Y}\)&lt;/span&gt; es el valor estimado/predicho de &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(b_{0}\)&lt;/span&gt; es el &lt;strong&gt;intercepto&lt;/strong&gt; de la recta (el valor de Y cuando X es 0)&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(b_{1}\)&lt;/span&gt; es el &lt;strong&gt;coeficiente de regresión&lt;/strong&gt;, que nos dice cuánto aumenta Y por cada punto que aumenta X (pendiente)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;cálculo-de-los-parámetros-del-modelo-de-regresión&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Cálculo de los parámetros del modelo de regresión&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(b_{1}\)&lt;/span&gt;, o comunmente llamado “beta de regresión” se obtiene de la siguiente manera:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[b_{1}=\frac{Cov(XY)}{VarX}\]&lt;/span&gt;
+En términos más suntantivos se puede entender como qué parte de la covariación que hay entre X e Y se relaciona con (la varianza de) X. Especificando la fórmula:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[b_{1}=\frac{\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {n-1}}{\frac{\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})} {n-1}}\]&lt;/span&gt;
+Y simplificando&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Como sabemos, la base para todos estos cálculos es el valor de cada variable menos su promedio. Vamos a crear un vector en nuestra base de datos difx=&lt;span class=&#34;math inline&#34;&gt;\(x-\bar{x}\)&lt;/span&gt; y dify=&lt;span class=&#34;math inline&#34;&gt;\(y-\bar{y}\)&lt;/span&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb17&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-1&#34; title=&#34;1&#34;&gt;datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;difx=datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;juegos_x&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;mean&lt;/span&gt;(datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;juegos_x)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb17-2&#34; title=&#34;2&#34;&gt;datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;dify=datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;puntos_y&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;mean&lt;/span&gt;(datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;puntos_y)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Y ahora con esto podemos obtener la diferencia de productos cruzados dif_cru=&lt;span class=&#34;math inline&#34;&gt;\((x-\bar{x})*(y-\bar{y})\)&lt;/span&gt;, así como la diferencia de X de su promedio al cuadrado SSx=&lt;span class=&#34;math inline&#34;&gt;\((x-\bar{x})^2\)&lt;/span&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb18&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb18-1&#34; title=&#34;1&#34;&gt;datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;difcru=datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;difx&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;dify&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb18-2&#34; title=&#34;2&#34;&gt;datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;difx2=datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;difx&lt;span class=&#34;op&#34;&gt;^&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb18-3&#34; title=&#34;3&#34;&gt;datos&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;##    id juegos_x puntos_y difx dify difcru difx2
+## 1   1        0        2   -3   -2      6     9
+## 2   2        0        3   -3   -1      3     9
+## 3   3        1        2   -2   -2      4     4
+## 4   4        1        3   -2   -1      2     4
+## 5   5        1        4   -2    0      0     4
+## 6   6        2        2   -1   -2      2     1
+## 7   7        2        3   -1   -1      1     1
+## 8   8        2        4   -1    0      0     1
+## 9   9        2        5   -1    1     -1     1
+## 10 10        3        2    0   -2      0     0
+## 11 11        3        3    0   -1      0     0
+## 12 12        3        4    0    0      0     0
+## 13 13        3        5    0    1      0     0
+## 14 14        3        6    0    2      0     0
+## 15 15        4        3    1   -1     -1     1
+## 16 16        4        4    1    0      0     1
+## 17 17        4        5    1    1      1     1
+## 18 18        4        6    1    2      2     1
+## 19 19        5        4    2    0      0     4
+## 20 20        5        5    2    1      2     4
+## 21 21        5        6    2    2      4     4
+## 22 22        6        5    3    1      3     9
+## 23 23        6        6    3    2      6     9&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Y con esto podemos obtener la suma de productos cruzados y la suma de cuadrados de X&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb20&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb20-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;sum&lt;/span&gt;(datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;difcru)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 34&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb22&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb22-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;sum&lt;/span&gt;(datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;difx2)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 68&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Reemplazando en la fórmula&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})}=\frac{34}{68}=0.5\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Y con esto podemos obtener el valor de &lt;span class=&#34;math inline&#34;&gt;\(b_{0}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[b_{0}=\bar{Y}-b_{1}\bar{X}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[b_{0}=4-(3 * 0.5)=2.5\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Completando la ecuación:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\bar{Y}=2.5+0.5X\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Esto nos permite estimar el valor de &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; (o su media condicional) basado en el puntaje &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;.
+Por ejemplo, cuál es el valor estimado de &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; dado &lt;span class=&#34;math inline&#34;&gt;\(X=5\)&lt;/span&gt;?&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;estimación-del-modelo-de-regresión-simple-en-r&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Estimación del modelo de regresión simple en &lt;strong&gt;R&lt;/strong&gt;&lt;/h1&gt;
+&lt;p&gt;La función para estimar regresión en &lt;code&gt;R&lt;/code&gt; es &lt;code&gt;lm&lt;/code&gt; (linear model). Su forma general es:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;objeto=lm(dependiente ~ independiente, data=datos)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Donde&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;objeto: el nombre (cualquiera) que le damos al objeto donde se guardan los resultados de la estimación&lt;/li&gt;
+&lt;li&gt;dependiente / independiente: los nombres de las variables en los datos&lt;/li&gt;
+&lt;li&gt;data = el nombre del objeto de nuestros datos en R&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ejemplo con los datos de taca taca:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb25&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-1&#34; title=&#34;1&#34;&gt;reg1 &amp;lt;-&lt;span class=&#34;kw&#34;&gt;lm&lt;/span&gt;(puntos_y &lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;juegos_x, &lt;span class=&#34;dt&#34;&gt;data =&lt;/span&gt; datos)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Con esta operación ya estimamos nuestra primera regresión simple. Para ver la estimación de los parámetros principales (intercepto y pendiente) simplemente ejecutamos el nombre del objeto:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb26&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb26-1&#34; title=&#34;1&#34;&gt;reg1&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = puntos_y ~ juegos_x, data = datos)
+## 
+## Coefficients:
+## (Intercept)     juegos_x  
+##         2.5          0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Y obtenemos los valores que calculamos previamente.&lt;/p&gt;
+&lt;p&gt;Podemos tener un output en un formato más apropiado utilizando la librería &lt;code&gt;stargazer&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb28&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb28-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;stargazer&lt;/span&gt;(reg1, &lt;span class=&#34;dt&#34;&gt;type =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;text&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## ===============================================
+##                         Dependent variable:    
+##                     ---------------------------
+##                              puntos_y          
+## -----------------------------------------------
+## juegos_x                     0.500***          
+##                               (0.132)          
+##                                                
+## Constant                     2.500***          
+##                               (0.458)          
+##                                                
+## -----------------------------------------------
+## Observations                    23             
+## R2                             0.405           
+## Adjusted R2                    0.376           
+## Residual Std. Error       1.091 (df = 21)      
+## F Statistic           14.280*** (df = 1; 21)   
+## ===============================================
+## Note:               *p&amp;lt;0.1; **p&amp;lt;0.05; ***p&amp;lt;0.01&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Vemos que en la tabla aparecen una serie de elementos adicionales, además de &lt;span class=&#34;math inline&#34;&gt;\(b_{1}\)&lt;/span&gt; (juegos) y el intercepto o constante (“Constant”). Esto será tema de la siguiente sesión.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;reporte-de-progreso&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Reporte de progreso&lt;/h1&gt;
+&lt;p&gt;Completar el reporte de progreso correspondiente a esta práctica &lt;a href=&#34;&#34;&gt;aquí&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Práctica 1. Preparación de datos en R</title>
       <link>/assignment/01-code/</link>
       <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>

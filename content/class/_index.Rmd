@@ -46,7 +46,13 @@ El sistema de monitoreo de cumplimiento de objetivos se llevará a cabo mediante
 
 ![](/images/reporte_progreso.png)
 
-Los reportes consisten en completar una encuesta simple y breve, donde se preguntará por el cumplimiento de los objetivos de las prácticas respectivas. La idea es que los puedan completar durante la semana en que se desarrolla la guía, a más tardar el día viernes.
+Los reportes consisten en completar una encuesta simple y breve, donde se preguntará por el cumplimiento de los objetivos de las prácticas respectivas. La idea es que los puedan completar durante la semana en que se desarrolla la guía, a más tardar los días viernes.
+
+**Actualización (22/05)**
+
+1- El primer reporte (Praćtica 1) se generó en la función Test de UCursos, pero lamentablemente la forma en que se entregan los resultados no nos permitió un análisis desagregado por pregunta, que es importante para poder monitorear distintos objetivos. Por eso, desde la práctica 2 hay disponible una encuesta formato web (Forms), a la que se accede directamente la final de la página de cada práctica.
+2- Como incentivo para completar los reportes de progreso, se entregarán dos décimas adicionales a cada evaluación para quienes tengan sus reportes completados.
+
 
 ## Notas sobre trabajo con software R
 
