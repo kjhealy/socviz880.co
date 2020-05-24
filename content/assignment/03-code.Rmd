@@ -42,7 +42,7 @@ Como vimos en la práctica anterior, al momento de analizar los datos separamos 
 # Librerías
 
 ```{r}
-pacman::p_load(stargazer, ggplot2, ggplotly, dplyr)
+pacman::p_load(stargazer, ggplot2, dplyr)
 ```
 
 # Datos
@@ -130,7 +130,7 @@ Como sabemos el promedio de Y (puntos) es 4. Es decir, si conocemos a algún ind
 
 Lo que estamos haciendo es utilizar la información que conocemos de X para dar una estimación de Y, que sea más precisa que el promedio bruto.
 
-![](../slides/03-regsimple1/condmeans.png)
+![](../../slides/03-regsimple1/condmeans.png)
 
 Mirando el gráfico de nube de puntos, sabemos que tres personas han jugado antes una vez, pero una de ellas tuvo 2 puntos, otra 3 y otra 4. Con estos datos podemos calcular la media de Y para X=1, que sería igual a 3. En otras palabras, *la media condicional de Y cuando X=3 es 1*. Con esto, uno podría calcular la media condicional para cada punto de X y hacer una estimación más precisa de Y. Sin embargo, este proceso todavía *no nos permite generalizar más eficientemte* la relación entre X e Y.
 
