@@ -96,7 +96,7 @@ Y para publicar, usando la librería `stargazer`
 stargazer(datos, type = "text")
 ```
 
-En la tabla vemos los estadísticos básicos de las variables juegos y puntos, y además aparece la variable `id`, que es el identificador y por lo tanto no tiene sentido que salga en la tabla. Para corregir, seleccionamos las variables de interés de `datos` con el **operador pipa %>%** <span class="sidenote">operador pipa %>%</span>. Este operador permite unir distintas funciones en una misma línea de código, y es muy utilizado por librerías de manejo de datos como `dplyr`. Por ejemplo, ahora la instrucción es "de la base de datos `datos`" >%> "selecciona solo las columnas juegos y puntos":
+En la tabla vemos los estadísticos básicos de las variables juegos y puntos, y además aparece la variable `id`, que es el identificador y por lo tanto no tiene sentido que salga en la tabla. Para corregir, seleccionamos las variables de interés de `datos` con el **operador pipa %>%** <span class="sidenote">operador pipa %>%</span>. Este operador permite unir distintas funciones en una misma línea de código, y es muy utilizado por librerías de manejo de datos como `dplyr`. Por ejemplo, ahora la instrucción es "de la base de datos `datos`" %>% "selecciona solo las columnas juegos y puntos":
 
 ```{r}
 stargazer(datos %>% select(juegos_x,puntos_y) , type = "text")
@@ -107,11 +107,13 @@ stargazer(datos %>% select(juegos_x,puntos_y) , type = "text")
 
 La pregunta que nos hacemos para este ejercicio de demostración es: *¿tiene relación la experiencia previa (juegos jugados previamente) con el desempeño actual (puntos obtenidos)?*
 
-Veamos un gráfico de nube de puntos / scatter de ambas variables. Para eso, primero cargamos la librería `ggplot`de R. Recordar que hay que instalarla primero si es que no se ha hecho previamente con `install.packages("ggplot")`<span class="sidenote">ggplot</span>. También agregamos ggplotly para incorporar elementos interactivos en el gráfico:
+Veamos un gráfico de nube de puntos / scatter de ambas variables. Para eso, primero cargamos la librería `ggplot`de R. Recordar que hay que instalarla primero si es que no se ha hecho previamente con `install.packages("ggplot")`<span class="sidenote">ggplot</span>.
+
 
 ```{r}
 g=ggplot(datos, aes(x=juegos_x, y=puntos_y)) +
   geom_point()
+g
 ```
 Primero, sobre librerías y visualización: lo que hicimos fue crear un objeto gráfico scatterplot `g` con la librería `ggplot`..
 

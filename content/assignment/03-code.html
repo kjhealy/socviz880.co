@@ -168,7 +168,7 @@ Para abrirlos datos recordemos que en la lógica de R se debe generar un objeto 
 ## juegos_x  23 3.000   1.758    0     2        4      6 
 ## puntos_y  23 4.000   1.382    2     3        5      6 
 ## ------------------------------------------------------</code></pre>
-<p>En la tabla vemos los estadísticos básicos de las variables juegos y puntos, y además aparece la variable <code>id</code>, que es el identificador y por lo tanto no tiene sentido que salga en la tabla. Para corregir, seleccionamos las variables de interés de <code>datos</code> con el <strong>operador pipa %&gt;%</strong> <span class="sidenote">operador pipa %&gt;%</span>. Este operador permite unir distintas funciones en una misma línea de código, y es muy utilizado por librerías de manejo de datos como <code>dplyr</code>. Por ejemplo, ahora la instrucción es “de la base de datos <code>datos</code>” &gt;%&gt; “selecciona solo las columnas juegos y puntos”:</p>
+<p>En la tabla vemos los estadísticos básicos de las variables juegos y puntos, y además aparece la variable <code>id</code>, que es el identificador y por lo tanto no tiene sentido que salga en la tabla. Para corregir, seleccionamos las variables de interés de <code>datos</code> con el <strong>operador pipa %&gt;%</strong> <span class="sidenote">operador pipa %&gt;%</span>. Este operador permite unir distintas funciones en una misma línea de código, y es muy utilizado por librerías de manejo de datos como <code>dplyr</code>. Por ejemplo, ahora la instrucción es “de la base de datos <code>datos</code>” %&gt;% “selecciona solo las columnas juegos y puntos”:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">stargazer</span>(datos <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(juegos_x,puntos_y) , <span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ## =====================================================
@@ -181,10 +181,12 @@ Para abrirlos datos recordemos que en la lógica de R se debe generar un objeto 
 <div id="experiencia-en-juegos-y-puntuación" class="section level2">
 <h2>Experiencia en juegos y puntuación</h2>
 <p>La pregunta que nos hacemos para este ejercicio de demostración es: <em>¿tiene relación la experiencia previa (juegos jugados previamente) con el desempeño actual (puntos obtenidos)?</em></p>
-<p>Veamos un gráfico de nube de puntos / scatter de ambas variables. Para eso, primero cargamos la librería <code>ggplot</code>de R. Recordar que hay que instalarla primero si es que no se ha hecho previamente con <code>install.packages("ggplot")</code><span class="sidenote">ggplot</span>. También agregamos ggplotly para incorporar elementos interactivos en el gráfico:</p>
+<p>Veamos un gráfico de nube de puntos / scatter de ambas variables. Para eso, primero cargamos la librería <code>ggplot</code>de R. Recordar que hay que instalarla primero si es que no se ha hecho previamente con <code>install.packages("ggplot")</code><span class="sidenote">ggplot</span>.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">g=<span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(<span class="dt">x=</span>juegos_x, <span class="dt">y=</span>puntos_y)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p>Primero, sobre librerías y visualización: lo que hicimos fue crear un objeto gráfico scatterplot <code>g</code> con la librería <code>ggplot</code>..</p>
+<a class="sourceLine" id="cb9-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>()</a>
+<a class="sourceLine" id="cb9-3" title="3">g</a></code></pre></div>
+<p><img src="/assignment/03-code_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+Primero, sobre librerías y visualización: lo que hicimos fue crear un objeto gráfico scatterplot <code>g</code> con la librería <code>ggplot</code>..</p>
 <p>En términos de correlación se observa una posible asociación positiva, que podemos corroborar con la función <code>cor</code>:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">cor</span>(datos<span class="op">$</span>juegos_x,datos<span class="op">$</span>puntos_y)</a></code></pre></div>
 <pre><code>## [1] 0.636209</code></pre>
