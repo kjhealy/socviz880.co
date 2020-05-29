@@ -1,0 +1,287 @@
+---
+title: "Práctica 4. Regresión simple 2"
+subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
+author: "Juan Carlos Castillo"
+linktitle: "Práctica 4: Regresión simple 2"
+date: "2020-05-22"
+class_date: "2020-05-22"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+    highlight: tango
+    number_sections: FALSE
+menu:
+  class:
+    parent: Practicas
+    weight: 1
+type: docs
+weight: 1
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE, warnings=FALSE, message=FALSE)
+knitr::opts_knit$set(root.dir ="../../")
+
+Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
+```
+
+# Objetivo de la práctica
+
+Basados en el cálculo de parámetros del modelo de regresión en la práctica anterior (intercepto y coeficiente de regresión o pendiente), en esta práctica nos abocamos a temas de ajuste, residuos y relación entre correlación y regresión. La práctica está basada en el ejemplo de Darlington & Hayes cap. 2 (The simple regression model), que utilizamos en clases.
+
+# Librerías
+
+```{r}
+pacman::p_load(stargazer, ggplot2, dplyr)
+```
+
+# Datos
+
+Los datos a utilizar son los mismos que los de la práctica 3, corresponden a un ejemplo ficticio de 23 casos (individuos) y sus datos en dos variables relacionadas con un juego:  el número de veces que se ha jugado antes (X) y el número de puntos ganados (Y).
+
+```{r}
+datos <- read.csv("https://multivariada.netlify.app/slides/03-regsimple1/tacataca.txt", sep="")
+datos
+```
+
+Recordando la distribución de los datos y la recta de regresión:
+
+```{r}
+g2=ggplot(datos, aes(x=juegos_x, y=puntos_y)) +
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE)
+g2
+```
+
+## Residuos
+
+En el gráfico anterior vemos que la línea resume la relación entre X e Y que se denomina **recta de regresión**, caracterizada por un intercepto y una pendiente.
+
+Claramente, esta recta es una simplificación que no abarca toda la variabilidad de los datos. Por ejemplo, para el sujeto cuya experiencia es haber jugado 1 vez y luego gana 3 puntos, esta línea predice exactamente su puntaje basada en su experiencia. Sin embargo, el sujeto que ha jugado 3 veces y saca 6 puntos se encuentra más lejos de la línea y por lo tanto esta línea o "modelo predictivo" no representa tan bien su puntaje.
+
+Lo anterior tiene que ver con el concepto de **residuos**, que es la diferencia entre el valor predicho (o $\widehat{Y}$) y el observado $Y$. Por lo tanto, la mejor recta será aquella que minimice al máximo los residuos.
+
+El sentido de la recta que resume de mejor manera la relación entre dos variables es que minimice la suma de todos los residuos. Para realizar la suma de los residuos estos se elevan al cuadrado, lo que se denomina suma de residuos al cuadrado o $SS_{residual}$ ya que como hay residuos positivos y negativos unos se cancelan a otros y la suma es 0. De la infinita cantidad de rectas que se pueden trazar, siempre hay una que tiene un valor menor de $SS_{residual}$. Este procedimiento es el que da nombre al proceso de estimación: residuos cuadrados ordinarios, o *OLS* (Ordinary Least Squares).
+
+## Modelo y cálculo de parámetros
+
+Como vimos la práctica anterior, el modelo de regresión entonces se relaciona con una ecuación de la recta, o recta de regresión, que se puede definir en términos simples de la siguiente manera:
+
+$$\widehat{Y}=b_{0} +b_{1}X $$
+
+
+```{r}
+reg1 <-lm(puntos_y ~juegos_x, data = datos)
+reg1
+```
+
+Podemos generar una tabla en un formato publicable:
+
+```{r}
+stargazer(reg1, type="text")
+```
+
+Y con más elementos de formato:
+
+
+
+```{r results="asis"}
+stargazer(reg1, type="html")
+```
+
+# Bondad de Ajuste: Residuos y $R^{2}$
+
+A partir del método de Mínimos Cuadrados Ordinarios obtenemos una recta que describe un conjunto de datos minimizando las diferencias entre el modelo y la distribución de los datos mismos.
+
+No obstante, incluso cuando se ajusta el mejor modelo puede existir cierta imprecisión, la cual es representada por las diferencias entre los datos observados y los valores predichos por la recta de regresión.
+
+La imprecisión implica evaluar la **Bondad de Ajuste** y se evalua a partir del estadístico $R^2$.
+
+
+En el siguiente apartado se puede observar la manera de cálcular la predicción de Y (puntos_y) en base a X (juegos_x), y almacenarlos en la base de datos, con los respectivos residuos.
+
+```{r}
+
+#summary(lm(puntos_y~juegos_x, data=datos))
+#beta=0.5 intercepto=2.5
+
+#Variable de valores predichos
+datos$estimado<- (2.5 + datos$juegos_x*0.5)
+
+# Alternativa por comando
+#datos$estimado <- predict(reg1)
+
+#Estimamos el residuo
+datos$residuo <- datos$puntos_y - datos$estimado
+
+# Alternativa por comando
+#datos$residuo <- residuals(reg1)
+
+datos %>% select(id, estimado, residuo) %>% head()
+
+```
+
+## Suma de cuadrados y $R^{2}$
+
+Usando la media como modelo podemos calcular las diferencias entre los valores observados y los valores predichos por la media.
+
+  +  **Suma Total de Cuadrados**: La suma de las diferencias al cuadrado
+
+$$SS_{tot} = \sum(y-\bar{y})^2 $$
+Y calculamos
+
+```{r}
+ss_tot<- sum((datos$puntos_y-mean(datos$puntos_y))^2); ss_tot
+```
+
+
+Luego, usando la predicción del modelo OLS podemos llegar a tener una mejor predicción pues se minimiza esta diferencia:
+
+  + **Suma de residuos al cuadrado**: suma de las diferencias entre los datos observados y los datos predichos al cuadrado
+
+$$SS_{error} = \sum(y-\hat{y})^2$$
+Este valor representa el grado de imprecisión cuando la mejor recta se ajusta a los datos.
+
+```{r}
+
+ss_err<- sum((datos$puntos_y - datos$estimado)^2);ss_err
+
+```
+
+Por último, cuánto mejor ajusta esta "minimización" de diferencias en modelo OLS es cuando el cálculo se hace sobre la media.
+  + **Suma explicada de cuadrados**: diferencia al cuadrado entre el valor estimado y la media
+
+$$SS_{reg} = \sum(\hat{y}-\bar{y})^2$$
+```{r}
+
+ss_reg<-sum((datos$estimado-mean(datos$puntos_y))^2) ; ss_reg
+
+```
+
+A partir de la suma de cuadrados es posible calcular el estadístico $R^{2}$
+
+$$R^2=\frac{SS_{reg}}{SS_{tot}}= 1- \frac{SS_{error}}{SS_{tot}}$$
+```{r}
+#Opción 1
+ss_reg/ss_tot
+#Opción 2
+1-ss_err/ss_tot
+#por comando
+summary(lm(puntos_y~juegos_x, data=datos))$r.squared
+
+```
+
+
+
+## Visualización
+
+En la siguiente sección se presentan distintas formas de visualizar los residuos a partir del paquete **ggplot2**.
+
+```{r}
+#Visualizacion
+library(ggplot2)
+
+ggplot(datos, aes(x=juegos_x, y=puntos_y))+
+  geom_smooth(method="lm", se=FALSE, color="lightgrey") +#Pendiente de regresion
+  geom_segment(aes(xend=juegos_x, yend=estimado), alpha = .2) + #Distancia entre estimados y datos en lineas
+  geom_point() + #Capa 1
+  geom_point(aes(y=estimado), shape =1) +
+  theme_bw()
+
+
+
+#Opción donde se juega con el tamaño de los puntos y los colores para resalta el tamaño de los residuos.
+
+ggplot(datos, aes(x=juegos_x, y=puntos_y))+
+  geom_smooth(method="lm", se=FALSE, color="lightgrey") +#Pendiente de regresion
+  geom_segment(aes(xend=juegos_x, yend=estimado), alpha = .2) + #Distancia entre estimados y datos en lineas
+  geom_point(aes(color = abs(residuo), size = abs(residuo))) +
+  scale_color_continuous(low = "black", high = "red") +
+  guides(color = FALSE, size = FALSE) +
+   geom_point(aes(y=estimado), shape =1) +
+  theme_bw()
+
+
+
+```
+
+
+# El coeficiente de Regresión versus el coeficiente de correlación
+
+tanto $r_{xy}$ y $\beta_1$ son medidas de la relación entre X e Y. Ellas estan relacionadas con la formula de:
+
+$$\beta_1= r_{xy}(S_y/S_x)$$
+
+Es decir:
+```{r}
+beta<-cor(datos$juegos_x,datos$puntos_y)*(sd(datos$puntos_y)/sd(datos$juegos_x));beta
+
+reg1$coefficients[2] #llamamos al coeficiente beta (en posición 2) en el objeto reg1
+
+```
+
+Del mismo modo existe una relación entre $r_{xy}$ y $R^2$
+
+```{r}
+
+#Correlación (Pearson) entre juegos_x y puntos_y (r)
+cor(datos$juegos_x,datos$puntos_y)
+#Correlación entre juegos_x y puntos_y al cuadrado.
+(cor(datos$juegos_x,datos$puntos_y)
+)^2
+
+
+```
+
+Las diferencias entre la Regressión y la Correlación se puede expresar en términos de formulas. Por un lado se puede entender que $r_{xy}$ es una forma estandarizada de $\beta$, como se puede apreciar en el siguente apartado.
+
+```{r}
+
+#Para ahorrarnos el tipeo de datos, lo adjuntamos al espacio de trabajo
+
+attach(datos)
+
+
+Xpuntos_Z <- (puntos_y-(mean(puntos_y)))/sd(puntos_y)
+Yjuegos_Z<- (juegos_x-(mean(juegos_x)))/sd(juegos_x)
+
+lm(Xpuntos_Z~Yjuegos_Z)$coefficients
+
+
+```
+
+En términos de las propiedades, el *r de Pearson no es influenciado* por la escala de medición mientras que en el *beta si* hay modificaciones:
+
+Con los datos que hemos trabajado podemos corroborar lo anterior. A continuación se muestra como los puntos al dividirlos por 100, en la correlación se mantiene la relación; pero esto no ocurre así con la regresión.
+
+```{r}
+
+cor(juegos_x,puntos_y/100)
+X_reescalado <- juegos_x/100
+lm(puntos_y~X_reescalado)$coefficients
+
+```
+
+
+
+La correlación entre X e Y es la misma que entre Y e X,
+```{r}
+cor(juegos_x,puntos_y)
+cor(puntos_y,juegos_x)
+
+```
+
+
+La regresión etre X e Y **no** es la misma que entre Y e X
+
+```{r}
+lm(puntos_y~juegos_x)$coefficients
+lm(juegos_x~puntos_y)$coefficients
+
+```

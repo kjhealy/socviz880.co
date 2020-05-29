@@ -13,6 +13,46 @@
     </image>
     
     <item>
+      <title>Regresión simple 2</title>
+      <link>/class/04-class/</link>
+      <pubDate>Fri, 29 May 2020 00:00:00 +0000</pubDate>
+      <guid>/class/04-class/</guid>
+      <description>
+&lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;!-- /BLOGDOWN-HEAD --&gt;
+
+&lt;h2&gt;Índice&lt;/h2&gt;
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#documento-presentación&#34;&gt;Documento presentación&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#video-de-clase&#34;&gt;Video de clase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#lecturas&#34;&gt;Lecturas&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Documento presentación&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/04-regsimple2/04_regsimple2.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
+&lt;iframe src=&#34;/slides/04-regsimple2/04_regsimple2.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;div id=&#34;video-de-clase&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Video de clase&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt; Próximamente aquí &lt;/span&gt;&lt;/p&gt;
+&lt;div style=&#34;width: 100%; height: 600px; overflow: hidden;&#34;&gt;
+&lt;video  style=&#34;width: 100%;&#34; controls&gt;
+&lt;source src=&#34; &#34; type=&#34;video/mp4&#34;&gt;
+&lt;/video&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;lecturas&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Lecturas&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;/docs/lecturas/moore_residuos.pdf&#34;&gt;Moore: Residuos (144-154)&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Práctica 3. Regresión simple 1</title>
       <link>/assignment/03-code/</link>
       <pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate>
@@ -335,6 +375,455 @@ Por ejemplo, cuál es el valor estimado de &lt;span class=&#34;math inline&#34;&
     </item>
     
     <item>
+      <title>Práctica 4. Regresión simple 2</title>
+      <link>/assignment/04-code/</link>
+      <pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate>
+      <guid>/assignment/04-code/</guid>
+      <description>
+&lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;style type=&#34;text/css&#34;&gt;
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+&lt;/style&gt;
+&lt;!-- /BLOGDOWN-HEAD --&gt;
+
+&lt;h2&gt;Índice&lt;/h2&gt;
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#objetivo-de-la-práctica&#34;&gt;Objetivo de la práctica&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#librerías&#34;&gt;Librerías&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#datos&#34;&gt;Datos&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#residuos&#34;&gt;Residuos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#modelo-y-cálculo-de-parámetros&#34;&gt;Modelo y cálculo de parámetros&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#bondad-de-ajuste-residuos-y-r2&#34;&gt;Bondad de Ajuste: Residuos y &lt;span class=&#34;math inline&#34;&gt;\(R^{2}\)&lt;/span&gt;&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#suma-de-cuadrados-y-r2&#34;&gt;Suma de cuadrados y &lt;span class=&#34;math inline&#34;&gt;\(R^{2}\)&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#visualización&#34;&gt;Visualización&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#el-coeficiente-de-regresión-versus-el-coeficiente-de-correlación&#34;&gt;El coeficiente de Regresión versus el coeficiente de correlación&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;objetivo-de-la-práctica&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Objetivo de la práctica&lt;/h1&gt;
+&lt;p&gt;Basados en el cálculo de parámetros del modelo de regresión en la práctica anterior (intercepto y coeficiente de regresión o pendiente), en esta práctica nos abocamos a temas de ajuste, residuos y relación entre correlación y regresión. La práctica está basada en el ejemplo de Darlington &amp;amp; Hayes cap. 2 (The simple regression model), que utilizamos en clases.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;librerías&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Librerías&lt;/h1&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;pacman&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;p_load&lt;/span&gt;(stargazer, ggplot2, dplyr)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;datos&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Datos&lt;/h1&gt;
+&lt;p&gt;Los datos a utilizar son los mismos que los de la práctica 3, corresponden a un ejemplo ficticio de 23 casos (individuos) y sus datos en dos variables relacionadas con un juego: el número de veces que se ha jugado antes (X) y el número de puntos ganados (Y).&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb2&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb2-1&#34; title=&#34;1&#34;&gt;datos &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;read.csv&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;https://multivariada.netlify.app/slides/03-regsimple1/tacataca.txt&amp;quot;&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;sep=&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt;)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb2-2&#34; title=&#34;2&#34;&gt;datos&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;##    id juegos_x puntos_y
+## 1   1        0        2
+## 2   2        0        3
+## 3   3        1        2
+## 4   4        1        3
+## 5   5        1        4
+## 6   6        2        2
+## 7   7        2        3
+## 8   8        2        4
+## 9   9        2        5
+## 10 10        3        2
+## 11 11        3        3
+## 12 12        3        4
+## 13 13        3        5
+## 14 14        3        6
+## 15 15        4        3
+## 16 16        4        4
+## 17 17        4        5
+## 18 18        4        6
+## 19 19        5        4
+## 20 20        5        5
+## 21 21        5        6
+## 22 22        6        5
+## 23 23        6        6&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Recordando la distribución de los datos y la recta de regresión:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb4&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb4-1&#34; title=&#34;1&#34;&gt;g2=&lt;span class=&#34;kw&#34;&gt;ggplot&lt;/span&gt;(datos, &lt;span class=&#34;kw&#34;&gt;aes&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x=&lt;/span&gt;juegos_x, &lt;span class=&#34;dt&#34;&gt;y=&lt;/span&gt;puntos_y)) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb4-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_point&lt;/span&gt;() &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb4-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_smooth&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;method=&lt;/span&gt;lm, &lt;span class=&#34;dt&#34;&gt;se=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb4-4&#34; title=&#34;4&#34;&gt;g2&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&#34;/assignment/04-code_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;div id=&#34;residuos&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Residuos&lt;/h2&gt;
+&lt;p&gt;En el gráfico anterior vemos que la línea resume la relación entre X e Y que se denomina &lt;strong&gt;recta de regresión&lt;/strong&gt;, caracterizada por un intercepto y una pendiente.&lt;/p&gt;
+&lt;p&gt;Claramente, esta recta es una simplificación que no abarca toda la variabilidad de los datos. Por ejemplo, para el sujeto cuya experiencia es haber jugado 1 vez y luego gana 3 puntos, esta línea predice exactamente su puntaje basada en su experiencia. Sin embargo, el sujeto que ha jugado 3 veces y saca 6 puntos se encuentra más lejos de la línea y por lo tanto esta línea o “modelo predictivo” no representa tan bien su puntaje.&lt;/p&gt;
+&lt;p&gt;Lo anterior tiene que ver con el concepto de &lt;strong&gt;residuos&lt;/strong&gt;, que es la diferencia entre el valor predicho (o &lt;span class=&#34;math inline&#34;&gt;\(\widehat{Y}\)&lt;/span&gt;) y el observado &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt;. Por lo tanto, la mejor recta será aquella que minimice al máximo los residuos.&lt;/p&gt;
+&lt;p&gt;El sentido de la recta que resume de mejor manera la relación entre dos variables es que minimice la suma de todos los residuos. Para realizar la suma de los residuos estos se elevan al cuadrado, lo que se denomina suma de residuos al cuadrado o &lt;span class=&#34;math inline&#34;&gt;\(SS_{residual}\)&lt;/span&gt; ya que como hay residuos positivos y negativos unos se cancelan a otros y la suma es 0. De la infinita cantidad de rectas que se pueden trazar, siempre hay una que tiene un valor menor de &lt;span class=&#34;math inline&#34;&gt;\(SS_{residual}\)&lt;/span&gt;. Este procedimiento es el que da nombre al proceso de estimación: residuos cuadrados ordinarios, o &lt;em&gt;OLS&lt;/em&gt; (Ordinary Least Squares).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;modelo-y-cálculo-de-parámetros&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Modelo y cálculo de parámetros&lt;/h2&gt;
+&lt;p&gt;Como vimos la práctica anterior, el modelo de regresión entonces se relaciona con una ecuación de la recta, o recta de regresión, que se puede definir en términos simples de la siguiente manera:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\widehat{Y}=b_{0} +b_{1}X \]&lt;/span&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb5&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb5-1&#34; title=&#34;1&#34;&gt;reg1 &amp;lt;-&lt;span class=&#34;kw&#34;&gt;lm&lt;/span&gt;(puntos_y &lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;juegos_x, &lt;span class=&#34;dt&#34;&gt;data =&lt;/span&gt; datos)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb5-2&#34; title=&#34;2&#34;&gt;reg1&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = puntos_y ~ juegos_x, data = datos)
+## 
+## Coefficients:
+## (Intercept)     juegos_x  
+##         2.5          0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Podemos generar una tabla en un formato publicable:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb7&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb7-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;stargazer&lt;/span&gt;(reg1, &lt;span class=&#34;dt&#34;&gt;type=&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;text&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## ===============================================
+##                         Dependent variable:    
+##                     ---------------------------
+##                              puntos_y          
+## -----------------------------------------------
+## juegos_x                     0.500***          
+##                               (0.132)          
+##                                                
+## Constant                     2.500***          
+##                               (0.458)          
+##                                                
+## -----------------------------------------------
+## Observations                    23             
+## R2                             0.405           
+## Adjusted R2                    0.376           
+## Residual Std. Error       1.091 (df = 21)      
+## F Statistic           14.280*** (df = 1; 21)   
+## ===============================================
+## Note:               *p&amp;lt;0.1; **p&amp;lt;0.05; ***p&amp;lt;0.01&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Y con más elementos de formato:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb9&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;stargazer&lt;/span&gt;(reg1, &lt;span class=&#34;dt&#34;&gt;type=&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;html&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;table style=&#34;text-align:center&#34;&gt;
+&lt;tr&gt;
+&lt;td colspan=&#34;2&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;
+&lt;/td&gt;
+&lt;td&gt;
+&lt;em&gt;Dependent variable:&lt;/em&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;
+&lt;/td&gt;
+&lt;td colspan=&#34;1&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;
+&lt;/td&gt;
+&lt;td&gt;
+puntos_y
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td colspan=&#34;2&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;
+juegos_x
+&lt;/td&gt;
+&lt;td&gt;
+0.500&lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;
+&lt;/td&gt;
+&lt;td&gt;
+(0.132)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;
+&lt;/td&gt;
+&lt;td&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;
+Constant
+&lt;/td&gt;
+&lt;td&gt;
+2.500&lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;
+&lt;/td&gt;
+&lt;td&gt;
+(0.458)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;
+&lt;/td&gt;
+&lt;td&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td colspan=&#34;2&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;
+Observations
+&lt;/td&gt;
+&lt;td&gt;
+23
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;
+R&lt;sup&gt;2&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td&gt;
+0.405
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;
+Adjusted R&lt;sup&gt;2&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td&gt;
+0.376
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;
+Residual Std. Error
+&lt;/td&gt;
+&lt;td&gt;
+1.091 (df = 21)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;
+F Statistic
+&lt;/td&gt;
+&lt;td&gt;
+14.280&lt;sup&gt;***&lt;/sup&gt; (df = 1; 21)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td colspan=&#34;2&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;
+&lt;em&gt;Note:&lt;/em&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;
+&lt;sup&gt;&lt;em&gt;&lt;/sup&gt;p&amp;lt;0.1; &lt;sup&gt;&lt;strong&gt;&lt;/sup&gt;p&amp;lt;0.05; &lt;sup&gt;&lt;/strong&gt;&lt;/em&gt;&lt;/sup&gt;p&amp;lt;0.01
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;bondad-de-ajuste-residuos-y-r2&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Bondad de Ajuste: Residuos y &lt;span class=&#34;math inline&#34;&gt;\(R^{2}\)&lt;/span&gt;&lt;/h1&gt;
+&lt;p&gt;A partir del método de Mínimos Cuadrados Ordinarios obtenemos una recta que describe un conjunto de datos minimizando las diferencias entre el modelo y la distribución de los datos mismos.&lt;/p&gt;
+&lt;p&gt;No obstante, incluso cuando se ajusta el mejor modelo puede existir cierta imprecisión, la cual es representada por las diferencias entre los datos observados y los valores predichos por la recta de regresión.&lt;/p&gt;
+&lt;p&gt;La imprecisión implica evaluar la &lt;strong&gt;Bondad de Ajuste&lt;/strong&gt; y se evalua a partir del estadístico &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;En el siguiente apartado se puede observar la manera de cálcular la predicción de Y (puntos_y) en base a X (juegos_x), y almacenarlos en la base de datos, con los respectivos residuos.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb10&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#summary(lm(puntos_y~juegos_x, data=datos))&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;co&#34;&gt;#beta=0.5 intercepto=2.5&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-3&#34; title=&#34;3&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-4&#34; title=&#34;4&#34;&gt;&lt;span class=&#34;co&#34;&gt;#Variable de valores predichos&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-5&#34; title=&#34;5&#34;&gt;datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;estimado&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;2.5&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;juegos_x&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;fl&#34;&gt;0.5&lt;/span&gt;)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-6&#34; title=&#34;6&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-7&#34; title=&#34;7&#34;&gt;&lt;span class=&#34;co&#34;&gt;# Alternativa por comando&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-8&#34; title=&#34;8&#34;&gt;&lt;span class=&#34;co&#34;&gt;#datos$estimado &amp;lt;- predict(reg1)&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-9&#34; title=&#34;9&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-10&#34; title=&#34;10&#34;&gt;&lt;span class=&#34;co&#34;&gt;#Estimamos el residuo&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-11&#34; title=&#34;11&#34;&gt;datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;residuo &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;puntos_y &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;estimado&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-12&#34; title=&#34;12&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-13&#34; title=&#34;13&#34;&gt;&lt;span class=&#34;co&#34;&gt;# Alternativa por comando&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-14&#34; title=&#34;14&#34;&gt;&lt;span class=&#34;co&#34;&gt;#datos$residuo &amp;lt;- residuals(reg1)&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-15&#34; title=&#34;15&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-16&#34; title=&#34;16&#34;&gt;datos &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;select&lt;/span&gt;(id, estimado, residuo) &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;head&lt;/span&gt;()&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;##   id estimado residuo
+## 1  1      2.5    -0.5
+## 2  2      2.5     0.5
+## 3  3      3.0    -1.0
+## 4  4      3.0     0.0
+## 5  5      3.0     1.0
+## 6  6      3.5    -1.5&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;suma-de-cuadrados-y-r2&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Suma de cuadrados y &lt;span class=&#34;math inline&#34;&gt;\(R^{2}\)&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;Usando la media como modelo podemos calcular las diferencias entre los valores observados y los valores predichos por la media.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Suma Total de Cuadrados&lt;/strong&gt;: La suma de las diferencias al cuadrado&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[SS_{tot} = \sum(y-\bar{y})^2 \]&lt;/span&gt;
+Y calculamos&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb12&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb12-1&#34; title=&#34;1&#34;&gt;ss_tot&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;sum&lt;/span&gt;((datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;puntos_y&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;mean&lt;/span&gt;(datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;puntos_y))&lt;span class=&#34;op&#34;&gt;^&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;); ss_tot&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 42&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Luego, usando la predicción del modelo OLS podemos llegar a tener una mejor predicción pues se minimiza esta diferencia:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Suma de residuos al cuadrado&lt;/strong&gt;: suma de las diferencias entre los datos observados y los datos predichos al cuadrado&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[SS_{error} = \sum(y-\hat{y})^2\]&lt;/span&gt;
+Este valor representa el grado de imprecisión cuando la mejor recta se ajusta a los datos.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb14&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb14-1&#34; title=&#34;1&#34;&gt;ss_err&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;sum&lt;/span&gt;((datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;puntos_y &lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;estimado)&lt;span class=&#34;op&#34;&gt;^&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;);ss_err&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 25&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Por último, cuánto mejor ajusta esta “minimización” de diferencias en modelo OLS es cuando el cálculo se hace sobre la media.
++ &lt;strong&gt;Suma explicada de cuadrados&lt;/strong&gt;: diferencia al cuadrado entre el valor estimado y la media&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[SS_{reg} = \sum(\hat{y}-\bar{y})^2\]&lt;/span&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb16&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb16-1&#34; title=&#34;1&#34;&gt;ss_reg&amp;lt;-&lt;span class=&#34;kw&#34;&gt;sum&lt;/span&gt;((datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;estimado&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;mean&lt;/span&gt;(datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;puntos_y))&lt;span class=&#34;op&#34;&gt;^&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;) ; ss_reg&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 17&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;A partir de la suma de cuadrados es posible calcular el estadístico &lt;span class=&#34;math inline&#34;&gt;\(R^{2}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[R^2=\frac{SS_{reg}}{SS_{tot}}= 1- \frac{SS_{error}}{SS_{tot}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb18&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb18-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#Opción 1&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb18-2&#34; title=&#34;2&#34;&gt;ss_reg&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;ss_tot&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.4047619&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb20&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb20-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#Opción 2&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb20-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;ss_err&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;ss_tot&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.4047619&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb22&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb22-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#por comando&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb22-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;lm&lt;/span&gt;(puntos_y&lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;juegos_x, &lt;span class=&#34;dt&#34;&gt;data=&lt;/span&gt;datos))&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;r.squared&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.4047619&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;visualización&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Visualización&lt;/h2&gt;
+&lt;p&gt;En la siguiente sección se presentan distintas formas de visualizar los residuos a partir del paquete &lt;strong&gt;ggplot2&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb24&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb24-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#Visualizacion&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb24-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;library&lt;/span&gt;(ggplot2)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb24-3&#34; title=&#34;3&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb24-4&#34; title=&#34;4&#34;&gt;&lt;span class=&#34;kw&#34;&gt;ggplot&lt;/span&gt;(datos, &lt;span class=&#34;kw&#34;&gt;aes&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x=&lt;/span&gt;juegos_x, &lt;span class=&#34;dt&#34;&gt;y=&lt;/span&gt;puntos_y))&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb24-5&#34; title=&#34;5&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_smooth&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;method=&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;lm&amp;quot;&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;se=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;color=&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;lightgrey&amp;quot;&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;co&#34;&gt;#Pendiente de regresion&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb24-6&#34; title=&#34;6&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_segment&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;aes&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;xend=&lt;/span&gt;juegos_x, &lt;span class=&#34;dt&#34;&gt;yend=&lt;/span&gt;estimado), &lt;span class=&#34;dt&#34;&gt;alpha =&lt;/span&gt; &lt;span class=&#34;fl&#34;&gt;.2&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;co&#34;&gt;#Distancia entre estimados y datos en lineas&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb24-7&#34; title=&#34;7&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_point&lt;/span&gt;() &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;co&#34;&gt;#Capa 1&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb24-8&#34; title=&#34;8&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_point&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;aes&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;y=&lt;/span&gt;estimado), &lt;span class=&#34;dt&#34;&gt;shape =&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb24-9&#34; title=&#34;9&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;theme_bw&lt;/span&gt;()&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&#34;/assignment/04-code_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb25&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#Opción donde se juega con el tamaño de los puntos y los colores para resalta el tamaño de los residuos.&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-2&#34; title=&#34;2&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;kw&#34;&gt;ggplot&lt;/span&gt;(datos, &lt;span class=&#34;kw&#34;&gt;aes&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x=&lt;/span&gt;juegos_x, &lt;span class=&#34;dt&#34;&gt;y=&lt;/span&gt;puntos_y))&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-4&#34; title=&#34;4&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_smooth&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;method=&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;lm&amp;quot;&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;se=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;color=&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;lightgrey&amp;quot;&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;co&#34;&gt;#Pendiente de regresion&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-5&#34; title=&#34;5&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_segment&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;aes&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;xend=&lt;/span&gt;juegos_x, &lt;span class=&#34;dt&#34;&gt;yend=&lt;/span&gt;estimado), &lt;span class=&#34;dt&#34;&gt;alpha =&lt;/span&gt; &lt;span class=&#34;fl&#34;&gt;.2&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;co&#34;&gt;#Distancia entre estimados y datos en lineas&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-6&#34; title=&#34;6&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_point&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;aes&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;color =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;abs&lt;/span&gt;(residuo), &lt;span class=&#34;dt&#34;&gt;size =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;abs&lt;/span&gt;(residuo))) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-7&#34; title=&#34;7&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;scale_color_continuous&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;low =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;black&amp;quot;&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;high =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;red&amp;quot;&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-8&#34; title=&#34;8&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;guides&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;color =&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;size =&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-9&#34; title=&#34;9&#34;&gt;&lt;span class=&#34;st&#34;&gt;   &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_point&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;aes&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;y=&lt;/span&gt;estimado), &lt;span class=&#34;dt&#34;&gt;shape =&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb25-10&#34; title=&#34;10&#34;&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;theme_bw&lt;/span&gt;()&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&#34;/assignment/04-code_files/figure-html/unnamed-chunk-12-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;el-coeficiente-de-regresión-versus-el-coeficiente-de-correlación&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;El coeficiente de Regresión versus el coeficiente de correlación&lt;/h1&gt;
+&lt;p&gt;tanto &lt;span class=&#34;math inline&#34;&gt;\(r_{xy}\)&lt;/span&gt; y &lt;span class=&#34;math inline&#34;&gt;\(\beta_1\)&lt;/span&gt; son medidas de la relación entre X e Y. Ellas estan relacionadas con la formula de:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\beta_1= r_{xy}(S_y/S_x)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Es decir:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb26&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb26-1&#34; title=&#34;1&#34;&gt;beta&amp;lt;-&lt;span class=&#34;kw&#34;&gt;cor&lt;/span&gt;(datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;juegos_x,datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;puntos_y)&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;sd&lt;/span&gt;(datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;puntos_y)&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;sd&lt;/span&gt;(datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;juegos_x));beta&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb28&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb28-1&#34; title=&#34;1&#34;&gt;reg1&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;coefficients[&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;] &lt;span class=&#34;co&#34;&gt;#llamamos al coeficiente beta (en posición 2) en el objeto reg1&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## juegos_x 
+##      0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Del mismo modo existe una relación entre &lt;span class=&#34;math inline&#34;&gt;\(r_{xy}\)&lt;/span&gt; y &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb30&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb30-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#Correlación (Pearson) entre juegos_x y puntos_y (r)&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb30-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;cor&lt;/span&gt;(datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;juegos_x,datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;puntos_y)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.636209&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb32&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#Correlación entre juegos_x y puntos_y al cuadrado.&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-2&#34; title=&#34;2&#34;&gt;(&lt;span class=&#34;kw&#34;&gt;cor&lt;/span&gt;(datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;juegos_x,datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;puntos_y)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb32-3&#34; title=&#34;3&#34;&gt;)&lt;span class=&#34;op&#34;&gt;^&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.4047619&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Las diferencias entre la Regressión y la Correlación se puede expresar en términos de formulas. Por un lado se puede entender que &lt;span class=&#34;math inline&#34;&gt;\(r_{xy}\)&lt;/span&gt; es una forma estandarizada de &lt;span class=&#34;math inline&#34;&gt;\(\beta\)&lt;/span&gt;, como se puede apreciar en el siguente apartado.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb34&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#Para ahorrarnos el tipeo de datos, lo adjuntamos al espacio de trabajo&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-2&#34; title=&#34;2&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;kw&#34;&gt;attach&lt;/span&gt;(datos)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-4&#34; title=&#34;4&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-5&#34; title=&#34;5&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-6&#34; title=&#34;6&#34;&gt;Xpuntos_Z &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;(puntos_y&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;mean&lt;/span&gt;(puntos_y)))&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;sd&lt;/span&gt;(puntos_y)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-7&#34; title=&#34;7&#34;&gt;Yjuegos_Z&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;(juegos_x&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;mean&lt;/span&gt;(juegos_x)))&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;sd&lt;/span&gt;(juegos_x)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-8&#34; title=&#34;8&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb34-9&#34; title=&#34;9&#34;&gt;&lt;span class=&#34;kw&#34;&gt;lm&lt;/span&gt;(Xpuntos_Z&lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;Yjuegos_Z)&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;coefficients&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## (Intercept)   Yjuegos_Z 
+##    0.000000    0.636209&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;En términos de las propiedades, el &lt;em&gt;r de Pearson no es influenciado&lt;/em&gt; por la escala de medición mientras que en el &lt;em&gt;beta si&lt;/em&gt; hay modificaciones:&lt;/p&gt;
+&lt;p&gt;Con los datos que hemos trabajado podemos corroborar lo anterior. A continuación se muestra como los puntos al dividirlos por 100, en la correlación se mantiene la relación; pero esto no ocurre así con la regresión.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb36&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb36-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;cor&lt;/span&gt;(juegos_x,puntos_y&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;100&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.636209&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb38&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb38-1&#34; title=&#34;1&#34;&gt;X_reescalado &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;juegos_x&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;100&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb38-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;lm&lt;/span&gt;(puntos_y&lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;X_reescalado)&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;coefficients&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;##  (Intercept) X_reescalado 
+##          2.5         50.0&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;La correlación entre X e Y es la misma que entre Y e X,&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb40&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb40-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;cor&lt;/span&gt;(juegos_x,puntos_y)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.636209&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb42&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb42-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;cor&lt;/span&gt;(puntos_y,juegos_x)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.636209&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;La regresión etre X e Y &lt;strong&gt;no&lt;/strong&gt; es la misma que entre Y e X&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb44&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb44-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;lm&lt;/span&gt;(puntos_y&lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;juegos_x)&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;coefficients&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## (Intercept)    juegos_x 
+##         2.5         0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb46&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb46-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;lm&lt;/span&gt;(juegos_x&lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;puntos_y)&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;coefficients&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## (Intercept)    puntos_y 
+##  -0.2380952   0.8095238&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Presentación</title>
       <link>/class/01-class/</link>
       <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
@@ -449,48 +938,6 @@ Por ejemplo, cuál es el valor estimado de &lt;span class=&#34;math inline&#34;&
 &lt;div style=&#34;width: 100%; height: 600px; overflow: hidden;&#34;&gt;
 &lt;video  style=&#34;width: 100%;&#34; controls&gt;
 &lt;source src=&#34;https://www.dropbox.com/s/x2bpbm6jjww682m/03regsimp.webm?raw=1&#34; type=&#34;video/mp4&#34;&gt;
-&lt;/video&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;lecturas&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Lecturas&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;/docs/lecturas/moore_analisisderelaciones1.pdf&#34;&gt;Moore: 2. Análisis de relaciones (97-131)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Regresión simple 1</title>
-      <link>/class/04-class/</link>
-      <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/class/04-class/</guid>
-      <description>
-&lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;!-- /BLOGDOWN-HEAD --&gt;
-
-&lt;h2&gt;Índice&lt;/h2&gt;
-&lt;div id=&#34;TOC&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#documento-presentación&#34;&gt;Documento presentación&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#video-de-clase&#34;&gt;Video de clase&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#lecturas&#34;&gt;Lecturas&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-&lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Documento presentación&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/03-regsimple1/03_regsimple1.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
-&lt;iframe src=&#34;/slides/03-regsimple1/03_regsimple1.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
-&lt;/iframe&gt;
-&lt;/div&gt;
-&lt;div id=&#34;video-de-clase&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Video de clase&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt; Próximamente aquí &lt;/span&gt;&lt;/p&gt;
-&lt;div style=&#34;width: 100%; height: 600px; overflow: hidden;&#34;&gt;
-&lt;video  style=&#34;width: 100%;&#34; controls&gt;
-&lt;source src=&#34; &#34; type=&#34;video/mp4&#34;&gt;
 &lt;/video&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1968,7 +2415,7 @@ Total
 ## sexo       0.06121699 -0.044695146
 ## edad       1.00000000  0.092369792
 ## pmerit     0.09236979  1.000000000&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Este es el reporte simple, pero no muy amigable a la vista. Para una versión más amable utilizamos la función sjt.corr&lt;span class=&#34;sidenote&#34;&gt;sjPlot::sjt.corr&lt;/span&gt;:&lt;/p&gt;
+&lt;p&gt;Este es el reporte simple, pero no muy amigable a la vista. Para una versión más amable utilizamos la función sjt.corr&lt;span class=&#34;sidenote&#34;&gt;sjPlot::sjt.corr&lt;/span&gt;:&lt;span class=&#34;sidenote&#34;&gt;NOTA: sjPlot actualizó su librería a fines de Mayo (versión 2.8.4); para quienes hayan actualizado a esta versión, la función para tabla de correlaciones ahora es &lt;code&gt;tab_corr&lt;/code&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb30&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb30-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;sjt.corr&lt;/span&gt;(proc_elsoc)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;table style=&#34;border-collapse:collapse; border:none;&#34;&gt;
 &lt;tr&gt;

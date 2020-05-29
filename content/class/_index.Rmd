@@ -79,3 +79,13 @@ Para minimizar estos posibles problemas en este curso, vamos a:
 <source src="https://www.dropbox.com/s/goofz32r5htw6pt/tutorialR-4.0.mp4?raw=1" type="video/mp4">
 </video>
 </div>
+
+### Tutorial RCloud
+
+RCloud permite trabajar con RStudio en línea, sin necesidad de instalar localmente. Puede ser muy útil para quienes tengan problemas de instalación, así como también para trabajo colaborativo.
+
+<div style="width: 100%; height: 600px; overflow: hidden;">
+<video  style="width: 100%;" controls>
+<source src="https://www.dropbox.com/s/6nqm99dqnjvtmry/rcloud.mp4?raw=1" type="video/mp4">
+</video>
+</div>

@@ -276,7 +276,7 @@ M <- cor(proc_elsoc)
 M
 ```
 
-Este es el reporte simple, pero no muy amigable a la vista. Para una versión más amable utilizamos la función sjt.corr<span class="sidenote">sjPlot::sjt.corr</span>:
+Este es el reporte simple, pero no muy amigable a la vista. Para una versión más amable utilizamos la función sjt.corr<span class="sidenote">sjPlot::sjt.corr</span>:<span class="sidenote">NOTA: sjPlot actualizó su librería a fines de Mayo (versión 2.8.4); para quienes hayan actualizado a esta versión, la función para tabla de correlaciones ahora es `tab_corr`</span>
 
 
 ```{r}

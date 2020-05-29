@@ -146,6 +146,12 @@ a, a > code {
   font-size: 1.3em;
 }
 
+
+.front .remark-slide-number {
+  display: none;
+}
+
+
 .title-slide, .title-slide h1, .title-slide h2, .title-slide h3 {
   color: #fdf6e3;
 }
@@ -231,6 +237,8 @@ th, td { padding: 5px; }
 .small { font-size: 70%
 }
 
+.smally { font-size: 60%
+}
 .tiny { font-size: 50%
 }
 

@@ -1,0 +1,466 @@
+---
+title: "Práctica 4. Regresión simple 2"
+subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
+author: "Juan Carlos Castillo"
+linktitle: "Práctica 4: Regresión simple 2"
+date: "2020-05-22"
+class_date: "2020-05-22"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+    highlight: tango
+    number_sections: FALSE
+menu:
+  class:
+    parent: Practicas
+    weight: 1
+type: docs
+weight: 1
+editor_options:
+  chunk_output_type: console
+---
+
+<!-- BLOGDOWN-HEAD -->
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<!-- /BLOGDOWN-HEAD -->
+
+<h2>Índice</h2>
+<div id="TOC">
+<ul>
+<li><a href="#objetivo-de-la-práctica">Objetivo de la práctica</a></li>
+<li><a href="#librerías">Librerías</a></li>
+<li><a href="#datos">Datos</a><ul>
+<li><a href="#residuos">Residuos</a></li>
+<li><a href="#modelo-y-cálculo-de-parámetros">Modelo y cálculo de parámetros</a></li>
+</ul></li>
+<li><a href="#bondad-de-ajuste-residuos-y-r2">Bondad de Ajuste: Residuos y <span class="math inline">\(R^{2}\)</span></a><ul>
+<li><a href="#suma-de-cuadrados-y-r2">Suma de cuadrados y <span class="math inline">\(R^{2}\)</span></a></li>
+<li><a href="#visualización">Visualización</a></li>
+</ul></li>
+<li><a href="#el-coeficiente-de-regresión-versus-el-coeficiente-de-correlación">El coeficiente de Regresión versus el coeficiente de correlación</a></li>
+</ul>
+</div>
+
+<div id="objetivo-de-la-práctica" class="section level1">
+<h1>Objetivo de la práctica</h1>
+<p>Basados en el cálculo de parámetros del modelo de regresión en la práctica anterior (intercepto y coeficiente de regresión o pendiente), en esta práctica nos abocamos a temas de ajuste, residuos y relación entre correlación y regresión. La práctica está basada en el ejemplo de Darlington &amp; Hayes cap. 2 (The simple regression model), que utilizamos en clases.</p>
+</div>
+<div id="librerías" class="section level1">
+<h1>Librerías</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">pacman<span class="op">::</span><span class="kw">p_load</span>(stargazer, ggplot2, dplyr)</a></code></pre></div>
+</div>
+<div id="datos" class="section level1">
+<h1>Datos</h1>
+<p>Los datos a utilizar son los mismos que los de la práctica 3, corresponden a un ejemplo ficticio de 23 casos (individuos) y sus datos en dos variables relacionadas con un juego: el número de veces que se ha jugado antes (X) y el número de puntos ganados (Y).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">datos &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://multivariada.netlify.app/slides/03-regsimple1/tacataca.txt&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb2-2" title="2">datos</a></code></pre></div>
+<pre><code>##    id juegos_x puntos_y
+## 1   1        0        2
+## 2   2        0        3
+## 3   3        1        2
+## 4   4        1        3
+## 5   5        1        4
+## 6   6        2        2
+## 7   7        2        3
+## 8   8        2        4
+## 9   9        2        5
+## 10 10        3        2
+## 11 11        3        3
+## 12 12        3        4
+## 13 13        3        5
+## 14 14        3        6
+## 15 15        4        3
+## 16 16        4        4
+## 17 17        4        5
+## 18 18        4        6
+## 19 19        5        4
+## 20 20        5        5
+## 21 21        5        6
+## 22 22        6        5
+## 23 23        6        6</code></pre>
+<p>Recordando la distribución de los datos y la recta de regresión:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">g2=<span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(<span class="dt">x=</span>juegos_x, <span class="dt">y=</span>puntos_y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span>lm, <span class="dt">se=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb4-4" title="4">g2</a></code></pre></div>
+<p><img src="/assignment/04-code_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div id="residuos" class="section level2">
+<h2>Residuos</h2>
+<p>En el gráfico anterior vemos que la línea resume la relación entre X e Y que se denomina <strong>recta de regresión</strong>, caracterizada por un intercepto y una pendiente.</p>
+<p>Claramente, esta recta es una simplificación que no abarca toda la variabilidad de los datos. Por ejemplo, para el sujeto cuya experiencia es haber jugado 1 vez y luego gana 3 puntos, esta línea predice exactamente su puntaje basada en su experiencia. Sin embargo, el sujeto que ha jugado 3 veces y saca 6 puntos se encuentra más lejos de la línea y por lo tanto esta línea o “modelo predictivo” no representa tan bien su puntaje.</p>
+<p>Lo anterior tiene que ver con el concepto de <strong>residuos</strong>, que es la diferencia entre el valor predicho (o <span class="math inline">\(\widehat{Y}\)</span>) y el observado <span class="math inline">\(Y\)</span>. Por lo tanto, la mejor recta será aquella que minimice al máximo los residuos.</p>
+<p>El sentido de la recta que resume de mejor manera la relación entre dos variables es que minimice la suma de todos los residuos. Para realizar la suma de los residuos estos se elevan al cuadrado, lo que se denomina suma de residuos al cuadrado o <span class="math inline">\(SS_{residual}\)</span> ya que como hay residuos positivos y negativos unos se cancelan a otros y la suma es 0. De la infinita cantidad de rectas que se pueden trazar, siempre hay una que tiene un valor menor de <span class="math inline">\(SS_{residual}\)</span>. Este procedimiento es el que da nombre al proceso de estimación: residuos cuadrados ordinarios, o <em>OLS</em> (Ordinary Least Squares).</p>
+</div>
+<div id="modelo-y-cálculo-de-parámetros" class="section level2">
+<h2>Modelo y cálculo de parámetros</h2>
+<p>Como vimos la práctica anterior, el modelo de regresión entonces se relaciona con una ecuación de la recta, o recta de regresión, que se puede definir en términos simples de la siguiente manera:</p>
+<p><span class="math display">\[\widehat{Y}=b_{0} +b_{1}X \]</span></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">reg1 &lt;-<span class="kw">lm</span>(puntos_y <span class="op">~</span>juegos_x, <span class="dt">data =</span> datos)</a>
+<a class="sourceLine" id="cb5-2" title="2">reg1</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = puntos_y ~ juegos_x, data = datos)
+## 
+## Coefficients:
+## (Intercept)     juegos_x  
+##         2.5          0.5</code></pre>
+<p>Podemos generar una tabla en un formato publicable:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">stargazer</span>(reg1, <span class="dt">type=</span><span class="st">&quot;text&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+## ===============================================
+##                         Dependent variable:    
+##                     ---------------------------
+##                              puntos_y          
+## -----------------------------------------------
+## juegos_x                     0.500***          
+##                               (0.132)          
+##                                                
+## Constant                     2.500***          
+##                               (0.458)          
+##                                                
+## -----------------------------------------------
+## Observations                    23             
+## R2                             0.405           
+## Adjusted R2                    0.376           
+## Residual Std. Error       1.091 (df = 21)      
+## F Statistic           14.280*** (df = 1; 21)   
+## ===============================================
+## Note:               *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+<p>Y con más elementos de formato:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">stargazer</span>(reg1, <span class="dt">type=</span><span class="st">&quot;html&quot;</span>)</a></code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+puntos_y
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+juegos_x
+</td>
+<td>
+0.500<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.132)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+2.500<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.458)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+23
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.405
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.376
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+1.091 (df = 21)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+14.280<sup>***</sup> (df = 1; 21)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="bondad-de-ajuste-residuos-y-r2" class="section level1">
+<h1>Bondad de Ajuste: Residuos y <span class="math inline">\(R^{2}\)</span></h1>
+<p>A partir del método de Mínimos Cuadrados Ordinarios obtenemos una recta que describe un conjunto de datos minimizando las diferencias entre el modelo y la distribución de los datos mismos.</p>
+<p>No obstante, incluso cuando se ajusta el mejor modelo puede existir cierta imprecisión, la cual es representada por las diferencias entre los datos observados y los valores predichos por la recta de regresión.</p>
+<p>La imprecisión implica evaluar la <strong>Bondad de Ajuste</strong> y se evalua a partir del estadístico <span class="math inline">\(R^2\)</span>.</p>
+<p>En el siguiente apartado se puede observar la manera de cálcular la predicción de Y (puntos_y) en base a X (juegos_x), y almacenarlos en la base de datos, con los respectivos residuos.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co">#summary(lm(puntos_y~juegos_x, data=datos))</span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="co">#beta=0.5 intercepto=2.5</span></a>
+<a class="sourceLine" id="cb10-3" title="3"></a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="co">#Variable de valores predichos</span></a>
+<a class="sourceLine" id="cb10-5" title="5">datos<span class="op">$</span>estimado&lt;-<span class="st"> </span>(<span class="fl">2.5</span> <span class="op">+</span><span class="st"> </span>datos<span class="op">$</span>juegos_x<span class="op">*</span><span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb10-6" title="6"></a>
+<a class="sourceLine" id="cb10-7" title="7"><span class="co"># Alternativa por comando</span></a>
+<a class="sourceLine" id="cb10-8" title="8"><span class="co">#datos$estimado &lt;- predict(reg1)</span></a>
+<a class="sourceLine" id="cb10-9" title="9"></a>
+<a class="sourceLine" id="cb10-10" title="10"><span class="co">#Estimamos el residuo</span></a>
+<a class="sourceLine" id="cb10-11" title="11">datos<span class="op">$</span>residuo &lt;-<span class="st"> </span>datos<span class="op">$</span>puntos_y <span class="op">-</span><span class="st"> </span>datos<span class="op">$</span>estimado</a>
+<a class="sourceLine" id="cb10-12" title="12"></a>
+<a class="sourceLine" id="cb10-13" title="13"><span class="co"># Alternativa por comando</span></a>
+<a class="sourceLine" id="cb10-14" title="14"><span class="co">#datos$residuo &lt;- residuals(reg1)</span></a>
+<a class="sourceLine" id="cb10-15" title="15"></a>
+<a class="sourceLine" id="cb10-16" title="16">datos <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(id, estimado, residuo) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</a></code></pre></div>
+<pre><code>##   id estimado residuo
+## 1  1      2.5    -0.5
+## 2  2      2.5     0.5
+## 3  3      3.0    -1.0
+## 4  4      3.0     0.0
+## 5  5      3.0     1.0
+## 6  6      3.5    -1.5</code></pre>
+<div id="suma-de-cuadrados-y-r2" class="section level2">
+<h2>Suma de cuadrados y <span class="math inline">\(R^{2}\)</span></h2>
+<p>Usando la media como modelo podemos calcular las diferencias entre los valores observados y los valores predichos por la media.</p>
+<ul>
+<li><strong>Suma Total de Cuadrados</strong>: La suma de las diferencias al cuadrado</li>
+</ul>
+<p><span class="math display">\[SS_{tot} = \sum(y-\bar{y})^2 \]</span>
+Y calculamos</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">ss_tot&lt;-<span class="st"> </span><span class="kw">sum</span>((datos<span class="op">$</span>puntos_y<span class="op">-</span><span class="kw">mean</span>(datos<span class="op">$</span>puntos_y))<span class="op">^</span><span class="dv">2</span>); ss_tot</a></code></pre></div>
+<pre><code>## [1] 42</code></pre>
+<p>Luego, usando la predicción del modelo OLS podemos llegar a tener una mejor predicción pues se minimiza esta diferencia:</p>
+<ul>
+<li><strong>Suma de residuos al cuadrado</strong>: suma de las diferencias entre los datos observados y los datos predichos al cuadrado</li>
+</ul>
+<p><span class="math display">\[SS_{error} = \sum(y-\hat{y})^2\]</span>
+Este valor representa el grado de imprecisión cuando la mejor recta se ajusta a los datos.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">ss_err&lt;-<span class="st"> </span><span class="kw">sum</span>((datos<span class="op">$</span>puntos_y <span class="op">-</span><span class="st"> </span>datos<span class="op">$</span>estimado)<span class="op">^</span><span class="dv">2</span>);ss_err</a></code></pre></div>
+<pre><code>## [1] 25</code></pre>
+<p>Por último, cuánto mejor ajusta esta “minimización” de diferencias en modelo OLS es cuando el cálculo se hace sobre la media.
++ <strong>Suma explicada de cuadrados</strong>: diferencia al cuadrado entre el valor estimado y la media</p>
+<p><span class="math display">\[SS_{reg} = \sum(\hat{y}-\bar{y})^2\]</span></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">ss_reg&lt;-<span class="kw">sum</span>((datos<span class="op">$</span>estimado<span class="op">-</span><span class="kw">mean</span>(datos<span class="op">$</span>puntos_y))<span class="op">^</span><span class="dv">2</span>) ; ss_reg</a></code></pre></div>
+<pre><code>## [1] 17</code></pre>
+<p>A partir de la suma de cuadrados es posible calcular el estadístico <span class="math inline">\(R^{2}\)</span></p>
+<p><span class="math display">\[R^2=\frac{SS_{reg}}{SS_{tot}}= 1- \frac{SS_{error}}{SS_{tot}}\]</span></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co">#Opción 1</span></a>
+<a class="sourceLine" id="cb18-2" title="2">ss_reg<span class="op">/</span>ss_tot</a></code></pre></div>
+<pre><code>## [1] 0.4047619</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co">#Opción 2</span></a>
+<a class="sourceLine" id="cb20-2" title="2"><span class="dv">1</span><span class="op">-</span>ss_err<span class="op">/</span>ss_tot</a></code></pre></div>
+<pre><code>## [1] 0.4047619</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="co">#por comando</span></a>
+<a class="sourceLine" id="cb22-2" title="2"><span class="kw">summary</span>(<span class="kw">lm</span>(puntos_y<span class="op">~</span>juegos_x, <span class="dt">data=</span>datos))<span class="op">$</span>r.squared</a></code></pre></div>
+<pre><code>## [1] 0.4047619</code></pre>
+</div>
+<div id="visualización" class="section level2">
+<h2>Visualización</h2>
+<p>En la siguiente sección se presentan distintas formas de visualizar los residuos a partir del paquete <strong>ggplot2</strong>.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="co">#Visualizacion</span></a>
+<a class="sourceLine" id="cb24-2" title="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb24-3" title="3"></a>
+<a class="sourceLine" id="cb24-4" title="4"><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(<span class="dt">x=</span>juegos_x, <span class="dt">y=</span>puntos_y))<span class="op">+</span></a>
+<a class="sourceLine" id="cb24-5" title="5"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;lightgrey&quot;</span>) <span class="op">+</span><span class="co">#Pendiente de regresion</span></a>
+<a class="sourceLine" id="cb24-6" title="6"><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend=</span>juegos_x, <span class="dt">yend=</span>estimado), <span class="dt">alpha =</span> <span class="fl">.2</span>) <span class="op">+</span><span class="st"> </span><span class="co">#Distancia entre estimados y datos en lineas</span></a>
+<a class="sourceLine" id="cb24-7" title="7"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="co">#Capa 1</span></a>
+<a class="sourceLine" id="cb24-8" title="8"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>estimado), <span class="dt">shape =</span><span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb24-9" title="9"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="/assignment/04-code_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="co">#Opción donde se juega con el tamaño de los puntos y los colores para resalta el tamaño de los residuos.</span></a>
+<a class="sourceLine" id="cb25-2" title="2"></a>
+<a class="sourceLine" id="cb25-3" title="3"><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(<span class="dt">x=</span>juegos_x, <span class="dt">y=</span>puntos_y))<span class="op">+</span></a>
+<a class="sourceLine" id="cb25-4" title="4"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;lightgrey&quot;</span>) <span class="op">+</span><span class="co">#Pendiente de regresion</span></a>
+<a class="sourceLine" id="cb25-5" title="5"><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend=</span>juegos_x, <span class="dt">yend=</span>estimado), <span class="dt">alpha =</span> <span class="fl">.2</span>) <span class="op">+</span><span class="st"> </span><span class="co">#Distancia entre estimados y datos en lineas</span></a>
+<a class="sourceLine" id="cb25-6" title="6"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">abs</span>(residuo), <span class="dt">size =</span> <span class="kw">abs</span>(residuo))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb25-7" title="7"><span class="st">  </span><span class="kw">scale_color_continuous</span>(<span class="dt">low =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb25-8" title="8"><span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="ot">FALSE</span>, <span class="dt">size =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb25-9" title="9"><span class="st">   </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>estimado), <span class="dt">shape =</span><span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb25-10" title="10"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="/assignment/04-code_files/figure-html/unnamed-chunk-12-2.png" width="672" /></p>
+</div>
+</div>
+<div id="el-coeficiente-de-regresión-versus-el-coeficiente-de-correlación" class="section level1">
+<h1>El coeficiente de Regresión versus el coeficiente de correlación</h1>
+<p>tanto <span class="math inline">\(r_{xy}\)</span> y <span class="math inline">\(\beta_1\)</span> son medidas de la relación entre X e Y. Ellas estan relacionadas con la formula de:</p>
+<p><span class="math display">\[\beta_1= r_{xy}(S_y/S_x)\]</span></p>
+<p>Es decir:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">beta&lt;-<span class="kw">cor</span>(datos<span class="op">$</span>juegos_x,datos<span class="op">$</span>puntos_y)<span class="op">*</span>(<span class="kw">sd</span>(datos<span class="op">$</span>puntos_y)<span class="op">/</span><span class="kw">sd</span>(datos<span class="op">$</span>juegos_x));beta</a></code></pre></div>
+<pre><code>## [1] 0.5</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">reg1<span class="op">$</span>coefficients[<span class="dv">2</span>] <span class="co">#llamamos al coeficiente beta (en posición 2) en el objeto reg1</span></a></code></pre></div>
+<pre><code>## juegos_x 
+##      0.5</code></pre>
+<p>Del mismo modo existe una relación entre <span class="math inline">\(r_{xy}\)</span> y <span class="math inline">\(R^2\)</span></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co">#Correlación (Pearson) entre juegos_x y puntos_y (r)</span></a>
+<a class="sourceLine" id="cb30-2" title="2"><span class="kw">cor</span>(datos<span class="op">$</span>juegos_x,datos<span class="op">$</span>puntos_y)</a></code></pre></div>
+<pre><code>## [1] 0.636209</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="co">#Correlación entre juegos_x y puntos_y al cuadrado.</span></a>
+<a class="sourceLine" id="cb32-2" title="2">(<span class="kw">cor</span>(datos<span class="op">$</span>juegos_x,datos<span class="op">$</span>puntos_y)</a>
+<a class="sourceLine" id="cb32-3" title="3">)<span class="op">^</span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1] 0.4047619</code></pre>
+<p>Las diferencias entre la Regressión y la Correlación se puede expresar en términos de formulas. Por un lado se puede entender que <span class="math inline">\(r_{xy}\)</span> es una forma estandarizada de <span class="math inline">\(\beta\)</span>, como se puede apreciar en el siguente apartado.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co">#Para ahorrarnos el tipeo de datos, lo adjuntamos al espacio de trabajo</span></a>
+<a class="sourceLine" id="cb34-2" title="2"></a>
+<a class="sourceLine" id="cb34-3" title="3"><span class="kw">attach</span>(datos)</a>
+<a class="sourceLine" id="cb34-4" title="4"></a>
+<a class="sourceLine" id="cb34-5" title="5"></a>
+<a class="sourceLine" id="cb34-6" title="6">Xpuntos_Z &lt;-<span class="st"> </span>(puntos_y<span class="op">-</span>(<span class="kw">mean</span>(puntos_y)))<span class="op">/</span><span class="kw">sd</span>(puntos_y)</a>
+<a class="sourceLine" id="cb34-7" title="7">Yjuegos_Z&lt;-<span class="st"> </span>(juegos_x<span class="op">-</span>(<span class="kw">mean</span>(juegos_x)))<span class="op">/</span><span class="kw">sd</span>(juegos_x)</a>
+<a class="sourceLine" id="cb34-8" title="8"></a>
+<a class="sourceLine" id="cb34-9" title="9"><span class="kw">lm</span>(Xpuntos_Z<span class="op">~</span>Yjuegos_Z)<span class="op">$</span>coefficients</a></code></pre></div>
+<pre><code>## (Intercept)   Yjuegos_Z 
+##    0.000000    0.636209</code></pre>
+<p>En términos de las propiedades, el <em>r de Pearson no es influenciado</em> por la escala de medición mientras que en el <em>beta si</em> hay modificaciones:</p>
+<p>Con los datos que hemos trabajado podemos corroborar lo anterior. A continuación se muestra como los puntos al dividirlos por 100, en la correlación se mantiene la relación; pero esto no ocurre así con la regresión.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="kw">cor</span>(juegos_x,puntos_y<span class="op">/</span><span class="dv">100</span>)</a></code></pre></div>
+<pre><code>## [1] 0.636209</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">X_reescalado &lt;-<span class="st"> </span>juegos_x<span class="op">/</span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb38-2" title="2"><span class="kw">lm</span>(puntos_y<span class="op">~</span>X_reescalado)<span class="op">$</span>coefficients</a></code></pre></div>
+<pre><code>##  (Intercept) X_reescalado 
+##          2.5         50.0</code></pre>
+<p>La correlación entre X e Y es la misma que entre Y e X,</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="kw">cor</span>(juegos_x,puntos_y)</a></code></pre></div>
+<pre><code>## [1] 0.636209</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="kw">cor</span>(puntos_y,juegos_x)</a></code></pre></div>
+<pre><code>## [1] 0.636209</code></pre>
+<p>La regresión etre X e Y <strong>no</strong> es la misma que entre Y e X</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="kw">lm</span>(puntos_y<span class="op">~</span>juegos_x)<span class="op">$</span>coefficients</a></code></pre></div>
+<pre><code>## (Intercept)    juegos_x 
+##         2.5         0.5</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="kw">lm</span>(juegos_x<span class="op">~</span>puntos_y)<span class="op">$</span>coefficients</a></code></pre></div>
+<pre><code>## (Intercept)    puntos_y 
+##  -0.2380952   0.8095238</code></pre>
+</div>

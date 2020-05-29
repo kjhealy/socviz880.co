@@ -1,8 +1,8 @@
 ---
-title: "Regresión simple 1"
-linktitle: "3: Regresión simple 1"
-date: "2020-01-10"
-class_date: "2020-05-22"
+title: "Regresión simple 2"
+linktitle: "4: Regresión simple 2"
+date: "2020-05-29"
+class_date: "2020-05-29"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
@@ -24,9 +24,9 @@ editor_options:
 
 ## Documento presentación
 
-<span class="sidenote">Para ver en pantalla completa click [**aquí**](/slides/03-regsimple1/03_regsimple1.html). Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. </span>
+<span class="sidenote">Para ver en pantalla completa click [**aquí**](/slides/04-regsimple2/04_regsimple2.html). Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. </span>
 
-<iframe src=/slides/03-regsimple1/03_regsimple1.html height="550" width=100% allowfullscreen="true">
+<iframe src=/slides/04-regsimple2/04_regsimple2.html height="550" width=100% allowfullscreen="true">
 </iframe>
 
 ## Video de clase
@@ -41,4 +41,4 @@ editor_options:
 
 ## Lecturas
 
-- [Moore: 2. Análisis de relaciones (97-131)](/docs/lecturas/moore_analisisderelaciones1.pdf)
+[Moore: Residuos (144-154)](/docs/lecturas/moore_residuos.pdf)
