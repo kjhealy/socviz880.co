@@ -3,8 +3,8 @@ title: "Práctica 4. Regresión simple 2"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
 author: "Juan Carlos Castillo"
 linktitle: "Práctica 4: Regresión simple 2"
-date: "2020-05-22"
-class_date: "2020-05-22"
+date: "2020-05-29"
+class_date: "2020-05-29"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
@@ -31,17 +31,17 @@ knitr::opts_knit$set(root.dir ="../../")
 Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
 ```
 
-# Objetivo de la práctica
+## Objetivo de la práctica
 
 Basados en el cálculo de parámetros del modelo de regresión en la práctica anterior (intercepto y coeficiente de regresión o pendiente), en esta práctica nos abocamos a temas de ajuste, residuos y relación entre correlación y regresión. La práctica está basada en el ejemplo de Darlington & Hayes cap. 2 (The simple regression model), que utilizamos en clases.
 
-# Librerías
+## Librerías
 
 ```{r}
-pacman::p_load(stargazer, ggplot2, dplyr)
+pacman::p_load(stargazer, ggplot2, dplyr,webshot)
 ```
 
-# Datos
+## Datos
 
 Los datos a utilizar son los mismos que los de la práctica 3, corresponden a un ejemplo ficticio de 23 casos (individuos) y sus datos en dos variables relacionadas con un juego:  el número de veces que se ha jugado antes (X) y el número de puntos ganados (Y).
 
@@ -49,6 +49,23 @@ Los datos a utilizar son los mismos que los de la práctica 3, corresponden a un
 datos <- read.csv("https://multivariada.netlify.app/slides/03-regsimple1/tacataca.txt", sep="")
 datos
 ```
+También desde esta misma dirección web se pueden bajar los datos y llamarlos localmente
+
+
+<div class="alert alert-info">
+  <strong>Directorio de trabajo</strong> :<span class="sidenote">Directorio de trabajo </span>
+
+Para el trabajo de análisis de datos se recomienda establecer claramente el directorio de trabajo, es decir, la carpeta que contiene los archivos de datos, los códigos y los resultados. Esta carpeta es el lugar donde uno se posiciona para hacer los análisis, llamar otros archivos y exportar archivos.
+
+Para esto, varias opciones:
+
+- en RStudio, Session > Set Working Directory > Choose Directory
+- o también vía consola con el comando `setwd(ruta-hacia-la-carpeta-local)`
+
+Si se quiere verificar en qué carpeta se está trabajando, comando `getwd()`
+
+Con esto entonces, si los datos están guardados en la misma carpeta, entonces se llaman simplemente `datos <- read.csv("tacataca.txt", sep="")`. No se requiere dar la ruta completa justamente porque el programa ya sabe dónde uno está posicionado. Asimísmo, al momento de guardar/exportar algún resultado, automáticamente quedará en la carpeta de trabajo.
+</div>
 
 Recordando la distribución de los datos y la recta de regresión:
 
@@ -58,12 +75,33 @@ g2=ggplot(datos, aes(x=juegos_x, y=puntos_y)) +
   geom_smooth(method=lm, se=FALSE)
 g2
 ```
+<div class="alert alert-info">
+  <strong>Grabar / exportar gráficos</strong> :<span class="sidenote">Exportar gráficos </span>
+Si se quiere grabar un gráfico para luego utilizarlo en algún documento fuera del entorno R, algunas alternativas:
+
+- utilizar la función `ggsave` (para gráficos ggplot)
+
+```
+ggsave("g2.png", g2)
+```
+
+- más genéricamente, para guardar como imagen cualquier cosa que aparece en el visor de RStudio:
+
+```
+png(file = "g2.png") # se abre un archivo vacío
+g2  # se genera el gráfico a guardar en el archivo
+dev.off() # se cierra el archivo
+
+```
+
+El gráfico quedará grabado en el **directorio de trabajo** (ver arriba). Si se desea que se grabe en otra parte, dar la ruta completa hacia la carpeta correspondiente ("C:/[ruta-hacia-carpeta]/g2.png")
+</div>
 
 ## Residuos
 
 En el gráfico anterior vemos que la línea resume la relación entre X e Y que se denomina **recta de regresión**, caracterizada por un intercepto y una pendiente.
 
-Claramente, esta recta es una simplificación que no abarca toda la variabilidad de los datos. Por ejemplo, para el sujeto cuya experiencia es haber jugado 1 vez y luego gana 3 puntos, esta línea predice exactamente su puntaje basada en su experiencia. Sin embargo, el sujeto que ha jugado 3 veces y saca 6 puntos se encuentra más lejos de la línea y por lo tanto esta línea o "modelo predictivo" no representa tan bien su puntaje.
+Claramente, esta recta es una simplificación que no abarca toda la variabilidad de los datos. Por ejemplo, para el sujeto cuya experiencia es haber jugado 1 vez y luego gana 3 puntos, esta línea predice exactamente su puntaje basado en su experiencia. Sin embargo, el sujeto que ha jugado 3 veces y saca 6 puntos se encuentra más lejos de la línea y por lo tanto esta línea o "modelo predictivo" no representa tan bien su puntaje.
 
 Lo anterior tiene que ver con el concepto de **residuos**, que es la diferencia entre el valor predicho (o $\widehat{Y}$) y el observado $Y$. Por lo tanto, la mejor recta será aquella que minimice al máximo los residuos.
 
@@ -81,30 +119,49 @@ reg1 <-lm(puntos_y ~juegos_x, data = datos)
 reg1
 ```
 
-Podemos generar una tabla en un formato publicable:
+Podemos generar una tabla en un formato más publicable:
 
 ```{r}
 stargazer(reg1, type="text")
 ```
 
-Y con más elementos de formato:
+También es posible generar una tabla más resumida en formato publicable y visible en RStudio:
 
-
-
-```{r results="asis"}
-stargazer(reg1, type="html")
+```{r}
+sjPlot::tab_model(reg1, show.ci=FALSE)
 ```
 
-# Bondad de Ajuste: Residuos y $R^{2}$
+<div class="alert alert-info">
+  <strong>Grabar / exportar tablas</strong> :<span class="sidenote">Exportar tablas </span>
+
+Muchas de las tablas producidas con R son en formato html, es decir, archivos para ser publicados en formato web. Por lo tanto, en general las tablas se graban primero como html, y luego se convierten a formato imagen con la librería `webshot`.
+
+Para tablas generadas con `stargazer`
+
+```
+stargazer(reg1, type="html",  out = "reg1.html")
+webshot("reg1.html","reg1.png")
+```
+
+Alternativamente, para tablas de regresión con `sjPlot`:
+
+```
+sjPlot::tab_model(reg1, show.ci=FALSE, file = "reg1_tab.html")
+webshot("reg1_tab.html","reg1_tab.png")
+
+```
+</div>
+
+## Bondad de Ajuste: Residuos y $R^{2}$
 
 A partir del método de Mínimos Cuadrados Ordinarios obtenemos una recta que describe un conjunto de datos minimizando las diferencias entre el modelo y la distribución de los datos mismos.
 
-No obstante, incluso cuando se ajusta el mejor modelo puede existir cierta imprecisión, la cual es representada por las diferencias entre los datos observados y los valores predichos por la recta de regresión.
+No obstante, incluso cuando se ajusta el mejor modelo siempre existirá un grado de imprecisión, representado por las diferencias entre los datos observados y los valores predichos por la recta de regresión.
 
-La imprecisión implica evaluar la **Bondad de Ajuste** y se evalua a partir del estadístico $R^2$.
+La precisión de nuestro modelo se relaciona con el concepto de **Bondad de Ajuste**, y se evalúa a partir del estadístico $R^2$.
 
 
-En el siguiente apartado se puede observar la manera de cálcular la predicción de Y (puntos_y) en base a X (juegos_x), y almacenarlos en la base de datos, con los respectivos residuos.
+En el siguiente apartado se puede observar la manera de calcular la predicción de Y (puntos_y) en base a X (juegos_x), y almacenarlos en la base de datos, con los respectivos residuos.
 
 ```{r}
 
@@ -123,7 +180,7 @@ datos$residuo <- datos$puntos_y - datos$estimado
 # Alternativa por comando
 #datos$residuo <- residuals(reg1)
 
-datos %>% select(id, estimado, residuo) %>% head()
+datos %>% select(id, estimado, residuo)
 
 ```
 
@@ -131,7 +188,7 @@ datos %>% select(id, estimado, residuo) %>% head()
 
 Usando la media como modelo podemos calcular las diferencias entre los valores observados y los valores predichos por la media.
 
-  +  **Suma Total de Cuadrados**: La suma de las diferencias al cuadrado
++  **Suma Total de Cuadrados**: La suma de las diferencias del promedio de Y al cuadrado (asociado al concepto de varianza de Y)
 
 $$SS_{tot} = \sum(y-\bar{y})^2 $$
 Y calculamos
@@ -140,22 +197,7 @@ Y calculamos
 ss_tot<- sum((datos$puntos_y-mean(datos$puntos_y))^2); ss_tot
 ```
 
-
-Luego, usando la predicción del modelo OLS podemos llegar a tener una mejor predicción pues se minimiza esta diferencia:
-
-  + **Suma de residuos al cuadrado**: suma de las diferencias entre los datos observados y los datos predichos al cuadrado
-
-$$SS_{error} = \sum(y-\hat{y})^2$$
-Este valor representa el grado de imprecisión cuando la mejor recta se ajusta a los datos.
-
-```{r}
-
-ss_err<- sum((datos$puntos_y - datos$estimado)^2);ss_err
-
-```
-
-Por último, cuánto mejor ajusta esta "minimización" de diferencias en modelo OLS es cuando el cálculo se hace sobre la media.
-  + **Suma explicada de cuadrados**: diferencia al cuadrado entre el valor estimado y la media
++ **Suma de cuadrados de la regresión**: se refiere a la suma de diferencias (al cuadrado) entre el valor estimado por el modelo de regresión y la media. Expresa cuanto de la varianza de Y alcanzamos a predecir con X
 
 $$SS_{reg} = \sum(\hat{y}-\bar{y})^2$$
 ```{r}
@@ -164,7 +206,15 @@ ss_reg<-sum((datos$estimado-mean(datos$puntos_y))^2) ; ss_reg
 
 ```
 
-A partir de la suma de cuadrados es posible calcular el estadístico $R^{2}$
++ **Suma de residuos al cuadrado**: al contrario de el cálculo anterior, los residuos representan la parte de la varianza de `Y` que no alcanzamos a abarcar con nuestro modelo de regresión. Es decir, reprsentan el error en la predicción (diferencia entre lo estimado por el modelo y el valor observado)
+
+$$SS_{error} = \sum(y-\hat{y})^2$$
+
+```{r}
+ss_err<- sum((datos$puntos_y - datos$estimado)^2);ss_err
+```
+
+A partir de las sumas de cuadrados anteriores es posible calcular el estadístico $R^{2}$
 
 $$R^2=\frac{SS_{reg}}{SS_{tot}}= 1- \frac{SS_{error}}{SS_{tot}}$$
 ```{r}
@@ -193,11 +243,11 @@ ggplot(datos, aes(x=juegos_x, y=puntos_y))+
   geom_point() + #Capa 1
   geom_point(aes(y=estimado), shape =1) +
   theme_bw()
+```
 
+En esta segunda opción, se agrega tamaño y color a los residuos mayores:
 
-
-#Opción donde se juega con el tamaño de los puntos y los colores para resalta el tamaño de los residuos.
-
+```{r}
 ggplot(datos, aes(x=juegos_x, y=puntos_y))+
   geom_smooth(method="lm", se=FALSE, color="lightgrey") +#Pendiente de regresion
   geom_segment(aes(xend=juegos_x, yend=estimado), alpha = .2) + #Distancia entre estimados y datos en lineas
@@ -206,15 +256,11 @@ ggplot(datos, aes(x=juegos_x, y=puntos_y))+
   guides(color = FALSE, size = FALSE) +
    geom_point(aes(y=estimado), shape =1) +
   theme_bw()
-
-
-
 ```
-
 
 # El coeficiente de Regresión versus el coeficiente de correlación
 
-tanto $r_{xy}$ y $\beta_1$ son medidas de la relación entre X e Y. Ellas estan relacionadas con la formula de:
+Tanto $r_{xy}$ y $\beta_1$ son medidas de la relación entre X e Y. Ellas estan relacionadas con la formula de:
 
 $$\beta_1= r_{xy}(S_y/S_x)$$
 
@@ -233,55 +279,29 @@ Del mismo modo existe una relación entre $r_{xy}$ y $R^2$
 #Correlación (Pearson) entre juegos_x y puntos_y (r)
 cor(datos$juegos_x,datos$puntos_y)
 #Correlación entre juegos_x y puntos_y al cuadrado.
-(cor(datos$juegos_x,datos$puntos_y)
-)^2
+(cor(datos$juegos_x,datos$puntos_y))^2
 
 
 ```
-
-Las diferencias entre la Regressión y la Correlación se puede expresar en términos de formulas. Por un lado se puede entender que $r_{xy}$ es una forma estandarizada de $\beta$, como se puede apreciar en el siguente apartado.
-
-```{r}
-
-#Para ahorrarnos el tipeo de datos, lo adjuntamos al espacio de trabajo
-
-attach(datos)
-
-
-Xpuntos_Z <- (puntos_y-(mean(puntos_y)))/sd(puntos_y)
-Yjuegos_Z<- (juegos_x-(mean(juegos_x)))/sd(juegos_x)
-
-lm(Xpuntos_Z~Yjuegos_Z)$coefficients
-
-
-```
-
-En términos de las propiedades, el *r de Pearson no es influenciado* por la escala de medición mientras que en el *beta si* hay modificaciones:
-
-Con los datos que hemos trabajado podemos corroborar lo anterior. A continuación se muestra como los puntos al dividirlos por 100, en la correlación se mantiene la relación; pero esto no ocurre así con la regresión.
-
-```{r}
-
-cor(juegos_x,puntos_y/100)
-X_reescalado <- juegos_x/100
-lm(puntos_y~X_reescalado)$coefficients
-
-```
-
-
 
 La correlación entre X e Y es la misma que entre Y e X,
 ```{r}
-cor(juegos_x,puntos_y)
-cor(puntos_y,juegos_x)
+cor(datos$juegos_x,datos$puntos_y)
+cor(datos$puntos_y,datos$juegos_x)
 
 ```
 
-
-La regresión etre X e Y **no** es la misma que entre Y e X
+... mientras la regresión entre X e Y **no** es la misma que entre Y e X
 
 ```{r}
-lm(puntos_y~juegos_x)$coefficients
-lm(juegos_x~puntos_y)$coefficients
+lm(datos$puntos_y~datos$juegos_x)$coefficients
+lm(datos$juegos_x~datos$puntos_y)$coefficients
 
 ```
+
+# Reporte de progreso
+
+Completar el reporte de progreso [aquí](https://forms.gle/dY98zd6C8ZND7ANZ9).
+
+
+# Foro
