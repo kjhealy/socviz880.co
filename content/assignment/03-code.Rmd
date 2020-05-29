@@ -134,7 +134,7 @@ Lo que estamos haciendo es utilizar la información que conocemos de X para dar 
 
 ![](../../slides/03-regsimple1/condmeans.png)
 
-Mirando el gráfico de nube de puntos, sabemos que tres personas han jugado antes una vez, pero una de ellas tuvo 2 puntos, otra 3 y otra 4. Con estos datos podemos calcular la media de Y para X=1, que sería igual a 3. En otras palabras, *la media condicional de Y cuando X=3 es 1*. Con esto, uno podría calcular la media condicional para cada punto de X y hacer una estimación más precisa de Y. Sin embargo, este proceso todavía *no nos permite generalizar más eficientemte* la relación entre X e Y.
+Mirando el gráfico de nube de puntos, sabemos que tres personas han jugado antes una vez, pero una de ellas tuvo 2 puntos, otra 3 y otra 4. Con estos datos podemos calcular la media de Y para X=1, que sería igual a 3. En otras palabras, *la media condicional de Y cuando X=1 es 3*. Con esto, uno podría calcular la media condicional para cada punto de X y hacer una estimación más precisa de Y. Sin embargo, este proceso todavía *no nos permite generalizar más eficientemte* la relación entre X e Y.
 
 *¿Cuántos puntos (Y) se obtienen según la experiencia previa de juego (X)?* Esta pregunta nos conduce al cálculo de una **recta** que atraviese los puntos y que generalice la relación entre X e Y:
 
