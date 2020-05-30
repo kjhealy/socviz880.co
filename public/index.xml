@@ -59,6 +59,10 @@
       <guid>/assignment/04-code/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;script src=&#34;/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
 &lt;style type=&#34;text/css&#34;&gt;
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
@@ -140,6 +144,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;/ul&gt;
 &lt;/div&gt;
 
+&lt;script&gt;
+  addClassKlippyTo(&#34;pre.r, pre.markdown&#34;);
+  addKlippy(&#39;right&#39;, &#39;bottom&#39;, &#39;auto&#39;, &#39;1&#39;, &#39;Copy code&#39;, &#39;Copied!&#39;);
+&lt;/script&gt;
 &lt;div id=&#34;objetivo-de-la-práctica&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Objetivo de la práctica&lt;/h2&gt;
 &lt;p&gt;Basados en el cálculo de parámetros del modelo de regresión en la práctica anterior (intercepto y coeficiente de regresión o pendiente), en esta práctica nos abocamos a temas de ajuste, residuos y relación entre correlación y regresión. La práctica está basada en el ejemplo de Darlington &amp;amp; Hayes cap. 2 (The simple regression model), que utilizamos en clases.&lt;/p&gt;
@@ -479,6 +487,10 @@ Y calculamos&lt;/p&gt;
       <guid>/assignment/03-code/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;script src=&#34;/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
 &lt;style type=&#34;text/css&#34;&gt;
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
@@ -563,6 +575,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;/ul&gt;
 &lt;/div&gt;
 
+&lt;script&gt;
+  addClassKlippyTo(&#34;pre.r, pre.markdown&#34;);
+  addKlippy(&#39;right&#39;, &#39;bottom&#39;, &#39;auto&#39;, &#39;1&#39;, &#39;Copy code&#39;, &#39;Copied!&#39;);
+&lt;/script&gt;
 &lt;div id=&#34;objetivo-de-la-práctica&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Objetivo de la práctica&lt;/h1&gt;
 &lt;p&gt;En esta práctica se desarrollan ejercicios iniciales de regresión simple, que fueron presentados en la clase respectiva. El ejemplo a utilizar es del libro de Darlington &amp;amp; Hayes cap. 2 (The simple regression model).&lt;/p&gt;
@@ -928,6 +944,10 @@ Por ejemplo, cuál es el valor estimado de &lt;span class=&#34;math inline&#34;&
       <guid>/assignment/01-code/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;script src=&#34;/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
 &lt;style type=&#34;text/css&#34;&gt;
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
@@ -1015,6 +1035,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;/ul&gt;
 &lt;/div&gt;
 
+&lt;script&gt;
+  addClassKlippyTo(&#34;pre.r, pre.markdown&#34;);
+  addKlippy(&#39;right&#39;, &#39;bottom&#39;, &#39;auto&#39;, &#39;1&#39;, &#39;Copy code&#39;, &#39;Copied!&#39;);
+&lt;/script&gt;
 &lt;div id=&#34;presentación&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Presentación&lt;/h1&gt;
 &lt;div id=&#34;objetivo-de-la-práctica&#34; class=&#34;section level2&#34;&gt;
@@ -1565,6 +1589,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <guid>/assignment/02-code/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;script src=&#34;/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
 &lt;style type=&#34;text/css&#34;&gt;
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
@@ -1647,6 +1675,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;/ul&gt;
 &lt;/div&gt;
 
+&lt;script&gt;
+  addClassKlippyTo(&#34;pre.r, pre.markdown&#34;);
+  addKlippy(&#39;right&#39;, &#39;bottom&#39;, &#39;auto&#39;, &#39;1&#39;, &#39;Copy code&#39;, &#39;Copied!&#39;);
+&lt;/script&gt;
 &lt;div id=&#34;objetivo-de-la-práctica&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Objetivo de la práctica&lt;/h1&gt;
 &lt;p&gt;Esta segunda práctica tiene por objetivo repasar algunos conceptos básicos de los cursos anteriores de &lt;strong&gt;Estadística Descriptiva&lt;/strong&gt; y &lt;strong&gt;Estadística Correlacional&lt;/strong&gt;. Asume como base el desarrollo de la &lt;a href=&#34;/assignment/01-code&#34;&gt;Práctica 1&lt;/a&gt;, a la cual se hará referencia permanente.&lt;/p&gt;

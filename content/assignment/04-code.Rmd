@@ -25,11 +25,16 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache=TRUE, warnings=FALSE, message=FALSE)
+knitr::opts_chunk$set(cache=FALSE, warnings=FALSE, message=FALSE)
 knitr::opts_knit$set(root.dir ="../../")
 
 Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
 ```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position = c('bottom', 'right')) # chunks con botón de copiar
+```
+
 
 ## Objetivo de la práctica
 

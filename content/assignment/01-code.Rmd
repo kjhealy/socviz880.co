@@ -28,6 +28,10 @@ knitr::opts_knit$set(root.dir ="../../")
 knitr::opts_chunk$set(cache = TRUE)
 ```
 
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position = c('bottom', 'right')) # chunks con botón de copiar
+```
+
 # Presentación
 
 ## Objetivo de la práctica

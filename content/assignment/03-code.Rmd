@@ -31,6 +31,11 @@ knitr::opts_knit$set(root.dir ="../../")
 Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
 ```
 
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position = c('bottom', 'right')) # chunks con botón de copiar
+```
+
+
 # Objetivo de la práctica
 
 En esta práctica se desarrollan ejercicios iniciales de regresión simple, que fueron presentados en la clase respectiva. El ejemplo a utilizar es del libro de Darlington & Hayes cap. 2 (The simple regression model).

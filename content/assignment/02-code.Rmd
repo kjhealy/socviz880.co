@@ -31,6 +31,10 @@ knitr::opts_knit$set(root.dir ="../../")
 Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
 ```
 
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position = c('bottom', 'right')) # chunks con botón de copiar
+```
+
 # Objetivo de la práctica
 
 Esta segunda práctica tiene por objetivo repasar algunos conceptos básicos de los cursos anteriores de **Estadística Descriptiva** y **Estadística Correlacional**. Asume como base el desarrollo de la [Práctica 1](/assignment/01-code), a la cual se hará referencia permanente.

@@ -1,127 +1,603 @@
----
-title: "Práctica 2. Descripción de variables"
-subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
-author: "Valentina Andrade"
-linktitle: "Práctica 2: Descripción de variables"
-date: "2020-01-10"
-class_date: "2020-04-23"
-citeproc: false
-bibliography: ../../static/bib/references.bib
-csl: ../../static/bib/chicago-syllabus-no-bib.csl
-output:
-  blogdown::html_page:
-    template: ../../pandoc/toc-title_html.template
-    toc: true
-    highlight: tango
-    number_sections: FALSE
-menu:
-  class:
-    parent: Practicas
-    weight: 1
-type: docs
-weight: 1
-editor_options:
-  chunk_output_type: console
----
+<!DOCTYPE html>
+<html lang="en-us" 
+      xmlns:og="http://ogp.me/ns#" 
+      xmlns:fb="https://www.facebook.com/2008/fbml">
 
-<!-- BLOGDOWN-HEAD -->
-<script src="/rmarkdown-libs/clipboard/clipboard.min.js"></script>
-<link href="/rmarkdown-libs/primer-tooltips/build.css" rel="stylesheet" />
-<link href="/rmarkdown-libs/klippy/css/klippy.min.css" rel="stylesheet" />
-<script src="/rmarkdown-libs/klippy/js/klippy.min.js"></script>
-<style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  { background-color: #f8f8f8; }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ef2929; } /* Alert */
-code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #c4a000; } /* Attribute */
-code span.bn { color: #0000cf; } /* BaseN */
-code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4e9a06; } /* Char */
-code span.cn { color: #000000; } /* Constant */
-code span.co { color: #8f5902; font-style: italic; } /* Comment */
-code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code span.dt { color: #204a87; } /* DataType */
-code span.dv { color: #0000cf; } /* DecVal */
-code span.er { color: #a40000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #0000cf; } /* Float */
-code span.fu { color: #000000; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code span.ot { color: #8f5902; } /* Other */
-code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code span.sc { color: #000000; } /* SpecialChar */
-code span.ss { color: #4e9a06; } /* SpecialString */
-code span.st { color: #4e9a06; } /* String */
-code span.va { color: #000000; } /* Variable */
-code span.vs { color: #4e9a06; } /* VerbatimString */
-code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-<!-- /BLOGDOWN-HEAD -->
+<head>
 
-<h2>Índice</h2>
-<div id="TOC">
-<ul>
-<li><a href="#objetivo-de-la-práctica">Objetivo de la práctica</a></li>
-<li><a href="#código-de-análisis">Código de análisis</a><ul>
-<li><a href="#librerías">1. Librerías</a></li>
-<li><a href="#cargar-base-de-datos">2. Cargar base de datos</a></li>
-<li><a href="#descripción-de-variables">3. Descripción de variables</a><ul>
-<li><a href="#tabla-descriptiva-de-variables-para-sección-metodológica">3.1 Tabla descriptiva de variables para sección metodológica</a></li>
-<li><a href="#exploración-de-asociación-entre-variables">3.2 Exploración de asociación entre variables</a></li>
-</ul></li>
-<li><a href="#nota-final-información-de-la-sesión-de-r">Nota final: Información de la sesión de R</a></li>
-</ul></li>
-<li><a href="#resumen-práctica-2-descripción-de-variables">Resumen Práctica 2: Descripción de variables</a></li>
-<li><a href="#reporte-de-progreso">Reporte de progreso</a></li>
-</ul>
-</div>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.7.0">
 
-<script>
-  addClassKlippyTo("pre.r, pre.markdown");
-  addKlippy('right', 'bottom', 'auto', '1', 'Copy code', 'Copied!');
-</script>
-<div id="objetivo-de-la-práctica" class="section level1">
-<h1>Objetivo de la práctica</h1>
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Juan Castillo">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="addClassKlippyTo(&ldquo;pre.r, pre.markdown&rdquo;); addKlippy(&lsquo;right&rsquo;, &lsquo;bottom&rsquo;, &lsquo;auto&rsquo;, &lsquo;1&rsquo;, &lsquo;Copy code&rsquo;, &lsquo;Copied!&#39;); 
+Objetivo de la práctica Esta segunda práctica tiene por objetivo repasar algunos conceptos básicos de los cursos anteriores de Estadística Descriptiva y Estadística Correlacional. Asume como base el desarrollo de la Práctica 1, a la cual se hará referencia permanente.
+En la Práctica 1 se desarrolló un código de preparación de datos que generó una base de datos procesada para el análisis.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/assignment/02-code.knit/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#CF4446">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu1d2581101f943b2ec717907f12f16034_15667_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu1d2581101f943b2ec717907f12f16034_15667_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="/assignment/02-code.knit/">
+
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@juankcastillo">
+  <meta property="twitter:creator" content="@juankcastillo">
+  
+  <meta property="og:site_name" content="Estadística Multivariada">
+  <meta property="og:url" content="/assignment/02-code.knit/">
+  <meta property="og:title" content="Práctica 2. Descripción de variables | Estadística Multivariada">
+  <meta property="og:description" content="addClassKlippyTo(&ldquo;pre.r, pre.markdown&rdquo;); addKlippy(&lsquo;right&rsquo;, &lsquo;bottom&rsquo;, &lsquo;auto&rsquo;, &lsquo;1&rsquo;, &lsquo;Copy code&rsquo;, &lsquo;Copied!&#39;); 
+Objetivo de la práctica Esta segunda práctica tiene por objetivo repasar algunos conceptos básicos de los cursos anteriores de Estadística Descriptiva y Estadística Correlacional. Asume como base el desarrollo de la Práctica 1, a la cual se hará referencia permanente.
+En la Práctica 1 se desarrolló un código de preparación de datos que generó una base de datos procesada para el análisis."><meta property="og:image" content="/img/social-image.png">
+  <meta property="twitter:image" content="/img/social-image.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2020-01-10T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2020-01-10T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+
+  
+
+
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/img/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/img/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/img/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <meta name="application-name" content="SOC 01024: Estadística Multivariada" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="/img/mstile-144x144.png" />
+
+
+  <title>Práctica 2. Descripción de variables | Estadística Multivariada</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70"
+    data-target="#TableOfContents"
+    >
+
+    <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+    
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Estadística Multivariada</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Estadística Multivariada</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/programa/"><span>Programa</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/schedule/"><span>Planificación</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/class/"><span>Material</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/reference/"><span>Trabajos</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://rstudio.cloud/" target="_blank" rel="noopener"><span>RStudio.cloud</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+    
+
+<div class="container-fluid docs">
+    <div class="row flex-xl-nowrap">
+        <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+            
+
+
+
+
+
+  
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+
+  
+  
+  
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/class/01-class/">Contenidos</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/class/01-class/">1: Presentación</a>
+      </li>
+      
+      <li >
+        <a href="/class/02-class/">2: Bases</a>
+      </li>
+      
+      <li >
+        <a href="/class/03-class/">3: Regresión simple 1</a>
+      </li>
+      
+      <li >
+        <a href="/class/04-class/">4: Regresión simple 2</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/assignment/01-code/">Practicas</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/assignment/01-code/">Práctica 1: Preparación datos</a>
+      </li>
+      
+      <li class="active">
+        <a href="/assignment/02-code.knit/">Práctica 2: Descripción de variables</a>
+      </li>
+      
+      <li >
+        <a href="/assignment/03-code/">Práctica 3: Regresión simple 1</a>
+      </li>
+      
+      <li >
+        <a href="/assignment/04-code/">Práctica 4: Regresión simple 2</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+        </div>
+
+        
+
+        <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+            <article class="article">
+
+                <div class="docs-article-container">
+                    <h1>Práctica 2. Descripción de variables</h1>
+
+                    
+
+                    
+
+                    
+                    <div class="due-date p-2 mb-3 bg-secondary text-white">
+                        Materiales de la sesión del 23 Apr 2020
+                    </div>
+                    
+
+                    <div class="article-style">
+                        <!--html_preserve--><script>
+<p>addClassKlippyTo(&ldquo;pre.r, pre.markdown&rdquo;);
+addKlippy(&lsquo;right&rsquo;, &lsquo;bottom&rsquo;, &lsquo;auto&rsquo;, &lsquo;1&rsquo;, &lsquo;Copy code&rsquo;, &lsquo;Copied!');
+</script><!--/html_preserve--></p>
+<h1 id="objetivo-de-la-práctica">Objetivo de la práctica</h1>
 <p>Esta segunda práctica tiene por objetivo repasar algunos conceptos básicos de los cursos anteriores de <strong>Estadística Descriptiva</strong> y <strong>Estadística Correlacional</strong>. Asume como base el desarrollo de la <a href="/assignment/01-code">Práctica 1</a>, a la cual se hará referencia permanente.</p>
 <p>En la <a href="/assignment/01-code">Práctica 1</a> se desarrolló un código de preparación de datos que generó una base de datos procesada para el análisis. En esta <strong>Práctica 2</strong> comenzamos con el segundo momento de procesamiento de datos, que es el análisis propiamente tal. El análisis se divide en descripción de variables y contraste de hipótesis. En esta práctica nos enfocaremos en la primera fase, que llega hasta el punto 3 del código de análisis:</p>
-<p><img src="/images/produccion2.png" /></p>
+<p><img src="/images/produccion2.png" alt=""></p>
 <p>Al igual que el Código de Preparación, el Código de Análisis posee una estructura definida. En este caso son 4 partes, donde las primeras son similares al código de preparación:</p>
-<ol start="0" style="list-style-type: decimal">
+<ol start="0">
 <li>Identificación y descripción general: Título, autor(es), fecha, información breve sobre el contenido del documento</li>
 <li><strong>Librerías</strong> principales (de R) a utilizar en el análisis</li>
 <li><strong>Datos</strong> (que provienen de los preparados en la fase anterior)</li>
@@ -129,60 +605,74 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Tabla general de variables para la sección metodológica del reporte</li>
 <li>Exploración descriptiva de relaciones entre variables</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Contraste de hipótesis</strong> / inferencia estadística según la técnica que corresponda</li>
 </ol>
-<p>Al final de esta práctica la idea es que cada un_ pueda avanzar hasta el <strong>punto 3</strong> del Código de Análisis. El punto 4 (contraste de hipótesis) se desarrollará más adelante en este curso con énfasis en la técnica de regresión.</p>
-</div>
-<div id="código-de-análisis" class="section level1">
-<h1>Código de análisis</h1>
-<div id="librerías" class="section level2">
-<h2>1. Librerías</h2>
+<p>Al final de esta práctica la idea es que cada un_ pueda avanzar hasta el **punto 3** del Código de Análisis. El punto 4 (contraste de hipótesis) se desarrollará más adelante en este curso con énfasis en la técnica de regresión.</p>
+<h1 id="código-de-análisis">Código de análisis</h1>
+<h2 id="1-librerías">1. Librerías</h2>
 <p>La explicación de esta parte del código se encuentra en la sección correspondiente de la <a href="/assignment/01-code#librerias">práctica 1</a>.<span class="sidenote">pacman::p_load</span></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">pacman<span class="op">::</span><span class="kw">p_load</span>(dplyr, <span class="co">#Manipulacion de datos</span></a>
-<a class="sourceLine" id="cb1-2" title="2">              stargazer, <span class="co">#Tablas</span></a>
-<a class="sourceLine" id="cb1-3" title="3">              sjmisc, <span class="co"># Tablas</span></a>
-<a class="sourceLine" id="cb1-4" title="4">              summarytools, <span class="co"># Tablas</span></a>
-<a class="sourceLine" id="cb1-5" title="5">              kableExtra, <span class="co">#Tablas</span></a>
-<a class="sourceLine" id="cb1-6" title="6">              sjPlot, <span class="co">#Tablas y gráficos</span></a>
-<a class="sourceLine" id="cb1-7" title="7">              corrplot, <span class="co"># Correlaciones</span></a>
-<a class="sourceLine" id="cb1-8" title="8">              sessioninfo) <span class="co"># Información de la sesión de trabajo</span></a></code></pre></div>
-</div>
-<div id="cargar-base-de-datos" class="section level2">
-<h2>2. Cargar base de datos</h2>
+<pre><code class="language-r">pacman::p_load(dplyr, #Manipulacion de datos
+              stargazer, #Tablas
+              sjmisc, # Tablas
+              summarytools, # Tablas
+              kableExtra, #Tablas
+              sjPlot, #Tablas y gráficos
+              corrplot, # Correlaciones
+              sessioninfo) # Información de la sesión de trabajo
+</code></pre>
+<h2 id="2-cargar-base-de-datos">2. Cargar base de datos</h2>
 <p>Vamos a cargar la base de datos <strong>ELSOC_ess_merit2016.Rproc_elsoc</strong>, que generamos durante la práctica 1. Se puede llamar desde el directorio en que la guardaron dando la ruta completa, o también para esta práctica la podemos llamar directamente desde nuestro sitio web:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess_merit2016.RData&quot;</span>)) <span class="co">#Cargar base de datos</span></a></code></pre></div>
+<pre><code class="language-r">load(url(&quot;https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess_merit2016.RData&quot;)) #Cargar base de datos
+</code></pre>
 <ul>
 <li>Exploración inicial general de la base de datos</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">names</span>(proc_elsoc) <span class="co"># Muestra los nombres de las variables de la base de datos</span></a></code></pre></div>
+<pre><code class="language-r">names(proc_elsoc) # Muestra los nombres de las variables de la base de datos
+</code></pre>
 <pre><code>## [1] &quot;mesfuerzo&quot; &quot;mtalento&quot;  &quot;ess&quot;       &quot;edcine&quot;    &quot;sexo&quot;      &quot;edad&quot;     
-## [7] &quot;pmerit&quot;</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">dim</span>(proc_elsoc) <span class="co"># Dimensiones</span></a></code></pre></div>
-<pre><code>## [1] 2927    7</code></pre>
+## [7] &quot;pmerit&quot;
+</code></pre>
+<pre><code class="language-r">dim(proc_elsoc) # Dimensiones
+</code></pre>
+<pre><code>## [1] 2927    7
+</code></pre>
 <p>En el caso de esta base, 2927 casos y 7 variables</p>
 <p>Recordando el contenido de cada variable preparada en la práctica 1:</p>
 <ul>
-<li><p>[<code>merit</code>] = Indice promedio de percepción de meritocracia.</p></li>
-<li><p>[<code>ess</code>] = Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena" (0 = el nivel mas bajo; 10 = el nivel mas alto)</p></li>
-<li><p>[<code>edcine</code>] = Nivel educacional(1 = Primaria incompleta menos, 2 = Primaria y secundaria baja, 3 = Secundaria alta, 4 = Terciaria ciclo corto, 5 = Terciaria y Postgrado)</p></li>
-<li><p>[<code>sexo</code>] = Sexo (O = Hombre; 1 = Mujer)</p></li>
-<li><p>[<code>edad</code>] = ¿Cuáles su edad? (años cumplidos)</p></li>
+<li>
+<p>[<code>merit</code>] = Indice promedio de percepción de meritocracia.</p>
+</li>
+<li>
+<p>[<code>ess</code>] = Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena&rdquo; (0 = el nivel mas bajo; 10 = el nivel mas alto)</p>
+</li>
+<li>
+<p>[<code>edcine</code>] = Nivel educacional(1 = Primaria incompleta menos, 2 = Primaria y secundaria baja, 3 = Secundaria alta, 4 = Terciaria ciclo corto, 5 = Terciaria y Postgrado)</p>
+</li>
+<li>
+<p>[<code>sexo</code>] = Sexo (O = Hombre; 1 = Mujer)</p>
+</li>
+<li>
+<p>[<code>edad</code>] = ¿Cuáles su edad? (años cumplidos)</p>
+</li>
 </ul>
-</div>
-<div id="descripción-de-variables" class="section level2">
-<h2>3. Descripción de variables</h2>
+<h2 id="3-descripción-de-variables">3. Descripción de variables</h2>
 <p>Los resultados referidos a descripción de variables se presentan en dos momentos del reporte de investigación:</p>
 <ul>
-<li><p>en la sección de <em>metodología</em>, cuando se presentan las variables del estudio en una <strong>tabla descriptiva</strong> de variables.</p></li>
-<li><p>en la sección de <em>análisis</em>, que en general comienza con una exploración de <strong>asociaciones entre variables</strong>, también conocido como análisis descriptivo.</p></li>
+<li>
+<p>en la sección de <em>metodología</em>, cuando se presentan las variables del estudio en una  <strong>tabla descriptiva</strong> de variables.</p>
+</li>
+<li>
+<p>en la sección de <em>análisis</em>, que en general comienza con una exploración de <strong>asociaciones entre variables</strong>, también conocido como análisis descriptivo.</p>
+</li>
 </ul>
-<div id="tabla-descriptiva-de-variables-para-sección-metodológica" class="section level3">
-<h3>3.1 Tabla descriptiva de variables para sección metodológica</h3>
+<h3 id="31-tabla-descriptiva-de-variables-para-sección-metodológica">3.1 Tabla descriptiva de variables para sección metodológica</h3>
 <p>A continuación se presentan dos opciones de generar esta tabla descriptiva de variables con distintas librerías de R.</p>
 <p><strong>a. Tabla descriptiva con <code>stargazer</code></strong><span class="sidenote">stargazer</span></p>
-<p>La función <code>stargazer</code> (de la librería del mismo nombre) permitirá mostrar los principales estadísticos descriptivos univariados de las variables: medidas de tendencia central (media), de dispersión (desviación estándar) y posición (mínimo, máximo, percentiles).</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">stargazer</span>(proc_elsoc,<span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</a></code></pre></div>
+<p>La función <code>stargazer</code> (de la librería del mismo nombre) permitirá  mostrar los principales estadísticos descriptivos univariados de las variables:  medidas de tendencia central (media), de dispersión (desviación estándar) y posición (mínimo, máximo, percentiles).</p>
+<pre><code class="language-r">stargazer(proc_elsoc,type = &quot;text&quot;)
+</code></pre>
 <pre><code>## 
 ## ==============================================================
 ## Statistic   N    Mean  St. Dev.  Min  Pctl(25) Pctl(75)  Max  
@@ -194,15 +684,21 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## sexo      2,927 0.603   0.489     0      0        1       1   
 ## edad      2,927 46.091  15.287   18      33       58      88  
 ## pmerit    2,898 2.654   0.969   1.000  2.000    3.500   5.000 
-## --------------------------------------------------------------</code></pre>
+## --------------------------------------------------------------
+</code></pre>
 <p>Algunas observaciones sobre esta tabla:</p>
 <ul>
-<li><p>La opción <code>type="text"</code> permite que podamos ver los resultados directamente en la consola, de manera bastante rudimentaria. Con otras opciones que veremos más adelante se puede estilizar para su publicación.</p></li>
-<li><p>Una distinción relevante a considerar cuando se describen variables es si estas son <strong>categóricas</strong> o <strong>continuas</strong>. La definición de si una variables es tratada como categórica o continua es algo que hace el/la autor/a del reporte, sin embargo hay variables nominales como sexo que claramente corresponden a categóricas, y por lo tanto no corresponde hacer un promedio entre ambas. Sin embargo, como esta variable está codificada 0 (hombre) y 1 (mujer), en este caso lo que indica el valor de la columna promedio (Mean=0.60) es la proporción de mujeres vs hombres. En otras palabras, hay un 60% de mujeres y 40% de hombres en la muestra.</p></li>
+<li>
+<p>La opción <code>type=&quot;text&quot;</code> permite que podamos ver los resultados directamente en la consola, de manera bastante rudimentaria. Con otras opciones que veremos más adelante se puede estilizar para su publicación.</p>
+</li>
+<li>
+<p>Una distinción relevante a considerar cuando se describen variables es si estas son <strong>categóricas</strong> o <strong>continuas</strong>. La definición de si una variables es tratada como categórica o continua es algo que hace el/la autor/a del reporte, sin embargo hay variables nominales como sexo que claramente corresponden a categóricas, y por lo tanto no corresponde hacer un promedio entre ambas. Sin embargo, como esta variable está codificada 0 (hombre) y 1 (mujer),  en este caso lo que indica el valor de la columna promedio (Mean=0.60) es la proporción de mujeres vs hombres. En otras palabras, hay un 60% de mujeres y 40% de hombres en la muestra.</p>
+</li>
 </ul>
 <p><strong>b. Tablas descriptivas con <code>descr</code>, librería sjmisc</strong><span class="sidenote">sjmisc::descr</span></p>
 <p>La opción básica de <code>descr</code> es la siguiente:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">sjmisc<span class="op">::</span><span class="kw">descr</span>(proc_elsoc)</a></code></pre></div>
+<pre><code class="language-r">sjmisc::descr(proc_elsoc)
+</code></pre>
 <pre><code>## 
 ## ## Basic descriptive statistics
 ## 
@@ -221,15 +717,17 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##     3.23    4 (1-5) -0.15
 ##     0.63    1 (0-1) -0.42
 ##    45.90 70 (18-88)  0.07
-##     2.66    4 (1-5)  0.26</code></pre>
+##     2.66    4 (1-5)  0.26
+</code></pre>
 <p>En este caso utilizamos la forma <code>librería::función</code> (<code>sjmisc::descr</code>), ya que la función <code>descr</code> también existe en otras librerías y así nos aseguramos que la función utilizada es de esa librería específica.</p>
 <p>Seleccionamos algunas columnas específicas con información más relevante con la opción <code>show</code>. Además, agregamos la función <code>kable</code> para obtener una tabla que luego sea fácilmente publicable en distintos formatos (a profundizar en una práctica posterior):</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">sjmisc<span class="op">::</span><span class="kw">descr</span>(proc_elsoc,</a>
-<a class="sourceLine" id="cb11-2" title="2">      <span class="dt">show =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>,<span class="st">&quot;range&quot;</span>, <span class="st">&quot;mean&quot;</span>, <span class="st">&quot;sd&quot;</span>, <span class="st">&quot;NA.prc&quot;</span>, <span class="st">&quot;n&quot;</span>))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-3" title="3"><span class="st">      </span><span class="kw">kable</span>(.,<span class="st">&quot;markdown&quot;</span>)</a></code></pre></div>
+<pre><code class="language-r">sjmisc::descr(proc_elsoc,
+      show = c(&quot;label&quot;,&quot;range&quot;, &quot;mean&quot;, &quot;sd&quot;, &quot;NA.prc&quot;, &quot;n&quot;))%&gt;%
+      kable(.,&quot;markdown&quot;)
+</code></pre>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th align="left"></th>
 <th align="left">var</th>
 <th align="left">label</th>
@@ -241,7 +739,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="left">4</td>
 <td align="left">mesfuerzo</td>
 <td align="left">Recompensa: esfuerzo</td>
@@ -251,7 +749,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <td align="right">1.0466874</td>
 <td align="left">4 (1-5)</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">5</td>
 <td align="left">mtalento</td>
 <td align="left">Recompensa: talento</td>
@@ -261,7 +759,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <td align="right">1.0596182</td>
 <td align="left">4 (1-5)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">3</td>
 <td align="left">ess</td>
 <td align="left">Estatus Social Subjetivo</td>
@@ -271,7 +769,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <td align="right">1.5666965</td>
 <td align="left">10 (0-10)</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">2</td>
 <td align="left">edcine</td>
 <td align="left">Educación</td>
@@ -281,7 +779,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <td align="right">1.2066058</td>
 <td align="left">4 (1-5)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">7</td>
 <td align="left">sexo</td>
 <td align="left">Sexo</td>
@@ -291,7 +789,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <td align="right">0.4894300</td>
 <td align="left">1 (0-1)</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">1</td>
 <td align="left">edad</td>
 <td align="left">Edad</td>
@@ -301,7 +799,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <td align="right">15.2867983</td>
 <td align="left">70 (18-88)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">6</td>
 <td align="left">pmerit</td>
 <td align="left">Meritocracia promedio</td>
@@ -311,12 +809,22 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <td align="right">0.9694792</td>
 <td align="left">4 (1-5)</td>
 </tr>
+<tr>
+<td align="left"><strong>c. Tabla descriptiva con <code>summarytools::dfSummary</code></strong><span class="sidenote">summarytools::dfSummary</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
-<p><strong>c. Tabla descriptiva con <code>summarytools::dfSummary</code></strong><span class="sidenote">summarytools::dfSummary</span></p>
 <p>Esta tercera opción nos ofrece una tabla aún más detallada, con gráficos para cada variable, las frecuencias para cada valor, y las etiquetas de las variables, por lo que es muy recomendable.</p>
 <p>Se específica de la siguiente manera:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">dfSummary</span>(proc_elsoc, <span class="dt">plain.ascii =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code class="language-r">dfSummary(proc_elsoc, plain.ascii = FALSE)
+</code></pre>
 <pre><code>## ### Data Frame Summary  
 ## #### proc_elsoc  
 ## **Dimensions:** 2927 x 7  
@@ -370,10 +878,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##                                                                         4.00 :  528 (18.2%)\   III \                                    
 ##                                                                         4.50 :   38 ( 1.3%)\   \                                        
 ##                                                                         5.00 :   42 ( 1.5%)                                             
-## ----------------------------------------------------------------------------------------------------------------------------------------</code></pre>
+## ----------------------------------------------------------------------------------------------------------------------------------------
+</code></pre>
 <p>Es muy ancha para visualizar bien en la consola de R, pero en su versión más definitiva de publicación se verá así:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">view</span>(<span class="kw">dfSummary</span>(proc_elsoc, <span class="dt">headings=</span><span class="ot">FALSE</span>))</a></code></pre></div>
-<div class="container st-container">
+<pre><code class="language-r">view(dfSummary(proc_elsoc, headings=FALSE))
+</code></pre>
+<!--html_preserve--><div class="container st-container">
 <table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline ">
   <thead>
     <tr>
@@ -502,8 +1012,8 @@ IQR (CV) : 1.5 (0.4)</td>
   </tbody>
 </table>
 <p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 0.9.6 (<a href='https://www.r-project.org/'>R</a> version 3.6.0)<br/>2020-04-23</p>
-</div>
-<p><strong>Nota sobre casos perdidos (NAs)</strong><span class="sidenote">na.omit(data)</span></p>
+</div><!--/html_preserve-->
+<p>**Nota sobre casos perdidos (NAs)**<span class="sidenote">na.omit(data)</span></p>
 <p>Hasta ahora hemos mantenido los casos perdidos en la base de datos, ya que son importantes de reportar en la tabla general de variables. Sin embargo, de aquí en adelante se recomienda trabajar solo con casos completos, es decir, <strong>sacar los casos perdidos</strong>. El quitar los casos perdidos de una base de datos es muy simple con la función <code>na.omit</code>, pero para tomar precauciones y asegurarse que funciona se recomienda el siguiente procedimiento:</p>
 <ul>
 <li>respaldar la base de datos original en el espacio de trabajo (por si queremos en adelante realizar algún análisis referido a casos perdidos), la dejaremos con el nombre proc_elsoc_original.</li>
@@ -513,18 +1023,23 @@ IQR (CV) : 1.5 (0.4)</td>
 <li>contamos nuevamente con <code>dim</code> para asegurarnos que se borraron</li>
 <li>y por temas de funcionamiento de R, al realizar la operación de sacar casos perdidos, se borra toda la información de las etiquetas (labels), así que las recuperamos de la base original con el comando <code>copy_labels</code>, de la librería <code>sjlabelled</code>.</li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">proc_elsoc_original &lt;-proc_elsoc</a>
-<a class="sourceLine" id="cb15-2" title="2"><span class="kw">dim</span>(proc_elsoc)</a></code></pre></div>
-<pre><code>## [1] 2927    7</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">sum</span>(<span class="kw">is.na</span>(proc_elsoc))</a></code></pre></div>
-<pre><code>## [1] 81</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">proc_elsoc &lt;-<span class="kw">na.omit</span>(proc_elsoc)</a>
-<a class="sourceLine" id="cb19-2" title="2"><span class="kw">dim</span>(proc_elsoc)</a></code></pre></div>
-<pre><code>## [1] 2887    7</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">proc_elsoc &lt;-sjlabelled<span class="op">::</span><span class="kw">copy_labels</span>(proc_elsoc,proc_elsoc_original)</a></code></pre></div>
-</div>
-<div id="exploración-de-asociación-entre-variables" class="section level3">
-<h3>3.2 Exploración de asociación entre variables</h3>
+<pre><code class="language-r">proc_elsoc_original &lt;-proc_elsoc
+dim(proc_elsoc)
+</code></pre>
+<pre><code>## [1] 2927    7
+</code></pre>
+<pre><code class="language-r">sum(is.na(proc_elsoc))
+</code></pre>
+<pre><code>## [1] 81
+</code></pre>
+<pre><code class="language-r">proc_elsoc &lt;-na.omit(proc_elsoc)
+dim(proc_elsoc)
+</code></pre>
+<pre><code>## [1] 2887    7
+</code></pre>
+<pre><code class="language-r">proc_elsoc &lt;-sjlabelled::copy_labels(proc_elsoc,proc_elsoc_original)
+</code></pre>
+<h3 id="32-exploración-de-asociación-entre-variables">3.2 Exploración de asociación entre variables</h3>
 <p>Dado que las hipótesis de investigación corresponden a asociación entre variables, antes de realizar el contraste de hipótesis se suele presentar un análisis descriptivio que explora las asociaciones entre variables.</p>
 <p>La forma de explorar las asociaciones entre variables dependen de la naturaleza de las variables que se asocian:</p>
 <ul>
@@ -534,246 +1049,130 @@ IQR (CV) : 1.5 (0.4)</td>
 </ul>
 <p>En esta sección también es muy relevante la visualización de datos mediante gráficos, por lo que incluiremos algunos.</p>
 <p>El uso tanto de tablas como de gráficos en el reporte queda a discreción del/a autor/a. La pregunta que orienta esta decisión es: <em>¿Me permite enriquecer la discusión de los resultados en relación a las hipótesis planteadas?</em></p>
-<div id="tablas-de-contingencia-para-variables-categóricas" class="section level4">
-<h4>Tablas de contingencia para variables categóricas</h4>
+<h4 id="tablas-de-contingencia-para-variables-categóricas">Tablas de contingencia para variables categóricas</h4>
 <p>Para tablas de contingencia categóricas utilizaremos la función sjt.xtab, de la librería <code>sjPlot</code>. Veamos primero una especificación simple: <span class="sidenote">sjPlot::sjt.xtab</span></p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">sjt.xtab</span>(proc_elsoc<span class="op">$</span>edcine, proc_elsoc<span class="op">$</span>sexo)</a></code></pre></div>
+<pre><code class="language-r">sjt.xtab(proc_elsoc$edcine, proc_elsoc$sexo)
+</code></pre>
 <table style="border-collapse:collapse; border:none;">
+ <tr>
+ <th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2">Educación</th>
+ <th style="border-top:double; text-align:center; font-style:italic; font-weight:normal;" colspan="2">Sexo</th>
+ <th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; font-weight:bolder; font-style:italic; border-bottom:1px solid; " rowspan="2">Total</th>
+ </tr>
 <tr>
-<th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2">
-Educación
-</th>
-<th style="border-top:double; text-align:center; font-style:italic; font-weight:normal;" colspan="2">
-Sexo
-</th>
-<th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; font-weight:bolder; font-style:italic; border-bottom:1px solid; " rowspan="2">
-Total
-</th>
+ <td style="border-bottom:1px solid; text-align:center; padding:0.2cm;">Hombre</td>
+ <td style="border-bottom:1px solid; text-align:center; padding:0.2cm;">Mujer</td>
+ </tr>
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">Primaria incompleta<br>menos</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">102</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">247</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">349</span></td> 
 </tr>
-<tr>
-<td style="border-bottom:1px solid; text-align:center; padding:0.2cm;">
-Hombre
-</td>
-<td style="border-bottom:1px solid; text-align:center; padding:0.2cm;">
-Mujer
-</td>
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">Primaria y<br>secundaria baja</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">105</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">186</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">291</span></td> 
 </tr>
-<tr>
-<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">
-Primaria incompleta<br>menos
-</td>
-<td style="padding:0.2cm; text-align:center; ">
-<span style="color:black;">102</span>
-</td>
-<td style="padding:0.2cm; text-align:center; ">
-<span style="color:black;">247</span>
-</td>
-<td style="padding:0.2cm; text-align:center;  ">
-<span style="color:black;">349</span>
-</td>
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">Secundaria alta</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">511</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">727</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">1238</span></td> 
 </tr>
-<tr>
-<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">
-Primaria y<br>secundaria baja
-</td>
-<td style="padding:0.2cm; text-align:center; ">
-<span style="color:black;">105</span>
-</td>
-<td style="padding:0.2cm; text-align:center; ">
-<span style="color:black;">186</span>
-</td>
-<td style="padding:0.2cm; text-align:center;  ">
-<span style="color:black;">291</span>
-</td>
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">Terciaria ciclo<br>corto</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">186</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">292</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">478</span></td> 
 </tr>
-<tr>
-<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">
-Secundaria alta
-</td>
-<td style="padding:0.2cm; text-align:center; ">
-<span style="color:black;">511</span>
-</td>
-<td style="padding:0.2cm; text-align:center; ">
-<span style="color:black;">727</span>
-</td>
-<td style="padding:0.2cm; text-align:center;  ">
-<span style="color:black;">1238</span>
-</td>
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">Terciaria y<br>Postgrado</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">245</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">286</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">531</span></td> 
 </tr>
-<tr>
-<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">
-Terciaria ciclo<br>corto
-</td>
-<td style="padding:0.2cm; text-align:center; ">
-<span style="color:black;">186</span>
-</td>
-<td style="padding:0.2cm; text-align:center; ">
-<span style="color:black;">292</span>
-</td>
-<td style="padding:0.2cm; text-align:center;  ">
-<span style="color:black;">478</span>
-</td>
+<tr> 
+<td style="padding:0.2cm;  border-bottom:double; font-weight:bolder; font-style:italic; text-align:left; vertical-align:middle;">Total</td>
+<td style="padding:0.2cm; text-align:center;   border-bottom:double;"><span style="color:black;">1149</span></td>
+<td style="padding:0.2cm; text-align:center;   border-bottom:double;"><span style="color:black;">1738</span></td>
+<td style="padding:0.2cm; text-align:center;   border-bottom:double;"><span style="color:black;">2887</span></td> 
 </tr>
-<tr>
-<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">
-Terciaria y<br>Postgrado
-</td>
-<td style="padding:0.2cm; text-align:center; ">
-<span style="color:black;">245</span>
-</td>
-<td style="padding:0.2cm; text-align:center; ">
-<span style="color:black;">286</span>
-</td>
-<td style="padding:0.2cm; text-align:center;  ">
-<span style="color:black;">531</span>
-</td>
-</tr>
-<tr>
-<td style="padding:0.2cm;  border-bottom:double; font-weight:bolder; font-style:italic; text-align:left; vertical-align:middle;">
-Total
-</td>
-<td style="padding:0.2cm; text-align:center;   border-bottom:double;">
-<span style="color:black;">1149</span>
-</td>
-<td style="padding:0.2cm; text-align:center;   border-bottom:double;">
-<span style="color:black;">1738</span>
-</td>
-<td style="padding:0.2cm; text-align:center;   border-bottom:double;">
-<span style="color:black;">2887</span>
-</td>
-</tr>
-<td style="text-align:right; font-size:0.9em; font-style:italic; padding:0.2cm;" colspan="4">
-χ<sup>2</sup>=28.154 · df=4 · Cramer’s V=0.099 · p=0.000
-</td>
+ <td style="text-align:right; font-size:0.9em; font-style:italic; padding:0.2cm;" colspan="4">&chi;<sup>2</sup>=28.154 &middot; df=4 &middot; Cramer's V=0.099 &middot; p=0.000</td> 
 </tr>
 </table>
 <p>Al ejecutar el comando, el resultado aparece automáticamente en el visor de RStudio. A esta tabla podemos también agregar porcentajes de filas y/o columnas, según sea lo más relevante analizar. En general se recomienda agregar solo un porcentaje, de otra manera la tabla se satura de información. Además, vamos a quitar el pie de la tabla (conviene dejarlo solo si hay hipótesis asociadas al cruce simple entre las dos variables).</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">sjt.xtab</span>(proc_elsoc<span class="op">$</span>edcine, proc_elsoc<span class="op">$</span>sexo,</a>
-<a class="sourceLine" id="cb23-2" title="2">        <span class="dt">show.col.prc=</span><span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb23-3" title="3">        <span class="dt">show.summary=</span><span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb23-4" title="4">)</a></code></pre></div>
+<pre><code class="language-r">sjt.xtab(proc_elsoc$edcine, proc_elsoc$sexo,
+        show.col.prc=TRUE,
+        show.summary=FALSE
+)
+</code></pre>
 <table style="border-collapse:collapse; border:none;">
+ <tr>
+ <th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2">Educación</th>
+ <th style="border-top:double; text-align:center; font-style:italic; font-weight:normal;" colspan="2">Sexo</th>
+ <th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; font-weight:bolder; font-style:italic; border-bottom:1px solid; " rowspan="2">Total</th>
+ </tr>
 <tr>
-<th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2">
-Educación
-</th>
-<th style="border-top:double; text-align:center; font-style:italic; font-weight:normal;" colspan="2">
-Sexo
-</th>
-<th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; font-weight:bolder; font-style:italic; border-bottom:1px solid; " rowspan="2">
-Total
-</th>
+ <td style="border-bottom:1px solid; text-align:center; padding:0.2cm;">Hombre</td>
+ <td style="border-bottom:1px solid; text-align:center; padding:0.2cm;">Mujer</td>
+ </tr>
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">Primaria incompleta<br>menos</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">102</span><br><span style="color:#339933;">8.9&nbsp;&#37;</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">247</span><br><span style="color:#339933;">14.2&nbsp;&#37;</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">349</span><br><span style="color:#339933;">12.1&nbsp;&#37;</span></td> 
 </tr>
-<tr>
-<td style="border-bottom:1px solid; text-align:center; padding:0.2cm;">
-Hombre
-</td>
-<td style="border-bottom:1px solid; text-align:center; padding:0.2cm;">
-Mujer
-</td>
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">Primaria y<br>secundaria baja</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">105</span><br><span style="color:#339933;">9.1&nbsp;&#37;</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">186</span><br><span style="color:#339933;">10.7&nbsp;&#37;</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">291</span><br><span style="color:#339933;">10.1&nbsp;&#37;</span></td> 
 </tr>
-<tr>
-<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">
-Primaria incompleta<br>menos
-</td>
-<td style="padding:0.2cm; text-align:center; ">
-<span style="color:black;">102</span><br><span style="color:#339933;">8.9 %</span>
-</td>
-<td style="padding:0.2cm; text-align:center; ">
-<span style="color:black;">247</span><br><span style="color:#339933;">14.2 %</span>
-</td>
-<td style="padding:0.2cm; text-align:center;  ">
-<span style="color:black;">349</span><br><span style="color:#339933;">12.1 %</span>
-</td>
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">Secundaria alta</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">511</span><br><span style="color:#339933;">44.5&nbsp;&#37;</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">727</span><br><span style="color:#339933;">41.8&nbsp;&#37;</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">1238</span><br><span style="color:#339933;">42.9&nbsp;&#37;</span></td> 
 </tr>
-<tr>
-<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">
-Primaria y<br>secundaria baja
-</td>
-<td style="padding:0.2cm; text-align:center; ">
-<span style="color:black;">105</span><br><span style="color:#339933;">9.1 %</span>
-</td>
-<td style="padding:0.2cm; text-align:center; ">
-<span style="color:black;">186</span><br><span style="color:#339933;">10.7 %</span>
-</td>
-<td style="padding:0.2cm; text-align:center;  ">
-<span style="color:black;">291</span><br><span style="color:#339933;">10.1 %</span>
-</td>
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">Terciaria ciclo<br>corto</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">186</span><br><span style="color:#339933;">16.2&nbsp;&#37;</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">292</span><br><span style="color:#339933;">16.8&nbsp;&#37;</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">478</span><br><span style="color:#339933;">16.6&nbsp;&#37;</span></td> 
 </tr>
-<tr>
-<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">
-Secundaria alta
-</td>
-<td style="padding:0.2cm; text-align:center; ">
-<span style="color:black;">511</span><br><span style="color:#339933;">44.5 %</span>
-</td>
-<td style="padding:0.2cm; text-align:center; ">
-<span style="color:black;">727</span><br><span style="color:#339933;">41.8 %</span>
-</td>
-<td style="padding:0.2cm; text-align:center;  ">
-<span style="color:black;">1238</span><br><span style="color:#339933;">42.9 %</span>
-</td>
+<tr> 
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">Terciaria y<br>Postgrado</td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">245</span><br><span style="color:#339933;">21.3&nbsp;&#37;</span></td>
+<td style="padding:0.2cm; text-align:center; "><span style="color:black;">286</span><br><span style="color:#339933;">16.5&nbsp;&#37;</span></td>
+<td style="padding:0.2cm; text-align:center;  "><span style="color:black;">531</span><br><span style="color:#339933;">18.4&nbsp;&#37;</span></td> 
 </tr>
-<tr>
-<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">
-Terciaria ciclo<br>corto
-</td>
-<td style="padding:0.2cm; text-align:center; ">
-<span style="color:black;">186</span><br><span style="color:#339933;">16.2 %</span>
-</td>
-<td style="padding:0.2cm; text-align:center; ">
-<span style="color:black;">292</span><br><span style="color:#339933;">16.8 %</span>
-</td>
-<td style="padding:0.2cm; text-align:center;  ">
-<span style="color:black;">478</span><br><span style="color:#339933;">16.6 %</span>
-</td>
-</tr>
-<tr>
-<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">
-Terciaria y<br>Postgrado
-</td>
-<td style="padding:0.2cm; text-align:center; ">
-<span style="color:black;">245</span><br><span style="color:#339933;">21.3 %</span>
-</td>
-<td style="padding:0.2cm; text-align:center; ">
-<span style="color:black;">286</span><br><span style="color:#339933;">16.5 %</span>
-</td>
-<td style="padding:0.2cm; text-align:center;  ">
-<span style="color:black;">531</span><br><span style="color:#339933;">18.4 %</span>
-</td>
-</tr>
-<tr>
-<td style="padding:0.2cm;  border-bottom:double; font-weight:bolder; font-style:italic; text-align:left; vertical-align:middle;">
-Total
-</td>
-<td style="padding:0.2cm; text-align:center;   border-bottom:double;">
-<span style="color:black;">1149</span><br><span style="color:#339933;">100 %</span>
-</td>
-<td style="padding:0.2cm; text-align:center;   border-bottom:double;">
-<span style="color:black;">1738</span><br><span style="color:#339933;">100 %</span>
-</td>
-<td style="padding:0.2cm; text-align:center;   border-bottom:double;">
-<span style="color:black;">2887</span><br><span style="color:#339933;">100 %</span>
-</td>
+<tr> 
+<td style="padding:0.2cm;  border-bottom:double; font-weight:bolder; font-style:italic; text-align:left; vertical-align:middle;">Total</td>
+<td style="padding:0.2cm; text-align:center;   border-bottom:double;"><span style="color:black;">1149</span><br><span style="color:#339933;">100&nbsp;&#37;</span></td>
+<td style="padding:0.2cm; text-align:center;   border-bottom:double;"><span style="color:black;">1738</span><br><span style="color:#339933;">100&nbsp;&#37;</span></td>
+<td style="padding:0.2cm; text-align:center;   border-bottom:double;"><span style="color:black;">2887</span><br><span style="color:#339933;">100&nbsp;&#37;</span></td> 
 </tr>
 </table>
-</div>
-<div id="tablas-de-promedio-de-variable-continua-por-una-categóricas" class="section level4">
-<h4>Tablas de promedio de variable continua por una categóricas</h4>
+<h4 id="tablas-de-promedio-de-variable-continua-por-una-categóricas">Tablas de promedio de variable continua por una categóricas</h4>
 <p>En ejemplo vamos a explorar datos de nuestra variable de percepción de meritocracia <em>pmerit</em> por los niveles educacionales <em>edcine</em>.</p>
 <p>Una forma rápida de explorar esto es mediante la función <code>tapply</code>, que nos entrega de manera simple el promedio de una variable por otra:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">tapply</span>(proc_elsoc<span class="op">$</span>pmerit, proc_elsoc<span class="op">$</span>edcine, mean)</a></code></pre></div>
+<pre><code class="language-r">tapply(proc_elsoc$pmerit, proc_elsoc$edcine, mean)
+</code></pre>
 <pre><code>##        1        2        3        4        5 
-## 2.968481 2.697595 2.662763 2.479079 2.559322</code></pre>
+## 2.968481 2.697595 2.662763 2.479079 2.559322
+</code></pre>
 <p>Aquí vemos en promedio de <em>pmerit</em> para cada uno de los 5 niveles de la variable educación <em>edcine</em>. Si se estima conveniente este tipo de cruces se puede representar también en una tabla con más opciones de información y también de publicación. Para esto utilizaremos una función algo más compleja de la librería <code>dplyr</code>.<span class="sidenote">dplyr</span> Esta librería permite aplicar una serie de funciones concatenadas y enlazadas mediante el operador <code>%&gt;%</code>. El sentido de cada función aparece comentado abajo:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">proc_elsoc <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se especifica la base de datos</span></a>
-<a class="sourceLine" id="cb26-2" title="2"><span class="st">  </span><span class="kw">select</span>(pmerit,edcine) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se seleccionan las variables</span></a>
-<a class="sourceLine" id="cb26-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(Educación=sjlabelled<span class="op">::</span><span class="kw">as_label</span>(edcine)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se agrupan por la variable categórica y se usan sus etiquetas con as_label</span></a>
-<a class="sourceLine" id="cb26-4" title="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">Obs.=</span><span class="kw">n</span>(),<span class="dt">Promedio=</span><span class="kw">mean</span>(pmerit),<span class="dt">SD=</span><span class="kw">sd</span>(pmerit)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se agregan las operaciones a presentar en la tabla</span></a>
-<a class="sourceLine" id="cb26-5" title="5"><span class="st">  </span><span class="kw">kable</span>(, <span class="dt">format =</span> <span class="st">&quot;markdown&quot;</span>) <span class="co"># se genera la tabla</span></a></code></pre></div>
+<pre><code class="language-r">proc_elsoc %&gt;% # se especifica la base de datos
+  select(pmerit,edcine) %&gt;% # se seleccionan las variables
+  dplyr::group_by(Educación=sjlabelled::as_label(edcine)) %&gt;% # se agrupan por la variable categórica y se usan sus etiquetas con as_label
+  dplyr::summarise(Obs.=n(),Promedio=mean(pmerit),SD=sd(pmerit)) %&gt;% # se agregan las operaciones a presentar en la tabla
+  kable(, format = &quot;markdown&quot;) # se genera la tabla
+</code></pre>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th align="left">Educación</th>
 <th align="right">Obs.</th>
 <th align="right">Promedio</th>
@@ -781,31 +1180,31 @@ Total
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="left">Primaria incompleta menos</td>
 <td align="right">349</td>
 <td align="right">2.968481</td>
 <td align="right">0.9828315</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">Primaria y secundaria baja</td>
 <td align="right">291</td>
 <td align="right">2.697595</td>
 <td align="right">1.0041093</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">Secundaria alta</td>
 <td align="right">1238</td>
 <td align="right">2.662762</td>
 <td align="right">0.9685655</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">Terciaria ciclo corto</td>
 <td align="right">478</td>
 <td align="right">2.479080</td>
 <td align="right">0.9431323</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">Terciaria y Postgrado</td>
 <td align="right">531</td>
 <td align="right">2.559322</td>
@@ -814,30 +1213,38 @@ Total
 </tbody>
 </table>
 <p>Esta asocación también se puede representar de manera más simple con un gráfico, en este caso de cajas o boxplot mediante la función <code>plot_grpfrq</code> de <code>sjPlot</code>:<span class="sidenote">sjPlot::plot_grpfrq</span></p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">plot_grpfrq</span>(proc_elsoc<span class="op">$</span>pmerit,proc_elsoc<span class="op">$</span>edcine,</a>
-<a class="sourceLine" id="cb27-2" title="2">            <span class="dt">type =</span> <span class="st">&quot;box&quot;</span>)</a></code></pre></div>
-<p><img src="/assignment/02-code_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-</div>
-<div id="correlaciones-variables-continuas" class="section level4">
-<h4>Correlaciones (variables continuas)</h4>
+<pre><code class="language-r">plot_grpfrq(proc_elsoc$pmerit,proc_elsoc$edcine,
+            type = &quot;box&quot;)
+</code></pre>
+<p><img src="02-code_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<h4 id="correlaciones-variables-continuas">Correlaciones (variables continuas)</h4>
 <p><strong>Algunas notas sobre correlación:</strong></p>
 <ul>
-<li><p>El <em>coeficiente de correlación</em> mide la fuerza de la relación lineal entre dos variable continuas. Esta puede ser:</p>
+<li>
+<p>El <em>coeficiente de correlación</em> mide la fuerza de la relación lineal entre dos variable continuas. Esta puede ser:</p>
 <ul>
 <li><em>positiva</em>: a medida que aumenta una, aumenta la otra (ej: estatura y edad)</li>
 <li><em>negativa</em>: a medida que una aumenta, disminuye la otra (ej: tiempo dedicado al estudio y probabilidad de reprobar)</li>
 <li><em>neutra</em>: no hay asociación entre variables.</li>
-</ul></li>
-<li><p>El rango de variación del coeficiente de correlación va desde -1 (correlación negativa perfecta) y 1 (correlación positiva perfecta).</p></li>
-<li><p>Existen diferentes formas de cálculo del coeficiente de correlación (Spearman, Kendall, Pearson).</p></li>
-<li><p>En el coeficiente de correlación se analiza tanto su tamaño como su significación estadística.</p></li>
+</ul>
+</li>
+<li>
+<p>El rango de variación del coeficiente de correlación va desde -1 (correlación negativa perfecta) y 1 (correlación positiva perfecta).</p>
+</li>
+<li>
+<p>Existen diferentes formas de cálculo del coeficiente de correlación (Spearman, Kendall, Pearson).</p>
+</li>
+<li>
+<p>En el coeficiente de correlación se analiza tanto su tamaño como su significación estadística.</p>
+</li>
 </ul>
 <p>En lo que sigue nos concentraremos en el coeficiente de correlación más utilizado que es el de <strong>Pearson</strong>, que se aplica cuando las variables son de naturaleza continua.</p>
 <p><strong>Tablas/matrices de correlación</strong></p>
 <p>Las correlaciones entre variables se presentan en general en modo de matrices, es decir, las variables se presentan en las filas y las columnas y en las celdas donde se cruzan los pares de variables se muestra su coeficiente de correlación.</p>
 <p>En su forma simple en R se aplica la función <code>cor</code> a la<span class="sidenote">cor</span> base de datos, y la guardamos en un objeto que le damos el nombre M para futuras operaciones:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">M &lt;-<span class="st"> </span><span class="kw">cor</span>(proc_elsoc)</a>
-<a class="sourceLine" id="cb28-2" title="2">M</a></code></pre></div>
+<pre><code class="language-r">M &lt;- cor(proc_elsoc)
+M
+</code></pre>
 <pre><code>##              mesfuerzo    mtalento          ess      edcine        sexo
 ## mesfuerzo  1.000000000  0.69768811 -0.004312135 -0.12167659 -0.04480502
 ## mtalento   0.697688106  1.00000000  0.018447696 -0.10582754 -0.03759340
@@ -853,472 +1260,216 @@ Total
 ## edcine    -0.37660283 -0.123416804
 ## sexo       0.06121699 -0.044695146
 ## edad       1.00000000  0.092369792
-## pmerit     0.09236979  1.000000000</code></pre>
+## pmerit     0.09236979  1.000000000
+</code></pre>
 <p>Este es el reporte simple, pero no muy amigable a la vista. Para una versión más amable utilizamos la función sjt.corr<span class="sidenote">sjPlot::sjt.corr</span>:<span class="sidenote">NOTA: sjPlot actualizó su librería a fines de Mayo (versión 2.8.4); para quienes hayan actualizado a esta versión, la función para tabla de correlaciones ahora es <code>tab_corr</code></span></p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">sjt.corr</span>(proc_elsoc)</a></code></pre></div>
+<pre><code class="language-r">sjt.corr(proc_elsoc)
+</code></pre>
 <table style="border-collapse:collapse; border:none;">
 <tr>
-<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
- 
-</th>
-<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Recompensa: esfuerzo
-</th>
-<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Recompensa: talento
-</th>
-<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Estatus Social Subjetivo
-</th>
-<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Educación
-</th>
-<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Sexo
-</th>
-<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Edad
-</th>
-<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Meritocracia promedio
-</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">&nbsp;</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">Recompensa: esfuerzo</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">Recompensa: talento</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">Estatus Social Subjetivo</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">Educación</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">Sexo</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">Edad</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">Meritocracia promedio</th>
 </tr>
 <tr>
-<td style="font-style:italic;">
-Recompensa: esfuerzo
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.698<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center; color:#999999;">
--0.004<span style="vertical-align:super;font-size:0.8em;"></span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.122<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.045<span style="vertical-align:super;font-size:0.8em;">*</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.096<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.920<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
+<td style="font-style:italic;">Recompensa: esfuerzo</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">0.698<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center; color:#999999;">-0.004<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="padding:0.2cm; text-align:center;">-0.122<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.045<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="padding:0.2cm; text-align:center;">0.096<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">0.920<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 </tr>
 <tr>
-<td style="font-style:italic;">
-Recompensa: talento
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.698<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center; color:#999999;">
-0.018<span style="vertical-align:super;font-size:0.8em;"></span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.106<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.038<span style="vertical-align:super;font-size:0.8em;">*</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.074<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.922<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
+<td style="font-style:italic;">Recompensa: talento</td>
+<td style="padding:0.2cm; text-align:center;">0.698<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center; color:#999999;">0.018<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="padding:0.2cm; text-align:center;">-0.106<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.038<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="padding:0.2cm; text-align:center;">0.074<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">0.922<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 </tr>
 <tr>
-<td style="font-style:italic;">
-Estatus Social Subjetivo
-</td>
-<td style="padding:0.2cm; text-align:center; color:#999999;">
--0.004<span style="vertical-align:super;font-size:0.8em;"></span>
-</td>
-<td style="padding:0.2cm; text-align:center; color:#999999;">
-0.018<span style="vertical-align:super;font-size:0.8em;"></span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.290<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.037<span style="vertical-align:super;font-size:0.8em;">*</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.066<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center; color:#999999;">
-0.008<span style="vertical-align:super;font-size:0.8em;"></span>
-</td>
+<td style="font-style:italic;">Estatus Social Subjetivo</td>
+<td style="padding:0.2cm; text-align:center; color:#999999;">-0.004<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="padding:0.2cm; text-align:center; color:#999999;">0.018<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">0.290<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.037<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.066<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center; color:#999999;">0.008<span style="vertical-align:super;font-size:0.8em;"></span></td>
 </tr>
 <tr>
-<td style="font-style:italic;">
-Educación
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.122<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.106<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.290<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.087<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.377<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.123<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
+<td style="font-style:italic;">Educación</td>
+<td style="padding:0.2cm; text-align:center;">-0.122<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.106<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">0.290<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">-0.087<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.377<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.123<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 </tr>
 <tr>
-<td style="font-style:italic;">
-Sexo
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.045<span style="vertical-align:super;font-size:0.8em;">*</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.038<span style="vertical-align:super;font-size:0.8em;">*</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.037<span style="vertical-align:super;font-size:0.8em;">*</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.087<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.061<span style="vertical-align:super;font-size:0.8em;">**</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.045<span style="vertical-align:super;font-size:0.8em;">*</span>
-</td>
+<td style="font-style:italic;">Sexo</td>
+<td style="padding:0.2cm; text-align:center;">-0.045<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.038<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.037<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.087<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">0.061<span style="vertical-align:super;font-size:0.8em;">**</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.045<span style="vertical-align:super;font-size:0.8em;">*</span></td>
 </tr>
 <tr>
-<td style="font-style:italic;">
-Edad
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.096<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.074<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.066<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.377<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.061<span style="vertical-align:super;font-size:0.8em;">**</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.092<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
+<td style="font-style:italic;">Edad</td>
+<td style="padding:0.2cm; text-align:center;">0.096<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">0.074<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.066<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.377<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">0.061<span style="vertical-align:super;font-size:0.8em;">**</span></td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">0.092<span style="vertical-align:super;font-size:0.8em;">***</span></td>
 </tr>
 <tr>
-<td style="font-style:italic;">
-Meritocracia promedio
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.920<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.922<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center; color:#999999;">
-0.008<span style="vertical-align:super;font-size:0.8em;"></span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.123<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.045<span style="vertical-align:super;font-size:0.8em;">*</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.092<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
+<td style="font-style:italic;">Meritocracia promedio</td>
+<td style="padding:0.2cm; text-align:center;">0.920<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">0.922<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center; color:#999999;">0.008<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="padding:0.2cm; text-align:center;">-0.123<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.045<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="padding:0.2cm; text-align:center;">0.092<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
 </tr>
 <tr>
-<td colspan="8" style="border-bottom:double black; border-top:1px solid black; font-style:italic; font-size:0.9em; text-align:right;">
-Computed correlation used pearson-method with listwise-deletion.
-</td>
+<td colspan="8" style="border-bottom:double black; border-top:1px solid black; font-style:italic; font-size:0.9em; text-align:right;">Computed correlation used pearson-method with listwise-deletion.</td>
 </tr>
 </table>
-<p>Con esta mejor visualización, algunas observaciones sobre la matriz de correlaciones:</p>
+Con esta mejor visualización, algunas observaciones sobre la matriz de correlaciones:
 <ul>
 <li>En esta matriz las variables están representadas en las filas y en las columnas.</li>
 <li>Cada coeficiente expresa la correlación de una variable con otra. Por ejemplo, la correlación entre la variable de recompensa por esfuerzo y recompensa por inteligencia es 0.698.</li>
 <li>La información de cada coeficiente se repite sobre y bajo la diagonal, ya que es el mismo par de variables pero en el orden alterno.</li>
 <li>En la diagonal corresponde que todos los coeficientes sean 1, ya que la correlación de una variable consigo misma es perfectamente positiva. En esta tabla se omiten y aparece la diagonal vacía, ya que es información redundante. Por lo mismo, también se recomienda eliminar el triangulo superior de la tabla (redundante) de la siguiente manera:</li>
 </ul>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="kw">sjt.corr</span>(proc_elsoc,</a>
-<a class="sourceLine" id="cb31-2" title="2">         <span class="dt">triangle =</span> <span class="st">&quot;lower&quot;</span>)</a></code></pre></div>
+<pre><code class="language-r">sjt.corr(proc_elsoc,
+         triangle = &quot;lower&quot;)
+</code></pre>
 <table style="border-collapse:collapse; border:none;">
 <tr>
-<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
- 
-</th>
-<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Recompensa: esfuerzo
-</th>
-<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Recompensa: talento
-</th>
-<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Estatus Social Subjetivo
-</th>
-<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Educación
-</th>
-<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Sexo
-</th>
-<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Edad
-</th>
-<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-Meritocracia promedio
-</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">&nbsp;</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">Recompensa: esfuerzo</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">Recompensa: talento</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">Estatus Social Subjetivo</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">Educación</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">Sexo</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">Edad</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">Meritocracia promedio</th>
 </tr>
 <tr>
-<td style="font-style:italic;">
-Recompensa: esfuerzo
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
+<td style="font-style:italic;">Recompensa: esfuerzo</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
 </tr>
 <tr>
-<td style="font-style:italic;">
-Recompensa: talento
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.698<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
+<td style="font-style:italic;">Recompensa: talento</td>
+<td style="padding:0.2cm; text-align:center;">0.698<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
 </tr>
 <tr>
-<td style="font-style:italic;">
-Estatus Social Subjetivo
-</td>
-<td style="padding:0.2cm; text-align:center; color:#999999;">
--0.004<span style="vertical-align:super;font-size:0.8em;"></span>
-</td>
-<td style="padding:0.2cm; text-align:center; color:#999999;">
-0.018<span style="vertical-align:super;font-size:0.8em;"></span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
+<td style="font-style:italic;">Estatus Social Subjetivo</td>
+<td style="padding:0.2cm; text-align:center; color:#999999;">-0.004<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="padding:0.2cm; text-align:center; color:#999999;">0.018<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
 </tr>
 <tr>
-<td style="font-style:italic;">
-Educación
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.122<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.106<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.290<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
+<td style="font-style:italic;">Educación</td>
+<td style="padding:0.2cm; text-align:center;">-0.122<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.106<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">0.290<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
 </tr>
 <tr>
-<td style="font-style:italic;">
-Sexo
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.045<span style="vertical-align:super;font-size:0.8em;">*</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.038<span style="vertical-align:super;font-size:0.8em;">*</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.037<span style="vertical-align:super;font-size:0.8em;">*</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.087<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
+<td style="font-style:italic;">Sexo</td>
+<td style="padding:0.2cm; text-align:center;">-0.045<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.038<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.037<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.087<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
 </tr>
 <tr>
-<td style="font-style:italic;">
-Edad
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.096<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.074<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.066<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.377<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.061<span style="vertical-align:super;font-size:0.8em;">**</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
+<td style="font-style:italic;">Edad</td>
+<td style="padding:0.2cm; text-align:center;">0.096<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">0.074<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.066<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.377<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">0.061<span style="vertical-align:super;font-size:0.8em;">**</span></td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
 </tr>
 <tr>
-<td style="font-style:italic;">
-Meritocracia promedio
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.920<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.922<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center; color:#999999;">
-0.008<span style="vertical-align:super;font-size:0.8em;"></span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.123<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
--0.045<span style="vertical-align:super;font-size:0.8em;">*</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
-0.092<span style="vertical-align:super;font-size:0.8em;">***</span>
-</td>
-<td style="padding:0.2cm; text-align:center;">
- 
-</td>
+<td style="font-style:italic;">Meritocracia promedio</td>
+<td style="padding:0.2cm; text-align:center;">0.920<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">0.922<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center; color:#999999;">0.008<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="padding:0.2cm; text-align:center;">-0.123<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">-0.045<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="padding:0.2cm; text-align:center;">0.092<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
 </tr>
 <tr>
-<td colspan="8" style="border-bottom:double black; border-top:1px solid black; font-style:italic; font-size:0.9em; text-align:right;">
-Computed correlation used pearson-method with listwise-deletion.
-</td>
+<td colspan="8" style="border-bottom:double black; border-top:1px solid black; font-style:italic; font-size:0.9em; text-align:right;">Computed correlation used pearson-method with listwise-deletion.</td>
 </tr>
 </table>
 <p>Una segunda forma de presentar matrices de correlaciones es de manera gráfica con la librería <code>corrplot</code>, cuya función <code>corrplot.mixed</code> <span class="sidenote">corrplot::corrplot.mixed</span>se aplica al objeto que generamos con la función <code>cor</code> (M):</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">corrplot.mixed</span>(M)</a></code></pre></div>
-<p><img src="/assignment/02-code_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<pre><code class="language-r">corrplot.mixed(M)
+</code></pre>
+<p><img src="02-code_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>Este gráfico/matriz representa el grado de asociación entre variables mediante el tamaño de los círculos e intensidad de colores, y el signo de la asociación se representa con una gradiente de colores que va del azul (positivo) al rojo (negativo). Bajo la diagonal aparecen los indices de correlación entre pares de variables.</p>
 <p>Finalmente, también se puede representar la correlación entre dos variables en un gráfico de nube de puntos o scatterplot:<span class="sidenote">sjPlot::plot_scatter</span></p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">names</span>(proc_elsoc)</a></code></pre></div>
+<pre><code class="language-r">names(proc_elsoc)
+</code></pre>
 <pre><code>## [1] &quot;mesfuerzo&quot; &quot;mtalento&quot;  &quot;ess&quot;       &quot;edcine&quot;    &quot;sexo&quot;      &quot;edad&quot;     
-## [7] &quot;pmerit&quot;</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">plot_scatter</span>(proc_elsoc, edad, ess)</a></code></pre></div>
-<p><img src="/assignment/02-code_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+## [7] &quot;pmerit&quot;
+</code></pre>
+<pre><code class="language-r">plot_scatter(proc_elsoc, edad, ess)
+</code></pre>
+<p><img src="02-code_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>Donde:</p>
 <ul>
 <li>cada punto representa un caso</li>
 <li>la forma de la nube indica si la asociación es positiva, negativa o neutra:</li>
 </ul>
-<p><img src="https://www.onlinemath4all.com/images/scatterplot6.png" /></p>
+<p><img src="https://www.onlinemath4all.com/images/scatterplot6.png" alt=""></p>
 <p>En el caso de nuestra nube de puntos entre edad y estatus social subjetivo, observamos que no hay asociación (lo que ya era indicado por su correlación de -0.07 observada en la matriz de correlaciones).</p>
-</div>
-</div>
-</div>
-<div id="nota-final-información-de-la-sesión-de-r" class="section level2">
-<h2>Nota final: Información de la sesión de R</h2>
+<h2 id="nota-final-información-de-la-sesión-de-r">Nota final: Información de la sesión de R</h2>
 <p>R y sus librerías tienen distintas versiones. Esto puede representar algunos problemas de compatibilidad entre usuarios, por ejemplo, dos personas que trabajan en el mismo proyecto pero con distintas versiones (librerías y/o de R), pueden tener ocasionalmente complicaciones. Por eso, una buena práctica es registrar al final del código la información de la sesión. Y como siempre en R, varias maneras de hacer esto. Vamos con la más genérica que es muy simple: <code>sessionInfo()</code> <span class="sidenote">sessionInfo()</span></p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
+<pre><code class="language-r">sessionInfo()
+</code></pre>
 <pre><code>## R version 4.0.0 (2020-04-24)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 16.04.6 LTS
@@ -1371,10 +1522,12 @@ Computed correlation used pearson-method with listwise-deletion.
 ## [85] modelr_0.1.7       crayon_1.3.4       rmarkdown_2.1      grid_4.0.0        
 ## [89] readxl_1.3.1       data.table_1.12.8  forcats_0.5.0      digest_0.6.25     
 ## [93] webshot_0.5.2      xtable_1.8-4       tidyr_1.0.3        munsell_0.5.0     
-## [97] viridisLite_0.3.0  tcltk_4.0.0</code></pre>
-<p>Acá vemos un listado de información muy completo, desde versión de R, sistema operativo, opciones de idioma local (LOCALE), y muchas librerías. Si optamos por esta versión de la información de la sesión, lo importante es fijarse en (a) version de R, y (b) de las librerías cargadas al principio, que aquí aparecen bajo “other attached packages”.</p>
+## [97] viridisLite_0.3.0  tcltk_4.0.0
+</code></pre>
+<p>Acá vemos un listado de información muy completo, desde versión de R, sistema operativo, opciones de idioma local (LOCALE), y muchas librerías. Si optamos por esta versión de la información de la sesión, lo importante es fijarse en (a) version de R, y (b) de las librerías cargadas al principio, que aquí aparecen bajo &ldquo;other attached packages&rdquo;.</p>
 <p>La segunda opción permite obtener información más precisa, con <code>sessioninfo</code> <span class="sidenote">sessioninfo()</span>(la única diferencia con la anterior en el nombre es que info es con minúscula <code>sessioninfo</code>). Con un poco más de especificaciones de sintaxis se pueden obtener directamente los puntos (a) y (b) mencionados anteriormente:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="kw">session_info</span>(<span class="st">&quot;sessioninfo&quot;</span>)<span class="op">$</span>platform</a></code></pre></div>
+<pre><code class="language-r">session_info(&quot;sessioninfo&quot;)$platform
+</code></pre>
 <pre><code>##  setting  value                       
 ##  version  R version 4.0.0 (2020-04-24)
 ##  os       Ubuntu 16.04.6 LTS          
@@ -1384,8 +1537,10 @@ Computed correlation used pearson-method with listwise-deletion.
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       America/Santiago            
-##  date     2020-05-16</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="kw">package_info</span>(<span class="dt">pkgs =</span> (<span class="kw">.packages</span>()), <span class="dt">dependencies =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+##  date     2020-05-16
+</code></pre>
+<pre><code class="language-r">package_info(pkgs = (.packages()), dependencies = FALSE)
+</code></pre>
 <pre><code>##  package      * version    date       lib source        
 ##  car          * 3.0-7      2020-03-11 [1] CRAN (R 4.0.0)
 ##  carData      * 3.0-3      2019-11-16 [1] CRAN (R 4.0.0)
@@ -1415,11 +1570,9 @@ Computed correlation used pearson-method with listwise-deletion.
 ## [1] /home/juank/Dropbox/Rlibrary
 ## [2] /usr/local/lib/R/site-library
 ## [3] /usr/lib/R/site-library
-## [4] /usr/lib/R/library</code></pre>
-</div>
-</div>
-<div id="resumen-práctica-2-descripción-de-variables" class="section level1">
-<h1>Resumen Práctica 2: Descripción de variables</h1>
+## [4] /usr/lib/R/library
+</code></pre>
+<h1 id="resumen-práctica-2-descripción-de-variables">Resumen Práctica 2: Descripción de variables</h1>
 <p>En esta práctica revisamos los siguientes contenidos:</p>
 <ul>
 <li>tabla descriptiva general de variables</li>
@@ -1427,8 +1580,204 @@ Computed correlation used pearson-method with listwise-deletion.
 <li>tabla y gráfico de asociación entre variables categóricas y contínuas</li>
 <li>asociaciones entre pares de variables continuas mediante el índice de correlación.</li>
 </ul>
-</div>
-<div id="reporte-de-progreso" class="section level1">
-<h1>Reporte de progreso</h1>
+<h1 id="reporte-de-progreso">Reporte de progreso</h1>
 <p>Completar el reporte de progreso correspondiente a esta práctica <a href="https://forms.gle/qAfnj7h5a6HyEbrXA">aquí</a></p>
+
+                    </div>
+
+                    
+
+
+
+                    
+                </div>
+
+                <div class="body-footer">
+                    <p>Last updated on January 10, 2020</p>
+
+                    
+
+
+
+
+                    
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "multivariada-netlify-app" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+                </div>
+
+            </article>
+
+            <footer>
+    <hr>
+
+    <div class="row course-info">
+        <div class="col-md-7">
+            <p>
+                <strong>SOC 01024: Estadística Multivariada (Primer semestre)</strong><br>
+
+                <a href="https://www.uchile.cl/" target="_blank" rel="noopener">Universidad de Chile</a> &emsp;&emsp;
+                <a href="http://www.facso.uchile.cl/sociologia" target="_blank" rel="noopener">Departamento de Sociología</a>
+            </p>
+
+            <p>
+                <a href="https://jc-castillo.com" target="_blank" rel="noopener"><i class="fas fa-user"></i>
+                    Juan Carlos Castillo</a> &emsp;&emsp;
+                <a href="mailto:juancastillov@uchile.cl"><i class="fas fa-envelope"></i>
+                    juancastillov@uchile.cl</a>
+            </p>
+
+            <p>
+                <i class="far fa-calendar-alt"></i> Viernes &emsp;&emsp;
+                <i class="far fa-clock"></i> 10:30am - 12:00pm <br>
+                <i class="fas fa-university"></i> Online
+            </p>
+        </div>
+
+        <div class="col-md-5 credits">
+            <p>All content licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+            
+            <p>Content <i class="fab fa-creative-commons"></i> 2020 <a href="https://jc-castillo.com" target="_blank" rel="noopener">Juan Carlos Castillo</a></p>                    
+            
+            <p><a href="https://github.com/juancarloscastillo/multivariada" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the source at GitHub.</a></p>
+        </div>
+    </div>
+</footer>
+
+
+        </main>
+    </div>
 </div>
+
+        
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js" integrity="sha256-pB/deHc9CGfFpJRjC43imB29Rse8tak+5eXqntO94ck=" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://multivariada-netlify-app.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/js/academic.min.e5c8525332f417fe3589df9a6b25b6c4.js"></script>
+
+    
+
+
+
+
+
+
+    
+    
+
+    
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
