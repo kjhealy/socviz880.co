@@ -1,34 +1,8 @@
----
-title: "Práctica 5: Regresion Simple - Trabajo 1"
-subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
-author: "Valentina Andrade"
-linktitle: "Práctica 5: Regresion Simple - Trabajo"
-date: "2020-05-29"
-class_date: "2020-05-29"
-citeproc: false
-bibliography: ../../static/bib/references.bib
-csl: ../../static/bib/chicago-syllabus-no-bib.csl
-output:
-  blogdown::html_page:
-    template: ../../pandoc/toc-title_html.template
-    toc: true
-    highlight: tango
-    number_sections: FALSE
-menu:
-  class:
-    parent: Practicas
-    weight: 1
-type: docs
-weight: 1
-editor_options:
-  chunk_output_type: console
----
-
 <!-- BLOGDOWN-HEAD -->
-<script src="/rmarkdown-libs/clipboard/clipboard.min.js"></script>
-<link href="/rmarkdown-libs/primer-tooltips/build.css" rel="stylesheet" />
-<link href="/rmarkdown-libs/klippy/css/klippy.min.css" rel="stylesheet" />
-<script src="/rmarkdown-libs/klippy/js/klippy.min.js"></script>
+<script src="05-code_files/clipboard-1.7.1/clipboard.min.js"></script>
+<link href="05-code_files/primer-tooltips-1.4.0/build.css" rel="stylesheet" />
+<link href="05-code_files/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet" />
+<script src="05-code_files/klippy-0.0.0.9500/js/klippy.min.js"></script>
 <style type="text/css">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
@@ -196,10 +170,10 @@ Tema: COVID y comuna de resencia</p>
 ##                                  IQR (CV) : 166.7 (1.5)                                 :                            
 ##                                                                                         : . . .                      
 ## 
-## 2    hacinamiento_hogar_media    Mean (sd) : 0.9 (0.5)            308 distinct values     :        324      0        
+## 2    hacinamiento_hogar_media    Mean (sd) : 0.1 (0)              308 distinct values     :        324      0        
 ##      [numeric]                   min &lt; med &lt; max:                                         :        (100%)   (0%)     
-##                                  0 &lt; 0.8 &lt; 3.1                                            : :                        
-##                                  IQR (CV) : 0.6 (0.5)                                   : : :                        
+##                                  0 &lt; 0.1 &lt; 0.3                                            : :                        
+##                                  IQR (CV) : 0.1 (0.5)                                   : : :                        
 ##                                                                                         : : : :                      
 ## 
 ## 3    casos_confirmados           Mean (sd) : 228.2 (590.6)        137 distinct values   :          324      0        
@@ -246,7 +220,7 @@ Tema: COVID y comuna de resencia</p>
 <div id="análisis-descriptivo" class="section level1">
 <h1>5.1 Análisis descriptivo</h1>
 <p>El <em>Gráfico 1</em> resume la relación entre la tasa de contagio y el hacinamiento promedio de los hogares, indicando cada uno de los puntos una comuna de todo el país. A partir de este podemos decir que en términos de correlación se observa una posible asociación positiva entre las variables.</p>
-<p><img src="/assignment/05-code_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="05-code_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Como es poco definitorio el gráfico, podemos corroborar tal dirección de la relación con una matriz con todas las correlaciones de las variables. En este caso solo nos fijaremos en la intersección entre <code>t_contagio</code> y <code>hacinamiento_hogar_media</code></p>
 <table style="border-collapse:collapse; border:none;">
 <caption style="font-weight: bold; text-align:left;">
@@ -359,7 +333,6 @@ Computed correlation used pearson-method with listwise-deletion.
 <li><span class="math inline">\(b_{0}\)</span> es el <strong>intercepto</strong> de la recta (el valor de Y cuando X es 0)</li>
 <li><span class="math inline">\(b_{1}\)</span> es el coeficiente de regresión, que nos dice cuánto aumenta Y (la tasa de contagio) por cada punto que aumenta X (hacinamientode hogar)</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">sjPlot<span class="op">::</span><span class="kw">tab_model</span>(reg1, <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">title =</span> <span class="st">&quot;Tabla 4. Modelo de regresion&quot;</span>)</a></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <caption style="font-weight: bold; text-align:left;">
 Tabla 4. Modelo de regresion
@@ -399,7 +372,7 @@ p
 hacinamiento_hogar_media
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-215.85
+2158.47
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001
@@ -422,12 +395,11 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 </td>
 </tr>
 </table>
-<p>En la <em>Tabla 4</em> nos reporta que por cada unidad que aumente el hacinamiento en los hogares por comuna, la tasa de contagio aumentará en 215.847 casos por cada 100.000 habitantes. Esto quiere decir que, por ejemplo, cuando el hacinamiento de hogares promedio por comuna es cercano a 0 (muy bajo hacinamiento) la tasa de contagio es cercana a 6.441 casos por cada 100.000 habitantes. Mientras que cuando el hacinamiento es cercano a 2 la tasa de contagio se acerca a 500 casos por cada 100.000 habitantes.</p>
+<p>En la <em>Tabla 4</em> nos reporta que por cada unidad que aumente el hacinamiento en los hogares por comuna, la tasa de contagio aumentará en 2158.47 casos por cada 100.000 habitantes. Esto quiere decir que, por ejemplo, cuando el hacinamiento de hogares promedio por comuna es cercano a 0 (muy bajo hacinamiento) la tasa de contagio es cercana a 6.441 casos por cada 100.000 habitantes. Mientras que cuando el hacinamiento es cercano a 2 la tasa de contagio se acerca a 500 casos por cada 100.000 habitantes.</p>
 </div>
 <div id="bondad-de-ajuste" class="section level2">
 <h2>Bondad de ajuste</h2>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="/assignment/05-code_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="05-code_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Ahora bien, como podemos ver en <em>Gráfico 2</em>, existe una gran variabilidad de los residuos. Con esto se quiere decir que la relación entre los valores predichos y los valores observados varía: por un lado, hay en una gran cantidad de casos (valores observados) donde la recta de regresión estaría sobreestimando su tasa de contagio (ver las comunas bajo la recta de regresión); por otro, hay una cantidad menor de casos (comunas) donde la recta de regresión subestima la tasa de contagio comunal. Un punto importante a notar es que si bien son menos comunas donde se estaría subestimando su tasa de contagio según su índice de hacinamiento, si ocurre que los residuos de este grupo de comunas es mucho mayor (comunas sobre la recta de regresión).</p>
 <p>Analizando específicamente la bondad de ajuste de nuestro modelo, podemos ver que si bien la relación de hacinamiento y tasa de contagio es estadísticamente significativa, nuestro modelo explica solo un 12.6% de la variabilidad de los datos observados. Es decir, hacinamiento explica en una pequeña proporción la variación observada de la tasa de contagio, y con ello, no debería ser la única variable a considerar en futuras investigaciones.</p>
 </div>
@@ -455,40 +427,40 @@ Una mirada desde la respuesta del sistema de salud y las condiciones sociales. <
 <div id="librerías" class="section level2">
 <h2>1. Librerías</h2>
 <p>La explicación de esta parte del código se encuentra en la sección correspondiente de la <a href="/assignment/01-code#librerias">Práctica 1</a>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">pacman<span class="op">::</span><span class="kw">p_load</span>(dplyr, <span class="co">#Manipulacion de datos</span></a>
-<a class="sourceLine" id="cb4-2" title="2">              sjmisc, <span class="co"># Tablas</span></a>
-<a class="sourceLine" id="cb4-3" title="3">              summarytools, <span class="co"># Tablas</span></a>
-<a class="sourceLine" id="cb4-4" title="4">              kableExtra, <span class="co">#Tablas</span></a>
-<a class="sourceLine" id="cb4-5" title="5">              sjPlot, <span class="co">#Tablas y gráficos</span></a>
-<a class="sourceLine" id="cb4-6" title="6">              corrplot, <span class="co"># Correlaciones</span></a>
-<a class="sourceLine" id="cb4-7" title="7">              ggplot2, <span class="co"># Graficos</span></a>
-<a class="sourceLine" id="cb4-8" title="8">              webshot) <span class="co"># Para guardar tablas</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">pacman<span class="op">::</span><span class="kw">p_load</span>(dplyr, <span class="co">#Manipulacion de datos</span></a>
+<a class="sourceLine" id="cb2-2" title="2">              sjmisc, <span class="co"># Tablas</span></a>
+<a class="sourceLine" id="cb2-3" title="3">              summarytools, <span class="co"># Tablas</span></a>
+<a class="sourceLine" id="cb2-4" title="4">              kableExtra, <span class="co">#Tablas</span></a>
+<a class="sourceLine" id="cb2-5" title="5">              sjPlot, <span class="co">#Tablas y gráficos</span></a>
+<a class="sourceLine" id="cb2-6" title="6">              corrplot, <span class="co"># Correlaciones</span></a>
+<a class="sourceLine" id="cb2-7" title="7">              ggplot2, <span class="co"># Graficos</span></a>
+<a class="sourceLine" id="cb2-8" title="8">              webshot) <span class="co"># Para guardar tablas</span></a></code></pre></div>
 </div>
 <div id="cargar-base-de-datos" class="section level2">
 <h2>2. Cargar base de datos</h2>
 <p>Vamos a cargar la base de datos <strong>CASEN-COVID19.RData</strong>. Se puede llamar desde el directorio en que la guardaron dando la ruta completa, o también para esta práctica la podemos llamar directamente desde nuestro sitio web:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co">#Distintas formas de cargar data frame</span></a>
-<a class="sourceLine" id="cb5-2" title="2"></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="co"># 1. Desde la página</span></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://multivariada.netlify.app/assignment/data/proc/CASEN-COVID19.RData&quot;</span>))</a>
-<a class="sourceLine" id="cb5-5" title="5"></a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="co"># 2. Localmente </span></a>
-<a class="sourceLine" id="cb5-7" title="7"></a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="kw">load</span>(<span class="dt">file =</span> <span class="st">&quot;CASEN-COVID19.RData&quot;</span>)</a>
-<a class="sourceLine" id="cb5-9" title="9"></a>
-<a class="sourceLine" id="cb5-10" title="10"><span class="co">## Si no tienen su base de datos en la misma carpeta de trabajo que su sintaxis deben señalar la &quot;Ruta&quot; de acceso. Por ejemplo,</span></a>
-<a class="sourceLine" id="cb5-11" title="11"></a>
-<a class="sourceLine" id="cb5-12" title="12"><span class="kw">load</span>(<span class="dt">file =</span> <span class="st">&quot;C:/Users/valeandrade/multivariada/CASEN-COVID19.RData&quot;</span>)</a>
-<a class="sourceLine" id="cb5-13" title="13"></a>
-<a class="sourceLine" id="cb5-14" title="14">casen_covid19 &lt;-<span class="st"> </span>CASEN<span class="op">-</span>COVID19; <span class="kw">remove</span>(CASEN<span class="op">-</span>COVID19)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co">#Distintas formas de cargar data frame</span></a>
+<a class="sourceLine" id="cb3-2" title="2"></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="co"># 1. Desde la página</span></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://multivariada.netlify.app/assignment/data/proc/CASEN-COVID19.RData&quot;</span>))</a>
+<a class="sourceLine" id="cb3-5" title="5"></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="co"># 2. Localmente </span></a>
+<a class="sourceLine" id="cb3-7" title="7"></a>
+<a class="sourceLine" id="cb3-8" title="8"><span class="kw">load</span>(<span class="dt">file =</span> <span class="st">&quot;CASEN-COVID19.RData&quot;</span>)</a>
+<a class="sourceLine" id="cb3-9" title="9"></a>
+<a class="sourceLine" id="cb3-10" title="10"><span class="co">## Si no tienen su base de datos en la misma carpeta de trabajo que su sintaxis deben señalar la &quot;Ruta&quot; de acceso. Por ejemplo,</span></a>
+<a class="sourceLine" id="cb3-11" title="11"></a>
+<a class="sourceLine" id="cb3-12" title="12"><span class="kw">load</span>(<span class="dt">file =</span> <span class="st">&quot;C:/Users/valeandrade/multivariada/CASEN-COVID19.RData&quot;</span>)</a>
+<a class="sourceLine" id="cb3-13" title="13"></a>
+<a class="sourceLine" id="cb3-14" title="14">casen_covid19 &lt;-<span class="st"> </span>CASEN<span class="op">-</span>COVID19; <span class="kw">remove</span>(CASEN<span class="op">-</span>COVID19)</a></code></pre></div>
 <div id="exploración-y-procesamiento-de-variables" class="section level3">
 <h3>3. Exploración y procesamiento de variables</h3>
 <p><em>La explicación de esta parte del código se encuentra en la sección correspondiente de la <a href="/assignment/01-code#preparación-de-datos-elsoc-2016">Práctica 1</a>.</em></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">names</span>(casen_covid19) <span class="co"># Muestra los nombres de las variables de la base de datos</span></a>
-<a class="sourceLine" id="cb6-2" title="2"></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="kw">dim</span>(casen_covid19) <span class="co"># Dimensiones</span></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="co">#324 observaciones --&gt; 324 comunas</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="co">#8 variables</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">names</span>(casen_covid19) <span class="co"># Muestra los nombres de las variables de la base de datos</span></a>
+<a class="sourceLine" id="cb4-2" title="2"></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="kw">dim</span>(casen_covid19) <span class="co"># Dimensiones</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co">#324 observaciones --&gt; 324 comunas</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co">#8 variables</span></a></code></pre></div>
 <p>En el caso de esta base tiene 324 casos y 6 variables</p>
 <p>La base de datos <strong>casen_covid19</strong> presenta las siguientes variables</p>
 <ul>
@@ -505,8 +477,8 @@ Una mirada desde la respuesta del sistema de salud y las condiciones sociales. <
 <li><p>[<code>deficit servbas_hogar_media</code>] = deficit de acceso a servicios básicos a nivel comunal (en porcentaje de queines coontestan que “No”)</p></li>
 </ul>
 <p>Antes de pasar a describir las variables, se va a ponderar el número de <code>casos_confirmados</code> por <code>pop</code> de la comuna, a modo de capturar mejor la tasa de contagio según el número de habitantes. A través de <code>mutate</code>se calculará el el número de casos confirmados por cada 100.000 habitantes, dividido en la población de la comuna.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co">#Tasa de contagio comunal</span></a>
-<a class="sourceLine" id="cb7-2" title="2">casen_covid19 &lt;-<span class="st"> </span>casen_covid19 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">t_contagio =</span> (casos_confirmados<span class="op">*</span><span class="dv">100000</span>)<span class="op">/</span>poblacion)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co">#Tasa de contagio comunal</span></a>
+<a class="sourceLine" id="cb5-2" title="2">casen_covid19 &lt;-<span class="st"> </span>casen_covid19 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">t_contagio =</span> (casos_confirmados<span class="op">*</span><span class="dv">100000</span>)<span class="op">/</span>poblacion)</a></code></pre></div>
 </div>
 </div>
 <div id="análisis-datos-casen-covid" class="section level2">
@@ -521,25 +493,25 @@ Una mirada desde la respuesta del sistema de salud y las condiciones sociales. <
 <h2>2. Correlación</h2>
 <p><em>La explicación de esta parte del código se encuentra en la sección correspondiente de la <a href="/assignment/01-code#exploración-de-asociación-entre-variables">Práctica 2</a></em></p>
 <p>Primero, veamos un gráfico de nube de puntos / scatter de ambas variables que realizaremos a través de la función <code>ggplot()</code>.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># 1. Se crea un gráfico scatterplot &quot;g&quot; con la librería ggplot</span></a>
-<a class="sourceLine" id="cb8-2" title="2"></a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="co"># Y es nuestra variable dependiente</span></a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="co"># X = es nuestra variable independiente</span></a>
-<a class="sourceLine" id="cb8-5" title="5">g=<span class="kw">ggplot</span>(casen_covid19, <span class="kw">aes</span>(<span class="dt">x=</span>hacinamiento_hogar_media, <span class="dt">y=</span>t_contagio)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb8-6" title="6"><span class="st">  </span><span class="kw">geom_point</span>()</a>
-<a class="sourceLine" id="cb8-7" title="7"></a>
-<a class="sourceLine" id="cb8-8" title="8"><span class="co">#2. Guardar</span></a>
-<a class="sourceLine" id="cb8-9" title="9"><span class="co">#Deben indicar el nombre primero, y luego como lo van a guardar</span></a>
-<a class="sourceLine" id="cb8-10" title="10"></a>
-<a class="sourceLine" id="cb8-11" title="11"><span class="kw">ggsave</span>(<span class="st">&quot;grafico1.png&quot;</span>,</a>
-<a class="sourceLine" id="cb8-12" title="12">       g)</a></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># Calcular matriz de correlaciones</span></a>
-<a class="sourceLine" id="cb9-2" title="2"></a>
-<a class="sourceLine" id="cb9-3" title="3">casen_covid19 &lt;-<span class="st"> </span>casen_covid19 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>(nombre_comuna,nombre_region) ) <span class="co">#Excluimos comuna pues las correlaciones son entre variables numéricas y comuna es un carácter</span></a>
-<a class="sourceLine" id="cb9-4" title="4"></a>
-<a class="sourceLine" id="cb9-5" title="5">sjPlot<span class="op">::</span><span class="kw">sjt.corr</span>(casen_covid19,</a>
-<a class="sourceLine" id="cb9-6" title="6">         <span class="dt">triangle =</span> <span class="st">&quot;lower&quot;</span>, <span class="dt">file =</span> <span class="st">&quot;tabla1.html&quot;</span>)</a>
-<a class="sourceLine" id="cb9-7" title="7"><span class="kw">webshot</span>(<span class="st">&quot;tabla2.html&quot;</span>,<span class="st">&quot;tabla2.png&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># 1. Se crea un gráfico scatterplot &quot;g&quot; con la librería ggplot</span></a>
+<a class="sourceLine" id="cb6-2" title="2"></a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="co"># Y es nuestra variable dependiente</span></a>
+<a class="sourceLine" id="cb6-4" title="4"><span class="co"># X = es nuestra variable independiente</span></a>
+<a class="sourceLine" id="cb6-5" title="5">g=<span class="kw">ggplot</span>(casen_covid19, <span class="kw">aes</span>(<span class="dt">x=</span>hacinamiento_hogar_media, <span class="dt">y=</span>t_contagio)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="st">  </span><span class="kw">geom_point</span>()</a>
+<a class="sourceLine" id="cb6-7" title="7"></a>
+<a class="sourceLine" id="cb6-8" title="8"><span class="co">#2. Guardar</span></a>
+<a class="sourceLine" id="cb6-9" title="9"><span class="co">#Deben indicar el nombre primero, y luego como lo van a guardar</span></a>
+<a class="sourceLine" id="cb6-10" title="10"></a>
+<a class="sourceLine" id="cb6-11" title="11"><span class="kw">ggsave</span>(<span class="st">&quot;grafico1.png&quot;</span>,</a>
+<a class="sourceLine" id="cb6-12" title="12">       g)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Calcular matriz de correlaciones</span></a>
+<a class="sourceLine" id="cb7-2" title="2"></a>
+<a class="sourceLine" id="cb7-3" title="3">casen_covid19 &lt;-<span class="st"> </span>casen_covid19 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>(nombre_comuna,nombre_region) ) <span class="co">#Excluimos comuna pues las correlaciones son entre variables numéricas y comuna es un carácter</span></a>
+<a class="sourceLine" id="cb7-4" title="4"></a>
+<a class="sourceLine" id="cb7-5" title="5">sjPlot<span class="op">::</span><span class="kw">sjt.corr</span>(casen_covid19,</a>
+<a class="sourceLine" id="cb7-6" title="6">         <span class="dt">triangle =</span> <span class="st">&quot;lower&quot;</span>, <span class="dt">file =</span> <span class="st">&quot;tabla1.html&quot;</span>)</a>
+<a class="sourceLine" id="cb7-7" title="7"><span class="kw">webshot</span>(<span class="st">&quot;tabla2.html&quot;</span>,<span class="st">&quot;tabla2.png&quot;</span>)</a></code></pre></div>
 </div>
 <div id="modelo-y-cálculo-de-parámetros" class="section level2">
 <h2>4. Modelo y cálculo de parámetros</h2>
@@ -553,32 +525,32 @@ Una mirada desde la respuesta del sistema de salud y las condiciones sociales. <
 <li><p><em>data</em>: el nombre del objeto de nuestros datos en R</p></li>
 </ul>
 <p>Estimamos la regresión con los datos de <strong>CASEN-COVID19</strong>:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">reg1 &lt;-<span class="kw">lm</span>(t_contagio <span class="op">~</span><span class="st"> </span>hacinamiento_hogar_media, <span class="dt">data =</span> casen_covid19)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">reg1 &lt;-<span class="kw">lm</span>(t_contagio <span class="op">~</span><span class="st"> </span>hacinamiento_hogar_media, <span class="dt">data =</span> casen_covid19)</a></code></pre></div>
 <p>Con esta operación ya estimamos nuestra primera regresión simple. Para ver la estimación de los parámetros principales (intercepto y pendiente) simplemente ejecutamos el nombre del objeto. El paquete <code>sjPlot</code> que instalamos antes nos permite presentar nuestros hallazgos en tablas fáciles de leer, similares a las que se ven en las publicaciones de las revistas.Veamos cómo mostrar la representación de un modelo de regresión en la pantalla utilizando la función <code>tab_model()</code> de <code>sjPlot</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">sjPlot<span class="op">::</span><span class="kw">tab_model</span>(reg1, <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">file =</span> <span class="st">&quot;reg1_tab.html&quot;</span>)</a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="kw">webshot</span>(<span class="st">&quot;reg1_tab.html&quot;</span>,<span class="st">&quot;reg1_tab.png&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">sjPlot<span class="op">::</span><span class="kw">tab_model</span>(reg1, <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">file =</span> <span class="st">&quot;reg1_tab.html&quot;</span>)</a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="kw">webshot</span>(<span class="st">&quot;reg1_tab.html&quot;</span>,<span class="st">&quot;reg1_tab.png&quot;</span>)</a></code></pre></div>
 </div>
 <div id="residuos" class="section level2">
 <h2>5. Residuos</h2>
 <p><em>La explicación de esta parte del código se encuentra en la sección correspondiente de la <a href="/assignment/04-code">Práctica 4</a></em></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co">#Variable de valores predichos</span></a>
-<a class="sourceLine" id="cb13-2" title="2">casen_covid19<span class="op">$</span>estimado&lt;-<span class="st"> </span>(<span class="fl">6.441</span> <span class="op">+</span><span class="st"> </span>casen_covid19<span class="op">$</span>hacinamiento_hogar_media<span class="op">*</span><span class="fl">2158.467</span>)</a>
-<a class="sourceLine" id="cb13-3" title="3"></a>
-<a class="sourceLine" id="cb13-4" title="4"><span class="co">#Estimamos el residuo</span></a>
-<a class="sourceLine" id="cb13-5" title="5">casen_covid19<span class="op">$</span>residuo &lt;-<span class="st"> </span>casen_covid19<span class="op">$</span>t_contagio <span class="op">-</span><span class="st"> </span>casen_covid19<span class="op">$</span>estimado</a></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">ggplot</span>(casen_covid19, <span class="kw">aes</span>(<span class="dt">x=</span>hacinamiento_hogar_media, <span class="dt">y=</span>t_contagio))<span class="op">+</span></a>
-<a class="sourceLine" id="cb14-2" title="2"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;lightgrey&quot;</span>) <span class="op">+</span><span class="co">#Pendiente de regresion</span></a>
-<a class="sourceLine" id="cb14-3" title="3"><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend=</span>hacinamiento_hogar_media, <span class="dt">yend=</span>estimado), <span class="dt">alpha =</span> <span class="fl">.2</span>) <span class="op">+</span><span class="st"> </span><span class="co">#Distancia entre estimados y datos en lineas</span></a>
-<a class="sourceLine" id="cb14-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">abs</span>(residuo), <span class="dt">size =</span> <span class="kw">abs</span>(residuo))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb14-5" title="5"><span class="st">  </span><span class="kw">scale_color_continuous</span>(<span class="dt">low =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb14-6" title="6"><span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="ot">FALSE</span>, <span class="dt">size =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb14-7" title="7"><span class="st">   </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>estimado), <span class="dt">shape =</span><span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Gráfico 2. Residuos modelo de regresión&quot;, caption = &quot;</span>Fuente<span class="op">:</span><span class="st"> </span>Elaboración propia en base a CASEN<span class="op">-</span><span class="kw">COVID19</span> (<span class="dv">2020</span>)<span class="st">&quot;, y = &quot;</span>tasa de contagio<span class="st">&quot;, x = &quot;</span>hacinamiento del <span class="kw">hogar</span> (media)<span class="st">&quot;)</span></a>
-<a class="sourceLine" id="cb14-8" title="8"><span class="st">  theme_bw()</span></a>
-<a class="sourceLine" id="cb14-9" title="9"><span class="st">#2. Guardar</span></a>
-<a class="sourceLine" id="cb14-10" title="10"><span class="st">#Deben indicar el nombre primero, y luego como lo van a guardar</span></a>
-<a class="sourceLine" id="cb14-11" title="11"></a>
-<a class="sourceLine" id="cb14-12" title="12"><span class="st">ggsave(&quot;</span>grafico1.png<span class="st">&quot;,</span></a>
-<a class="sourceLine" id="cb14-13" title="13"><span class="st">       g)</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co">#Variable de valores predichos</span></a>
+<a class="sourceLine" id="cb11-2" title="2">casen_covid19<span class="op">$</span>estimado&lt;-<span class="st"> </span>(<span class="fl">6.441</span> <span class="op">+</span><span class="st"> </span>casen_covid19<span class="op">$</span>hacinamiento_hogar_media<span class="op">*</span><span class="fl">2158.467</span>)</a>
+<a class="sourceLine" id="cb11-3" title="3"></a>
+<a class="sourceLine" id="cb11-4" title="4"><span class="co">#Estimamos el residuo</span></a>
+<a class="sourceLine" id="cb11-5" title="5">casen_covid19<span class="op">$</span>residuo &lt;-<span class="st"> </span>casen_covid19<span class="op">$</span>t_contagio <span class="op">-</span><span class="st"> </span>casen_covid19<span class="op">$</span>estimado</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">ggplot</span>(casen_covid19, <span class="kw">aes</span>(<span class="dt">x=</span>hacinamiento_hogar_media, <span class="dt">y=</span>t_contagio))<span class="op">+</span></a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;lightgrey&quot;</span>) <span class="op">+</span><span class="co">#Pendiente de regresion</span></a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend=</span>hacinamiento_hogar_media, <span class="dt">yend=</span>estimado), <span class="dt">alpha =</span> <span class="fl">.2</span>) <span class="op">+</span><span class="st"> </span><span class="co">#Distancia entre estimados y datos en lineas</span></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">abs</span>(residuo), <span class="dt">size =</span> <span class="kw">abs</span>(residuo))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-5" title="5"><span class="st">  </span><span class="kw">scale_color_continuous</span>(<span class="dt">low =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-6" title="6"><span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="ot">FALSE</span>, <span class="dt">size =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-7" title="7"><span class="st">   </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>estimado), <span class="dt">shape =</span><span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Gráfico 2. Residuos modelo de regresión&quot;, caption = &quot;</span>Fuente<span class="op">:</span><span class="st"> </span>Elaboración propia en base a CASEN<span class="op">-</span><span class="kw">COVID19</span> (<span class="dv">2020</span>)<span class="st">&quot;, y = &quot;</span>tasa de contagio<span class="st">&quot;, x = &quot;</span>hacinamiento del <span class="kw">hogar</span> (media)<span class="st">&quot;)</span></a>
+<a class="sourceLine" id="cb12-8" title="8"><span class="st">  theme_bw()</span></a>
+<a class="sourceLine" id="cb12-9" title="9"><span class="st">#2. Guardar</span></a>
+<a class="sourceLine" id="cb12-10" title="10"><span class="st">#Deben indicar el nombre primero, y luego como lo van a guardar</span></a>
+<a class="sourceLine" id="cb12-11" title="11"></a>
+<a class="sourceLine" id="cb12-12" title="12"><span class="st">ggsave(&quot;</span>grafico1.png<span class="st">&quot;,</span></a>
+<a class="sourceLine" id="cb12-13" title="13"><span class="st">       g)</span></a></code></pre></div>
 </div>
 </div>
 <div class="footnotes">

@@ -137,8 +137,7 @@ En la Tabla 1 podemos observar la distribución de las variables
 ```{r, echo=FALSE}
 casen_covid19 <- casen_covid19 %>% select(t_contagio, hacinamiento_hogar_media, casos_confirmados, poblacion)
 
-summarytools::dfSummary(casen_covid19, headings = FALSE, method = 'render')
-
+dfSummary(casen_covid19, headings = FALSE, method = 'render')
 ```
 
 Para entender mejor el hacinamiento por hogar promedio, se resume el índice de hacinamiento de [CASEN (2017)](http://observatorio.ministeriodesarrollosocial.gob.cl/casen/casen_def_vivienda.php) en la Tabla 2
@@ -198,11 +197,11 @@ Donde
 ```{r, echo= FALSE}
 reg1 <-lm(t_contagio ~ hacinamiento_hogar_media, data = casen_covid19)
 ```
-```{r,echoFALSE}
+```{r,echo = FALSE}
 sjPlot::tab_model(reg1, show.ci=FALSE, title = "Tabla 4. Modelo de regresion")
 ```
 
-En la *Tabla 4* nos reporta que por cada unidad que aumente el hacinamiento en los hogares por comuna, la tasa de contagio aumentará en 215.847 casos por cada 100.000 habitantes. Esto quiere decir que, por ejemplo, cuando el hacinamiento de hogares promedio por comuna es cercano a 0 (muy bajo hacinamiento) la tasa de contagio es cercana a 6.441 casos por cada 100.000 habitantes. Mientras que cuando el hacinamiento es cercano a 2 la tasa de contagio se acerca a 500 casos por cada 100.000 habitantes.
+En la *Tabla 4* nos reporta que por cada unidad que aumente el hacinamiento en los hogares por comuna, la tasa de contagio aumentará en 2158.47 casos por cada 100.000 habitantes. Esto quiere decir que, por ejemplo, cuando el hacinamiento de hogares promedio por comuna es cercano a 0 (muy bajo hacinamiento) la tasa de contagio es cercana a 6.441 casos por cada 100.000 habitantes. Mientras que cuando el hacinamiento es cercano a 2 la tasa de contagio se acerca a 500 casos por cada 100.000 habitantes.
 
 
 ## Bondad de ajuste
@@ -227,7 +226,7 @@ g2 <- ggplot(casen_covid19, aes(x=hacinamiento_hogar_media, y=t_contagio))+
   theme_bw()
 ```
 
-```{r, echo= F}
+```{r, echo= F, message = FALSE}
 g2
 ```
 
