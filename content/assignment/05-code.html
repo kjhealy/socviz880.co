@@ -1,70 +1,34 @@
+---
+title: "Práctica 5: Regresion Simple - Trabajo 1"
+subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
+author: "Valentina Andrade"
+linktitle: "Práctica 5: Regresion Simple - Trabajo"
+date: "2020-05-29"
+class_date: "2020-05-29"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+    highlight: tango
+    number_sections: FALSE
+menu:
+  class:
+    parent: Practicas
+    weight: 1
+type: docs
+weight: 1
+editor_options:
+  chunk_output_type: console
+---
+
 <!-- BLOGDOWN-HEAD -->
-<script src="05-code_files/clipboard-1.7.1/clipboard.min.js"></script>
-<link href="05-code_files/primer-tooltips-1.4.0/build.css" rel="stylesheet" />
-<link href="05-code_files/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet" />
-<script src="05-code_files/klippy-0.0.0.9500/js/klippy.min.js"></script>
-<style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  { background-color: #f8f8f8; }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ef2929; } /* Alert */
-code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #c4a000; } /* Attribute */
-code span.bn { color: #0000cf; } /* BaseN */
-code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4e9a06; } /* Char */
-code span.cn { color: #000000; } /* Constant */
-code span.co { color: #8f5902; font-style: italic; } /* Comment */
-code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code span.dt { color: #204a87; } /* DataType */
-code span.dv { color: #0000cf; } /* DecVal */
-code span.er { color: #a40000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #0000cf; } /* Float */
-code span.fu { color: #000000; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code span.ot { color: #8f5902; } /* Other */
-code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code span.sc { color: #000000; } /* SpecialChar */
-code span.ss { color: #4e9a06; } /* SpecialString */
-code span.st { color: #4e9a06; } /* String */
-code span.va { color: #000000; } /* Variable */
-code span.vs { color: #4e9a06; } /* VerbatimString */
-code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-</style>
+<script src="/rmarkdown-libs/clipboard/clipboard.min.js"></script>
+<link href="/rmarkdown-libs/primer-tooltips/build.css" rel="stylesheet" />
+<link href="/rmarkdown-libs/klippy/css/klippy.min.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/klippy/js/klippy.min.js"></script>
 <!-- /BLOGDOWN-HEAD -->
 
 <h2>Índice</h2>
@@ -75,7 +39,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#antecedetes-de-la-relación-estudiada">3. Antecedetes de la relación estudiada</a></li>
 </ul></li>
 <li><a href="#metodología">4. Metodología</a><ul>
-<li><a href="#descrpción-base-de-datos">4.1 Descrpción base de datos</a></li>
+<li><a href="#descripción-base-de-datos">4.1 Descripción base de datos</a></li>
 <li><a href="#variables">4.2 Variables</a></li>
 </ul></li>
 <li><a href="#análisis">5. Análisis</a></li>
@@ -85,19 +49,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#bondad-de-ajuste">Bondad de ajuste</a></li>
 </ul></li>
 <li><a href="#referencias">Referencias</a></li>
-<li><a href="#anexos">7. Anexos</a></li>
-<li><a href="#preparación-datos-casen-covid19.rdata">7.1 Preparación datos CASEN-COVID19.RData</a><ul>
-<li><a href="#librerías">1. Librerías</a></li>
-<li><a href="#cargar-base-de-datos">2. Cargar base de datos</a><ul>
-<li><a href="#exploración-y-procesamiento-de-variables">3. Exploración y procesamiento de variables</a></li>
-</ul></li>
-<li><a href="#análisis-datos-casen-covid">Análisis datos CASEN-COVID</a><ul>
-<li><a href="#tabla-descriptiva-de-variables">1. Tabla descriptiva de variables</a></li>
-</ul></li>
-<li><a href="#correlación">2. Correlación</a></li>
-<li><a href="#modelo-y-cálculo-de-parámetros">4. Modelo y cálculo de parámetros</a></li>
-<li><a href="#residuos">5. Residuos</a></li>
-</ul></li>
+<li><a href="#anexos">Anexos</a></li>
+<li><a href="#foro">Foro</a></li>
 </ul>
 </div>
 
@@ -107,89 +60,126 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </script>
 <div id="identificación" class="section level1">
 <h1>1. Identificación</h1>
-<p>Nombre: Estudiante
-Sección: 1
-Tema: COVID y comuna de resencia</p>
+<p>Nombre: Estudiante de Estadística Multivariada</p>
+<p>Sección: 1</p>
+<p>Tema: COVID y comuna de resencia</p>
 </div>
 <div id="resumen" class="section level1">
 <h1>2. Resumen</h1>
 <p>La pandemia por COVID-19 se ha extendido rápidamente por el mundo. A la fecha, se han registrado más de 4 millones de casos confirmados y cerca de 290 mil muertes en el mundo. En Chile, según reportes del Ministerio de Salud, 69.102 personas han sido contagiadas, 761 personas han fallecido, con 40.236 casos activos estimados al 24 de Mayo 2020. En este complejo contexto, el Gobierno ha utilizado la estrategia de <em>cuarentenas dinámicas</em> que consisten en realización de cuarentenas comunales según la evolución del contagio. A la fecha se desconoce y cuestiona su eficiencia</p>
-<p>En ese sentido, para enfrentar la crisis sanitaria, uno de los principales desafíos es contar con estudios y acceso a información útil para informar la toma de decisiones. En consencuencia surge la pregunta de si <em>¿hay relación entre la tasa de contagio y variables de comuna de residencia?</em>. Para abordar esta pregunta, nos centraremos en una variable: <code>hacinamiento_hogar_media</code>. En consecuencia, ¿tiene relación la <strong>tasa de contagio</strong> con la media de <strong>hacinamiento del hogar</strong> por comuna?</p>
-<p>Los resultados muestran que hay una</p>
+<p>En ese sentido, para enfrentar la crisis sanitaria, uno de los principales desafíos es contar con estudios y acceso a información útil para informar la toma de decisiones. En consencuencia surge la pregunta de si <em>¿hay relación entre la tasa de contagio y variables de comuna de residencia?</em>. Para abordar esta pregunta, nos centraremos en una variable: <code>hacinamiento</code>. En consecuencia, ¿tiene relación la <strong>tasa de contagio</strong> con la media del índice de <strong>hacinamiento</strong> medio por comuna?</p>
+<p>Los resultados muestran que hay una relación positiva entre la tasa de contagio con el hacinamiento. A partir de los modelos de regresión se puede señalar que por cada unidad que aumente el hacinamiento en los hogares por comuna, la tasa de contagio aumentará en 726.12 casos por cada 100.000 habitantes. Sin embargo, el ajuste del modelo es deficiente para explicar la variabilidad de la tasa de contagio.</p>
 <div id="antecedetes-de-la-relación-estudiada" class="section level2">
 <h2>3. Antecedetes de la relación estudiada</h2>
 <p>Recientemente, la Organización Mundial de la Salud (OMS) ha publicado directrices para la prevención del coronavirus. De las medidas señaladas no solo destacan estrategias relativas a <em>prácticas sanitarias</em> como lavarse las manos frecuentemente y desinfectar superficies, sino que también <em>prácticas sociales</em> como el distanciamiento social (WHO,2020).</p>
 <p>El gobierno chileno ha utilizado el último grupo de estrategias, principalmente a través de iniciativas como las <em>cuarentenas dinámicas</em>, que consisten en realización de cuarentenas comunales según la evolución del contagio. Esta iniciativa ha producido una serie de críticas por parte de expertos y la ciudadanía (Cabello, 2020)</p>
 <p>El centro de la crítica reside en la desigualdad socioeconómica entre los residentes de las distintas comunas, y con ello en la posibilidad de cumplir con las medidas de prevención. Una de ellas refiere a la posibilidad de distanciamiento social difiere de manera importante entre las comunas: hay comunas en donde la concentración de individuos a nivel comunal y de los hogares hace imposible el distanciamiento.</p>
-<p>Este punto no es menor considerando que ya el 2018 la OMS publicó que una directriz para el cuidado de virus implica elaborar políticas para reducir el hacinamiento (OMS,2018), y que ha sido rectificada como una estrategia necesaria no solo en el mundo sino que en los países vecinos (Santa Maria, 2020;Oliveira, Lucas &amp; Iquiapaza, 2020)</p>
+<p>Este punto no es menor considerando que ya el 2018 la OMS publicó que una directriz para el cuidado de virus implica elaborar políticas para reducir el hacinamiento (OMS,2018), y que ha sido rectificada como una estrategia necesaria no solo en el mundo sino que en los países vecinos (Santa Maria, 2020; Oliveira, Lucas &amp; Iquiapaza, 2020)</p>
 <p>En Chile, estudios recientes han señalado la importancia de abordar las medidas de aislamiento (MOVID19, 2020). Entre ellas se incluye considerar el hacinamiento de los hogares bajo el argumento principal de que a mayor hacinamiento, mayor es la tasa de contagio. Sin embargo, la evidencia aun no es concluyente.</p>
 </div>
 </div>
 <div id="metodología" class="section level1">
 <h1>4. Metodología</h1>
-<div id="descrpción-base-de-datos" class="section level2">
-<h2>4.1 Descrpción base de datos</h2>
+<div id="descripción-base-de-datos" class="section level2">
+<h2>4.1 Descripción base de datos</h2>
 <p><strong>CASEN-COVID19</strong> consiste en una base de datos que resume a nivel comunal información sobre la población contagiada por el virus COVID19 y encuesta de Caracterización Socioeconómica Nacional (CASEN).</p>
 <ul>
 <li><p><a href="http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php">CASEN (2017)</a>: su objetivo es medir pobreza, otorgando datos necesarios para la caracterización socioeconómica de individuos y hogares en Chile.</p></li>
 <li><p><a href="https://github.com/MinCiencia/Datos-COVID19">Datos Covid19 (2020)</a>: presenta información detallada sobre los casos confirmados del virus COVID19 por comuna hasta el último informe epidemiológico entregrado por el gobierno de Chile (24 de abril de 2020).</p></li>
 </ul>
-<p>La base cueta con un total de 324 casos (que consisten en las comunas) y 15 variables comunales como:</p>
-<ul>
-<li><p>[<code>comuna</code>] = Nombre de la comuna</p></li>
-<li><p>[<code>poblacion</code>] = Población de la comuna (número de habitantes)</p></li>
-<li><p>[<code>casos_confirmados</code>] = Casos confirmados por COVID19 en la comuna (número de contagiados confirmados)</p></li>
-<li><p>[<code>ingreso</code>] = Media de ingresos individuales a nivel comunal (en pesos)</p></li>
-<li><p>[<code>anoescolaridad</code>] = Media de año de escolaridad a nivel comunal (en años alcanzados)</p></li>
-<li><p>[<code>fonasaB</code>] = Cobertura de Fonasa B a nivel comunal (en porcentaje de afiliados)</p></li>
-<li><p>[<code>isapre</code>] = Cobertura de Isapres a nivel comunal (en porcentaje de afiliados)</p></li>
-<li><p>[<code>pobreza_media</code>] = indicador de pobreza multidimensional a nivel comunal</p></li>
-<li><p>[<code>hacinamiento_hogar_media</code>] = indicador de hacinamiento de hogares a nivel comunal</p></li>
-<li><p>[<code>deficit_prevs_hogar_media</code>] = deficit de acceso a servicios de salud a nivel comunal (en porcentaje de quienes contestan que “No”)</p></li>
-<li><p>[<code>deficit servbas_hogar_media</code>] = deficit de acceso a servicios básicos a nivel comunal (en porcentaje de queines coontestan que “No”)</p></li>
-</ul>
+<p>La base cueta con un total de 346 casos (que consisten en las comunas) y 6 variables comunales como nombre de la comuna, tamaño de la población, ingresos, año de escolaridad, previsión de salud, pobreza, deficit de acceso a servicios de salud y deficit de acceso a servicios básicos.</p>
 </div>
 <div id="variables" class="section level2">
 <h2>4.2 Variables</h2>
-<p>Para la realizacón de este ejercicio se tomaron en consideración las siguientes variables de la base de datos <strong>casen_covid19</strong></p>
+<p>Para la realización de este ejercicio se tomaron en consideración las siguientes variables de la base de datos <strong>casen_covid19</strong></p>
 <ul>
-<li><p>[<code>comuna</code>] = Nombre de la comuna</p></li>
-<li><p>[<code>poblacion</code>] = Población de la comuna (número de habitantes)</p></li>
-<li><p>[<code>casos_confirmados</code>] = Casos confirmados por COVID19 en la comuna (número de contagiados confirmados)</p></li>
-<li><p>[<code>hacinamiento_hogar_media</code>] = Media de año de escolaridad a nivel comunal (en años alcanzados)</p></li>
+<li><p>[<code>comuna</code>] = nombre de la comuna</p></li>
+<li><p>[<code>poblacion</code>] = número de habitantes por comuna</p></li>
+<li><p>[<code>hacinamiento</code>] = <em>media comunal</em> de la razón entre el número de personas residentes en la vivienda y el número de dormitorios de la misma, considerando piezas de uso exclusivo o uso múltiple. Contempla las categorías: sin hacinamiento, medio y crítico.</p></li>
+<li><p>[<code>casos_conf</code>] = casos confirmados por COVID19 en la comuna (número de contagiados confirmados)</p></li>
 </ul>
-<p>Antes de pasar a describir las variables, se ponderó el número de <code>casos_confirmados</code> por <code>pop</code> de la comuna, a modo de capturar mejor la tasa de contagio según el número de habitantes. Basándose en las mediciones del MINSAL se calculó el número de casos confirmados por cada 100.000 habitantes, dividido en la población de la comuna.</p>
-<p>En la Tabla 1 podemos observar la distribución de las variables</p>
-<pre><code>## 
-## ---------------------------------------------------------------------------------------------------------------------
-## No   Variable                    Stats / Values                   Freqs (% of Valid)    Graph      Valid    Missing  
-## ---- --------------------------- -------------------------------- --------------------- ---------- -------- ---------
-## 1    t_contagio                  Mean (sd) : 203 (302.7)          300 distinct values   :          324      0        
-##      [numeric]                   min &lt; med &lt; max:                                       :          (100%)   (0%)     
-##                                  0 &lt; 91.3 &lt; 2157.3                                      :                            
-##                                  IQR (CV) : 166.7 (1.5)                                 :                            
-##                                                                                         : . . .                      
-## 
-## 2    hacinamiento_hogar_media    Mean (sd) : 0.1 (0)              308 distinct values     :        324      0        
-##      [numeric]                   min &lt; med &lt; max:                                         :        (100%)   (0%)     
-##                                  0 &lt; 0.1 &lt; 0.3                                            : :                        
-##                                  IQR (CV) : 0.1 (0.5)                                   : : :                        
-##                                                                                         : : : :                      
-## 
-## 3    casos_confirmados           Mean (sd) : 228.2 (590.6)        137 distinct values   :          324      0        
-##      [numeric]                   min &lt; med &lt; max:                                       :          (100%)   (0%)     
-##                                  0 &lt; 19.5 &lt; 4618                                        :                            
-##                                  IQR (CV) : 78.8 (2.6)                                  :                            
-##                                                                                         : . .                        
-## 
-## 4    poblacion                   Mean (sd) : 59920.1 (90751.9)    324 distinct values   :          324      0        
-##      [numeric]                   min &lt; med &lt; max:                                       :          (100%)   (0%)     
-##                                  1233 &lt; 21804.5 &lt; 645909                                :                            
-##                                  IQR (CV) : 48443.5 (1.5)                               :                            
-##                                                                                         : . .                        
-## ---------------------------------------------------------------------------------------------------------------------</code></pre>
+<p>Antes de pasar a describir las variables, se ponderó el número de <code>casos_conf</code> por <code>poblacion</code> de la comuna, a modo de capturar mejor la tasa de contagio según el número de habitantes. Basándose en las mediciones del MINSAL se calculó el número de casos confirmados por cada 100.000 habitantes, dividido en la población de la comuna.</p>
+<p>En la Tabla 1 podemos observar la distribución de las variables. Principalmente podemos ver que nuestra variable dependiente, la tasa de contagio, tiene acumulado un 50% de sus casos cada 100.000 habitantes en 106.6 y 236.3 de media, lo que indica una concentración en los datos en valores menores a 100 casos por cada 100.000 habitantes, pero con una dispersión hacia los casos extremos (tasas muy altas) produciéndose una gran desviación estándar (355.4). Mientras que, la variable hacinamiento promedio por comuna presenta una distribución normal donde sus valores oscilan entre 0.9 a 2.1.</p>
+<div class="container st-container">
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline ">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>No</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Valid</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">1</td>
+      <td align="left">t_contagio
+[numeric]</td>
+      <td align="left">Mean (sd) : 236.3 (355.4)
+min < med < max:
+0 < 106.6 < 2260.1
+IQR (CV) : 186.9 (1.5)</td>
+      <td align="left" style="vertical-align:middle">313 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AYCBikZQOiFhgAAAH1JREFUaN7t2bEJgDAQQNGsoBuoG+j+u4lR0CLCGaPV+0WKFI9AuOpSUk1jbujedWDTsgWDwWAwGAwGg8FgMBgMBoPBYDAYDAb7GNt3PI2wfM4w2G9YX7OjvMUuIxEmC9gunBfxkS1gy3k+HNkIFv6XOHZ5393vHNjYpKSaViwFRV2gYm8YAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA2LTAyVDEwOjQxOjI1LTA0OjAwndLt2AAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNi0wMlQxMDo0MToyNS0wNDowMOyPVWQAAAAASUVORK5CYII="></td>
+      <td align="center">346
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+    <tr>
+      <td align="center">2</td>
+      <td align="left">hacinamiento
+[numeric]</td>
+      <td align="left">Mean (sd) : 1.4 (0.1)
+min < med < max:
+0.9 < 1.4 < 2.1
+IQR (CV) : 0.2 (0.1)</td>
+      <td align="left" style="vertical-align:middle">324 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AYCBikZQOiFhgAAAKFJREFUaN7t2csNgCAQRVFawA6EDqT/3oxggoogDiRGvW/Bbk5mw18pIok+j/EZdWXKmHVLwMDAwMDAwMAOWDhxdML8OIGB/Qkb/BTqhUUGDAwMDAwM7Fms4phcj7nr/sDAwMBasXA3MZ0wF2vBwD6AFff1u1ixPxmW+Q+UYX58LbZZydqxpEqGmfj0U42lf7wrlqkqYjb2ty71u85ao4gkMwy2xnLCrwAOAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA2LTAyVDEwOjQxOjI1LTA0OjAwndLt2AAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNi0wMlQxMDo0MToyNS0wNDowMOyPVWQAAAAASUVORK5CYII="></td>
+      <td align="center">324
+(93.64%)</td>
+      <td align="center">22
+(6.36%)</td>
+    </tr>
+    <tr>
+      <td align="center">3</td>
+      <td align="left">casos_conf
+[numeric]</td>
+      <td align="left">Mean (sd) : 261.9 (711.2)
+min < med < max:
+0 < 21.5 < 5770
+IQR (CV) : 78.8 (2.7)</td>
+      <td align="left" style="vertical-align:middle">147 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AYCBikZQOiFhgAAAGtJREFUaN7t2bENgCAQQFFW0A3EDXD/3YxAYTQ2nHTvF+Sql3DtpaSRcm1bYnVsP65gMBgMBoPBYDAYDAaDwWAwGAwGg8FgMBhsNra2W2cYa0wdSxirb5mAjdx1P7Hbv989lb7njuVfShrpBEmXOAfcCSEbAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA2LTAyVDEwOjQxOjI1LTA0OjAwndLt2AAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNi0wMlQxMDo0MToyNS0wNDowMOyPVWQAAAAASUVORK5CYII="></td>
+      <td align="center">346
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+    <tr>
+      <td align="center">4</td>
+      <td align="left">poblacion
+[numeric]</td>
+      <td align="left">Mean (sd) : 56237.9 (88946)
+min < med < max:
+137 < 19770 < 645909
+IQR (CV) : 45792 (1.6)</td>
+      <td align="left" style="vertical-align:middle">346 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AYCBikZQOiFhgAAAHFJREFUaN7t2bENgCAQQFFW0A3EDWT/3VRCtJIIWJn3C0L1Qi7XEYJ6irlpsIKt6WiDwWAwGAwGg8FgMBgMBoPBYDAYDAaDwf6NxatlHDuPlK+wdqzvv/MB61uVKta6KlWsdYYvsXuGc+WlBYufFNTTDmJ4PCnv4HzfAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA2LTAyVDEwOjQxOjI1LTA0OjAwndLt2AAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNi0wMlQxMDo0MToyNS0wNDowMOyPVWQAAAAASUVORK5CYII="></td>
+      <td align="center">346
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 0.9.6 (<a href='https://www.r-project.org/'>R</a> version 4.0.0)<br/>2020-06-02</p>
+</div>
 <p>Para entender mejor el hacinamiento por hogar promedio, se resume el índice de hacinamiento de <a href="http://observatorio.ministeriodesarrollosocial.gob.cl/casen/casen_def_vivienda.php">CASEN (2017)</a> en la Tabla 2</p>
-<p>Tabla 2: Índice de hacinamiento por hogar <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>Tabla 2: Índice de hacinamiento por hogar</p>
 <table>
 <thead>
 <tr class="header">
@@ -220,8 +210,8 @@ Tema: COVID y comuna de resencia</p>
 <div id="análisis-descriptivo" class="section level1">
 <h1>5.1 Análisis descriptivo</h1>
 <p>El <em>Gráfico 1</em> resume la relación entre la tasa de contagio y el hacinamiento promedio de los hogares, indicando cada uno de los puntos una comuna de todo el país. A partir de este podemos decir que en términos de correlación se observa una posible asociación positiva entre las variables.</p>
-<p><img src="05-code_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>Como es poco definitorio el gráfico, podemos corroborar tal dirección de la relación con una matriz con todas las correlaciones de las variables. En este caso solo nos fijaremos en la intersección entre <code>t_contagio</code> y <code>hacinamiento_hogar_media</code></p>
+<p><img src="/assignment/05-code_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Como es poco definitorio el gráfico, podemos corroborar tal dirección de la relación con una matriz con todas las correlaciones de las variables. En este caso solo nos fijaremos en la intersección entre <code>t_contagio</code> y <code>hacinamiento</code></p>
 <table style="border-collapse:collapse; border:none;">
 <caption style="font-weight: bold; text-align:left;">
 Tabla 3. Matriz de correlaciones entre tasa de contagio y variables de CASEN-COVID19
@@ -234,10 +224,10 @@ Tabla 3. Matriz de correlaciones entre tasa de contagio y variables de CASEN-COV
 t_contagio
 </th>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-hacinamiento_hogar_media
+hacinamiento
 </th>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
-casos_confirmados
+casos_conf
 </th>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
 poblacion
@@ -262,10 +252,10 @@ t_contagio
 </tr>
 <tr>
 <td style="font-style:italic;">
-hacinamiento_hogar_media
+hacinamiento
 </td>
 <td style="padding:0.2cm; text-align:center;">
-0.355<span style="vertical-align:super;font-size:0.8em;">***</span>
+0.294<span style="vertical-align:super;font-size:0.8em;">***</span>
 </td>
 <td style="padding:0.2cm; text-align:center;">
  
@@ -279,13 +269,13 @@ hacinamiento_hogar_media
 </tr>
 <tr>
 <td style="font-style:italic;">
-casos_confirmados
+casos_conf
 </td>
 <td style="padding:0.2cm; text-align:center;">
-0.666<span style="vertical-align:super;font-size:0.8em;">***</span>
+0.686<span style="vertical-align:super;font-size:0.8em;">***</span>
 </td>
 <td style="padding:0.2cm; text-align:center;">
-0.203<span style="vertical-align:super;font-size:0.8em;">***</span>
+0.126<span style="vertical-align:super;font-size:0.8em;">*</span>
 </td>
 <td style="padding:0.2cm; text-align:center;">
  
@@ -299,13 +289,13 @@ casos_confirmados
 poblacion
 </td>
 <td style="padding:0.2cm; text-align:center;">
-0.389<span style="vertical-align:super;font-size:0.8em;">***</span>
+0.404<span style="vertical-align:super;font-size:0.8em;">***</span>
 </td>
 <td style="padding:0.2cm; text-align:center; color:#999999;">
-0.083<span style="vertical-align:super;font-size:0.8em;"></span>
+0.024<span style="vertical-align:super;font-size:0.8em;"></span>
 </td>
 <td style="padding:0.2cm; text-align:center;">
-0.797<span style="vertical-align:super;font-size:0.8em;">***</span>
+0.795<span style="vertical-align:super;font-size:0.8em;">***</span>
 </td>
 <td style="padding:0.2cm; text-align:center;">
  
@@ -317,7 +307,7 @@ Computed correlation used pearson-method with listwise-deletion.
 </td>
 </tr>
 </table>
-<p>La <em>Tabla 3</em> muestra una <strong>correlación positiva</strong> entre la tasa de contagio y el hacinamiento de los hogares. Sumado a esto, esta asociación es estadísticamente significativa (p&lt; 0.001) Ahora bien, el <strong>tamaño de efecto</strong> muestra una magnitud mediana para las ciencias sociales (Cohen, 1988)</p>
+<p>La <em>Tabla 3</em> muestra una <strong>correlación positiva</strong> entre la tasa de contagio y el hacinamiento de los hogares. Sumado a esto, esta asociación es estadísticamente significativa (p&lt; 0.001) Ahora bien, el <strong>tamaño de efecto</strong> muestra una magnitud mediana-pequeña para las ciencias sociales (Cohen, 1988)</p>
 <p>Ahora bien, ¿cómo se relaciona <strong>más específcamente</strong> la tasa de contagio del COVID19 y la media de hacinamiento por hogar de la comuna?</p>
 </div>
 <div id="modelo-de-regresión" class="section level1">
@@ -361,18 +351,18 @@ p
 (Intercept)
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-6.44
+-758.88
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.845
+<strong>&lt;0.001
 </td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-hacinamiento_hogar_media
+hacinamiento
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-2158.47
+726.12
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001
@@ -391,17 +381,17 @@ Observations
 R<sup>2</sup> / R<sup>2</sup> adjusted
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
-0.126 / 0.123
+0.087 / 0.084
 </td>
 </tr>
 </table>
-<p>En la <em>Tabla 4</em> nos reporta que por cada unidad que aumente el hacinamiento en los hogares por comuna, la tasa de contagio aumentará en 2158.47 casos por cada 100.000 habitantes. Esto quiere decir que, por ejemplo, cuando el hacinamiento de hogares promedio por comuna es cercano a 0 (muy bajo hacinamiento) la tasa de contagio es cercana a 6.441 casos por cada 100.000 habitantes. Mientras que cuando el hacinamiento es cercano a 2 la tasa de contagio se acerca a 500 casos por cada 100.000 habitantes.</p>
+<p>En la <em>Tabla 4</em> nos reporta que por cada unidad que aumente el hacinamiento en los hogares por comuna, la tasa de contagio aumentará en 726.12 casos por cada 100.000 habitantes. Esto quiere decir que, por ejemplo, cuando el hacinamiento de hogares promedio por comuna es cercano a 1,5 (sin hacinamiento) la tasa de contagio es cercana a la media 258.32 casos por cada 100.000 habitantes. Mientras que cuando el hacinamiento es cercano a 3 la tasa de contagio se acerca a 1419.48 casos por cada 100.000 habitantes.</p>
 </div>
 <div id="bondad-de-ajuste" class="section level2">
 <h2>Bondad de ajuste</h2>
-<p><img src="05-code_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="/assignment/05-code_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>Ahora bien, como podemos ver en <em>Gráfico 2</em>, existe una gran variabilidad de los residuos. Con esto se quiere decir que la relación entre los valores predichos y los valores observados varía: por un lado, hay en una gran cantidad de casos (valores observados) donde la recta de regresión estaría sobreestimando su tasa de contagio (ver las comunas bajo la recta de regresión); por otro, hay una cantidad menor de casos (comunas) donde la recta de regresión subestima la tasa de contagio comunal. Un punto importante a notar es que si bien son menos comunas donde se estaría subestimando su tasa de contagio según su índice de hacinamiento, si ocurre que los residuos de este grupo de comunas es mucho mayor (comunas sobre la recta de regresión).</p>
-<p>Analizando específicamente la bondad de ajuste de nuestro modelo, podemos ver que si bien la relación de hacinamiento y tasa de contagio es estadísticamente significativa, nuestro modelo explica solo un 12.6% de la variabilidad de los datos observados. Es decir, hacinamiento explica en una pequeña proporción la variación observada de la tasa de contagio, y con ello, no debería ser la única variable a considerar en futuras investigaciones.</p>
+<p>Analizando específicamente la bondad de ajuste de nuestro modelo, podemos ver que si bien la relación de hacinamiento y tasa de contagio es estadísticamente significativa, nuestro modelo explica solo un 8.4% de la variabilidad de los datos observados. Es decir, el hacinamiento explica en una pequeña proporción la variación observada de la tasa de contagio. Por ello, el hacinamiento no debería ser la única variable a considerar en futuras investigaciones.</p>
 </div>
 </div>
 <div id="referencias" class="section level1">
@@ -420,142 +410,10 @@ Una mirada desde la respuesta del sistema de salud y las condiciones sociales. <
 </ul>
 </div>
 <div id="anexos" class="section level1">
-<h1>7. Anexos</h1>
+<h1>Anexos</h1>
+<p><a href="~/GitHub/multivariada/content/assignement/data/prod_data-prep.R">Preparacion datos CASEN-COVID19</a></p>
+<p><a href="~/GitHub/multivariada/content/assignement/data/analisis-casencovid.R">Analisis datos CASEN-COVID19</a></p>
 </div>
-<div id="preparación-datos-casen-covid19.rdata" class="section level1">
-<h1>7.1 Preparación datos CASEN-COVID19.RData</h1>
-<div id="librerías" class="section level2">
-<h2>1. Librerías</h2>
-<p>La explicación de esta parte del código se encuentra en la sección correspondiente de la <a href="/assignment/01-code#librerias">Práctica 1</a>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">pacman<span class="op">::</span><span class="kw">p_load</span>(dplyr, <span class="co">#Manipulacion de datos</span></a>
-<a class="sourceLine" id="cb2-2" title="2">              sjmisc, <span class="co"># Tablas</span></a>
-<a class="sourceLine" id="cb2-3" title="3">              summarytools, <span class="co"># Tablas</span></a>
-<a class="sourceLine" id="cb2-4" title="4">              kableExtra, <span class="co">#Tablas</span></a>
-<a class="sourceLine" id="cb2-5" title="5">              sjPlot, <span class="co">#Tablas y gráficos</span></a>
-<a class="sourceLine" id="cb2-6" title="6">              corrplot, <span class="co"># Correlaciones</span></a>
-<a class="sourceLine" id="cb2-7" title="7">              ggplot2, <span class="co"># Graficos</span></a>
-<a class="sourceLine" id="cb2-8" title="8">              webshot) <span class="co"># Para guardar tablas</span></a></code></pre></div>
-</div>
-<div id="cargar-base-de-datos" class="section level2">
-<h2>2. Cargar base de datos</h2>
-<p>Vamos a cargar la base de datos <strong>CASEN-COVID19.RData</strong>. Se puede llamar desde el directorio en que la guardaron dando la ruta completa, o también para esta práctica la podemos llamar directamente desde nuestro sitio web:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co">#Distintas formas de cargar data frame</span></a>
-<a class="sourceLine" id="cb3-2" title="2"></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="co"># 1. Desde la página</span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://multivariada.netlify.app/assignment/data/proc/CASEN-COVID19.RData&quot;</span>))</a>
-<a class="sourceLine" id="cb3-5" title="5"></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="co"># 2. Localmente </span></a>
-<a class="sourceLine" id="cb3-7" title="7"></a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="kw">load</span>(<span class="dt">file =</span> <span class="st">&quot;CASEN-COVID19.RData&quot;</span>)</a>
-<a class="sourceLine" id="cb3-9" title="9"></a>
-<a class="sourceLine" id="cb3-10" title="10"><span class="co">## Si no tienen su base de datos en la misma carpeta de trabajo que su sintaxis deben señalar la &quot;Ruta&quot; de acceso. Por ejemplo,</span></a>
-<a class="sourceLine" id="cb3-11" title="11"></a>
-<a class="sourceLine" id="cb3-12" title="12"><span class="kw">load</span>(<span class="dt">file =</span> <span class="st">&quot;C:/Users/valeandrade/multivariada/CASEN-COVID19.RData&quot;</span>)</a>
-<a class="sourceLine" id="cb3-13" title="13"></a>
-<a class="sourceLine" id="cb3-14" title="14">casen_covid19 &lt;-<span class="st"> </span>CASEN<span class="op">-</span>COVID19; <span class="kw">remove</span>(CASEN<span class="op">-</span>COVID19)</a></code></pre></div>
-<div id="exploración-y-procesamiento-de-variables" class="section level3">
-<h3>3. Exploración y procesamiento de variables</h3>
-<p><em>La explicación de esta parte del código se encuentra en la sección correspondiente de la <a href="/assignment/01-code#preparación-de-datos-elsoc-2016">Práctica 1</a>.</em></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">names</span>(casen_covid19) <span class="co"># Muestra los nombres de las variables de la base de datos</span></a>
-<a class="sourceLine" id="cb4-2" title="2"></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="kw">dim</span>(casen_covid19) <span class="co"># Dimensiones</span></a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="co">#324 observaciones --&gt; 324 comunas</span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co">#8 variables</span></a></code></pre></div>
-<p>En el caso de esta base tiene 324 casos y 6 variables</p>
-<p>La base de datos <strong>casen_covid19</strong> presenta las siguientes variables</p>
-<ul>
-<li><p>[<code>comuna</code>] = Nombre de la comuna</p></li>
-<li><p>[<code>poblacion</code>] = Población de la comuna (número de habitantes)</p></li>
-<li><p>[<code>casos_confirmados</code>] = Casos confirmados por COVID19 en la comuna (número de contagiados confirmados)</p></li>
-<li><p>[<code>ingreso</code>] = Media de ingresos individuales a nivel comunal (en pesos)</p></li>
-<li><p>[<code>anoescolaridad</code>] = Media de año de escolaridad a nivel comunal (en años alcanzados)</p></li>
-<li><p>[<code>fonasaB</code>] = Cobertura de Fonasa B a nivel comunal (en porcentaje de afiliados)</p></li>
-<li><p>[<code>isapre</code>] = Cobertura de Isapres a nivel comunal (en porcentaje de afiliados)</p></li>
-<li><p>[<code>pobreza_media</code>] = indicador de pobreza multidimensional a nivel comunal</p></li>
-<li><p>[<code>hacinamiento_hogar_media</code>] = indicador de hacinamiento de hogares a nivel comunal</p></li>
-<li><p>[<code>deficit_prevs_hogar_media</code>] = deficit de acceso a servicios de salud a nivel comunal (en porcentaje de quienes contestan que “No”)</p></li>
-<li><p>[<code>deficit servbas_hogar_media</code>] = deficit de acceso a servicios básicos a nivel comunal (en porcentaje de queines coontestan que “No”)</p></li>
-</ul>
-<p>Antes de pasar a describir las variables, se va a ponderar el número de <code>casos_confirmados</code> por <code>pop</code> de la comuna, a modo de capturar mejor la tasa de contagio según el número de habitantes. A través de <code>mutate</code>se calculará el el número de casos confirmados por cada 100.000 habitantes, dividido en la población de la comuna.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co">#Tasa de contagio comunal</span></a>
-<a class="sourceLine" id="cb5-2" title="2">casen_covid19 &lt;-<span class="st"> </span>casen_covid19 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">t_contagio =</span> (casos_confirmados<span class="op">*</span><span class="dv">100000</span>)<span class="op">/</span>poblacion)</a></code></pre></div>
-</div>
-</div>
-<div id="análisis-datos-casen-covid" class="section level2">
-<h2>Análisis datos CASEN-COVID</h2>
-<div id="tabla-descriptiva-de-variables" class="section level3">
-<h3>1. Tabla descriptiva de variables</h3>
-<p><em>La explicación de esta parte del código se encuentra en la sección correspondiente de la <a href="/assignment/01-code#descripción-de-variables">Práctica 2</a>.</em></p>
-<p><strong>Tablas descriptivas con <code>dfSummary</code>, librería summarytools</strong><span class="sidenote">sjmisc::descr</span></p>
-</div>
-</div>
-<div id="correlación" class="section level2">
-<h2>2. Correlación</h2>
-<p><em>La explicación de esta parte del código se encuentra en la sección correspondiente de la <a href="/assignment/01-code#exploración-de-asociación-entre-variables">Práctica 2</a></em></p>
-<p>Primero, veamos un gráfico de nube de puntos / scatter de ambas variables que realizaremos a través de la función <code>ggplot()</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># 1. Se crea un gráfico scatterplot &quot;g&quot; con la librería ggplot</span></a>
-<a class="sourceLine" id="cb6-2" title="2"></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="co"># Y es nuestra variable dependiente</span></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="co"># X = es nuestra variable independiente</span></a>
-<a class="sourceLine" id="cb6-5" title="5">g=<span class="kw">ggplot</span>(casen_covid19, <span class="kw">aes</span>(<span class="dt">x=</span>hacinamiento_hogar_media, <span class="dt">y=</span>t_contagio)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="st">  </span><span class="kw">geom_point</span>()</a>
-<a class="sourceLine" id="cb6-7" title="7"></a>
-<a class="sourceLine" id="cb6-8" title="8"><span class="co">#2. Guardar</span></a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="co">#Deben indicar el nombre primero, y luego como lo van a guardar</span></a>
-<a class="sourceLine" id="cb6-10" title="10"></a>
-<a class="sourceLine" id="cb6-11" title="11"><span class="kw">ggsave</span>(<span class="st">&quot;grafico1.png&quot;</span>,</a>
-<a class="sourceLine" id="cb6-12" title="12">       g)</a></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Calcular matriz de correlaciones</span></a>
-<a class="sourceLine" id="cb7-2" title="2"></a>
-<a class="sourceLine" id="cb7-3" title="3">casen_covid19 &lt;-<span class="st"> </span>casen_covid19 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>(nombre_comuna,nombre_region) ) <span class="co">#Excluimos comuna pues las correlaciones son entre variables numéricas y comuna es un carácter</span></a>
-<a class="sourceLine" id="cb7-4" title="4"></a>
-<a class="sourceLine" id="cb7-5" title="5">sjPlot<span class="op">::</span><span class="kw">sjt.corr</span>(casen_covid19,</a>
-<a class="sourceLine" id="cb7-6" title="6">         <span class="dt">triangle =</span> <span class="st">&quot;lower&quot;</span>, <span class="dt">file =</span> <span class="st">&quot;tabla1.html&quot;</span>)</a>
-<a class="sourceLine" id="cb7-7" title="7"><span class="kw">webshot</span>(<span class="st">&quot;tabla2.html&quot;</span>,<span class="st">&quot;tabla2.png&quot;</span>)</a></code></pre></div>
-</div>
-<div id="modelo-y-cálculo-de-parámetros" class="section level2">
-<h2>4. Modelo y cálculo de parámetros</h2>
-<p><em>La explicación de esta parte del código se encuentra en la sección correspondiente de la <a href="/assignment/03-code">Práctica 3</a> y <a href="/assignment/04-code">Práctica 4</a></em></p>
-<p>La función para estimar regresión en <code>R</code> es <code>lm</code> (linear model). Su forma general es:</p>
-<pre><code>objeto=lm(dependiente ~ independiente, data=datos)</code></pre>
-<p>Donde</p>
-<ul>
-<li><p><em>objeto</em>: el nombre (cualquiera) que le damos al objeto donde se guardan los resultados de la estimación</p></li>
-<li><p><em>dependiente</em> / <em>independiente</em>: los nombres de las variables en los datos</p></li>
-<li><p><em>data</em>: el nombre del objeto de nuestros datos en R</p></li>
-</ul>
-<p>Estimamos la regresión con los datos de <strong>CASEN-COVID19</strong>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">reg1 &lt;-<span class="kw">lm</span>(t_contagio <span class="op">~</span><span class="st"> </span>hacinamiento_hogar_media, <span class="dt">data =</span> casen_covid19)</a></code></pre></div>
-<p>Con esta operación ya estimamos nuestra primera regresión simple. Para ver la estimación de los parámetros principales (intercepto y pendiente) simplemente ejecutamos el nombre del objeto. El paquete <code>sjPlot</code> que instalamos antes nos permite presentar nuestros hallazgos en tablas fáciles de leer, similares a las que se ven en las publicaciones de las revistas.Veamos cómo mostrar la representación de un modelo de regresión en la pantalla utilizando la función <code>tab_model()</code> de <code>sjPlot</code>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">sjPlot<span class="op">::</span><span class="kw">tab_model</span>(reg1, <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">file =</span> <span class="st">&quot;reg1_tab.html&quot;</span>)</a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="kw">webshot</span>(<span class="st">&quot;reg1_tab.html&quot;</span>,<span class="st">&quot;reg1_tab.png&quot;</span>)</a></code></pre></div>
-</div>
-<div id="residuos" class="section level2">
-<h2>5. Residuos</h2>
-<p><em>La explicación de esta parte del código se encuentra en la sección correspondiente de la <a href="/assignment/04-code">Práctica 4</a></em></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co">#Variable de valores predichos</span></a>
-<a class="sourceLine" id="cb11-2" title="2">casen_covid19<span class="op">$</span>estimado&lt;-<span class="st"> </span>(<span class="fl">6.441</span> <span class="op">+</span><span class="st"> </span>casen_covid19<span class="op">$</span>hacinamiento_hogar_media<span class="op">*</span><span class="fl">2158.467</span>)</a>
-<a class="sourceLine" id="cb11-3" title="3"></a>
-<a class="sourceLine" id="cb11-4" title="4"><span class="co">#Estimamos el residuo</span></a>
-<a class="sourceLine" id="cb11-5" title="5">casen_covid19<span class="op">$</span>residuo &lt;-<span class="st"> </span>casen_covid19<span class="op">$</span>t_contagio <span class="op">-</span><span class="st"> </span>casen_covid19<span class="op">$</span>estimado</a></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">ggplot</span>(casen_covid19, <span class="kw">aes</span>(<span class="dt">x=</span>hacinamiento_hogar_media, <span class="dt">y=</span>t_contagio))<span class="op">+</span></a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;lightgrey&quot;</span>) <span class="op">+</span><span class="co">#Pendiente de regresion</span></a>
-<a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend=</span>hacinamiento_hogar_media, <span class="dt">yend=</span>estimado), <span class="dt">alpha =</span> <span class="fl">.2</span>) <span class="op">+</span><span class="st"> </span><span class="co">#Distancia entre estimados y datos en lineas</span></a>
-<a class="sourceLine" id="cb12-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">abs</span>(residuo), <span class="dt">size =</span> <span class="kw">abs</span>(residuo))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-5" title="5"><span class="st">  </span><span class="kw">scale_color_continuous</span>(<span class="dt">low =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-6" title="6"><span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="ot">FALSE</span>, <span class="dt">size =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-7" title="7"><span class="st">   </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>estimado), <span class="dt">shape =</span><span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Gráfico 2. Residuos modelo de regresión&quot;, caption = &quot;</span>Fuente<span class="op">:</span><span class="st"> </span>Elaboración propia en base a CASEN<span class="op">-</span><span class="kw">COVID19</span> (<span class="dv">2020</span>)<span class="st">&quot;, y = &quot;</span>tasa de contagio<span class="st">&quot;, x = &quot;</span>hacinamiento del <span class="kw">hogar</span> (media)<span class="st">&quot;)</span></a>
-<a class="sourceLine" id="cb12-8" title="8"><span class="st">  theme_bw()</span></a>
-<a class="sourceLine" id="cb12-9" title="9"><span class="st">#2. Guardar</span></a>
-<a class="sourceLine" id="cb12-10" title="10"><span class="st">#Deben indicar el nombre primero, y luego como lo van a guardar</span></a>
-<a class="sourceLine" id="cb12-11" title="11"></a>
-<a class="sourceLine" id="cb12-12" title="12"><span class="st">ggsave(&quot;</span>grafico1.png<span class="st">&quot;,</span></a>
-<a class="sourceLine" id="cb12-13" title="13"><span class="st">       g)</span></a></code></pre></div>
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn1"><p>Razón entre el número de personas residentes en la vivienda y el número de dormitorios de la misma, considerando piezas de uso exclusivo o uso múltiple. Contempla las categorías: sin hacinamiento, medio y crítico.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-</ol>
+<div id="foro" class="section level1">
+<h1>Foro</h1>
 </div>
