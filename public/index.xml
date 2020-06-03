@@ -480,6 +480,408 @@ Y calculamos&lt;/p&gt;
     </item>
     
     <item>
+      <title>Práctica 5: Regresion Simple - Trabajo 1</title>
+      <link>/assignment/05-code/</link>
+      <pubDate>Fri, 29 May 2020 00:00:00 +0000</pubDate>
+      <guid>/assignment/05-code/</guid>
+      <description>
+&lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;script src=&#34;/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
+&lt;!-- /BLOGDOWN-HEAD --&gt;
+
+&lt;h2&gt;Índice&lt;/h2&gt;
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#identificación&#34;&gt;1. Identificación&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#resumen&#34;&gt;2. Resumen&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#antecedetes-de-la-relación-estudiada&#34;&gt;3. Antecedetes de la relación estudiada&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#metodología&#34;&gt;4. Metodología&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#descripción-base-de-datos&#34;&gt;4.1 Descripción base de datos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#variables&#34;&gt;4.2 Variables&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#análisis&#34;&gt;5. Análisis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#análisis-descriptivo&#34;&gt;5.1 Análisis descriptivo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#modelo-de-regresión&#34;&gt;5. Modelo de regresión&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#estimación-modelo-de-regresión&#34;&gt;Estimación modelo de regresión&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#bondad-de-ajuste&#34;&gt;Bondad de ajuste&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#referencias&#34;&gt;Referencias&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#anexos&#34;&gt;Anexos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#foro&#34;&gt;Foro&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  addClassKlippyTo(&#34;pre.r, pre.markdown&#34;);
+  addKlippy(&#39;right&#39;, &#39;bottom&#39;, &#39;auto&#39;, &#39;1&#39;, &#39;Copy code&#39;, &#39;Copied!&#39;);
+&lt;/script&gt;
+&lt;div id=&#34;identificación&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;1. Identificación&lt;/h1&gt;
+&lt;p&gt;Nombre: Estudiante de Estadística Multivariada&lt;/p&gt;
+&lt;p&gt;Sección: 1&lt;/p&gt;
+&lt;p&gt;Tema: COVID y comuna de resencia&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;resumen&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;2. Resumen&lt;/h1&gt;
+&lt;p&gt;La pandemia por COVID-19 se ha extendido rápidamente por el mundo. A la fecha, se han registrado más de 4 millones de casos confirmados y cerca de 290 mil muertes en el mundo. En Chile, según reportes del Ministerio de Salud, 69.102 personas han sido contagiadas, 761 personas han fallecido, con 40.236 casos activos estimados al 24 de Mayo 2020. En este complejo contexto, el Gobierno ha utilizado la estrategia de &lt;em&gt;cuarentenas dinámicas&lt;/em&gt; que consisten en realización de cuarentenas comunales según la evolución del contagio. A la fecha se desconoce y cuestiona su eficiencia&lt;/p&gt;
+&lt;p&gt;En ese sentido, para enfrentar la crisis sanitaria, uno de los principales desafíos es contar con estudios y acceso a información útil para informar la toma de decisiones. En consencuencia surge la pregunta de si &lt;em&gt;¿hay relación entre la tasa de contagio y variables de comuna de residencia?&lt;/em&gt;. Para abordar esta pregunta, nos centraremos en una variable: &lt;code&gt;hacinamiento&lt;/code&gt;. En consecuencia, ¿tiene relación la &lt;strong&gt;tasa de contagio&lt;/strong&gt; con la media del índice de &lt;strong&gt;hacinamiento&lt;/strong&gt; medio por comuna?&lt;/p&gt;
+&lt;p&gt;Los resultados muestran que hay una relación positiva entre la tasa de contagio con el hacinamiento. A partir de los modelos de regresión se puede señalar que por cada unidad que aumente el hacinamiento en los hogares por comuna, la tasa de contagio aumentará en 726.12 casos por cada 100.000 habitantes. Sin embargo, el ajuste del modelo es deficiente para explicar la variabilidad de la tasa de contagio.&lt;/p&gt;
+&lt;div id=&#34;antecedetes-de-la-relación-estudiada&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;3. Antecedetes de la relación estudiada&lt;/h2&gt;
+&lt;p&gt;Recientemente, la Organización Mundial de la Salud (OMS) ha publicado directrices para la prevención del coronavirus. De las medidas señaladas no solo destacan estrategias relativas a &lt;em&gt;prácticas sanitarias&lt;/em&gt; como lavarse las manos frecuentemente y desinfectar superficies, sino que también &lt;em&gt;prácticas sociales&lt;/em&gt; como el distanciamiento social (WHO,2020).&lt;/p&gt;
+&lt;p&gt;El gobierno chileno ha utilizado el último grupo de estrategias, principalmente a través de iniciativas como las &lt;em&gt;cuarentenas dinámicas&lt;/em&gt;, que consisten en realización de cuarentenas comunales según la evolución del contagio. Esta iniciativa ha producido una serie de críticas por parte de expertos y la ciudadanía (Cabello, 2020)&lt;/p&gt;
+&lt;p&gt;El centro de la crítica reside en la desigualdad socioeconómica entre los residentes de las distintas comunas, y con ello en la posibilidad de cumplir con las medidas de prevención. Una de ellas refiere a la posibilidad de distanciamiento social difiere de manera importante entre las comunas: hay comunas en donde la concentración de individuos a nivel comunal y de los hogares hace imposible el distanciamiento.&lt;/p&gt;
+&lt;p&gt;Este punto no es menor considerando que ya el 2018 la OMS publicó que una directriz para el cuidado de virus implica elaborar políticas para reducir el hacinamiento (OMS,2018), y que ha sido rectificada como una estrategia necesaria no solo en el mundo sino que en los países vecinos (Santa Maria, 2020; Oliveira, Lucas &amp;amp; Iquiapaza, 2020)&lt;/p&gt;
+&lt;p&gt;En Chile, estudios recientes han señalado la importancia de abordar las medidas de aislamiento (MOVID19, 2020). Entre ellas se incluye considerar el hacinamiento de los hogares bajo el argumento principal de que a mayor hacinamiento, mayor es la tasa de contagio. Sin embargo, la evidencia aun no es concluyente.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;metodología&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;4. Metodología&lt;/h1&gt;
+&lt;div id=&#34;descripción-base-de-datos&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;4.1 Descripción base de datos&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;CASEN-COVID19&lt;/strong&gt; consiste en una base de datos que resume a nivel comunal información sobre la población contagiada por el virus COVID19 y encuesta de Caracterización Socioeconómica Nacional (CASEN).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php&#34;&gt;CASEN (2017)&lt;/a&gt;: su objetivo es medir pobreza, otorgando datos necesarios para la caracterización socioeconómica de individuos y hogares en Chile.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/MinCiencia/Datos-COVID19&#34;&gt;Datos Covid19 (2020)&lt;/a&gt;: presenta información detallada sobre los casos confirmados del virus COVID19 por comuna hasta el último informe epidemiológico entregrado por el gobierno de Chile (24 de abril de 2020).&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;La base cueta con un total de 346 casos (que consisten en las comunas) y 6 variables comunales como nombre de la comuna, tamaño de la población, ingresos, año de escolaridad, previsión de salud, pobreza, deficit de acceso a servicios de salud y deficit de acceso a servicios básicos.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;variables&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;4.2 Variables&lt;/h2&gt;
+&lt;p&gt;Para la realización de este ejercicio se tomaron en consideración las siguientes variables de la base de datos &lt;strong&gt;casen_covid19&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;[&lt;code&gt;comuna&lt;/code&gt;] = nombre de la comuna&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;[&lt;code&gt;poblacion&lt;/code&gt;] = número de habitantes por comuna&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;[&lt;code&gt;hacinamiento&lt;/code&gt;] = &lt;em&gt;media comunal&lt;/em&gt; de la razón entre el número de personas residentes en la vivienda y el número de dormitorios de la misma, considerando piezas de uso exclusivo o uso múltiple. Contempla las categorías: sin hacinamiento, medio y crítico.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;[&lt;code&gt;casos_conf&lt;/code&gt;] = casos confirmados por COVID19 en la comuna (número de contagiados confirmados)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Antes de pasar a describir las variables, se ponderó el número de &lt;code&gt;casos_conf&lt;/code&gt; por &lt;code&gt;poblacion&lt;/code&gt; de la comuna, a modo de capturar mejor la tasa de contagio según el número de habitantes. Basándose en las mediciones del MINSAL se calculó el número de casos confirmados por cada 100.000 habitantes, dividido en la población de la comuna.&lt;/p&gt;
+&lt;p&gt;En la Tabla 1 podemos observar la distribución de las variables. Principalmente podemos ver que nuestra variable dependiente, la tasa de contagio, tiene acumulado un 50% de sus casos cada 100.000 habitantes en 106.6 y 236.3 de media, lo que indica una concentración en los datos en valores menores a 100 casos por cada 100.000 habitantes, pero con una dispersión hacia los casos extremos (tasas muy altas) produciéndose una gran desviación estándar (355.4). Mientras que, la variable hacinamiento promedio por comuna presenta una distribución normal donde sus valores oscilan entre 0.9 a 2.1.&lt;/p&gt;
+&lt;div class=&#34;container st-container&#34;&gt;
+&lt;table class=&#34;table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline &#34;&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;No&lt;/strong&gt;&lt;/th&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;Variable&lt;/strong&gt;&lt;/th&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;Stats / Values&lt;/strong&gt;&lt;/th&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;Freqs (% of Valid)&lt;/strong&gt;&lt;/th&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;Graph&lt;/strong&gt;&lt;/th&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;Valid&lt;/strong&gt;&lt;/th&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;Missing&lt;/strong&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;t_contagio
+[numeric]&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;Mean (sd) : 236.3 (355.4)
+min &lt; med &lt; max:
+0 &lt; 106.6 &lt; 2260.1
+IQR (CV) : 186.9 (1.5)&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle&#34;&gt;313 distinct values&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AYCBikZQOiFhgAAAH1JREFUaN7t2bEJgDAQQNGsoBuoG+j+u4lR0CLCGaPV+0WKFI9AuOpSUk1jbujedWDTsgWDwWAwGAwGg8FgMBgMBoPBYDAYDAb7GNt3PI2wfM4w2G9YX7OjvMUuIxEmC9gunBfxkS1gy3k+HNkIFv6XOHZ5393vHNjYpKSaViwFRV2gYm8YAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA2LTAyVDEwOjQxOjI1LTA0OjAwndLt2AAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNi0wMlQxMDo0MToyNS0wNDowMOyPVWQAAAAASUVORK5CYII=&#34;&gt;&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;346
+(100%)&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;0
+(0%)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td align=&#34;center&#34;&gt;2&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;hacinamiento
+[numeric]&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;Mean (sd) : 1.4 (0.1)
+min &lt; med &lt; max:
+0.9 &lt; 1.4 &lt; 2.1
+IQR (CV) : 0.2 (0.1)&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle&#34;&gt;324 distinct values&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AYCBikZQOiFhgAAAKFJREFUaN7t2csNgCAQRVFawA6EDqT/3oxggoogDiRGvW/Bbk5mw18pIok+j/EZdWXKmHVLwMDAwMDAwMAOWDhxdML8OIGB/Qkb/BTqhUUGDAwMDAwM7Fms4phcj7nr/sDAwMBasXA3MZ0wF2vBwD6AFff1u1ixPxmW+Q+UYX58LbZZydqxpEqGmfj0U42lf7wrlqkqYjb2ty71u85ao4gkMwy2xnLCrwAOAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA2LTAyVDEwOjQxOjI1LTA0OjAwndLt2AAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNi0wMlQxMDo0MToyNS0wNDowMOyPVWQAAAAASUVORK5CYII=&#34;&gt;&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;324
+(93.64%)&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;22
+(6.36%)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td align=&#34;center&#34;&gt;3&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;casos_conf
+[numeric]&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;Mean (sd) : 261.9 (711.2)
+min &lt; med &lt; max:
+0 &lt; 21.5 &lt; 5770
+IQR (CV) : 78.8 (2.7)&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle&#34;&gt;147 distinct values&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AYCBikZQOiFhgAAAGtJREFUaN7t2bENgCAQQFFW0A3EDXD/3YxAYTQ2nHTvF+Sql3DtpaSRcm1bYnVsP65gMBgMBoPBYDAYDAaDwWAwGAwGg8FgMBhsNra2W2cYa0wdSxirb5mAjdx1P7Hbv989lb7njuVfShrpBEmXOAfcCSEbAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA2LTAyVDEwOjQxOjI1LTA0OjAwndLt2AAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNi0wMlQxMDo0MToyNS0wNDowMOyPVWQAAAAASUVORK5CYII=&#34;&gt;&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;346
+(100%)&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;0
+(0%)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td align=&#34;center&#34;&gt;4&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;poblacion
+[numeric]&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;Mean (sd) : 56237.9 (88946)
+min &lt; med &lt; max:
+137 &lt; 19770 &lt; 645909
+IQR (CV) : 45792 (1.6)&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle&#34;&gt;346 distinct values&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AYCBikZQOiFhgAAAHFJREFUaN7t2bENgCAQQFFW0A3EDWT/3VRCtJIIWJn3C0L1Qi7XEYJ6irlpsIKt6WiDwWAwGAwGg8FgMBgMBoPBYDAYDAaDwf6NxatlHDuPlK+wdqzvv/MB61uVKta6KlWsdYYvsXuGc+WlBYufFNTTDmJ4PCnv4HzfAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA2LTAyVDEwOjQxOjI1LTA0OjAwndLt2AAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNi0wMlQxMDo0MToyNS0wNDowMOyPVWQAAAAASUVORK5CYII=&#34;&gt;&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;346
+(100%)&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;0
+(0%)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Generated by &lt;a href=&#39;https://github.com/dcomtois/summarytools&#39;&gt;summarytools&lt;/a&gt; 0.9.6 (&lt;a href=&#39;https://www.r-project.org/&#39;&gt;R&lt;/a&gt; version 4.0.0)&lt;br/&gt;2020-06-02&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Para entender mejor el hacinamiento por hogar promedio, se resume el índice de hacinamiento de &lt;a href=&#34;http://observatorio.ministeriodesarrollosocial.gob.cl/casen/casen_def_vivienda.php&#34;&gt;CASEN (2017)&lt;/a&gt; en la Tabla 2&lt;/p&gt;
+&lt;p&gt;Tabla 2: Índice de hacinamiento por hogar&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;Personas por dormitorio en vivienda&lt;/th&gt;
+&lt;th&gt;Tipo de hacinamiento&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;2,4 y menos&lt;/td&gt;
+&lt;td&gt;Sin hacinamiento&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;2,5 a 4,9&lt;/td&gt;
+&lt;td&gt;Hacinamiento medio&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;5 a más&lt;/td&gt;
+&lt;td&gt;Hacinamiento crítico&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;análisis&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;5. Análisis&lt;/h1&gt;
+&lt;/div&gt;
+&lt;div id=&#34;análisis-descriptivo&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;5.1 Análisis descriptivo&lt;/h1&gt;
+&lt;p&gt;El &lt;em&gt;Gráfico 1&lt;/em&gt; resume la relación entre la tasa de contagio y el hacinamiento promedio de los hogares, indicando cada uno de los puntos una comuna de todo el país. A partir de este podemos decir que en términos de correlación se observa una posible asociación positiva entre las variables.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/assignment/05-code_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Como es poco definitorio el gráfico, podemos corroborar tal dirección de la relación con una matriz con todas las correlaciones de las variables. En este caso solo nos fijaremos en la intersección entre &lt;code&gt;t_contagio&lt;/code&gt; y &lt;code&gt;hacinamiento&lt;/code&gt;&lt;/p&gt;
+&lt;table style=&#34;border-collapse:collapse; border:none;&#34;&gt;
+&lt;caption style=&#34;font-weight: bold; text-align:left;&#34;&gt;
+Tabla 3. Matriz de correlaciones entre tasa de contagio y variables de CASEN-COVID19
+&lt;/caption&gt;
+&lt;tr&gt;
+&lt;th style=&#34;font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;&#34;&gt;
+ 
+&lt;/th&gt;
+&lt;th style=&#34;font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;&#34;&gt;
+t_contagio
+&lt;/th&gt;
+&lt;th style=&#34;font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;&#34;&gt;
+hacinamiento
+&lt;/th&gt;
+&lt;th style=&#34;font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;&#34;&gt;
+casos_conf
+&lt;/th&gt;
+&lt;th style=&#34;font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;&#34;&gt;
+poblacion
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;font-style:italic;&#34;&gt;
+t_contagio
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;font-style:italic;&#34;&gt;
+hacinamiento
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;&#34;&gt;
+0.294&lt;span style=&#34;vertical-align:super;font-size:0.8em;&#34;&gt;***&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;font-style:italic;&#34;&gt;
+casos_conf
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;&#34;&gt;
+0.686&lt;span style=&#34;vertical-align:super;font-size:0.8em;&#34;&gt;***&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;&#34;&gt;
+0.126&lt;span style=&#34;vertical-align:super;font-size:0.8em;&#34;&gt;*&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;font-style:italic;&#34;&gt;
+poblacion
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;&#34;&gt;
+0.404&lt;span style=&#34;vertical-align:super;font-size:0.8em;&#34;&gt;***&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; color:#999999;&#34;&gt;
+0.024&lt;span style=&#34;vertical-align:super;font-size:0.8em;&#34;&gt;&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;&#34;&gt;
+0.795&lt;span style=&#34;vertical-align:super;font-size:0.8em;&#34;&gt;***&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td colspan=&#34;5&#34; style=&#34;border-bottom:double black; border-top:1px solid black; font-style:italic; font-size:0.9em; text-align:right;&#34;&gt;
+Computed correlation used pearson-method with listwise-deletion.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;La &lt;em&gt;Tabla 3&lt;/em&gt; muestra una &lt;strong&gt;correlación positiva&lt;/strong&gt; entre la tasa de contagio y el hacinamiento de los hogares. Sumado a esto, esta asociación es estadísticamente significativa (p&amp;lt; 0.001) Ahora bien, el &lt;strong&gt;tamaño de efecto&lt;/strong&gt; muestra una magnitud mediana-pequeña para las ciencias sociales (Cohen, 1988)&lt;/p&gt;
+&lt;p&gt;Ahora bien, ¿cómo se relaciona &lt;strong&gt;más específcamente&lt;/strong&gt; la tasa de contagio del COVID19 y la media de hacinamiento por hogar de la comuna?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;modelo-de-regresión&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;5. Modelo de regresión&lt;/h1&gt;
+&lt;div id=&#34;estimación-modelo-de-regresión&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Estimación modelo de regresión&lt;/h2&gt;
+&lt;p&gt;Ahora bien, ¿cómo se relaciona &lt;strong&gt;más específcamente&lt;/strong&gt; la tasa de contagio del COVID19 y la media de hacinamiento por hogar de la comuna? La ecuación que resume la relación entre estas dos variables es de la siguiente manera:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\widehat{t_{contagio}}=b_{0} +b_{1}\cdot {hacinamiento} \]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Donde&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\widehat{t_{contagio}}\)&lt;/span&gt; es la tasa de contagio estimada&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\({hacinamiento}\)&lt;/span&gt; es el hacinamiento del hogar promedio a nivel comunal&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(b_{0}\)&lt;/span&gt; es el &lt;strong&gt;intercepto&lt;/strong&gt; de la recta (el valor de Y cuando X es 0)&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(b_{1}\)&lt;/span&gt; es el coeficiente de regresión, que nos dice cuánto aumenta Y (la tasa de contagio) por cada punto que aumenta X (hacinamientode hogar)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table style=&#34;border-collapse:collapse; border:none;&#34;&gt;
+&lt;caption style=&#34;font-weight: bold; text-align:left;&#34;&gt;
+Tabla 4. Modelo de regresion
+&lt;/caption&gt;
+&lt;tr&gt;
+&lt;th style=&#34;border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; &#34;&gt;
+ 
+&lt;/th&gt;
+&lt;th colspan=&#34;2&#34; style=&#34;border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; &#34;&gt;
+t_contagio
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; &#34;&gt;
+Predictors
+&lt;/td&gt;
+&lt;td style=&#34; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  &#34;&gt;
+Estimates
+&lt;/td&gt;
+&lt;td style=&#34; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  &#34;&gt;
+p
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:left; &#34;&gt;
+(Intercept)
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+-758.88
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+&lt;strong&gt;&amp;lt;0.001
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:left; &#34;&gt;
+hacinamiento
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+726.12
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+&lt;strong&gt;&amp;lt;0.001
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;&#34;&gt;
+Observations
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;&#34; colspan=&#34;2&#34;&gt;
+324
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;&#34; colspan=&#34;2&#34;&gt;
+0.087 / 0.084
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;En la &lt;em&gt;Tabla 4&lt;/em&gt; nos reporta que por cada unidad que aumente el hacinamiento en los hogares por comuna, la tasa de contagio aumentará en 726.12 casos por cada 100.000 habitantes. Esto quiere decir que, por ejemplo, cuando el hacinamiento de hogares promedio por comuna es cercano a 1,5 (sin hacinamiento) la tasa de contagio es cercana a la media 258.32 casos por cada 100.000 habitantes. Mientras que cuando el hacinamiento es cercano a 3 la tasa de contagio se acerca a 1419.48 casos por cada 100.000 habitantes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;bondad-de-ajuste&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Bondad de ajuste&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/assignment/05-code_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Ahora bien, como podemos ver en &lt;em&gt;Gráfico 2&lt;/em&gt;, existe una gran variabilidad de los residuos. Con esto se quiere decir que la relación entre los valores predichos y los valores observados varía: por un lado, hay en una gran cantidad de casos (valores observados) donde la recta de regresión estaría sobreestimando su tasa de contagio (ver las comunas bajo la recta de regresión); por otro, hay una cantidad menor de casos (comunas) donde la recta de regresión subestima la tasa de contagio comunal. Un punto importante a notar es que si bien son menos comunas donde se estaría subestimando su tasa de contagio según su índice de hacinamiento, si ocurre que los residuos de este grupo de comunas es mucho mayor (comunas sobre la recta de regresión).&lt;/p&gt;
+&lt;p&gt;Analizando específicamente la bondad de ajuste de nuestro modelo, podemos ver que si bien la relación de hacinamiento y tasa de contagio es estadísticamente significativa, nuestro modelo explica solo un 8.4% de la variabilidad de los datos observados. Es decir, el hacinamiento explica en una pequeña proporción la variación observada de la tasa de contagio. Por ello, el hacinamiento no debería ser la única variable a considerar en futuras investigaciones.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;referencias&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Referencias&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Cabello, F (2020) Covid-19: ¿Cuán dinámicas y efectivas son las cuarentenas parciales? &lt;a href=&#34;https://ciperchile.cl/2020/04/18/covid-19-cuan-dinamicas-y-efectivas-son-las-cuarentenas-parciales/&#34;&gt;CIPER&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;CASEN (2017) Manual de Investigador Encuesta de Caracterización Socioeconómica.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Cohen, Jacob (1988). Statistical Power Analysis for the Behavioral Sciences. &lt;a href=&#34;https://books.google.cl/books?id=2v9zDAsLvA0C&amp;amp;pg=PP1&amp;amp;redir_esc=y#v=onepage&amp;amp;q&amp;amp;f=false&#34;&gt;Routledge&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Santa María, R (2020) La importancia de la vivienda para el cuidado de la salud en el Perú, en el marco de la pandemia COVID-19. &lt;a href=&#34;http://repositorio.urp.edu.pe/bitstream/handle/URP/3036/Articulo-DirectricesVivienda-OMS-COVID-19-SantaMaria-.pdf?sequence=1&amp;amp;isAllowed=y&#34;&gt;Universidad Ricardo Palma&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Oliveira, Lucas &amp;amp; Iquiapaza (2020). ¿ LO QUE LA PANDEMIA COVID-19 NOS ENSEÑÓ SOBRE LA ADOPCIÓN DE LAS MEDIDAS PREVENTIVAS?. Texto &amp;amp; Contexto-Enfermagem, 29.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;OMS (2020) Actualización de estrategia frente a COVID. &lt;a href=&#34;https://www.who.int/docs/default-source/coronaviruse/covid-strategy-update-14april2020_es.pdf?sfvrsn=86c0929d_10&#34;&gt;Organización Mundial de la Salud&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;MINSAL (2020) Plan de Acción Coronavirus COVID-19. Criterios para determinar una cuarentena. &lt;a href=&#34;https://www.minsal.cl/nuevo-coronavirus-2019-ncov/&#34;&gt;Ministerio de Salud de Chile. Nuevo Coronavirus COVID-19&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;MOVID19 (2020) ¿Cómo podemos mejorar el aislamiento de casos COVID-19?
+Una mirada desde la respuesta del sistema de salud y las condiciones sociales. &lt;a href=&#34;https://movid19.cl/&#34;&gt;Monitereo Nacional de Síntomas Y Prácticas COVID19&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;WHO (2018). WHO Housing and health guidelines. ISBN 978-92-4-155037-6. &lt;a href=&#34;https://bit.ly/2ym6Vy&#34;&gt;World Health Organization&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;anexos&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Anexos&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;~/GitHub/multivariada/content/assignement/data/prod_data-prep.R&#34;&gt;Preparacion datos CASEN-COVID19&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;~/GitHub/multivariada/content/assignement/data/analisis-casencovid.R&#34;&gt;Analisis datos CASEN-COVID19&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;foro&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Foro&lt;/h1&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Práctica 3. Regresión simple 1</title>
       <link>/assignment/03-code/</link>
       <pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate>
