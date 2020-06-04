@@ -269,4 +269,9 @@ Vemos que en la tabla aparecen una serie de elementos adicionales, además de $b
 
 Completar el reporte de progreso correspondiente a esta práctica [aquí](https://forms.gle/2vJQzzWetx12fEYi6)
 
+# Archivo de código
+
+El archivo de código R de esta práctica se puede descargar [aquí](https://raw.githubusercontent.com/juancarloscastillo/multivariada/master/static/assignment/practica_3.R)
+
+
 # Foro práctica 3

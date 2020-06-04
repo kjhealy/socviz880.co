@@ -221,3 +221,5 @@ Una mirada desde la respuesta del sistema de salud y las condiciones sociales. [
 
 [Código de análisis](https://raw.githubusercontent.com/juancarloscastillo/multivariada/master/static/assignment/ejemplocasencovid/proc/analisis-data.R)
 
+
+Para quienes ya usan RMarkdown (lo veremos más adelante también en este curso), pueden acceder al archivo Rmd que generó este documento [aquí](https://raw.githubusercontent.com/juancarloscastillo/multivariada/master/static/assignment/ejemplocasencovid/ejemploinforme1.Rmd)

@@ -570,6 +570,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#estimación-del-modelo-de-regresión-simple-en-r&#34;&gt;Estimación del modelo de regresión simple en &lt;strong&gt;R&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#reporte-de-progreso&#34;&gt;Reporte de progreso&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#archivo-de-código&#34;&gt;Archivo de código&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#foro-práctica-3&#34;&gt;Foro práctica 3&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
@@ -803,6 +804,10 @@ Por ejemplo, cuál es el valor estimado de &lt;span class=&#34;math inline&#34;&
 &lt;h1&gt;Reporte de progreso&lt;/h1&gt;
 &lt;p&gt;Completar el reporte de progreso correspondiente a esta práctica &lt;a href=&#34;https://forms.gle/2vJQzzWetx12fEYi6&#34;&gt;aquí&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
+&lt;div id=&#34;archivo-de-código&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Archivo de código&lt;/h1&gt;
+&lt;p&gt;El archivo de código R de esta práctica se puede descargar &lt;a href=&#34;https://raw.githubusercontent.com/juancarloscastillo/multivariada/master/static/assignment/practica_3.R&#34;&gt;aquí&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
 &lt;div id=&#34;foro-práctica-3&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Foro práctica 3&lt;/h1&gt;
 &lt;/div&gt;
@@ -1031,6 +1036,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#generación-de-base-de-datos-procesada-para-el-análisis&#34;&gt;5. Generación de base de datos procesada para el análisis&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#archivo-de-código&#34;&gt;Archivo de código&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#foro&#34;&gt;Foro&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
@@ -1578,6 +1585,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb74&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb74-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;save&lt;/span&gt;(proc_elsoc,&lt;span class=&#34;dt&#34;&gt;file =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;content/assignment/data/proc/ELSOC_ess_merit2016.RData&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;div id=&#34;archivo-de-código&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Archivo de código&lt;/h1&gt;
+&lt;p&gt;El archivo de código R de esta práctica se puede descargar &lt;a href=&#34;https://raw.githubusercontent.com/juancarloscastillo/multivariada/master/static/assignment/practica_1.R&#34;&gt;aquí&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;foro&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Foro&lt;/h1&gt;
+&lt;/div&gt;
 </description>
     </item>
     
@@ -1671,6 +1685,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#resumen-práctica-2-descripción-de-variables&#34;&gt;Resumen Práctica 2: Descripción de variables&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#reporte-de-progreso&#34;&gt;Reporte de progreso&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#archivo-de-código&#34;&gt;Archivo de código&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#foro-práctica-2&#34;&gt;Foro práctica 2&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
@@ -2994,6 +3010,13 @@ Computed correlation used pearson-method with listwise-deletion.
 &lt;div id=&#34;reporte-de-progreso&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Reporte de progreso&lt;/h1&gt;
 &lt;p&gt;Completar el reporte de progreso correspondiente a esta práctica &lt;a href=&#34;https://forms.gle/qAfnj7h5a6HyEbrXA&#34;&gt;aquí&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;archivo-de-código&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Archivo de código&lt;/h1&gt;
+&lt;p&gt;El archivo de código R de esta práctica se puede descargar &lt;a href=&#34;https://raw.githubusercontent.com/juancarloscastillo/multivariada/master/static/assignment/practica_2.R&#34;&gt;aquí&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;foro-práctica-2&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Foro práctica 2&lt;/h1&gt;
 &lt;/div&gt;
 </description>
     </item>

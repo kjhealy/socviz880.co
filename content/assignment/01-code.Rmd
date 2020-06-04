@@ -486,3 +486,9 @@ En este caso, seguimos una estructura de carpetas de datos, separando en una car
 ```{r}
 save(proc_elsoc,file = "content/assignment/data/proc/ELSOC_ess_merit2016.RData")
 ```
+
+# Archivo de código
+
+El archivo de código R de esta práctica se puede descargar [aquí](https://raw.githubusercontent.com/juancarloscastillo/multivariada/master/static/assignment/practica_1.R)
+
+# Foro

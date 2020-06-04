@@ -354,3 +354,10 @@ En esta práctica revisamos los siguientes contenidos:
 # Reporte de progreso
 
 Completar el reporte de progreso correspondiente a esta práctica [aquí](https://forms.gle/qAfnj7h5a6HyEbrXA)
+
+
+# Archivo de código
+
+El archivo de código R de esta práctica se puede descargar [aquí](https://raw.githubusercontent.com/juancarloscastillo/multivariada/master/static/assignment/practica_2.R)
+
+# Foro práctica 2
