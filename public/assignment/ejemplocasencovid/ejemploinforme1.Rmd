@@ -216,8 +216,8 @@ Una mirada desde la respuesta del sistema de salud y las condiciones sociales. [
 
 # Anexos
 
-[Código preparación de datos](input/proc_data/proc-data.R)
+[Código preparación de datos](https://raw.githubusercontent.com/juancarloscastillo/multivariada/master/static/assignment/ejemplocasencovid/input/proc_data/proc-data.R)
 
 
-[Código de análisis](proc/analisis-data.R)
+[Código de análisis](https://raw.githubusercontent.com/juancarloscastillo/multivariada/master/static/assignment/ejemplocasencovid/proc/analisis-data.R)
 
