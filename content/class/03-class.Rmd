@@ -23,7 +23,7 @@ editor_options:
 ---
 
 ## Documento presentación
-
+ 
 <span class="sidenote">Para ver en pantalla completa click [**aquí**](/slides/03-regsimple1/03_regsimple1.html). Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. </span>
 
 <iframe src=/slides/03-regsimple1/03_regsimple1.html height="550" width=100% allowfullscreen="true">

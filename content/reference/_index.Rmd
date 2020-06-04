@@ -40,13 +40,17 @@ El informe tiene las siguientes secciones:
     5.2 Modelo de regresión
 
 6. Bibliografía
+
 7. Anexos: código de preparación de datos y código de análisis (2p)
 
 Fecha de entrega: ver Planificación.
 
+## Ejemplo para Informe 1 [aquí](../assignment/ejemplocasencovid/ejemploinforme1.html)
+
 # Pauta de trabajo grupal (Informes 2 y 3)
 
 ## Objetivo general
+  
 Aplicar los contenidos del curso a una temática de interés en formato de artículo de investigación breve.
 
 ## Sobre los temas

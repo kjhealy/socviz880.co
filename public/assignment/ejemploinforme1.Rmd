@@ -1,32 +1,12 @@
 ---
-title: "Práctica 5: Regresion Simple - Trabajo 1"
-subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
-author: "Valentina Andrade"
-linktitle: "Práctica 5: Regresion Simple - Trabajo"
-date: "2020-05-29"
-class_date: "2020-05-29"
-citeproc: false
-bibliography: ../../static/bib/references.bib
-csl: ../../static/bib/chicago-syllabus-no-bib.csl
+title: "Ejemplo Informe Trabajo 1"
 output:
-  blogdown::html_page:
-    template: ../../pandoc/toc-title_html.template
-    toc: true
-    highlight: tango
-    number_sections: FALSE
-menu:
-  class:
-    parent: Practicas
-    weight: 1
-type: docs
-weight: 1
-editor_options:
-  chunk_output_type: console
+  html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
-#knitr::opts_knit$set(root.dir ="../../")
+knitr::opts_knit$set(root.dir ="../../")
 Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
 library(ggplot2);theme_set(theme_bw())
 ```
@@ -46,8 +26,7 @@ pacman::p_load(dplyr, #Manipulacion de datos
 ```
 
 ```{r,message=FALSE,warning=FALSE, echo=FALSE}
-setwd("~/GitHub/multivariada")
-load("~/GitHub/multivariada/content/assignment/data/proc/CASEN-COVID19.RData") 
+load("/assignment/data/proc/CASEN-COVID19.RData")
 ```
 
 
@@ -65,7 +44,7 @@ La pandemia por COVID-19 se ha extendido rápidamente por el mundo. A la fecha, 
 
 En ese sentido, para enfrentar la crisis sanitaria, uno de los principales desafíos es contar con estudios y acceso a información útil para informar la toma de decisiones. En consencuencia surge la pregunta de si *¿hay relación entre la tasa de contagio y variables de comuna de residencia?*. Para abordar esta pregunta, nos centraremos en una variable: `hacinamiento`. En consecuencia, ¿tiene relación la **tasa de contagio** con la media del índice de **hacinamiento** medio por comuna?
 
-Los resultados muestran que hay una relación positiva entre la tasa de contagio con el hacinamiento. A partir de los modelos de regresión se puede señalar que por cada unidad que aumente el hacinamiento en los hogares por comuna, la tasa de contagio aumentará en 726.12 casos por cada 100.000 habitantes. Sin embargo, el ajuste del modelo es deficiente para explicar la variabilidad de la tasa de contagio. 
+Los resultados muestran que hay una relación positiva entre la tasa de contagio con el hacinamiento. A partir de los modelos de regresión se puede señalar que por cada unidad que aumente el hacinamiento en los hogares por comuna, la tasa de contagio aumentará en 726.12 casos por cada 100.000 habitantes. Sin embargo, el ajuste del modelo es deficiente para explicar la variabilidad de la tasa de contagio.
 
 ## 3.  Antecedetes de la relación estudiada
 
@@ -73,28 +52,28 @@ Recientemente, la Organización Mundial de la Salud (OMS) ha publicado directric
 
 El gobierno chileno ha utilizado el último grupo de estrategias, principalmente a través de iniciativas como las *cuarentenas dinámicas*, que consisten en realización de cuarentenas comunales según la evolución del contagio. Esta iniciativa ha producido una serie de críticas por parte de expertos y la ciudadanía (Cabello, 2020)
 
-El centro de la crítica reside en la desigualdad socioeconómica entre los residentes de las distintas comunas, y con ello en la posibilidad de cumplir con las medidas de prevención. Una de ellas refiere a la posibilidad de distanciamiento social difiere de manera importante entre las comunas: hay comunas en donde la concentración de individuos a nivel comunal y de los hogares hace imposible el distanciamiento. 
+El centro de la crítica reside en la desigualdad socioeconómica entre los residentes de las distintas comunas, y con ello en la posibilidad de cumplir con las medidas de prevención. Una de ellas refiere a la posibilidad de distanciamiento social difiere de manera importante entre las comunas: hay comunas en donde la concentración de individuos a nivel comunal y de los hogares hace imposible el distanciamiento.
 
 Este punto no es menor considerando que ya el 2018 la OMS publicó que una directriz para el cuidado de virus implica elaborar políticas para reducir el hacinamiento (OMS,2018), y que ha sido rectificada como una estrategia necesaria no solo en el mundo sino que en los países vecinos (Santa Maria, 2020; Oliveira, Lucas & Iquiapaza, 2020)
 
-En Chile, estudios recientes han señalado la importancia de abordar las medidas de aislamiento (MOVID19, 2020). Entre ellas se incluye considerar el hacinamiento de los hogares bajo el argumento principal de que a mayor hacinamiento, mayor es la tasa de contagio. Sin embargo, la evidencia aun no es concluyente. 
+En Chile, estudios recientes han señalado la importancia de abordar las medidas de aislamiento (MOVID19, 2020). Entre ellas se incluye considerar el hacinamiento de los hogares bajo el argumento principal de que a mayor hacinamiento, mayor es la tasa de contagio. Sin embargo, la evidencia aun no es concluyente.
 
 
 # 4. Metodología
 
-## 4.1 Descripción base de datos 
+## 4.1 Descripción base de datos
 
-**CASEN-COVID19** consiste en una base de datos que resume a nivel comunal información sobre la población contagiada por el virus COVID19 y encuesta de Caracterización Socioeconómica Nacional (CASEN).  
+**CASEN-COVID19** consiste en una base de datos que resume a nivel comunal información sobre la población contagiada por el virus COVID19 y encuesta de Caracterización Socioeconómica Nacional (CASEN).
 
-- [CASEN (2017)](http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php): su objetivo es medir pobreza, otorgando datos necesarios para la caracterización socioeconómica de individuos y hogares en Chile.  
+- [CASEN (2017)](http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php): su objetivo es medir pobreza, otorgando datos necesarios para la caracterización socioeconómica de individuos y hogares en Chile.
 
-- [Datos Covid19 (2020)](https://github.com/MinCiencia/Datos-COVID19): presenta información detallada sobre los casos confirmados del virus COVID19 por comuna hasta el último informe epidemiológico entregrado por el gobierno de Chile (24 de abril de 2020). 
+- [Datos Covid19 (2020)](https://github.com/MinCiencia/Datos-COVID19): presenta información detallada sobre los casos confirmados del virus COVID19 por comuna hasta el último informe epidemiológico entregrado por el gobierno de Chile (24 de abril de 2020).
 
 La base cueta con un total de `r dim(casen_covid19)[1]` casos (que consisten en las comunas) y `r dim(casen_covid19)[2]` variables comunales como nombre de la comuna, tamaño de la población, ingresos, año de escolaridad, previsión de salud, pobreza, deficit de acceso a servicios de salud y deficit de acceso a servicios básicos.
 
 ## 4.2 Variables
 
-Para la realización de este ejercicio se tomaron en consideración las siguientes variables de la base de datos **casen_covid19** 
+Para la realización de este ejercicio se tomaron en consideración las siguientes variables de la base de datos **casen_covid19**
 
 
 * [`comuna`] = nombre de la comuna
@@ -105,9 +84,9 @@ Para la realización de este ejercicio se tomaron en consideración las siguient
 
 * [`casos_conf`] = casos confirmados por COVID19 en la comuna (número de contagiados confirmados)
 
-Antes de pasar a describir las variables, se ponderó el número de `casos_conf` por `poblacion` de la comuna, a modo de capturar mejor la tasa de contagio según el número de habitantes. Basándose en las mediciones del MINSAL se calculó el número de casos confirmados por cada 100.000 habitantes, dividido en la población de la comuna. 
+Antes de pasar a describir las variables, se ponderó el número de `casos_conf` por `poblacion` de la comuna, a modo de capturar mejor la tasa de contagio según el número de habitantes. Basándose en las mediciones del MINSAL se calculó el número de casos confirmados por cada 100.000 habitantes, dividido en la población de la comuna.
 
-En la Tabla 1 podemos observar la distribución de las variables. Principalmente podemos ver que nuestra variable dependiente, la tasa de contagio, tiene acumulado un 50% de sus casos cada 100.000 habitantes en 106.6 y 236.3 de media, lo que indica una concentración en los datos en valores menores a 100 casos por cada 100.000 habitantes, pero con una dispersión hacia los casos extremos (tasas muy altas) produciéndose una gran desviación estándar (355.4). Mientras que, la variable hacinamiento promedio por comuna presenta una distribución normal donde sus valores oscilan entre 0.9 a 2.1. 
+En la Tabla 1 podemos observar la distribución de las variables. Principalmente podemos ver que nuestra variable dependiente, la tasa de contagio, tiene acumulado un 50% de sus casos cada 100.000 habitantes en 106.6 y 236.3 de media, lo que indica una concentración en los datos en valores menores a 100 casos por cada 100.000 habitantes, pero con una dispersión hacia los casos extremos (tasas muy altas) produciéndose una gran desviación estándar (355.4). Mientras que, la variable hacinamiento promedio por comuna presenta una distribución normal donde sus valores oscilan entre 0.9 a 2.1.
 
 ```{r, echo=FALSE, include = FALSE}
 casen_covid <- casen_covid19 %>% select(t_contagio, hacinamiento, casos_conf, poblacion)
@@ -135,7 +114,7 @@ Personas por dormitorio en vivienda | Tipo de hacinamiento
 
 # 5.1 Análisis descriptivo
 
-El *Gráfico 1* resume la relación entre la tasa de contagio y el hacinamiento promedio de los hogares, indicando cada uno de los puntos una comuna de todo el país. A partir de este podemos decir que en términos de correlación se observa una posible asociación positiva entre las variables. 
+El *Gráfico 1* resume la relación entre la tasa de contagio y el hacinamiento promedio de los hogares, indicando cada uno de los puntos una comuna de todo el país. A partir de este podemos decir que en términos de correlación se observa una posible asociación positiva entre las variables.
 
 ```{r, echo = FALSE, warning= F, message= FALSE}
 g <- ggplot(casen_covid19, aes(x=hacinamiento, y=t_contagio)) +
@@ -211,13 +190,13 @@ g2
 
 Ahora bien, como podemos ver en *Gráfico 2*, existe una gran variabilidad de los residuos. Con esto se quiere decir que la relación entre los valores predichos y los valores observados varía: por un lado, hay en una gran cantidad de casos (valores observados) donde la recta de regresión estaría sobreestimando su tasa de contagio (ver las comunas bajo la recta de regresión); por otro, hay una cantidad menor de casos (comunas) donde la recta de regresión subestima la tasa de contagio comunal. Un punto importante a notar es que si bien son menos comunas donde se estaría subestimando su tasa de contagio según su índice de hacinamiento, si ocurre que los residuos de este grupo de comunas es mucho mayor (comunas sobre la recta de regresión).
 
-Analizando específicamente la bondad de ajuste de nuestro modelo, podemos ver que si bien la relación de hacinamiento y tasa de contagio es estadísticamente significativa, nuestro modelo explica solo un 8.4% de la variabilidad de los datos observados. Es decir, el hacinamiento explica en una pequeña proporción la variación observada de la tasa de contagio. Por ello, el hacinamiento no debería ser la única variable a considerar en futuras investigaciones. 
+Analizando específicamente la bondad de ajuste de nuestro modelo, podemos ver que si bien la relación de hacinamiento y tasa de contagio es estadísticamente significativa, nuestro modelo explica solo un 8.4% de la variabilidad de los datos observados. Es decir, el hacinamiento explica en una pequeña proporción la variación observada de la tasa de contagio. Por ello, el hacinamiento no debería ser la única variable a considerar en futuras investigaciones.
 
 # Referencias
 
 - Cabello, F (2020) Covid-19: ¿Cuán dinámicas y efectivas son las cuarentenas parciales? [CIPER](https://ciperchile.cl/2020/04/18/covid-19-cuan-dinamicas-y-efectivas-son-las-cuarentenas-parciales/)
 
-- CASEN (2017) Manual de Investigador Encuesta de Caracterización Socioeconómica. 
+- CASEN (2017) Manual de Investigador Encuesta de Caracterización Socioeconómica.
 
 - Cohen, Jacob (1988). Statistical Power Analysis for the Behavioral Sciences. [Routledge](https://books.google.cl/books?id=2v9zDAsLvA0C&pg=PP1&redir_esc=y#v=onepage&q&f=false)
 
@@ -235,7 +214,7 @@ Una mirada desde la respuesta del sistema de salud y las condiciones sociales. [
 - WHO  (2018). WHO  Housing  and  health  guidelines. ISBN 978-92-4-155037-6. [World Health Organization](https://bit.ly/2ym6Vy)
 
 
-# Anexos 
+# Anexos
 
 [Preparacion datos CASEN-COVID19](~/GitHub/multivariada/content/assignement/data/prod_data-prep.R)
 
