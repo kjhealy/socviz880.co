@@ -1,13 +1,13 @@
-# C??digo Pr??ctica 1: Preparaci??n de datos en R.
+# Código Práctica 1: Preparación de datos en R.
 
-# 1. Cargar librer??as
+# 1. Cargar librerías
 install.packages("pacman")
 pacman::p_load(dplyr, sjmisc, car, sjlabelled, stargazer)
 
 # 2. Cargar datos
 ## Ajustar espacio de trabajo
 rm(list=ls())       # borrar todos los objetos en el espacio de trabajo
-options(scipen=999) # valores sin notaci??n cientifica
+options(scipen=999) # valores sin notación cientifica
 
 ## Desde internet 
 load(url("https://multivariada.netlify.com/assignment/data/original/ELSOC_W01_v3.10.RData"))
@@ -27,6 +27,7 @@ proc_elsoc <- elsoc_2016 %>% select(c18_09, # percepcipn meritocracia esfuerzo
                                     m01,    # nivel educacional
                                     m0_sexo,# sexo
                                     m0_edad)# edad
+
 
 ## Comprobar
 names(proc_elsoc)
@@ -72,3 +73,5 @@ save(proc_elsoc,file = "[ruta hacia carpeta local en su computador]/ELSOC_ess_me
 
 ## Estructura carpeta de datos
 save(proc_elsoc,file = "content/assignment/data/proc/ELSOC_ess_merit2016.RData")
+
+

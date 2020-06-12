@@ -50,7 +50,7 @@ Fecha de entrega: ver Planificación.
 # Pauta de trabajo grupal (Informes 2 y 3)
 
 ## Objetivo general
-  
+
 Aplicar los contenidos del curso a una temática de interés en formato de artículo de investigación breve.
 
 ## Sobre los temas
@@ -64,8 +64,7 @@ De modo de lograr una mayor colaboración desde el equipo docente a sus trabajos
 Recomendamos utilizar alguna de las siguientes fuentes de datos para realizar los trabajos:
 
 - [ELSOC](http://www.elsoc.cl/) (Ola 1)
-  - [Cuestionario Ola 1](http://www.elsoc.cl/wp-content/uploads/2017/05/Cuestionario_ELSOC_Ola_01_Completo.pdf)
-  - [Libro de códigos Ola 1](http://www.elsoc.cl/wp-content/uploads/2017/05/Libro_de_Codigos_ELSOC_Ola_01_Completo.pdf)
+  - [Manual de Usuario](/docs/Manual_Usuario_ELSOC_W01_v2.00.pdf)
   - [base de datos Ola 1](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/0KIRBJ&version=2.0)
 - [CASEN](http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php) (evt. subset)
 - [SIMCE](https://www.agenciaeducacion.cl/evaluaciones/que-es-el-simce/) (evt. subset)
