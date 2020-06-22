@@ -13,48 +13,9 @@
     </image>
     
     <item>
-      <title>Regresión múltiple 1</title>
-      <link>/class/05-class/</link>
-      <pubDate>Fri, 12 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>/class/05-class/</guid>
-      <description>
-&lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;!-- /BLOGDOWN-HEAD --&gt;
-
-&lt;h2&gt;Índice&lt;/h2&gt;
-&lt;div id=&#34;TOC&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#documento-presentación&#34;&gt;Documento presentación&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#video-de-la-clase&#34;&gt;Video de la clase&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#lecturas&#34;&gt;Lecturas&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-&lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Documento presentación&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/05-regmul1/05_regmul1.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
-&lt;iframe src=&#34;/slides/05-regmul1/05_regmul1.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
-&lt;/iframe&gt;
-&lt;/div&gt;
-&lt;div id=&#34;video-de-la-clase&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Video de la clase&lt;/h2&gt;
-&lt;div style=&#34;width: 100%; height: 600px; overflow: hidden;&#34;&gt;
-&lt;video  style=&#34;width: 100%;&#34; controls&gt;
-&lt;source src=&#34;https://www.dropbox.com/s/iwi4kr0851vnew5/5regmul1.mp4?raw=1&#34; type=&#34;video/mp4&#34;&gt;
-&lt;/video&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;lecturas&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Lecturas&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;/docs/lecturas/moore_residuos.pdf&#34;&gt;Moore: Residuos (144-154)&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Práctica 5. Regresión múltiple </title>
+      <title>Práctica 5. Regresión múltiple 1 </title>
       <link>/assignment/05-code/</link>
-      <pubDate>Fri, 12 Jun 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 22 Jun 2020 00:00:00 +0000</pubDate>
       <guid>/assignment/05-code/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
@@ -145,7 +106,6 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#resumen-práctica-5&#34;&gt;Resumen Práctica 5:&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#reporte-de-progreso&#34;&gt;Reporte de progreso&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#archivo-de-código&#34;&gt;Archivo de código&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#foro-práctica-5&#34;&gt;Foro práctica 5&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
@@ -156,7 +116,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;/script&gt;
 &lt;div id=&#34;objetivo-de-la-práctica&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Objetivo de la práctica&lt;/h1&gt;
-&lt;p&gt;En esta práctica nos enfocaremos en el concepto de regresión múltiple, a partir de la incorporación de dos o más predictores en el modelo. Para ello utilizaremos el ejemplo 3.1 de Wooldrige (2010) cap. 3 (Análisis de regresion múltiple) (p.68-80) sobre las &lt;strong&gt;determinantes del promedio en la universidad&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;En esta práctica nos enfocaremos en el concepto de regresión múltiple, a partir de la incorporación de dos o más predictores en el modelo. Para ello utilizaremos el ejemplo 3.1 de Wooldridge (2010) cap. 3 (Análisis de regresion múltiple) (p.68-80) sobre las &lt;strong&gt;determinantes del promedio en la universidad&lt;/strong&gt;.&lt;/p&gt;
 &lt;div id=&#34;librerías&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Librerías&lt;/h2&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;pacman&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;p_load&lt;/span&gt;(ggpubr, &lt;span class=&#34;co&#34;&gt;#graficos&lt;/span&gt;&lt;/a&gt;
@@ -165,8 +125,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;a class=&#34;sourceLine&#34; id=&#34;cb1-4&#34; title=&#34;4&#34;&gt;               gridExtra, &lt;span class=&#34;co&#34;&gt;#unir graficos&lt;/span&gt;&lt;/a&gt;
 &lt;a class=&#34;sourceLine&#34; id=&#34;cb1-5&#34; title=&#34;5&#34;&gt;               texreg, &lt;span class=&#34;co&#34;&gt;#mostrar regresion multiple&lt;/span&gt;&lt;/a&gt;
 &lt;a class=&#34;sourceLine&#34; id=&#34;cb1-6&#34; title=&#34;6&#34;&gt;               summarytools, &lt;span class=&#34;co&#34;&gt;#estadisticos descriptivos&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-7&#34; title=&#34;7&#34;&gt;               wooldrige) &lt;span class=&#34;co&#34;&gt;#paquete con los ejemplos del libro&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-8&#34; title=&#34;8&#34;&gt;&lt;span class=&#34;kw&#34;&gt;library&lt;/span&gt;(wooldridge)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-7&#34; title=&#34;7&#34;&gt;               wooldridge) &lt;span class=&#34;co&#34;&gt;#paquete con los ejemplos del libro&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;datos&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Datos&lt;/h2&gt;
@@ -174,7 +133,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 - [&lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt;]: promedio general de calificaciones de la universidad, en escala de 0 a 4 puntos.
 - [&lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt;]: promedio general de calificaciones en la enseñanza media, en escala de 0 a 4 puntos
 - [&lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt;]: puntaje en el examen de admisión a la universidad, que va de 16 a 33 puntos
-Primero, se cargará la base de datos que contiene la librería &lt;code&gt;wooldrige&lt;/code&gt; y se seleccionarán las variables señaladas&lt;/p&gt;
+Primero, se cargará la base de datos que contiene la librería &lt;code&gt;wooldridge&lt;/code&gt; y se seleccionarán las variables señaladas&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb2&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb2-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;data&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;#39;gpa1&amp;#39;&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# Cargar base de datos&lt;/span&gt;&lt;/a&gt;
 &lt;a class=&#34;sourceLine&#34; id=&#34;cb2-2&#34; title=&#34;2&#34;&gt;gpa1 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;dplyr&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;select&lt;/span&gt;(gpa1, colGPA, hsGPA, ACT) &lt;span class=&#34;co&#34;&gt;#Seleccion de variables&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -182,20 +141,48 @@ Primero, se cargará la base de datos que contiene la librería &lt;code&gt;wool
 &lt;h2&gt;Explorar base de datos&lt;/h2&gt;
 &lt;p&gt;A partir de la siguiente tabla se obtienen estadísticos descriptivos que luego serán relevantes para la interpretación de nuestros modelos.&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb3&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb3-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;view&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;dfSummary&lt;/span&gt;(gpa1, &lt;span class=&#34;dt&#34;&gt;headings =&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;method =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;#39;render&amp;#39;&lt;/span&gt;))&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in png(png_loc &amp;lt;- tempfile(fileext = &amp;quot;.png&amp;quot;), width = 150 *
+## graph.magnif, : X cannot set locale modifiers
+
+## Warning in png(png_loc &amp;lt;- tempfile(fileext = &amp;quot;.png&amp;quot;), width = 150 *
+## graph.magnif, : X cannot set locale modifiers
+
+## Warning in png(png_loc &amp;lt;- tempfile(fileext = &amp;quot;.png&amp;quot;), width = 150 *
+## graph.magnif, : X cannot set locale modifiers&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;modelo-de-regresión-simple&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Modelo de regresión simple&lt;/h2&gt;
 &lt;p&gt;Si solo nos centramos en el análisis de regresión simple, intuitivamente partiremos por predecir las calificaciones de la universidad a partir del puntaje obtenido en la prueba de admisión a esta. Formalmente&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\widehat{colGPA} = b_{0} +b_{1}ACT \]&lt;/span&gt;&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb4&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb4-1&#34; title=&#34;1&#34;&gt;col_actmodel&amp;lt;-&lt;span class=&#34;kw&#34;&gt;lm&lt;/span&gt;(colGPA &lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;ACT, &lt;span class=&#34;dt&#34;&gt;data=&lt;/span&gt;gpa1) &lt;span class=&#34;co&#34;&gt;#Crear regresion simple&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb5&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb5-1&#34; title=&#34;1&#34;&gt;sjPlot&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;tab_model&lt;/span&gt;(col_actmodel, &lt;span class=&#34;dt&#34;&gt;show.ci=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;#Tabla resumen de resultados&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb5&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb5-1&#34; title=&#34;1&#34;&gt;col_actmodel&amp;lt;-&lt;span class=&#34;kw&#34;&gt;lm&lt;/span&gt;(colGPA &lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;ACT, &lt;span class=&#34;dt&#34;&gt;data=&lt;/span&gt;gpa1) &lt;span class=&#34;co&#34;&gt;#Crear regresion simple&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb5-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;summary&lt;/span&gt;(col_actmodel)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = colGPA ~ ACT, data = gpa1)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.85251 -0.25251 -0.04426  0.26400  0.89336 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  2.40298    0.26420   9.095  8.8e-16 ***
+## ACT          0.02706    0.01086   2.491   0.0139 *  
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 0.3656 on 139 degrees of freedom
+## Multiple R-squared:  0.04275,    Adjusted R-squared:  0.03586 
+## F-statistic: 6.207 on 1 and 139 DF,  p-value: 0.0139&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;En formato publicable:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb7&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb7-1&#34; title=&#34;1&#34;&gt;sjPlot&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;tab_model&lt;/span&gt;(col_actmodel, &lt;span class=&#34;dt&#34;&gt;show.ci=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;#Tabla resumen de resultados&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;table style=&#34;border-collapse:collapse; border:none;&#34;&gt;
 &lt;tr&gt;
 &lt;th style=&#34;border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; &#34;&gt;
  
 &lt;/th&gt;
 &lt;th colspan=&#34;2&#34; style=&#34;border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; &#34;&gt;
-colGPA
+col GPA
 &lt;/th&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -248,25 +235,25 @@ R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
-&lt;p&gt;En consecuencia, nuestro modelo que relaciona el promedio de calificaciones en la universidad solo con el puntaje obtenido en el exámen de admisión obtiene que por cada puntos más que se obtiene en la prueba de admisión, el promedio de la universidad aumenta en 0.027 puntos promedio.&lt;/p&gt;
+&lt;p&gt;En consecuencia, nuestro modelo que relaciona el promedio de calificaciones en la universidad solo con el puntaje obtenido en el examen de admisión señala que por cada punto adicional que se obtiene en la prueba de admisión, el promedio de la universidad aumenta en 0.027 (aproximado en la tabla de sjPlot a 0.03) puntos promedio.&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\widehat{colGPA} = 2.40 +0.0271ACT \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Ahora bien, si miramos nuestro &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; notaremos que &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt; solo explica en un 4.3% la varianza de &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt;. Por ello, incluiremos el promedio de las calificaciones de la enseñanza media (&lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt;) para intentar predecir mejor el promedio general de las calificaciones en la universidad.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;relacion-entre-variables&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Relacion entre variables&lt;/h2&gt;
-&lt;p&gt;Se grafican las variables que determinarían &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt; para comparar sus distribuciones y sus pendientes (&lt;span class=&#34;math inline&#34;&gt;\(b\)&lt;/span&gt;) de sus regresiones simples&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb6&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb6-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#Grafico x1 = ACT&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb6-2&#34; title=&#34;2&#34;&gt;gact &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;ggscatter&lt;/span&gt;(gpa1, &lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;ACT&amp;quot;&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;y =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;colGPA&amp;quot;&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb6-3&#34; title=&#34;3&#34;&gt;          &lt;span class=&#34;dt&#34;&gt;shape =&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;21&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;size =&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;, &lt;span class=&#34;co&#34;&gt;# Forma y tamaño de puntos&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb6-4&#34; title=&#34;4&#34;&gt;   &lt;span class=&#34;dt&#34;&gt;add =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;reg.line&amp;quot;&lt;/span&gt;, &lt;span class=&#34;co&#34;&gt;#Agregar recta de regresion&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb6-5&#34; title=&#34;5&#34;&gt;   &lt;span class=&#34;dt&#34;&gt;cor.coef =&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;TRUE&lt;/span&gt;)&lt;span class=&#34;co&#34;&gt;# Agregar coeficiente correlacion&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb6-6&#34; title=&#34;6&#34;&gt;&lt;span class=&#34;co&#34;&gt;#Grafico x2 = hsGPA&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb6-7&#34; title=&#34;7&#34;&gt;ghsGPA &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;ggscatter&lt;/span&gt;(gpa1, &lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;hsGPA&amp;quot;&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;y =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;colGPA&amp;quot;&lt;/span&gt;,&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb6-8&#34; title=&#34;8&#34;&gt;          &lt;span class=&#34;dt&#34;&gt;shape =&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;21&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;size =&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;, &lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb6-9&#34; title=&#34;9&#34;&gt;   &lt;span class=&#34;dt&#34;&gt;add =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;reg.line&amp;quot;&lt;/span&gt;, &lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb6-10&#34; title=&#34;10&#34;&gt;   &lt;span class=&#34;dt&#34;&gt;cor.coef =&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;TRUE&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb6-11&#34; title=&#34;11&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb6-12&#34; title=&#34;12&#34;&gt;&lt;span class=&#34;kw&#34;&gt;grid.arrange&lt;/span&gt;(gact, ghsGPA, &lt;span class=&#34;dt&#34;&gt;nrow =&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# Unir graficos&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Se grafican las variables que determinarían &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt; para comparar sus distribuciones y sus pendientes (&lt;span class=&#34;math inline&#34;&gt;\(b\)&lt;/span&gt;) de sus respectivas regresiones simples.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb8&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#Grafico x1 = ACT&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-2&#34; title=&#34;2&#34;&gt;gact &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;ggscatter&lt;/span&gt;(gpa1, &lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;ACT&amp;quot;&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;y =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;colGPA&amp;quot;&lt;/span&gt;,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-3&#34; title=&#34;3&#34;&gt;          &lt;span class=&#34;dt&#34;&gt;shape =&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;21&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;size =&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;, &lt;span class=&#34;co&#34;&gt;# Forma y tamaño de puntos&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-4&#34; title=&#34;4&#34;&gt;   &lt;span class=&#34;dt&#34;&gt;add =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;reg.line&amp;quot;&lt;/span&gt;, &lt;span class=&#34;co&#34;&gt;#Agregar recta de regresion&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-5&#34; title=&#34;5&#34;&gt;   &lt;span class=&#34;dt&#34;&gt;cor.coef =&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;TRUE&lt;/span&gt;)&lt;span class=&#34;co&#34;&gt;# Agregar coeficiente correlacion&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-6&#34; title=&#34;6&#34;&gt;&lt;span class=&#34;co&#34;&gt;#Grafico x2 = hsGPA&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-7&#34; title=&#34;7&#34;&gt;ghsGPA &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;ggscatter&lt;/span&gt;(gpa1, &lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;hsGPA&amp;quot;&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;y =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;colGPA&amp;quot;&lt;/span&gt;,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-8&#34; title=&#34;8&#34;&gt;          &lt;span class=&#34;dt&#34;&gt;shape =&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;21&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;size =&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-9&#34; title=&#34;9&#34;&gt;   &lt;span class=&#34;dt&#34;&gt;add =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;reg.line&amp;quot;&lt;/span&gt;,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-10&#34; title=&#34;10&#34;&gt;   &lt;span class=&#34;dt&#34;&gt;cor.coef =&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;TRUE&lt;/span&gt;)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-11&#34; title=&#34;11&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-12&#34; title=&#34;12&#34;&gt;&lt;span class=&#34;kw&#34;&gt;grid.arrange&lt;/span&gt;(gact, ghsGPA, &lt;span class=&#34;dt&#34;&gt;nrow =&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# Unir graficos&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;img src=&#34;/assignment/05-code_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Con el gráfico anterior podemos notar que si bien ambas variables tienen una asociación positiva con &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt;, el tamaño efecto de esta relación es distinta. Incluso, &lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt; que no había sido considerada en nuestro modelo inicial, tiene una asociación más grande con nuestra variable dependiente.
 Ahora bien, ¿cómo incide &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt; y &lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt; en conjunto sobre &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt;?&lt;/p&gt;
@@ -278,10 +265,10 @@ Ahora bien, ¿cómo incide &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/s
 &lt;p&gt;&lt;strong&gt;Grabar / exportar tablas&lt;/strong&gt; :&lt;span class=&#34;sidenote&#34;&gt;Exportar tablas &lt;/span&gt;
 modelo &amp;lt;- lm(y ~ x1 + x2 , data = data)&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb7&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb7-1&#34; title=&#34;1&#34;&gt;col_actmodel&amp;lt;-&lt;span class=&#34;kw&#34;&gt;lm&lt;/span&gt;(colGPA &lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;ACT, &lt;span class=&#34;dt&#34;&gt;data=&lt;/span&gt;gpa1)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb7-2&#34; title=&#34;2&#34;&gt;col_hsmodel&amp;lt;-&lt;span class=&#34;kw&#34;&gt;lm&lt;/span&gt;(colGPA &lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;hsGPA, &lt;span class=&#34;dt&#34;&gt;data=&lt;/span&gt;gpa1)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb7-3&#34; title=&#34;3&#34;&gt;col_model &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;lm&lt;/span&gt;(colGPA &lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;ACT &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;hsGPA, &lt;span class=&#34;dt&#34;&gt;data =&lt;/span&gt; gpa1)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb8&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-1&#34; title=&#34;1&#34;&gt;sjPlot&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;tab_model&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;list&lt;/span&gt;(col_actmodel, col_hsmodel,col_model), &lt;span class=&#34;dt&#34;&gt;show.ci=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;p.style =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;asterisk&amp;quot;&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;dv.labels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Modelo 1&amp;quot;&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;Modelo 2&amp;quot;&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;Modelo 3&amp;quot;&lt;/span&gt;),&lt;span class=&#34;dt&#34;&gt;string.pred =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Predictores&amp;quot;&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;string.est =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;β&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb9&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-1&#34; title=&#34;1&#34;&gt;col_actmodel&amp;lt;-&lt;span class=&#34;kw&#34;&gt;lm&lt;/span&gt;(colGPA &lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;ACT, &lt;span class=&#34;dt&#34;&gt;data=&lt;/span&gt;gpa1)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-2&#34; title=&#34;2&#34;&gt;col_hsmodel&amp;lt;-&lt;span class=&#34;kw&#34;&gt;lm&lt;/span&gt;(colGPA &lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;hsGPA, &lt;span class=&#34;dt&#34;&gt;data=&lt;/span&gt;gpa1)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-3&#34; title=&#34;3&#34;&gt;col_model &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;lm&lt;/span&gt;(colGPA &lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;ACT &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;hsGPA, &lt;span class=&#34;dt&#34;&gt;data =&lt;/span&gt; gpa1)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb10&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb10-1&#34; title=&#34;1&#34;&gt;sjPlot&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;tab_model&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;list&lt;/span&gt;(col_actmodel, col_hsmodel,col_model), &lt;span class=&#34;dt&#34;&gt;show.ci=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;p.style =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;asterisk&amp;quot;&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;dv.labels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Modelo 1&amp;quot;&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;Modelo 2&amp;quot;&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;Modelo 3&amp;quot;&lt;/span&gt;),&lt;span class=&#34;dt&#34;&gt;string.pred =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Predictores&amp;quot;&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;string.est =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;β&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;table style=&#34;border-collapse:collapse; border:none;&#34;&gt;
 &lt;tr&gt;
 &lt;th style=&#34;border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; &#34;&gt;
@@ -302,13 +289,13 @@ Modelo 3
 Predictores
 &lt;/td&gt;
 &lt;td style=&#34; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  &#34;&gt;
-ß
+β
 &lt;/td&gt;
 &lt;td style=&#34; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  &#34;&gt;
-ß
+β
 &lt;/td&gt;
 &lt;td style=&#34; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  &#34;&gt;
-ß
+β
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -403,51 +390,88 @@ R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted
 &lt;ul&gt;
 &lt;li&gt;Fijémonos en los coeficientes de regresión de &lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt;. Como era de esperar en función de los gráficos que habíamos presentado, existe una relación positiva entre &lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt; y &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt;: con &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt; constante, cada punto más en &lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt; se relaciona con un aumento en 0.453 puntos adicionales en &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt;, es decir, casi medio punto.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;En otras palabras, so se eligen dos estudiantes, A y B, y estos tienen la misma puntación en el exámen de admisión (&lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt;), pero el promedio en la enseñanza media de A es mayor al de B (&lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt;), entonces se predice que &lt;strong&gt;en la universidad el estudiante A tendrá un promedio general de 0.453 puntos más altos que el estudiante B&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;En otras palabras, si se eligen dos estudiantes, A y B, y estos tienen la misma puntación en el exámen de admisión (&lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt;), pero el promedio en la enseñanza media de A es mayor al de B (&lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt;), entonces se predice que &lt;strong&gt;en la universidad el estudiante A tendrá un promedio general de 0.453 puntos más altos que el estudiante B&lt;/strong&gt;.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Fijémonos ahora en el coeficiente de regresion de &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt;: si &lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt; permanece constante, un aumento en un punto de &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt; solo produce un aumento en 0.0094 puntos en &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt;, es decir, un cambio muy pequeño.&lt;/li&gt;
+&lt;li&gt;Fijémonos ahora en el coeficiente de regresión de &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt;: si &lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt; permanece constante, un aumento en un punto de &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt; solo produce un aumento en 0.0094 puntos en &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt;, es decir, un cambio muy pequeño.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;De hecho, solo con un cambio de 10 puntos en el examen de admision &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt;tendrá un efecto sobre &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt; de menos de una décima de punto, es decir, menos al cambio que tiene &lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt;. Además, la posibilidad de tener un cambio de 10 puntos en &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt; es muy grande pues como mostramos en los estadísticos descriptivos de nuestras variables el promedio de puntaje en &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt; es 24 puntos con una desviación estándar de 2.8, lo que hace &lt;em&gt;poco posible ese cambio en la realidad&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;De hecho, un cambio de 10 puntos en el examen de admisión &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt; tendrá un efecto sobre &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt; de menos de una décima de punto, es decir, menor al cambio que tiene &lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt;. Además, la posibilidad de tener un cambio de 10 puntos en &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt; es muy grande pues como mostramos en los estadísticos descriptivos de nuestras variables el promedio de puntaje en &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt; es 24 puntos con una desviación estándar de 2.8, lo que hace &lt;em&gt;poco posible ese cambio en la realidad&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;Con esto podemos decir que el puntaje en el examen de admisión &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt; no es un fuerte predictor del promedio de calificaciones en la universidad &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;comparando-el-modelo-de-regresión-simple-con-múltiple&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Comparando el modelo de regresión simple con múltiple&lt;/h2&gt;
-&lt;p&gt;Iniciamos este práctico mostrándo un análisis de regresión simple con un predictor para el promedio de calificaciones en la universidad: el promedio en el examen de admisión (&lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt;)&lt;/p&gt;
-&lt;p&gt;Obtuvimos que por cada punto de aumento de &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt; aumentaba en 0.271 puntos sus cañificacions, es decir, &lt;strong&gt;casi el triple de lo que fue estimado en el modelo de regresión múltiple&lt;/strong&gt; (tal como se señala en Modelo 1)&lt;/p&gt;
-&lt;p&gt;¿ Cuál de los dos modelos es más certero?&lt;/p&gt;
+&lt;p&gt;Iniciamos este práctico mostrando un análisis de regresión simple con un predictor para el promedio de calificaciones en la universidad: el promedio en el examen de admisión (&lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt;).&lt;/p&gt;
+&lt;p&gt;Obtuvimos que por cada punto de aumento de &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt; aumentaba en 0.0271 puntos sus calificaciones, es decir, &lt;strong&gt;casi el triple de lo que fue estimado en el modelo de regresión múltiple&lt;/strong&gt; (tal como se señala en Modelo 1)&lt;/p&gt;
+&lt;p&gt;¿Cuál de los dos modelos es más certero?&lt;/p&gt;
 &lt;p&gt;Esto lo podemos definir a partir de la bondad de ajuste de nuestros modelos. Por un lado, el &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; del modelo 1 es de 4.3% mientras que en el modelo 3 el &lt;span class=&#34;math inline&#34;&gt;\(R^2ajustado\)&lt;/span&gt; es de 16%, es decir, las variables que se contienen en el modelo explican más la varianza de nuestra variable dependiente.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;por-qué-utilizar-r2-ajustado&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;¿Por qué utilizar R^2 ajustado?&lt;/h2&gt;
 &lt;p&gt;Hasta ahora habíamos utilizado &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; que nos señalaba qué porcentaje de la variación de la variable dependiente es explicada por la variable independiente.&lt;/p&gt;
 &lt;p&gt;Ahora bien, es esperable que a medida que añadimos más variables a una regresión, el &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; tiende a aumentar a pesar de que la contribución de cada una de las variables nuevas no tenga relevancia estadística.&lt;/p&gt;
-&lt;p&gt;Por ello, el &lt;span class=&#34;math inline&#34;&gt;\(R^2ajustado\)&lt;/span&gt; se utiliza en la regresión múltiple para ver el grado de &lt;strong&gt;intensidad&lt;/strong&gt; que tienen las variables independientes en explicar la variable dependiente. Es decir, el R cuadrado ajustado nos dice qué porcentaje de variación de la variable dependiente es explicado &lt;strong&gt;colectivamente por todas las variables independientes&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;En consecuencia, &lt;span class=&#34;math inline&#34;&gt;\(R^2ajustado\)&lt;/span&gt; nos permite determinar mejor si añadir una nueva variable al modelo permite explicar una mayor parte de la variación de la variable dependiente, de modo de evitar el problema de sobreestimación de nuestro modelo.&lt;/p&gt;
-&lt;p&gt;En el ejercio anterior bien podemos hacer este análisis comparando los &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; de nuestros modelos 1 y 2 para luego mirar el resultado de nuestro &lt;span class=&#34;math inline&#34;&gt;\(R^2ajustado\)&lt;/span&gt; en nuestro modelo 3. Como podremos notar el &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; del modelo 2 es de 17%, mientras que el &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; es de 18% y el &lt;span class=&#34;math inline&#34;&gt;\(R^2ajustado\)&lt;/span&gt; de 16%.&lt;/p&gt;
-&lt;p&gt;En palabras más simples, si solo miramos el &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; llegaremos a la conclusión de que aunque por mínimo que sea, nuestro modelo 3 ajusta mejor que el modelo 2 pues la variable &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt; permitiría predecir mejor &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt; en conjunto a &lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt;. Sin embargo, &lt;span class=&#34;math inline&#34;&gt;\(R^2 ajustado\)&lt;/span&gt; del modelo 3 (16%) es menor que la del modelo 2 (17%) por lo que la incorporación de &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt; al modelo múltiple no tiene un aporte significativo. Algo similiar logramos interpretar cuando interpretamos el coeficiente de regresión &lt;span class=&#34;math inline&#34;&gt;\(b\)&lt;/span&gt; de &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;De hecho, un punto no menor es que &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt; pierde significancia estadística en el modelo 3, mientras que &lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt; sigue siendo significativa con un 99% confianza.&lt;/p&gt;
+&lt;p&gt;Por ello, el &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; ajustado se utiliza en la regresión múltiple para analizar en conjunto la &lt;strong&gt;intensidad&lt;/strong&gt; que tienen las variables independientes en explicar la variable dependiente. Es decir, el &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; ajustado nos dice qué porcentaje de variación de la variable dependiente es explicado &lt;strong&gt;colectivamente por todas las variables independientes&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;En consecuencia, &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; ajustado nos permite determinar mejor si añadir una nueva variable al modelo permite explicar una mayor parte de la variación de la variable dependientE.&lt;/p&gt;
+&lt;p&gt;En el ejercicio anterior bien podemos hacer este análisis comparando los &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; de nuestros modelos 1 y 2 para luego mirar el resultado de nuestro &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; ajustado en nuestro modelo 3. Como podremos notar el &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; del modelo 2 es de 17%, mientras que el &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; es de 18% y el &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; ajustado de 16%.&lt;/p&gt;
+&lt;p&gt;En palabras más simples, si solo miramos el &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; llegaremos a la conclusión de que aunque por mínimo que sea, nuestro modelo 3 ajusta mejor que el modelo 2 pues la variable &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt; permitiría predecir mejor &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt; en conjunto a &lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt;. Sin embargo, &lt;span class=&#34;math inline&#34;&gt;\(R^2 ajustado\)&lt;/span&gt; del modelo 3 (16%) es menor que la del modelo 2 (17%) por lo que la incorporación de &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt; al modelo múltiple no tiene un aporte significativo.&lt;/p&gt;
+&lt;p&gt;De hecho, un punto no menor es que &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt; pierde significancia estadística en el modelo 3, mientras que &lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt; sigue siendo significativa con un 99% confianza (&lt;strong&gt;la significancia estadística lo revisaremos más adelante&lt;/strong&gt;).&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;resumen-práctica-5&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Resumen Práctica 5:&lt;/h1&gt;
-&lt;p&gt;En esta práctica revisamos los siguientes contenidos
-- Repaso de regresión lineal simple
-- Construir regresión lineal múltiple
-- Interpretar regresión lineal múltiple
-- Comparar regresión múltiple y simple
-- Diferencia entre &lt;span class=&#34;math inline&#34;&gt;\(R^2ajustado\)&lt;/span&gt; y &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;En esta práctica revisamos los siguientes contenidos&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Repaso de regresión lineal simple&lt;/li&gt;
+&lt;li&gt;Estimación de regresión lineal múltiple&lt;/li&gt;
+&lt;li&gt;Interpretar regresión lineal múltiple&lt;/li&gt;
+&lt;li&gt;Comparar regresión múltiple y simple&lt;/li&gt;
+&lt;li&gt;Diferencia entre &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; ajustado y &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;reporte-de-progreso&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Reporte de progreso&lt;/h1&gt;
-&lt;p&gt;Completar el reporte de progreso correspondiente a esta práctica [aquí]&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;archivo-de-código&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Archivo de código&lt;/h1&gt;
-&lt;p&gt;El archivo de código R de esta práctica se puede descargar [aquí]&lt;/p&gt;
+&lt;p&gt;Completar el reporte de progreso correspondiente a esta práctica &lt;a href=&#34;https://forms.gle/brkQMxwLC2PRZRmr5&#34;&gt;aquí&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;foro-práctica-5&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Foro práctica 5&lt;/h1&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Regresión múltiple 1</title>
+      <link>/class/05-class/</link>
+      <pubDate>Fri, 12 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>/class/05-class/</guid>
+      <description>
+&lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;!-- /BLOGDOWN-HEAD --&gt;
+
+&lt;h2&gt;Índice&lt;/h2&gt;
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#documento-presentación&#34;&gt;Documento presentación&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#video-de-la-clase&#34;&gt;Video de la clase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#lecturas&#34;&gt;Lecturas&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Documento presentación&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/05-regmul1/05_regmul1.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
+&lt;iframe src=&#34;/slides/05-regmul1/05_regmul1.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;div id=&#34;video-de-la-clase&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Video de la clase&lt;/h2&gt;
+&lt;div style=&#34;width: 100%; height: 600px; overflow: hidden;&#34;&gt;
+&lt;video  style=&#34;width: 100%;&#34; controls&gt;
+&lt;source src=&#34;https://www.dropbox.com/s/iwi4kr0851vnew5/5regmul1.mp4?raw=1&#34; type=&#34;video/mp4&#34;&gt;
+&lt;/video&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;lecturas&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Lecturas&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;/docs/lecturas/moore_residuos.pdf&#34;&gt;Moore: Residuos (144-154)&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
