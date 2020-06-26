@@ -1,0 +1,42 @@
+---
+title: "Regresión múltiple 2"
+linktitle: "6: Regresión múltiple 2"
+date: "2020-06-26"
+class_date: "2020-06-26"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+menu:
+  class:
+    parent: Contenidos
+    weight: 1
+type: docs
+weight: 1
+pdf: /slides/01_dataviz_s20_looking_at_data.pdf
+thumb: /slides/01_dataviz_s20_looking_at_data.png
+editor_options:
+  chunk_output_type: console
+---
+
+## Documento presentación
+
+<span class="sidenote">Para ver en pantalla completa click [**aquí**](/slides/06-regmul2/6_regmul2.html). Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. </span>
+
+<iframe src=/slides/06-regmul2/6_regmul2.html height="550" width=100% allowfullscreen="true">
+</iframe>
+
+## Video de la clase (próximamente aquí)
+
+<div style="width: 100%; height: 600px; overflow: hidden;">
+<video  style="width: 100%;" controls>
+<source src="?raw=1" type="video/mp4">
+</video>
+</div>
+
+## Lecturas
+
+[Moore: Residuos (144-154)](/docs/lecturas/moore_residuos.pdf)

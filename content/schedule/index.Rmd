@@ -13,16 +13,19 @@ slug: schedule
 29 | [**4. Regresión simple II**](/class/04-class) <br> Regresión vs correlación <br> Residuos y ajuste general (R2) <br> Presentación pauta de Trabajo del curso | [Practica 4: Residuos y ajuste](/assignment/04-code) |- [Moore: Residuos (144-154)](/docs/lecturas/moore_residuos.pdf)
 <font color="orange"> **JUNIO** </font> ||||
 |5   | **Semana preparación Informe 1**   | **Informe 1**: Regresión simple (individual) 20%, entrega **MIERCOLES 10**   |  Ejemplo de informe [aquí](../assignment/ejemplocasencovid/ejemploinforme1.html) |
-12 | [**5. Regresión múltiple 1**](/class/05-class) <br> - Coeficientes de regresión parcial <br>  - Correlación parcial y semiparcial <br> - Estandarización   | Práctica 5: Tabla de regresión múltiple  | - * [Wooldridge (2010) Cap 3 (parcial): Análisis de regresión múltiple: estimación (68-80)](/docs/lecturas/Wooldridge_cap3estimacion.pdf)
-19 | **6. Regresión e inferencia** <br>- Conceptos y supuestos <br> - Tabla ANOVA <br> - Inferencia sobre coeficientes |Práctica 6: Inferencia |- [Moore 7: Inferencia para medias (482-543)](/docs/lecturas/Moore_inferencia_medias.pdf)
-26 | **7. Predictores** <br> - Predictores categóricos <br> - Selección de predictores, setwise & stepwise | Práctica 7: Predictores |  - [Wooldridge (2010) Cap 7: Análisis de regresión múltiple con información cualitativa (225-246)](/docs/lecturas/Wooldridge_cap7parcial_pred_categoricos.pdf)
-<font color="orange"> **JULIO** </font> |
-3 | **8. Intepretación** <br> - Ejemplos <br> - Datos <br> - Asesoría trabajo 2 | Práctica 8: Ejemplos y reporte | - * [Wooldridge (2010) Cap 19: Realización de un proyecto empírico (668-694)](/docs/lecturas/Wooldridge_19proyectoempirico.pdf)
-10 | **Semana preparación informe 2**   | **Informe 2**: Regresión múltiple (grupal) 30%, entrega **MIERCOLES 15**   |   |
-17 | **9. Regresión logística I** <br> - Probabilidades <br>- Odds ratios   | Práctica 9: Probabilidades y Odds | [Camarero et al (2017) Regresión logística (1-29)](/docs/lecturas/Camarero_Odd_Ratio_LogitV2.pdf) <br>
-24| **10. Regresión logística II** <br>- Estimación de parámetros <br>- Inferencia <br>- Predicción | Práctica 10: Estimación logística  | - [Camarero et al (2017) Regresión logística (30-52)](/docs/lecturas/Camarero_Odd_Ratio_LogitV2.pdf)
-31 | **11. Detección y manejo de irregularidades en modelos de regresión** <br> - Relaciones no lineales <br> -Transformaciones <br> - Centrado | Práctica 11: Chequeos de robustez | -   [Darlington & Hayes 2016 Cap16 Detecting and Managing Irregularities](/docs/lecturas/Darlington&Hayes_16irregularities.pdf) <br> - [Darlington & Hayes 2016 Cap12 Nonlinear relationships](/docs/lecturas/Darlington&Hayes_13nonlinear.pdf)
-<font color="orange"> **AGOSTO** </font> |
-7 | **12. Repaso, pendientes y cierre de los contenidos** <br> **Preparación Informe 3** | **Entrega Informe 3**: Regresión logística, predictores categóricos y supuestos (grupal) 50%. | [Wooldridge cap 6 Temas adicionales](/docs/lecturas/Wooldridge_6temasadicionales.pdf)
+|12   | Semana de receso  |   |   |
+19 | [**5. Regresión múltiple 1**](/class/05-class) <br> - Introducción   | Práctica 5: Tabla de regresión múltiple  | - * [Wooldridge (2010) Cap 3 (parcial): Análisis de regresión múltiple: estimación (68-80)](/docs/lecturas/Wooldridge_cap3estimacion.pdf)
+26  | [**6. Regresión múltiple 2**](/class/06-class) <br> - Coeficientes de regresión parcial <br>  - Correlación parcial y semiparcial <br>    | Práctica 6: Parcialización y control estadístico  | - * [Wooldridge (2010) Cap 3 (parcial): Análisis de regresión múltiple: estimación (68-80)](/docs/lecturas/Wooldridge_cap3estimacion.pdf)
+<font color="orange"> **JULIO** </font> |   |   |   |
+03 | **7. Regresión e inferencia** <br>- Conceptos y supuestos <br> - Tabla ANOVA <br> - Inferencia sobre coeficientes |Práctica 6: Inferencia |- [Moore 7: Inferencia para medias (482-543)](/docs/lecturas/Moore_inferencia_medias.pdf)
+10 | **8. Predictores e interpretación** <br> - Predictores categóricos <br> - Selección de predictores, setwise & stepwise | Práctica 7: Predictores |  - [Wooldridge (2010) Cap 7: Análisis de regresión múltiple con información cualitativa (225-246)](/docs/lecturas/Wooldridge_cap7parcial_pred_categoricos.pdf)
+17 | **Semana preparación informe 2**   | **Informe 2**: Regresión múltiple (grupal) 30%, entrega **Miércoles 29**   |  - * [Wooldridge (2010) Cap 19: Realización de un proyecto empírico (668-694)](/docs/lecturas/Wooldridge_19proyectoempirico.pdf) |
+  |   |   |
+24  | Semana de Receso  |   |
+31 | **9. Regresión logística I** <br> - Probabilidades <br>- Odds ratios   | Práctica 9: Probabilidades y Odds | [Camarero et al (2017) Regresión logística (1-29)](/docs/lecturas/Camarero_Odd_Ratio_LogitV2.pdf) <br>
+<font color="orange"> **AGOSTO** </font> ||   |   |
+07| **10. Regresión logística II** <br>- Estimación de parámetros <br>- Inferencia <br>- Predicción | Práctica 10: Estimación logística  | - [Camarero et al (2017) Regresión logística (30-52)](/docs/lecturas/Camarero_Odd_Ratio_LogitV2.pdf)
+14 | **11. Detección y manejo de irregularidades en modelos de regresión** <br> - Relaciones no lineales <br> -Transformaciones <br> - Centrado | Práctica 11: Chequeos de robustez | -   [Darlington & Hayes 2016 Cap16 Detecting and Managing Irregularities](/docs/lecturas/Darlington&Hayes_16irregularities.pdf) <br> - [Darlington & Hayes 2016 Cap12 Nonlinear relationships](/docs/lecturas/Darlington&Hayes_13nonlinear.pdf)
+21 | **12. Repaso, pendientes y cierre de los contenidos** <br> **Preparación Informe 3** | **Entrega Informe 3**: Regresión logística, predictores categóricos y supuestos (grupal) 50%. | [Wooldridge cap 6 Temas adicionales](/docs/lecturas/Wooldridge_6temasadicionales.pdf)
 
-Examen final: 20 de Agosto.
+Examen final: Semana del 7 de Septiembre

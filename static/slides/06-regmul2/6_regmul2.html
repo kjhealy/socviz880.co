@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Estadística Multivariada</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=".small[Juan Carlos Castillo    Departamento de Sociología - UCH / COES   ]" />
+    <link rel="stylesheet" href="../custom_2020.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: front
+
+
+
+
+
+
+&lt;!---
+Para correr en ATOM
+- open terminal, abrir R (simplemente, R y enter)
+- rmarkdown::render('static/docpres/07_interacciones/7interacciones.Rmd', 'xaringan::moon_reader')
+
+About macros.js: permite escalar las imágenes como [scale 50%](path to image), hay si que grabar ese archivo js en el directorio.
+---&gt;
+
+
+.pull-left[
+# Estadística Multivariada
+## Juan Carlos Castillo
+## Sociología FACSO - UChile
+## 1er Sem 2020
+## [multivariada.netlify.com](https://multivariada.netlify.com)
+]
+
+
+.pull-right[
+.right[
+![:scale 70%](https://multivariada.netlify.com/img/hex_multiva.png)
+&lt;br&gt;
+&lt;br&gt;
+## Sesión 6: Regresión múltiple (2)
+]
+
+]
+---
+
+layout: true
+class: animated, fadeIn
+
+
+---
+class: inverse, bottom, right, animated, slideInRight
+
+
+
+# **Contenidos**
+
+## 1. Repaso de sesión anterior
+
+## 2. Bases de control y parcialización
+
+## 3. Demostración parcialización
+
+---
+class: roja, middle, right
+
+# 1. Repaso sesión anterior
+
+---
+
+.pull-left-narrow[
+
+## Base: Modelo de regresión (simple)
+
+&lt;br&gt;
+`$$\widehat{Y}=b_{0} +b_{1}X$$` 
+
+.center[
+![:scale 100%](../images/regmod.png)]
+]
+
+.pull-right-wide[
+
+- Se estima mediante el método de mínimos cuadrados ordinarios (OLS)
+
+- Permite estimar el valor de una variable ( `\(\widehat{Y}\)` ) a partir del valor conocido de otra variable ( `\(X\)` )
+
+- La estimación se expresa en el coeficiente de regresión `\(b_{1}\)`, también llamado "beta" o pendiente
+
+- Este coeficiente se interpreta de la siguiente manera: Por cada unidad que aumenta X, Y aumenta en `\(b_{1}\)` unidades
+]
+
+---
+# Estadística multivariada
+
+- Hechos sociales: **multicausales**
+
+![:scale 55%](../05-regmul1/multicausal.png)
+
+---
+# Regresión múltiple: más de 1 predictor
+
+`$$\widehat{Y}=b_{0}+b_{1}X_{1}+b_{2}X_{2}+b_{3}X_{3}+...+b_{k}X_{k}$$`
+
+--
+
+.center[![:scale 50%](../images/regmul.png)]
+
+---
+# Regresión múltiple: más de 1 predictor
+
+- es un modelo **SUMATIVO**
+
+`$$\widehat{Y}=b_{0}+b_{1}X_{1}+b_{2}X_{2}+b_{3}X_{3}+...+b_{k}X_{k}$$`
+
+- para que esta suma tenga sentido, se deben descontar los aportes "duplicados" o que se traslapan entre predictores
+
+- es decir, si los predictores correlacionan, se debe **remover** la parte de la variable que correlacinoa con la otra variable
+
+  - ## = Parcialización
+
+
+
+---
+# Regresión múltiple: más de 1 predictor
+
+
+.pull-left[
+.center[![:scale 60%](../images/ingresoeduc.png)]
+.small[
+`$$\widehat{Ingreso}=b_0+b_1(Educ)$$`
+]
+]
+
+--
+
+.pull-right[
+.center[![:scale 60%](../05-regmul1/ingresoeducexp.png)]
+.small[
+`$$\widehat{Ingreso}=b_0+b_1(Educ)+b_2(Int)$$`
+]]
+
+---
+.pull-left-wide[
+## Control estadístico
+- ¿Qué efecto posee el nivel educacional en ingreso, _controlando por_ inteligencia?
+]
+.pull-right-narrow[
+![](../05-regmul1/ingresoeducexp.png)
+]
+
+**Conceptualmente:**
+.small[
+- aislar el efecto de educación en ingreso, manteniendo la inteligencia _constante_.
+
+- estimar el efecto de educación en ingreso independiente del efecto de la inteligencia
+
+- estimación del efecto de educación en ingreso _ceteris paribus_ (manteniendo el efecto del resto de los predictores constante)
+]
+
+---
+# Ejemplo
+
+.center[![](../images/paperclasemedia.png)]
+
+.small[Castillo, J., Miranda, D. &amp; Madero, I. (2013) Todos somos de clase media: Sobre el estatus social subjetivo en Chile. _Latin American Research Review_ 48(1) 155-173
+]
+
+
+---
+class: inverse
+
+### RESUMEN
+
+- Los coeficientes de regresión (X) no alteran su valor en los modelos en ausencia de correlación entre ellos
+
+- Si hay correlación entre predictores, el valor de los coeficientes de regresión será distinto en modelos simples y en modelos múltiples
+
+- Por ello, en regresión múltiple se habla de coeficientes de regresión **parciales**
+
+---
+class: roja, middle, center
+
+
+# 2. Bases de control y parcialización
+---
+
+# Ejemplo (mínimo): Datos
+
+.medium[
+
+
+
+```
+##    ID    ingr educ intelig
+## 1   1  100000    2       1
+## 2   2  200000    1       3
+## 3   3  200000    3       3
+## 4   4  300000    3       1
+## 5   5  300000    4       2
+## 6   6  500000    6       2
+## 7   7  650000    5       3
+## 8   8  800000    4       2
+## 9   9  900000    5       3
+## 10 10 1000000    6       3
+```
+]
+
+---
+# Ejemplo: Descriptivos
+
+.medium[
+
+&lt;table style="text-align:center"&gt;&lt;tr&gt;&lt;td colspan="8" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Statistic&lt;/td&gt;&lt;td&gt;N&lt;/td&gt;&lt;td&gt;Mean&lt;/td&gt;&lt;td&gt;St. Dev.&lt;/td&gt;&lt;td&gt;Min&lt;/td&gt;&lt;td&gt;Pctl(25)&lt;/td&gt;&lt;td&gt;Pctl(75)&lt;/td&gt;&lt;td&gt;Max&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="8" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;ID&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;3.2&lt;/td&gt;&lt;td&gt;7.8&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;ingr&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;495,000&lt;/td&gt;&lt;td&gt;323,565&lt;/td&gt;&lt;td&gt;100,000&lt;/td&gt;&lt;td&gt;225,000&lt;/td&gt;&lt;td&gt;762,500&lt;/td&gt;&lt;td&gt;1,000,000&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;educ&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;intelig&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="8" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+]
+---
+# Ejemplo: correlaciones
+
+.pull-left[.small[
+
+```
+##         ingr educ intelig
+## ingr    1.00 0.77    0.44
+## educ    0.77 1.00    0.27
+## intelig 0.44 0.27    1.00
+```
+]
+]
+--
+
+.pull-right[
+![](6_regmul2_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+]
+
+---
+.pull-left[
+**Ingreso &lt;- educación ( `\(X_1\)` )**
+
+![](6_regmul2_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+**Ingreso &lt;- intelig ( `\(X_2\)` )**
+
+![](6_regmul2_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+]
+
+---
+# Ejemplo: scatter X1 X2
+
+.pull-left[
+![](6_regmul2_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+.medium[
+- presencia de correlación entre predictores
+
+- idea de control estadístico: ¿Cuál es la influencia de educación en ingreso, independiente de la inteligencia?
+
+- **controlando por** inteligencia
+
+]]
+
+---
+# Regresión
+
+.small[
+
+]
+.small[
+
+&lt;table cellspacing="0" align="center" style="border: none;"&gt;
+&lt;caption align="bottom" style="margin-top:0.3em;"&gt; &lt;/caption&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;&lt;/b&gt;&lt;/th&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 1&lt;/b&gt;&lt;/th&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 2&lt;/b&gt;&lt;/th&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 3&lt;/b&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(Intercept)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;-91566.27&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;93442.62&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;-270638.30&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(183509.80)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(302389.31)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(241882.27)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;educ&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;150401.61&lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;137092.20&lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(43618.69)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(44602.35)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;intelig&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;174590.16&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;100425.53&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(124491.71)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(90114.05)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border-top: 1px solid black;"&gt;R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="border-top: 1px solid black;"&gt;0.60&lt;/td&gt;
+&lt;td style="border-top: 1px solid black;"&gt;0.20&lt;/td&gt;
+&lt;td style="border-top: 1px solid black;"&gt;0.66&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;Adj. R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.55&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.10&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.56&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;Num. obs.&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;RMSE&lt;/td&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;217656.84&lt;/td&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;307471.84&lt;/td&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;214438.31&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;" colspan="5"&gt;&lt;span style="font-size:0.8em"&gt;&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;p &amp;lt; 0.001, &lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;p &amp;lt; 0.01, &lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;p &amp;lt; 0.05&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+]
+
+---
+class: inverse 
+## RESUMEN
+
+- Regresión múltiple: más de un predictor
+
+- No es equivalente a realizar regresiones múltiples por separado con cada predictor y luego simplemente "sumarlas"
+
+- Predictores correlacionados: requiere consideración, ya que de otra manera se estaría sobreestimando el efecto de `\(X\)` en `\(Y\)`
+
+---
+class: inverse 
+
+## RESUMEN (2)
+
+
+- Además de ser una corrección estadística, el control se relaciona con preguntas sustantivas basadas en teoría
+
+- El output de regresión múltiple realiza automáticamente el control estadístico vía parcialización de coeficientes.
+
+- ¿Cuál es el cálculo detrás de la parcialización / control estadístico? 
+
+ ... a continuación.
+
+
+---
+class: roja, center, middle
+
+# 3. Demostración parcialización
+
+---
+# Antecedentes
+
+- la **parcialización** que permite el control estadístico es un calculo de mediana complejidad
+
+- su complejidad aumenta a medida que aumenta el número de predictores
+
+- por ello, los softwares lo realizan de manera automática, no es necesario realizarlo por cuenta propia
+
+- **PERO**  ... vale la pena demostrarlo, para entender de qué se trata
+
+
+---
+# Parcialización 1
+
+_¿Cómo se despeja la regresión de `\(Y\)` en `\(X_1\)` del efecto de `\(X_2\)`?_
+
+.pull-left[
+.center[![:scale 65%](../05-regmul1/ingresoeducexp.png)]
+]
+
+--
+
+.pull-right[
+.center[![:scale 65%](ingeduc_parint.png)]
+]
+
+---
+class: center middle
+
+# Implica despejar `\(X_1\)` de su correlación con `\(X_2\)`, o **parcializar** `\(X_1\)` de `\(X_2\)`
+
+---
+.pull-left[
+# Parcialización 3
+
+.medium[
+¿Como obtenemos una variable `\(X_1\)` parcializada de `\(X_2\)`?
+]
+
+.center[
+![:scale 100%](../images/partial2.png)]
+]
+--
+
+.pull-right[
+
+&lt;br&gt;
+&lt;br&gt;
+
+.medium[
+- Pensemos en que `\(X_1\)` parcializada (de `\(X_2\)` ) es todo lo de `\(X_1\)` (varianza) que no tiene que ver con `\(X_2\)`
+
+- En otras palabras, en un modelo donde `\(X_1\)` es la variable dependiente y `\(X_2\)` la independiente, `\(X_1\)` parcializada equivale al **residuo** de esta regresión
+]
+]
+---
+# Parcialización 4
+
+Por lo tanto, para **demostrar** el concepto de parcialización en el ejemplo, los pasos son:
+
+1. Regresión entre predictores
+
+2. Obtención del residuo de la regresión
+
+3. Regresión de `\(Y\)` en el residuo (=la variable parcializada)
+
+---
+# Parcialización 5
+
+.pull-left[
+**1.Regresión entre predictores **
+
+
+```r
+reg_x1_x2=lm(educ ~ intelig, data=datos)
+coef(reg_x1_x2)
+```
+
+```
+## (Intercept)     intelig 
+##   2.6557377   0.5409836
+```
+]
+
+.pull-right[
+.medium[
+Por lo tanto, tenemos que nuestro modelo de regresión entre predictores, con educación como dependiente es:
+
+`$$\widehat{educacion}=2.66+0.541_{inteligencia}$$`]]
+
+---
+class: center, middle
+
+`$$\widehat{educacion}=2.66+0.541_{inteligencia}$$`
+
+![](6_regmul2_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+
+---
+# Parcialización 6
+
+**2.Obtención de residuo (valor estimado - observado)**
+
+.small[
+
+```
+##    ID    ingr educ intelig x1_fit_x2    resx1_2
+## 1   1  100000    2       1  3.196721 -1.1967213
+## 2   2  200000    1       3  4.278689 -3.2786885
+## 3   3  200000    3       3  4.278689 -1.2786885
+## 4   4  300000    3       1  3.196721 -0.1967213
+## 5   5  300000    4       2  3.737705  0.2622951
+## 6   6  500000    6       2  3.737705  2.2622951
+## 7   7  650000    5       3  4.278689  0.7213115
+## 8   8  800000    4       2  3.737705  0.2622951
+## 9   9  900000    5       3  4.278689  0.7213115
+## 10 10 1000000    6       3  4.278689  1.7213115
+```
+]
+---
+
+Ejemplo caso 1: inteligencia=1
+
+Estimando valor predicho según nuestro modelo:
+
+`$$\widehat{educacion}=2.66+0.541*1=3.196$$`
+
+- **3.196** es el valor predicho de educación para una persona de inteligencia = 1
+
+- sabemos que el valor observado de educación para el caso 1 es igual a **2**
+
+- por lo tanto, el residuo para este caso (valor observado - valor estimado `\(=2-3.196=-1.2\)`
+
+
+---
+### Parcialización 7: Regresión de Y en variable `\(X_1\)` parcializada = `\(X_{1.2}\)`
+
+
+.small[
+
+&lt;table cellspacing="0" align="center" style="border: none;"&gt;
+&lt;caption align="bottom" style="margin-top:0.3em;"&gt; &lt;/caption&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;&lt;/b&gt;&lt;/th&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 1&lt;/b&gt;&lt;/th&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 2&lt;/b&gt;&lt;/th&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 3&lt;/b&gt;&lt;/th&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 4&lt;/b&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(Intercept)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;-91566.27&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;93442.62&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;-270638.30&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;495000.00&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(183509.80)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(302389.31)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(241882.27)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(79673.16)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;educ&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;150401.61&lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;137092.20&lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(43618.69)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(44602.35)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;intelig&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;174590.16&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;100425.53&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(124491.71)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(90114.05)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;resx1_2&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;137092.20&lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(52404.36)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border-top: 1px solid black;"&gt;R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="border-top: 1px solid black;"&gt;0.60&lt;/td&gt;
+&lt;td style="border-top: 1px solid black;"&gt;0.20&lt;/td&gt;
+&lt;td style="border-top: 1px solid black;"&gt;0.66&lt;/td&gt;
+&lt;td style="border-top: 1px solid black;"&gt;0.46&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;Adj. R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.55&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.10&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.56&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.39&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;Num. obs.&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;RMSE&lt;/td&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;217656.84&lt;/td&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;307471.84&lt;/td&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;214438.31&lt;/td&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;251948.67&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;" colspan="6"&gt;&lt;span style="font-size:0.8em"&gt;&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;p &amp;lt; 0.001, &lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;p &amp;lt; 0.01, &lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;p &amp;lt; 0.05&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+]
+
+
+---
+# Parcialización 8
+
+Ahora, lo mismo pero parcializando inteligencia ( `\(X_2\)` ) de educación ( `\(X_1\)` )
+
+
+**1.Regresión de `\(X_2\)` (inteligencia) en `\(X_1\)` (educación)**
+
+
+
+**2. Obtención del residuo de la regresión (inteligencia parcializada de educación)**
+
+
+
+**3. Regresión de `\(Y\)` (ingreso) en la variable parcializada `\(X_{2.1}\)`**
+
+
+
+---
+### Comparación final modelos
+
+.small[
+
+&lt;table cellspacing="0" align="center" style="border: none;"&gt;
+&lt;caption align="bottom" style="margin-top:0.3em;"&gt; &lt;/caption&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;&lt;/b&gt;&lt;/th&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 1&lt;/b&gt;&lt;/th&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 2&lt;/b&gt;&lt;/th&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 3&lt;/b&gt;&lt;/th&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 4&lt;/b&gt;&lt;/th&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 5&lt;/b&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(Intercept)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;-91566.27&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;93442.62&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;-270638.30&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;495000.00&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;495000.00&lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(183509.80)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(302389.31)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(241882.27)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(79673.16)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(105186.77)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;educ&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;150401.61&lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;137092.20&lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(43618.69)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(44602.35)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;intelig&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;174590.16&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;100425.53&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(124491.71)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(90114.05)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;resx1_2&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;137092.20&lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(52404.36)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;resx2_1&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;100425.53&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(139782.00)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border-top: 1px solid black;"&gt;R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="border-top: 1px solid black;"&gt;0.60&lt;/td&gt;
+&lt;td style="border-top: 1px solid black;"&gt;0.20&lt;/td&gt;
+&lt;td style="border-top: 1px solid black;"&gt;0.66&lt;/td&gt;
+&lt;td style="border-top: 1px solid black;"&gt;0.46&lt;/td&gt;
+&lt;td style="border-top: 1px solid black;"&gt;0.06&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;Adj. R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.55&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.10&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.56&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.39&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;-0.06&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;Num. obs.&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;RMSE&lt;/td&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;217656.84&lt;/td&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;307471.84&lt;/td&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;214438.31&lt;/td&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;251948.67&lt;/td&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;332629.78&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;" colspan="7"&gt;&lt;span style="font-size:0.8em"&gt;&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;p &amp;lt; 0.001, &lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;p &amp;lt; 0.01, &lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;p &amp;lt; 0.05&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+]
+
+
+---
+# Comparando pendientes
+
+.pull-left[
+**Ingreso &lt;- educ `\(X_1\)`**
+
+![](6_regmul2_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+**Ingreso &lt;- educ.parcial `\(X_{1.2}\)`**
+
+![](6_regmul2_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+]
+
+---
+## Matriz de correlaciones con variables parcializadas
+
+
+
+.center[
+![](6_regmul2_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
+]
+
+---
+# Fórmulas directas de regresores parciales:
+
+`$$b_1=\biggl(\frac{s_y}{s_1}\biggr)\biggl(\frac{r_{y1}-r_{y2}r_{12}}{1-r^2_{12}}\biggr)$$`
+
+`$$b_2=\biggl(\frac{s_y}{s_2}\biggr)\biggl(\frac{r_{y2}-r_{y1}r_{12}}{1-r^2_{12}}\biggr)$$`
+
+---
+class: roja
+
+## RESUMEN
+
+- El control estadístico es central en regresión múltiple
+
+--
+
+- Pregunta: ¿Es la relación entre _X_ e _Y_ _realmente_ debida a _X_, o hay otras variables que podrían dar cuenta de esta relación?
+
+--
+
+- El control se implementa agregando predictores en el modelo que por razones teóricas se presume pueden afectar la relación del regresor principal en _Y_
+
+---
+class: roja
+
+## RESUMEN (2)
+
+- En términos técnicos, el control estadístico opera mediante *parcialización*: los predictores se parcializan mutuamente, generando coeficientes de regresión parciales.
+
+--
+
+- El regresor parcial entonces es un regresor ajustado por la presencia de otro(s) regresore(s)
+
+--
+
+- Por lo tanto, ahora los betas de regresión se pueden sumar apropiadamente, sin distorsionar la predicción
+
+
+---
+class: inverse, middle, center
+
+## PROXIMA CLASE:
+
+# INFERENCIA EN REGRESIÓN
+
+
+---
+class: front
+
+.pull-left[
+# Estadística Multivariada
+## Juan Carlos Castillo
+## Sociología FACSO - UChile
+## 1er Sem 2020
+## [multivariada.netlify.com](https://multivariada.netlify.com)
+]
+
+
+.pull-right[
+.right[
+&lt;br&gt;
+![:scale 80%](https://multivariada.netlify.com/img/hex_multiva.png)
+]
+
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://multinivel.netlify.com/docpres/xaringan_custom/macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
