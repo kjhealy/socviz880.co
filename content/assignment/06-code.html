@@ -103,7 +103,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#relacion-entre-variables">Relacion entre variables</a></li>
 <li><a href="#modelo-de-regresión-multiple">Modelo de regresión multiple</a></li>
 <li><a href="#interpretación">Interpretación</a><ul>
-<li><a href="#porqué-se-alteran-los-coeficientes-de-correlación">¿Porqué se alteran los coeficientes de correlación?</a></li>
+<li><a href="#porqué-se-alteran-los-coeficientes-de-regresión">¿Porqué se alteran los coeficientes de regresión?</a></li>
 </ul></li>
 <li><a href="#parcialización">Parcialización</a><ul>
 <li><a href="#parcializar-act-de-hsgpa">Parcializar <span class="math inline">\(ACT\)</span> de <span class="math inline">\(hsGPA\)</span></a></li>
@@ -113,7 +113,6 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><a href="#resumen-práctica-6">Resumen Práctica 6:</a></li>
 <li><a href="#reporte-de-progreso">Reporte de progreso</a></li>
-<li><a href="#archivo-de-código">Archivo de código</a></li>
 <li><a href="#foro-práctica-6">Foro práctica 6</a></li>
 </ul>
 </div>
@@ -133,15 +132,17 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb1-4" title="4">               gridExtra, <span class="co">#unir graficos</span></a>
 <a class="sourceLine" id="cb1-5" title="5">               texreg, <span class="co">#mostrar regresion multiple</span></a>
 <a class="sourceLine" id="cb1-6" title="6">               summarytools, <span class="co">#estadisticos descriptivos</span></a>
-<a class="sourceLine" id="cb1-7" title="7">               wooldrige) <span class="co">#paquete con los ejemplos del libro</span></a>
+<a class="sourceLine" id="cb1-7" title="7">               wooldridge) <span class="co">#paquete con los ejemplos del libro</span></a>
 <a class="sourceLine" id="cb1-8" title="8"><span class="kw">library</span>(wooldridge)</a></code></pre></div>
 </div>
 <div id="datos" class="section level2">
 <h2>Datos</h2>
-<p>Los datos a utilizar corresponden a la base de datos <strong>gpa1</strong> que incluye una muestra de 141 estudiantes de una universidad. La base contiene vaiables
-- [<span class="math inline">\(colGPA\)</span>]: promedio general de calificaciones de la universidad, en escala de 0 a 4 puntos.
-- [<span class="math inline">\(hsGPA\)</span>]: promedio general de calificaciones en la enseñanza media, en escala de 0 a 4 puntos
-- [<span class="math inline">\(ACT\)</span>]: puntaje en el examen de admisión a la universidad, que va de 16 a 33 puntos</p>
+<p>Los datos a utilizar corresponden a la base de datos <strong>gpa1</strong> que incluye una muestra de 141 estudiantes de una universidad. La base contiene variables:</p>
+<ul>
+<li><p><span class="math inline">\(colGPA\)</span>: promedio general de calificaciones de la universidad, en escala de 0 a 4 puntos.</p></li>
+<li><p><span class="math inline">\(hsGPA\)</span> : promedio general de calificaciones en la enseñanza media, en escala de 0 a 4 puntos</p></li>
+<li><p><span class="math inline">\(ACT\)</span> : puntaje en el examen de admisión a la universidad, que va de 16 a 33 puntos</p></li>
+</ul>
 <p>Primero, se cargará la base de datos que contiene la librería <code>wooldrige</code> y se seleccionarán las variables señaladas</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">data</span>(<span class="st">&#39;gpa1&#39;</span>) <span class="co"># Cargar base de datos</span></a>
 <a class="sourceLine" id="cb2-2" title="2">gpa1 &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(gpa1, colGPA, hsGPA, ACT) <span class="co">#Seleccion de variables</span></a></code></pre></div>
@@ -149,7 +150,70 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="explorar-base-de-datos" class="section level2">
 <h2>Explorar base de datos</h2>
 <p>A partir de la siguiente tabla se obtienen estadísticos descriptivos que luego serán relevantes para la interpretación de nuestros modelos.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">view</span>(<span class="kw">dfSummary</span>(gpa1, <span class="dt">headings =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="st">&#39;render&#39;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">view</span>(<span class="kw">dfSummary</span>(gpa1, <span class="dt">headings =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="st">&quot;render&quot;</span>))</a></code></pre></div>
+<div class="container st-container">
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline ">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>No</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Valid</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">1</td>
+      <td align="left">colGPA
+[numeric]</td>
+      <td align="left">Mean (sd) : 3.1 (0.4)
+min < med < max:
+2.2 < 3 < 4
+IQR (CV) : 0.5 (0.1)</td>
+      <td align="left" style="vertical-align:middle">19 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBh4OIjYcEdiLAAABjklEQVR42u3cwU3DMABAUYo6HgPAhDAA+8E1IEj0IG3s9r9bVSmKvmIrjZ2ePh4iHo8+gdkUDBUMnZcfLjmfvW0e/Pl0dIzfLE/s/OejsKfVb9+PacEakqhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGBox03B2/ukb8Guu6jX9knPskt6yxW3nV/S1tW93zsANxLseld3kz4qGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGJrk8c44T3MnCTbOv140JFHBUMEQzWHjTL3HwUn/HhbS1jUkUcFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMHQNCvf/7O+3iUv1txJsP1WuxqSaKArbI5l4oGCzbFI3JBEBUMFQwVDBUMFQwPdVhxn6w7wZfHTqWAPtkP7S7A57rWP9e0KG2U3/Lia9FHBUMHQaTnPvzbp/2h5W3GqkWlIooKhgqFPoDogP0w0CHYAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDYtMzBUMTQ6MzQ6NTQrMDA6MDCzylGJAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA2LTMwVDE0OjM0OjU0KzAwOjAwwpfpNQAAAABJRU5ErkJggg=="></td>
+      <td align="center">141
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+    <tr>
+      <td align="center">2</td>
+      <td align="left">hsGPA
+[numeric]</td>
+      <td align="left">Mean (sd) : 3.4 (0.3)
+min < med < max:
+2.4 < 3.4 < 4
+IQR (CV) : 0.4 (0.1)</td>
+      <td align="left" style="vertical-align:middle">16 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBh4OIjYcEdiLAAABeElEQVR42u3cW0rDQABAUSNdngvQFeoCuj/9jVJITsljgvf8lUI6XJgwaTKZvl8iXs8ewNUUDBUM3eYfrnU++1ox3Pdpi1+aH+T29FEG8Lbw/X2H32xKooKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhQXeCrNkWc45Bgy1vi9lnY8yypiQqGCoYKhgqGCoYKhgqGCoYKhgqGNrhWvK490lsMRYdyS4X32e8T+KokTQlUcFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDB0LDPuB5lzV3Uj9m9y38fTB8+bkqigqGCoYKhgqGCoYKhk9Zh4+5WW3JSsHEeuVNNSVQwVDBUMFQwVDD0a1lx3dXRcf6sw9b8nXbdNdQWmpKoYGian7Y+O4c9NL8JMtXINCVRwVDB0A/ZEhvl/+TyMAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNi0zMFQxNDozNDo1NCswMDowMLPKUYkAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDYtMzBUMTQ6MzQ6NTQrMDA6MDDCl+k1AAAAAElFTkSuQmCC"></td>
+      <td align="center">141
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+    <tr>
+      <td align="center">3</td>
+      <td align="left">ACT
+[integer]</td>
+      <td align="left">Mean (sd) : 24.2 (2.8)
+min < med < max:
+16 < 24 < 33
+IQR (CV) : 4 (0.1)</td>
+      <td align="left" style="vertical-align:middle">15 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBh4OIjYcEdiLAAABiUlEQVR42u3cQU6DQABAUTE9ngfQE+oBvJ9u0eiQZysd2v92TRNCfjrAwNDl4yHi8do7cDQFQwVDp/WH/zyevW1u/Hm5dozfrHfs9OetsKfht+/XacEakqhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgaMdl51vGK/lnWcU/UbDROv55VvE3JFHBUMFQwdAFD/rb76vdgoueJY9xnjtPQxIVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQxNdE9/bOvm0V4PSQ4TbJa/OmpIooKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgiF6anQf66TH8DHbPayTHjvMc8kte70LdzPB9vrtd9BHBUMFQwVDBUMFQwVDBUMFQ1+u9Jtcb/s2NZplJem8bmYuOXbe2HlZTd3vJNh4ai7jalmnf+0Y9qP1L2ypkemyAhUMFQx9AiOeHu1b6sEzAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA2LTMwVDE0OjM0OjU0KzAwOjAws8pRiQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNi0zMFQxNDozNDo1NCswMDowMMKX6TUAAAAASUVORK5CYII="></td>
+      <td align="center">141
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 0.9.6 (<a href='https://www.r-project.org/'>R</a> version 4.0.0)<br/>2020-06-30</p>
+</div>
 </div>
 <div id="relacion-entre-variables" class="section level2">
 <h2>Relacion entre variables</h2>
@@ -161,30 +225,33 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb4-5" title="5">   <span class="dt">cor.coef =</span> <span class="ot">TRUE</span>)<span class="co"># Agregar coeficiente correlacion</span></a>
 <a class="sourceLine" id="cb4-6" title="6"><span class="co">#Grafico x2 = hsGPA y= colGPA</span></a>
 <a class="sourceLine" id="cb4-7" title="7">ghsGPA &lt;-<span class="st"> </span><span class="kw">ggscatter</span>(gpa1, <span class="dt">x =</span> <span class="st">&quot;hsGPA&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;colGPA&quot;</span>,</a>
-<a class="sourceLine" id="cb4-8" title="8">          <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">size =</span> <span class="dv">3</span>, </a>
-<a class="sourceLine" id="cb4-9" title="9">   <span class="dt">add =</span> <span class="st">&quot;reg.line&quot;</span>, </a>
+<a class="sourceLine" id="cb4-8" title="8">          <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">size =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb4-9" title="9">   <span class="dt">add =</span> <span class="st">&quot;reg.line&quot;</span>,</a>
 <a class="sourceLine" id="cb4-10" title="10">   <span class="dt">cor.coef =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb4-11" title="11"></a>
 <a class="sourceLine" id="cb4-12" title="12"><span class="co">#Grafico x2 = hsGPA x1 = ACT</span></a>
 <a class="sourceLine" id="cb4-13" title="13">gact_hs &lt;-<span class="st"> </span><span class="kw">ggscatter</span>(gpa1, <span class="dt">x =</span> <span class="st">&quot;hsGPA&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;ACT&quot;</span>,</a>
-<a class="sourceLine" id="cb4-14" title="14">          <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">size =</span> <span class="dv">3</span>, </a>
-<a class="sourceLine" id="cb4-15" title="15">   <span class="dt">add =</span> <span class="st">&quot;reg.line&quot;</span>, </a>
+<a class="sourceLine" id="cb4-14" title="14">          <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">size =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb4-15" title="15">   <span class="dt">add =</span> <span class="st">&quot;reg.line&quot;</span>,</a>
 <a class="sourceLine" id="cb4-16" title="16">   <span class="dt">cor.coef =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb4-17" title="17"></a>
 <a class="sourceLine" id="cb4-18" title="18"><span class="kw">grid.arrange</span>(gact, ghsGPA, gact_hs, <span class="dt">nrow =</span> <span class="dv">1</span>) <span class="co"># Unir graficos</span></a></code></pre></div>
-<p><img src="/assignment/06-code_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>Con el gráfico anterior podemos notar dos puntos relevantes:
-- Si bien ambas variables tienen una asociación positiva con <span class="math inline">\(colGPA\)</span>, el tamaño efecto de esta relación es distinta. Incluso, <span class="math inline">\(hsGPA\)</span> que no había sido considerada en nuestro modelo inicial, tiene una asociación más grande con nuestra variable dependiente.
-- Como es de esperar, <strong>existe una relación entre las calificaciones en la enseñanza media (<span class="math inline">\(hsGPA\)</span>) y el puntaje en la prueba de admisión (<span class="math inline">\(ACT\)</span>)</strong>. Específicamente, ambas variables tienen una asociación positiva de 0.35.</p>
+<p><img src="/assignment/06-code_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Con el gráfico anterior podemos notar dos puntos relevantes:</p>
+<ul>
+<li><p>Si bien ambas variables tienen una asociación positiva con <span class="math inline">\(colGPA\)</span>, el tamaño efecto de esta relación es distinta. Incluso, <span class="math inline">\(hsGPA\)</span> que no había sido considerada en nuestro modelo inicial, tiene una asociación más grande con nuestra variable dependiente.</p></li>
+<li><p>Como es de esperar, <strong>existe una relación entre las calificaciones en la enseñanza media (<span class="math inline">\(hsGPA\)</span>) y el puntaje en la prueba de admisión (<span class="math inline">\(ACT\)</span>)</strong>. Específicamente, ambas variables tienen una asociación positiva de 0.35.</p></li>
+</ul>
 <p>En la práctica 5 nos preguntamos ¿cómo incide <span class="math inline">\(ACT\)</span> y <span class="math inline">\(hsGPA\)</span> en conjunto sobre <span class="math inline">\(colGPA\)</span>?, sin profundizar en qué implica que nuestros predictores de <span class="math inline">\(colGPA\)</span> estén correlacionados. Retomemos nuevamente nuestro modelo</p>
 </div>
 <div id="modelo-de-regresión-multiple" class="section level2">
 <h2>Modelo de regresión multiple</h2>
 <p>Para estimar el modelo de regresión multiple se debe realizar el mismo procedimiento de la regresión simple, solo que ahora deben señalar un (+) y el segundo predictor</p>
 <div class="alert alert-info">
-<p><strong>Grabar / exportar tablas</strong> :<span class="sidenote">Exportar tablas </span>
+<p><span class="sidenote">Regresión múltiple </span>
 modelo &lt;- lm(y ~ x1 + x2 , data = data)</p>
 </div>
+<p>Por fines de comparación, se estimaran primero dos regresiones simples con cada predictor, y luego la regresión múltiple en el Modelo 3:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">col_actmodel&lt;-<span class="kw">lm</span>(colGPA <span class="op">~</span><span class="st"> </span>ACT, <span class="dt">data=</span>gpa1)</a>
 <a class="sourceLine" id="cb5-2" title="2">col_hsmodel&lt;-<span class="kw">lm</span>(colGPA <span class="op">~</span><span class="st">  </span>hsGPA, <span class="dt">data=</span>gpa1)</a>
 <a class="sourceLine" id="cb5-3" title="3">col_model &lt;-<span class="st"> </span><span class="kw">lm</span>(colGPA <span class="op">~</span><span class="st"> </span>ACT <span class="op">+</span><span class="st"> </span>hsGPA, <span class="dt">data =</span> gpa1)</a></code></pre></div>
@@ -209,13 +276,13 @@ Modelo 3
 Predictores
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-ß
+β
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-ß
+β
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-ß
+β
 </td>
 </tr>
 <tr>
@@ -294,7 +361,7 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 </tr></li>
 </ul>
 </table>
-<p><span class="math display">\[\widehat{colGPA} = 1.29 +0.0094 \dot\ ACT + 0.453\dot\ hsGPA \]</span></p>
+<p><span class="math display">\[\widehat{colGPA} = 1.29 +0.01 \dot\ ACT + 0.453\dot\ hsGPA \]</span></p>
 </div>
 <div id="interpretación" class="section level2">
 <h2>Interpretación</h2>
@@ -303,8 +370,8 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 <p>El modelo 2 estima que por cada punto que aumenta las notas en enseñanza media <span class="math inline">\(hsGPA\)</span>, <span class="math inline">\(colGPA\)</span> aumentará en 0.48 puntos.</p>
 <p>El modelo 3 estima <span class="math inline">\(colGPA\)</span> considerando en conjunto ambas variables. Por un lado, por cada punto que aumenta el examen de admisión <span class="math inline">\(ACT\)</span>, <span class="math inline">\(colGPA\)</span> aumentaráen 0.01 puntos, <strong>manteniendo <span class="math inline">\(hsGPA\)</span> constante</strong>
 Por otro, por cada punto que aumenta las notas en enseñanza media <span class="math inline">\(hsGPA\)</span>, <span class="math inline">\(colGPA\)</span> aumentará en 0.45 puntos, <strong>manteniendo <span class="math inline">\(ACT\)</span> constante</strong>.</p>
-<div id="porqué-se-alteran-los-coeficientes-de-correlación" class="section level3">
-<h3>¿Porqué se alteran los coeficientes de correlación?</h3>
+<div id="porqué-se-alteran-los-coeficientes-de-regresión" class="section level3">
+<h3>¿Porqué se alteran los coeficientes de regresión?</h3>
 <p>Como vimos en los gráficos de dispersión, existe una correlación entre nuestros predictores: el puntaje en <span class="math inline">\(ACT\)</span> está asociado con las notas de enseñanza media <span class="math inline">\(hsGPA\)</span>.</p>
 <p>Cuando se incorporan más variables en el modelo se descuenta este elemento en común que tienen las variables independientes. Por ello no solo los <strong>coefientes de regresión se ajustan en presencia de otras variables</strong> (<span class="math inline">\(hsGPA\)</span> disminuyó de 0.48 a 0.45 y <span class="math inline">\(ACT\)</span> de 0.03 a 0.01), sino que también el ajuste del modelo cambia (<span class="math inline">\(R^2ajustado\)</span> es el estadístico más óptimo para identificar ello, pues como vimos en la práctica 5 <span class="math inline">\(R^2\)</span> sobreestima la bondad de ajuste).</p>
 </div>
@@ -331,8 +398,10 @@ Por otro, por cada punto que aumenta las notas en enseñanza media <span class="
 <pre><code>## (Intercept)       hsGPA 
 ##   13.696763    3.074331</code></pre>
 <p>En consecuencia tenemos que
-<span class="math display">\[\widehat{ACT} = 13.69 + 3.07{hsGPA} \]</span>
-#### Paso 2: calcular valores predichos y residuos</p>
+<span class="math display">\[\widehat{ACT} = 13.69 + 3.07{hsGPA} \]</span></p>
+</div>
+<div id="paso-2-calcular-valores-predichos-y-residuos" class="section level4">
+<h4>Paso 2: calcular valores predichos y residuos</h4>
 <p>Sabemos que si tenemos un modelo de regresión podemos también obtener los residuos. Recordemos ¿qué es un residuo? Un residuo es la diferencia entre el valor observado y el valor predicho</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">fit_act_hs=<span class="kw">fitted.values</span>(model_act_hs) <span class="co"># Calcular valores predichos</span></a>
 <a class="sourceLine" id="cb9-2" title="2">res_act_hs=<span class="kw">residuals</span>(model_act_hs) <span class="co">#Calcular residuos</span></a>
@@ -375,16 +444,16 @@ Modelo 4
 Predictores
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-ß
+β
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-ß
+β
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-ß
+β
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-ß
+β
 </td>
 </tr>
 <tr>
@@ -499,8 +568,8 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 <h2>Control estadístico</h2>
 <p>¿En cuál variable me fijo para la interpretación? Podemos graficar los coeficientes de la regresión de modo de ver el impacto que tienen cada una de las variables sobre <span class="math inline">\(colGPA\)</span></p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">plot_model</span>(col_model, <span class="dt">show.values =</span> <span class="ot">TRUE</span>)<span class="op">+</span><span class="st"> </span><span class="kw">theme_sjplot</span>()</a></code></pre></div>
-<p><img src="/assignment/06-code_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<p>Como podemos ver el efecto que tiene <span class="math inline">\(hsGPA\)</span> sobre <span class="math inline">\(colGPA\)</span>, controlando por <span class="math inline">\(ACT\)</span>, es mucho mayor que el que tiene <span class="math inline">\(ACT\)</span> parcializado por <span class="math inline">\(colGPA\)</span>. Sin embargo, esto nada nos dice de a qué variable poner ojo: <strong>el centro está en las hipótesis que queremos probar con nuestros modelos</strong>.</p>
+<p><img src="/assignment/06-code_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Como podemos ver el efecto que tiene <span class="math inline">\(hsGPA\)</span> sobre <span class="math inline">\(colGPA\)</span>, controlando por <span class="math inline">\(ACT\)</span>, es mucho mayor que el que tiene <span class="math inline">\(ACT\)</span> parcializado por <span class="math inline">\(colGPA\)</span>. Sin embargo, esto nada nos dice de qué variable enfatizar: <strong>esto dependen de las hipótesis que queremos probar con nuestros modelos</strong>.</p>
 </div>
 <div id="qué-significa-mantener-todos-los-demás-factores-constantes" class="section level2">
 <h2>¿Qué significa mantener todos los demás factores constantes?</h2>
@@ -518,11 +587,7 @@ Más bien, la regresión múltiple permite imitar esta situación “constante�
 </div>
 <div id="reporte-de-progreso" class="section level1">
 <h1>Reporte de progreso</h1>
-<p>Completar el reporte de progreso correspondiente a esta práctica [aquí]</p>
-</div>
-<div id="archivo-de-código" class="section level1">
-<h1>Archivo de código</h1>
-<p>El archivo de código R de esta práctica se puede descargar [aquí]</p>
+<p>Completar el reporte de progreso correspondiente a esta práctica [<a href="https://forms.gle/mMmR8qZxVJ1uYeUw8" class="uri">https://forms.gle/mMmR8qZxVJ1uYeUw8</a>]</p>
 </div>
 <div id="foro-práctica-6" class="section level1">
 <h1>Foro práctica 6</h1>
