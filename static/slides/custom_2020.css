@@ -34,6 +34,7 @@ h1, h2, h3 {
   font-family: 'Yanone Kaffeesatz';
   font-weight: normal;
   color: #dc322f;
+  margin-bottom:0.2px;
 }
 .remark-slide-content {
   background-color: #FFF;
@@ -291,6 +292,11 @@ table {
     table tr th :last-child, table tr td :last-child {
       margin-bottom: 0; }
 
+br {
+            display: block; /* makes it have a width */
+            content: ""; /* clears default height */
+            margin-top: 2; /* change this to whatever height you want it */
+}
 
 
 /*

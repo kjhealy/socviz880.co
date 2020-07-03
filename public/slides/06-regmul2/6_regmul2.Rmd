@@ -223,7 +223,7 @@ pacman::p_load(dplyr,
 )
 datos=read.csv("ingedexp.csv", sep=",")
 ```
-
+ 
 ```{r}
 datos
 ```

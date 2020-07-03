@@ -152,6 +152,11 @@ Hay cuatro referencias principales recomendadas para este curso:
 - Silva LC. (1995). Excursión a la regresión logística en ciencias de la salud. Madrid: Díaz de Santos; 1995.
 - Jovell, A.J. (1995). Análisis de regresión logística, Cuadernos Metodológicos del CIS. Madrid.
 
+### Links & otras recomendaciones
+
+- [Econometrics with R](https://www.econometrics-with-r.org/6-2-tmrm.html)
+
+
 ## Software
 
 Usaremos R 4.0 a través de la interfaz de RStudio. También realizaremos ejercicios y prácticas online en RCloud.
