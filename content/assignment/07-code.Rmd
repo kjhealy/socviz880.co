@@ -1,0 +1,491 @@
+---
+title: "Práctica 7. Regresión múltiple 3"
+subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
+author: "Julio César Iturra Sanhueza"
+linktitle: "Práctica 7. Inferencia y predictores categóricos"
+date: "2020-07-03"
+class_date: "2020-07-03"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+    highlight: tango
+    number_sections: FALSE
+menu:
+  class:
+    parent: Practicas
+    weight: 1
+type: docs
+weight: 1 
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=FALSE, warnings=FALSE, message=FALSE)
+knitr::opts_knit$set(root.dir ="../../")
+Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position = c('bottom', 'right')) # chunks con botón de copiar
+```
+
+# Objetivo de la práctica
+
+Es esta práctica vamos a abordar dos temas:
+
+1. Predictores categóricos en regresión
+
+2. Inferencia estadística
+
+Ambos temas corresponden a dos ámbitos independientes en el estudio de la regresión. Sin embargo, la inclusión de predictores categóricos de dos niveles (o variables dicotómicas) nos permitirá una aproximación a inferencia estadística que es directamente vinculable a los conocimientos sobre diferencia de promedios mediante la prueba _t_.
+
+## Predictores categóricos
+
+Hasta ahora hemos trabajado solamente con predictores a los que asumimos un nivel de medición contínua (es decir, al menos intervalar). ¿Qué sucede con predictores donde se asume un distinto nivel de medición, como nominal u ordinal? En general este tipo de predictores requiere una interpretación y tratamiento distinto que los predictores continuos.
+
+## Predictores dicotómicos
+
+Las variables dicotómicas son aquellas variables **nominales u ordinales** que poseen solo [dos categorías de respuesta](), por ejemplo hombre/mujer, sano/enfermo, deportista/sedentario. La inclusión de estas variables en un modelo de regresión no requiere un tratamiento especial, solo hay que considerar que su interpretación tiene un sentido distinto. A continuación, veremos un ejemplo respecto a cómo predictores categóricos (de dos o más niveles) permiten modelar el **Estatus Social Subjetivo**
+
+## Librerías
+
+```{r, warning= FALSE}
+pacman::p_load(dplyr, #manipulacion de datos
+               sjPlot, #tablas
+               summarytools, #estadisticos descriptivos
+               fastDummies, # Crear variable dummy
+               sjlabelled #etiquetas variables
+               )
+```
+
+## Datos
+
+Los datos a utilizar corresponden a la base de datos **ELSOC 2018** que incluye una muestra de **3784** mujeres y hombres adultos entre 18 y 75 años. 
+
+```{r include=FALSE}
+# load("content/assignment/data/proc/ELSOC_ess_merit2018.RData") # Cargar base de datos
+# elsoc_18 <- elsoc_18 %>% select(ess,sexo,edad,edcine=edcine2)
+# elsoc_18 <- na.omit(elsoc_18)
+# elsoc_18$ess <- sjlabelled::set_labels(elsoc_18$ess,labels = c("0 El nivel mas bajo"=0,"1"=1,"2"=2,"3"=3,"4"=4,"5"=5,"6"=6,"7"=7,"8"=8,"9"=9,"10 El nivel mas alto"=10))
+# elsoc_18$sexo <- as.numeric(elsoc_18$sexo)
+# elsoc_18$sexo[elsoc_18$sexo==1] <- 0
+# elsoc_18$sexo[elsoc_18$sexo==2] <- 1
+# 
+# elsoc_18$sexo <- sjlabelled::set_labels(elsoc_18$sexo,labels = c("Hombre"=0,"Mujer"=1))
+# elsoc_18$edcine <- sjlabelled::set_labels(x = as.numeric(elsoc_18$edcine),labels = sjlabelled::get_labels(proc_elsoc$edcine))
+# elsoc_18$ess     <- set_label(x = elsoc_18$ess,label  = "Estatus Social Subjetivo")
+# elsoc_18$sexo    <- set_label(x = elsoc_18$sexo,label = "Sexo (1=Mujer)")
+# elsoc_18$edad    <- set_label(x = elsoc_18$edad,label = "Edad")
+# elsoc_18$edcine  <- set_label(x = elsoc_18$edcine,label = "Educación")
+# 
+# save(elsoc_18,file = "content/assignment/data/proc/ELSOC_ess.RData")
+load(file = "content/assignment/data/proc/ELSOC_ess.RData")
+```
+
+**Variables**
+
+* [`ess`]: "Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena" (0 = el nivel mas bajo; 10 = el nivel mas alto)
+
+* [`edcine`]: ¿Cuál es su nivel educacional? Indique el tipo de estudio actual (si estudia actualmente) o el último tipo aprobado (si no estudia actualmente) -  **CINE 2011 (UNESCO)**. 
+ 
+* [`sexo`]: Sexo entrevistado.
+
+* [`edad`]: ¿Cuáles su edad? (años cumplidos).
+
+
+```{r}
+view_df(elsoc_18,encoding = "")
+```
+
+Primero, se cargará la base de datos
+
+```{r eval=FALSE, include=TRUE}
+load("data/proc/ELSOC_ess.RData") # Cargar base de datos
+```
+
+## Explorar base de datos
+
+A partir de la siguiente tabla se obtienen estadísticos descriptivos que luego serán relevantes para la interpretación de nuestros modelos.
+
+```{r eval=FALSE}
+view(dfSummary(elsoc_18, headings = FALSE, method = "render"))
+```
+
+```{r echo=FALSE}
+print(dfSummary(elsoc_18, headings = FALSE), method = 'render')
+
+#print(dfSummary(proc_elsoc, headings = FALSE), method = "render")
+```
+
+## Relacion entre variables
+
+Visualizar la asociación entre variables puede ser informativo. Sin embargo, en ocasiones es necesario prestar mayor atención al tipo de gráfico que utilizamos para esto. Por ejemplo, veamos un scatter de Estatus social Subjetivo $Y_\text{estatus}$ con sexo como independiente $X_\text{sexo}$ para comparar sus distribuciones y sus pendientes
+
+```{r}
+plot_scatter(data = elsoc_18,x = sexo,y = ess,fit.grps = "lm") 
+```
+
+El scatterplot no es muy informativo debido a que nuestra variable independiente solamente posee dos niveles, de modo tal que la distribución de Estatus Social Subjetivo se separa en dos grandes grupos. Por esta razón, una alternativa para visualizar la distirbución es elaborar un gráfico de cajas para ambas categorías:
+
+```{r}
+plot_grpfrq(var.cnt = elsoc_18$ess,var.grp = elsoc_18$sexo,type = "box")
+```
+
+En este sentido, al tener solamente dos niveles en los valores de la variable X: 0 (Hombre) y 1 (Mujer). Obtenemos solamente dos medias condicionales.
+
+Entonces, si calculamos el promedio simple para Estatus Social Subjetivo por sexo tenemos:
+
+```{r}
+elsoc_18 %>% 
+  group_by(sexo) %>% 
+  summarise(mean_ess=mean(ess,na.rm = T))
+```
+
+Segun esto el promedio para las mujeres es de **4.47** puntos en la escala de Estatus Social Subjetivo, mientras para los hombres es de **4.34**. 
+
+Realizando ahora la regresión:
+
+```{r}
+reg1<-lm(ess ~ sexo, data=elsoc_18)
+```
+
+```{r}
+sjPlot::tab_model(list(reg1), show.ci=FALSE, p.style = "asterisk",string.pred = "Predictores", string.est = "β",digits = 3,
+                  dv.labels = c("Modelo 1"))
+```
+
+Entonces:
+
+$$\widehat{Y}_\text{estatus} = 4.339 + \beta_1 \times \text{Sexo} + \epsilon $$
+Tenemos que las mujeres (Sexo = 1) tienen un promedio 0.133 puntos más alto que los hombres (Sexo = 0) en la escala de estatus social subjetivo. En este caso, el grupo de los hombres corresponde a la **categoría de referencia**.
+
+Por lo tanto, _¿cuál es la predicción de estatus social subjetivo para la variable sexo?_
+
+Para el caso de los hombres tenemos:
+
+$$\widehat{Y}_\text{estatus} = 4.339 + 0.133 \times 0 = 4.339$$  
+En cambio, para las mujeres tenemos:
+
+$$\widehat{Y}_\text{estatus} = 4.339 + 0.133 \times 1 = 4.472$$
+
+Entonces cuando calculamos el promedio de Estatus social Subjetivo $Y_\text{estatus}$ para hombre ($X_\text{sexo=0}$) mujer ($X_\text{sexo=1}$), podemos observar que son los mismos valores que nos entrega la estimación de la regresión simple empleando Sexo como predictor de Estatus Social Subjetivo. Es decir:
+
+
+* Al ingresar un regresor dicotómico en regresión simple lo que se obtiene es una estimación de la **diferencia de promedios** de ambas categorías en relación a la variable dependiente -en regresión múltiple esta diferencia se ajusta o controla por la presencia de otras variables, por ejemplo:
+
+```{r}
+reg2<-lm(ess ~ sexo+edad, data=elsoc_18)
+```
+
+```{r}
+sjPlot::tab_model(list(reg1,reg2), show.ci=FALSE, p.style = "asterisk",string.pred = "Predictores", string.est = "β",digits = 3,
+                  dv.labels = c("Modelo 1", "Modelo 2"))
+```
+
+$$\widehat{Y}_\text{estatus} = 4.602 + 0.126 \times \text{Sexo} + -0.006 \times \text{Edad} + \epsilon $$
+Al controlar por la Edad de las personas, las mujeres tienen un promedio 0.126 más alto que el de los hombres en la escala de Estatus Social Subjetivo. Vemos que, en comparación con el Modelo 1, la diferencia en el promedio de estatus subjetivo de mujeres respecto de hombres se ajusta al incorporar la Edad. En este sentido, ¿por qué la diferencia en el promedio de estatus subjetivo entre mujeres y hombres puede verse afectada por la Edad?. Revisemos el promedio de Edad para hombres y mujeres:  
+
+```{r}
+elsoc_18 %>% 
+  group_by(sexo) %>% 
+  summarise(mean_ess=mean(edad,na.rm = T))
+```
+
+Esta información nos permite observar que los hombres tienen un promedio de edad de 1.2 años mayor que el de las mujeres. En este sentido, lo que vemos es que la diferencia promedio de estatus subjetivo entre hombres y mujeres disminuye de 0.136 a 0.126, es decir, se ajusta al considerar (controlar por) la edad de las personas. 
+
+
+## Predictores con más de una categoría
+
+Una de las características de estatus más importante es el nivel educacional de las personas. En este sentido, el nivel educacional puede considerarse como una variable contínua (p.ej: años de educación) o categórica (nivel/grado educacional), lo cual depende no solo de la distribución empírica de la variable sino que también del criterio de quien investiga. 
+
+Para este ejercicio consideraremos la variable educación en base a las categorías de la Clasificación Internacional Normalizada de la Educación **[(UNESCO)](http://uis.unesco.org/sites/default/files/documents/isced-2011-sp.pdf)**. La cual posee 5 niveles:
+
+```{r}
+sjmisc::frq(x = elsoc_18$edcine,show.na = F)
+```
+
+Y se distribuye de esta manera:
+
+```{r}
+plot_frq(data = elsoc_18$edcine)
+```
+
+Para poder incluir esta variable en la regresión como categórica en R la manera más simple es definirla como un factor. Primero necesitamos conocer la estructura de la variable, ya que puede venir previamente definida como factor:
+
+```{r}
+class(elsoc_18$edcine)
+str(elsoc_18$edcine)
+```
+
+Vemos que al emplear `class`, R nos indica que `edcine` es una variable numérica con 5 valores distintos. Además, al correr `str` se nos indica que dichos valores numéricos poseen atributos en forma de etiquetas (labels). Entonces, si estimamos la regresión con la variable tal cual como está, obtenemos lo siguiente:
+
+```{r}
+reg3<- lm(ess~edcine,data = elsoc_18)
+```
+
+```{r}
+sjPlot::tab_model(list(reg3), show.ci=FALSE, p.style = "asterisk",string.pred = "Predictores", string.est = "β",digits = 3,
+                  dv.labels = c("Modelo 3"))
+```
+
+El coeficiente de regresión nos indica que por cada nivel adicional de educación, hay un aumento de 0.331 puntos en la escala de estatus social subjetivo. Sin embargo, dada la naturaleza de nuestra variable, decir "por cada nivel educacional" es poco informativo, por lo tanto la manera más adecuada de utilizar nuestra variable en la estimación de una regresión es transformarla en un **factor** empleando la función `as_factor()` <span class="sidenote"> De la librería `sjlabelled` </span>.  
+
+```{r}
+elsoc_18$edcine<- as_factor(elsoc_18$edcine)
+```
+
+<div class="alert alert-info">
+**Nota**: en R existe la función `as.factor()`, sin embargo, en esa ocasión usamos `as_factor()` debido a que es compatible los vectores numéricos etiquetados y nos permite matener todos los atributos de las variables, tales como las etiquetas de variable y valores. 
+</div>
+ 
+Teniendo nuestra variable transformada a factor, estimamos nuevamente la regresión: 
+ 
+```{r}
+reg4 <- lm(ess~edcine,data = elsoc_18)
+```
+
+```{r}
+sjPlot::tab_model(list(reg3,reg4), show.ci=FALSE, p.style = "asterisk",string.pred = "Predictores", string.est = "β",digits = 3,
+                  dv.labels = c("Modelo 3","Modelo 4"))
+```
+
+Al igual que en el modelo empleando Educación como variable continua, el modelo con Educación categórica muestra que a medida que aumenta el nivel educacional, el promedio de estatus subjetivo tiende a ser más alto. Por otro lado, en este caso la categoría de referenca es Primaria Incompleta o menos. Entonces:
+
+El promedio en la escala de Estatus Social subjetivo para el grupo con educación Primaria y Secundaria baja es 0.151 puntos más alto con respecto a las personas con educación Primaria Incompleta o menos.
+
+El promedio en la escala de Estatus Social subjetivo para el grupo con educación Secundaria Alta es 0.476 más alto con respecto a las personas con educación Primaria Incompleta o menos.
+
+El promedio en la escala de Estatus Social subjetivo para el grupo con educación Terciaria ciclo corto es 0.811 más alto con respecto a las personas con educación Primaria Incompleta o menos.
+
+El promedio en la escala de Estatus Social subjetivo para el grupo con educación Terciaria y Postgrado es de 1.279 más alto con respecto a las personas con educación Primaria Incompleta o menos.
+
+
+* Alternativamente es posible cambiar la categoría de referencia. Por ejemplo, si quisieramos que la referencia fuera el nivel educativo más alto "Terciaria y Postgrado" (5) debemos usar `relevel(edcine, ref =5)`:
+
+```{r}
+reg4.1 <- lm(ess~relevel(edcine,ref=5),data = elsoc_18)
+summary(reg4.1)
+```
+
+### Variables dummy
+
+La manera tradicional de incluir predictores categóricos de más de dos niveles (variable politómica) es a través de las denominadas **variables dummy**. Tal como vimos en el ejemplo anterior, se incluyen **n-1 categorías** en el modelo dado que siempre se mantiene una como categoría de referencia. 
+
+Para explorar nuestra base de datos, usaremos la función `head()` que nos mostrará las primeras 6 filas de nuestra base de datos para observar la variable Educación.
+
+```{r}
+head(elsoc_18)
+```
+
+Para la construcción de las variables dummy, usaremos la función `dummy_cols()` de la librería `fastDummies`. En el argumento `select_columns`, le indicamos cuál es la variable que usaremos para construir las variables dummy:
+
+```{r}
+library(fastDummies)
+elsoc_18 <- dummy_cols(elsoc_18,select_columns = "edcine")
+```
+
+Revisamos nuestra base de datos:
+
+```{r}
+head(elsoc_18)
+```
+
+Tal como se estimó en el modelo anterior, ahora lo que haremos es seleccionar cada dummy para las categorías 2, 3, 4 y 5 de la variable `edcine`. Esto implica que el nivel 1 (Primaria incompleta o menos) será la categoría de referencia.
+
+```{r}
+reg5 <- lm(ess~edcine_2+edcine_3+edcine_4+edcine_5,data = elsoc_18)
+```
+
+```{r}
+sjPlot::tab_model(list(reg4, reg5), show.ci=FALSE, p.style = "asterisk",string.pred = "Predictores", string.est = "β",digits = 3,
+                  dv.labels = c("Modelo 4","Modelo 5"))
+```
+
+Si observamos la tabla de arriba, vemos que las estimaciones para el modelo 4 y 5 son idénticas. La única diferencia es que en el Modelo 5 empleamos dummies para cada categoría en vez de utilizar la variable como un factor.
+
+# Inferencia
+
+Una de las ideas fundamentales de la inferencia es determinar si nuestros análisis estadísticos pueden ser extrapolados a la población que estamos estudiando. En el contexto de regresión, queremos conocer la significación estadística del coeficiente $\beta$. 
+
+Queremos saber :
+
+1. ¿Es significativo el coeficiente del modelo de regresión?. 
+
+2. Para ello, buscamos determinar la probabilidad de que $\beta \neq 0$
+
+3. El concepto fundamental es el **Error**.
+
+
+Conceptos clave:
+
+1. Dispersión
+2. Curva normal
+3. Error estándar 
+
+**Ejemplo**
+
+Supongamos que nuestra muestra de 3703 casos corresponde a la **Población**, de modo tal que vamos a extraer una serie de muestras aleatorias de esta "Población" a modo de ilustrar cambios en la dispersión de los datos en la medida que aumenta el tamaño muestral.  
+
+
+* Recordemos que la fórmula del Error Estándar para **una muestra** es : $\frac{s}{\sqrt{N}}$ donde $s$ es la desviación estándar y $N$ es el tamaño de la muestra.
+
+* Bajo el supuesto de que el promedio calculado para la muestra $\bar{x}$ posee una distribución normal con una $s = \text{Error Estándar (SE)}$, es posible calcular la probabilidad de error siguiendo dicha distribución. Donde $\bar{x} \pm 2\text{ SE}$ abarca el 95% de la distribución.
+
+```{r} 
+set.seed(123) 
+elsoc_n30  <- sample_n(tbl = elsoc_18,size = 30 )  %>% mutate(dataset=30 ,mean_ess=mean(ess,na.rm = T))
+elsoc_n50  <- sample_n(tbl = elsoc_18,size = 50 )  %>% mutate(dataset=50 ,mean_ess=mean(ess,na.rm = T))
+elsoc_n75  <- sample_n(tbl = elsoc_18,size = 75 )  %>% mutate(dataset=75 ,mean_ess=mean(ess,na.rm = T))
+elsoc_n100 <- sample_n(tbl = elsoc_18,size = 100)  %>% mutate(dataset=100,mean_ess=mean(ess,na.rm = T))
+elsoc_n200 <- sample_n(tbl = elsoc_18,size = 200)  %>% mutate(dataset=200,mean_ess=mean(ess,na.rm = T))
+elsoc_n300 <- sample_n(tbl = elsoc_18,size = 300)  %>% mutate(dataset=300 ,mean_ess=mean(ess,na.rm = T))
+elsoc_n400 <- sample_n(tbl = elsoc_18,size = 400)  %>% mutate(dataset=400,mean_ess=mean(ess,na.rm = T))
+elsoc_n700 <- sample_n(tbl = elsoc_18,size = 700)  %>% mutate(dataset=700,mean_ess=mean(ess,na.rm = T))
+elsoc_n800 <- sample_n(tbl = elsoc_18,size = 800)  %>% mutate(dataset=800,mean_ess=mean(ess,na.rm = T))
+elsoc_n900 <- sample_n(tbl = elsoc_18,size = 900)  %>% mutate(dataset=900,mean_ess=mean(ess,na.rm = T))
+elsoc_n1000<- sample_n(tbl = elsoc_18,size = 1000) %>% mutate(dataset=1000,mean_ess=mean(ess,na.rm = T))
+elsoc_n1500<- sample_n(tbl = elsoc_18,size = 1500) %>% mutate(dataset=1500,mean_ess=mean(ess,na.rm = T))
+elsoc_n2000<- sample_n(tbl = elsoc_18,size = 2000) %>% mutate(dataset=2000,mean_ess=mean(ess,na.rm = T))
+elsoc_n2500<- sample_n(tbl = elsoc_18,size = 2500) %>% mutate(dataset=2500,mean_ess=mean(ess,na.rm = T))
+# elsoc      <- elsoc_18 %>% mutate(dataset=3703,mean_ess=mean(ess,na.rm = T))
+
+fullmat<- bind_rows(elsoc_n30 ,elsoc_n50 ,elsoc_n75 ,elsoc_n100,elsoc_n200,elsoc_n300,elsoc_n400,elsoc_n700,elsoc_n800,elsoc_n900,elsoc_n1000,elsoc_n1500,elsoc_n2000,elsoc_n2500) 
+fullmat <- fullmat %>% mutate(mean_ssta=mean(elsoc_18$ess,na.rm = T))
+```
+
+Luego de obtener las muestras, calculamos la media, desviación estándar y Error estándar:
+
+```{r}
+tab_full<- fullmat %>% group_by(dataset) %>% summarise(mean=mean(ess,na.rm = T), sd=sd(ess,na.rm = T),SE=sd/sqrt(n()))
+tab_full
+```
+
+* Es posible observar que tanto la media como la desviación estándar van cambiando en la medida que aumenta el tamaño de la muestra, pero si observamos el Error Estándar, este va sistemáticamente disminuyendo en la medida que aumenta el tamaño muestral.
+
+Para ilustrar cómo va cambiando la dispersión y la media "muestral" (rojo) con respecto a la "poblacional" (verde), se puede observar el siguiente gráfico: 
+
+```{r eval=FALSE, include=FALSE}
+library(gganimate)
+library(transformr)
+anim_plot1 <- ggplot(fullmat,aes(ess)) +
+              geom_histogram(col = "black",fill = "blue",binwidth = 1) +
+              geom_line(data=fullmat, aes(y ), colour="red") + 
+              geom_vline(data=fullmat, aes(xintercept=mean_ess),linetype="dashed", size=1.0,color="red")+
+              geom_vline(data=fullmat, aes(xintercept=mean(mean_ssta,na.rm = T)),linetype="solid", size=0.5,color="green")+
+              transition_states(dataset,2,4) +
+              labs(title = 'Muestra: {closest_state}') +
+              xlab(label = "Estatus Social Subjetivo") +
+              ylab(label = "n") +
+              view_follow(fixed_x = TRUE) +
+              ease_aes('sine-in-out') 
+         
+anim_plot1
+```
+
+```{r eval=FALSE, include=FALSE}
+anim_save(filename = "static/images/ess_hist.gif",animation = anim_plot1,width = 1500, height = 500)
+```
+
+![](/images/ess_hist.gif)
+
+
+* Este ejemplo sirve para ilustrar de qué manera el Error Estándar de la media $\bar{x}$ nos permite determinar la significancia estadística de un coeficiente de regresión $\beta$.
+
+* En regresión nos interesa saber si las diferencias en Y con respecto a los distintos niveles o valores de X son significativas, es decir **estadisticamente distintas de 0**.
+
+**Volviendo nuestro ejemplo inicial**: Estatus Social subjetivo según Sexo.
+
+* Estimamos una regresión para cuatro de las muestras de distinto tamaño usando Sexo como predictor de Estatus subjetivo.
+
+```{r, results='hold'}
+reg100 <- lm(ess~sexo,data=elsoc_n100)
+reg1500<- lm(ess~sexo,data=elsoc_n1500)
+reg2000<- lm(ess~sexo,data=elsoc_n2000)
+reg2500<- lm(ess~sexo,data=elsoc_n2500)
+```
+
+* Nos interesa saber si el promedio de Mujeres respecto de Hombres es distinto de 0.
+* La estimación de la regresión realiza este procedimiento a través del cálculo de la significación estadística. Los modelos entregan el resultado ya calculado en base al Error Estándar del $\beta$. 
+
+* Para determinar esto, se realiza una prueba de hipótesis nula. En regresión la hipótesis nula es:
+
+$$ H_0: \beta =0$$ 
+En relación a la hipótesis alternativa:
+
+$$ H_0: \beta \neq 0$$ 
+
+* Este contraste se basa en el cálculo de un **invervalo de confianza** para el coeficiente, asumiendo +/- 2 SE (o al 95% de confianza). Entonces, si este inervalo **no pasa por cero**, entonces **rechazamos** $H_0$. 
+
+* Entonces, ¿es estadísticamente significativa la diferencia del promedio de Estatus Subjetivo entre hombres y mujeres?. Revisemos para nuestras muestras de distinto tamaño:
+
+```{r,results='hold'}
+rbind(broom::tidy(reg100)[2,1:3],  # n=100
+      broom::tidy(reg1500)[2,1:3], # n=1500
+      broom::tidy(reg2000)[2,1:3], # n=2000
+      broom::tidy(reg2500)[2,1:3]) # n=2500
+```
+
+* Al igual que en ejemplo anterior, el error estándar va sistematicamente disminuyendo en la medida que empleamos una muestra más grande. Ahora, ¿son estas diferencias en el promedio entre mujeres respecto de hombres estadísticamente signifciativas al 95% de confianza?. Calculemos los intervalos de confianza:
+
+* Para el caso de la muestra de 100 casos tenemos:
+
+```{r, results='hold'}
+#Beta  +/- 2*SE  = IC
+0.0440 - 2*0.314 #intervalo confianza inferior  
+0.0440 + 2*0.314 #intervalo confianza superior  
+```
+
+* Para el caso de la muestra de 1500 casos tenemos:
+
+```{r, results='hold'}
+0.0489 - 2*0.0829 #intervalo confianza inferior  
+0.0489 + 2*0.0829 #intervalo confianza superior  
+```
+
+* Para el caso de la muestra de 2000 casos tenemos:
+
+```{r, results='hold'}
+0.145 - 2*0.0715 #intervalo confianza inferior  
+0.145 + 2*0.0715 #intervalo confianza superior  
+```
+
+* Para el caso de la muestra de 2500 casos tenemos:
+
+```{r, results='hold'}
+0.196 - 2*0.0649 #intervalo confianza inferior  
+0.196 + 2*0.0649 #intervalo confianza superior  
+```
+
+* Vemos que para las muestras de 100 y 1500, el intervalo inferior cruza el valor 0, por tanto no rechazamos $H_0$. Lo cual implica que **no hay** diferencias estadísticamente significativas en el promedio de estatus social subjetivo de mujeres respecto de hombres.
+
+* Por otro lado, en muestras de 2000 y 2500, el intervalo inferior no cruza el valor 0, por tanto rechazamos $H_0$. Lo cual implica que la diferencia en el promedio de estatus social subjetivo de mujeres respecto de hombres es estadísticamente signficativa a un 95% de confianza.
+
+De manera resumida podemos verlo así:
+
+```{r}
+sjPlot::tab_model(list(reg100,reg1500,reg2000,reg2500),
+                  dv.labels = c("n=100","n=1500","n=2000","n=2500"), 
+                  show.se = T,digits = 3,
+                  string.est = "β",show.intercept = F,
+                  string.ci = "CI 95%",string.se = "SE",
+                  show.p = F)
+```
+
+# Resumen Práctica 7:
+En esta práctica revisamos los siguientes contenidos
+  - Predictores categóricos 
+  - Variables dummy
+  - Inferencia estadística
+  - Inferencia en Regresión 
+
+
+# Reporte de progreso
+
+Completar el reporte de progreso correspondiente a esta práctica [https://forms.gle/ACUm93yHPQQpLco4A]
+
+# Foro práctica 7
