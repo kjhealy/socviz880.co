@@ -30,7 +30,7 @@
   
     
   
-  <meta name="description" content="pre  code.sourceCode { white-space: pre; position: relative; }pre  code.sourceCode  span { display: inline-block; line-height: 1.25; }pre  code.sourceCode  span:empty { height: 1.2em; }code.sourceCode  span { color: inherit; text-decoration: inherit; }div.sourceCode { margin: 1em 0; }pre.sourceCode { margin: 0; }@media screen {div.sourceCode { overflow: auto; }}@media print {pre  code.sourceCode { white-space: pre-wrap; }pre  code.">
+  <meta name="description" content="a.sourceLine { display: inline-block; line-height: 1.25; } a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; } a.sourceLine:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } a.sourceLine { text-indent: -1em; padding-left: 1em; } } pre.">
 
   
   <link rel="alternate" hreflang="en-us" href="/assignment/07-code/">
@@ -236,13 +236,13 @@
   <meta property="og:site_name" content="Estadística Multivariada">
   <meta property="og:url" content="/assignment/07-code/">
   <meta property="og:title" content="Práctica 7. Regresión múltiple 3 | Estadística Multivariada">
-  <meta property="og:description" content="pre  code.sourceCode { white-space: pre; position: relative; }pre  code.sourceCode  span { display: inline-block; line-height: 1.25; }pre  code.sourceCode  span:empty { height: 1.2em; }code.sourceCode  span { color: inherit; text-decoration: inherit; }div.sourceCode { margin: 1em 0; }pre.sourceCode { margin: 0; }@media screen {div.sourceCode { overflow: auto; }}@media print {pre  code.sourceCode { white-space: pre-wrap; }pre  code."><meta property="og:image" content="/img/social-image.png">
+  <meta property="og:description" content="a.sourceLine { display: inline-block; line-height: 1.25; } a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; } a.sourceLine:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } a.sourceLine { text-indent: -1em; padding-left: 1em; } } pre."><meta property="og:image" content="/img/social-image.png">
   <meta property="twitter:image" content="/img/social-image.png"><meta property="og:locale" content="en-us">
   
     
       <meta property="article:published_time" content="2020-07-03T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2020-07-03T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2020-07-06T16:31:18-04:00">
   
 
   
@@ -610,33 +610,31 @@
                     <div class="article-style">
                         
 <!-- BLOGDOWN-HEAD -->
-<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 <script src="/rmarkdown-libs/clipboard/clipboard.min.js"></script>
 <link href="/rmarkdown-libs/primer-tooltips/build.css" rel="stylesheet" />
 <link href="/rmarkdown-libs/klippy/css/klippy.min.css" rel="stylesheet" />
 <script src="/rmarkdown-libs/klippy/js/klippy.min.js"></script>
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -645,9 +643,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  background-color: #f8f8f8; }
+  { background-color: #f8f8f8; }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -683,16 +681,14 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2>Índice</h2>
 <div id="TOC">
 <ul>
-<li><a href="#objetivo-de-la-práctica">Objetivo de la práctica</a>
-<ul>
+<li><a href="#objetivo-de-la-práctica">Objetivo de la práctica</a><ul>
 <li><a href="#predictores-categóricos">Predictores categóricos</a></li>
 <li><a href="#predictores-dicotómicos">Predictores dicotómicos</a></li>
 <li><a href="#librerías">Librerías</a></li>
 <li><a href="#datos">Datos</a></li>
 <li><a href="#explorar-base-de-datos">Explorar base de datos</a></li>
 <li><a href="#relacion-entre-variables">Relacion entre variables</a></li>
-<li><a href="#predictores-con-más-de-una-categoría">Predictores con más de una categoría</a>
-<ul>
+<li><a href="#predictores-con-más-de-una-categoría">Predictores con más de una categoría</a><ul>
 <li><a href="#variables-dummy">Variables dummy</a></li>
 </ul></li>
 </ul></li>
@@ -725,12 +721,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="librerías" class="section level2">
 <h2>Librerías</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(dplyr, <span class="co">#manipulacion de datos</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>               sjPlot, <span class="co">#tablas</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>               summarytools, <span class="co">#estadisticos descriptivos</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>               fastDummies, <span class="co"># Crear variable dummy</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>               sjlabelled <span class="co">#etiquetas variables</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a>               )</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">pacman<span class="op">::</span><span class="kw">p_load</span>(dplyr, <span class="co">#manipulacion de datos</span></a>
+<a class="sourceLine" id="cb1-2" title="2">               sjPlot, <span class="co">#tablas</span></a>
+<a class="sourceLine" id="cb1-3" title="3">               summarytools, <span class="co">#estadisticos descriptivos</span></a>
+<a class="sourceLine" id="cb1-4" title="4">               fastDummies, <span class="co"># Crear variable dummy</span></a>
+<a class="sourceLine" id="cb1-5" title="5">               sjlabelled, <span class="co">#etiquetas variables</span></a>
+<a class="sourceLine" id="cb1-6" title="6">               )</a></code></pre></div>
 </div>
 <div id="datos" class="section level2">
 <h2>Datos</h2>
@@ -742,7 +738,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li></li>
 <li><p>[<code>edad</code>]: ¿Cuáles su edad? (años cumplidos).</p></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">view_df</span>(elsoc_<span class="dv">18</span>,<span class="dt">encoding =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">view_df</span>(elsoc_<span class="dv">18</span>,<span class="dt">encoding =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <caption>
 Data frame: elsoc_18
@@ -831,12 +827,12 @@ Primaria incompleta menos<br>Primaria y secundaria baja<br>Secundaria alta<br>Te
 </tr>
 </table>
 <p>Primero, se cargará la base de datos</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">load</span>(<span class="st">&quot;data/proc/ELSOC_ess.RData&quot;</span>) <span class="co"># Cargar base de datos</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">load</span>(<span class="st">&quot;data/proc/ELSOC_ess.RData&quot;</span>) <span class="co"># Cargar base de datos</span></a></code></pre></div>
 </div>
 <div id="explorar-base-de-datos" class="section level2">
 <h2>Explorar base de datos</h2>
 <p>A partir de la siguiente tabla se obtienen estadísticos descriptivos que luego serán relevantes para la interpretación de nuestros modelos.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">view</span>(<span class="kw">dfSummary</span>(elsoc_<span class="dv">18</span>, <span class="dt">headings =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="st">&quot;render&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">view</span>(<span class="kw">dfSummary</span>(elsoc_<span class="dv">18</span>, <span class="dt">headings =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="st">&quot;render&quot;</span>))</a></code></pre></div>
 <div class="container st-container">
 <table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline ">
   <thead>
@@ -862,7 +858,7 @@ min < med < max:
 0 < 5 < 10
 IQR (CV) : 1 (0.4)</td>
       <td align="left" style="vertical-align:middle">11 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AcGByYZdLBNmQAAAJFJREFUaN7t2EEKgCAQQFGvYEeoG+T97ybhbAZkHMcihP93bh4jlFIpUaRsdLbyOAd2lacbDAwMDAwMDAwMDAwM7HNMPufewZpSwMDAwMDAgpi6llYxpYCBDTDHL24/VsYDgoG5sN6pGMZ6ys+Ysb95zFC2wayTaBqzBgTbFOs+IVFMDXgIvYiJIiv9oi+WKFIFMkG9NkfEQBAAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMDZUMTE6Mzg6MjUtMDQ6MDCWucbLAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTA2VDExOjM4OjI1LTA0OjAw5+R+dwAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBwcCBDQoqvJCAAABi0lEQVR42u3cQU7CUBRAUWtYHgvQFcoC3J9Oq7EfLgFa6jkzICnNDY9+2pTp64Xide0deDaCRYJFh/mDR3+fnQZv+DatUGPBfFcOV2/lJo4Lz3+uu1sDRjISLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLLr7zVmnnd3y+4C72Y6Lr2z3nrVlRjISLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLLrJRZC9XRkaudFVo31dGRoxkpFgkWCRYJFgkWDRyn+tvGyr/1O92WBbXdkZyUiwSLBIsEiwSLBIsOjiddh/Okk4EhauW11KPpaRjH58wozdeb9G0tidYySjzZ6tGFnz1M9TBlvzi8NIRoJFgkWCRYJFT3mUHLn3kmN3wa5bcox/FL7PQu8u2Mgoy6Whp/k2Pvz4/tP8EzZp1DhKRoJFgkXfLcMiPR+CViQAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMDdUMDI6MDQ6NTIrMDA6MDANkx+wAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTA3VDAyOjA0OjUyKzAwOjAwfM6nDAAAAABJRU5ErkJggg=="></td>
       <td align="center">3703
 (100%)</td>
       <td align="center">0
@@ -877,7 +873,7 @@ IQR (CV) : 1 (0.4)</td>
 Mean : 0.4
 Max : 1</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">0</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">2277</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">61.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1426</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">38.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGkAAAA4BAMAAAAMfstbAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqb39/f///+DdZCQAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AcGByYZdLBNmQAAAEBJREFUSMdjYBi+QIkkoADVpWxMChjVNaprVNeoLnJLG0GSgMCQ0YXX8zh14Qt5o1Fdo7pGdY3qwqKLvNJmOAIAaZdlquJhxgIAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMDZUMTE6Mzg6MjUtMDQ6MDCWucbLAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTA2VDExOjM4OjI1LTA0OjAw5+R+dwAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGkAAAA4CAQAAABUWR7jAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBwcCBDQoqvJCAAAAoUlEQVRo3u3YsQ5AMBRA0Vb8oI0vZPOJrCVhINR97t26ND1J2+HlJUWrqX0ASf8kteVixD6sIR+QUupqn+1S82YV8OJJIiSJkCRCkghJIiSJkCRCkghJIrSbPczXdvlUuRwKYQdEqRgQRbx4kghtvoepwmPq8/09TkjvT1uf+GEDXjxJhCQRkkRIEiFJhCQRkkRIEiFJhKJPW2MU8OJJIrQC6UIL1W6IZB4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMDdUMDI6MDQ6NTIrMDA6MDANkx+wAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTA3VDAyOjA0OjUyKzAwOjAwfM6nDAAAAABJRU5ErkJggg=="></td>
       <td align="center">3703
 (100%)</td>
       <td align="center">0
@@ -893,7 +889,7 @@ min < med < max:
 18 < 47 < 90
 IQR (CV) : 25 (0.3)</td>
       <td align="left" style="vertical-align:middle">70 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AcGByYZdLBNmQAAAL1JREFUaN7t2FEOgyAQRVG2UHdQ3UFn/3uzM2koBEWE+WjDfR8GE+cEjSIQAunJoyWrpnbBHWwTkRfY/2OLvhVu2NsRsAvMHvnTC9PymTAbxrwwM34EizfmgcXyNX7fDtgWjS5sKfoyghXlYGBgCVab8aVYPqSeYFLpXoqVVWBgN7FshjSK6QEMDGwC7OCf14/ZGRgYGBgYGBhYC3aw69aE5eueD3ZSdYlpAwwMbALsu+5xwKxhYjqeDSeQnuyDOtxzAU522AAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNy0wNlQxMTozODoyNS0wNDowMJa5xssAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDctMDZUMTE6Mzg6MjUtMDQ6MDDn5H53AAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBwcCBDQoqvJCAAABvElEQVR42u3cUY6CMBgAYTEejwPoCfUA3k9fwWJkmpb+rfO9uZvskgktpaLT6yTi3PoAemMwyGDQZfki4nz22Dio63TsMSz/3SX7rxxm/nj9bHo0DknIYJDBIINBBoOCXSUfEVc2K8GCRVtEpBySkMEgg0GV5rAId4B1VJv0o0/euRySkMGgpuuw+MvUVOOFa38znUMSKnKG9Ti0chUaknuG1hhZD5zD5uQn8WesVEawMc6UXFlnWH/XtnK8SkIGgwwGGQwyGGQwyGCQwSCDQeHeyN2j5VssP4NFvHNseRu/4wz75zvHlHMYZDDIYJDBIINBBoO6XLhuSdeLdZaywwQ7arXokIQMBhkMMhhkMMhgkMEgg0EGgwwGGQwyGDTMzXeqzv7FwMHq7F84JCGDQQaDDAYZDDIYZDDIYJDBIINBBoMMBhkMMhhkMMhgkMEgg0EGgwwGGQwyGGQwyGCQwSCDQQaDVs9WRPy4ckklHk/5eBhljC9F+6bE4ykOSchgkMEgg0EGgwwGGQwyGGQwyGCQwSCDQQN/EmQPvn/x58HS/YutLa7bIuK0/P198P2wXF+D6TcnfchgkMGgNwNNMJl2Z8tYAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA3LTA3VDAyOjA0OjUyKzAwOjAwDZMfsAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNy0wN1QwMjowNDo1MiswMDowMHzOpwwAAAAASUVORK5CYII="></td>
       <td align="center">3703
 (100%)</td>
       <td align="center">0
@@ -909,7 +905,7 @@ min < med < max:
 1 < 3 < 5
 IQR (CV) : 1 (0.4)</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">442</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">11.9%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">2</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">365</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">9.9%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">3</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1589</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">42.9%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">4</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">592</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">16.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">5</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">715</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">19.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAE0AAACABAMAAAC8UfnpAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqb39/f///+DdZCQAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AcGByYZdLBNmQAAAHhJREFUWMPt1sENgCAMRmFGsBuIbqD772ZiykEpaS8YIu+dvwMcfkJK47eVspgt6vZTw+EmctF9iFMvV47nOb3vgcPhahfdkTj13nmr9f2uNcLhZnbRHY2w8+y/a3c4HO7pojsSpy92bn07rPta3xgc7o8uuo+RuwDBgNUh1exjugAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNy0wNlQxMTozODoyNS0wNDowMJa5xssAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDctMDZUMTE6Mzg6MjUtMDQ6MDDn5H53AAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAE0AAACACAQAAADkdixRAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBwcCBDQoqvJCAAABAUlEQVR42u3ZQQ6CMBAFUDFc0J2eUHceUbeFhS3QgZG8WZUQyEs+Tfjp8LlknevRALS+M5YXz6YP7z7EccpXj9Nbt+rD7zjXbBIHioaGhoaGhoaGhrZyZj/g+/1e12com8rxdbmsLYkDTUybfGuvSqKRDbRC+91D994iiQNFQ0NDQ0NDQ0NDOx9NRW7mFOvEgSamLarI8fMoEl18VBs5002YOFA0NDQ0NDQ0NDS089FU5GZOsU4caGLaxoocea68qSLHbprEgaKhoaGhoaGhoaGdj6YiN3OKdeJAE9O6nSL3L8udTpEjtk/iQNHQ0NDQ0NDQ0NBWzr/00FyTOFC0NfMF8/cdf69MPL4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMDdUMDI6MDQ6NTIrMDA6MDANkx+wAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTA3VDAyOjA0OjUyKzAwOjAwfM6nDAAAAABJRU5ErkJggg=="></td>
       <td align="center">3703
 (100%)</td>
       <td align="center">0
@@ -923,18 +919,18 @@ IQR (CV) : 1 (0.4)</td>
 <div id="relacion-entre-variables" class="section level2">
 <h2>Relacion entre variables</h2>
 <p>Visualizar la asociación entre variables puede ser informativo. Sin embargo, en ocasiones es necesario prestar mayor atención al tipo de gráfico que utilizamos para esto. Por ejemplo, veamos un scatter de Estatus social Subjetivo <span class="math inline">\(Y_\text{estatus}\)</span> con sexo como independiente <span class="math inline">\(X_\text{sexo}\)</span> para comparar sus distribuciones y sus pendientes</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">plot_scatter</span>(<span class="dt">data =</span> elsoc_<span class="dv">18</span>,<span class="dt">x =</span> sexo,<span class="dt">y =</span> ess,<span class="dt">fit.grps =</span> <span class="st">&quot;lm&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">plot_scatter</span>(<span class="dt">data =</span> elsoc_<span class="dv">18</span>,<span class="dt">x =</span> sexo,<span class="dt">y =</span> ess,<span class="dt">fit.grps =</span> <span class="st">&quot;lm&quot;</span>)</a></code></pre></div>
 <p><img src="/assignment/07-code_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>El scatterplot no es muy informativo debido a que nuestra variable independiente solamente posee dos niveles, de modo tal que la distribución de Estatus Social Subjetivo se separa en dos grandes grupos. Por esta razón, una alternativa para visualizar la distirbución es elaborar un gráfico de cajas para ambas categorías:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">plot_grpfrq</span>(<span class="dt">var.cnt =</span> elsoc_<span class="dv">18</span><span class="op">$</span>ess,<span class="dt">var.grp =</span> elsoc_<span class="dv">18</span><span class="op">$</span>sexo,<span class="dt">type =</span> <span class="st">&quot;box&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">plot_grpfrq</span>(<span class="dt">var.cnt =</span> elsoc_<span class="dv">18</span><span class="op">$</span>ess,<span class="dt">var.grp =</span> elsoc_<span class="dv">18</span><span class="op">$</span>sexo,<span class="dt">type =</span> <span class="st">&quot;box&quot;</span>)</a></code></pre></div>
 <pre><code>## Warning: `fun.y` is deprecated. Use `fun` instead.</code></pre>
 <pre><code>## Warning in rq.fit.br(wx, wy, tau = tau, ...): Solution may be nonunique</code></pre>
 <p><img src="/assignment/07-code_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>En este sentido, al tener solamente dos niveles en los valores de la variable X: 0 (Hombre) y 1 (Mujer). Obtenemos solamente dos medias condicionales.</p>
 <p>Entonces, si calculamos el promedio simple para Estatus Social Subjetivo por sexo tenemos:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>elsoc_<span class="dv">18</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="st">  </span><span class="kw">group_by</span>(sexo) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">elsoc_<span class="dv">18</span> <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(sexo) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##    sexo mean_ess
 ##   &lt;dbl&gt;    &lt;dbl&gt;
@@ -942,9 +938,9 @@ IQR (CV) : 1 (0.4)</td>
 ## 2     1     4.47</code></pre>
 <p>Segun esto el promedio para las mujeres es de <strong>4.47</strong> puntos en la escala de Estatus Social Subjetivo, mientras para los hombres es de <strong>4.34</strong>.</p>
 <p>Realizando ahora la regresión:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>reg1&lt;-<span class="kw">lm</span>(ess <span class="op">~</span><span class="st"> </span>sexo, <span class="dt">data=</span>elsoc_<span class="dv">18</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg1), <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">p.style =</span> <span class="st">&quot;asterisk&quot;</span>,<span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>,<span class="dt">digits =</span> <span class="dv">3</span>,</span>
-<span id="cb12-2"><a href="#cb12-2"></a>                  <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 1&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">reg1&lt;-<span class="kw">lm</span>(ess <span class="op">~</span><span class="st"> </span>sexo, <span class="dt">data=</span>elsoc_<span class="dv">18</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg1), <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">p.style =</span> <span class="st">&quot;asterisk&quot;</span>,<span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>,<span class="dt">digits =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb12-2" title="2">                  <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 1&quot;</span>))</a></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -959,7 +955,7 @@ Modelo 1
 Predictores
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-ß
+β
 </td>
 </tr>
 <tr>
@@ -972,7 +968,7 @@ Predictores
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-Sexo (1=Mujer)
+Sexo(1=Mujer)
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.133 <sup>*</sup>
@@ -1007,16 +1003,16 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 Tenemos que las mujeres (Sexo = 1) tienen un promedio 0.133 puntos más alto que los hombres (Sexo = 0) en la escala de estatus social subjetivo. En este caso, el grupo de los hombres corresponde a la <strong>categoría de referencia</strong>.</p>
 <p>Por lo tanto, <em>¿cuál es la predicción de estatus social subjetivo para la variable sexo?</em></p>
 <p>Para el caso de los hombres tenemos:</p>
-<p><span class="math display">\[\widehat{Y}_\text{estatus} = 4.339 + 0.133 \times 0 = 4.339\]</span><br />
+<p><span class="math display">\[\widehat{Y}_\text{estatus} = 4.339 + 0.133 \times 0 = 4.339\]</span>
 En cambio, para las mujeres tenemos:</p>
 <p><span class="math display">\[\widehat{Y}_\text{estatus} = 4.339 + 0.133 \times 1 = 4.472\]</span></p>
 <p>Entonces cuando calculamos el promedio de Estatus social Subjetivo <span class="math inline">\(Y_\text{estatus}\)</span> para hombre (<span class="math inline">\(X_\text{sexo=0}\)</span>) mujer (<span class="math inline">\(X_\text{sexo=1}\)</span>), podemos observar que son los mismos valores que nos entrega la estimación de la regresión simple empleando Sexo como predictor de Estatus Social Subjetivo. Es decir:</p>
 <ul>
 <li>Al ingresar un regresor dicotómico en regresión simple lo que se obtiene es una estimación de la <strong>diferencia de promedios</strong> de ambas categorías en relación a la variable dependiente -en regresión múltiple esta diferencia se ajusta o controla por la presencia de otras variables, por ejemplo:</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>reg2&lt;-<span class="kw">lm</span>(ess <span class="op">~</span><span class="st"> </span>sexo<span class="op">+</span>edad, <span class="dt">data=</span>elsoc_<span class="dv">18</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg1,reg2), <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">p.style =</span> <span class="st">&quot;asterisk&quot;</span>,<span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>,<span class="dt">digits =</span> <span class="dv">3</span>,</span>
-<span id="cb14-2"><a href="#cb14-2"></a>                  <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 1&quot;</span>, <span class="st">&quot;Modelo 2&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">reg2&lt;-<span class="kw">lm</span>(ess <span class="op">~</span><span class="st"> </span>sexo<span class="op">+</span>edad, <span class="dt">data=</span>elsoc_<span class="dv">18</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg1,reg2), <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">p.style =</span> <span class="st">&quot;asterisk&quot;</span>,<span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>,<span class="dt">digits =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb14-2" title="2">                  <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 1&quot;</span>, <span class="st">&quot;Modelo 2&quot;</span>))</a></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -1034,10 +1030,10 @@ Modelo 2
 Predictores
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-ß
+β
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-ß
+β
 </td>
 </tr>
 <tr>
@@ -1053,7 +1049,7 @@ Predictores
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-Sexo (1=Mujer)
+Sexo(1=Mujer)
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.133 <sup>*</sup>
@@ -1104,9 +1100,9 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 </table>
 <p><span class="math display">\[\widehat{Y}_\text{estatus} = 4.602 + 0.126 \times \text{Sexo} + -0.006 \times \text{Edad} + \epsilon \]</span>
 Al controlar por la Edad de las personas, las mujeres tienen un promedio 0.126 más alto que el de los hombres en la escala de Estatus Social Subjetivo. Vemos que, en comparación con el Modelo 1, la diferencia en el promedio de estatus subjetivo de mujeres respecto de hombres se ajusta al incorporar la Edad. En este sentido, ¿por qué la diferencia en el promedio de estatus subjetivo entre mujeres y hombres puede verse afectada por la Edad?. Revisemos el promedio de Edad para hombres y mujeres:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>elsoc_<span class="dv">18</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="st">  </span><span class="kw">group_by</span>(sexo) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_ess=</span><span class="kw">mean</span>(edad,<span class="dt">na.rm =</span> T))</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">elsoc_<span class="dv">18</span> <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(sexo) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_ess=</span><span class="kw">mean</span>(edad,<span class="dt">na.rm =</span> T))</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##    sexo mean_ess
 ##   &lt;dbl&gt;    &lt;dbl&gt;
@@ -1118,7 +1114,7 @@ Al controlar por la Edad de las personas, las mujeres tienen un promedio 0.126 m
 <h2>Predictores con más de una categoría</h2>
 <p>Una de las características de estatus más importante es el nivel educacional de las personas. En este sentido, el nivel educacional puede considerarse como una variable contínua (p.ej: años de educación) o categórica (nivel/grado educacional), lo cual depende no solo de la distribución empírica de la variable sino que también del criterio de quien investiga.</p>
 <p>Para este ejercicio consideraremos la variable educación en base a las categorías de la Clasificación Internacional Normalizada de la Educación <strong><a href="http://uis.unesco.org/sites/default/files/documents/isced-2011-sp.pdf">(UNESCO)</a></strong>. La cual posee 5 niveles:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>sjmisc<span class="op">::</span><span class="kw">frq</span>(<span class="dt">x =</span> elsoc_<span class="dv">18</span><span class="op">$</span>edcine,<span class="dt">show.na =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">sjmisc<span class="op">::</span><span class="kw">frq</span>(<span class="dt">x =</span> elsoc_<span class="dv">18</span><span class="op">$</span>edcine,<span class="dt">show.na =</span> F)</a></code></pre></div>
 <pre><code>## 
 ## Educación (x) &lt;numeric&gt;
 ## # total N=3703  valid N=2988  mean=3.21  sd=1.21
@@ -1131,20 +1127,20 @@ Al controlar por la Edad de las personas, las mujeres tienen un promedio 0.126 m
 ##     4 |      Terciaria ciclo corto |  592 | 15.99 |   15.99 |  80.69
 ##     5 |      Terciaria y Postgrado |  715 | 19.31 |   19.31 | 100.00</code></pre>
 <p>Y se distribuye de esta manera:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">plot_frq</span>(<span class="dt">data =</span> elsoc_<span class="dv">18</span><span class="op">$</span>edcine)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">plot_frq</span>(<span class="dt">data =</span> elsoc_<span class="dv">18</span><span class="op">$</span>edcine)</a></code></pre></div>
 <p><img src="/assignment/07-code_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>Para poder incluir esta variable en la regresión como categórica en R la manera más simple es definirla como un factor. Primero necesitamos conocer la estructura de la variable, ya que puede venir previamente definida como factor:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">class</span>(elsoc_<span class="dv">18</span><span class="op">$</span>edcine)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">class</span>(elsoc_<span class="dv">18</span><span class="op">$</span>edcine)</a></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">str</span>(elsoc_<span class="dv">18</span><span class="op">$</span>edcine)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">str</span>(elsoc_<span class="dv">18</span><span class="op">$</span>edcine)</a></code></pre></div>
 <pre><code>##  num [1:3703] 2 3 3 4 3 3 3 4 5 2 ...
 ##  - attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 5
 ##   ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Primaria incompleta menos&quot; &quot;Primaria y secundaria baja&quot; &quot;Secundaria alta&quot; &quot;Terciaria ciclo corto&quot; ...
 ##  - attr(*, &quot;label&quot;)= chr &quot;Educación&quot;</code></pre>
 <p>Vemos que al emplear <code>class</code>, R nos indica que <code>edcine</code> es una variable numérica con 5 valores distintos. Además, al correr <code>str</code> se nos indica que dichos valores numéricos poseen atributos en forma de etiquetas (labels). Entonces, si estimamos la regresión con la variable tal cual como está, obtenemos lo siguiente:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>reg3&lt;-<span class="st"> </span><span class="kw">lm</span>(ess<span class="op">~</span>edcine,<span class="dt">data =</span> elsoc_<span class="dv">18</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg3), <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">p.style =</span> <span class="st">&quot;asterisk&quot;</span>,<span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>,<span class="dt">digits =</span> <span class="dv">3</span>,</span>
-<span id="cb25-2"><a href="#cb25-2"></a>                  <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 3&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">reg3&lt;-<span class="st"> </span><span class="kw">lm</span>(ess<span class="op">~</span>edcine,<span class="dt">data =</span> elsoc_<span class="dv">18</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg3), <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">p.style =</span> <span class="st">&quot;asterisk&quot;</span>,<span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>,<span class="dt">digits =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb25-2" title="2">                  <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 3&quot;</span>))</a></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -1159,7 +1155,7 @@ Modelo 3
 Predictores
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-ß
+β
 </td>
 </tr>
 <tr>
@@ -1203,14 +1199,14 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 </ul>
 </table>
 <p>El coeficiente de regresión nos indica que por cada nivel adicional de educación, hay un aumento de 0.331 puntos en la escala de estatus social subjetivo. Sin embargo, dada la naturaleza de nuestra variable, decir “por cada nivel educacional” es poco informativo, por lo tanto la manera más adecuada de utilizar nuestra variable en la estimación de una regresión es transformarla en un <strong>factor</strong> empleando la función <code>as_factor()</code> <span class="sidenote"> De la librería <code>sjlabelled</code> </span>.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>elsoc_<span class="dv">18</span><span class="op">$</span>edcine&lt;-<span class="st"> </span><span class="kw">as_factor</span>(elsoc_<span class="dv">18</span><span class="op">$</span>edcine)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">elsoc_<span class="dv">18</span><span class="op">$</span>edcine&lt;-<span class="st"> </span><span class="kw">as_factor</span>(elsoc_<span class="dv">18</span><span class="op">$</span>edcine)</a></code></pre></div>
 <div class="alert alert-info">
 <p><strong>Nota</strong>: en R existe la función <code>as.factor()</code>, sin embargo, en esa ocasión usamos <code>as_factor()</code> debido a que es compatible los vectores numéricos etiquetados y nos permite matener todos los atributos de las variables, tales como las etiquetas de variable y valores.</p>
 </div>
 <p>Teniendo nuestra variable transformada a factor, estimamos nuevamente la regresión:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>reg4 &lt;-<span class="st"> </span><span class="kw">lm</span>(ess<span class="op">~</span>edcine,<span class="dt">data =</span> elsoc_<span class="dv">18</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg3,reg4), <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">p.style =</span> <span class="st">&quot;asterisk&quot;</span>,<span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>,<span class="dt">digits =</span> <span class="dv">3</span>,</span>
-<span id="cb28-2"><a href="#cb28-2"></a>                  <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 3&quot;</span>,<span class="st">&quot;Modelo 4&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">reg4 &lt;-<span class="st"> </span><span class="kw">lm</span>(ess<span class="op">~</span>edcine,<span class="dt">data =</span> elsoc_<span class="dv">18</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg3,reg4), <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">p.style =</span> <span class="st">&quot;asterisk&quot;</span>,<span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>,<span class="dt">digits =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb28-2" title="2">                  <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 3&quot;</span>,<span class="st">&quot;Modelo 4&quot;</span>))</a></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -1228,10 +1224,10 @@ Modelo 4
 Predictores
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-ß
+β
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-ß
+β
 </td>
 </tr>
 <tr>
@@ -1333,8 +1329,8 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 <ul>
 <li>Alternativamente es posible cambiar la categoría de referencia. Por ejemplo, si quisieramos que la referencia fuera el nivel educativo más alto “Terciaria y Postgrado” (5) debemos usar <code>relevel(edcine, ref =5)</code>:</li>
 </ul>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>reg4<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(ess<span class="op">~</span><span class="kw">relevel</span>(edcine,<span class="dt">ref=</span><span class="dv">5</span>),<span class="dt">data =</span> elsoc_<span class="dv">18</span>)</span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="kw">summary</span>(reg4<span class="fl">.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">reg4<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(ess<span class="op">~</span><span class="kw">relevel</span>(edcine,<span class="dt">ref=</span><span class="dv">5</span>),<span class="dt">data =</span> elsoc_<span class="dv">18</span>)</a>
+<a class="sourceLine" id="cb29-2" title="2"><span class="kw">summary</span>(reg4<span class="fl">.1</span>)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = ess ~ relevel(edcine, ref = 5), data = elsoc_18)
@@ -1360,7 +1356,7 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 <h3>Variables dummy</h3>
 <p>La manera tradicional de incluir predictores categóricos de más de dos niveles (variable politómica) es a través de las denominadas <strong>variables dummy</strong>. Tal como vimos en el ejemplo anterior, se incluyen <strong>n-1 categorías</strong> en el modelo dado que siempre se mantiene una como categoría de referencia.</p>
 <p>Para explorar nuestra base de datos, usaremos la función <code>head()</code> que nos mostrará las primeras 6 filas de nuestra base de datos para observar la variable Educación.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="kw">head</span>(elsoc_<span class="dv">18</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="kw">head</span>(elsoc_<span class="dv">18</span>)</a></code></pre></div>
 <pre><code>##   ess sexo edad edcine
 ## 1   9    0   66      2
 ## 2   5    0   62      3
@@ -1369,10 +1365,10 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 ## 5   5    1   63      3
 ## 6   5    0   56      3</code></pre>
 <p>Para la construcción de las variables dummy, usaremos la función <code>dummy_cols()</code> de la librería <code>fastDummies</code>. En el argumento <code>select_columns</code>, le indicamos cuál es la variable que usaremos para construir las variables dummy:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="kw">library</span>(fastDummies)</span>
-<span id="cb33-2"><a href="#cb33-2"></a>elsoc_<span class="dv">18</span> &lt;-<span class="st"> </span><span class="kw">dummy_cols</span>(elsoc_<span class="dv">18</span>,<span class="dt">select_columns =</span> <span class="st">&quot;edcine&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">library</span>(fastDummies)</a>
+<a class="sourceLine" id="cb33-2" title="2">elsoc_<span class="dv">18</span> &lt;-<span class="st"> </span><span class="kw">dummy_cols</span>(elsoc_<span class="dv">18</span>,<span class="dt">select_columns =</span> <span class="st">&quot;edcine&quot;</span>)</a></code></pre></div>
 <p>Revisamos nuestra base de datos:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="kw">head</span>(elsoc_<span class="dv">18</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="kw">head</span>(elsoc_<span class="dv">18</span>)</a></code></pre></div>
 <pre><code>##   ess sexo edad edcine edcine_1 edcine_2 edcine_3 edcine_4 edcine_5
 ## 1   9    0   66      2        0        1        0        0        0
 ## 2   5    0   62      3        0        0        1        0        0
@@ -1381,9 +1377,9 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 ## 5   5    1   63      3        0        0        1        0        0
 ## 6   5    0   56      3        0        0        1        0        0</code></pre>
 <p>Tal como se estimó en el modelo anterior, ahora lo que haremos es seleccionar cada dummy para las categorías 2, 3, 4 y 5 de la variable <code>edcine</code>. Esto implica que el nivel 1 (Primaria incompleta o menos) será la categoría de referencia.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>reg5 &lt;-<span class="st"> </span><span class="kw">lm</span>(ess<span class="op">~</span>edcine_<span class="dv">2</span><span class="op">+</span>edcine_<span class="dv">3</span><span class="op">+</span>edcine_<span class="dv">4</span><span class="op">+</span>edcine_<span class="dv">5</span>,<span class="dt">data =</span> elsoc_<span class="dv">18</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg4, reg5), <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">p.style =</span> <span class="st">&quot;asterisk&quot;</span>,<span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>,<span class="dt">digits =</span> <span class="dv">3</span>,</span>
-<span id="cb37-2"><a href="#cb37-2"></a>                  <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 4&quot;</span>,<span class="st">&quot;Modelo 5&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1">reg5 &lt;-<span class="st"> </span><span class="kw">lm</span>(ess<span class="op">~</span>edcine_<span class="dv">2</span><span class="op">+</span>edcine_<span class="dv">3</span><span class="op">+</span>edcine_<span class="dv">4</span><span class="op">+</span>edcine_<span class="dv">5</span>,<span class="dt">data =</span> elsoc_<span class="dv">18</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg4, reg5), <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">p.style =</span> <span class="st">&quot;asterisk&quot;</span>,<span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>,<span class="dt">digits =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb37-2" title="2">                  <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 4&quot;</span>,<span class="st">&quot;Modelo 5&quot;</span>))</a></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -1401,10 +1397,10 @@ Modelo 5
 Predictores
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-ß
+β
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-ß
+β
 </td>
 </tr>
 <tr>
@@ -1460,7 +1456,7 @@ Educación: Terciaria y<br>Postgrado
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-edcine_2
+edcine 2
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 </td>
@@ -1470,7 +1466,7 @@ edcine_2
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-edcine_3
+edcine 3
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 </td>
@@ -1480,7 +1476,7 @@ edcine_3
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-edcine_4
+edcine 4
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 </td>
@@ -1490,7 +1486,7 @@ edcine_4
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-edcine_5
+edcine 5
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 </td>
@@ -1553,28 +1549,28 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 <li><p>Recordemos que la fórmula del Error Estándar para <strong>una muestra</strong> es : <span class="math inline">\(\frac{s}{\sqrt{N}}\)</span> donde <span class="math inline">\(s\)</span> es la desviación estándar y <span class="math inline">\(N\)</span> es el tamaño de la muestra.</p></li>
 <li><p>Bajo el supuesto de que el promedio calculado para la muestra <span class="math inline">\(\bar{x}\)</span> posee una distribución normal con una <span class="math inline">\(s = \text{Error Estándar (SE)}\)</span>, es posible calcular la probabilidad de error siguiendo dicha distribución. Donde <span class="math inline">\(\bar{x} \pm 2\text{ SE}\)</span> abarca el 95% de la distribución.</p></li>
 </ul>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="kw">set.seed</span>(<span class="dv">123</span>) </span>
-<span id="cb38-2"><a href="#cb38-2"></a>elsoc_n30  &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">30</span> )  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">30</span> ,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
-<span id="cb38-3"><a href="#cb38-3"></a>elsoc_n50  &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">50</span> )  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">50</span> ,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
-<span id="cb38-4"><a href="#cb38-4"></a>elsoc_n75  &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">75</span> )  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">75</span> ,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
-<span id="cb38-5"><a href="#cb38-5"></a>elsoc_n100 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">100</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">100</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
-<span id="cb38-6"><a href="#cb38-6"></a>elsoc_n200 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">200</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">200</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
-<span id="cb38-7"><a href="#cb38-7"></a>elsoc_n300 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">300</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">300</span> ,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
-<span id="cb38-8"><a href="#cb38-8"></a>elsoc_n400 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">400</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">400</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
-<span id="cb38-9"><a href="#cb38-9"></a>elsoc_n700 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">700</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">700</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
-<span id="cb38-10"><a href="#cb38-10"></a>elsoc_n800 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">800</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">800</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
-<span id="cb38-11"><a href="#cb38-11"></a>elsoc_n900 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">900</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">900</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
-<span id="cb38-12"><a href="#cb38-12"></a>elsoc_n1000&lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">1000</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">1000</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
-<span id="cb38-13"><a href="#cb38-13"></a>elsoc_n1500&lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">1500</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">1500</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
-<span id="cb38-14"><a href="#cb38-14"></a>elsoc_n2000&lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">2000</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">2000</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
-<span id="cb38-15"><a href="#cb38-15"></a>elsoc_n2500&lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">2500</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">2500</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
-<span id="cb38-16"><a href="#cb38-16"></a><span class="co"># elsoc      &lt;- elsoc_18 %&gt;% mutate(dataset=3703,mean_ess=mean(ess,na.rm = T))</span></span>
-<span id="cb38-17"><a href="#cb38-17"></a></span>
-<span id="cb38-18"><a href="#cb38-18"></a>fullmat&lt;-<span class="st"> </span><span class="kw">bind_rows</span>(elsoc_n30 ,elsoc_n50 ,elsoc_n75 ,elsoc_n100,elsoc_n200,elsoc_n300,elsoc_n400,elsoc_n700,elsoc_n800,elsoc_n900,elsoc_n1000,elsoc_n1500,elsoc_n2000,elsoc_n2500) </span>
-<span id="cb38-19"><a href="#cb38-19"></a>fullmat &lt;-<span class="st"> </span>fullmat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">mean_ssta=</span><span class="kw">mean</span>(elsoc_<span class="dv">18</span><span class="op">$</span>ess,<span class="dt">na.rm =</span> T))</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb38-2" title="2">elsoc_n30  &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">30</span> )  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">30</span> ,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</a>
+<a class="sourceLine" id="cb38-3" title="3">elsoc_n50  &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">50</span> )  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">50</span> ,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</a>
+<a class="sourceLine" id="cb38-4" title="4">elsoc_n75  &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">75</span> )  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">75</span> ,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</a>
+<a class="sourceLine" id="cb38-5" title="5">elsoc_n100 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">100</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">100</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</a>
+<a class="sourceLine" id="cb38-6" title="6">elsoc_n200 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">200</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">200</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</a>
+<a class="sourceLine" id="cb38-7" title="7">elsoc_n300 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">300</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">300</span> ,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</a>
+<a class="sourceLine" id="cb38-8" title="8">elsoc_n400 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">400</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">400</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</a>
+<a class="sourceLine" id="cb38-9" title="9">elsoc_n700 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">700</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">700</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</a>
+<a class="sourceLine" id="cb38-10" title="10">elsoc_n800 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">800</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">800</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</a>
+<a class="sourceLine" id="cb38-11" title="11">elsoc_n900 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">900</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">900</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</a>
+<a class="sourceLine" id="cb38-12" title="12">elsoc_n1000&lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">1000</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">1000</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</a>
+<a class="sourceLine" id="cb38-13" title="13">elsoc_n1500&lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">1500</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">1500</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</a>
+<a class="sourceLine" id="cb38-14" title="14">elsoc_n2000&lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">2000</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">2000</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</a>
+<a class="sourceLine" id="cb38-15" title="15">elsoc_n2500&lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">2500</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">2500</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</a>
+<a class="sourceLine" id="cb38-16" title="16"><span class="co"># elsoc      &lt;- elsoc_18 %&gt;% mutate(dataset=3703,mean_ess=mean(ess,na.rm = T))</span></a>
+<a class="sourceLine" id="cb38-17" title="17"></a>
+<a class="sourceLine" id="cb38-18" title="18">fullmat&lt;-<span class="st"> </span><span class="kw">bind_rows</span>(elsoc_n30 ,elsoc_n50 ,elsoc_n75 ,elsoc_n100,elsoc_n200,elsoc_n300,elsoc_n400,elsoc_n700,elsoc_n800,elsoc_n900,elsoc_n1000,elsoc_n1500,elsoc_n2000,elsoc_n2500)</a>
+<a class="sourceLine" id="cb38-19" title="19">fullmat &lt;-<span class="st"> </span>fullmat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">mean_ssta=</span><span class="kw">mean</span>(elsoc_<span class="dv">18</span><span class="op">$</span>ess,<span class="dt">na.rm =</span> T))</a></code></pre></div>
 <p>Luego de obtener las muestras, calculamos la media, desviación estándar y Error estándar:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>tab_full&lt;-<span class="st"> </span>fullmat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(dataset) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">mean=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T), <span class="dt">sd=</span><span class="kw">sd</span>(ess,<span class="dt">na.rm =</span> T),<span class="dt">SE=</span>sd<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()))</span>
-<span id="cb39-2"><a href="#cb39-2"></a>tab_full</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">tab_full&lt;-<span class="st"> </span>fullmat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(dataset) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">mean=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T), <span class="dt">sd=</span><span class="kw">sd</span>(ess,<span class="dt">na.rm =</span> T),<span class="dt">SE=</span>sd<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()))</a>
+<a class="sourceLine" id="cb39-2" title="2">tab_full</a></code></pre></div>
 <pre><code>## # A tibble: 14 x 4
 ##    dataset  mean    sd     SE
 ##      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
@@ -1605,10 +1601,10 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 <ul>
 <li>Estimamos una regresión para cuatro de las muestras de distinto tamaño usando Sexo como predictor de Estatus subjetivo.</li>
 </ul>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>reg100 &lt;-<span class="st"> </span><span class="kw">lm</span>(ess<span class="op">~</span>sexo,<span class="dt">data=</span>elsoc_n100)</span>
-<span id="cb41-2"><a href="#cb41-2"></a>reg1500&lt;-<span class="st"> </span><span class="kw">lm</span>(ess<span class="op">~</span>sexo,<span class="dt">data=</span>elsoc_n1500)</span>
-<span id="cb41-3"><a href="#cb41-3"></a>reg2000&lt;-<span class="st"> </span><span class="kw">lm</span>(ess<span class="op">~</span>sexo,<span class="dt">data=</span>elsoc_n2000)</span>
-<span id="cb41-4"><a href="#cb41-4"></a>reg2500&lt;-<span class="st"> </span><span class="kw">lm</span>(ess<span class="op">~</span>sexo,<span class="dt">data=</span>elsoc_n2500)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">reg100 &lt;-<span class="st"> </span><span class="kw">lm</span>(ess<span class="op">~</span>sexo,<span class="dt">data=</span>elsoc_n100)</a>
+<a class="sourceLine" id="cb41-2" title="2">reg1500&lt;-<span class="st"> </span><span class="kw">lm</span>(ess<span class="op">~</span>sexo,<span class="dt">data=</span>elsoc_n1500)</a>
+<a class="sourceLine" id="cb41-3" title="3">reg2000&lt;-<span class="st"> </span><span class="kw">lm</span>(ess<span class="op">~</span>sexo,<span class="dt">data=</span>elsoc_n2000)</a>
+<a class="sourceLine" id="cb41-4" title="4">reg2500&lt;-<span class="st"> </span><span class="kw">lm</span>(ess<span class="op">~</span>sexo,<span class="dt">data=</span>elsoc_n2500)</a></code></pre></div>
 <ul>
 <li><p>Nos interesa saber si el promedio de Mujeres respecto de Hombres es distinto de 0.</p></li>
 <li><p>La estimación de la regresión realiza este procedimiento a través del cálculo de la significación estadística. Los modelos entregan el resultado ya calculado en base al Error Estándar del <span class="math inline">\(\beta\)</span>.</p></li>
@@ -1621,10 +1617,10 @@ En relación a la hipótesis alternativa:</p>
 <li><p>Este contraste se basa en el cálculo de un <strong>invervalo de confianza</strong> para el coeficiente, asumiendo +/- 2 SE (o al 95% de confianza). Entonces, si este inervalo <strong>no pasa por cero</strong>, entonces <strong>rechazamos</strong> <span class="math inline">\(H_0\)</span>.</p></li>
 <li><p>Entonces, ¿es estadísticamente significativa la diferencia del promedio de Estatus Subjetivo entre hombres y mujeres?. Revisemos para nuestras muestras de distinto tamaño:</p></li>
 </ul>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="kw">rbind</span>(broom<span class="op">::</span><span class="kw">tidy</span>(reg100)[<span class="dv">2</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>],  <span class="co"># n=100</span></span>
-<span id="cb42-2"><a href="#cb42-2"></a>      broom<span class="op">::</span><span class="kw">tidy</span>(reg1500)[<span class="dv">2</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="co"># n=1500</span></span>
-<span id="cb42-3"><a href="#cb42-3"></a>      broom<span class="op">::</span><span class="kw">tidy</span>(reg2000)[<span class="dv">2</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="co"># n=2000</span></span>
-<span id="cb42-4"><a href="#cb42-4"></a>      broom<span class="op">::</span><span class="kw">tidy</span>(reg2500)[<span class="dv">2</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]) <span class="co"># n=2500</span></span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="kw">rbind</span>(broom<span class="op">::</span><span class="kw">tidy</span>(reg100)[<span class="dv">2</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>],  <span class="co"># n=100</span></a>
+<a class="sourceLine" id="cb42-2" title="2">      broom<span class="op">::</span><span class="kw">tidy</span>(reg1500)[<span class="dv">2</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="co"># n=1500</span></a>
+<a class="sourceLine" id="cb42-3" title="3">      broom<span class="op">::</span><span class="kw">tidy</span>(reg2000)[<span class="dv">2</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="co"># n=2000</span></a>
+<a class="sourceLine" id="cb42-4" title="4">      broom<span class="op">::</span><span class="kw">tidy</span>(reg2500)[<span class="dv">2</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]) <span class="co"># n=2500</span></a></code></pre></div>
 <pre><code>## # A tibble: 4 x 3
 ##   term  estimate std.error
 ##   &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
@@ -1636,30 +1632,30 @@ En relación a la hipótesis alternativa:</p>
 <li><p>Al igual que en ejemplo anterior, el error estándar va sistematicamente disminuyendo en la medida que empleamos una muestra más grande. Ahora, ¿son estas diferencias en el promedio entre mujeres respecto de hombres estadísticamente signifciativas al 95% de confianza?. Calculemos los intervalos de confianza:</p></li>
 <li><p>Para el caso de la muestra de 100 casos tenemos:</p></li>
 </ul>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="co">#Beta  +/- 2*SE  = IC</span></span>
-<span id="cb44-2"><a href="#cb44-2"></a><span class="fl">0.0440</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="fl">0.314</span> <span class="co">#intervalo confianza inferior  </span></span>
-<span id="cb44-3"><a href="#cb44-3"></a><span class="fl">0.0440</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="fl">0.314</span> <span class="co">#intervalo confianza superior  </span></span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="co">#Beta  +/- 2*SE  = IC</span></a>
+<a class="sourceLine" id="cb44-2" title="2"><span class="fl">0.0440</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="fl">0.314</span> <span class="co">#intervalo confianza inferior</span></a>
+<a class="sourceLine" id="cb44-3" title="3"><span class="fl">0.0440</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="fl">0.314</span> <span class="co">#intervalo confianza superior</span></a></code></pre></div>
 <pre><code>## [1] -0.584
 ## [1] 0.672</code></pre>
 <ul>
 <li>Para el caso de la muestra de 1500 casos tenemos:</li>
 </ul>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fl">0.0489</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="fl">0.0829</span> <span class="co">#intervalo confianza inferior  </span></span>
-<span id="cb46-2"><a href="#cb46-2"></a><span class="fl">0.0489</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="fl">0.0829</span> <span class="co">#intervalo confianza superior  </span></span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="fl">0.0489</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="fl">0.0829</span> <span class="co">#intervalo confianza inferior</span></a>
+<a class="sourceLine" id="cb46-2" title="2"><span class="fl">0.0489</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="fl">0.0829</span> <span class="co">#intervalo confianza superior</span></a></code></pre></div>
 <pre><code>## [1] -0.1169
 ## [1] 0.2147</code></pre>
 <ul>
 <li>Para el caso de la muestra de 2000 casos tenemos:</li>
 </ul>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fl">0.145</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="fl">0.0715</span> <span class="co">#intervalo confianza inferior  </span></span>
-<span id="cb48-2"><a href="#cb48-2"></a><span class="fl">0.145</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="fl">0.0715</span> <span class="co">#intervalo confianza superior  </span></span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="fl">0.145</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="fl">0.0715</span> <span class="co">#intervalo confianza inferior</span></a>
+<a class="sourceLine" id="cb48-2" title="2"><span class="fl">0.145</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="fl">0.0715</span> <span class="co">#intervalo confianza superior</span></a></code></pre></div>
 <pre><code>## [1] 0.002
 ## [1] 0.288</code></pre>
 <ul>
 <li>Para el caso de la muestra de 2500 casos tenemos:</li>
 </ul>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="fl">0.196</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="fl">0.0649</span> <span class="co">#intervalo confianza inferior  </span></span>
-<span id="cb50-2"><a href="#cb50-2"></a><span class="fl">0.196</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="fl">0.0649</span> <span class="co">#intervalo confianza superior  </span></span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="fl">0.196</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="fl">0.0649</span> <span class="co">#intervalo confianza inferior</span></a>
+<a class="sourceLine" id="cb50-2" title="2"><span class="fl">0.196</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="fl">0.0649</span> <span class="co">#intervalo confianza superior</span></a></code></pre></div>
 <pre><code>## [1] 0.0662
 ## [1] 0.3258</code></pre>
 <ul>
@@ -1667,12 +1663,12 @@ En relación a la hipótesis alternativa:</p>
 <li><p>Por otro lado, en muestras de 2000 y 2500, el intervalo inferior no cruza el valor 0, por tanto rechazamos <span class="math inline">\(H_0\)</span>. Lo cual implica que la diferencia en el promedio de estatus social subjetivo de mujeres respecto de hombres es estadísticamente signficativa a un 95% de confianza.</p></li>
 </ul>
 <p>De manera resumida podemos verlo así:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg100,reg1500,reg2000,reg2500),</span>
-<span id="cb52-2"><a href="#cb52-2"></a>                  <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;n=100&quot;</span>,<span class="st">&quot;n=1500&quot;</span>,<span class="st">&quot;n=2000&quot;</span>,<span class="st">&quot;n=2500&quot;</span>), </span>
-<span id="cb52-3"><a href="#cb52-3"></a>                  <span class="dt">show.se =</span> T,<span class="dt">digits =</span> <span class="dv">3</span>,</span>
-<span id="cb52-4"><a href="#cb52-4"></a>                  <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>,<span class="dt">show.intercept =</span> F,</span>
-<span id="cb52-5"><a href="#cb52-5"></a>                  <span class="dt">string.ci =</span> <span class="st">&quot;CI 95%&quot;</span>,<span class="dt">string.se =</span> <span class="st">&quot;SE&quot;</span>,</span>
-<span id="cb52-6"><a href="#cb52-6"></a>                  <span class="dt">show.p =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg100,reg1500,reg2000,reg2500),</a>
+<a class="sourceLine" id="cb52-2" title="2">                  <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;n=100&quot;</span>,<span class="st">&quot;n=1500&quot;</span>,<span class="st">&quot;n=2000&quot;</span>,<span class="st">&quot;n=2500&quot;</span>),</a>
+<a class="sourceLine" id="cb52-3" title="3">                  <span class="dt">show.se =</span> T,<span class="dt">digits =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb52-4" title="4">                  <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>,<span class="dt">show.intercept =</span> F,</a>
+<a class="sourceLine" id="cb52-5" title="5">                  <span class="dt">string.ci =</span> <span class="st">&quot;CI 95%&quot;</span>,<span class="dt">string.se =</span> <span class="st">&quot;SE&quot;</span>,</a>
+<a class="sourceLine" id="cb52-6" title="6">                  <span class="dt">show.p =</span> F)</a></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -1696,7 +1692,7 @@ n=2500
 Predictors
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-ß
+β
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
 SE
@@ -1705,7 +1701,7 @@ SE
 CI 95%
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-ß
+β
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
 SE
@@ -1714,7 +1710,7 @@ SE
 CI 95%
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col8">
-ß
+β
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col9">
 SE
@@ -1723,7 +1719,7 @@ SE
 CI 95%
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  1">
-ß
+β
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  2">
 SE
@@ -1734,7 +1730,7 @@ CI 95%
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-Sexo (1=Mujer)
+Sexo(1=Mujer)
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 0.044
@@ -1835,7 +1831,7 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
                 </div>
 
                 <div class="body-footer">
-                    <p>Last updated on July 3, 2020</p>
+                    <p>Last updated on July 6, 2020</p>
 
                     
 

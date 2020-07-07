@@ -19,7 +19,7 @@ menu:
     parent: Practicas
     weight: 1
 type: docs
-weight: 1 
+weight: 1
 editor_options:
   chunk_output_type: console
 ---
@@ -59,13 +59,13 @@ pacman::p_load(dplyr, #manipulacion de datos
                sjPlot, #tablas
                summarytools, #estadisticos descriptivos
                fastDummies, # Crear variable dummy
-               sjlabelled #etiquetas variables
+               sjlabelled, #etiquetas variables
                )
 ```
 
 ## Datos
 
-Los datos a utilizar corresponden a la base de datos **ELSOC 2018** que incluye una muestra de **3784** mujeres y hombres adultos entre 18 y 75 años. 
+Los datos a utilizar corresponden a la base de datos **ELSOC 2018** que incluye una muestra de **3784** mujeres y hombres adultos entre 18 y 75 años.
 
 ```{r include=FALSE}
 # load("content/assignment/data/proc/ELSOC_ess_merit2018.RData") # Cargar base de datos
@@ -75,14 +75,14 @@ Los datos a utilizar corresponden a la base de datos **ELSOC 2018** que incluye 
 # elsoc_18$sexo <- as.numeric(elsoc_18$sexo)
 # elsoc_18$sexo[elsoc_18$sexo==1] <- 0
 # elsoc_18$sexo[elsoc_18$sexo==2] <- 1
-# 
+#
 # elsoc_18$sexo <- sjlabelled::set_labels(elsoc_18$sexo,labels = c("Hombre"=0,"Mujer"=1))
 # elsoc_18$edcine <- sjlabelled::set_labels(x = as.numeric(elsoc_18$edcine),labels = sjlabelled::get_labels(proc_elsoc$edcine))
 # elsoc_18$ess     <- set_label(x = elsoc_18$ess,label  = "Estatus Social Subjetivo")
 # elsoc_18$sexo    <- set_label(x = elsoc_18$sexo,label = "Sexo (1=Mujer)")
 # elsoc_18$edad    <- set_label(x = elsoc_18$edad,label = "Edad")
 # elsoc_18$edcine  <- set_label(x = elsoc_18$edcine,label = "Educación")
-# 
+#
 # save(elsoc_18,file = "content/assignment/data/proc/ELSOC_ess.RData")
 load(file = "content/assignment/data/proc/ELSOC_ess.RData")
 ```
@@ -91,8 +91,8 @@ load(file = "content/assignment/data/proc/ELSOC_ess.RData")
 
 * [`ess`]: "Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena" (0 = el nivel mas bajo; 10 = el nivel mas alto)
 
-* [`edcine`]: ¿Cuál es su nivel educacional? Indique el tipo de estudio actual (si estudia actualmente) o el último tipo aprobado (si no estudia actualmente) -  **CINE 2011 (UNESCO)**. 
- 
+* [`edcine`]: ¿Cuál es su nivel educacional? Indique el tipo de estudio actual (si estudia actualmente) o el último tipo aprobado (si no estudia actualmente) -  **CINE 2011 (UNESCO)**.
+
 * [`sexo`]: Sexo entrevistado.
 
 * [`edad`]: ¿Cuáles su edad? (años cumplidos).
@@ -127,7 +127,7 @@ print(dfSummary(elsoc_18, headings = FALSE), method = 'render')
 Visualizar la asociación entre variables puede ser informativo. Sin embargo, en ocasiones es necesario prestar mayor atención al tipo de gráfico que utilizamos para esto. Por ejemplo, veamos un scatter de Estatus social Subjetivo $Y_\text{estatus}$ con sexo como independiente $X_\text{sexo}$ para comparar sus distribuciones y sus pendientes
 
 ```{r}
-plot_scatter(data = elsoc_18,x = sexo,y = ess,fit.grps = "lm") 
+plot_scatter(data = elsoc_18,x = sexo,y = ess,fit.grps = "lm")
 ```
 
 El scatterplot no es muy informativo debido a que nuestra variable independiente solamente posee dos niveles, de modo tal que la distribución de Estatus Social Subjetivo se separa en dos grandes grupos. Por esta razón, una alternativa para visualizar la distirbución es elaborar un gráfico de cajas para ambas categorías:
@@ -141,12 +141,12 @@ En este sentido, al tener solamente dos niveles en los valores de la variable X:
 Entonces, si calculamos el promedio simple para Estatus Social Subjetivo por sexo tenemos:
 
 ```{r}
-elsoc_18 %>% 
-  group_by(sexo) %>% 
+elsoc_18 %>%
+  group_by(sexo) %>%
   summarise(mean_ess=mean(ess,na.rm = T))
 ```
 
-Segun esto el promedio para las mujeres es de **4.47** puntos en la escala de Estatus Social Subjetivo, mientras para los hombres es de **4.34**. 
+Segun esto el promedio para las mujeres es de **4.47** puntos en la escala de Estatus Social Subjetivo, mientras para los hombres es de **4.34**.
 
 Realizando ahora la regresión:
 
@@ -168,7 +168,7 @@ Por lo tanto, _¿cuál es la predicción de estatus social subjetivo para la var
 
 Para el caso de los hombres tenemos:
 
-$$\widehat{Y}_\text{estatus} = 4.339 + 0.133 \times 0 = 4.339$$  
+$$\widehat{Y}_\text{estatus} = 4.339 + 0.133 \times 0 = 4.339$$
 En cambio, para las mujeres tenemos:
 
 $$\widehat{Y}_\text{estatus} = 4.339 + 0.133 \times 1 = 4.472$$
@@ -188,20 +188,20 @@ sjPlot::tab_model(list(reg1,reg2), show.ci=FALSE, p.style = "asterisk",string.pr
 ```
 
 $$\widehat{Y}_\text{estatus} = 4.602 + 0.126 \times \text{Sexo} + -0.006 \times \text{Edad} + \epsilon $$
-Al controlar por la Edad de las personas, las mujeres tienen un promedio 0.126 más alto que el de los hombres en la escala de Estatus Social Subjetivo. Vemos que, en comparación con el Modelo 1, la diferencia en el promedio de estatus subjetivo de mujeres respecto de hombres se ajusta al incorporar la Edad. En este sentido, ¿por qué la diferencia en el promedio de estatus subjetivo entre mujeres y hombres puede verse afectada por la Edad?. Revisemos el promedio de Edad para hombres y mujeres:  
+Al controlar por la Edad de las personas, las mujeres tienen un promedio 0.126 más alto que el de los hombres en la escala de Estatus Social Subjetivo. Vemos que, en comparación con el Modelo 1, la diferencia en el promedio de estatus subjetivo de mujeres respecto de hombres se ajusta al incorporar la Edad. En este sentido, ¿por qué la diferencia en el promedio de estatus subjetivo entre mujeres y hombres puede verse afectada por la Edad?. Revisemos el promedio de Edad para hombres y mujeres:
 
 ```{r}
-elsoc_18 %>% 
-  group_by(sexo) %>% 
+elsoc_18 %>%
+  group_by(sexo) %>%
   summarise(mean_ess=mean(edad,na.rm = T))
 ```
 
-Esta información nos permite observar que los hombres tienen un promedio de edad de 1.2 años mayor que el de las mujeres. En este sentido, lo que vemos es que la diferencia promedio de estatus subjetivo entre hombres y mujeres disminuye de 0.136 a 0.126, es decir, se ajusta al considerar (controlar por) la edad de las personas. 
+Esta información nos permite observar que los hombres tienen un promedio de edad de 1.2 años mayor que el de las mujeres. En este sentido, lo que vemos es que la diferencia promedio de estatus subjetivo entre hombres y mujeres disminuye de 0.136 a 0.126, es decir, se ajusta al considerar (controlar por) la edad de las personas.
 
 
 ## Predictores con más de una categoría
 
-Una de las características de estatus más importante es el nivel educacional de las personas. En este sentido, el nivel educacional puede considerarse como una variable contínua (p.ej: años de educación) o categórica (nivel/grado educacional), lo cual depende no solo de la distribución empírica de la variable sino que también del criterio de quien investiga. 
+Una de las características de estatus más importante es el nivel educacional de las personas. En este sentido, el nivel educacional puede considerarse como una variable contínua (p.ej: años de educación) o categórica (nivel/grado educacional), lo cual depende no solo de la distribución empírica de la variable sino que también del criterio de quien investiga.
 
 Para este ejercicio consideraremos la variable educación en base a las categorías de la Clasificación Internacional Normalizada de la Educación **[(UNESCO)](http://uis.unesco.org/sites/default/files/documents/isced-2011-sp.pdf)**. La cual posee 5 niveles:
 
@@ -233,18 +233,18 @@ sjPlot::tab_model(list(reg3), show.ci=FALSE, p.style = "asterisk",string.pred = 
                   dv.labels = c("Modelo 3"))
 ```
 
-El coeficiente de regresión nos indica que por cada nivel adicional de educación, hay un aumento de 0.331 puntos en la escala de estatus social subjetivo. Sin embargo, dada la naturaleza de nuestra variable, decir "por cada nivel educacional" es poco informativo, por lo tanto la manera más adecuada de utilizar nuestra variable en la estimación de una regresión es transformarla en un **factor** empleando la función `as_factor()` <span class="sidenote"> De la librería `sjlabelled` </span>.  
+El coeficiente de regresión nos indica que por cada nivel adicional de educación, hay un aumento de 0.331 puntos en la escala de estatus social subjetivo. Sin embargo, dada la naturaleza de nuestra variable, decir "por cada nivel educacional" es poco informativo, por lo tanto la manera más adecuada de utilizar nuestra variable en la estimación de una regresión es transformarla en un **factor** empleando la función `as_factor()` <span class="sidenote"> De la librería `sjlabelled` </span>.
 
 ```{r}
 elsoc_18$edcine<- as_factor(elsoc_18$edcine)
 ```
 
 <div class="alert alert-info">
-**Nota**: en R existe la función `as.factor()`, sin embargo, en esa ocasión usamos `as_factor()` debido a que es compatible los vectores numéricos etiquetados y nos permite matener todos los atributos de las variables, tales como las etiquetas de variable y valores. 
+**Nota**: en R existe la función `as.factor()`, sin embargo, en esa ocasión usamos `as_factor()` debido a que es compatible los vectores numéricos etiquetados y nos permite matener todos los atributos de las variables, tales como las etiquetas de variable y valores.
 </div>
- 
-Teniendo nuestra variable transformada a factor, estimamos nuevamente la regresión: 
- 
+
+Teniendo nuestra variable transformada a factor, estimamos nuevamente la regresión:
+
 ```{r}
 reg4 <- lm(ess~edcine,data = elsoc_18)
 ```
@@ -274,7 +274,7 @@ summary(reg4.1)
 
 ### Variables dummy
 
-La manera tradicional de incluir predictores categóricos de más de dos niveles (variable politómica) es a través de las denominadas **variables dummy**. Tal como vimos en el ejemplo anterior, se incluyen **n-1 categorías** en el modelo dado que siempre se mantiene una como categoría de referencia. 
+La manera tradicional de incluir predictores categóricos de más de dos niveles (variable politómica) es a través de las denominadas **variables dummy**. Tal como vimos en el ejemplo anterior, se incluyen **n-1 categorías** en el modelo dado que siempre se mantiene una como categoría de referencia.
 
 Para explorar nuestra base de datos, usaremos la función `head()` que nos mostrará las primeras 6 filas de nuestra base de datos para observar la variable Educación.
 
@@ -310,11 +310,11 @@ Si observamos la tabla de arriba, vemos que las estimaciones para el modelo 4 y 
 
 # Inferencia
 
-Una de las ideas fundamentales de la inferencia es determinar si nuestros análisis estadísticos pueden ser extrapolados a la población que estamos estudiando. En el contexto de regresión, queremos conocer la significación estadística del coeficiente $\beta$. 
+Una de las ideas fundamentales de la inferencia es determinar si nuestros análisis estadísticos pueden ser extrapolados a la población que estamos estudiando. En el contexto de regresión, queremos conocer la significación estadística del coeficiente $\beta$.
 
 Queremos saber :
 
-1. ¿Es significativo el coeficiente del modelo de regresión?. 
+1. ¿Es significativo el coeficiente del modelo de regresión?.
 
 2. Para ello, buscamos determinar la probabilidad de que $\beta \neq 0$
 
@@ -325,19 +325,19 @@ Conceptos clave:
 
 1. Dispersión
 2. Curva normal
-3. Error estándar 
+3. Error estándar
 
 **Ejemplo**
 
-Supongamos que nuestra muestra de 3703 casos corresponde a la **Población**, de modo tal que vamos a extraer una serie de muestras aleatorias de esta "Población" a modo de ilustrar cambios en la dispersión de los datos en la medida que aumenta el tamaño muestral.  
+Supongamos que nuestra muestra de 3703 casos corresponde a la **Población**, de modo tal que vamos a extraer una serie de muestras aleatorias de esta "Población" a modo de ilustrar cambios en la dispersión de los datos en la medida que aumenta el tamaño muestral.
 
 
 * Recordemos que la fórmula del Error Estándar para **una muestra** es : $\frac{s}{\sqrt{N}}$ donde $s$ es la desviación estándar y $N$ es el tamaño de la muestra.
 
 * Bajo el supuesto de que el promedio calculado para la muestra $\bar{x}$ posee una distribución normal con una $s = \text{Error Estándar (SE)}$, es posible calcular la probabilidad de error siguiendo dicha distribución. Donde $\bar{x} \pm 2\text{ SE}$ abarca el 95% de la distribución.
 
-```{r} 
-set.seed(123) 
+```{r}
+set.seed(123)
 elsoc_n30  <- sample_n(tbl = elsoc_18,size = 30 )  %>% mutate(dataset=30 ,mean_ess=mean(ess,na.rm = T))
 elsoc_n50  <- sample_n(tbl = elsoc_18,size = 50 )  %>% mutate(dataset=50 ,mean_ess=mean(ess,na.rm = T))
 elsoc_n75  <- sample_n(tbl = elsoc_18,size = 75 )  %>% mutate(dataset=75 ,mean_ess=mean(ess,na.rm = T))
@@ -354,7 +354,7 @@ elsoc_n2000<- sample_n(tbl = elsoc_18,size = 2000) %>% mutate(dataset=2000,mean_
 elsoc_n2500<- sample_n(tbl = elsoc_18,size = 2500) %>% mutate(dataset=2500,mean_ess=mean(ess,na.rm = T))
 # elsoc      <- elsoc_18 %>% mutate(dataset=3703,mean_ess=mean(ess,na.rm = T))
 
-fullmat<- bind_rows(elsoc_n30 ,elsoc_n50 ,elsoc_n75 ,elsoc_n100,elsoc_n200,elsoc_n300,elsoc_n400,elsoc_n700,elsoc_n800,elsoc_n900,elsoc_n1000,elsoc_n1500,elsoc_n2000,elsoc_n2500) 
+fullmat<- bind_rows(elsoc_n30 ,elsoc_n50 ,elsoc_n75 ,elsoc_n100,elsoc_n200,elsoc_n300,elsoc_n400,elsoc_n700,elsoc_n800,elsoc_n900,elsoc_n1000,elsoc_n1500,elsoc_n2000,elsoc_n2500)
 fullmat <- fullmat %>% mutate(mean_ssta=mean(elsoc_18$ess,na.rm = T))
 ```
 
@@ -367,14 +367,14 @@ tab_full
 
 * Es posible observar que tanto la media como la desviación estándar van cambiando en la medida que aumenta el tamaño de la muestra, pero si observamos el Error Estándar, este va sistemáticamente disminuyendo en la medida que aumenta el tamaño muestral.
 
-Para ilustrar cómo va cambiando la dispersión y la media "muestral" (rojo) con respecto a la "poblacional" (verde), se puede observar el siguiente gráfico: 
+Para ilustrar cómo va cambiando la dispersión y la media "muestral" (rojo) con respecto a la "poblacional" (verde), se puede observar el siguiente gráfico:
 
 ```{r eval=FALSE, include=FALSE}
 library(gganimate)
 library(transformr)
 anim_plot1 <- ggplot(fullmat,aes(ess)) +
               geom_histogram(col = "black",fill = "blue",binwidth = 1) +
-              geom_line(data=fullmat, aes(y ), colour="red") + 
+              geom_line(data=fullmat, aes(y ), colour="red") +
               geom_vline(data=fullmat, aes(xintercept=mean_ess),linetype="dashed", size=1.0,color="red")+
               geom_vline(data=fullmat, aes(xintercept=mean(mean_ssta,na.rm = T)),linetype="solid", size=0.5,color="green")+
               transition_states(dataset,2,4) +
@@ -382,8 +382,8 @@ anim_plot1 <- ggplot(fullmat,aes(ess)) +
               xlab(label = "Estatus Social Subjetivo") +
               ylab(label = "n") +
               view_follow(fixed_x = TRUE) +
-              ease_aes('sine-in-out') 
-         
+              ease_aes('sine-in-out')
+
 anim_plot1
 ```
 
@@ -410,16 +410,16 @@ reg2500<- lm(ess~sexo,data=elsoc_n2500)
 ```
 
 * Nos interesa saber si el promedio de Mujeres respecto de Hombres es distinto de 0.
-* La estimación de la regresión realiza este procedimiento a través del cálculo de la significación estadística. Los modelos entregan el resultado ya calculado en base al Error Estándar del $\beta$. 
+* La estimación de la regresión realiza este procedimiento a través del cálculo de la significación estadística. Los modelos entregan el resultado ya calculado en base al Error Estándar del $\beta$.
 
 * Para determinar esto, se realiza una prueba de hipótesis nula. En regresión la hipótesis nula es:
 
-$$ H_0: \beta =0$$ 
+$$ H_0: \beta =0$$
 En relación a la hipótesis alternativa:
 
-$$ H_0: \beta \neq 0$$ 
+$$ H_0: \beta \neq 0$$
 
-* Este contraste se basa en el cálculo de un **invervalo de confianza** para el coeficiente, asumiendo +/- 2 SE (o al 95% de confianza). Entonces, si este inervalo **no pasa por cero**, entonces **rechazamos** $H_0$. 
+* Este contraste se basa en el cálculo de un **invervalo de confianza** para el coeficiente, asumiendo +/- 2 SE (o al 95% de confianza). Entonces, si este inervalo **no pasa por cero**, entonces **rechazamos** $H_0$.
 
 * Entonces, ¿es estadísticamente significativa la diferencia del promedio de Estatus Subjetivo entre hombres y mujeres?. Revisemos para nuestras muestras de distinto tamaño:
 
@@ -436,29 +436,29 @@ rbind(broom::tidy(reg100)[2,1:3],  # n=100
 
 ```{r, results='hold'}
 #Beta  +/- 2*SE  = IC
-0.0440 - 2*0.314 #intervalo confianza inferior  
-0.0440 + 2*0.314 #intervalo confianza superior  
+0.0440 - 2*0.314 #intervalo confianza inferior
+0.0440 + 2*0.314 #intervalo confianza superior
 ```
 
 * Para el caso de la muestra de 1500 casos tenemos:
 
 ```{r, results='hold'}
-0.0489 - 2*0.0829 #intervalo confianza inferior  
-0.0489 + 2*0.0829 #intervalo confianza superior  
+0.0489 - 2*0.0829 #intervalo confianza inferior
+0.0489 + 2*0.0829 #intervalo confianza superior
 ```
 
 * Para el caso de la muestra de 2000 casos tenemos:
 
 ```{r, results='hold'}
-0.145 - 2*0.0715 #intervalo confianza inferior  
-0.145 + 2*0.0715 #intervalo confianza superior  
+0.145 - 2*0.0715 #intervalo confianza inferior
+0.145 + 2*0.0715 #intervalo confianza superior
 ```
 
 * Para el caso de la muestra de 2500 casos tenemos:
 
 ```{r, results='hold'}
-0.196 - 2*0.0649 #intervalo confianza inferior  
-0.196 + 2*0.0649 #intervalo confianza superior  
+0.196 - 2*0.0649 #intervalo confianza inferior
+0.196 + 2*0.0649 #intervalo confianza superior
 ```
 
 * Vemos que para las muestras de 100 y 1500, el intervalo inferior cruza el valor 0, por tanto no rechazamos $H_0$. Lo cual implica que **no hay** diferencias estadísticamente significativas en el promedio de estatus social subjetivo de mujeres respecto de hombres.
@@ -469,7 +469,7 @@ De manera resumida podemos verlo así:
 
 ```{r}
 sjPlot::tab_model(list(reg100,reg1500,reg2000,reg2500),
-                  dv.labels = c("n=100","n=1500","n=2000","n=2500"), 
+                  dv.labels = c("n=100","n=1500","n=2000","n=2500"),
                   show.se = T,digits = 3,
                   string.est = "β",show.intercept = F,
                   string.ci = "CI 95%",string.se = "SE",
@@ -478,10 +478,10 @@ sjPlot::tab_model(list(reg100,reg1500,reg2000,reg2500),
 
 # Resumen Práctica 7:
 En esta práctica revisamos los siguientes contenidos
-  - Predictores categóricos 
+  - Predictores categóricos
   - Variables dummy
   - Inferencia estadística
-  - Inferencia en Regresión 
+  - Inferencia en Regresión
 
 
 # Reporte de progreso
