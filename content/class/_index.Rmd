@@ -21,7 +21,7 @@ Todo el material es accesible desde el menú de la izquierda <--
 
 ## Instrucciones generales para las prácticas
 
-- Las prácticas se desarrollarán semana a semana en el horario correspondiente a cada sección (Jueves Sección 1, Viernes Sección 2, de 9:00 a 10:00); ver detalles en la [planificación del curso](/schedule).
+- Las prácticas se desarrollarán semana a semana en el horario correspondiente a cada sección (Jueves Sección 1, Viernes Sección 2, de 8:30 a 10:00); ver detalles en la [planificación del curso](/schedule).
 
 - Estas sesiones acompañarán el desarrollo de las guías prácticas disponibles en este sitio.
 
