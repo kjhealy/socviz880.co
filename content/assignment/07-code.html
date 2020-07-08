@@ -101,7 +101,6 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#predictores-dicotómicos">Predictores dicotómicos</a></li>
 <li><a href="#librerías">Librerías</a></li>
 <li><a href="#datos">Datos</a></li>
-<li><a href="#explorar-base-de-datos">Explorar base de datos</a></li>
 <li><a href="#relacion-entre-variables">Relacion entre variables</a></li>
 <li><a href="#predictores-con-más-de-una-categoría">Predictores con más de una categoría</a><ul>
 <li><a href="#variables-dummy">Variables dummy</a></li>
@@ -147,7 +146,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="datos" class="section level2">
 <h2>Datos</h2>
-<p>Los datos a utilizar corresponden a la base de datos <strong>ELSOC 2018</strong> que incluye una muestra de <strong>3784</strong> mujeres y hombres adultos entre 18 y 75 años.</p>
+<p>Primero, se cargará la base de datos</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess.RData&quot;</span>)) <span class="co"># Cargar base de datos</span></a>
+<a class="sourceLine" id="cb2-2" title="2"></a>
+<a class="sourceLine" id="cb2-3" title="3">Los datos a utilizar corresponden a la base de datos <span class="op">**</span>ELSOC <span class="dv">2018</span><span class="op">**</span><span class="st"> </span>que incluye una muestra de <span class="op">**</span><span class="dv">3784</span><span class="op">**</span><span class="st"> </span>mujeres y hombres adultos entre <span class="dv">18</span> y <span class="dv">75</span> años.</a></code></pre></div>
 <p><strong>Variables</strong></p>
 <ul>
 <li><p>[<code>ess</code>]: “Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena” (0 = el nivel mas bajo; 10 = el nivel mas alto)</p></li>
@@ -155,7 +157,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li></li>
 <li><p>[<code>edad</code>]: ¿Cuáles su edad? (años cumplidos).</p></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">view_df</span>(elsoc_<span class="dv">18</span>,<span class="dt">encoding =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">view_df</span>(elsoc_<span class="dv">18</span>,<span class="dt">encoding =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <caption>
 Data frame: elsoc_18
@@ -243,13 +245,14 @@ Primaria incompleta menos<br>Primaria y secundaria baja<br>Secundaria alta<br>Te
 </td>
 </tr>
 </table>
-<p>Primero, se cargará la base de datos</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess.RData&quot;</span>)) <span class="co"># Cargar base de datos</span></a></code></pre></div>
-</div>
-<div id="explorar-base-de-datos" class="section level2">
-<h2>Explorar base de datos</h2>
-<p>A partir de la siguiente tabla se obtienen estadísticos descriptivos que luego serán relevantes para la interpretación de nuestros modelos.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">view</span>(<span class="kw">dfSummary</span>(elsoc_<span class="dv">18</span>, <span class="dt">headings =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="st">&quot;render&quot;</span>))</a></code></pre></div>
+<pre><code>
+## Explorar base de datos
+
+A partir de la siguiente tabla se obtienen estadísticos descriptivos que luego serán relevantes para la interpretación de nuestros modelos.
+
+
+```r
+view(dfSummary(elsoc_18, headings = FALSE, method = &quot;render&quot;))</code></pre>
 <div class="container st-container">
 <table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline ">
   <thead>
@@ -275,7 +278,7 @@ min < med < max:
 0 < 5 < 10
 IQR (CV) : 1 (0.4)</td>
       <td align="left" style="vertical-align:middle">11 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBwgCCAGKz2k7AAABi0lEQVR42u3cQU7CUBRAUWtYHgvQFcoC3J9Oq7EfLgFa6jkzICnNDY9+2pTp64Xide0deDaCRYJFh/mDR3+fnQZv+DatUGPBfFcOV2/lJo4Lz3+uu1sDRjISLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLLr7zVmnnd3y+4C72Y6Lr2z3nrVlRjISLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLLrJRZC9XRkaudFVo31dGRoxkpFgkWCRYJFgkWDRyn+tvGyr/1O92WBbXdkZyUiwSLBIsEiwSLBIsOjiddh/Okk4EhauW11KPpaRjH58wozdeb9G0tidYySjzZ6tGFnz1M9TBlvzi8NIRoJFgkWCRYJFT3mUHLn3kmN3wa5bcox/FL7PQu8u2Mgoy6Whp/k2Pvz4/tP8EzZp1DhKRoJFgkXfLcMiPR+CViQAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMDhUMDI6MDg6MDErMDA6MDDgTYz9AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTA4VDAyOjA4OjAxKzAwOjAwkRA0QQAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBwgDAwAf/upRAAABi0lEQVR42u3cQU7CUBRAUWtYHgvQFcoC3J9Oq7EfLgFa6jkzICnNDY9+2pTp64Xide0deDaCRYJFh/mDR3+fnQZv+DatUGPBfFcOV2/lJo4Lz3+uu1sDRjISLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLLr7zVmnnd3y+4C72Y6Lr2z3nrVlRjISLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLLrJRZC9XRkaudFVo31dGRoxkpFgkWCRYJFgkWDRyn+tvGyr/1O92WBbXdkZyUiwSLBIsEiwSLBIsOjiddh/Okk4EhauW11KPpaRjH58wozdeb9G0tidYySjzZ6tGFnz1M9TBlvzi8NIRoJFgkWCRYJFT3mUHLn3kmN3wa5bcox/FL7PQu8u2Mgoy6Whp/k2Pvz4/tP8EzZp1DhKRoJFgkXfLcMiPR+CViQAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMDhUMDM6MDM6MDArMDA6MDBjTKU7AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTA4VDAzOjAzOjAwKzAwOjAwEhEdhwAAAABJRU5ErkJggg=="></td>
       <td align="center">3703
 (100%)</td>
       <td align="center">0
@@ -290,7 +293,7 @@ IQR (CV) : 1 (0.4)</td>
 Mean : 0.4
 Max : 1</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">0</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">2277</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">61.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1426</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">38.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGkAAAA4CAQAAABUWR7jAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBwgCCAGKz2k7AAAAoUlEQVRo3u3YsQ5AMBRA0Vb8oI0vZPOJrCVhINR97t26ND1J2+HlJUWrqX0ASf8kteVixD6sIR+QUupqn+1S82YV8OJJIiSJkCRCkghJIiSJkCRCkghJIrSbPczXdvlUuRwKYQdEqRgQRbx4kghtvoepwmPq8/09TkjvT1uf+GEDXjxJhCQRkkRIEiFJhCQRkkRIEiFJhKJPW2MU8OJJIrQC6UIL1W6IZB4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMDhUMDI6MDg6MDErMDA6MDDgTYz9AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTA4VDAyOjA4OjAxKzAwOjAwkRA0QQAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGkAAAA4CAQAAABUWR7jAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBwgDAwAf/upRAAAAoUlEQVRo3u3YsQ5AMBRA0Vb8oI0vZPOJrCVhINR97t26ND1J2+HlJUWrqX0ASf8kteVixD6sIR+QUupqn+1S82YV8OJJIiSJkCRCkghJIiSJkCRCkghJIrSbPczXdvlUuRwKYQdEqRgQRbx4kghtvoepwmPq8/09TkjvT1uf+GEDXjxJhCQRkkRIEiFJhCQRkkRIEiFJhKJPW2MU8OJJIrQC6UIL1W6IZB4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMDhUMDM6MDM6MDArMDA6MDBjTKU7AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTA4VDAzOjAzOjAwKzAwOjAwEhEdhwAAAABJRU5ErkJggg=="></td>
       <td align="center">3703
 (100%)</td>
       <td align="center">0
@@ -306,7 +309,7 @@ min < med < max:
 18 < 47 < 90
 IQR (CV) : 25 (0.3)</td>
       <td align="left" style="vertical-align:middle">70 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBwgCCAGKz2k7AAABvElEQVR42u3cUY6CMBgAYTEejwPoCfUA3k9fwWJkmpb+rfO9uZvskgktpaLT6yTi3PoAemMwyGDQZfki4nz22Dio63TsMSz/3SX7rxxm/nj9bHo0DknIYJDBIINBBoOCXSUfEVc2K8GCRVtEpBySkMEgg0GV5rAId4B1VJv0o0/euRySkMGgpuuw+MvUVOOFa38znUMSKnKG9Ti0chUaknuG1hhZD5zD5uQn8WesVEawMc6UXFlnWH/XtnK8SkIGgwwGGQwyGGQwyGCQwSCDQeHeyN2j5VssP4NFvHNseRu/4wz75zvHlHMYZDDIYJDBIINBBoO6XLhuSdeLdZaywwQ7arXokIQMBhkMMhhkMMhgkMEgg0EGgwwGGQwyGDTMzXeqzv7FwMHq7F84JCGDQQaDDAYZDDIYZDDIYJDBIINBBoMMBhkMMhhkMMhgkMEgg0EGgwwGGQwyGGQwyGCQwSCDQQaDVs9WRPy4ckklHk/5eBhljC9F+6bE4ykOSchgkMEgg0EGgwwGGQwyGGQwyGCQwSCDQQN/EmQPvn/x58HS/YutLa7bIuK0/P198P2wXF+D6TcnfchgkMGgNwNNMJl2Z8tYAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA3LTA4VDAyOjA4OjAxKzAwOjAw4E2M/QAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNy0wOFQwMjowODowMSswMDowMJEQNEEAAAAASUVORK5CYII="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBwgDAwAf/upRAAABvElEQVR42u3cUY6CMBgAYTEejwPoCfUA3k9fwWJkmpb+rfO9uZvskgktpaLT6yTi3PoAemMwyGDQZfki4nz22Dio63TsMSz/3SX7rxxm/nj9bHo0DknIYJDBIINBBoOCXSUfEVc2K8GCRVtEpBySkMEgg0GV5rAId4B1VJv0o0/euRySkMGgpuuw+MvUVOOFa38znUMSKnKG9Ti0chUaknuG1hhZD5zD5uQn8WesVEawMc6UXFlnWH/XtnK8SkIGgwwGGQwyGGQwyGCQwSCDQeHeyN2j5VssP4NFvHNseRu/4wz75zvHlHMYZDDIYJDBIINBBoO6XLhuSdeLdZaywwQ7arXokIQMBhkMMhhkMMhgkMEgg0EGgwwGGQwyGDTMzXeqzv7FwMHq7F84JCGDQQaDDAYZDDIYZDDIYJDBIINBBoMMBhkMMhhkMMhgkMEgg0EGgwwGGQwyGGQwyGCQwSCDQQaDVs9WRPy4ckklHk/5eBhljC9F+6bE4ykOSchgkMEgg0EGgwwGGQwyGGQwyGCQwSCDQQN/EmQPvn/x58HS/YutLa7bIuK0/P198P2wXF+D6TcnfchgkMGgNwNNMJl2Z8tYAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA3LTA4VDAzOjAzOjAwKzAwOjAwY0ylOwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNy0wOFQwMzowMzowMCswMDowMBIRHYcAAAAASUVORK5CYII="></td>
       <td align="center">3703
 (100%)</td>
       <td align="center">0
@@ -322,7 +325,7 @@ min < med < max:
 1 < 3 < 5
 IQR (CV) : 1 (0.4)</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">442</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">11.9%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">2</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">365</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">9.9%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">3</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1589</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">42.9%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">4</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">592</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">16.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">5</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">715</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">19.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAE0AAACACAQAAADkdixRAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBwgCCAGKz2k7AAABAUlEQVR42u3ZQQ6CMBAFUDFc0J2eUHceUbeFhS3QgZG8WZUQyEs+Tfjp8LlknevRALS+M5YXz6YP7z7EccpXj9Nbt+rD7zjXbBIHioaGhoaGhoaGhrZyZj/g+/1e12com8rxdbmsLYkDTUybfGuvSqKRDbRC+91D994iiQNFQ0NDQ0NDQ0NDOx9NRW7mFOvEgSamLarI8fMoEl18VBs5002YOFA0NDQ0NDQ0NDS089FU5GZOsU4caGLaxoocea68qSLHbprEgaKhoaGhoaGhoaGdj6YiN3OKdeJAE9O6nSL3L8udTpEjtk/iQNHQ0NDQ0NDQ0NBWzr/00FyTOFC0NfMF8/cdf69MPL4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMDhUMDI6MDg6MDErMDA6MDDgTYz9AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTA4VDAyOjA4OjAxKzAwOjAwkRA0QQAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAE0AAACACAQAAADkdixRAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBwgDAwAf/upRAAABAUlEQVR42u3ZQQ6CMBAFUDFc0J2eUHceUbeFhS3QgZG8WZUQyEs+Tfjp8LlknevRALS+M5YXz6YP7z7EccpXj9Nbt+rD7zjXbBIHioaGhoaGhoaGhrZyZj/g+/1e12com8rxdbmsLYkDTUybfGuvSqKRDbRC+91D994iiQNFQ0NDQ0NDQ0NDOx9NRW7mFOvEgSamLarI8fMoEl18VBs5002YOFA0NDQ0NDQ0NDS089FU5GZOsU4caGLaxoocea68qSLHbprEgaKhoaGhoaGhoaGdj6YiN3OKdeJAE9O6nSL3L8udTpEjtk/iQNHQ0NDQ0NDQ0NBWzr/00FyTOFC0NfMF8/cdf69MPL4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMDhUMDM6MDM6MDArMDA6MDBjTKU7AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTA4VDAzOjAzOjAwKzAwOjAwEhEdhwAAAABJRU5ErkJggg=="></td>
       <td align="center">3703
 (100%)</td>
       <td align="center">0
@@ -1084,9 +1087,9 @@ En relación a la hipótesis alternativa:</p>
 <li>Cada punto representa el coeficiente de Sexo (Mujer=1) para cada modelo.</li>
 <li>Las líneas horizontales representan los intervalos de confianza.</li>
 </ul>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">coefplot<span class="op">::</span><span class="kw">multiplot</span>(reg100, reg1500,reg2000,reg2500,</a>
-<a class="sourceLine" id="cb52-2" title="2">                    <span class="dt">shorten =</span> T, <span class="dt">innerCI =</span> <span class="dv">0</span>,<span class="dt">intercept =</span> F,</a>
-<a class="sourceLine" id="cb52-3" title="3">                    <span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;n=100&quot;</span>,<span class="st">&quot;n=1500&quot;</span>,<span class="st">&quot;n=2000&quot;</span>,<span class="st">&quot;n=2500&quot;</span>),</a>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">coefplot<span class="op">::</span><span class="kw">multiplot</span>(reg2500,reg2000,reg1500,reg100,</a>
+<a class="sourceLine" id="cb52-2" title="2">                    <span class="dt">shorten =</span> T,</a>
+<a class="sourceLine" id="cb52-3" title="3">                    <span class="dt">intercept =</span> F,</a>
 <a class="sourceLine" id="cb52-4" title="4">                    <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>,<span class="dt">title =</span> <span class="st">&quot;Modelos según tamaño de muestra&quot;</span>,</a>
 <a class="sourceLine" id="cb52-5" title="5">                    <span class="dt">zeroColor =</span> <span class="st">&quot;black&quot;</span>,</a>
 <a class="sourceLine" id="cb52-6" title="6">                    <span class="dt">linetype =</span> <span class="dv">1</span>) <span class="op">+</span></a>

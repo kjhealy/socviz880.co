@@ -67,6 +67,11 @@ pacman::p_load(dplyr, #manipulacion de datos
 
 ## Datos
 
+Primero, se cargará la base de datos
+
+```{r eval=FALSE, include=TRUE}
+load(url("https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess.RData")) # Cargar base de datos
+
 Los datos a utilizar corresponden a la base de datos **ELSOC 2018** que incluye una muestra de **3784** mujeres y hombres adultos entre 18 y 75 años.
 
 ```{r include=FALSE}
@@ -104,10 +109,6 @@ load(file = "content/assignment/data/proc/ELSOC_ess.RData")
 view_df(elsoc_18,encoding = "")
 ```
 
-Primero, se cargará la base de datos
-
-```{r eval=FALSE, include=TRUE}
-load(url("https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess.RData")) # Cargar base de datos
 ```
 
 ## Explorar base de datos
@@ -372,8 +373,8 @@ tab_full
 Para ilustrar cómo va cambiando la dispersión y la media "muestral" (rojo) con respecto a la "poblacional" (verde), se puede observar el siguiente gráfico:
 
 ```{r eval=FALSE, include=FALSE}
-library(gganimate)
-library(transformr)
+pacman::p_load(gganimate, transformr)
+
 anim_plot1 <- ggplot(fullmat,aes(ess)) +
               geom_histogram(col = "black",fill = "blue",binwidth = 1) +
               geom_line(data=fullmat, aes(y ), colour="red") +
@@ -473,9 +474,9 @@ Visualmente lo podemos ver en el siguiente gráfico usando la librería [`coefpl
 * Las líneas horizontales representan los intervalos de confianza.
 
 ```{r,fig.width=10,fig.height=6}
-coefplot::multiplot(reg100, reg1500,reg2000,reg2500,
-                    shorten = T, innerCI = 0,intercept = F,
-                    names = c("n=100","n=1500","n=2000","n=2500"),
+coefplot::multiplot(reg2500,reg2000,reg1500,reg100,
+                    shorten = T,
+                    intercept = F,
                     xlab = "",title = "Modelos según tamaño de muestra",
                     zeroColor = "black",
                     linetype = 1) +
