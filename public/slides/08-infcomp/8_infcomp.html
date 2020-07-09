@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Estadística Multivariada</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=".small[Juan Carlos Castillo    Departamento de Sociología - UCH / COES   ]" />
+    <link rel="stylesheet" href="../custom_2020.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: front
+
+
+
+
+
+
+&lt;!---
+Para correr en ATOM
+- open terminal, abrir R (simplemente, R y enter)
+- rmarkdown::render('static/docpres/07_interacciones/7interacciones.Rmd', 'xaringan::moon_reader')
+
+About macros.js: permite escalar las imágenes como [scale 50%](path to image), hay si que grabar ese archivo js en el directorio.
+---&gt;
+
+
+.pull-left[
+# Estadística Multivariada
+## Juan Carlos Castillo
+## Sociología FACSO - UChile
+## 1er Sem 2020
+## [multivariada.netlify.com](https://multivariada.netlify.com)
+]
+
+
+.pull-right[
+.right[
+![:scale 70%](https://multivariada.netlify.com/img/hex_multiva.png)
+&lt;br&gt;
+&lt;br&gt;
+## Sesión 8: Inferencia (2) y comparación de modelos
+]
+
+]
+---
+
+layout: true
+class: animated, fadeIn
+
+
+---
+class: inverse, bottom, right, animated, slideInRight
+
+
+# Contenidos
+
+## 1. Repaso de sesión anterior 
+
+## 2. Inferencia Estadística (2)
+
+## 3. Comparación de modelos
+
+---
+class: roja bottom right slideInRight
+
+# 1. Repaso sesión anterior
+
+
+---
+# Predictores categóricos
+
+---
+
+.pull-left[
+## Predictores categóricos
+
+
+- Ej, Y=ingreso, X= sexo
+
+
+
+`$$X=1(Mujer)$$`
+`$$X=0(Hombre)$$`
+
+- Las variables 1/0 usualmente son llamadas variables **dummy**
+]
+
+
+
+--
+&lt;br&gt;
+&lt;br&gt;
+
+.pull-right[
+
+Para las mujeres: `\(Y=\alpha +\beta X= \alpha+\beta\)`
+
+Para los hombres: `\(Y=\alpha +\beta X= \alpha\)`
+
+### El coeficiente `\(\beta\)` es la **diferencia** esperada de `\(Y\)` (ingreso) entre hombres y mujeres.
+
+
+]
+
+---
+
+---
+
+## Especificando el conjunto de variables dummy.
+
+&lt;br&gt;
+&lt;br&gt;
+
+.medium[
+
+
+|                 | `\(X_{básica}\)` | `\(X_{media}\)` | `\(X_{tecnica}\)` | `\(X_{universitaria}\)` |
+|------------------|---------|------------|-----------------|
+| Básica           |1 |  0       | 0          | 0               |
+| Media            |0 |1       | 0          | 0               |
+| Técnica Superior |0| 0       | 1          | 0               |
+| Universitaria    | 0|0       | 0          | 1               |
+
+]
+
+--
+
+`$$Y_{ingreso} = \beta_{0}+\beta_{1}X_{media}+\beta_{2}X_{tecnica}+\beta_{3}X_{universitaria}$$`
+
+
+
+---
+.pull-left[
+.medium[
+## Conceptos claves de inferencia
+- La **inferencia** en estadística se refiere a la relación que existe entre los resultados obtenidos basados en nuestra muestra y la población
+
+
+- **¿En qué medida podemos hacer inferencias desde nuestra muestra a la población?**
+
+- Un concepto central es el la probabilidad de **ERROR**
+]]
+
+
+.pull-right[
+.center[
+![:scale 70%](inference1.png)
+]
+]
+
+
+---
+# Desviación estándar y error estándar
+
+.pull-left[
+![:scale 63%](inference1.png)
+
+]
+
+
+- más que el promedio de la variable en nuestra **muestra**, en inferencia nos interesa estimar en qué medida ese promedio da cuenta del promedio de la **población**
+
+- contamos con **una muestra**, pero sabemos que otras muestras podrían haber sido extraídas, probablemente con distintos resultados.
+
+---
+class: inverse middle center
+
+# El **error estándar** (del promedio) es la desviación estándar de los promedios de distintas muestras
+
+
+---
+
+# Error estándar
+
+- Pero ... ¿cómo calculamos el error estándar a partir de **una** sola muestra?
+
+- Basados en el **teorema del límite central**, en muestras mayores a 30 la desviación estándar de los promedios (error estándar) equivale a:
+
+`$$\sigma_{\bar{X}}=SE(error estándar)=\frac{s}{\sqrt{N}}$$`
+
+
+---
+# Error, rangos y probabilidad
+
+
+.pull-left[
+.medium[
+
+- Nuestro promedio muestral `\(\bar{x}\)` posee una distribución normal con una desviación estandar = SE (error estándar)
+
+- Esto nos permite calcular una probabilidad de error basados en los valores de la curva normal
+
+- +/- 1SE: intervalo de confianza que abarca al 68%
+
+- +/- 2SE: 95% de confianza  
+
+
+]
+]
+.pull-right[
+.center[![:scale 85%](../images/normal.png)]]
+
+
+---
+## Volviendo a regresión
+
+- el error estándar del promedio nos sirve como referencia cálculo de significación estadística de los coeficientes de regresión
+
+- en regresión, nos interesa declarar con qué probabilidad podemos decir que nuestro `\(\beta\)` existe en la población
+
+- noción minimalista de existencia= **estadísticamente distinto de 0**.
+
+- ej: diferencias de ingreso (Y) entre hombres y mujeres (X)
+
+
+---
+# Prueba de hipótesis en regresión
+
+- Se basa en el cálculo de un **intervalo de confianza** para `\(\beta\)`, de (app) +/- 2 SE 
+
+- Si este intervalo no pasa por 0, entonces se rechaza `\(H_0\)`
+
+- Por lo tanto, la inferencia se basa en saber si el `\(\beta\)` es mayor que su error (el doble) 
+
+---
+# Prueba de hipótesis en regresión
+
+
+- Ej, para `\(\beta\)`=10, error=6; 
+
+  - intervalo: 10+/-12=[22 / -2], pasa por 0 al 95% de confianza
+
+  - alternativamente: 10/6 &lt; 2 
+
+- La división de `\(\beta\)` por el error estándar es la **prueba t:**
+
+.center[![:scale 40%](../images/t1.png)]
+
+---
+class: roja, bottom, right
+
+
+# Inferencia en regresión (2)= prueba t
+
+---
+# Prueba de hipótesis y error
+
+.center[
+
+![](errortypes.png)
+]
+
+---
+# Errores
+
+
+![](errors.jpg)
+
+
+
+---
+# Error e inferencia
+
+- La inferencia se asocia a establecer un nivel de probabilidad de error asociado a cometer el error de **Tipo 1**.
+
+--
+
+- Ej: mis resultados me indican que los hombres ganan en promedio 300.000 pesos más que las mujeres, con un nivel de probabilidad de error menor al 5% (p&lt;0.05)
+
+--
+
+- = puedo equivocarme (cometer error **Tipo I**) un 5% 
+
+--
+
+- = esta diferencia entre hombres y mujeres existe en la población con un 95% de confianza.
+
+
+---
+# Prueba de hipótesis y regresión
+
+- El `\(\beta\)` de regresión puede entenderse como una estimación de **diferencia de promedios**
+
+--
+
+  - *Categóricas*: `\(\beta\)` expresa diferencias entre la variable y la referencia
+  - *Continuas*: `\(\beta\)` expresa niveles de cambio promedio en Y a medida que aumenta X
+
+--
+
+- Por lo tanto, la hipótesis nula en regresión es:
+
+`$$H_{0}: \beta_{j} = 0$$`
+---
+# Prueba de hipótesis
+
+*hipótesis nula*: 
+`\(H_{0}: \beta_{j} = 0\)`
+
+  - `\(H_{0}\)`: **No** hay asociación lineal entre el predictor `\(X\)` y la variable `\(Y\)` en la población.
+
+
+
+hipótesis alternativa: `\(H_{a}: \beta_{j} \neq 0\)`
+
+- `\(H_{a}\)`: **existe** asociación lineal entre el predictor `\(X\)` y la variable `\(Y\)` en la población.
+
+... con una probabilidad de error *p*
+
+
+---
+# Prueba T
+
+- con antecedentes de la curva normal, sabemos que app +/- 2SE nos entrega un 95% de confianza
+
+- para **mayor precisión**, la prueba T nos permite establecer de manera exacta el nivel de error que estamos cometiendo al rechazar `\(H_0\)`
+
+- para ello, T se ajusta por la cantidad de sujetos en la muestra (N), pero para un N&gt;30 se aproxima a la distribución normal
+
+
+---
+## Inferencia, diferencias y prueba _t_
+
+.medium[
+- La prueba _t_ se utiliza para inferencias sobre diferencias entre grupos, ( `\(\beta\)` ) y básicamente es una razón entre
+
+.center[![:scale 40%](../images/t1.png)]
+
+- Ya que la diferencia esperada si `\(H_0\)` es verdadera es 0, entonces:
+
+`$$t=\frac{b_j}{SE(b_j)}$$`
+]
+
+
+---
+# Pasos
+
+- obtener `\(\beta\)`
+
+- obtener SE (error estándar) de `\(\beta\)`
+
+- calcular t: `\(t=\frac{b_j}{SE(b_j)}\)`
+
+- determinar la probabilidad de error asociada al valor t
+
+---
+## `\(SE(b_j)\)`
+
+- ej: para el caso simple de una variable dicotómica:
+
+`$$SE=\sqrt{\frac{\sigma_{diff}}{n_a}+\frac{\sigma_{diff}}{n_b}}$$`
+
+- Para lo cual se requiere calcular la desviación estandar de la diferencia:
+
+`$$\sigma_{diff}=\frac{\sigma^2_{a}(n_a-1)+\sigma^2_{b}(n_b-1)}{n_a+n_b-2}$$`
+
+- Al dividir el coeficiente por el error estándar se obtiene el valor t, que luego se contrasta con el valor crítico según los grados de libertad N-k-1 (siendo k el número de regresores)
+
+---
+# ¿Cómo utilizamos el valor T?
+
+- la prueba T nos va a dar un número, que luego debemos asociar a un determinado nivel de confianza (p) para rechazar `\(H_0\)`.
+
+- para ello comparamos con un **valor crítico de T** para un nivel de error *p* (tabla de valores T)
+
+- si nuestro T &gt; valor crítico de T, entonces rechazamos `\(H_0\)` 
+
+---
+# Valor crítico de T
+
+- Necesitamos 2 cosas:
+
+  a) valor p convencional (ej: 0.05), según convenciones
+  
+  p) ajuste según  N de la muestra y número de regresores, asociado al concepto de **grados de libertad**, que permite un ajuste más preciso del valor crítico
+  
+  - los grados de libertad equivalen a `\(N-k-1\)`, donde 
+      -N: total muestra
+      -k: número de regresores
+
+
+---
+# Valor crítico de T
+
+a) Preciciones sobre valor p convencional:
+
+  - ej: 0.05
+  
+  - ya que se quiere detectar si el beta es distinto de 0, esto implica que puede ser mayor o menor.
+  
+  - por lo tanto, dividimos el 0.05/2 (0.025) al area inferior y superior de la distribución, quedando entonces en +/- 0.975
+
+- esto se conoce como una prueba t de dos colas (two-tailed)
+
+
+---
+# Valor crítico de T
+
+
+b) Sobre grados de libertad 
+
+- Si el N=300, y si hay otro regresor más (k=2), entonces los grados de libertad `\(N-k-1\)` son:
+
+  - `\(gl= 300-2-1=297\)`
+
+---
+# Valor crítico de T
+
+- Ejemplo:  `\(T=\frac{\beta}{SE}=\frac{10}{4}=2.5\)` 
+
+.medium[
+
+  - para un 95% de confianza (p=0.05, 0.025 dos colas) y grados de libertad 297, se busca en alguna [tabla de valores críticos de T](https://people.richland.edu/james/lecture/m170/tbl-t.html) ... o directamente en R:
+
+
+
+```r
+qt(0.975, 297)
+```
+
+```
+## [1] 1.967984
+```
+
+- Nuestro T (2.5) es mayor que el T crítico (1.96), por lo tanto podemos rechazar `\(H_0\)` con un 95% de confianza.]
+
+---
+# Valor crítico de T
+
+Lo mismo pero para un `\(\alpha=0.01\)` que equivale a un p = 0.995
+
+
+```r
+qt(0.995, 297)
+```
+
+```
+## [1] 2.592484
+```
+
+En este caso, no podemos rechazar `\(H_0\)` con un 99% de confianza.
+
+---
+
+## Intervalos de confianza
+
+Los **Intervalos de Confianza** proporcionan un rango de valores posibles para el parámetro poblacional y no sólo una estimación puntual.
+
+- Para los coeficientes de regresión, 
+
+`$$IC=\beta_{j}\pm c*SE(\hat{\beta{j}})$$`
+
+donde `\(c\)` representa el valor crítico de t
+
+
+---
+## Intervalos de confianza
+
+`$$IC=\beta_{j}\pm c*SE(\hat{\beta{j}})$$`
+
+.medium[
+Calculamos el intervalo de confianza del `\(\beta\)` del ejemplo anterior (10, SE=5)
+
+- al 95% de confianza: 
+
+`$$LimiteSuperior= 10 + 1.96*4=17.84$$`
+`$$LimiteInferior= 10 - 1.96*4=2.16$$`
+Como se puede observar en ninguno de los límites el `\(\beta\)` "atraviesa" el cero, por lo que se puede rechazar con el 95% de confianza que `\(\beta = 0\)`]
+
+---
+
+class: inverse, middle
+
+# RESUMEN
+
+
+---
+class: front
+
+.pull-left[
+# Estadística Multivariada
+## Juan Carlos Castillo
+## Sociología FACSO - UChile
+## 1er Sem 2020
+## [multivariada.netlify.com](https://multivariada.netlify.com)
+]
+
+
+.pull-right[
+.right[
+&lt;br&gt;
+![:scale 80%](https://multivariada.netlify.com/img/hex_multiva.png)
+]
+
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://multinivel.netlify.com/docpres/xaringan_custom/macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
