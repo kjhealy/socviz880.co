@@ -1,5 +1,5 @@
 ---
-title: "Práctica 7. Regresión múltiple 3"
+title: "Práctica 7. Inferencia y predictores categóricos"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
 author: "Julio César Iturra Sanhueza"
 linktitle: "Práctica 7. Inferencia y predictores categóricos"
@@ -25,7 +25,7 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache=FALSE, warnings=FALSE, message=FALSE)
+knitr::opts_chunk$set(cache=FALSE, warning=FALSE, message=FALSE)
 knitr::opts_knit$set(root.dir ="../../")
 Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
 ```
@@ -72,6 +72,8 @@ Primero, se cargará la base de datos
 ```{r eval=FALSE, include=TRUE}
 load(url("https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess.RData")) # Cargar base de datos
 
+```
+
 Los datos a utilizar corresponden a la base de datos **ELSOC 2018** que incluye una muestra de **3784** mujeres y hombres adultos entre 18 y 75 años.
 
 ```{r include=FALSE}
@@ -109,7 +111,7 @@ load(file = "content/assignment/data/proc/ELSOC_ess.RData")
 view_df(elsoc_18,encoding = "")
 ```
 
-```
+
 
 ## Explorar base de datos
 
@@ -135,7 +137,7 @@ plot_scatter(data = elsoc_18,x = sexo,y = ess,fit.grps = "lm")
 
 El scatterplot no es muy informativo debido a que nuestra variable independiente solamente posee dos niveles, de modo tal que la distribución de Estatus Social Subjetivo se separa en dos grandes grupos. Por esta razón, una alternativa para visualizar la distirbución es elaborar un gráfico de cajas para ambas categorías:
 
-```{r}
+```{r,message=FALSE, warning=FALSE}
 plot_grpfrq(var.cnt = elsoc_18$ess,var.grp = elsoc_18$sexo,type = "box")
 ```
 
@@ -256,6 +258,9 @@ reg4 <- lm(ess~edcine,data = elsoc_18)
 sjPlot::tab_model(list(reg3,reg4), show.ci=FALSE, p.style = "asterisk",string.pred = "Predictores", string.est = "β",digits = 3,
                   dv.labels = c("Modelo 3","Modelo 4"))
 ```
+
+
+### Interpretación 
 
 Al igual que en el modelo empleando Educación como variable continua, el modelo con Educación categórica muestra que a medida que aumenta el nivel educacional, el promedio de estatus subjetivo tiende a ser más alto. Por otro lado, en este caso la categoría de referenca es Primaria Incompleta o menos. Entonces:
 
@@ -420,9 +425,9 @@ reg2500<- lm(ess~sexo,data=elsoc_n2500)
 $$ H_0: \beta =0$$
 En relación a la hipótesis alternativa:
 
-$$ H_0: \beta \neq 0$$
+$$ H_1: \beta \neq 0$$
 
-* Este contraste se basa en el cálculo de un **invervalo de confianza** para el coeficiente, asumiendo +/- 2 SE (o al 95% de confianza). Entonces, si este inervalo **no pasa por cero**, entonces **rechazamos** $H_0$.
+* Este contraste se basa en el cálculo de un **invervalo de confianza** para el coeficiente, asumiendo +/- 2 SE (o al 95% de confianza). Entonces, si este intervalo **no pasa por cero**, entonces **rechazamos** $H_0$.
 
 * Entonces, ¿es estadísticamente significativa la diferencia del promedio de Estatus Subjetivo entre hombres y mujeres?. Revisemos para nuestras muestras de distinto tamaño:
 
@@ -495,8 +500,10 @@ sjPlot::tab_model(list(reg100,reg1500,reg2000,reg2500),
                   show.p = F)
 ```
 
-# Resumen Práctica 7:
-En esta práctica revisamos los siguientes contenidos
+# Resumen Práctica 7
+
+En esta práctica revisamos los siguientes contenidos:
+
   - Predictores categóricos
   - Variables dummy
   - Inferencia estadística
