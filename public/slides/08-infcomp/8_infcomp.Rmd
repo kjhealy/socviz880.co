@@ -62,7 +62,7 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 ![:scale 70%](https://multivariada.netlify.com/img/hex_multiva.png)
 <br>
 <br>
-## Sesión 8: Inferencia (2) y comparación de modelos
+## Sesión 8: Inferencia (2)
 ]
 
 ]
@@ -90,10 +90,6 @@ class: roja bottom right slideInRight
 
 
 ---
-# Predictores categóricos
-
----
-
 .pull-left[
 ## Predictores categóricos
 
@@ -126,9 +122,6 @@ Para los hombres: $Y=\alpha +\beta X= \alpha$
 ]
 
 ---
-
----
-
 ## Especificando el conjunto de variables dummy.
 
 <br>
@@ -197,16 +190,6 @@ $$Y_{ingreso} = \beta_{0}+\beta_{1}X_{media}+\beta_{2}X_{tecnica}+\beta_{3}X_{un
 ]
 
 ---
-
-**Entonces:**
-
-* Bajo el supuesto que $\bar{x}$ sigue una **distribución normal**,
-
-* Un mayor $N$ permite que $\bar{x}$ vaya aproximándose valor de $\mu$ debido a la disminución del **error**. 
-
-.center[Por esta razón podemos decir que (...)]
-
----
 class: inverse middle center
 
 # El **error estándar** (del promedio) es la desviación estándar de los promedios de distintas muestras
@@ -259,11 +242,11 @@ $$\sigma_{\bar{X}}=SE(error estándar)=\frac{s}{\sqrt{N}}$$
 ---
 # Prueba de hipótesis en regresión
 
-- Se basa en el cálculo de un **intervalo de confianza** para $\beta$, de (app) +/- 2 SE 
+- Se basa en el cálculo de un **intervalo de confianza** para $\beta$, de (app) +/- 2 SE (para un nivel de confianza de 95%)
 
 - Si este intervalo no pasa por 0, entonces se rechaza $H_0$
 
-- Por lo tanto, la inferencia se basa en saber si el $\beta$ es mayor que su error (el doble) 
+- Por lo tanto, la inferencia se basa aproximadamente en saber si el $\beta$ es mayor que su error (el doble) 
 
 ---
 # Prueba de hipótesis en regresión
@@ -274,6 +257,9 @@ $$\sigma_{\bar{X}}=SE(error estándar)=\frac{s}{\sqrt{N}}$$
   - intervalo: 10+/-12=[22 / -2], pasa por 0 al 95% de confianza
 
   - alternativamente: 10/6 < 2 
+
+---
+# Prueba de hipótesis en regresión
 
 - La división de $\beta$ por el error estándar es la **prueba t:**
 
@@ -363,8 +349,6 @@ hipótesis alternativa: $H_{a}: \beta_{j} \neq 0$
 
 - para ello, T se ajusta por la cantidad de sujetos en la muestra (N), pero para un N>120 se aproxima a la distribución normal.
 
-- para t serecomienda solo para  N > 30
-
 
 ---
 ## Inferencia, diferencias y prueba _t_
@@ -397,8 +381,9 @@ $$t=\frac{b_j}{SE(b_j)}$$
 
 - A pesar de los distintos pasos que hay que realizar para llegar al valor t, en R se calcula directamente *summary(model)$coefficients*
 
+.center[
 ![](imagen2.png)
-
+]
 ---
 ## $SE(b_j)$
 
@@ -415,29 +400,33 @@ $$\sigma_{diff}=\frac{\sigma^2_{a}(n_a-1)+\sigma^2_{b}(n_b-1)}{n_a+n_b-2}$$
 ---
 # ¿Cómo utilizamos el valor T?
 
-- La prueba T nos va a dar un número, que luego debemos asociar a un determinado nivel de confianza (p) para rechazar $H_0$.
+- La prueba T nos va a dar un número, que luego debemos asociar a un determinado nivel de confianza para rechazar $H_0$.
 
-- Para ello comparamos con un **valor crítico de T** para un nivel de error *p* (tabla de valores T)
+- Para ello comparamos con un **valor crítico de T** para un nivel de error $\alpha$ (tabla de valores T)
+
+- Y consideramos para ello los **grados de libertad**
 
 - Si nuestro T observado > valor crítico de T, entonces rechazamos $H_0$ 
----
-# ¿Cómo utilizamos el valor T?
-
-![](image3.png)
 
 ---
 # Calcular valor crítico de T
 
 En consecuencia necesitamos las siguientes cosas
 
-1.Alpha ($\alpha$): nivel de error (nivel de significación) que estamos dispuestos a aceptar en la decisión del rechazo o no de la hipotesis nula. De este podemos obtener el:
+1. **Alpha** ( $\alpha$ ): nivel de error (nivel de significación) que estamos dispuestos a aceptar en la decisión del rechazo o no de la hipotesis nula. De este podemos obtener el:
 
-- Confianza ( $1 -  \alpha$): grado de seguridad que tenemos de no rechazar (aceptar) una hipótesis nula cuando es cierta
+  - Confianza ( $1 -  \alpha$): grado de seguridad que tenemos de no rechazar (aceptar) una hipótesis nula cuando es cierta
 
 ---
 # Calcular valor crítico de T
-2.Grados de libertad ($gl$): es un valor que se calcula a partir de el n de la muestra y el número de regresores/predictores. Este nos permite un ajuste más preciso del valor crítico.
-$gl= N-k-1$
+
+2.**Grados de libertad** ( $gl$ ): es un valor que se calcula a partir de el n de la muestra y el número de regresores/predictores. Este nos permite un ajuste más preciso del valor crítico.
+
+- $gl= N-k-1$, donde
+
+  - $N$ = tamaño de la muestra
+  
+  - $k$ = número de regresores
 
 ---
 # Valor crítico de T
@@ -458,28 +447,30 @@ En consecuencia tenemos un $\alpha = 0.05$ y $gl = 300 -2 - 1 = 297$
 
 ---
 # Valor crítico de T
+.medium[
+- Con un $\alpha = 0.05$ al ser una $H_0$ de dos colas este será $0.05/1 = 0.025$. En la distribución t la cola inferior será 0.025 y la superior 0.975. ]
 
-- Con un $\alpha = 0.05$ al ser una $H_0$ de dos colas este será $0.05/1 = 0.025$. En la distribución t la cola inferior será 0.025 y la superior 0.975. 
-
+.center[
 ![](imagen4.png)
+]
 
 ---
 # Valor crítico de T
 .medium[
 
-  - Para un 95% de confianza (p=0.05, 0.025 dos colas) y grados de libertad 297, se busca en alguna [tabla de valores críticos de T](https://people.richland.edu/james/lecture/m170/tbl-t.html) ... o directamente en R:
+  - Para un 95% de confianza ( $\alpha$ =0.05; 0.025 dos colas) y grados de libertad 297, se busca en alguna [tabla de valores críticos de T](https://people.richland.edu/james/lecture/m170/tbl-t.html) ... o directamente en R:
 
 
 ```{r echo=TRUE}
 qt(0.975, 297)
 ```
 
-- Nuestro T (2.5) es mayor que el T crítico (1.96), por lo tanto podemos rechazar $H_0$ con un 95% de confianza.]
+- Nuestro T (2.5) es mayor que el T crítico (1.96), por lo tanto podemos rechazar $H_0$ con un 95% de confianza ... o con p<0.05 ]
 
 ---
 # Valor crítico de T
 
-Lo mismo pero para un $\alpha=0.01$ que equivale a un percentil = 0.995
+Lo mismo pero para un $\alpha=0.01$ que equivale a un percentil = 0.995 (dos colas)
 
 ```{r echo=TRUE}
 qt(0.995, 297)
@@ -523,11 +514,20 @@ Como se puede observar en ninguno de los límites el $\beta$ "atraviesa" el cero
 
 ---
 class: inverse
-# Resumen
+## Resumen
 
-- La **inferencia** en estadística se refiere a la relación que existe entre los resultados obtenidos basados en nuestra muestra y la población. La inferencia se asocia a establecer un nivel de probabilidad de error asociado a la estimación de $\beta$
+- La **inferencia** en estadística se refiere a la relación que existe entre los resultados obtenidos basados en nuestra muestra y la población.
 
-- La prueba T nos permite establecer de manera exacta el nivel de error que estamos cometiendo al rechazar $H_0$ 
+- La inferencia en regresión se asocia a establecer un nivel de probabilidad de error asociado a la estimación de $\beta$
+
+- ¿Qué probabilidad de error estamos asumiendo al decir que nuestro $\beta$ existe en la población?
+
+---
+class: inverse
+## Resumen (II)
+
+
+- La prueba T nos permite establecer de manera exacta el nivel de error que estamos asumiendo para rechazar $H_0$ 
 
 - Conceptos claves: hipótesis nula, hipótesis alternativa, nivel de error, nivel de significancia, intervalo de confianza, valor p.
 

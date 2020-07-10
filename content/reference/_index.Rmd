@@ -196,6 +196,8 @@ En la sección de tareas de UCursos. Para la **Entrega 1** y **Entrega 2** se de
 
 - [Taller para escritura académica](https://es.scribd.com/document/454444052/Taller-para-escritura-academica)
 
+- - [Publicación de artículos académicos: buenas prácticas y recomendaciones para la redacción y envío a revistas científicas](https://repositori.upf.edu/handle/10230/44599)
+
 
 ### Ejemplos de artículos de investigación
 
@@ -212,15 +214,3 @@ En la sección de tareas de UCursos. Para la **Entrega 1** y **Entrega 2** se de
   - [Gayo Cal, M. G., Cabrol, G. O., & Méndez, M. L. (2019). Elección escolar y selección de familias: reproducción de la clase media alta en Santiago de Chile. Revista Internacional de Sociología, 77(1), 120. https://doi.org/10.3989/ris.2019.77.1.17.310](http://revintsociologia.revistas.csic.es/index.php/revintsociologia/article/view/1020/1338)
 
   - [Delfini, M. (2013) La afiliación sindical en Argentina. Análisis sobre sus determinantes. Revista Internacional de Sociología, 71(1)91-114,  http://dx.doi.org/10.3989/ris.2012.01.24.](http://revintsociologia.revistas.csic.es/index.php/revintsociologia/article/view/485/507)
-
-### Guías de análisis de datos
-
-- [Flujo 1: Ajustando datos](documents/trabajos/flujo_analisis1.html)
-
-- [Reportes dinámicos con Rmarkdown](documents/trabajos/guia_rep_dinamico/reportedinamico.html)
-
-- [Visualización y reporte](documents/trabajos/guia_rep_dinamico/reporte_vis.html)
-
-### Otros links
-
-- [Imágenes en Rmarkdown](http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/#default-settings-for-including-images-and-figures-in-r-markdown)
