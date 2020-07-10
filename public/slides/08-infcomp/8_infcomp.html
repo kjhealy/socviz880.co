@@ -4,8 +4,9 @@
     <title>Estadística Multivariada</title>
     <meta charset="utf-8" />
     <meta name="author" content=".small[Juan Carlos Castillo    Departamento de Sociología - UCH / COES   ]" />
-    <link rel="stylesheet" href="../custom_2020.css" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" type="text/css" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="..\custom_2020.css" type="text/css" />
+    <link rel="stylesheet" href="https:\\cdnjs.cloudflare.com\ajax\libs\animate.css\3.7.0\animate.min.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -60,7 +61,6 @@ class: inverse, bottom, right, animated, slideInRight
 
 ## 2. Inferencia Estadística (2)
 
-## 3. Comparación de modelos
 
 ---
 class: roja bottom right slideInRight
@@ -164,11 +164,31 @@ Para los hombres: `\(Y=\alpha +\beta X= \alpha\)`
 
 - contamos con **una muestra**, pero sabemos que otras muestras podrían haber sido extraídas, probablemente con distintos resultados.
 
+
+---
+![:scale 100%](ess_hist.gif)
+
+.small[
+
+* Las desviaciones estándar ( `\(s\)` ) del promedio muestral ( `\(\bar{x}\)` ) nos permiten hablar de **Error**, dado que asumimos la existencia de un parámetro poblacional ( `\(\mu\)` ).
+
+* Si tenemos muestras distintas, tenemos distinos valores de `\(\bar{x}\)`, y por tanto, distintos valores de `\(s\)`.
+]
+
+---
+
+**Entonces:**
+
+* Bajo el supuesto que `\(\bar{x}\)` sigue una **distribución normal**,
+
+* Un mayor `\(N\)` permite que `\(\bar{x}\)` vaya aproximándose valor de `\(\mu\)` debido a la disminución del **error**. 
+
+.center[Por esta razón podemos decir que (...)]
+
 ---
 class: inverse middle center
 
 # El **error estándar** (del promedio) es la desviación estándar de los promedios de distintas muestras
-
 
 ---
 
@@ -285,7 +305,7 @@ class: roja, bottom, right
 
 --
 
-  - *Categóricas*: `\(\beta\)` expresa diferencias entre la variable y la referencia
+  - *Categóricas*: `\(\beta\)` expresa diferencias entre la variable y la categoría de referencia
   - *Continuas*: `\(\beta\)` expresa niveles de cambio promedio en Y a medida que aumenta X
 
 --
@@ -293,6 +313,11 @@ class: roja, bottom, right
 - Por lo tanto, la hipótesis nula en regresión es:
 
 `$$H_{0}: \beta_{j} = 0$$`
+---
+class: inverse middle center
+
+# ¿Cómo saber si rechazamos H0 y cuál es la probabilidad de error?
+
 ---
 # Prueba de hipótesis
 
@@ -313,11 +338,11 @@ hipótesis alternativa: `\(H_{a}: \beta_{j} \neq 0\)`
 ---
 # Prueba T
 
-- con antecedentes de la curva normal, sabemos que app +/- 2SE nos entrega un 95% de confianza
-
 - para **mayor precisión**, la prueba T nos permite establecer de manera exacta el nivel de error que estamos cometiendo al rechazar `\(H_0\)`
 
-- para ello, T se ajusta por la cantidad de sujetos en la muestra (N), pero para un N&gt;30 se aproxima a la distribución normal
+- para ello, T se ajusta por la cantidad de sujetos en la muestra (N), pero para un N&gt;120 se aproxima a la distribución normal.
+
+- para t serecomienda solo para  N &gt; 30
 
 
 ---
@@ -328,6 +353,8 @@ hipótesis alternativa: `\(H_{a}: \beta_{j} \neq 0\)`
 
 .center[![:scale 40%](../images/t1.png)]
 
+.center[![:scale 20%](imagen1.png)]
+
 - Ya que la diferencia esperada si `\(H_0\)` es verdadera es 0, entonces:
 
 `$$t=\frac{b_j}{SE(b_j)}$$`
@@ -337,18 +364,24 @@ hipótesis alternativa: `\(H_{a}: \beta_{j} \neq 0\)`
 ---
 # Pasos
 
-- obtener `\(\beta\)`
+1. obtener `\(\beta\)`
 
-- obtener SE (error estándar) de `\(\beta\)`
+2. obtener SE (error estándar) de `\(\beta\)`
 
-- calcular t: `\(t=\frac{b_j}{SE(b_j)}\)`
+3.  calcular t: `\(t=\frac{b_j}{SE(b_j)}\)`
 
-- determinar la probabilidad de error asociada al valor t
+4. determinar la probabilidad de error asociada al valor t
+---
+## En R
+
+- A pesar de los distintos pasos que hay que realizar para llegar al valor t, en R se calcula directamente *summary(model)$coefficients*
+
+![](imagen2.png)
 
 ---
 ## `\(SE(b_j)\)`
 
-- ej: para el caso simple de una variable dicotómica:
+- Ej: para el caso simple de una variable dicotómica:
 
 `$$SE=\sqrt{\frac{\sigma_{diff}}{n_a}+\frac{\sigma_{diff}}{n_b}}$$`
 
@@ -361,58 +394,59 @@ hipótesis alternativa: `\(H_{a}: \beta_{j} \neq 0\)`
 ---
 # ¿Cómo utilizamos el valor T?
 
-- la prueba T nos va a dar un número, que luego debemos asociar a un determinado nivel de confianza (p) para rechazar `\(H_0\)`.
+- La prueba T nos va a dar un número, que luego debemos asociar a un determinado nivel de confianza (p) para rechazar `\(H_0\)`.
 
-- para ello comparamos con un **valor crítico de T** para un nivel de error *p* (tabla de valores T)
+- Para ello comparamos con un **valor crítico de T** para un nivel de error *p* (tabla de valores T)
 
-- si nuestro T &gt; valor crítico de T, entonces rechazamos `\(H_0\)` 
+- Si nuestro T observado &gt; valor crítico de T, entonces rechazamos `\(H_0\)` 
+---
+# ¿Cómo utilizamos el valor T?
+
+![](image3.png)
 
 ---
-# Valor crítico de T
+# Calcular valor crítico de T
 
-- Necesitamos 2 cosas:
+En consecuencia necesitamos las siguientes cosas
 
-  a) valor p convencional (ej: 0.05), según convenciones
-  
-  p) ajuste según  N de la muestra y número de regresores, asociado al concepto de **grados de libertad**, que permite un ajuste más preciso del valor crítico
-  
-  - los grados de libertad equivalen a `\(N-k-1\)`, donde 
-      -N: total muestra
-      -k: número de regresores
+1.Alpha ($\alpha$): nivel de error (nivel de significación) que estamos dispuestos a aceptar en la decisión del rechazo o no de la hipotesis nula. De este podemos obtener el:
 
+- Confianza ( `\(1 -  \alpha\)`): grado de seguridad que tenemos de no rechazar (aceptar) una hipótesis nula cuando es cierta
 
 ---
-# Valor crítico de T
-
-a) Preciciones sobre valor p convencional:
-
-  - ej: 0.05
-  
-  - ya que se quiere detectar si el beta es distinto de 0, esto implica que puede ser mayor o menor.
-  
-  - por lo tanto, dividimos el 0.05/2 (0.025) al area inferior y superior de la distribución, quedando entonces en +/- 0.975
-
-- esto se conoce como una prueba t de dos colas (two-tailed)
-
+# Calcular valor crítico de T
+2.Grados de libertad ($gl$): es un valor que se calcula a partir de el n de la muestra y el número de regresores/predictores. Este nos permite un ajuste más preciso del valor crítico.
+`\(gl= N-k-1\)`
 
 ---
 # Valor crítico de T
 
 
-b) Sobre grados de libertad 
-
-- Si el N=300, y si hay otro regresor más (k=2), entonces los grados de libertad `\(N-k-1\)` son:
-
-  - `\(gl= 300-2-1=297\)`
+![](imagen4.png)
 
 ---
 # Valor crítico de T
 
-- Ejemplo:  `\(T=\frac{\beta}{SE}=\frac{10}{4}=2.5\)` 
+Imaginemos que nuestro `\(T=\frac{\beta}{SE}=\frac{10}{4}=2.5\)` 
 
+a) Nivel de confianza 95%
+
+b) N= 300 y dos regresores (k=2)
+
+En consecuencia tenemos un `\(\alpha = 0.05\)` y `\(gl = 300 -2 - 1 = 297\)`
+
+---
+# Valor crítico de T
+
+- Con un `\(\alpha = 0.05\)` al ser una `\(H_0\)` de dos colas este será `\(0.05/1 = 0.025\)`. En la distribución t la cola inferior será 0.025 y la superior 0.975. 
+
+![](imagen4.png)
+
+---
+# Valor crítico de T
 .medium[
 
-  - para un 95% de confianza (p=0.05, 0.025 dos colas) y grados de libertad 297, se busca en alguna [tabla de valores críticos de T](https://people.richland.edu/james/lecture/m170/tbl-t.html) ... o directamente en R:
+  - Para un 95% de confianza (p=0.05, 0.025 dos colas) y grados de libertad 297, se busca en alguna [tabla de valores críticos de T](https://people.richland.edu/james/lecture/m170/tbl-t.html) ... o directamente en R:
 
 
 
@@ -429,7 +463,7 @@ qt(0.975, 297)
 ---
 # Valor crítico de T
 
-Lo mismo pero para un `\(\alpha=0.01\)` que equivale a un p = 0.995
+Lo mismo pero para un `\(\alpha=0.01\)` que equivale a un percentil = 0.995
 
 
 ```r
@@ -443,7 +477,14 @@ qt(0.995, 297)
 En este caso, no podemos rechazar `\(H_0\)` con un 99% de confianza.
 
 ---
+## En R
 
+![](imagen2.png)
+
+
+- Valor p: probabilidad (0 a 1) de que la hipótesis nula sea cierta (ver probabilidad de T)
+
+---
 ## Intervalos de confianza
 
 Los **Intervalos de Confianza** proporcionan un rango de valores posibles para el parámetro poblacional y no sólo una estimación puntual.
@@ -470,11 +511,14 @@ Calculamos el intervalo de confianza del `\(\beta\)` del ejemplo anterior (10, S
 Como se puede observar en ninguno de los límites el `\(\beta\)` "atraviesa" el cero, por lo que se puede rechazar con el 95% de confianza que `\(\beta = 0\)`]
 
 ---
+class: inverse
+# Resumen
 
-class: inverse, middle
+- La **inferencia** en estadística se refiere a la relación que existe entre los resultados obtenidos basados en nuestra muestra y la población. La inferencia se asocia a establecer un nivel de probabilidad de error asociado a la estimación de `\(\beta\)`
 
-# RESUMEN
+- La prueba T nos permite establecer de manera exacta el nivel de error que estamos cometiendo al rechazar `\(H_0\)` 
 
+- Conceptos claves: hipótesis nula, hipótesis alternativa, nivel de error, nivel de significancia, intervalo de confianza, valor p.
 
 ---
 class: front
