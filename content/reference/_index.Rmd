@@ -137,20 +137,23 @@ Este trabajo posee dos entregas, tal como se señala en el programa del curso
   - Relevancia del problema de investigación: además de que el "tema" pueda ser relevante (ej: aumento de desigualdad económica, disminución de niveles de participación), la relevancia del problema se refiere a cuál es el aporte distintivo de este estudio desde una perspectiva académica y disciplinar (sociología).
   - Precisar el concepto central que se va a investigar: Ejemplo "vamos a estudiar participación informal, entendiendo por ello la frecuencia de participación en actividades como marchas, boycotts y en redes sociales".
   - Precisar argumento / hipótesis central "proponemos que a medida que aumenta el nivel de contactos con identificación política de izquierda, aumenta la participación política informal"
-  - El resto de la introducción usualmente se divide en dos secciones, que también son referidas como marco teórico, marco referencial, revisión bibliográfica, etc.
-    - El primer apartado corresponde al objeto central de estudio /variable dependiente (explanandum), donde se profundiza en su origen y definición, y se revisan las principales investigaciones que se asocian a este concepto. (al menos 5 referencias)
-    - El segundo apartado corresponde a los conceptos relacionados con las variables independientes (explanans) y en los cuales se basan las hipótesis. Se revisan en orden de relevancia. (al menos 5 referencias)
+  - El resto de la introducción usualmente se divide en dos secciones, que también son referidas como marco teórico, marco referencial, revisión bibliográfica, etc. **Título sugerido: antecedentes conceptuales y empíricos**
+    - El primer apartado corresponde al objeto central de estudio /variable dependiente (explanandum), donde se profundiza en su origen y definición, y se revisan las principales investigaciones que se asocian a este concepto. (**+/-** 5 referencias)
+    - El segundo apartado corresponde a los conceptos relacionados con las variables independientes (explanans) y en los cuales se basan las hipótesis. Se revisan en orden de relevancia. (**+/-** 5 referencias)
 
 4. Objetivos / hipótesis (alrededor de 3) (250 palabras) (1 punto)
 
 5. Metodología: datos (no olvidar número de casos), variables y métodos  (500 palabras). (3 puntos, uno por cada subsección)
 - Esta sección también incluye una tabla de descriptivos básicos, y una descripción detallada de la operacionalización y medición de las variables.
+- **Sobre la selección de la variable dependiente**: por definición la variable dependiente en regresión múltiple OLS es continua. Escalas tipo likert pueden ser utilizadas en casos justificados y también teniendo en cuenta su variabilidad (si muchos casos se acumulan en pocas categorías la varianza va a ser pequeña, menos posibilidades de covarianza, y por tanto baja probabilidad de encontrar efectos significativos).
 
 6. Análisis (1500 palabras) (8 puntos)
+- **La sección de análisis sigue la lógica del trabajo anterior**: análisis descriptivo y luego análisis de modelos de regresión
 - Comenzar con análisis descriptivo uni y bivariado, nubes de puntos, tabla de correlaciones (1 punto).
 - Introducción del sentido de los modelos en relación a las hipótesis (1 punto)
 - Presentación de la(s) tabla(s) (2 puntos)
 - Interpretación (4 puntos).
+- **sobre número de predictores**: al menos tres
 
 7. Discusión de los resultados, con énfasis en la relación entre variable dependiente e independientes, limitaciones, posibles estudios futuros. (500 palabras) (3 puntos)
 

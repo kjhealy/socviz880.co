@@ -1,0 +1,99 @@
+---
+title: "Ejemplo interpretación regresión múltiple"
+author: "jc"
+date: "7/13/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+pacman::p_load(dplyr,readxl, stargazer)
+```
+
+
+# Lectura datos
+```{r}
+data <-read_excel("hsb2.xls")
+```
+
+# Ajustes
+
+```{r}
+names(data)
+
+data <- data %>% select (science,math,female, socst, read)
+data <- data %>% rename(ciencia=science, matematicas =math, mujer=female, status=socst, lectura=read)
+
+```
+
+
+
+Este modelo intenta predecir el puntaje en ciencia con las siguientes variables independientes: puntaje en matemáticas, sexo (mujer=1, hombre=0, variable dummy), estatus social(status), y puntaje en lectura.
+
+*Lógica de presentación de modelos*: la forma en que se presentan los modelos en regresión múltiple depende de las hipótesis que se estan contrastando, y de la definición del/a investigador/a sobre cuáles son los predictores principales y cuáles son las variables de control. Pensemos en este caso que nuestra hipótesis principal es que el puntaje de ciencias se puede predecir con los puntajes de matemáticas y lectura, pero queremos controlar estas asociaciones por sexo y estatus. En este caso, podríamos presentar dos modelos, uno solamente con los predictores principales, y luego un segundo modelo con los controles para ver si los efectos se mantienen. También podríamos pensar en tres modelos: uno con matemáticas, otro con ciencias, y otro con ambos y además controles. La decisión de cómo presentar los modelos depende principalmente de las hipótesis que se están contrastando, y también de que los resultados permitan hacer la mejor discusión posible.
+
+```{r}
+reg1 <- lm(ciencia ~ matematicas + lectura, data=data)
+reg2 <- lm(ciencia ~ matematicas + lectura + mujer + status, data=data)
+stargazer(reg1, reg2, type = "text")
+
+```
+
+
+
+
+
+
+
+
+
+
+Por lo general, se presentan modelos iniciales con las variables que corresponden a las hipótesis principales, y luego se estiman modelos posteriores que ingresan las variables control. Ahora, existen aproximaciones distintas, hay autores que ingresan las variables de control  
+
+
+
+El primer valor en la tabla de predictores equivale al intercepto (Intercept), que es valor de la variable dependiente (puntaje en prueba de ciencias) cuando los predictores son 0. En este caso, equivale al puntaje para alguien con   
+
+
+
+
+science – This column shows the dependent variable at the top (science) with the predictor variables below it (math, female, socst, read and _cons). The last variable (_cons) represents the constant, also referred to in textbooks as the Y intercept, the height of the regression line when it crosses the Y axis.  In other words, this is the predicted value of science when all other variables are 0.
+
+k. Coef. – These are the values for the regression equation for predicting the dependent variable from the independent variable. The regression equation is presented in many different ways, for example:
+
+Ypredicted = b0 + b1*x1 + b2*x2 + b3*x3 + b4*x4
+
+The column of estimates (coefficients or parameter estimates, from here on labeled coefficients) provides the values for b0, b1, b2, b3 and b4 for this equation.  Expressed in terms of the variables used in this example, the regression equation is
+
+    sciencePredicted = 12.32529 + .3893102*math + -2.009765*female+.0498443*socst+.3352998*read
+
+These estimates tell you about the relationship between the independent variables and the dependent variable. These estimates tell the amount of increase in science scores that would be predicted by a 1 unit increase in the predictor.  Note: For the independent variables which are not significant, the coefficients are not significantly different from 0, which should be taken into account when interpreting the coefficients.  (See the columns with the t-value and p-value about testing whether the coefficients are significant). math – The coefficient (parameter estimate) is
+
+.3893102.  So, for every unit (i.e., point, since this is the metric in which the tests are measured) increase in math, a .3893102 unit increase in science is predicted, holding all other variables constant. (It does not matter at what value you hold the other variables constant, because it is a linear model.)  Or, for every increase of one point on the math test, your science score is predicted to be higher by .3893102 points.  This is significantly different from 0. female – For every unit increase in female, there is a
+
+-2.009765 unit decrease in the predicted science score, holding all other variables constant.  Since female is coded 0/1 (0=male, 1=female) the interpretation can be put more simply.  For females the predicted science score would be 2 points lower than for males.  The variable female is technically not statistically significantly different from 0, because the p-value is greater than .05.  However, .051 is so close to .05 that some researchers would still consider it to be statistically significant. socst – The coefficient for socst is .0498443. This means that for a 1-unit increase in the social studies score, we expect an approximately .05 point increase in the science score.  This is not statistically significant; in other words, .0498443 is not different from 0. read – The coefficient for read is .3352998. Hence, for every unit increase in reading score we expect a .34 point increase in the science score.  This is statistically significant.
+
+l. Std. Err. – These are the standard errors associated with the coefficients.  The standard error is used for testing whether the parameter is significantly different from 0 by dividing the parameter estimate by the standard error to obtain a t-value (see the column with t-values and p-values).  The standard errors can also be used to form a confidence interval for the parameter, as shown in the last two columns of this table.
+
+m. t and P>|t| – These columns provide the t-value and 2-tailed p-value used in testing the null hypothesis that the coefficient (parameter) is 0.   If you use a 2-tailed test, then you would compare each p-value to your pre-selected value of alpha.  Coefficients having p-values less than alpha are statistically significant.  For example, if you chose alpha to be 0.05, coefficients having a p-value of 0.05 or less would be statistically significant (i.e., you can reject the null hypothesis and say that the coefficient is significantly different from 0).   If you use a 1-tailed test (i.e., you hypothesize that the parameter will go in a particular direction), then you can divide the p-value by 2 before comparing it to your pre-selected alpha level.
+
+The coefficient for female (-2.009765) is technically not significantly different from 0 because with a 2-tailed test and alpha of 0.05, the p-value of 0.051 is greater than 0.05.  However, if you used a 1-tailed test, the p-value is now (0.051/2=.0255), which is less than 0.05 and then you could conclude that this coefficient is less than 0. CAUTION: We do not recommend changing from a two-tailed test to a one-tailed test after running your regression. This would be statistical cheating! You must know the direction of your hypothesis before running your regression.
+
+The coefficient for math (3893102) is significantly different from 0 using alpha  of 0.05 because its p-value is 0.000, which is smaller than 0.05.
+
+The coefficient for socst (.0498443) is not statistically significantly different from 0 because its p-value is definitely larger than 0.05.
+
+The coefficient for read (.3352998) is statistically significant because its p-value of 0.000 is less than .05.
+
+The constant (_cons) is significantly different from 0 at the 0.05 alpha level. However, having a significant intercept is seldom interesting.
+
+n. [95% Conf. Interval] – This shows a 95% confidence interval for the coefficient.  This is very useful as it helps you understand how high and how low the actual population value of the parameter might be.  The confidence intervals are related to the p-values such that the coefficient will not be statistically significant if the confidence interval includes 0.  If you look at the confidence interval for female, you will see that it just includes 0 (-4 to .007).  Because .007 is so close to 0, the p-value is close to .05.  If the upper confidence level had been a little smaller, such that it did not include 0, the coefficient for female would have been statistically significant.  Also, consider the coefficients for female (-2) and read (.34).  Immediately you see that the estimate for female is so much bigger, but examine the confidence interval for it (-4 to .007).  Now examine the confidence interval for read (.19 to .48).  Even though female has a bigger coefficient (in absolute terms) it could be as small as -4. By contrast, the lower confidence level for read is .19, which is still above 0.  So, even though female has a bigger coefficient, read is significant and even the smallest value in the confidence interval is still higher than 0.  The same cannot be said about the coefficient for socst.  Such confidence intervals help you to put the estimate from the coefficient into perspective by seeing how much the value could vary.
+
+Primary 
+
+```
+
