@@ -1,0 +1,628 @@
+---
+title: "Práctica 8. Tabla de regresión múltiple"
+subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
+author: "Juan Carlos Castillo"
+linktitle: "Práctica 8. Tabla de regresión múltiple"
+date: "2020-07-13"
+class_date: "2020-07-13"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+    highlight: tango
+    number_sections: FALSE
+menu:
+  class:
+    parent: Practicas
+    weight: 1
+type: docs
+weight: 1
+editor_options:
+  chunk_output_type: console
+---
+
+<!-- BLOGDOWN-HEAD -->
+<script src="/rmarkdown-libs/clipboard/clipboard.min.js"></script>
+<link href="/rmarkdown-libs/primer-tooltips/build.css" rel="stylesheet" />
+<link href="/rmarkdown-libs/klippy/css/klippy.min.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/klippy/js/klippy.min.js"></script>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<!-- /BLOGDOWN-HEAD -->
+
+<h2>Índice</h2>
+<div id="TOC">
+<ul>
+<li><a href="#librerías">Librerías</a></li>
+<li><a href="#datos">Datos</a></li>
+<li><a href="#ajustes-y-descriptivos">Ajustes y descriptivos</a></li>
+<li><a href="#modelos-de-regresión">Modelos de regresión</a><ul>
+<li><a href="#lógica-de-presentación-de-modelos">Lógica de presentación de modelos</a></li>
+<li><a href="#estimación">Estimación</a></li>
+<li><a href="#interpretación">Interpretación</a></li>
+<li><a href="#ajuste-global-del-modelo">Ajuste global del modelo</a></li>
+</ul></li>
+<li><a href="#referencias">Referencias</a></li>
+<li><a href="#foro-práctica-8">Foro práctica 8</a></li>
+</ul>
+</div>
+
+<script>
+  addClassKlippyTo("pre.r, pre.markdown");
+  addKlippy('right', 'bottom', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<p>En el siguiente documento se presenta un ejemplo de análisis e interpretación de una tabla de regresión múltiple, para que sea considerado como referencia en la entrega de los informes 2 y 3. El ejemplo está adaptado de <a href="https://stats.idre.ucla.edu/stata/output/regression-analysis/">https://stats.idre.ucla.edu/stata/output/regression-analysis/</a></p>
+<div id="librerías" class="section level1">
+<h1>Librerías</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">pacman<span class="op">::</span><span class="kw">p_load</span>(dplyr,readxl, summarytools, stargazer, equatiomatic)</a></code></pre></div>
+</div>
+<div id="datos" class="section level1">
+<h1>Datos</h1>
+<p>Los datos a utilizar corresponden a resultados de pruebas de conocimiento en distintas areas de 200 estudiantes de educación secundaria.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">data &lt;-<span class="kw">read_excel</span>(<span class="st">&quot;https://multivariada.netlify.app/assignment/data/hsb2.xls&quot;</span>)</a></code></pre></div>
+</div>
+<div id="ajustes-y-descriptivos" class="section level1">
+<h1>Ajustes y descriptivos</h1>
+<p>Primero seleccionamos las variables que vamos a usar en el ejemplo y cambiamos las etiquetas de las variables a español.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">names</span>(data)</a></code></pre></div>
+<pre><code>##  [1] &quot;id&quot;      &quot;female&quot;  &quot;race&quot;    &quot;ses&quot;     &quot;schtyp&quot;  &quot;prog&quot;    &quot;read&quot;   
+##  [8] &quot;write&quot;   &quot;math&quot;    &quot;science&quot; &quot;socst&quot;</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span> (science,math,female, socst, read)</a>
+<a class="sourceLine" id="cb5-2" title="2">data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="dt">ciencia=</span>science, <span class="dt">matematicas =</span>math, <span class="dt">mujer=</span>female, <span class="dt">status=</span>socst, <span class="dt">lectura=</span>read)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">print</span>(<span class="kw">dfSummary</span>(data, <span class="dt">headings =</span> <span class="ot">FALSE</span>), <span class="dt">method =</span> <span class="st">&quot;render&quot;</span>)</a></code></pre></div>
+<div class="container st-container">
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline ">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>No</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Valid</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">1</td>
+      <td align="left">ciencia
+[numeric]</td>
+      <td align="left">Mean (sd) : 51.9 (9.9)
+min < med < max:
+26 < 53 < 74
+IQR (CV) : 14 (0.2)</td>
+      <td align="left" style="vertical-align:middle">34 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBw8QMQx4j9ebAAABmUlEQVR42u3aUU7CQBRAUWtYngvQFcoC3J/++FGNDL2EWgrn/BkTbW54zTAz0+cTxfPWD7A3gkWCRYf5D7fzPjsOH+V1+t+nmf+7w8V/ZWUvJ3/zselzGclo00/Y8XbeAYttPJKnBm/bsRsxkpFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYNHNnnxfZv0rBncWbP0rBkYyEiwSLBIsEiwSLBIsEixafeG6x1uGI/+w0r/V672XMZLRLr9Lbjnmuwy25ZAbyUiwSLBIsEiwSLBIsEiwSLDoKiv9e9uRGLnSV6P72pEYMZKRYJFgkWCRYNEuNxAvNVr+LL0K9VDBrrH4MZKRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYNHi7Z1HOkobCfthj3OUNmIkI8EiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsGih7qBODLagn+bXecU7NvSDXgjGf34hDkZOu/XSDoZOsdIRoJFgkXT/D3/7qX/p/k6bNKoMZKRYJFg0Rdo9iLq9nd+JAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNy0xNVQxNjo0OToxMiswMDowMJFOjLgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDctMTVUMTY6NDk6MTIrMDA6MDDgEzQEAAAAAElFTkSuQmCC"></td>
+      <td align="center">200
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+    <tr>
+      <td align="center">2</td>
+      <td align="left">matematicas
+[numeric]</td>
+      <td align="left">Mean (sd) : 52.6 (9.4)
+min < med < max:
+33 < 52 < 75
+IQR (CV) : 14 (0.2)</td>
+      <td align="left" style="vertical-align:middle">40 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBw8QMQx4j9ebAAABf0lEQVR42u3dQU6DQABAUTE9Xg+gJ9QDeD/dGWwM5AkUqP/tmqZAfjJk2pm2w+dTxPPeF3A2BUMFQ5fxgz3vZ+8zJ38Z9ru28akvfz7K6q4Tz33sfXHfGpKoYKhgqGCoYKhgaMVpxdxMatuj32uetuo8bHomdZ187dxMa9mr19OQRAVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMH2lC3zPTK+Hrr4g8T7F77FxuSqGCoYKhgqGCoYKhgqGCoYKhgqGCoYIjefG+7E/8c8NOKc3yncUsNSVQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQw9DC7qKctW4J+HW1a/yfB1vspuIYkKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGPqxatT3IefdLLMd5d+DjqshiQqGCoaG8X3+rZv+r8Z7K4YamYYkKhgqGPoCJUYc5e5iO2UAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMTVUMTY6NDk6MTIrMDA6MDCRToy4AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTE1VDE2OjQ5OjEyKzAwOjAw4BM0BAAAAABJRU5ErkJggg=="></td>
+      <td align="center">200
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+    <tr>
+      <td align="center">3</td>
+      <td align="left">mujer
+[numeric]</td>
+      <td align="left">Min : 0
+Mean : 0.5
+Max : 1</td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">0</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">91</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">45.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">109</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">54.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAF4AAAA4CAQAAADedoeiAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBw8QMQx4j9ebAAAAnElEQVRo3u3YMQ6AIAxG4WK4oJueUDePqGsxwRCW9jfvTRocvqGYQLlNtyUaAF6x6l+ONBtgK70Vv1DbpTVabWZm1+B30mMDHjx4ocCDBy8UePDghQIPfqLXGXb09Jij4i8M0lwefIHds/TYgI+q2bCnwNDvbuhT3pj1a/+G0mMDHjx4ocCDBy8UePDghQIPfqL/3JipJT024KN6AHRIC9bm0AF1AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA3LTE1VDE2OjQ5OjEyKzAwOjAwkU6MuAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNy0xNVQxNjo0OToxMiswMDowMOATNAQAAAAASUVORK5CYII="></td>
+      <td align="center">200
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+    <tr>
+      <td align="center">4</td>
+      <td align="left">status
+[numeric]</td>
+      <td align="left">Mean (sd) : 52.4 (10.7)
+min < med < max:
+26 < 52 < 71
+IQR (CV) : 15 (0.2)</td>
+      <td align="left" style="vertical-align:middle">22 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBw8QMQx4j9ebAAABjklEQVR42u3bW07CUBRAUWsYngPQEcoAnJ/++FGJVPZNa3ms9UcIj+z0QEMP0+cTxfPeb+DWCBYJFh3mN27j8+y4+DZfp/Vfcf6Uh+Fn2dHL2Xs+Nn9tIxld6RF2HP50WHrkGuN6pcHGx27rcTWSkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFg0dVe+d7CGmsEDxVsjTUCIxnteoSN7+jsZ+eRPDck2y/GjTKS0eZH2C2O3ZJ/GMk9N1LXZyQjwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBoos3EO9t9XJUWNlcWr28r7XMJUYyEiwSLBIseqh/sy1ZOgt4m/01ULBvl37PG8lIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLDox68VLnT87eTnnce5mDHKSEaCRYJFgkWCRYJFgkXT/Fz13Ynrr+bXJSeNGiMZCRYJFn0B5j8hOyZ2DPQAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMTVUMTY6NDk6MTIrMDA6MDCRToy4AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTE1VDE2OjQ5OjEyKzAwOjAw4BM0BAAAAABJRU5ErkJggg=="></td>
+      <td align="center">200
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+    <tr>
+      <td align="center">5</td>
+      <td align="left">lectura
+[numeric]</td>
+      <td align="left">Mean (sd) : 52.2 (10.3)
+min < med < max:
+28 < 50 < 76
+IQR (CV) : 16 (0.2)</td>
+      <td align="left" style="vertical-align:middle">30 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBw8QMQx4j9ebAAABpUlEQVR42u3bwU3DMABAUYo6XgeACWEA9oMbCghDHyUkbv+7tQcafcWJE5vD613E/dYHMJuCoYKh4/LD/1zPnoc/83DYuMbA8rCOv/4rFzh9+e3LFofCGpKoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgaLXtTs9Xunl2xf1hp8H3c+wDG2lIooKhgqGCoYKhTXZRj8ywIX1XwWaYiDQkUcFQwVDB0K4u+uq7B/y17qtTB9vivtqQRAVDBUMFQwVDk9wl97NCMEmw/fyXeEMSFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMXfhOfz+LE//l4kWQGXYN/qVJVo3cWvtlrzbYWmd+F31UMFQwVDBUMFQwVDB05jzs9h6BRs6euO5nh9a2rnamPzYaLec9Mt1gsMvGShd9VDBUMFQwVDBUMFQwVDBUMHSDM/2R8QuGx8VDU8HenbfO9CFYL3F+9ukMu7V1bHdYnlRPnWFfWl7DDjUyTStQwVDB0BuVJSZHi2YFHgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNy0xNVQxNjo0OToxMiswMDowMJFOjLgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDctMTVUMTY6NDk6MTIrMDA6MDDgEzQEAAAAAElFTkSuQmCC"></td>
+      <td align="center">200
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 0.9.6 (<a href='https://www.r-project.org/'>R</a> version 4.0.0)<br/>2020-07-15</p>
+</div>
+</div>
+<div id="modelos-de-regresión" class="section level1">
+<h1>Modelos de regresión</h1>
+<div id="lógica-de-presentación-de-modelos" class="section level2">
+<h2>Lógica de presentación de modelos</h2>
+<p>La forma en que se presentan los modelos en regresión múltiple depende de las hipótesis que se estan contrastando, y de la definición del/a investigador/a sobre cuáles son los predictores principales y cuáles son las variables de control. Pensemos en este caso que nuestra hipótesis principal es que el puntaje de ciencias se puede predecir con los puntajes de matemáticas y lectura, pero queremos controlar estas asociaciones por sexo y estatus. En este caso, podríamos presentar dos modelos, uno solamente con los predictores principales, y luego un segundo modelo con los controles para ver si los efectos se mantienen. También podríamos pensar en tres modelos: uno con matemáticas, otro con ciencias, y otro con ambos y además controles. La decisión de cómo presentar los modelos depende principalmente de las hipótesis que se están contrastando, y también de que los resultados permitan hacer la mejor discusión posible.</p>
+</div>
+<div id="estimación" class="section level2">
+<h2>Estimación</h2>
+<p>Vamos a estimar un primer modelo con las variables asociadas a la hipótesis principal, y luego un segundo con las variables control:</p>
+<p><span class="math display">\[
+\text{ciencia} = \alpha + \beta_{1}(\text{matematicas}) + \beta_{2}(\text{lectura}) + \epsilon
+\]</span><span class="math display">\[
+\text{ciencia} = \alpha + \beta_{1}(\text{matematicas}) + \beta_{2}(\text{lectura}) + \beta_{3}(\text{mujer}) + \beta_{4}(\text{status}) + \epsilon
+\]</span></p>
+<p>Para estimar estos modelos en <code>R</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">reg1 &lt;-<span class="st"> </span><span class="kw">lm</span>(ciencia <span class="op">~</span><span class="st"> </span>matematicas <span class="op">+</span><span class="st"> </span>lectura, <span class="dt">data=</span>data)</a>
+<a class="sourceLine" id="cb7-2" title="2">reg2 &lt;-<span class="st"> </span><span class="kw">lm</span>(ciencia <span class="op">~</span><span class="st"> </span>matematicas <span class="op">+</span><span class="st"> </span>lectura <span class="op">+</span><span class="st"> </span>mujer <span class="op">+</span><span class="st"> </span>status, <span class="dt">data=</span>data)</a></code></pre></div>
+<p>Para presentar los resultados de regresión existen diferentes librerías en R, como
+stargazer, texreg, sjPlot. En este caso vamos a utilizar la función tab_model de sjPlot:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg1,reg2))</a></code></pre></div>
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+ 
+</th>
+<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+ciencia
+</th>
+<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+ciencia
+</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+Predictors
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+Estimates
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+CI
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+p
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+Estimates
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+CI
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col7">
+p
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+11.62
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+5.59 – 17.64
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>&lt;0.001
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+12.33
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+6.03 – 18.62
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<strong>&lt;0.001
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+matematicas
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.40
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.26 – 0.54
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>&lt;0.001
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.39
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.24 – 0.54
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<strong>&lt;0.001
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+lectura
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.37
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.23 – 0.50
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>&lt;0.001
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.34
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.19 – 0.48
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<strong>&lt;0.001
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+mujer
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-2.01
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-4.03 – 0.01
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+0.051
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+status
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.05
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.07 – 0.17
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+0.424
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+Observations
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">
+200
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">
+200
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+R<sup>2</sup> / R<sup>2</sup> adjusted
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+0.478 / 0.473
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+0.489 / 0.479
+</td>
+</tr>
+</table>
+<p>Esta tabla tiene las opciones por defecto. En general, para cada predictor hay dos piezas de información importante: la estimación del coeficiente de regresión <span class="math inline">\(\beta\)</span> (estimates), y una estimación referida a inferencia/significación estadística (en este caso CI, intervalo de confianza). Esta segunda información es en general el error estándar, pero también puede ser <em>t</em> (que es el coeficiente dividido por el error estándar), o el intervalo de confianza, dado usualmente por el <span class="math inline">\(\beta\)</span> +/- 1.96 SE para un 95% de confianza (como aparece en esta tabla). Según el output, la información de inferencia puede aparecer abajo del coeficiente, o al lado como en esta tabla.</p>
+<p>Abajo vamos a hacer algunos ajustes en la tabla, presentando el error estándar en lugar del intervalo, y reemplazando la columna del nivel de probabilidad de error (<em>p</em>) por asteriscos que indican el nivel de significación de cada coeficiente, lo cual hace más rápida la interpretación. También cambiamos algunas etiquetas de la tabla para que sea más fácil de leer:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg1,reg2),</a>
+<a class="sourceLine" id="cb9-2" title="2">        <span class="dt">show.se=</span><span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb9-3" title="3">        <span class="dt">show.ci=</span><span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb9-4" title="4">        <span class="dt">digits=</span><span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb9-5" title="5">        <span class="dt">p.style =</span> <span class="st">&quot;asterisk&quot;</span>,</a>
+<a class="sourceLine" id="cb9-6" title="6">        <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 1&quot;</span>, <span class="st">&quot;Modelo 2&quot;</span>),</a>
+<a class="sourceLine" id="cb9-7" title="7">        <span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>,</a>
+<a class="sourceLine" id="cb9-8" title="8">        <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>)</a></code></pre></div>
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+ 
+</th>
+<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+Modelo 1
+</th>
+<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+Modelo 2
+</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+Predictores
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+β
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+std. Error
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+β
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+std. Error
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+11.616 <sup>***</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+3.054
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+12.325 <sup>***</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+3.194
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+matematicas
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.402 <sup>***</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.073
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.389 <sup>***</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.074
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+lectura
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.365 <sup>***</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.066
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.335 <sup>***</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.073
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+mujer
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-2.010 <sup></sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.023
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+status
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.050 <sup></sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.062
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+Observations
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
+200
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
+200
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+R<sup>2</sup> / R<sup>2</sup> adjusted
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
+0.478 / 0.473
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
+0.489 / 0.479
+</td>
+</tr>
+<tr>
+<td colspan="5" style="font-style:italic; border-top:double black; text-align:right;">
+<ul>
+<li>p&lt;0.05   ** p&lt;0.01   *** p&lt;0.001
+</td>
+</tr></li>
+</ul>
+</table>
+<p>Y para presentar en forma de ecuaciones, quedaría de la siguiente manera:</p>
+<p><span class="math display">\[
+\text{ciencia} = 11.62 + 0.4(\text{matematicas}) + 0.37(\text{lectura}) + \epsilon
+\]</span><span class="math display">\[
+\text{ciencia} = 12.33 + 0.39(\text{matematicas}) + 0.34(\text{lectura}) - 2.01(\text{mujer}) + 0.05(\text{status}) + \epsilon
+\]</span></p>
+<div class="alert alert-info">
+<p>Para transformar automáticamente las estimaciones de regresión en R a ecuaciones:</p>
+<p>Esto se puede hacer si se utiliza RMarkdown (no es requisito en este curso, para los interesad_s pueden revisar material del curso <a href="https://cienciasocialabierta.netlify.app/class/04-class/">ciencia social abierta</a> )</p>
+<ol style="list-style-type: decimal">
+<li><p>Instalar librería <strong>equatiomatic</strong>. No está en CRAN, así que para instalar:<code>remotes::install_github("datalorax/equatiomatic")</code></p></li>
+<li><p>La función para extraer la ecuación es <code>extract_eq</code>, por ejemplo: <code>extract_eq(reg1)</code></p></li>
+<li><p>Para que el resultado pueda ser <code>renderizado</code> desde un documento RMarkdown a pdf o html, debe estar en un chunk con las siguientes especificaciones:</p></li>
+</ol>
+<pre><code>```{r results=&#39;asis&#39;, echo=FALSE}
+extract_eq(reg1)
+extract_eq(reg2)
+```</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Para presentar las ecuaciones con los coeficientes ya estimados, <code>extract_eq(reg1, use_coefs = TRUE)</code></li>
+</ol>
+</div>
+</div>
+<div id="interpretación" class="section level2">
+<h2>Interpretación</h2>
+<p>Los coeficientes nos hablan de la relación entre las variables independientes y la variable dependiente. Nos muestran la magnitud del cambio predicho en el puntaje de ciencia por cada 1 unidad en que aumenta el predictor.</p>
+<p>Para <code>matematica</code> el coeficiente es de 0.402 en el modelo 1 y baja a 0.389 en el modelo 2. Entonces, por cada punto adicional en la prueba de matemáticas en el modelo 2 se presenta un incremento de 0.389 en el puntaje de <code>ciencia</code>, <strong>manteniendo todas las demás variables constantes</strong>. Respecto a la inferencia, existen distintas maneras de dar cuenta de la significación estadística. Por ejemplo, se puede decir que este valor es estadísticamente significativo con un 99,9% de confianza, o con una probabilidad de error p&lt;0.001.</p>
+<div class="alert alert-info">
+<p>Para reportar estos resultados de manera más resumida siguiendo las indicaciones de reporte de <strong>APA</strong> (American Psychological Association): El puntaje en matemáticas predice significativamente el puntaje de ciencias (modelo 1), b = -.40, SE = .07, p &lt; .001, controlando por el puntaje en lectura. Al agregar los controles de sexo y estatus (modelo 2), el puntaje en matemáticas disminuye levemente pero mantiene su nivel de significación, b = -.39, SE = .07, p &lt; .001.</p>
+</div>
+<p>Con respecto a <code>lectura</code>, en el modelo 2 es posible observar un coeficiente de 0.335. Esto implica que por cada unidad que aumenta el puntaje de <code>lectura</code> se predice un incremento de 0.335 puntos en <code>ciencia</code>, manteniendo todas las demás variables contantes. El coeficiente es estadísticamente significativo con una probabilidad de error p&lt;0.001.</p>
+<p>Para la variable <code>mujer</code> podemos observar que el coeficiente tiene un valor de -2.010 en el modelo 2. Al ser <code>mujer</code> una variable dicotómica donde 1 es mujer y 0 es hombre, la estimación nos indica que para las mujeres el puntaje predicho promedio en ciencias es -2.010 puntos más bajo con respecto al promedio de los hombres, manteniendo todas las demás variables constantes. En términos exclusivamente estadísticos, la variable <code>mujer</code> no es significativamente distinta de 0 cuando empleamos un nivel de confianza del 95%, debido a que el valor <span class="math inline">\(p\)</span> es mayor a 0.05.</p>
+<p>Si observamos el coeficiente de <code>status</code> tenemos un valor de 0.050. Entonces, por cada unidad en que incrementa el estatus se predice un incremento de 0.050 puntos en <code>ciencia</code>, manteniendo todas las demás variables constantes. Sin embargo, no es estadísticamente significativo a un 95% de confianza.</p>
+<p><strong>Std Error</strong>: Esta columna corresponde a los errores estándar de los coeficientes de regresión (Estimate). Estos errores estándar son empleados para testear en qué medida los coeficientes son distintos de 0. El procedimiento es dividir el coeficiente por su error estándar para obstener el valor <span class="math inline">\(t\)</span>, los que luego se contrastan con la tabla de valores críticos t para obtener la probabilidad de error (que ya aparece automáticamente en la tabla) . Además, los errores estándar pueden ser utilizados para calcular los intervalos de confianza.</p>
+<p>Una manera de presentar los resultados de un modelo de regresión es a través de la visualización de los coeficientes de regresión con sus respectivos intervalos de confianza. La ventaja de este tipo de gráficos es que podemos observar la magnitud del coeficiente y las “barras de error” que representan el intervalo de confianza inferior y superior. Utilizando un intervalo de confianza de 95% de confianza:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">sjPlot<span class="op">::</span><span class="kw">plot_model</span>(reg2,<span class="dt">ci.lvl =</span> <span class="kw">c</span>(<span class="fl">0.95</span>), <span class="dt">title =</span> <span class="st">&quot;&quot;</span>,<span class="dt">vline.color =</span> <span class="st">&quot;grey&quot;</span>,<span class="dt">line.size =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-13"></span>
+<img src="/assignment/08-code_files/figure-html/unnamed-chunk-13-1.png" alt="Modelo 2" width="672" />
+<p class="caption">
+Figure 1: Modelo 2
+</p>
+</div>
+<p>Lo que nos muestra este gráfico es el valor del coeficiente en el punto, y en las líneas que salen del punto se extienden según su intervalo de confianza. De acuerdo a las reglas de inferencia en regresión, lo que estamos contrastando es que el valor de este coeficiente es distinto de 0 en la población, con un cierto valor de probabilidad. Por lo tanto, si agregamos un intervalo de confianza (valores probables) asociado a una probabilidad de error, entonces podemos decir que este coeficiente es estadísticamente distinto de 0 en la población. Y en el gráfico, esto sucede cuando los intervalos no tocan el 0.</p>
+</div>
+<div id="ajuste-global-del-modelo" class="section level2">
+<h2>Ajuste global del modelo</h2>
+<p><strong><code>R2</code></strong>: El R2 (R-cuadrado) es la proporción de la varianza de la variable dependiente (ciencias) la cual puede ser predicha por las variables independientes (matemáticas, mujer, estatus, lectura). En la Tabla 1 tenemos que para el Modelo (1), este valor nos indica que un 47,7% de la varianza en el puntaje de ciencias se asocia a matemáticas. Luego, en el Modelo (2), el R-cuadrado nos indica que el 48,9% de la varianza de ciencias puede ser predicha conjuntamente por las variables independientes matemáticas, lectura, mujer y status. Como vemos, la incorporación de controles aporta levemente al R2, lo cual se relaciona con que estos predictores no son estadísticamente significativos.</p>
+<p><strong><code>Adjusted R2</code></strong>: En la medida que se incorporan predictores al modelo, cada uno va contribuyendo a explicar la varianza de la variable dependiente. Así, se podría continuar agregando predictores al modelo, incrementando la capacidad explicativa pero también de cierto modo debido a la variabilidad adicional en una muestra particular con la que estemos trabajando. Por esta razón, el <strong>R-cuadrado ajustado</strong> busca demostrar un valor estimado más realista del R-cuadrado para la población bajo análisis, penalizando por la inclusión de predictores adicionales. En el caso del Modelo (2) de la Tabla 1, el valor del R-cuadrado es de <strong>0.489</strong>, mientras que el R-cuadrado ajustado es de <strong>0.479</strong>, el cual es calculado a través de la fórmula <span class="math inline">\(1 – ((1 – R^2)((N – 1) /( N – k – 1))\)</span>.</p>
+<p>Entonces, si el número de observaciones (<span class="math inline">\(N\)</span>) es pequeño y el número de predictores (<span class="math inline">\(k\)</span>)es grande, tendremos una mayor discrepancia entre el R-cuadrado y el R-cuadrado ajustado. Por otro lado, cuando el número de observaciones es grande en contraste con el número de predictores tendremos que el valor del R-cuadrado y el R-cuadrado ajustado serán mucho más similares debido.</p>
+<p>Por lo tanto, al momento de realizar la intepretación <strong>corresponde basarse en los coeficientes del R2 ajustado</strong>.</p>
+</div>
+</div>
+<div id="referencias" class="section level1">
+<h1>Referencias</h1>
+<ol style="list-style-type: decimal">
+<li><p>Bruin, J. 2006. newtest: command to compute new test. UCLA:
+Statistical Consulting Group. <a href="https://stats.idre.ucla.edu/stata/ado/analysis/" class="uri">https://stats.idre.ucla.edu/stata/ado/analysis/</a>.</p></li>
+<li><p><a href="https://stats.idre.ucla.edu/stata/output/regression-analysis/">Regression analysis annotated output</a></p></li>
+</ol>
+</div>
+<div id="foro-práctica-8" class="section level1">
+<h1>Foro práctica 8</h1>
+</div>

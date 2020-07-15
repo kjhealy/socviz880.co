@@ -1,0 +1,118 @@
+---
+title: "Ejemplo interpretación regresión múltiple"
+author: "jc"
+date: "7/13/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+pacman::p_load(dplyr,readxl, stargazer)
+```
+
+
+# Lectura datos
+```{r}
+data <-read_excel("data/hsb2.xls")
+```
+
+# Ajustes
+
+```{r}
+names(data)
+
+data <- data %>% select (science,math,female, socst, read)
+data <- data %>% rename(ciencia=science, matematicas =math, mujer=female, status=socst, lectura=read)
+summary(data)
+```
+
+Este modelo intenta predecir el puntaje en ciencia con las siguientes variables independientes: puntaje en matemáticas, sexo (mujer=1, hombre=0, variable dummy), estatus social (status), y puntaje en lectura.
+
+*Lógica de presentación de modelos*: la forma en que se presentan los modelos en regresión múltiple depende de las hipótesis que se estan contrastando, y de la definición del/a investigador/a sobre cuáles son los predictores principales y cuáles son las variables de control. Pensemos en este caso que nuestra hipótesis principal es que el puntaje de ciencias se puede predecir con los puntajes de matemáticas y lectura, pero queremos controlar estas asociaciones por sexo y estatus. En este caso, podríamos presentar dos modelos, uno solamente con los predictores principales, y luego un segundo modelo con los controles para ver si los efectos se mantienen. También podríamos pensar en tres modelos: uno con matemáticas, otro con ciencias, y otro con ambos y además controles. La decisión de cómo presentar los modelos depende principalmente de las hipótesis que se están contrastando, y también de que los resultados permitan hacer la mejor discusión posible.
+
+```{r}
+reg1 <- lm(ciencia ~ matematicas + lectura, data=data)
+reg2 <- lm(ciencia ~ matematicas + lectura + mujer + status, data=data)
+```
+
+En la Tabla 1 se resumen los principales resultados de los modelos de regresión `reg1` (1) y `reg2` (2). Primero revisaremos el ajuste global del modelo y luego las estimaciones según la variables independientes de interés y variables de control.   
+
+```{r echo=FALSE, results='asis'}
+stargazer(reg1, reg2, type = "text",
+          title = "Tabla 1: Modelos de Regresión para Ciencias")
+```
+
+## Ajuste global del modelo
+
+**`R2`**: El R2 (R-cuadrado) es la proporción de la varianza de la variable dependiente (ciencias) la cual puede ser predicha por las variables independientes (matematicas, mujer, estatus, lectura). En la Tabla 1 tenemos que para el Modelo (1), este valor nos indica que un 47,7% de la varianza en el puntaje de ciencias puede ser predicha solamente por matemática. Luego, en el Modelo (2), el R-cuadrado nos indica que el 48,9% de la varianza de ciencias puede ser predicha conjuntamente por las variables independientes matematica, lectura, mujer y status. Es importante tener presente que es una medida global de asociación, y no refleja la manera particular en que una variable independiente se asocia con la variable dependiente.
+
+**`Adjusted R2`**: En la medida que se incoporan predictores al modelo, cada uno va contrbuyendo a explicar la varianza de la variable dependiente simplemente debido al azar. Así, se podría continuar agregando predictores al modelo el cual incrementaría la capacidad explicativa de los predictores sobre la variable dependiente, por otro lado parte de este incremento en el R-cuadrado puede deberse simplemente a la variabilidad adicional en una muestra particular con la que estemos trabajando. Por esta razón, el **R-cuadrado ajustado** busca demostrar un valor estimado más realista del R-cuadrado para la población bajo análisis. En el caso del Modelo (2) de la Tabla 1, el valor del R-cuadrado es de **0.489**, mientras que el R-cuadrado ajustado es de **0.479**, el cual es calculado a través de la fórmula $1 – ((1 – R^2)((N – 1) /( N – k – 1))$. 
+
+Entonces, si el número de observaciones ($N$) es pequeño y el número de predictores ($k$)es grande, tendremos una mayor discrepancia entre el R-cuadrado y el R-cuadrado ajustado debido a que la razón $(N – 1) /( N – k – 1)$ será mayor que 1. 
+
+Por otro lado, cuando el número de observaciones es grande en contraste con el número de predictores tendremos que el valor del R-cuadrado y el R-cuadrado ajustado serán mucho más similares debido a que la razón $(N – 1)/(N – k – 1)$ tenderá a ser cercana a 1. 
+
+```{r eval=FALSE, include=FALSE}
+r2<- summary(reg2)$r.square
+N <- 200
+1-(1-r2)*(N-1)/(200-4-1)
+```
+
+```{r echo=FALSE}
+knitr::kable(cbind(summary(reg2)$coefficients,confint(reg2)),digits = 3,caption = "Tabla 2: Resultados Modelo 2 para `ciencia`")
+```
+
+## Estimación
+
+**Estimate**: Estos son los valores en la ecuación, a través de los cuales es posible predecir los valores de la variable dependiente en base a las(s) variable(s) independientes. Esta ecuación se representa de la siguiente manera:
+
+$\hat{Y} = \beta_0 + \beta_1*x1 + \beta_2*x2 + \beta_3*x3 + \beta_4*x4$
+
+Los valores de **Estimate** proveen los valores para \beta_0,\beta_1,\beta_2,\beta_3,\beta_4 en la ecuación. Si remplazamos los valores de los coeficientes, la ecuación es la siguiente:
+
+$\widehat{\text{ciencia}} = 12.325 + 0.389*\text{matematica} + 0.335*\text{lectura} + -2.010*\text{mujer} + 0.050*\text{status}$
+
+Los coeficientes nos hablan de la relación entre las variables independientes y la variable dependiente. Nos muestran la magnitud del cambio predicho en el puntaje de ciencia por cada 1 unidad en que aumenta el predictor. 
+
+**Nota**: Para las variables independientes que no son estadísticamente significativas, es decir que no son estadísticamente distintas de 0, lo cual debe ser tomado en consideración al interpretar los coeficientes, para lo cual debemos observar el valor del estadístico $t$ y posteriormente el valor de $p$ para determinar la significancia estadística.
+
+**Interpretacion**:
+
+Para `matematica` el coeficiente es de 0.389. Entonces, por cada unidad (p.ej. punto en la metrica del la prueba) que aumenta matematica existe un incremento de 0.389 en el puntaje de `ciencia`, **manteniendo todas las demás variables conatantes**. O también podemos decir que por un incremento de 1 punto en el test de matemática, se predice que el puntaje de ciencias va ser 0.389 puntos más alto. Lo cual es significativamente distinto de 0 a un 95% de confianza.
+
+Con respecto a `lectura`, es posible observar un coeficiente de 0.335. Esto implica que por cada unidad que aumenta el puntaje de `lectura` se predice un incremento de 0.335 puntos en `ciencia`, manteniendo todas las demás variables contantes. El coeficiente es estadísticamente distinto de 0 (o es estadísticamente significativo) a un 95% de confianza.
+
+Para la variable `mujer`podemos observar que el coeficiente tiene un valor de -2.010. Al ser `mujer` una variable dicotómica donde 1 es mujer y 0 es hombre, la estimación nos indica que para las mujeres el puntaje predicho promedio en ciencias es -2.010 puntos más bajo con respecto al promedio de los hombres, manteniendo todas las demás variables constantes. En términos exclusivamente estadísticos, la variable `mujer` no es significativamente distinta de 0 cuando empleamos un nivel de confianza del 95%, debido a que el valor $p$ es mayor a 0.05. No obstante, 0.051 es tan cercano a 0.05 que algunos/as investigadores/as podrían considerarlo significativo.
+
+Si observamos el coeficiente de `status` tenemos un valor de 0.050. Entonces, por cada unidad en que incrementa el estatus se predice un incremento de 0.050 puntos en `ciencia`, menteniendo todas las demás variables constantes. Sin embargo, no es estadísticamente significativo a un 95% de confianza, es decir que 0.050 no es distinto de 0.
+
+
+**Std Error**: Esta columna correspone a los errores estándar de los coeficientes de regresión (Estimate). Estos errores estándar son empleados para testear en qué medida los coeficientes son distintos de 0. El procedimiento es dividir el coeficiente por su error estándar para obstener el valor $t$. Además, los errores estándar pueden ser utilizados para calcular los intervalos de confianza como los que se observan en las últimas dos columnas de la Tabla 2.
+
+
+**t value y Pr(>|t|)**: Estas columnas corresponden al valor $t$ y al valor $p$ respectivamente, los cuales se emplean para la realización de una prueba de hipótesis nula de dos colas (two-tailed), donde el valor de $\beta$ es igual a 0. Al emplear una prueba de dos colas, se debe comparar el valor de $p$ con un valor predefinido para $\alpha$ (nivel de error asociado al nivel de confianza). Por ejemplo, si estamos trabajando a un 95% de confianza, nuestro $\alpha$ corresponde a 5% (0.05), por tanto, si el valor de $p$ de un coeficiente es menor a 0.05 podemos decir que es significativamente distinto de 0 o estadísticamente signficativo, a un 95% de confianza, y como consecuencia rechazamos la hipótesis nula. En otras palabras, $p$ corresponde a la probabilidad de que $\beta = 0$, es decir que $X$ no se encuentre asociada con $Y$.
+
+
+**[2.5 %, 97.5 %]**: Estas columnas corresponden a los intervalos de confianza (IC) inferior y superior a un 95% de confianza. Los IC son bastante útiles para comprender los posibles valores que el parámetro estimado podría tomar en la población, asumiendo un determinado nivel de confianza. La convención es emplear intervalos a un 95% de confianza. En este sentido, los IC están estrechamente relacionados con los valores $p$ en tanto que un coeficiente no es estadísticamente significativo en la medida que su intervalo de confianza **contenga el valor 0**.
+
+Por ejemplo, si observamos el intervalo de confianza para `mujer` podemos ver que este incluye el 0 [-4.026, 0.007]. En este caso, al estar el intervalo superior tan cercano a 0, tenemos que el valor de $p$ es muy cercano a 0.05 ($p$=0.051). Por otro lado, si el intervalo superior hubiese sido un poco más pequeño como para no contener 0, el coeficiente de `mujer` sería estadísticamente significativo a un 95% de confianza. 
+
+Entonces, considerando que el coeficiente de `mujer` es de -2.010 y el de `matematica` es de 0.389. Lo primero que puede observarse es que el coeficiente de `mujer` es mucho más grande que el de `matematica`, pero hay que mirar con mayor atención los intervalos de confianza de ambos. Por un lado, el intervalo de confianza de `mujer` es de [-4.026, 0.007], mientras que el intervalo de confianza de `matematica` es de [0.243, 0.535]. Entonces, independiente de que el coeficiente de `mujer` es más grande, este podría ser tan pequeño como -4. En contraste, el intervalo de confianza inferior para matematica es de 0.23, el cual todavía se mantiene sobre 0. Por lo tanto, aunque mujer tenga un coeficiente más alto, el coeficiente de matematica muestra que incluso en su valor más bajo, se sigue manteniendo sobre 0.
+
+Una manera de presentar los resultados de un modelo de regresión es a través de la visualización de los coeficientes de regresión con sus respectivos intervalos de confianza. La ventaja de este tipo de gráficos es que podemos observar la magnitud del coeficiente y las "barras de error" que representan el intervalo de confianza inferior y superior. En este caso, hemos empleado intervalos de confianza al 95%.
+
+```{r echo=FALSE, fig.cap="Modelo 2"}
+sjPlot::plot_model(reg2,ci.lvl = c(0.95), title = "",vline.color = "grey",line.size = 1)
+```
+
+
+# Referencias
+
+1. Bruin, J. 2006. newtest: command to compute new test.  UCLA:  
+Statistical Consulting Group.  https://stats.idre.ucla.edu/stata/ado/analysis/.
+
+

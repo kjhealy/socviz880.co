@@ -13,6 +13,617 @@
     </image>
     
     <item>
+      <title>Práctica 8. Tabla de regresión múltiple</title>
+      <link>/assignment/08-code/</link>
+      <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>/assignment/08-code/</guid>
+      <description>
+&lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;script src=&#34;/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
+&lt;style type=&#34;text/css&#34;&gt;
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+&lt;/style&gt;
+&lt;!-- /BLOGDOWN-HEAD --&gt;
+
+&lt;h2&gt;Índice&lt;/h2&gt;
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#librerías&#34;&gt;Librerías&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#datos&#34;&gt;Datos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ajustes-y-descriptivos&#34;&gt;Ajustes y descriptivos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#modelos-de-regresión&#34;&gt;Modelos de regresión&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#lógica-de-presentación-de-modelos&#34;&gt;Lógica de presentación de modelos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#estimación&#34;&gt;Estimación&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#interpretación&#34;&gt;Interpretación&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ajuste-global-del-modelo&#34;&gt;Ajuste global del modelo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#referencias&#34;&gt;Referencias&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#foro-práctica-8&#34;&gt;Foro práctica 8&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  addClassKlippyTo(&#34;pre.r, pre.markdown&#34;);
+  addKlippy(&#39;right&#39;, &#39;bottom&#39;, &#39;auto&#39;, &#39;1&#39;, &#39;Copy code&#39;, &#39;Copied!&#39;);
+&lt;/script&gt;
+&lt;p&gt;En el siguiente documento se presenta un ejemplo de análisis e interpretación de una tabla de regresión múltiple, para que sea considerado como referencia en la entrega de los informes 2 y 3. El ejemplo está adaptado de &lt;a href=&#34;https://stats.idre.ucla.edu/stata/output/regression-analysis/&#34;&gt;https://stats.idre.ucla.edu/stata/output/regression-analysis/&lt;/a&gt;&lt;/p&gt;
+&lt;div id=&#34;librerías&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Librerías&lt;/h1&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;pacman&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;p_load&lt;/span&gt;(dplyr,readxl, summarytools, stargazer, equatiomatic)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;datos&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Datos&lt;/h1&gt;
+&lt;p&gt;Los datos a utilizar corresponden a resultados de pruebas de conocimiento en distintas areas de 200 estudiantes de educación secundaria.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb2&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb2-1&#34; title=&#34;1&#34;&gt;data &amp;lt;-&lt;span class=&#34;kw&#34;&gt;read_excel&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;https://multivariada.netlify.app/assignment/data/hsb2.xls&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ajustes-y-descriptivos&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Ajustes y descriptivos&lt;/h1&gt;
+&lt;p&gt;Primero seleccionamos las variables que vamos a usar en el ejemplo y cambiamos las etiquetas de las variables a español.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb3&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb3-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;names&lt;/span&gt;(data)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;id&amp;quot;      &amp;quot;female&amp;quot;  &amp;quot;race&amp;quot;    &amp;quot;ses&amp;quot;     &amp;quot;schtyp&amp;quot;  &amp;quot;prog&amp;quot;    &amp;quot;read&amp;quot;   
+##  [8] &amp;quot;write&amp;quot;   &amp;quot;math&amp;quot;    &amp;quot;science&amp;quot; &amp;quot;socst&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb5&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb5-1&#34; title=&#34;1&#34;&gt;data &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;data &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;select&lt;/span&gt; (science,math,female, socst, read)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb5-2&#34; title=&#34;2&#34;&gt;data &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;data &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rename&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;ciencia=&lt;/span&gt;science, &lt;span class=&#34;dt&#34;&gt;matematicas =&lt;/span&gt;math, &lt;span class=&#34;dt&#34;&gt;mujer=&lt;/span&gt;female, &lt;span class=&#34;dt&#34;&gt;status=&lt;/span&gt;socst, &lt;span class=&#34;dt&#34;&gt;lectura=&lt;/span&gt;read)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb6&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb6-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;dfSummary&lt;/span&gt;(data, &lt;span class=&#34;dt&#34;&gt;headings =&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;), &lt;span class=&#34;dt&#34;&gt;method =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;render&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;container st-container&#34;&gt;
+&lt;table class=&#34;table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline &#34;&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;No&lt;/strong&gt;&lt;/th&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;Variable&lt;/strong&gt;&lt;/th&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;Stats / Values&lt;/strong&gt;&lt;/th&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;Freqs (% of Valid)&lt;/strong&gt;&lt;/th&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;Graph&lt;/strong&gt;&lt;/th&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;Valid&lt;/strong&gt;&lt;/th&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;Missing&lt;/strong&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;ciencia
+[numeric]&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;Mean (sd) : 51.9 (9.9)
+min &lt; med &lt; max:
+26 &lt; 53 &lt; 74
+IQR (CV) : 14 (0.2)&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle&#34;&gt;34 distinct values&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBw8QMQx4j9ebAAABmUlEQVR42u3aUU7CQBRAUWtYngvQFcoC3J/++FGNDL2EWgrn/BkTbW54zTAz0+cTxfPWD7A3gkWCRYf5D7fzPjsOH+V1+t+nmf+7w8V/ZWUvJ3/zselzGclo00/Y8XbeAYttPJKnBm/bsRsxkpFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYNHNnnxfZv0rBncWbP0rBkYyEiwSLBIsEiwSLBIsEixafeG6x1uGI/+w0r/V672XMZLRLr9Lbjnmuwy25ZAbyUiwSLBIsEiwSLBIsEiwSLDoKiv9e9uRGLnSV6P72pEYMZKRYJFgkWCRYNEuNxAvNVr+LL0K9VDBrrH4MZKRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYNHi7Z1HOkobCfthj3OUNmIkI8EiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsGih7qBODLagn+bXecU7NvSDXgjGf34hDkZOu/XSDoZOsdIRoJFgkXT/D3/7qX/p/k6bNKoMZKRYJFg0Rdo9iLq9nd+JAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNy0xNVQxNjo0OToxMiswMDowMJFOjLgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDctMTVUMTY6NDk6MTIrMDA6MDDgEzQEAAAAAElFTkSuQmCC&#34;&gt;&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;200
+(100%)&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;0
+(0%)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td align=&#34;center&#34;&gt;2&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;matematicas
+[numeric]&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;Mean (sd) : 52.6 (9.4)
+min &lt; med &lt; max:
+33 &lt; 52 &lt; 75
+IQR (CV) : 14 (0.2)&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle&#34;&gt;40 distinct values&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBw8QMQx4j9ebAAABf0lEQVR42u3dQU6DQABAUTE9Xg+gJ9QDeD/dGWwM5AkUqP/tmqZAfjJk2pm2w+dTxPPeF3A2BUMFQ5fxgz3vZ+8zJ38Z9ru28akvfz7K6q4Tz33sfXHfGpKoYKhgqGCoYKhgaMVpxdxMatuj32uetuo8bHomdZ187dxMa9mr19OQRAVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMH2lC3zPTK+Hrr4g8T7F77FxuSqGCoYKhgqGCoYKhgqGCoYKhgqGCoYIjefG+7E/8c8NOKc3yncUsNSVQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQw9DC7qKctW4J+HW1a/yfB1vspuIYkKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGPqxatT3IefdLLMd5d+DjqshiQqGCoaG8X3+rZv+r8Z7K4YamYYkKhgqGPoCJUYc5e5iO2UAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMTVUMTY6NDk6MTIrMDA6MDCRToy4AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTE1VDE2OjQ5OjEyKzAwOjAw4BM0BAAAAABJRU5ErkJggg==&#34;&gt;&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;200
+(100%)&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;0
+(0%)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td align=&#34;center&#34;&gt;3&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;mujer
+[numeric]&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;Min : 0
+Mean : 0.5
+Max : 1&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;padding:0;vertical-align:middle&#34;&gt;&lt;table style=&#34;border-collapse:collapse;border:none;margin:0&#34;&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;0&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;91&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;45.5%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 0 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;1&lt;/td&gt;&lt;td style=&#34;padding:0 2px;border:0;&#34; align=&#34;left&#34;&gt;:&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 6px;margin:0;border:0&#34; align=&#34;right&#34;&gt;109&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0 2px;margin:0;border:0&#34; align=&#34;right&#34;&gt;54.5%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 0;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAF4AAAA4CAQAAADedoeiAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBw8QMQx4j9ebAAAAnElEQVRo3u3YMQ6AIAxG4WK4oJueUDePqGsxwRCW9jfvTRocvqGYQLlNtyUaAF6x6l+ONBtgK70Vv1DbpTVabWZm1+B30mMDHjx4ocCDBy8UePDghQIPfqLXGXb09Jij4i8M0lwefIHds/TYgI+q2bCnwNDvbuhT3pj1a/+G0mMDHjx4ocCDBy8UePDghQIPfqL/3JipJT024KN6AHRIC9bm0AF1AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA3LTE1VDE2OjQ5OjEyKzAwOjAwkU6MuAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNy0xNVQxNjo0OToxMiswMDowMOATNAQAAAAASUVORK5CYII=&#34;&gt;&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;200
+(100%)&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;0
+(0%)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td align=&#34;center&#34;&gt;4&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;status
+[numeric]&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;Mean (sd) : 52.4 (10.7)
+min &lt; med &lt; max:
+26 &lt; 52 &lt; 71
+IQR (CV) : 15 (0.2)&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle&#34;&gt;22 distinct values&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBw8QMQx4j9ebAAABjklEQVR42u3bW07CUBRAUWsYngPQEcoAnJ/++FGJVPZNa3ms9UcIj+z0QEMP0+cTxfPeb+DWCBYJFh3mN27j8+y4+DZfp/Vfcf6Uh+Fn2dHL2Xs+Nn9tIxld6RF2HP50WHrkGuN6pcHGx27rcTWSkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFg0dVe+d7CGmsEDxVsjTUCIxnteoSN7+jsZ+eRPDck2y/GjTKS0eZH2C2O3ZJ/GMk9N1LXZyQjwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBoos3EO9t9XJUWNlcWr28r7XMJUYyEiwSLBIseqh/sy1ZOgt4m/01ULBvl37PG8lIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLDox68VLnT87eTnnce5mDHKSEaCRYJFgkWCRYJFgkXT/Fz13Ynrr+bXJSeNGiMZCRYJFn0B5j8hOyZ2DPQAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMTVUMTY6NDk6MTIrMDA6MDCRToy4AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTE1VDE2OjQ5OjEyKzAwOjAw4BM0BAAAAABJRU5ErkJggg==&#34;&gt;&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;200
+(100%)&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;0
+(0%)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td align=&#34;center&#34;&gt;5&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;lectura
+[numeric]&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;Mean (sd) : 52.2 (10.3)
+min &lt; med &lt; max:
+28 &lt; 50 &lt; 76
+IQR (CV) : 16 (0.2)&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle&#34;&gt;30 distinct values&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBw8QMQx4j9ebAAABpUlEQVR42u3bwU3DMABAUYo6XgeACWEA9oMbCghDHyUkbv+7tQcafcWJE5vD613E/dYHMJuCoYKh4/LD/1zPnoc/83DYuMbA8rCOv/4rFzh9+e3LFofCGpKoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgaLXtTs9Xunl2xf1hp8H3c+wDG2lIooKhgqGCoYKhTXZRj8ywIX1XwWaYiDQkUcFQwVDB0K4u+uq7B/y17qtTB9vivtqQRAVDBUMFQwVDk9wl97NCMEmw/fyXeEMSFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMXfhOfz+LE//l4kWQGXYN/qVJVo3cWvtlrzbYWmd+F31UMFQwVDBUMFQwVDB05jzs9h6BRs6euO5nh9a2rnamPzYaLec9Mt1gsMvGShd9VDBUMFQwVDBUMFQwVDBUMHSDM/2R8QuGx8VDU8HenbfO9CFYL3F+9ukMu7V1bHdYnlRPnWFfWl7DDjUyTStQwVDB0BuVJSZHi2YFHgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNy0xNVQxNjo0OToxMiswMDowMJFOjLgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDctMTVUMTY6NDk6MTIrMDA6MDDgEzQEAAAAAElFTkSuQmCC&#34;&gt;&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;200
+(100%)&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;0
+(0%)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Generated by &lt;a href=&#39;https://github.com/dcomtois/summarytools&#39;&gt;summarytools&lt;/a&gt; 0.9.6 (&lt;a href=&#39;https://www.r-project.org/&#39;&gt;R&lt;/a&gt; version 4.0.0)&lt;br/&gt;2020-07-15&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;modelos-de-regresión&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Modelos de regresión&lt;/h1&gt;
+&lt;div id=&#34;lógica-de-presentación-de-modelos&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Lógica de presentación de modelos&lt;/h2&gt;
+&lt;p&gt;La forma en que se presentan los modelos en regresión múltiple depende de las hipótesis que se estan contrastando, y de la definición del/a investigador/a sobre cuáles son los predictores principales y cuáles son las variables de control. Pensemos en este caso que nuestra hipótesis principal es que el puntaje de ciencias se puede predecir con los puntajes de matemáticas y lectura, pero queremos controlar estas asociaciones por sexo y estatus. En este caso, podríamos presentar dos modelos, uno solamente con los predictores principales, y luego un segundo modelo con los controles para ver si los efectos se mantienen. También podríamos pensar en tres modelos: uno con matemáticas, otro con ciencias, y otro con ambos y además controles. La decisión de cómo presentar los modelos depende principalmente de las hipótesis que se están contrastando, y también de que los resultados permitan hacer la mejor discusión posible.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;estimación&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Estimación&lt;/h2&gt;
+&lt;p&gt;Vamos a estimar un primer modelo con las variables asociadas a la hipótesis principal, y luego un segundo con las variables control:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\text{ciencia} = \alpha + \beta_{1}(\text{matematicas}) + \beta_{2}(\text{lectura}) + \epsilon
+\]&lt;/span&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\text{ciencia} = \alpha + \beta_{1}(\text{matematicas}) + \beta_{2}(\text{lectura}) + \beta_{3}(\text{mujer}) + \beta_{4}(\text{status}) + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Para estimar estos modelos en &lt;code&gt;R&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb7&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb7-1&#34; title=&#34;1&#34;&gt;reg1 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;lm&lt;/span&gt;(ciencia &lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;matematicas &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;lectura, &lt;span class=&#34;dt&#34;&gt;data=&lt;/span&gt;data)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb7-2&#34; title=&#34;2&#34;&gt;reg2 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;lm&lt;/span&gt;(ciencia &lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;matematicas &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;lectura &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;mujer &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;status, &lt;span class=&#34;dt&#34;&gt;data=&lt;/span&gt;data)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Para presentar los resultados de regresión existen diferentes librerías en R, como
+stargazer, texreg, sjPlot. En este caso vamos a utilizar la función tab_model de sjPlot:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb8&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb8-1&#34; title=&#34;1&#34;&gt;sjPlot&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;tab_model&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;list&lt;/span&gt;(reg1,reg2))&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;table style=&#34;border-collapse:collapse; border:none;&#34;&gt;
+&lt;tr&gt;
+&lt;th style=&#34;border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; &#34;&gt;
+ 
+&lt;/th&gt;
+&lt;th colspan=&#34;3&#34; style=&#34;border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; &#34;&gt;
+ciencia
+&lt;/th&gt;
+&lt;th colspan=&#34;3&#34; style=&#34;border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; &#34;&gt;
+ciencia
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; &#34;&gt;
+Predictors
+&lt;/td&gt;
+&lt;td style=&#34; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  &#34;&gt;
+Estimates
+&lt;/td&gt;
+&lt;td style=&#34; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  &#34;&gt;
+CI
+&lt;/td&gt;
+&lt;td style=&#34; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  &#34;&gt;
+p
+&lt;/td&gt;
+&lt;td style=&#34; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  &#34;&gt;
+Estimates
+&lt;/td&gt;
+&lt;td style=&#34; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  &#34;&gt;
+CI
+&lt;/td&gt;
+&lt;td style=&#34; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col7&#34;&gt;
+p
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:left; &#34;&gt;
+(Intercept)
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+11.62
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+5.59 – 17.64
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+&lt;strong&gt;&amp;lt;0.001
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+12.33
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+6.03 – 18.62
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7&#34;&gt;
+&lt;strong&gt;&amp;lt;0.001
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:left; &#34;&gt;
+matematicas
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+0.40
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+0.26 – 0.54
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+&lt;strong&gt;&amp;lt;0.001
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+0.39
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+0.24 – 0.54
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7&#34;&gt;
+&lt;strong&gt;&amp;lt;0.001
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:left; &#34;&gt;
+lectura
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+0.37
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+0.23 – 0.50
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+&lt;strong&gt;&amp;lt;0.001
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+0.34
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+0.19 – 0.48
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7&#34;&gt;
+&lt;strong&gt;&amp;lt;0.001
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:left; &#34;&gt;
+mujer
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+-2.01
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+-4.03 – 0.01
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7&#34;&gt;
+0.051
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:left; &#34;&gt;
+status
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+0.05
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+-0.07 – 0.17
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7&#34;&gt;
+0.424
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;&#34;&gt;
+Observations
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;&#34; colspan=&#34;3&#34;&gt;
+200
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;&#34; colspan=&#34;3&#34;&gt;
+200
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;&#34; colspan=&#34;3&#34;&gt;
+0.478 / 0.473
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;&#34; colspan=&#34;3&#34;&gt;
+0.489 / 0.479
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;Esta tabla tiene las opciones por defecto. En general, para cada predictor hay dos piezas de información importante: la estimación del coeficiente de regresión &lt;span class=&#34;math inline&#34;&gt;\(\beta\)&lt;/span&gt; (estimates), y una estimación referida a inferencia/significación estadística (en este caso CI, intervalo de confianza). Esta segunda información es en general el error estándar, pero también puede ser &lt;em&gt;t&lt;/em&gt; (que es el coeficiente dividido por el error estándar), o el intervalo de confianza, dado usualmente por el &lt;span class=&#34;math inline&#34;&gt;\(\beta\)&lt;/span&gt; +/- 1.96 SE para un 95% de confianza (como aparece en esta tabla). Según el output, la información de inferencia puede aparecer abajo del coeficiente, o al lado como en esta tabla.&lt;/p&gt;
+&lt;p&gt;Abajo vamos a hacer algunos ajustes en la tabla, presentando el error estándar en lugar del intervalo, y reemplazando la columna del nivel de probabilidad de error (&lt;em&gt;p&lt;/em&gt;) por asteriscos que indican el nivel de significación de cada coeficiente, lo cual hace más rápida la interpretación. También cambiamos algunas etiquetas de la tabla para que sea más fácil de leer:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb9&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-1&#34; title=&#34;1&#34;&gt;sjPlot&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;tab_model&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;list&lt;/span&gt;(reg1,reg2),&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-2&#34; title=&#34;2&#34;&gt;        &lt;span class=&#34;dt&#34;&gt;show.se=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;TRUE&lt;/span&gt;,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-3&#34; title=&#34;3&#34;&gt;        &lt;span class=&#34;dt&#34;&gt;show.ci=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-4&#34; title=&#34;4&#34;&gt;        &lt;span class=&#34;dt&#34;&gt;digits=&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-5&#34; title=&#34;5&#34;&gt;        &lt;span class=&#34;dt&#34;&gt;p.style =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;asterisk&amp;quot;&lt;/span&gt;,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-6&#34; title=&#34;6&#34;&gt;        &lt;span class=&#34;dt&#34;&gt;dv.labels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Modelo 1&amp;quot;&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;Modelo 2&amp;quot;&lt;/span&gt;),&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-7&#34; title=&#34;7&#34;&gt;        &lt;span class=&#34;dt&#34;&gt;string.pred =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Predictores&amp;quot;&lt;/span&gt;,&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb9-8&#34; title=&#34;8&#34;&gt;        &lt;span class=&#34;dt&#34;&gt;string.est =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;β&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;table style=&#34;border-collapse:collapse; border:none;&#34;&gt;
+&lt;tr&gt;
+&lt;th style=&#34;border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; &#34;&gt;
+ 
+&lt;/th&gt;
+&lt;th colspan=&#34;2&#34; style=&#34;border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; &#34;&gt;
+Modelo 1
+&lt;/th&gt;
+&lt;th colspan=&#34;2&#34; style=&#34;border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; &#34;&gt;
+Modelo 2
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; &#34;&gt;
+Predictores
+&lt;/td&gt;
+&lt;td style=&#34; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  &#34;&gt;
+β
+&lt;/td&gt;
+&lt;td style=&#34; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  &#34;&gt;
+std. Error
+&lt;/td&gt;
+&lt;td style=&#34; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  &#34;&gt;
+β
+&lt;/td&gt;
+&lt;td style=&#34; text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  &#34;&gt;
+std. Error
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:left; &#34;&gt;
+(Intercept)
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+11.616 &lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+3.054
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+12.325 &lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+3.194
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:left; &#34;&gt;
+matematicas
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+0.402 &lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+0.073
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+0.389 &lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+0.074
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:left; &#34;&gt;
+lectura
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+0.365 &lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+0.066
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+0.335 &lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+0.073
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:left; &#34;&gt;
+mujer
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+-2.010 &lt;sup&gt;&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+1.023
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:left; &#34;&gt;
+status
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+0.050 &lt;sup&gt;&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  &#34;&gt;
+0.062
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;&#34;&gt;
+Observations
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;&#34; colspan=&#34;2&#34;&gt;
+200
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;&#34; colspan=&#34;2&#34;&gt;
+200
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;&#34; colspan=&#34;2&#34;&gt;
+0.478 / 0.473
+&lt;/td&gt;
+&lt;td style=&#34; padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;&#34; colspan=&#34;2&#34;&gt;
+0.489 / 0.479
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td colspan=&#34;5&#34; style=&#34;font-style:italic; border-top:double black; text-align:right;&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;p&amp;lt;0.05   ** p&amp;lt;0.01   *** p&amp;lt;0.001
+&lt;/td&gt;
+&lt;/tr&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/table&gt;
+&lt;p&gt;Y para presentar en forma de ecuaciones, quedaría de la siguiente manera:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\text{ciencia} = 11.62 + 0.4(\text{matematicas}) + 0.37(\text{lectura}) + \epsilon
+\]&lt;/span&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\text{ciencia} = 12.33 + 0.39(\text{matematicas}) + 0.34(\text{lectura}) - 2.01(\text{mujer}) + 0.05(\text{status}) + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;div class=&#34;alert alert-info&#34;&gt;
+&lt;p&gt;Para transformar automáticamente las estimaciones de regresión en R a ecuaciones:&lt;/p&gt;
+&lt;p&gt;Esto se puede hacer si se utiliza RMarkdown (no es requisito en este curso, para los interesad_s pueden revisar material del curso &lt;a href=&#34;https://cienciasocialabierta.netlify.app/class/04-class/&#34;&gt;ciencia social abierta&lt;/a&gt; )&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;Instalar librería &lt;strong&gt;equatiomatic&lt;/strong&gt;. No está en CRAN, así que para instalar:&lt;code&gt;remotes::install_github(&#34;datalorax/equatiomatic&#34;)&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;La función para extraer la ecuación es &lt;code&gt;extract_eq&lt;/code&gt;, por ejemplo: &lt;code&gt;extract_eq(reg1)&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Para que el resultado pueda ser &lt;code&gt;renderizado&lt;/code&gt; desde un documento RMarkdown a pdf o html, debe estar en un chunk con las siguientes especificaciones:&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;```{r results=&amp;#39;asis&amp;#39;, echo=FALSE}
+extract_eq(reg1)
+extract_eq(reg2)
+```&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;4&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Para presentar las ecuaciones con los coeficientes ya estimados, &lt;code&gt;extract_eq(reg1, use_coefs = TRUE)&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;interpretación&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Interpretación&lt;/h2&gt;
+&lt;p&gt;Los coeficientes nos hablan de la relación entre las variables independientes y la variable dependiente. Nos muestran la magnitud del cambio predicho en el puntaje de ciencia por cada 1 unidad en que aumenta el predictor.&lt;/p&gt;
+&lt;p&gt;Para &lt;code&gt;matematica&lt;/code&gt; el coeficiente es de 0.402 en el modelo 1 y baja a 0.389 en el modelo 2. Entonces, por cada punto adicional en la prueba de matemáticas en el modelo 2 se presenta un incremento de 0.389 en el puntaje de &lt;code&gt;ciencia&lt;/code&gt;, &lt;strong&gt;manteniendo todas las demás variables constantes&lt;/strong&gt;. Respecto a la inferencia, existen distintas maneras de dar cuenta de la significación estadística. Por ejemplo, se puede decir que este valor es estadísticamente significativo con un 99,9% de confianza, o con una probabilidad de error p&amp;lt;0.001.&lt;/p&gt;
+&lt;div class=&#34;alert alert-info&#34;&gt;
+&lt;p&gt;Para reportar estos resultados de manera más resumida siguiendo las indicaciones de reporte de &lt;strong&gt;APA&lt;/strong&gt; (American Psychological Association): El puntaje en matemáticas predice significativamente el puntaje de ciencias (modelo 1), b = -.40, SE = .07, p &amp;lt; .001, controlando por el puntaje en lectura. Al agregar los controles de sexo y estatus (modelo 2), el puntaje en matemáticas disminuye levemente pero mantiene su nivel de significación, b = -.39, SE = .07, p &amp;lt; .001.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Con respecto a &lt;code&gt;lectura&lt;/code&gt;, en el modelo 2 es posible observar un coeficiente de 0.335. Esto implica que por cada unidad que aumenta el puntaje de &lt;code&gt;lectura&lt;/code&gt; se predice un incremento de 0.335 puntos en &lt;code&gt;ciencia&lt;/code&gt;, manteniendo todas las demás variables contantes. El coeficiente es estadísticamente significativo con una probabilidad de error p&amp;lt;0.001.&lt;/p&gt;
+&lt;p&gt;Para la variable &lt;code&gt;mujer&lt;/code&gt; podemos observar que el coeficiente tiene un valor de -2.010 en el modelo 2. Al ser &lt;code&gt;mujer&lt;/code&gt; una variable dicotómica donde 1 es mujer y 0 es hombre, la estimación nos indica que para las mujeres el puntaje predicho promedio en ciencias es -2.010 puntos más bajo con respecto al promedio de los hombres, manteniendo todas las demás variables constantes. En términos exclusivamente estadísticos, la variable &lt;code&gt;mujer&lt;/code&gt; no es significativamente distinta de 0 cuando empleamos un nivel de confianza del 95%, debido a que el valor &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; es mayor a 0.05.&lt;/p&gt;
+&lt;p&gt;Si observamos el coeficiente de &lt;code&gt;status&lt;/code&gt; tenemos un valor de 0.050. Entonces, por cada unidad en que incrementa el estatus se predice un incremento de 0.050 puntos en &lt;code&gt;ciencia&lt;/code&gt;, manteniendo todas las demás variables constantes. Sin embargo, no es estadísticamente significativo a un 95% de confianza.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Std Error&lt;/strong&gt;: Esta columna corresponde a los errores estándar de los coeficientes de regresión (Estimate). Estos errores estándar son empleados para testear en qué medida los coeficientes son distintos de 0. El procedimiento es dividir el coeficiente por su error estándar para obstener el valor &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt;, los que luego se contrastan con la tabla de valores críticos t para obtener la probabilidad de error (que ya aparece automáticamente en la tabla) . Además, los errores estándar pueden ser utilizados para calcular los intervalos de confianza.&lt;/p&gt;
+&lt;p&gt;Una manera de presentar los resultados de un modelo de regresión es a través de la visualización de los coeficientes de regresión con sus respectivos intervalos de confianza. La ventaja de este tipo de gráficos es que podemos observar la magnitud del coeficiente y las “barras de error” que representan el intervalo de confianza inferior y superior. Utilizando un intervalo de confianza de 95% de confianza:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb11&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb11-1&#34; title=&#34;1&#34;&gt;sjPlot&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;plot_model&lt;/span&gt;(reg2,&lt;span class=&#34;dt&#34;&gt;ci.lvl =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.95&lt;/span&gt;), &lt;span class=&#34;dt&#34;&gt;title =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt;,&lt;span class=&#34;dt&#34;&gt;vline.color =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;grey&amp;quot;&lt;/span&gt;,&lt;span class=&#34;dt&#34;&gt;line.size =&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-13&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/08-code_files/figure-html/unnamed-chunk-13-1.png&#34; alt=&#34;Modelo 2&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 1: Modelo 2
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Lo que nos muestra este gráfico es el valor del coeficiente en el punto, y en las líneas que salen del punto se extienden según su intervalo de confianza. De acuerdo a las reglas de inferencia en regresión, lo que estamos contrastando es que el valor de este coeficiente es distinto de 0 en la población, con un cierto valor de probabilidad. Por lo tanto, si agregamos un intervalo de confianza (valores probables) asociado a una probabilidad de error, entonces podemos decir que este coeficiente es estadísticamente distinto de 0 en la población. Y en el gráfico, esto sucede cuando los intervalos no tocan el 0.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ajuste-global-del-modelo&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Ajuste global del modelo&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;R2&lt;/code&gt;&lt;/strong&gt;: El R2 (R-cuadrado) es la proporción de la varianza de la variable dependiente (ciencias) la cual puede ser predicha por las variables independientes (matemáticas, mujer, estatus, lectura). En la Tabla 1 tenemos que para el Modelo (1), este valor nos indica que un 47,7% de la varianza en el puntaje de ciencias se asocia a matemáticas. Luego, en el Modelo (2), el R-cuadrado nos indica que el 48,9% de la varianza de ciencias puede ser predicha conjuntamente por las variables independientes matemáticas, lectura, mujer y status. Como vemos, la incorporación de controles aporta levemente al R2, lo cual se relaciona con que estos predictores no son estadísticamente significativos.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;Adjusted R2&lt;/code&gt;&lt;/strong&gt;: En la medida que se incorporan predictores al modelo, cada uno va contribuyendo a explicar la varianza de la variable dependiente. Así, se podría continuar agregando predictores al modelo, incrementando la capacidad explicativa pero también de cierto modo debido a la variabilidad adicional en una muestra particular con la que estemos trabajando. Por esta razón, el &lt;strong&gt;R-cuadrado ajustado&lt;/strong&gt; busca demostrar un valor estimado más realista del R-cuadrado para la población bajo análisis, penalizando por la inclusión de predictores adicionales. En el caso del Modelo (2) de la Tabla 1, el valor del R-cuadrado es de &lt;strong&gt;0.489&lt;/strong&gt;, mientras que el R-cuadrado ajustado es de &lt;strong&gt;0.479&lt;/strong&gt;, el cual es calculado a través de la fórmula &lt;span class=&#34;math inline&#34;&gt;\(1 – ((1 – R^2)((N – 1) /( N – k – 1))\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Entonces, si el número de observaciones (&lt;span class=&#34;math inline&#34;&gt;\(N\)&lt;/span&gt;) es pequeño y el número de predictores (&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;)es grande, tendremos una mayor discrepancia entre el R-cuadrado y el R-cuadrado ajustado. Por otro lado, cuando el número de observaciones es grande en contraste con el número de predictores tendremos que el valor del R-cuadrado y el R-cuadrado ajustado serán mucho más similares debido.&lt;/p&gt;
+&lt;p&gt;Por lo tanto, al momento de realizar la intepretación &lt;strong&gt;corresponde basarse en los coeficientes del R2 ajustado&lt;/strong&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;referencias&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Referencias&lt;/h1&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;Bruin, J. 2006. newtest: command to compute new test. UCLA:
+Statistical Consulting Group. &lt;a href=&#34;https://stats.idre.ucla.edu/stata/ado/analysis/&#34; class=&#34;uri&#34;&gt;https://stats.idre.ucla.edu/stata/ado/analysis/&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://stats.idre.ucla.edu/stata/output/regression-analysis/&#34;&gt;Regression analysis annotated output&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;foro-práctica-8&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Foro práctica 8&lt;/h1&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Práctica 7. Inferencia y predictores categóricos</title>
       <link>/assignment/07-code/</link>
       <pubDate>Fri, 03 Jul 2020 00:00:00 +0000</pubDate>
