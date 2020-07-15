@@ -12,5 +12,5 @@ main:
     url: /reference/
     weight: 4
   - name: RStudio.cloud
-    url: https://rstudio.cloud/
+    url: /tutorial/
     weight: 5
