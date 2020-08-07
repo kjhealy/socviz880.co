@@ -1,0 +1,34 @@
+---
+title: "10: Regresión logística (2)"
+linktitle: "10: Logística (2)"
+date: "2020-08-07"
+class_date: "2020-08-07"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+menu:
+  class:
+    parent: Contenidos
+    weight: 10
+type: docs
+weight: 1
+pdf: /slides/01_dataviz_s20_looking_at_data.pdf
+thumb: /slides/01_dataviz_s20_looking_at_data.png
+editor_options:
+  chunk_output_type: console
+---
+
+## Documento presentación
+
+<span class="sidenote">Para ver en pantalla completa click [**aquí**](/slides/10-logit2/10_logit2.html). Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. </span>
+
+<iframe src=/slides/10-logit2/10_logit2.html height="550" width=100% allowfullscreen="true">
+</iframe>
+
+## Video de la clase (próximamente aquí)
+
+<iframe src=" " width="940" height="520"></iframe>

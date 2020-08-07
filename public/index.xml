@@ -13,6 +13,37 @@
     </image>
     
     <item>
+      <title>10: Regresión logística (2)</title>
+      <link>/class/10-class/</link>
+      <pubDate>Fri, 07 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/class/10-class/</guid>
+      <description>
+&lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;!-- /BLOGDOWN-HEAD --&gt;
+
+&lt;h2&gt;Índice&lt;/h2&gt;
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#documento-presentación&#34;&gt;Documento presentación&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#video-de-la-clase-próximamente-aquí&#34;&gt;Video de la clase (próximamente aquí)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Documento presentación&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/10-logit2/10_logit2.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
+&lt;iframe src=&#34;/slides/10-logit2/10_logit2.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;div id=&#34;video-de-la-clase-próximamente-aquí&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Video de la clase (próximamente aquí)&lt;/h2&gt;
+&lt;iframe src=&#34; &#34; width=&#34;940&#34; height=&#34;520&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Práctica 9. Regresión Logística 1</title>
       <link>/assignment/09-code/</link>
       <pubDate>Sun, 02 Aug 2020 00:00:00 +0000</pubDate>
