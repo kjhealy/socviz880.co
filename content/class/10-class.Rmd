@@ -29,6 +29,4 @@ editor_options:
 <iframe src=/slides/10-logit2/10_logit2.html height="550" width=100% allowfullscreen="true">
 </iframe>
 
-## Video de la clase (próximamente aquí)
-
-<iframe src=" " width="940" height="520"></iframe>
+## Video de la clase - no disponible ... falla de zoom :(

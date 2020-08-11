@@ -29,6 +29,6 @@ editor_options:
 <iframe src=/slides/09-logit1/9_logit1.html height="550" width=100% allowfullscreen="true">
 </iframe>
 
-## Video de la clase (próximamente aquí)
+## Video de la clase
 
-<iframe src=" " width="940" height="520"></iframe>
+<iframe src="https://www.dropbox.com/s/3wczuea0qg40x7z/9logit.webm?raw=1" width="940" height="520"></iframe>
