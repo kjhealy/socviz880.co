@@ -13,6 +13,1643 @@
     </image>
     
     <item>
+      <title>Práctica 10: Regresión Logística 2</title>
+      <link>/assignment/10-code/</link>
+      <pubDate>Fri, 14 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/assignment/10-code/</guid>
+      <description>
+&lt;!-- BLOGDOWN-HEAD --&gt;
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
+&lt;style type=&#34;text/css&#34;&gt;
+pre &gt; code.sourceCode { white-space: pre; position: relative; }
+pre &gt; code.sourceCode &gt; span { display: inline-block; line-height: 1.25; }
+pre &gt; code.sourceCode &gt; span:empty { height: 1.2em; }
+code.sourceCode &gt; span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre &gt; code.sourceCode { white-space: pre-wrap; }
+pre &gt; code.sourceCode &gt; span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code &gt; span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code &gt; span &gt; a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre &gt; code.sourceCode &gt; span &gt; a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+&lt;/style&gt;
+&lt;!-- /BLOGDOWN-HEAD --&gt;
+
+&lt;h2&gt;Índice&lt;/h2&gt;
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#objetivo&#34;&gt;Objetivo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#librerías&#34;&gt;Librerías&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#datos&#34;&gt;Datos&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#explorar-datos&#34;&gt;Explorar datos&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#estimación&#34;&gt;Estimación&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#presentación-de-resultados&#34;&gt;Presentación de resultados&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#tabla-de-regresión&#34;&gt;Tabla de regresión&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#regresión-logística-sin-predictores&#34;&gt;Regresión logística sin predictores&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#regresión-logistica-con-variable-binaria-como-predictor&#34;&gt;Regresión logistica con variable binaria como predictor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#regresión-logística-con-variable-continua-como-predictor&#34;&gt;Regresión logística con variable continua como predictor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#regresión-logística-con-múltiples-predictores&#34;&gt;Regresión logística con múltiples predictores&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#medidas-de-ajuste&#34;&gt;Medidas de Ajuste&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#test-de-devianza&#34;&gt;Test de Devianza&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#pseudo-r2-de-mcfadden&#34;&gt;Pseudo-R2 de McFadden&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#presentación-de-resultados-1&#34;&gt;Presentación de resultados&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#referencias&#34;&gt;Referencias&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#reporte-de-progreso&#34;&gt;Reporte de progreso&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#foro-práctica-10&#34;&gt;Foro práctica 10&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  addClassKlippyTo(&#34;pre.r, pre.markdown&#34;);
+  addKlippy(&#39;right&#39;, &#39;bottom&#39;, &#39;auto&#39;, &#39;1&#39;, &#39;Copy code&#39;, &#39;Copied!&#39;);
+&lt;/script&gt;
+&lt;div id=&#34;objetivo&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Objetivo&lt;/h1&gt;
+&lt;p&gt;La siguiente práctica tiene el objetivo de introducir a los estudiantes en los &lt;strong&gt;modelos de regresión logística multivariada&lt;/strong&gt;. Al igual que en la práctica anterior emplearemos una variable dependiente &lt;em&gt;dicotómica&lt;/em&gt;, de modo tal que veremos de qué una serie de variables independientes nos permiten predecir la ocurrencia de un determinado evento. Para ello, utilizaremos la base de datos de la &lt;a href=&#34;https://doi.org/10.7910/DVN/SRPWFW&#34;&gt;&lt;em&gt;Encuesta sobre Conflicto y Cohesion Social en Chile 2014&lt;/em&gt;&lt;/a&gt; para analizar los determinantes de la participación en las elecciones del año 2013.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;librerías&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Librerías&lt;/h1&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34;&gt;&lt;/a&gt;pacman&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;p_load&lt;/span&gt;(dplyr, summarytools, ggmosaic, sjPlot, texreg)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;datos&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Datos&lt;/h1&gt;
+&lt;p&gt;La Encuesta sobre Conflicto y Cohesión Social en Chile (ENACOES 2014) es el primer estudio de este tipo que busca mapear los conflictos y la cohesión en el país. Su objetivo fundamental es aportar a la comprensión de las creencias, actitudes y percepciones de los chilenos hacia las distintas dimensiones de la convivencia y el conflicto. La población objetivo son hombre y mujeres entre 15 y 75 años de edad con un alcance nacional, donde se obtuvo una muestra final de &lt;strong&gt;2025&lt;/strong&gt; casos. Para el caso de este ejercicio, se trabajara con una submuestra de &lt;strong&gt;1974&lt;/strong&gt; individuos que estuvieron habilitados para votar en el año 2013.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb2&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb2-1&#34;&gt;&lt;a href=&#34;#cb2-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;#Cargamos la base de datos desde internet&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb2-2&#34;&gt;&lt;a href=&#34;#cb2-2&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;# load(url(&amp;quot;https://multivariada.netlify.com/assignment/data/enacoes.RData&amp;quot;))&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div id=&#34;explorar-datos&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Explorar datos&lt;/h2&gt;
+&lt;p&gt;A partir de la siguiente tabla se obtienen estadísticos descriptivos que luego serán relevantes para la interpretación de nuestros modelos.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb3&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb3-1&#34;&gt;&lt;a href=&#34;#cb3-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;view&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;dfSummary&lt;/span&gt;(enacoes, &lt;span class=&#34;dt&#34;&gt;headings =&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;method =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;render&amp;quot;&lt;/span&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;container st-container&#34;&gt;
+&lt;table class=&#34;table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline &#34;&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;No&lt;/strong&gt;&lt;/th&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;Variable&lt;/strong&gt;&lt;/th&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;Label&lt;/strong&gt;&lt;/th&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;Stats / Values&lt;/strong&gt;&lt;/th&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;Freqs (% of Valid)&lt;/strong&gt;&lt;/th&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;Graph&lt;/strong&gt;&lt;/th&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;Valid&lt;/strong&gt;&lt;/th&gt;
+      &lt;th align=&#34;center&#34; class=&#34;st-protect-top-border&#34;&gt;&lt;strong&gt;Missing&lt;/strong&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;voto
+[factor]&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;Vot&amp;#0243; en &amp;#0250;ltima elecci&amp;#0243;n&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;1. 0
+2. 1&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;padding:0;vertical-align:middle&#34;&gt;&lt;table style=&#34;border-collapse:collapse;border:none;margin:0&#34;&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 5px 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;649&lt;/td&gt;&lt;td style=&#34;padding:0 2px 0 0;border:0;&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;right&#34;&gt;32.9%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 2px;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 5px 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;1325&lt;/td&gt;&lt;td style=&#34;padding:0 2px 0 0;border:0;&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;right&#34;&gt;67.1%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 2px;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHEAAAA4BAMAAAA4BwpHAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqb39/f///+DdZCQAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AgKDTosAWV5WAAAAEVJREFUSMdjYBg5QAkXEMQFBKA6lY2xA6NRnaM6R3WO6qSTTvJLMEGSwdDUqUQyUCAQK7jBqM5RnaM6R3VSVyf5JdhIAADDnXJqmAOLEQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wOC0xMFQxNzo1ODo0NC0wNDowMClZ5Q8AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDgtMTBUMTc6NTg6NDQtMDQ6MDBYBF2zAAAAAElFTkSuQmCC&#34;&gt;&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;1974
+(100%)&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;0
+(0%)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td align=&#34;center&#34;&gt;2&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;sexo
+[factor]&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;Sexo entrevistado&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;1. 0
+2. 1&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;padding:0;vertical-align:middle&#34;&gt;&lt;table style=&#34;border-collapse:collapse;border:none;margin:0&#34;&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 5px 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;803&lt;/td&gt;&lt;td style=&#34;padding:0 2px 0 0;border:0;&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;right&#34;&gt;40.7%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 2px;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 5px 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;1171&lt;/td&gt;&lt;td style=&#34;padding:0 2px 0 0;border:0;&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;right&#34;&gt;59.3%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 2px;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGUAAAA4BAMAAAAWQivVAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqb39/f///+DdZCQAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AgKDTosAWV5WAAAAEFJREFUSMdjYBh+QAk/EEQGAlA9ysb4gNGonlE9o3pGkB5yyhBBEsBQ0KNEAlAgKqxRwaieUT2jeoa3HnLKkOEEAMoSX0pNDE3AAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA4LTEwVDE3OjU4OjQ0LTA0OjAwKVnlDwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wOC0xMFQxNzo1ODo0NC0wNDowMFgEXbMAAAAASUVORK5CYII=&#34;&gt;&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;1974
+(100%)&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;0
+(0%)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td align=&#34;center&#34;&gt;3&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;edad
+[numeric]&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;Edad entrevistado&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;Mean (sd) : 45.1 (16)
+min &lt; med &lt; max:
+18 &lt; 45 &lt; 75
+IQR (CV) : 26 (0.4)&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle&#34;&gt;58 distinct values&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AgKDTosAWV5WAAAAKlJREFUaN7t1mEOgyAMhmGuoDdYuYG7/93M6A+aoJO0xOD2fj+IqfIEUZKmRDxZLrNKyddn+rH3JxuYE9OP8RqElWuwB2Anh9CJHf+dv4xJPTchrDC5zgphZZwG0y1qMFvux3JlLGbLf4KZ/YtjZgQDuwOTpuMIYLlZHxjYIzDbgIUxvTkvpi87CNMymBuT2nXGsZNZYGBgYGBgYGBgYGBgYGAhTIYkEU920QqJgV5VdsIAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDgtMTBUMTc6NTg6NDQtMDQ6MDApWeUPAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA4LTEwVDE3OjU4OjQ0LTA0OjAwWARdswAAAABJRU5ErkJggg==&#34;&gt;&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;1974
+(100%)&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;0
+(0%)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td align=&#34;center&#34;&gt;4&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;educ
+[factor]&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;Nivel Educacional&lt;/td&gt;
+      &lt;td align=&#34;left&#34;&gt;1. 1
+2. 2
+3. 3
+4. 4
+5. 5&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;padding:0;vertical-align:middle&#34;&gt;&lt;table style=&#34;border-collapse:collapse;border:none;margin:0&#34;&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 5px 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;179&lt;/td&gt;&lt;td style=&#34;padding:0 2px 0 0;border:0;&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;right&#34;&gt;9.1%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 2px;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 5px 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;167&lt;/td&gt;&lt;td style=&#34;padding:0 2px 0 0;border:0;&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;right&#34;&gt;8.5%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 2px;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 5px 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;878&lt;/td&gt;&lt;td style=&#34;padding:0 2px 0 0;border:0;&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;right&#34;&gt;44.5%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 2px;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 5px 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;513&lt;/td&gt;&lt;td style=&#34;padding:0 2px 0 0;border:0;&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;right&#34;&gt;26.0%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 2px;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;tr style=&#34;background-color:transparent&#34;&gt;&lt;td style=&#34;padding:0 5px 0 7px;margin:0;border:0&#34; align=&#34;right&#34;&gt;237&lt;/td&gt;&lt;td style=&#34;padding:0 2px 0 0;border:0;&#34; align=&#34;left&#34;&gt;(&lt;/td&gt;&lt;td style=&#34;padding:0;border:0&#34; align=&#34;right&#34;&gt;12.0%&lt;/td&gt;&lt;td style=&#34;padding:0 4px 0 2px;border:0&#34; align=&#34;left&#34;&gt;)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;
+      &lt;td align=&#34;left&#34; style=&#34;vertical-align:middle;padding:0;background-color:transparent&#34;&gt;&lt;img style=&#34;border:none;background-color:transparent;padding:0&#34; src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAE8AAACABAMAAAC4pCnUAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqb39/f///+DdZCQAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AgKDTosAWV5WAAAAHNJREFUWMPt1MENgCAQRFFKcDsQ7QD6780YjAkH2LlgMPx/fgc4zIbwj46SNdseeOa7BASuDuXNmNc4WJ4Y1V8DgUAVyuMyr9EHoNNe/boTEAisoDyuyQ5A5+xVJSAQ2IbyuMzrgwMQHfj+GghcG8qbmb0L1rLbXwIwCmYAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDgtMTBUMTc6NTg6NDQtMDQ6MDApWeUPAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA4LTEwVDE3OjU4OjQ0LTA0OjAwWARdswAAAABJRU5ErkJggg==&#34;&gt;&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;1974
+(100%)&lt;/td&gt;
+      &lt;td align=&#34;center&#34;&gt;0
+(0%)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Generated by &lt;a href=&#39;https://github.com/dcomtois/summarytools&#39;&gt;summarytools&lt;/a&gt; 0.9.6 (&lt;a href=&#39;https://www.r-project.org/&#39;&gt;R&lt;/a&gt; version 4.0.0)&lt;br/&gt;2020-08-10&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Lo primero que debemos observar es la distribución de la participación electoral, donde 0 son quienes nos votaron en la última elección y 1 los que sí lo hicieron. En este caso, vemos que un 67,1% (1325) señaló haber participado en la última elección, en contraste de un 32,9% que no lo hizo. En este sentido, vemos que existen aproximadamente 2/3 de los individuos de la muestra que sí acudieron a votar, por tanto ahora vamos a revisar cómo se distribuyen estas respuestas según el sexo y el nivel educacional de el entrevistado.&lt;/p&gt;
+&lt;p&gt;En primera instancia nos centraremos en las variables &lt;code&gt;sexo&lt;/code&gt; y &lt;code&gt;voto&lt;/code&gt;. Como podemos notar la categoría de respuesta de estas variables son 0 y 1, es decir, estamos ante variables dicotómicas.&lt;/p&gt;
+&lt;p&gt;En segunda instancia, observaremos la distribución de participación electoral según el Nivel educacional (&lt;code&gt;educ&lt;/code&gt;), la cual en este caso hemos recodificado en cinco niveles educacionales.&lt;/p&gt;
+&lt;p&gt;Con la función &lt;code&gt;tab_xtab&lt;/code&gt; del paquete &lt;code&gt;sjPlot&lt;/code&gt; podemos realizar una tabla de contingencia donde se señala la proporción de la participación electoral según sexo.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb4&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb4-1&#34;&gt;&lt;a href=&#34;#cb4-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;tab_xtab&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;var.row =&lt;/span&gt; enacoes&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;voto,enacoes&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo,&lt;span class=&#34;dt&#34;&gt;show.cell.prc =&lt;/span&gt; T,&lt;span class=&#34;dt&#34;&gt;show.summary =&lt;/span&gt; F)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;table style=&#34;border-collapse:collapse; border:none;&#34;&gt;
+&lt;tr&gt;
+&lt;th style=&#34;border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;&#34; rowspan=&#34;2&#34;&gt;
+Votó en última&lt;br&gt;elección
+&lt;/th&gt;
+&lt;th style=&#34;border-top:double; text-align:center; font-style:italic; font-weight:normal;&#34; colspan=&#34;2&#34;&gt;
+Sexo entrevistado
+&lt;/th&gt;
+&lt;th style=&#34;border-top:double; text-align:center; font-style:italic; font-weight:normal; font-weight:bolder; font-style:italic; border-bottom:1px solid; &#34; rowspan=&#34;2&#34;&gt;
+Total
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;border-bottom:1px solid; text-align:center; padding:0.2cm;&#34;&gt;
+Hombre
+&lt;/td&gt;
+&lt;td style=&#34;border-bottom:1px solid; text-align:center; padding:0.2cm;&#34;&gt;
+Mujer
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm;  text-align:left; vertical-align:middle;&#34;&gt;
+No votó
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;254&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;12.9 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;395&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;20 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;  &#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;649&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;32.9 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm;  text-align:left; vertical-align:middle;&#34;&gt;
+Votó
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;549&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;27.8 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;776&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;39.3 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;  &#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;1325&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;67.1 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm;  border-bottom:double; font-weight:bolder; font-style:italic; text-align:left; vertical-align:middle;&#34;&gt;
+Total
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;   border-bottom:double;&#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;803&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;40.7 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;   border-bottom:double;&#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;1171&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;59.3 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;   border-bottom:double;&#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;1974&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;100 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;Teniendo en cuenta que existen 2/3 (67,1%) de las personas en Chile que han declarado haber votado en la última elección, la tabla anterior nos muestra que del total de personas que votan, las participación electoral es mayor en las mujeres, lo cual equivale a un 39,3% del total en desmedro del 27,8% que representado por los hombres.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb5&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb5-1&#34;&gt;&lt;a href=&#34;#cb5-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;tab_xtab&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;var.row =&lt;/span&gt; enacoes&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;voto,enacoes&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;educ,&lt;/span&gt;
+&lt;span id=&#34;cb5-2&#34;&gt;&lt;a href=&#34;#cb5-2&#34;&gt;&lt;/a&gt;         &lt;span class=&#34;dt&#34;&gt;show.cell.prc =&lt;/span&gt; T,&lt;span class=&#34;dt&#34;&gt;show.summary =&lt;/span&gt; F, &lt;span class=&#34;dt&#34;&gt;encoding =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot; &amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;table style=&#34;border-collapse:collapse; border:none;&#34;&gt;
+&lt;tr&gt;
+&lt;th style=&#34;border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;&#34; rowspan=&#34;2&#34;&gt;
+VotÃ³ en Ãºltima&lt;br&gt;elecciÃ³n
+&lt;/th&gt;
+&lt;th style=&#34;border-top:double; text-align:center; font-style:italic; font-weight:normal;&#34; colspan=&#34;5&#34;&gt;
+Nivel Educacional
+&lt;/th&gt;
+&lt;th style=&#34;border-top:double; text-align:center; font-style:italic; font-weight:normal; font-weight:bolder; font-style:italic; border-bottom:1px solid; &#34; rowspan=&#34;2&#34;&gt;
+Total
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;border-bottom:1px solid; text-align:center; padding:0.2cm;&#34;&gt;
+Primaria incompleta&lt;br&gt;o menos
+&lt;/td&gt;
+&lt;td style=&#34;border-bottom:1px solid; text-align:center; padding:0.2cm;&#34;&gt;
+Primaria
+&lt;/td&gt;
+&lt;td style=&#34;border-bottom:1px solid; text-align:center; padding:0.2cm;&#34;&gt;
+Secundaria
+&lt;/td&gt;
+&lt;td style=&#34;border-bottom:1px solid; text-align:center; padding:0.2cm;&#34;&gt;
+TÃ©cnica Superior
+&lt;/td&gt;
+&lt;td style=&#34;border-bottom:1px solid; text-align:center; padding:0.2cm;&#34;&gt;
+Universitaria o&lt;br&gt;postgrado
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm;  text-align:left; vertical-align:middle;&#34;&gt;
+No votÃ³
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;2.8 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;2.4 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;320&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;16.2 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;182&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;9.2 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;2.3 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;  &#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;649&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;32.9 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm;  text-align:left; vertical-align:middle;&#34;&gt;
+VotÃ³
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;124&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;6.3 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;120&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;6.1 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;558&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;28.3 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;331&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;16.8 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;192&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;9.7 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;  &#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;1325&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;67.2 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm;  border-bottom:double; font-weight:bolder; font-style:italic; text-align:left; vertical-align:middle;&#34;&gt;
+Total
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;   border-bottom:double;&#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;179&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;9.1 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;   border-bottom:double;&#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;167&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;8.5 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;   border-bottom:double;&#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;878&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;44.5 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;   border-bottom:double;&#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;513&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;26 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;   border-bottom:double;&#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;237&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;12 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center;   border-bottom:double;&#34;&gt;
+&lt;span style=&#34;color:black;&#34;&gt;1974&lt;/span&gt;&lt;br&gt;&lt;span style=&#34;color:#993333;&#34;&gt;100 %&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;Adicionalmente, la tabla anterior nos muestra la distribución de la participación electoral según cinco categorías de nivel educacional. Como podemos observar, la participación electoral se concentra en los niveles educacionales secundario con un 28,3% y superior técnica y universitaria, con un 16,8% y 9,7% respectivamente. Por otro lado, podemos observar una baja participación electoral de los grupos con nivel educacional más bajo, donde las personas con Primaria incompleta o menos representan un 6,3% y aquellas con Primaria completa son el 6,1%.&lt;/p&gt;
+&lt;p&gt;Al igual que la práctica anterior, podemos representar gráficamente estas distribuciones a través del paquete &lt;code&gt;ggmosaic&lt;/code&gt; que con su función &lt;code&gt;geom_mosaic&lt;/code&gt;. A continuación se presentan dos gráficos para la participación electoral según sexo y nivel educacional.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb6&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb6-1&#34;&gt;&lt;a href=&#34;#cb6-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;ggplot&lt;/span&gt;(enacoes) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb6-2&#34;&gt;&lt;a href=&#34;#cb6-2&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_mosaic&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;aes&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;product&lt;/span&gt;(voto, sexo), &lt;span class=&#34;dt&#34;&gt;fill=&lt;/span&gt;sexo)) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb6-3&#34;&gt;&lt;a href=&#34;#cb6-3&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_label&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;data =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;layer_data&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;last_plot&lt;/span&gt;(), &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;),&lt;/span&gt;
+&lt;span id=&#34;cb6-4&#34;&gt;&lt;a href=&#34;#cb6-4&#34;&gt;&lt;/a&gt;             &lt;span class=&#34;kw&#34;&gt;aes&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; (xmin &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;xmax)&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;, &lt;/span&gt;
+&lt;span id=&#34;cb6-5&#34;&gt;&lt;a href=&#34;#cb6-5&#34;&gt;&lt;/a&gt;                 &lt;span class=&#34;dt&#34;&gt;y =&lt;/span&gt; (ymin &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;ymax)&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb6-6&#34;&gt;&lt;a href=&#34;#cb6-6&#34;&gt;&lt;/a&gt;                 &lt;span class=&#34;dt&#34;&gt;label =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;paste0&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;round&lt;/span&gt;((.wt&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;sum&lt;/span&gt;(.wt))&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;100&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;),&lt;span class=&#34;st&#34;&gt;&amp;quot;%&amp;quot;&lt;/span&gt;))) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb6-7&#34;&gt;&lt;a href=&#34;#cb6-7&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;labs&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;y =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Voto última elección&amp;quot;&lt;/span&gt;, &lt;/span&gt;
+&lt;span id=&#34;cb6-8&#34;&gt;&lt;a href=&#34;#cb6-8&#34;&gt;&lt;/a&gt;       &lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Sexo&amp;quot;&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb6-9&#34;&gt;&lt;a href=&#34;#cb6-9&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;scale_fill_discrete&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;name =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt;, &lt;/span&gt;
+&lt;span id=&#34;cb6-10&#34;&gt;&lt;a href=&#34;#cb6-10&#34;&gt;&lt;/a&gt;                      &lt;span class=&#34;dt&#34;&gt;labels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Hombre&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;Mujer&amp;quot;&lt;/span&gt;))&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb6-11&#34;&gt;&lt;a href=&#34;#cb6-11&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;scale_y_continuous&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;breaks =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;),&lt;/span&gt;
+&lt;span id=&#34;cb6-12&#34;&gt;&lt;a href=&#34;#cb6-12&#34;&gt;&lt;/a&gt;                   &lt;span class=&#34;dt&#34;&gt;labels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;No votó&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;Votó&amp;quot;&lt;/span&gt;)) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb6-13&#34;&gt;&lt;a href=&#34;#cb6-13&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;theme&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;legend.position=&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;bottom&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb6-14&#34;&gt;&lt;a href=&#34;#cb6-14&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb6-15&#34;&gt;&lt;a href=&#34;#cb6-15&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb6-16&#34;&gt;&lt;a href=&#34;#cb6-16&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;ggplot&lt;/span&gt;(enacoes) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb6-17&#34;&gt;&lt;a href=&#34;#cb6-17&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_mosaic&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;aes&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;product&lt;/span&gt;(voto, educ), &lt;span class=&#34;dt&#34;&gt;fill=&lt;/span&gt;educ)) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb6-18&#34;&gt;&lt;a href=&#34;#cb6-18&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_label&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;data =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;layer_data&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;last_plot&lt;/span&gt;(), &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;),&lt;/span&gt;
+&lt;span id=&#34;cb6-19&#34;&gt;&lt;a href=&#34;#cb6-19&#34;&gt;&lt;/a&gt;             &lt;span class=&#34;kw&#34;&gt;aes&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; (xmin &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;xmax)&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb6-20&#34;&gt;&lt;a href=&#34;#cb6-20&#34;&gt;&lt;/a&gt;                 &lt;span class=&#34;dt&#34;&gt;y =&lt;/span&gt; (ymin &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;ymax)&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb6-21&#34;&gt;&lt;a href=&#34;#cb6-21&#34;&gt;&lt;/a&gt;                 &lt;span class=&#34;dt&#34;&gt;label =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;paste0&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;round&lt;/span&gt;((.wt&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;sum&lt;/span&gt;(.wt))&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;100&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;),&lt;span class=&#34;st&#34;&gt;&amp;quot;%&amp;quot;&lt;/span&gt;))) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb6-22&#34;&gt;&lt;a href=&#34;#cb6-22&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;labs&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;y =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Voto última elección&amp;quot;&lt;/span&gt;, &lt;/span&gt;
+&lt;span id=&#34;cb6-23&#34;&gt;&lt;a href=&#34;#cb6-23&#34;&gt;&lt;/a&gt;       &lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Nivel Educacional&amp;quot;&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb6-24&#34;&gt;&lt;a href=&#34;#cb6-24&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;scale_fill_discrete&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;name =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt;, &lt;/span&gt;
+&lt;span id=&#34;cb6-25&#34;&gt;&lt;a href=&#34;#cb6-25&#34;&gt;&lt;/a&gt;                      &lt;span class=&#34;dt&#34;&gt;labels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Primaria incompleta o menos&amp;quot;&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb6-26&#34;&gt;&lt;a href=&#34;#cb6-26&#34;&gt;&lt;/a&gt;                                 &lt;span class=&#34;st&#34;&gt;&amp;quot;Primaria&amp;quot;&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb6-27&#34;&gt;&lt;a href=&#34;#cb6-27&#34;&gt;&lt;/a&gt;                                 &lt;span class=&#34;st&#34;&gt;&amp;quot;Secundaria&amp;quot;&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;Técnica o Superior&amp;quot;&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb6-28&#34;&gt;&lt;a href=&#34;#cb6-28&#34;&gt;&lt;/a&gt;                                 &lt;span class=&#34;st&#34;&gt;&amp;quot;Universitaria o postgrado&amp;quot;&lt;/span&gt;))&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb6-29&#34;&gt;&lt;a href=&#34;#cb6-29&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;scale_y_continuous&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;breaks =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;),&lt;span class=&#34;dt&#34;&gt;labels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;No votó&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;Votó&amp;quot;&lt;/span&gt;)) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb6-30&#34;&gt;&lt;a href=&#34;#cb6-30&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;theme&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;legend.position=&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;bottom&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-9&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/10-code_files/figure-html/unnamed-chunk-9-1.png&#34; alt=&#34;Participación electoral en 2013 según Sexo y Nivel Educacional&#34; width=&#34;75%&#34; /&gt;&lt;img src=&#34;/assignment/10-code_files/figure-html/unnamed-chunk-9-2.png&#34; alt=&#34;Participación electoral en 2013 según Sexo y Nivel Educacional&#34; width=&#34;75%&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 1: Participación electoral en 2013 según Sexo y Nivel Educacional
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;estimación&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Estimación&lt;/h1&gt;
+&lt;p&gt;La función pincipal para la estimación de modelos de regresión logística es &lt;code&gt;glm()&lt;/code&gt;, especificando el argumento &lt;code&gt;family=&#34;binomial&#34;&lt;/code&gt;, lo cual le indica a la función que estamos prediciendo una variable binaria. Al igual que con &lt;code&gt;lm()&lt;/code&gt;, debemos especificar los predictores y la base de datos a emplear. A continuación, estimaremos una serie de modelos de regresión logística que nos permitan determinar de qué manera el sexo, la edad y el nivel educacional de las personas pueden predecir la participación electoral.&lt;/p&gt;
+&lt;!-- &gt; Aqui ecuacion del logit(p) =  --&gt;
+&lt;!-- $ $ --&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb7&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb7-1&#34;&gt;&lt;a href=&#34;#cb7-1&#34;&gt;&lt;/a&gt;m00 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;glm&lt;/span&gt;(voto&lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;,&lt;span class=&#34;dt&#34;&gt;data =&lt;/span&gt; enacoes,&lt;span class=&#34;dt&#34;&gt;family =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;binomial&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb7-2&#34;&gt;&lt;a href=&#34;#cb7-2&#34;&gt;&lt;/a&gt;m01 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;glm&lt;/span&gt;(voto&lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;sexo,&lt;span class=&#34;dt&#34;&gt;data =&lt;/span&gt; enacoes,&lt;span class=&#34;dt&#34;&gt;family =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;binomial&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb7-3&#34;&gt;&lt;a href=&#34;#cb7-3&#34;&gt;&lt;/a&gt;m02 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;glm&lt;/span&gt;(voto&lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;edad,&lt;span class=&#34;dt&#34;&gt;data =&lt;/span&gt; enacoes,&lt;span class=&#34;dt&#34;&gt;family =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;binomial&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb7-4&#34;&gt;&lt;a href=&#34;#cb7-4&#34;&gt;&lt;/a&gt;m03 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;glm&lt;/span&gt;(voto&lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;sexo&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;edad&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;educ,&lt;span class=&#34;dt&#34;&gt;data =&lt;/span&gt; enacoes,&lt;span class=&#34;dt&#34;&gt;family =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;binomial&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div id=&#34;presentación-de-resultados&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Presentación de resultados&lt;/h2&gt;
+&lt;div class=&#34;alert alert-info&#34;&gt;
+&lt;p&gt;Para construir una tabla de regresión podemos usar la librería &lt;code&gt;texreg&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Esto se puede hacer si se utiliza RMarkdown (no es requisito en este curso, para los interesad_s pueden revisar material del curso &lt;a href=&#34;https://cienciasocialabierta.netlify.app/class/04-class/&#34;&gt;ciencia social abierta&lt;/a&gt; )&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;Instalar librería &lt;strong&gt;texreg&lt;/strong&gt;. Si bien existe una versión en CRAN, no nos permite usar el argumento &lt;code&gt;custom.gof.rows&lt;/code&gt; para agregar estadísticos de ajuste adicionales, así que para instalar:&lt;code&gt;remotes::install_github(&#34;leifeld/texreg&#34;)&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Existen tres variaciones para crear tablas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;screenreg()&lt;/code&gt;: nos muestra la tabla en la consola de R&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;htmlreg()&lt;/code&gt;: produce una tabla en formato html (como las que vemos en este documento)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;texreg()&lt;/code&gt;: produce una tabla en formato &lt;span class=&#34;math inline&#34;&gt;\(\LaTeX\)&lt;/span&gt; para documentos en pdf.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Para que el resultado pueda ser &lt;code&gt;renderizado&lt;/code&gt; desde un documento RMarkdown a pdf o html, debe estar en un chunk con las siguientes especificaciones:&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;```{r results=&amp;#39;asis&amp;#39;, echo=FALSE}
+htmlreg(list(m01,m02,m03))
+```&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;4&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Para personalizar nuestra tabla podemos ir agregando más información, tales como los nombres de los coeficientes o el nombre de los modelos:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;```{r results=&amp;#39;asis&amp;#39;, echo=FALSE}
+htmlreg(l = list(m00,m01,m02,m03),
+        custom.coef.names=c(&amp;quot;Intercepto&amp;quot;,&amp;quot;Sexo (Mujer=1)&amp;quot;,&amp;quot;Edad&amp;quot;,&amp;quot;Primaria&amp;quot;,&amp;quot;Secundaria&amp;quot;, &amp;quot;Técnica o Superior&amp;quot;,&amp;quot;Universitaria o postgrado&amp;quot;),
+        custom.model.names = c(&amp;quot;Modelo 0&amp;quot;,&amp;quot;Modelo 1&amp;quot;,&amp;quot;Modelo 2&amp;quot;, &amp;quot;Modelo 3&amp;quot;))
+```&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;tabla-de-regresión&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Tabla de regresión&lt;/h2&gt;
+&lt;table class=&#34;texreg&#34; style=&#34;margin: 10px auto;border-collapse: collapse;border-spacing: 0px;color: #000000;border-top: 2px solid #000000;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/th&gt;
+&lt;th style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Modelo 0
+&lt;/th&gt;
+&lt;th style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Modelo 1
+&lt;/th&gt;
+&lt;th style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Modelo 2
+&lt;/th&gt;
+&lt;th style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Modelo 3
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr style=&#34;border-top: 1px solid #000000;&#34;&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Intercepto
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.71&lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.77&lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+-1.07&lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+-2.04&lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.05)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.08)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.15)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.29)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Sexo (Mujer=1)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+-0.10
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+-0.02
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.10)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.10)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Edad
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.04&lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.05&lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.00)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.00)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Primaria
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.34
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.25)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Secundaria
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.47&lt;sup&gt;*&lt;/sup&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.19)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Técnica o Superior
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.88&lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.22)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Universitaria o postgrado
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+1.53&lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.25)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style=&#34;border-top: 1px solid #000000;&#34;&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+AIC
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2502.30
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2503.34
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2334.32
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2290.54
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Log Likelihood
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+-1250.15
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+-1249.67
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+-1165.16
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+-1138.27
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Deviance
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2500.30
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2499.34
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2330.32
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2276.54
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style=&#34;border-bottom: 2px solid #000000;&#34;&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Num. obs.
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+1974
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+1974
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+1974
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+1974
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;
+&lt;tr&gt;
+&lt;td style=&#34;font-size: 0.8em;&#34; colspan=&#34;5&#34;&gt;
+&lt;span class=&#34;math inline&#34;&gt;\(^{***}\)&lt;/span&gt; p &amp;lt; 0.001; &lt;span class=&#34;math inline&#34;&gt;\(^{**}\)&lt;/span&gt; p &amp;lt; 0.01; &lt;span class=&#34;math inline&#34;&gt;\(^{*}\)&lt;/span&gt; p &amp;lt; 0.05 &lt;br&gt; Errores estándar entre paréntesis
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tfoot&gt;
+&lt;/table&gt;
+&lt;p&gt;En la tabla anterior podemos observar cuatro modelos distintos:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;right&#34;&gt;Modelo&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Predictores&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;Modelo 0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;modelo nulo (sin predictores)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;Modelo 1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;Incluye sexo&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;Modelo 2&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;Incluye edad&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;Modelo 3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;Incluye sexo, edad y nivel educacional&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div id=&#34;regresión-logística-sin-predictores&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Regresión logística sin predictores&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[logit(p) = \beta_{0}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;El modelo sin predictores nos permite conocer la probabilidad de votar. En este caso, vemos que se obtiene un intercepto de 0.71 correspondiente a &lt;span class=&#34;math inline&#34;&gt;\(log(p/1-p)\)&lt;/span&gt;. En este caso &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; es la probabilidad de que una persona participe en las elecciones como votante (voto = 1). Miremos nuevamente la distribución de la participación electoral:&lt;/p&gt;
+&lt;table class=&#34;kable_wrapper&#34;&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;right&#34;&gt;val&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;label&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;frq&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;raw.prc&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;valid.prc&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;cum.prc&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;No votó&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;649&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;32.88&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;32.88&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;32.88&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Votó&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1325&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;67.12&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;67.12&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;100.00&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Entonces, tenemos que &lt;span class=&#34;math inline&#34;&gt;\(p =1325/1974 = .67\)&lt;/span&gt;. Por tanto, la odds calculadas corresponden a 0.67/(1-0.67) =2.03, lo cual en unidades de log(odds) corresponde al valore del intercepto que es 0.71. En otras palabras el intercepto del modelo sin predictores nos entrega la log-odds de votar en las elecciones. Adicionalmente, podemos transformar nuevamente a unidades de probabilidad de la siguiente manera: &lt;code&gt;p = exp(0.71)/(1 +  exp(0.71))= 0.67&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;regresión-logistica-con-variable-binaria-como-predictor&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Regresión logistica con variable binaria como predictor&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[logit(p) = \beta_0 + \beta_{mujer}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;El modelo con un predictor binario como sexo nos permite estimar la probabilidad de votar para las mujeres (sexo = 1), respecto a los hombres (sexo = 0). En este caso, los resultados muestran el valor del intercepto (0.77) y para sexo (-0.10). Antes de interpretar, demos una mirada a la distribución de la participación electoral según sexo:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;##         sexo Hombre Mujer
+## voto                     
+## No votó         254   395
+## Votó            549   776&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;En nuestros datos, ¿cuáles son las chances (odds) de votar para los hombres y para las mujeres? Con la información de la tabla de contingencia podemos realizar los cálculos manualmente: para los hombres (sexo = 0), las odds de votar son (549/803)/(254/803) = 0.683 /0.316 = 2.16. A su vez, para las mujeres, las odds de votar son (776/1171)/(395/1171) = 0.662/0.337 = 1.96. Entonces, las odds ratio para las mujeres respecto de los hombres es (776/395)/(549/254) = (776x254)/(549x395) = 0.907, por lo tanto podemos decir que las odds de votar en las elecciones son son 9,5% (&lt;code&gt;exp(-0.10)-1 = 0.908-1&lt;/code&gt;) más bajas para las mujeres respecto a los hombres.&lt;/p&gt;
+&lt;p&gt;Ahora, si observamos los resultados de la tabla de regresión vemos que el intercepto es 0.77, el cual representa las log-odds para los hombres en tanto corresponde a la categoría de referencia (sexo = 0). Usando las odds de votar para los hombres calculada en el apartado anterior, podemos confirmarlo: log(2.16) = 0.77. A su vez, el log-odds para las mujeres corresponde al log del odds-ratio de las odds de las mujeres y de los hombres calculado anteriormente: log(0.907) = -0.10. El output tradicional de R cuando usamos &lt;code&gt;glm()&lt;/code&gt; nos entrega los coeficientes en unidades de log-odds, por tanto es necesario realizar la &lt;strong&gt;exponenciación&lt;/strong&gt; de dichos coeficientes para realizar la interpretación en unidades de odds-ratio.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;regresión-logística-con-variable-continua-como-predictor&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Regresión logística con variable continua como predictor&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[logit(p) = \beta_0 + \beta_{edad}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Ahora, estimaremos un modelo empleando la edad como predictor continuo. En este caso, el intercepto corresponde a los log-odds de una persona con “edad 0”. En otras palabras, las odds de votar cuando se tiene edad 0 es &lt;code&gt;exp(-1.07) = 0.343&lt;/code&gt;. Lo importante es que si observamos la distribución de la variable edad, vemos que el valor mínimo es 18 años, por tanto, sabemos que este coeficiente no posee una interpretación sustantiva directamente. Lo más relevante es que el intercepto en ese modelo corresponde a los log-odds de votar en el &lt;strong&gt;hipotético caso&lt;/strong&gt; de tener edad cero.&lt;/p&gt;
+&lt;p&gt;Entonces, ¿cómo interpretamos el coeficiente de edad?. Para esto, lo ideal es tener en cuenta todos los valores de la ecuación:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[logit(p) =  -1.07 + 0.04 \times edad\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Una manera de hacerlo es fijar edad en algún valor, por ejemplo un sujeto de con 54 años. Entonces, el valor del log-odds para una persona con 54 años es:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(logit(p_{edad54}) = -1.07 + 0.04 \times 54 = 1.09\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Ahora, el valor de los log-odds para una persona con 55 años es:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(logit(p_{edad55}) = -1.07 + 0.04 \times 55 = 1.13\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Entonces, podemos decir que el coeficiente para edad es la diferencia en el log-odds. En otras palabras, por una unidad de incremento en edad (1 año), el cambio esperado en los log-odds es de 0.04.&lt;/p&gt;
+&lt;p&gt;Ahora, ¿cómo traducimos este cambio en odds?. Tenemos que:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\exp(logit(p_{edad55})-logit(p_{edad54}) = \frac{\exp(logit(p_{edad55}))}{\exp(logit(p_{edad55}))}= \frac{\exp(1.13)}{\exp(1.09)}=\frac{3.09}{2.97} = 1.04\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Finalmente, podemos decir que por el incremento de una unidad en edad (1 año), se espera ver un incremento aproximado de un 4% en las odds de ir a votar. Este porcentaje no depende de los valores en los cuales se mantenga edad.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;regresión-logística-con-múltiples-predictores&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Regresión logística con múltiples predictores&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[logit(p) = \beta_0 + \beta_{\text{mujer}}+ \beta_{\text{edad}}+ \beta_{\text{prim}}+ \beta_{\text{secu}}+ \beta_{\text{técn}}+ \beta_{\text{univ}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Este ejemplo representa el modelo multivariado para participación electoral. Cada coeficiente prepresenta el cambio predicho en el log-odds de votar por un incremento/cambio en la variable, manteniendo todas las demás variables constantes. Cada coeficiente exponenciado (exp), representa el ratio de dos odds (por ejemplo, mujer respecto a hombre), o el cambio en las odds por el incremento de una unidad de la variable independiente (por ejemplo, un año de edad), &lt;strong&gt;manteniendo las demás variables constantes&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Entonces, si observamos el coeficiente de sexo en el Modelo 3, vemos que el odds-ratio de las mujeres sobre los hombres es de exp(-0.02)= 0.98, es decir que las odds de votar en las elecciones son son 1,9% (&lt;code&gt;exp(-0.02)-1 = 0.98-1&lt;/code&gt;) más bajas para las mujeres respecto a los hombres, manteniendo edad y el nivel educacional constante.&lt;/p&gt;
+&lt;p&gt;La variable nivel educacional posee 5 niveles, donde “Primaria incompleta o menos” es la categoría de referencia, por tanto, los coeficientes se deben interpretar respecto dicha categoría. Por ejemplo, tenemos que el odds-ratio para Primaria es de exp(0.34) = 1.40, por lo tanto las odds de votar en las elecciones son 40% (&lt;code&gt;exp(-0.02)-1 = 1.40-1&lt;/code&gt;) más altas para las personas que completaron la educación primaria respecto a quienes tienen educación primaria incompleta o menos, manteniendo sexo y edad en valores constantes.&lt;/p&gt;
+&lt;p&gt;Ahora, observando el log-odds para las personas son educación Universitaria o postgrado podemos calcular que el odds-ratio para esta categoría es de exp(1.53) = 4.61, lo cual nos indica que las odds de votar son 361% &lt;code&gt;exp(1.53)-1 = 4.61-1&lt;/code&gt; más altas para las personas con educación universitaria o postgrado respecto a quienes tienen educación primaria incompleta o menos, manteniendo sexo y edad en valores constantes.&lt;/p&gt;
+&lt;p&gt;Otra alternativa de interpretación es a través del cálculo de las &lt;strong&gt;probabilidades predichas&lt;/strong&gt;. Por ejemplo ¿cuál es la probabilidad de votar según los distintos niveles educacionales manteniendo constante sexo y edad?. En este caso usaremos una persona hipotética que es mujer (sexo=1) de 55 años.&lt;/p&gt;
+&lt;p&gt;Tenemos nuestros coeficientes para el Modelo 3:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb11&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb11-1&#34;&gt;&lt;a href=&#34;#cb11-1&#34;&gt;&lt;/a&gt;m03&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;coefficients&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## (Intercept)       sexo1        edad       educ2       educ3       educ4 
+## -2.03578412 -0.02351809  0.04911213  0.33653007  0.46911435  0.88442909 
+##       educ5 
+##  1.52605507&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Calculamos las log-odds para cada caso:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb13&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb13-1&#34;&gt;&lt;a href=&#34;#cb13-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;co&#34;&gt;# Intercept     sexo*1    edad*55    educ2       educ3      educ4      educ5&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb13-2&#34;&gt;&lt;a href=&#34;#cb13-2&#34;&gt;&lt;/a&gt;ed01&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;fl&#34;&gt;-2.03578412&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;fl&#34;&gt;0.0235&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.0491&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;55&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.3365&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.4691&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.8844&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;1.5260&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# mujer 55 anios Primaria incompleta&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb13-3&#34;&gt;&lt;a href=&#34;#cb13-3&#34;&gt;&lt;/a&gt;ed02&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;fl&#34;&gt;-2.03578412&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;fl&#34;&gt;0.0235&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.0491&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;55&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.3365&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.4691&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.8844&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;1.5260&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# mujer 55 anios Primaria&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb13-4&#34;&gt;&lt;a href=&#34;#cb13-4&#34;&gt;&lt;/a&gt;ed03&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;fl&#34;&gt;-2.03578412&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;fl&#34;&gt;0.0235&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.0491&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;55&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.3365&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.4691&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.8844&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;1.5260&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# mujer 55 anios Secundaria&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb13-5&#34;&gt;&lt;a href=&#34;#cb13-5&#34;&gt;&lt;/a&gt;ed04&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;fl&#34;&gt;-2.03578412&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;fl&#34;&gt;0.0235&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.0491&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;55&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.3365&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.4691&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.8844&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;1.5260&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# mujer 55 anios Tecnica&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb13-6&#34;&gt;&lt;a href=&#34;#cb13-6&#34;&gt;&lt;/a&gt;ed05&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;fl&#34;&gt;-2.03578412&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;fl&#34;&gt;0.0235&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.0491&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;55&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.3365&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.4691&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.8844&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;1.5260&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# mujer 55 anios Universitaria&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Calculamos las probabilidades predichas de la siguiente manera:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\text{Probabilidad}= \frac{\exp(\beta_0+\beta_jX_j)}{1+\exp(\beta_0+\beta_jX_j)} = \frac{\text{Odds}}{1+\text{Odds}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb14&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb14-1&#34;&gt;&lt;a href=&#34;#cb14-1&#34;&gt;&lt;/a&gt;pr.ed01&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;exp&lt;/span&gt;(ed01)&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;exp&lt;/span&gt;(ed01))&lt;/span&gt;
+&lt;span id=&#34;cb14-2&#34;&gt;&lt;a href=&#34;#cb14-2&#34;&gt;&lt;/a&gt;pr.ed02&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;exp&lt;/span&gt;(ed02)&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;exp&lt;/span&gt;(ed02))&lt;/span&gt;
+&lt;span id=&#34;cb14-3&#34;&gt;&lt;a href=&#34;#cb14-3&#34;&gt;&lt;/a&gt;pr.ed03&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;exp&lt;/span&gt;(ed03)&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;exp&lt;/span&gt;(ed03))&lt;/span&gt;
+&lt;span id=&#34;cb14-4&#34;&gt;&lt;a href=&#34;#cb14-4&#34;&gt;&lt;/a&gt;pr.ed04&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;exp&lt;/span&gt;(ed04)&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;exp&lt;/span&gt;(ed04))&lt;/span&gt;
+&lt;span id=&#34;cb14-5&#34;&gt;&lt;a href=&#34;#cb14-5&#34;&gt;&lt;/a&gt;pr.ed05&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;exp&lt;/span&gt;(ed05)&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;exp&lt;/span&gt;(ed05))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Finalmente, se presenta la tabla resumen a continuación:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;Nivel educacional&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;log-odds&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;exp(log-odds)&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;exp(odds)/(1-exp(odds)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Primaria incompleta o menos&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.641&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.899&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.655&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Primaria&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.978&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.658&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.727&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Secundaria&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.110&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.035&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.752&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Técnica&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.526&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4.598&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.821&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Univsersitaria&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.167&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;8.734&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.897&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;La librería &lt;code&gt;sjPlot&lt;/code&gt; posee la función &lt;code&gt;plot_model()&lt;/code&gt; la cual, dentro de otras cosas, nos permite visualizar las probabilidades predichas para un modelo de regresión logística.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb15&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb15-1&#34;&gt;&lt;a href=&#34;#cb15-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;plot_model&lt;/span&gt;(m03,&lt;span class=&#34;dt&#34;&gt;type =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;pred&amp;quot;&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb15-2&#34;&gt;&lt;a href=&#34;#cb15-2&#34;&gt;&lt;/a&gt;           &lt;span class=&#34;dt&#34;&gt;terms =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;educ&amp;quot;&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb15-3&#34;&gt;&lt;a href=&#34;#cb15-3&#34;&gt;&lt;/a&gt;           &lt;span class=&#34;dt&#34;&gt;title =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Probabilidades predichas para Voto según nivel educacional&amp;quot;&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_line&lt;/span&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&#34;/assignment/10-code_files/figure-html/unnamed-chunk-18-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;En conjunto, podemos observar que en la medida que aumenta el nivel educacional de las personas, la probabilidad de que participen en las elecciones tiende a ser mayor, manteniendo edad y sexo constante.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;medidas-de-ajuste&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Medidas de Ajuste&lt;/h1&gt;
+&lt;p&gt;El ajuste de los modelos de regresión logística puede ser evaluado de distintas maneras. Generalmente se realiza a través del contraste con otros modelos con más o menos predictores, lo cual nos permite elegir entre las mejores especificaciones. Adicionalmente, presentaremos la manera de incorporar estas medidas de ajuste a la tabla de regresión del apartado anterior.&lt;/p&gt;
+&lt;p&gt;En este ejercicio emplearemos (1) Test de Devianza y (2) Pseudo-R2 de McFadden.&lt;/p&gt;
+&lt;div id=&#34;test-de-devianza&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Test de Devianza&lt;/h2&gt;
+&lt;p&gt;Este test nos permite comparar las verosimilitudes del modelo con predictores, respecto a un modelo con menos predictores. En este caso, emplearemos la función &lt;code&gt;anova()&lt;/code&gt; el cual realiza un test basado en la distribución chi-cuadrado donde se contrasta el modelo en cuestión respecto a un modelo sin predictores (modelo “nulo”).&lt;/p&gt;
+&lt;p&gt;En nuestro caso, comparamos nuestro modelo sin predictores con los posteriores modelos para sexo, edad y nivel educacional.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb16&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb16-1&#34;&gt;&lt;a href=&#34;#cb16-1&#34;&gt;&lt;/a&gt;test01&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;anova&lt;/span&gt;(m00,m01,&lt;span class=&#34;dt&#34;&gt;test =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Chisq&amp;quot;&lt;/span&gt;) &lt;/span&gt;
+&lt;span id=&#34;cb16-2&#34;&gt;&lt;a href=&#34;#cb16-2&#34;&gt;&lt;/a&gt;test02&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;anova&lt;/span&gt;(m00,m02,&lt;span class=&#34;dt&#34;&gt;test =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Chisq&amp;quot;&lt;/span&gt;) &lt;/span&gt;
+&lt;span id=&#34;cb16-3&#34;&gt;&lt;a href=&#34;#cb16-3&#34;&gt;&lt;/a&gt;test03&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;anova&lt;/span&gt;(m00,m03,&lt;span class=&#34;dt&#34;&gt;test =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Chisq&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb16-4&#34;&gt;&lt;a href=&#34;#cb16-4&#34;&gt;&lt;/a&gt;lrt01&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rbind&lt;/span&gt;(test01,test02,test03) &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;unique&lt;/span&gt;()&lt;/span&gt;
+&lt;span id=&#34;cb16-5&#34;&gt;&lt;a href=&#34;#cb16-5&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;row.names&lt;/span&gt;(lrt01) &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Modelo nulo&amp;quot;&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb16-6&#34;&gt;&lt;a href=&#34;#cb16-6&#34;&gt;&lt;/a&gt;                      &lt;span class=&#34;st&#34;&gt;&amp;quot;Modelo 1&amp;quot;&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb16-7&#34;&gt;&lt;a href=&#34;#cb16-7&#34;&gt;&lt;/a&gt;                      &lt;span class=&#34;st&#34;&gt;&amp;quot;Modelo 2&amp;quot;&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb16-8&#34;&gt;&lt;a href=&#34;#cb16-8&#34;&gt;&lt;/a&gt;                      &lt;span class=&#34;st&#34;&gt;&amp;quot;Modelo 3&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb16-9&#34;&gt;&lt;a href=&#34;#cb16-9&#34;&gt;&lt;/a&gt;knitr&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;kable&lt;/span&gt;(lrt01,&lt;span class=&#34;dt&#34;&gt;digits =&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;caption =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Test de devianza entre modelos&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;table&gt;
+&lt;caption&gt;&lt;span id=&#34;tab:unnamed-chunk-19&#34;&gt;Table 1: &lt;/span&gt;Test de devianza entre modelos&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Resid. Df&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Resid. Dev&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Df&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Deviance&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Pr(&amp;gt;Chi)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Modelo nulo&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1973&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2500.296&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Modelo 1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1972&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2499.342&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.954&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.329&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Modelo 2&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1972&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2330.325&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;169.971&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Modelo 3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1967&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2276.545&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;223.751&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Modelo nulo vs. Modelo 1&lt;/strong&gt;: La diferencia entre los modelos no es estadísticamente significativa con una probabilidad &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; &amp;gt; 0.05. Por lo tanto el modelo que incluye sexo como predictor &lt;strong&gt;no ofrece&lt;/strong&gt; un mejor ajuste a los datos que un modelo sin predictores.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Modelo nulo vs. Modelo 2&lt;/strong&gt;: La diferencia entre los modelos es estadísticamente significativa con una probabilidad &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; &amp;lt; 0.001. Por lo tanto el modelo que incluye la edad como predictor &lt;strong&gt;ofrece&lt;/strong&gt; un mejor ajuste a los datos que un modelo sin predictores.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Modelo nulo vs. Modelo 3&lt;/strong&gt;: La diferencia entre los modelos es estadísticamente significativa con una probabilidad &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; &amp;lt; 0.001. Por lo tanto el modelo que incluye el sexo, edad y nivel educacional como predictores &lt;strong&gt;ofrece&lt;/strong&gt; un mejor ajuste a los datos que un modelo sin predictores.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Podemos guardar los valores &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; de cada modelo para luego incorporarlos en la tabla de regresión:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb17&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb17-1&#34;&gt;&lt;a href=&#34;#cb17-1&#34;&gt;&lt;/a&gt;test.pvalues1&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;test01&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;Pr(&amp;gt;Chi)&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;`&lt;/span&gt;[&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;] &lt;/span&gt;
+&lt;span id=&#34;cb17-2&#34;&gt;&lt;a href=&#34;#cb17-2&#34;&gt;&lt;/a&gt;test.pvalues2&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;test02&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;Pr(&amp;gt;Chi)&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;`&lt;/span&gt;[&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;] &lt;/span&gt;
+&lt;span id=&#34;cb17-3&#34;&gt;&lt;a href=&#34;#cb17-3&#34;&gt;&lt;/a&gt;test.pvalues3&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;test03&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;Pr(&amp;gt;Chi)&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;`&lt;/span&gt;[&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;] &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;pseudo-r2-de-mcfadden&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Pseudo-R2 de McFadden&lt;/h2&gt;
+&lt;p&gt;Esta medida de ajuste nos entrega una magnitud comparativa entre el modelo con predictores y el modelo nulo (sin predictores). Este se basda en los valores del loglikelihood de cada modelo.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(1-\frac{LL(LM)}{LL(L0)}\)&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;LL es el log likelihood del modelo&lt;/li&gt;
+&lt;li&gt;LM es el modelo posterior (con predictores)&lt;/li&gt;
+&lt;li&gt;L0 es el modelo nulo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Podemos calcularlos manualmente de la siguiente manera:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb18&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb18-1&#34;&gt;&lt;a href=&#34;#cb18-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;logLik&lt;/span&gt;(m01)[&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;]&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;logLik&lt;/span&gt;(m00)[&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;]) &lt;span class=&#34;co&#34;&gt;# modelo 1 vs modelo nulo&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb18-2&#34;&gt;&lt;a href=&#34;#cb18-2&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;logLik&lt;/span&gt;(m02)[&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;]&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;logLik&lt;/span&gt;(m00)[&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;]) &lt;span class=&#34;co&#34;&gt;# modelo 2 vs modelo nulo &lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb18-3&#34;&gt;&lt;a href=&#34;#cb18-3&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;logLik&lt;/span&gt;(m03)[&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;]&lt;span class=&#34;op&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;logLik&lt;/span&gt;(m00)[&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;]) &lt;span class=&#34;co&#34;&gt;# modelo 3 vs modelo nulo &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.0003817169
+## [1] 0.06798047
+## [1] 0.08948998&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;También, podemos utilizar la función &lt;code&gt;PseudoR2()&lt;/code&gt; de la librería &lt;code&gt;DescTools&lt;/code&gt;. &lt;strong&gt;A continuación los calculamos y guardamos para incluirlos en la tabla de regresión.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb20&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb20-1&#34;&gt;&lt;a href=&#34;#cb20-1&#34;&gt;&lt;/a&gt;mfr2&lt;span class=&#34;fl&#34;&gt;.00&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;DescTools&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;PseudoR2&lt;/span&gt;(m00) &lt;/span&gt;
+&lt;span id=&#34;cb20-2&#34;&gt;&lt;a href=&#34;#cb20-2&#34;&gt;&lt;/a&gt;mfr2&lt;span class=&#34;fl&#34;&gt;.01&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;DescTools&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;PseudoR2&lt;/span&gt;(m01) &lt;/span&gt;
+&lt;span id=&#34;cb20-3&#34;&gt;&lt;a href=&#34;#cb20-3&#34;&gt;&lt;/a&gt;mfr2&lt;span class=&#34;fl&#34;&gt;.02&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;DescTools&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;PseudoR2&lt;/span&gt;(m02) &lt;/span&gt;
+&lt;span id=&#34;cb20-4&#34;&gt;&lt;a href=&#34;#cb20-4&#34;&gt;&lt;/a&gt;mfr2&lt;span class=&#34;fl&#34;&gt;.03&lt;/span&gt; &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;DescTools&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;PseudoR2&lt;/span&gt;(m03) &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb21&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb21-1&#34;&gt;&lt;a href=&#34;#cb21-1&#34;&gt;&lt;/a&gt;r2&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;as.data.frame&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;cbind&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(mfr2&lt;span class=&#34;fl&#34;&gt;.00&lt;/span&gt;,mfr2&lt;span class=&#34;fl&#34;&gt;.01&lt;/span&gt;,mfr2&lt;span class=&#34;fl&#34;&gt;.02&lt;/span&gt;,mfr2&lt;span class=&#34;fl&#34;&gt;.03&lt;/span&gt;)))&lt;/span&gt;
+&lt;span id=&#34;cb21-2&#34;&gt;&lt;a href=&#34;#cb21-2&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;rownames&lt;/span&gt;(r2) &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Modelo nulo&amp;quot;&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb21-3&#34;&gt;&lt;a href=&#34;#cb21-3&#34;&gt;&lt;/a&gt;                  &lt;span class=&#34;st&#34;&gt;&amp;quot;Modelo 1&amp;quot;&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb21-4&#34;&gt;&lt;a href=&#34;#cb21-4&#34;&gt;&lt;/a&gt;                  &lt;span class=&#34;st&#34;&gt;&amp;quot;Modelo 2&amp;quot;&lt;/span&gt;,&lt;/span&gt;
+&lt;span id=&#34;cb21-5&#34;&gt;&lt;a href=&#34;#cb21-5&#34;&gt;&lt;/a&gt;                  &lt;span class=&#34;st&#34;&gt;&amp;quot;Modelo 3&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb21-6&#34;&gt;&lt;a href=&#34;#cb21-6&#34;&gt;&lt;/a&gt;knitr&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;kable&lt;/span&gt;(r2,&lt;span class=&#34;dt&#34;&gt;digits =&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;col.names =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;McFadden R2&amp;quot;&lt;/span&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;McFadden R2&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Modelo nulo&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Modelo 1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Modelo 2&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.068&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Modelo 3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.089&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;De esta manera, podemos observar que el cálculo del Pseudo R2 nos indica que el Modelo 1 no aporta mayor a la predicción, en contraste con el Modelo 2 y 3.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;presentación-de-resultados-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Presentación de resultados&lt;/h2&gt;
+&lt;p&gt;Existen distintas librerías para presentar modelos de regresión, tales como las funciones &lt;code&gt;tab_modeñ()&lt;/code&gt; o &lt;code&gt;stargazer()&lt;/code&gt; que ya hemos revisado anteriormente. En este caso vamos a usar &lt;code&gt;htmlreg()&lt;/code&gt; de la librería &lt;code&gt;texreg&lt;/code&gt;. Por defecto, la función nos entrega la siguiente salida:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb22&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb22-1&#34;&gt;&lt;a href=&#34;#cb22-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;htmlreg&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;l =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;list&lt;/span&gt;(m03,m03))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;table class=&#34;texreg&#34; style=&#34;margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;&#34;&gt;
+&lt;caption&gt;
+Statistical models
+&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/th&gt;
+&lt;th style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Model 1
+&lt;/th&gt;
+&lt;th style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Model 2
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr style=&#34;border-top: 1px solid #000000;&#34;&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(Intercept)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+-2.04&lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+-2.04&lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.29)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.29)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+sexo1
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+-0.02
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+-0.02
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.10)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.10)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+edad
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.05&lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.05&lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.00)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.00)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+educ2
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.34
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.34
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.25)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.25)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+educ3
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.47&lt;sup&gt;*&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.47&lt;sup&gt;*&lt;/sup&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.19)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.19)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+educ4
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.88&lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.88&lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.22)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.22)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+educ5
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+1.53&lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+1.53&lt;sup&gt;***&lt;/sup&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.25)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+(0.25)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style=&#34;border-top: 1px solid #000000;&#34;&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+AIC
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2290.54
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2290.54
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+BIC
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2329.66
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2329.66
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Log Likelihood
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+-1138.27
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+-1138.27
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Deviance
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2276.54
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2276.54
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style=&#34;border-bottom: 2px solid #000000;&#34;&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Num. obs.
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+1974
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+1974
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;
+&lt;tr&gt;
+&lt;td style=&#34;font-size: 0.8em;&#34; colspan=&#34;3&#34;&gt;
+&lt;sup&gt;&lt;em&gt;&lt;strong&gt;&lt;/sup&gt;p &amp;lt; 0.001; &lt;sup&gt;&lt;/strong&gt;&lt;/sup&gt;p &amp;lt; 0.01; &lt;sup&gt;&lt;/em&gt;&lt;/sup&gt;p &amp;lt; 0.05
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tfoot&gt;
+&lt;/table&gt;
+&lt;p&gt;Dentro de la misma función, existen más opciones para personalizar el reporte, incluyendo el argumento &lt;code&gt;custom.gof.rows&lt;/code&gt; señalado en el apartado anterior, el cual emplearemos para incluirlos resultados delTest de Devianza y el Pseudo R2. En este caso, incluiremos una versión con coeficientes en log-odds del Modelo 3 y su posterior transformación a odds-ratio (OR), además de remplazar los errores estándar por intervalos de confianza.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Para transformar los coeficientes de log-odds a odds-ratio realizamos lo siguiente:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb23&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb23-1&#34;&gt;&lt;a href=&#34;#cb23-1&#34;&gt;&lt;/a&gt;or &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;texreg&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;extract&lt;/span&gt;(m03)&lt;/span&gt;
+&lt;span id=&#34;cb23-2&#34;&gt;&lt;a href=&#34;#cb23-2&#34;&gt;&lt;/a&gt;or&lt;span class=&#34;op&#34;&gt;@&lt;/span&gt;coef &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;exp&lt;/span&gt;(or&lt;span class=&#34;op&#34;&gt;@&lt;/span&gt;coef)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb24&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb24-1&#34;&gt;&lt;a href=&#34;#cb24-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;htmlreg&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;l =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;list&lt;/span&gt;(m03,or), &lt;span class=&#34;dt&#34;&gt;doctype =&lt;/span&gt; F,&lt;span class=&#34;dt&#34;&gt;caption =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt;,&lt;span class=&#34;dt&#34;&gt;caption.above =&lt;/span&gt; T,&lt;/span&gt;
+&lt;span id=&#34;cb24-2&#34;&gt;&lt;a href=&#34;#cb24-2&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;dt&#34;&gt;custom.model.names =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Modelo 3&amp;quot;&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;Modelo 3 (OR)&amp;quot;&lt;/span&gt;),&lt;/span&gt;
+&lt;span id=&#34;cb24-3&#34;&gt;&lt;a href=&#34;#cb24-3&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;dt&#34;&gt;custom.coef.names =&lt;/span&gt; coef.labs, &lt;/span&gt;
+&lt;span id=&#34;cb24-4&#34;&gt;&lt;a href=&#34;#cb24-4&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;dt&#34;&gt;ci.force =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;ot&#34;&gt;TRUE&lt;/span&gt;,&lt;span class=&#34;ot&#34;&gt;TRUE&lt;/span&gt;),&lt;/span&gt;
+&lt;span id=&#34;cb24-5&#34;&gt;&lt;a href=&#34;#cb24-5&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;dt&#34;&gt;override.coef =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;list&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;coef&lt;/span&gt;(m03),or&lt;span class=&#34;op&#34;&gt;@&lt;/span&gt;coef),&lt;/span&gt;
+&lt;span id=&#34;cb24-6&#34;&gt;&lt;a href=&#34;#cb24-6&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;dt&#34;&gt;custom.gof.rows=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;list&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Deviance Test ($p$)&amp;quot;&lt;/span&gt; =&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(test.pvalues3,&lt;/span&gt;
+&lt;span id=&#34;cb24-7&#34;&gt;&lt;a href=&#34;#cb24-7&#34;&gt;&lt;/a&gt;                                                       test.pvalues3),&lt;/span&gt;
+&lt;span id=&#34;cb24-8&#34;&gt;&lt;a href=&#34;#cb24-8&#34;&gt;&lt;/a&gt;                             &lt;span class=&#34;st&#34;&gt;&amp;quot;Pseudo R2&amp;quot;&lt;/span&gt; =&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(mfr2&lt;span class=&#34;fl&#34;&gt;.03&lt;/span&gt;,mfr2&lt;span class=&#34;fl&#34;&gt;.03&lt;/span&gt;)),&lt;/span&gt;
+&lt;span id=&#34;cb24-9&#34;&gt;&lt;a href=&#34;#cb24-9&#34;&gt;&lt;/a&gt;          &lt;span class=&#34;dt&#34;&gt;custom.note =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;$^{***}$ p &amp;lt; 0.001; $^{**}$ p &amp;lt; 0.01; $^{*}$ p &amp;lt; 0.05 &amp;lt;br&amp;gt; Errores estándar entre paréntesis. &amp;lt;br&amp;gt; **Nota**: La significancia estadística de los coeficientes en unidades de Odds ratio está calculada en base a los valores $t$, &amp;lt;br&amp;gt; los cuales a su vez se calculan en base a $log(Odds)/SE$&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;table class=&#34;texreg&#34; style=&#34;margin: 10px auto;border-collapse: collapse;border-spacing: 0px;color: #000000;border-top: 2px solid #000000;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/th&gt;
+&lt;th style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Modelo 3
+&lt;/th&gt;
+&lt;th style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Modelo 3 (OR)
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr style=&#34;border-top: 1px solid #000000;&#34;&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Intercepto
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+-2.04&lt;sup&gt;*&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.13
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+[-2.60; -1.47]
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+[-0.43; 0.70]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Sexo (Mujer=1)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+-0.02
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.98&lt;sup&gt;*&lt;/sup&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+[-0.23; 0.18]
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+[ 0.77; 1.18]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Edad
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.05&lt;sup&gt;*&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+1.05&lt;sup&gt;*&lt;/sup&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+[ 0.04; 0.06]
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+[ 1.04; 1.06]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Primaria
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.34
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+1.40&lt;sup&gt;*&lt;/sup&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+[-0.15; 0.82]
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+[ 0.91; 1.89]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Secundaria
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.47&lt;sup&gt;*&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+1.60&lt;sup&gt;*&lt;/sup&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+[ 0.09; 0.85]
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+[ 1.22; 1.98]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Técnica o Superior
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.88&lt;sup&gt;*&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2.42&lt;sup&gt;*&lt;/sup&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+[ 0.46; 1.31]
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+[ 2.00; 2.84]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Universitaria o postgrado
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+1.53&lt;sup&gt;*&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+4.60&lt;sup&gt;*&lt;/sup&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+[ 1.03; 2.02]
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+[ 4.11; 5.09]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style=&#34;border-top: 1px solid #000000;&#34;&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Deviance Test (&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.00
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.00
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Pseudo R2
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.09
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+0.09
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+AIC
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2290.54
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2290.54
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+BIC
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2329.66
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2329.66
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Log Likelihood
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+-1138.27
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+-1138.27
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Deviance
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2276.54
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+2276.54
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style=&#34;border-bottom: 2px solid #000000;&#34;&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+Num. obs.
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+1974
+&lt;/td&gt;
+&lt;td style=&#34;padding-left: 5px;padding-right: 5px;&#34;&gt;
+1974
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;
+&lt;tr&gt;
+&lt;td style=&#34;font-size: 0.8em;&#34; colspan=&#34;3&#34;&gt;
+&lt;span class=&#34;math inline&#34;&gt;\(^{***}\)&lt;/span&gt; p &amp;lt; 0.001; &lt;span class=&#34;math inline&#34;&gt;\(^{**}\)&lt;/span&gt; p &amp;lt; 0.01; &lt;span class=&#34;math inline&#34;&gt;\(^{*}\)&lt;/span&gt; p &amp;lt; 0.05 &lt;br&gt; Errores estándar entre paréntesis. &lt;br&gt; &lt;strong&gt;Nota&lt;/strong&gt;: La significancia estadística de los coeficientes en unidades de Odds ratio está calculada en base a los valores &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt;, &lt;br&gt; los cuales a su vez se calculan en base a &lt;span class=&#34;math inline&#34;&gt;\(log(Odds)/SE\)&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tfoot&gt;
+&lt;/table&gt;
+&lt;p&gt;Una alternativa a las tablas de regresión son los &lt;strong&gt;coefplots&lt;/strong&gt;. Como hemos visto en prácticas anteriores, este tipo de gráficos muestran el valor de coeficiente acompañados de sus intervalos de confianza. En este caso, vemos que la función &lt;code&gt;plot_model&lt;/code&gt; nos entrega por defecto los coeficientes en unidades de odds-ratio, por tanto el valor 1 representa el límite para la significancia estadística, a diferencia del 0 cuando se encuentra en unidades de log-odds. En este caso, conforme a lo presentado en la tabla de regresión, el coeficiente de Edad y Educación Secundaria, Técnica superior y Universitaria poseen intervalos de confianza que no contienen el valor 1, por tanto son estadísticamente signficativos.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb25&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb25-1&#34;&gt;&lt;a href=&#34;#cb25-1&#34;&gt;&lt;/a&gt;plot02&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;plot_model&lt;/span&gt;(m03,&lt;span class=&#34;dt&#34;&gt;vline.color =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;grey&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb25-2&#34;&gt;&lt;a href=&#34;#cb25-2&#34;&gt;&lt;/a&gt;plot01&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;plot_model&lt;/span&gt;(m03,&lt;span class=&#34;dt&#34;&gt;vline.color =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;grey&amp;quot;&lt;/span&gt;,&lt;span class=&#34;dt&#34;&gt;transform =&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;NULL&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb25-3&#34;&gt;&lt;a href=&#34;#cb25-3&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;plot_grid&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;list&lt;/span&gt;(plot02,plot01),&lt;span class=&#34;dt&#34;&gt;tags =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot; &amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot; &amp;quot;&lt;/span&gt;),&lt;/span&gt;
+&lt;span id=&#34;cb25-4&#34;&gt;&lt;a href=&#34;#cb25-4&#34;&gt;&lt;/a&gt;          &lt;span class=&#34;dt&#34;&gt;margin =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-27&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/assignment/10-code_files/figure-html/unnamed-chunk-27-1.png&#34; alt=&#34;Modelo de regresión con y sin exponenciar (exp)&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 2: Modelo de regresión con y sin exponenciar (exp)
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;referencias&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/Camarero_Odd_Ratio_LogitV2.pdf&#34;&gt;Camarero et al (2017) Regresión logística: Fundamentos y aplicación a la investigación sociológica (p.30-52)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://scielo.conicyt.cl/scielo.php?script=sci_arttext&amp;amp;pid=S0034-98872013001000014&#34;&gt;Cerda, Vera y Rada (2017) Odds ratio: aspectos teóricos y prácticos.&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;reporte-de-progreso&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Reporte de progreso&lt;/h1&gt;
+&lt;p&gt;Contestar &lt;a href=&#34;https://forms.gle/q41sDrErFgTzKNbe6&#34;&gt;aquí&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;foro-práctica-10&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Foro práctica 10&lt;/h1&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>10: Regresión logística (2)</title>
       <link>/class/10-class/</link>
       <pubDate>Fri, 07 Aug 2020 00:00:00 +0000</pubDate>
