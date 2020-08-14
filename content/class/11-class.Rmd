@@ -29,4 +29,6 @@ editor_options:
 <iframe src=/slides/11-supuestos/11_supuestos.html height="550" width=100% allowfullscreen="true">
 </iframe>
 
-## Video de la clase - próximamente aquí
+## Video de la clase
+
+<iframe src="https://www.dropbox.com/s/uvh2f0airiwe1ua/11_supuestos.webm?raw=1" width="940" height="520"></iframe>
