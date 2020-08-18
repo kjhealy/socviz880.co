@@ -1,0 +1,2684 @@
+---
+title: "Práctica 11: Transformación de variables y supuestos de regresión"
+subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
+author: "Julio César Iturra Sanhueza"
+linktitle: "Práctica 11: Transformación de variables y supuestos de regresión"
+date: "2020-08-21"
+class_date: "2020-08-14"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+    highlight: tango
+    number_sections: FALSE
+menu:
+  class:
+    parent: Practicas
+    weight: 11
+type: docs
+weight: 1
+editor_options:
+  chunk_output_type: console
+---
+
+<!-- BLOGDOWN-HEAD -->
+<script src="/rmarkdown-libs/clipboard/clipboard.min.js"></script>
+<link href="/rmarkdown-libs/primer-tooltips/build.css" rel="stylesheet" />
+<link href="/rmarkdown-libs/klippy/css/klippy.min.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/klippy/js/klippy.min.js"></script>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<!-- /BLOGDOWN-HEAD -->
+
+<h2>Índice</h2>
+<div id="TOC">
+<ul>
+<li><a href="#objetivo">Objetivo</a></li>
+<li><a href="#librerías">Librerías</a></li>
+<li><a href="#datos">Datos</a><ul>
+<li><a href="#explorar-datos">Explorar datos</a></li>
+</ul></li>
+<li><a href="#medición-y-transformación-de-variables">Medición y transformación de variables</a><ul>
+<li><a href="#creación-de-índice">Creación de índice</a></li>
+<li><a href="#recuperar-casos-perdidos">Recuperar casos perdidos</a></li>
+<li><a href="#ingresos-como-variable-categórica">Ingresos como variable categórica</a></li>
+</ul></li>
+<li><a href="#a-tibble-6-x-2">A tibble: 6 x 2</a></li>
+<li><a href="#estimación">Estimación</a><ul>
+<li><a href="#diágnosticos">Diágnosticos</a><ul>
+<li><a href="#casos-influyentes">Casos influyentes</a></li>
+<li><a href="#linealidad">Linealidad</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#test-homogeneidad-de-varianza">Test homogeneidad de varianza</a></li>
+<li><a href="#multicolinealidad">Multicolinealidad</a><ul>
+<li><a href="#referencias">Referencias</a></li>
+</ul></li>
+<li><a href="#reporte-de-progreso">Reporte de progreso</a></li>
+<li><a href="#foro-práctica-11">Foro práctica 11</a></li>
+</ul>
+</div>
+
+<script>
+  addClassKlippyTo("pre.r, pre.markdown");
+  addKlippy('right', 'bottom', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<div id="objetivo" class="section level1">
+<h1>Objetivo</h1>
+<p>La siguiente práctica tiene el objetivo de introducir a los estudiantes en los <strong>supuestos y robustez del modelo de regresión</strong>. Por esta razón, volveremos a algunos de los contenidos previos relacionados con la estimación, análisis de residuos y ajuste. Para ello, utilizaremos la base de datos de la tercera ola del <a href="https://doi.org/10.7910/DVN/H8OVMF"><em>Estudio Longitudinal Social del Chile 2018</em></a> con el objetivo de analizar los determinantes de la <strong>Participación Ciudadana.</strong></p>
+</div>
+<div id="librerías" class="section level1">
+<h1>Librerías</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">pacman<span class="op">::</span><span class="kw">p_load</span>(dplyr, summarytools, sjPlot,texreg, corrplot,ggplot2,ggfortify,sandwich,lmtest,sjlabelled)</a></code></pre></div>
+</div>
+<div id="datos" class="section level1">
+<h1>Datos</h1>
+<p>El Estudio Longitudinal Social del Chile (ENACOES 2014), único en Chile y América Latina, consiste en encuestar a casi 3.000 chilenos, anualmente, a lo largo de una década. ELSOC ha sido diseñado para evaluar la manera cómo piensan, sienten y se comportan los chilenos en torno a un conjunto de temas referidos al conflicto y la cohesión social en Chile. La población objetivo son hombres y mujeres entre 15 y 75 años de edad con un alcance nacional, donde se obtuvo una muestra final de <strong>3748</strong> casos en el año 2018.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">load</span>(<span class="st">&quot;content/assignment/data/elsoc18p11.RData&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co">#Cargamos la base de datos desde internet</span></a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://multivariada.netlify.com/assignment/data/elsoc18p11.RData&quot;</span>))</a></code></pre></div>
+<div id="explorar-datos" class="section level2">
+<h2>Explorar datos</h2>
+<p>A partir de la siguiente tabla se obtienen estadísticos descriptivos que luego serán relevantes para realizar las transformaciones y análisis posteriores.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">view</span>(<span class="kw">dfSummary</span>(elsoc, <span class="dt">headings =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="st">&quot;render&quot;</span>))</a></code></pre></div>
+<div class="container st-container">
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline ">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>No</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Label</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Valid</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">1</td>
+      <td align="left">sexo
+[numeric]</td>
+      <td align="left">Sexo entrevistado</td>
+      <td align="left">Min : 0
+Mean : 0.6
+Max : 1</td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">0</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1446</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">38.6%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">2302</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">61.4%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGkAAAA4CAQAAABUWR7jAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkCBICLiJWgrtHAAAAn0lEQVRo3u3YMQqAMBAAQSP5oJ2+UDufqO3FWhP23OlECC5cLK5cUzbz6A8w6Z9JNT7sAy7WWt44JR5S21dL56DzgzMTDp5JBCYRmERgEoFJBCYRmERgEoFJBI/dwxe7gN5KXApxN69xQ5Rw8EwiaH4PB/YybeEyDd62vqP9TyccPJMITCIwicAkApMITCIwicAkApMIsm9bc0g4eCYR3P3pC9ZwQrOYAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA4LTE4VDAyOjQ2OjM0KzAwOjAwVtO6BQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wOC0xOFQwMjo0NjozNCswMDowMCeOArkAAAAASUVORK5CYII="></td>
+      <td align="center">3748
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+    <tr>
+      <td align="center">2</td>
+      <td align="left">edad
+[numeric]</td>
+      <td align="left">Edad entrevistado</td>
+      <td align="left">Mean (sd) : 47.1 (15.5)
+min < med < max:
+18 < 47 < 90
+IQR (CV) : 25 (0.3)</td>
+      <td align="left" style="vertical-align:middle">70 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkCBICLiJWgrtHAAABvklEQVR42u3cQW7CMBQA0abieBygPWE5QO8H24CDyFh2/P0zbweVSjSKHccNXe5fIr5HH8BsDAYZDLqsX0Scz24bB/WzHHsM64+7VP+Ww1xfXv8PPRqHJGQwyGBQsDnsFvG68yRYsGhTfMkhCRkMMhhkMMhgUKerZIQ7wD66LSuiLw9qOSShoQvX+Ov60uCV/nwD1yEJGQxqMiRnnItqNZrD9sxFObIeOOlfi3fiT/GlimA5zpRaVWfYfIuBdrxKQgaDDAYZDDIYZDDIYJDBIINB4R4V2GPkn1imDDbyNv5jsHPfapd2nGFnvtUuOelDBoMMBhkMmnJZsaW8mvdZmaUJdtS13CEJGQwyGGQwyGCQwSCDQQaDDAYZDDIYZDAozc13qc/+ReJgffYvHJKQwSCDQQaDDAYZDDIYZDDIYJDBIINBBoMMBhkMMhhkMMhgkMEgg0EGgwwGGQwyGGQwyGCQwSCDQQaDnh5Gyf7t2xbP87w8vZPjn6K90+J5HockZDDIYJDBIINBBoMMBhkMMhhkMMhgkMGgxF+d2YPvX5w8WLl/sbXF9buKuKx//pd8P6zW22D6zEkfMhhkMOgBOq0wm0qdQYgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDgtMThUMDI6NDY6MzQrMDA6MDBW07oFAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA4LTE4VDAyOjQ2OjM0KzAwOjAwJ44CuQAAAABJRU5ErkJggg=="></td>
+      <td align="center">3748
+(100%)</td>
+      <td align="center">0
+(0%)</td>
+    </tr>
+    <tr>
+      <td align="center">3</td>
+      <td align="left">educ
+[factor]</td>
+      <td align="left">Nivel educacional</td>
+      <td align="left">1. 1
+2. 2
+3. 3
+4. 4
+5. 5</td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">450</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">12.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">370</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">9.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1600</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">42.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">598</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">16.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">725</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">19.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAE0AAACACAQAAADkdixRAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkCBICLiJWgrtHAAABAUlEQVR42u3ZQQ6CMBAFUDFc0J2eUHceUbeFhS3QgZG8WZUQyEs+Tfjp8LlknevRALS+M5YXz6YP7z7EccpXj9Nbt+rD7zjXbBIHioaGhoaGhoaGhrZyZj/g+/1e12com8rxdbmsLYkDTUybfGuvSqKRDbRC+91D994iiQNFQ0NDQ0NDQ0NDOx9NRW7mFOvEgSamLarI8fMoEl18VBs5002YOFA0NDQ0NDQ0NDS089FU5GZOsU4caGLaxoocea68qSLHbprEgaKhoaGhoaGhoaGdj6YiN3OKdeJAE9O6nSL3L8udTpEjtk/iQNHQ0NDQ0NDQ0NBWzr/00FyTOFC0NfMF8/cdf69MPL4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDgtMThUMDI6NDY6MzQrMDA6MDBW07oFAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA4LTE4VDAyOjQ2OjM0KzAwOjAwJ44CuQAAAABJRU5ErkJggg=="></td>
+      <td align="center">3743
+(99.87%)</td>
+      <td align="center">5
+(0.13%)</td>
+    </tr>
+    <tr>
+      <td align="center">4</td>
+      <td align="left">pospol
+[factor]</td>
+      <td align="left">Autoubicacion escala izquierda-derecha</td>
+      <td align="left">1. 1
+2. 2
+3. 3
+4. 4</td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">807</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">22.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">952</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">26.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">734</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">20.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1171</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">32.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAD0AAABoCAQAAADoKDAmAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkCBICLiJWgrtHAAAAvUlEQVRo3u3ZOwqAMBCEYSNe0E5PqJ1H1HY1EAl5Lcy/nUT4ijGwg+GeRs08TBalF/twVAh+C6lTe7i8j9ZC+Mp4VzNraGhoaGhoaP/0Z0HKWXBKJ9hNsH0dsGuhZtZePrOzctjpOlC5Atj5uy2aWUNDQ0NDQ0P7p6kAnUeTrlgB0gv/D11SAfLvhmbW0NDQ0NDQ0P5pKkDn0aSb/gWIZzdhN/wLEM/7/mhmDQ0NDQ0NDe2f9lIB+o5m1gPpBwElF5y4v3ToAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA4LTE4VDAyOjQ2OjM0KzAwOjAwVtO6BQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wOC0xOFQwMjo0NjozNCswMDowMCeOArkAAAAASUVORK5CYII="></td>
+      <td align="center">3664
+(97.76%)</td>
+      <td align="center">84
+(2.24%)</td>
+    </tr>
+    <tr>
+      <td align="center">5</td>
+      <td align="left">part01
+[numeric]</td>
+      <td align="left">Frecuencia: Firma carta o peticion
+apoyando causa</td>
+      <td align="left">Mean (sd) : 1.5 (0.9)
+min < med < max:
+1 < 1 < 5
+IQR (CV) : 1 (0.6)</td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">2717</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">72.6%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">2</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">476</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">12.7%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">3</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">411</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">11.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">4</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">117</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">3.1%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">5</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">21</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">0.6%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHkAAACACAQAAACFbg4TAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkCBICLiJWgrtHAAABIUlEQVR42u3cwWrCQABF0UzpD3bXfmHd+Yl2VUik0lQQmzn37AIiuTjJ4i0cl0Xz8uwbKLnkR3hdX3xO+2B/jBvJy/L27Ht7iPPmCjzYJQtKFpQsKFlQsqBkQcmCkgVg8tUQdL7vWw5lrBe+ade+ZbX2iQcbTN48y6edJ/t97Pvc/3THjn30Vxx4sEsWlCwoWVCyoGRByYKSBSULShY03c+q6V7zx+n+2KP9D8m/TfdzvNzAg12yoGRByYKSBSULShaULChZULKg6X5WTfeaG9P9DBP9ruTv6X7ulxh4sEsWlCwoWVCyoGRByYKSBSULShY03c+q6V6zST5d9v5lzpHpv7KhZEHJgpIFJQtKFpQsKFlQsqBkwQD2vSvgr1yy4Auphx0Xt7K6pwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wOC0xOFQwMjo0NjozNCswMDowMFbTugUAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDgtMThUMDI6NDY6MzQrMDA6MDAnjgK5AAAAAElFTkSuQmCC"></td>
+      <td align="center">3742
+(99.84%)</td>
+      <td align="center">6
+(0.16%)</td>
+    </tr>
+    <tr>
+      <td align="center">6</td>
+      <td align="left">part02
+[numeric]</td>
+      <td align="left">Frecuencia: Asiste a marcha o
+manifestacion pacifica</td>
+      <td align="left">Mean (sd) : 1.2 (0.6)
+min < med < max:
+1 < 1 < 5
+IQR (CV) : 0 (0.5)</td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">3289</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">87.8%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">2</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">195</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">5.2%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">3</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">191</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">5.1%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">4</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">51</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">1.4%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">5</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">19</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">0.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJAAAACACAQAAABOmSioAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkCBICLiMhhYvRAAABeUlEQVR42u3cMW6DQBRAwSXyBdMlJzSdj+gUKQIE8UIaW9ZMZYSE0BO7xX7J031w5O3RL/DsBAoChcvy4mpDGmOM8Tn9/L6sb70/+t2ewG11ZYkFgYJAQaAgUBAoCBQECgIFgYJAQaAgUBAoCBQECgIFgcLmyPX2v6e8sGl5Tu/M/tvizN4SKwKF1R40/1pjH9PfH/WaDuditmxLLAkUBAoCBYGCQEGgIFAQKAgUBAoCBYGCQEGgIFAQKAgUBAoGh8HgcIfB4QkChcPBobHh4eDQhj2GJZYECgIFgYJAQaAgUBAoCBQECgIFgYJAQaAgUBAoCBQECgIFg8NgcLjD4PAEgcLO4NC4cGnzBfknzi1LLAgUBAoCBYGCQEGgIFAQKAgUBAoCBYGCQEGgIFAQKAgUBAqbQAaHWwaHOwwOTxAorALN99kq2/AFBYGCQEGgIFAQKAgUBAoCBYGCQEGgIFAQKAgUBAoCBYGCQEGgMDmlP+YLCgIFgcIXjR4cZLE7jJsAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDgtMThUMDI6NDY6MzUrMDA6MDDwpLGxAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA4LTE4VDAyOjQ2OjM1KzAwOjAwgfkJDQAAAABJRU5ErkJggg=="></td>
+      <td align="center">3745
+(99.92%)</td>
+      <td align="center">3
+(0.08%)</td>
+    </tr>
+    <tr>
+      <td align="center">7</td>
+      <td align="left">part03
+[numeric]</td>
+      <td align="left">Frecuencia: Participa en huelga</td>
+      <td align="left">Mean (sd) : 1.2 (0.5)
+min < med < max:
+1 < 1 < 5
+IQR (CV) : 0 (0.5)</td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">3407</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">91.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">2</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">152</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">4.1%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">3</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">146</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">3.9%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">4</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">29</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">0.8%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">5</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">11</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJUAAACACAQAAACosOPsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkCBICLiMhhYvRAAABdUlEQVR42u3ZMW7CQABFwWzEBemSE8YdRyRl7JWwXtwYkpkKhGRZT14X/HF/o3k/+wZeh1SZVNll/eXLi2vyOX4+X7Y/Xc++t6dy23xzADOpMqkyqTKpMqkyqTKpMqkyqTKpMqkyqTKpMqkyqTKpMqmy6Q/j27Gr/AtjvTxYIWarFcIB7KTKNu+qZXMCP8bvLvXXPdwBveBnDmAmVSZVJlUmVSZVJlUmVSZVJlUmVSZVJlUmVSZVJlUmVSZVJlVmMs1MprtMpodIlZlMM5Np5gBmUmVSZVJlUmVSZVJlUmVSZVJlUmVSZVJlUmVSZVJlUmVSZVJlJtPMZLrLZHqIVNkm1XJfnMGHPFWZVJlUmVSZVJlUmVSZVJlUmVSZVJlUmVSZVJlUmVSZVJlUmVSZVJlUmcl0l8n0EKmyaTI9+3aemacqkyqTKpMqkyqTKpMqkyqTKpMqkyqTKpMqkyqTKpMqkyqTKpMqkyoblofKU5VJlUmVfQPvwRsJtNccrwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wOC0xOFQwMjo0NjozNSswMDowMPCksbEAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDgtMThUMDI6NDY6MzUrMDA6MDCB+QkNAAAAAElFTkSuQmCC"></td>
+      <td align="center">3745
+(99.92%)</td>
+      <td align="center">3
+(0.08%)</td>
+    </tr>
+    <tr>
+      <td align="center">8</td>
+      <td align="left">part04
+[numeric]</td>
+      <td align="left">Frecuencia: Usa redes sociales para
+opinar en temas publicos</td>
+      <td align="left">Mean (sd) : 1.6 (1.1)
+min < med < max:
+1 < 1 < 5
+IQR (CV) : 1 (0.7)</td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">2598</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">69.4%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">2</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">310</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">3</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">514</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">13.7%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">4</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">223</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">6.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">5</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">98</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">2.6%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHUAAACACAQAAACfUu6dAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkCBICLiMhhYvRAAABIUlEQVR42u3aQQrCMAAF0US8oDs9oe56RF0JbSU0VKFm/rxdN9KBNIuP9VlSnI5+AVNN/cZ5/nDHfbi32kgt5XL0u/3UtHgKOsCmEplKZCqRqUSmEplKZCqRqURBqavBZdr3K0Oo8+UMt6KV2YqWdICDUhff6qN5gq91+6f+XdcOzLisgg6wqUSmEplKZCqRqUSmEplKZCqRqURO3hRO3nSdk/faiBP4rr8+j3l5BR1gU4lMJTKVyFQiU4lMJTKVyFQiU4mcvCmcvOk2J+8Rx+2O1M/Jm3RNBR1gU4lMJTKVyFQiU4lMJTKVyFQiU4mcvCmcvOkakzdn6G6kvidv5uUUdIBNJTKVyFQiU4lMJTKVyFQiU4mCUlN3YLagA2wq0Qu0kx1+KpbKpwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wOC0xOFQwMjo0NjozNSswMDowMPCksbEAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDgtMThUMDI6NDY6MzUrMDA6MDCB+QkNAAAAAElFTkSuQmCC"></td>
+      <td align="center">3743
+(99.87%)</td>
+      <td align="center">5
+(0.13%)</td>
+    </tr>
+    <tr>
+      <td align="center">9</td>
+      <td align="left">inghogar
+[numeric]</td>
+      <td align="left">Ingreso total del hogar</td>
+      <td align="left">Mean (sd) : 678842.5 (781003.9)
+min < med < max:
+30000 < 5e+05 < 1.7e+07
+IQR (CV) : 5e+05 (1.2)</td>
+      <td align="left" style="vertical-align:middle">227 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkCBICLiMhhYvRAAABQElEQVR42u3dwQ2CMABAUTGMxwA6IQ7gfnpFNJp/AsN7t4aQlB/a9NbhcaI4bz2BfyNYJFg0Lgfz24Z2Gbae4B4sI4yvj6aX0X3rme6QJRkJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWjd8f31wNtfIj2LQauxrKkowEiwSLBIsEiwSLBIsEi8b6wvrsf7STfw62vhT2aAGH5ffObkn/6Lr4CQaNGpt+JFgkWPQEf/4Q47dGGCQAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDgtMThUMDI6NDY6MzUrMDA6MDDwpLGxAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA4LTE4VDAyOjQ2OjM1KzAwOjAwgfkJDQAAAABJRU5ErkJggg=="></td>
+      <td align="center">3080
+(82.18%)</td>
+      <td align="center">668
+(17.82%)</td>
+    </tr>
+    <tr>
+      <td align="center">10</td>
+      <td align="left">inghogar_t
+[numeric]</td>
+      <td align="left">Ingreso total del hogar (en tramos)</td>
+      <td align="left">Mean (sd) : 7 (5.4)
+min < med < max:
+1 < 5 < 20
+IQR (CV) : 7 (0.8)</td>
+      <td align="left" style="vertical-align:middle">20 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkCBICLiMhhYvRAAABj0lEQVR42u3dUU6DQBRA0WK6PBegK2wX4P70FxMhPQ1xoNzzZ5QEb3xMpxA7fV8i3kafwNEUDBUMXedf3FYvaB/T6JMdZf6LX39/633xoK/RZ70TjSQqGCoYKhgqGCoYKhgqGLo+/qP3lX3AeXYBEKxdwOXSSLKCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgiF4T3/NeW6QbBTsPDdIGklUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMLTR0ztrXutRqH8I9lqPQjWSqGCoYOgfrmFrlheEvS4Hg4MtLQj7XQ4aSVQwVDA0+Bq2bK/7g90G2+v+oJFEBUMFQwVDBUO7XSWfc3/yH9yvH/c5O+7Fgj3/cuTR4w4Z7D7wk18OGWzki9ou+uiQf2HP2mKUTxVsi1FuJFHBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMHQNH9P7danpP9pftdoqpFpJFHBUMHQD52PI0pz4siSAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA4LTE4VDAyOjQ2OjM1KzAwOjAw8KSxsQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wOC0xOFQwMjo0NjozNSswMDowMIH5CQ0AAAAASUVORK5CYII="></td>
+      <td align="center">477
+(12.73%)</td>
+      <td align="center">3271
+(87.27%)</td>
+    </tr>
+    <tr>
+      <td align="center">11</td>
+      <td align="left">tamhogar
+[numeric]</td>
+      <td align="left">Habitantes del hogar</td>
+      <td align="left">Mean (sd) : 3.2 (1.6)
+min < med < max:
+1 < 3 < 14
+IQR (CV) : 2 (0.5)</td>
+      <td align="left" style="vertical-align:middle">13 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkCBICLiMhhYvRAAABb0lEQVR42u3dwW3CMABA0abKeB2gnZAO0P3aY1PhSvkCYQjv3RA5mI9so2DE8v1C8Tp7AI9GsEiwaN0+OP2zoL0vs4c51/blr3+fehtc/jV7vHfFlIwEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSL1j0XfQ5PVz/n2epdwZyt/mVKRoJFgkWCRbsW/bHR3nn8nfOCYOd75zPsnKZkJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYdME33yPHP3p35WDHP3pnSkaCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFV75FPXakO/03CXakO/2mZCRYJFh0kzVs7DF/Mz4x2GP+ZtyUjASLJk7Jkfv/iLtsR3jyL+lDH5s3bNGosYZFgkWCRT/T3Bnx0nqxqwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wOC0xOFQwMjo0NjozNSswMDowMPCksbEAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDgtMThUMDI6NDY6MzUrMDA6MDCB+QkNAAAAAElFTkSuQmCC"></td>
+      <td align="center">3741
+(99.81%)</td>
+      <td align="center">7
+(0.19%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 0.9.6 (<a href='https://www.r-project.org/'>R</a> version 4.0.0)<br/>2020-08-17</p>
+</div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">view_df</span>(elsoc,<span class="dt">max.len =</span> <span class="dv">50</span>)</a></code></pre></div>
+<table style="border-collapse:collapse; border:none;">
+<caption>
+Data frame: elsoc
+</caption>
+<tr>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">
+ID
+</th>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">
+Name
+</th>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">
+Label
+</th>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">
+Values
+</th>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">
+Value Labels
+</th>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+1
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+sexo
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+Sexo entrevistado
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+0<br>1
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+Hombre<br>Mujer
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+2
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+edad
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+Edad entrevistado
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee" colspan="2">
+<em>range: 18-90</em>
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+3
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+educ
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+Nivel educacional
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+1<br>2<br>3<br>4<br>5
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+Primaria incompleta menos<br>Primaria y secundaria baja<br>Secundaria alta<br>Terciaria ciclo corto<br>Terciaria y Postgrado
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+4
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+pospol
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+Autoubicacion escala izquierda-derecha
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+1<br>2<br>3<br>4
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+Derecha<br>Centro<br>Izquierda<br>Indep./Ninguno
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+5
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+part01
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+Frecuencia: Firma carta o peticion apoyando causa
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+1<br>2<br>3<br>4<br>5
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+Nunca<br>Casi nunca<br>A veces<br>Frecuentemente<br>Muy frecuentemente
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+6
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+part02
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+Frecuencia: Asiste a mbackground-color:#eeeeeeha o manifestacion<br>pacifica
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+1<br>2<br>3<br>4<br>5
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+Nunca<br>Casi nunca<br>A veces<br>Frecuentemente<br>Muy frecuentemente
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+7
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+part03
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+Frecuencia: Participa en huelga
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+1<br>2<br>3<br>4<br>5
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+Nunca<br>Casi nunca<br>A veces<br>Frecuentemente<br>Muy frecuentemente
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+8
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+part04
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+Frecuencia: Usa redes sociales para opinar en<br>temas publicos
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+1<br>2<br>3<br>4<br>5
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+Nunca<br>Casi nunca<br>A veces<br>Frecuentemente<br>Muy frecuentemente
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+9
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+inghogar
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+Ingreso total del hogar
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;" colspan="2">
+<em>range: 30000-17000000</em>
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+10
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+inghogar_t
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+Ingreso total del hogar (en tramos)
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+Menos de $220.000 mensuales liquidos<br>De $220.001 a $280.000 mensuales liquidos<br>De $280.001 a $330.000 mensuales liquidos<br>De $330.001 a $380.000 mensuales liquidos<br>De $380.001 a $420.000 mensuales liquidos<br>De $420.001 a $470.000 mensuales liquidos<br>De $470.001 a $510.000 mensuales liquidos<br>De $510.001 a $560.000 mensuales liquidos<br>De $560.001 a $610.000 mensuales liquidos<br>De $610.001 a $670.000 mensuales liquidos<br>De $670.001 a $730.000 mensuales liquidos<br>De $730.001 a $800.000 mensuales liquidos<br>De $800.001 a $890.000 mensuales liquidos<br>De $890.001 a $980.000 mensuales liquidos<br>De $980.001 a $1.100.000 mensuales liquidos<br>De $1.100.001 a $1.260.000 mensuales liquidos<br>De $1.260.001 a $1.490.000 mensuales liquidos<br>De $1.490.001 a $1.850.000 mensuales liquidos<br>De $1.850.001 a $2.700.000 mensuales liquidos<br>Mas de $2.700.000 a mensuales liquidos
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+11
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+tamhogar
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+Habitantes del hogar
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;" colspan="2">
+<em>range: 1-14</em>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="medición-y-transformación-de-variables" class="section level1">
+<h1>Medición y transformación de variables</h1>
+<div id="creación-de-índice" class="section level2">
+<h2>Creación de índice</h2>
+<p>En ELSOC existen cuatro preguntas referentes a la participación política o ciudadana, donde se le pregunta a las personas por la frecuencia en que han participado de determinados eventos vinculados a su rol como ciudadanos. Para esto, se emplearon escalas likert de 5 categorías para medir dicha participación.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">plot_stackfrq</span>(elsoc[,<span class="kw">c</span>(<span class="st">&quot;part01&quot;</span>,<span class="st">&quot;part02&quot;</span>,<span class="st">&quot;part03&quot;</span>,<span class="st">&quot;part04&quot;</span>)]) <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;bottom&quot;</span>)</a></code></pre></div>
+<p><img src="/assignment/11-code_files/figure-html/unnamed-chunk-8-1.png" width="960" /></p>
+<p>En la figura anterior, podemos ver que existe un alto porcentaje de personas que declaran no haber participado nunca en alguna de estas expresiones de la participación ciudadana. En este sentido, para la creación de un índice o medida agrupada, nos interesa saber si existe algún grado de relación entre nuestros indicadores. Para esto, lo que tradicionalmente se realiza es realizar un análisis de correlación entre los indicadores.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">corrplot.mixed</span>(<span class="kw">cor</span>(<span class="kw">select</span>(elsoc,part01,part02,part03,part04),</a>
+<a class="sourceLine" id="cb7-2" title="2">                   <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>))</a></code></pre></div>
+<p><img src="/assignment/11-code_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>La matriz de correlación nos indica que existen correlaciones moderadas entre los indicadores, donde 0.25 es la más baja y 0.44 la más alta. Es muy importante realizar este paso, debido a que si nuestros indicadores no correlacionan en absoluto, es posible que estemos frente a un atributo distinto. Por lo tanto, sería poco adecuado realizar la construcción de un índice que busque representar un fenómeno o constructo “común” a través de indicadores que no poseen ningún grado de correlación. En nuestro caso, hemos decidido elaborar un <strong>índice sumatorio</strong> a través de la suma de las respuestas de cada individuo. Para ello emplearemos las funciones <code>mutate</code> (para crear una nueva variable) y <code>rowSums()</code> (para sumar los indicadores) de la librería <code>dplyr</code>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">elsoc &lt;-<span class="st"> </span>elsoc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">partpol=</span><span class="kw">rowSums</span>(<span class="kw">select</span>(., part01,part02,part03,part04)))</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">descr</span>(elsoc<span class="op">$</span>partpol,<span class="dt">style =</span> <span class="st">&quot;rmarkdown&quot;</span>,<span class="dt">stats =</span> <span class="st">&quot;common&quot;</span>, <span class="dt">transpose =</span> T,<span class="dt">headings =</span> F)</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right"> </th>
+<th align="right">Mean</th>
+<th align="right">Std.Dev</th>
+<th align="right">Min</th>
+<th align="right">Median</th>
+<th align="right">Max</th>
+<th align="right">N.Valid</th>
+<th align="right">Pct.Valid</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right"><strong>partpol</strong></td>
+<td align="right">5.47</td>
+<td align="right">2.30</td>
+<td align="right">4.00</td>
+<td align="right">4.00</td>
+<td align="right">20.00</td>
+<td align="right">3740.00</td>
+<td align="right">99.79</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">plot_frq</span>(<span class="dt">data =</span> elsoc<span class="op">$</span>partpol,<span class="dt">type =</span> <span class="st">&quot;hist&quot;</span>,<span class="dt">show.mean =</span> T)</a></code></pre></div>
+<p><img src="/assignment/11-code_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Vemos que el índice sumatorio posee valores que van desde 4 hasta 20, con una media de 5,47 y una mediana de 4. Además, vemos algo que ya se había identificado en el gráfico descriptivo de cada indicador por separado, el hecho que existe una proporción importante de personas que respondieron “nunca” en los cuatro indicadores, los cuales son representados por una alta frecuencia de 4 en el histograma. Con esto hemos creado nuestro índice sumatorio de Participación Política.</p>
+</div>
+<div id="recuperar-casos-perdidos" class="section level2">
+<h2>Recuperar casos perdidos</h2>
+<p>Es común que en las encuestas sociales cierta variables posean una alta proporción de datos perdidos. Un ejemplo común es en el reporte de los ingresos de los hogares o individuos. Esto generalmente puede generarse por características de la persona (p.ej. desempleado, estudiante) o por deseabilidad social (personas de altos ingresos desisten de reportar). En el caso de ELSOC, existen dos estrategias para solicitar que las personas reporten sus ingresos. La primera consiste en preguntar directamente por el monto en pesos chilenos de los ingresos totales del hogar. Alternativamente, si la persona no reporta los ingresos, se le presenta la posibilidad de ubicar los ingresos del hogar en tramos (Por ejemplo “De $560.001 a $610.000 mensuales liquidos”). De esta manera, si existen datos perdidos en la primera, se emplea la segunda pregunta para tener un nivel aproximado del ingreso del hogar.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">descr</span>(elsoc<span class="op">$</span>inghogar,<span class="dt">style =</span> <span class="st">&quot;rmarkdown&quot;</span>,<span class="dt">stats =</span> <span class="st">&quot;common&quot;</span>, <span class="dt">transpose =</span> T,<span class="dt">headings =</span> F)</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right"> </th>
+<th align="right">Mean</th>
+<th align="right">Std.Dev</th>
+<th align="right">Min</th>
+<th align="right">Median</th>
+<th align="right">Max</th>
+<th align="right">N.Valid</th>
+<th align="right">Pct.Valid</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right"><strong>inghogar</strong></td>
+<td align="right">678842.52</td>
+<td align="right">781003.92</td>
+<td align="right">30000.00</td>
+<td align="right">5e+05</td>
+<td align="right">1.7e+07</td>
+<td align="right">3080.00</td>
+<td align="right">82.18</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">sjmisc<span class="op">::</span><span class="kw">frq</span>(elsoc<span class="op">$</span>inghogar_t,</a>
+<a class="sourceLine" id="cb12-2" title="2">            <span class="dt">out =</span> <span class="st">&quot;txt&quot;</span>,</a>
+<a class="sourceLine" id="cb12-3" title="3">            <span class="dt">show.na =</span> T) <span class="op">%&gt;%</span><span class="st"> </span>knitr<span class="op">::</span><span class="kw">kable</span>()</a></code></pre></div>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="right">val</th>
+<th align="left">label</th>
+<th align="right">frq</th>
+<th align="right">raw.prc</th>
+<th align="right">valid.prc</th>
+<th align="right">cum.prc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Menos de $220.000 mensuales liquidos</td>
+<td align="right">62</td>
+<td align="right">1.65</td>
+<td align="right">13.00</td>
+<td align="right">13.00</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">De $220.001 a $280.000 mensuales liquidos</td>
+<td align="right">46</td>
+<td align="right">1.23</td>
+<td align="right">9.64</td>
+<td align="right">22.64</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">De $280.001 a $330.000 mensuales liquidos</td>
+<td align="right">57</td>
+<td align="right">1.52</td>
+<td align="right">11.95</td>
+<td align="right">34.59</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">De $330.001 a $380.000 mensuales liquidos</td>
+<td align="right">40</td>
+<td align="right">1.07</td>
+<td align="right">8.39</td>
+<td align="right">42.98</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">De $380.001 a $420.000 mensuales liquidos</td>
+<td align="right">38</td>
+<td align="right">1.01</td>
+<td align="right">7.97</td>
+<td align="right">50.94</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">De $420.001 a $470.000 mensuales liquidos</td>
+<td align="right">37</td>
+<td align="right">0.99</td>
+<td align="right">7.76</td>
+<td align="right">58.70</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">De $470.001 a $510.000 mensuales liquidos</td>
+<td align="right">27</td>
+<td align="right">0.72</td>
+<td align="right">5.66</td>
+<td align="right">64.36</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">De $510.001 a $560.000 mensuales liquidos</td>
+<td align="right">15</td>
+<td align="right">0.40</td>
+<td align="right">3.14</td>
+<td align="right">67.51</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="left">De $560.001 a $610.000 mensuales liquidos</td>
+<td align="right">24</td>
+<td align="right">0.64</td>
+<td align="right">5.03</td>
+<td align="right">72.54</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="left">De $610.001 a $670.000 mensuales liquidos</td>
+<td align="right">12</td>
+<td align="right">0.32</td>
+<td align="right">2.52</td>
+<td align="right">75.05</td>
+</tr>
+<tr class="odd">
+<td align="right">11</td>
+<td align="left">De $670.001 a $730.000 mensuales liquidos</td>
+<td align="right">15</td>
+<td align="right">0.40</td>
+<td align="right">3.14</td>
+<td align="right">78.20</td>
+</tr>
+<tr class="even">
+<td align="right">12</td>
+<td align="left">De $730.001 a $800.000 mensuales liquidos</td>
+<td align="right">16</td>
+<td align="right">0.43</td>
+<td align="right">3.35</td>
+<td align="right">81.55</td>
+</tr>
+<tr class="odd">
+<td align="right">13</td>
+<td align="left">De $800.001 a $890.000 mensuales liquidos</td>
+<td align="right">8</td>
+<td align="right">0.21</td>
+<td align="right">1.68</td>
+<td align="right">83.23</td>
+</tr>
+<tr class="even">
+<td align="right">14</td>
+<td align="left">De $890.001 a $980.000 mensuales liquidos</td>
+<td align="right">14</td>
+<td align="right">0.37</td>
+<td align="right">2.94</td>
+<td align="right">86.16</td>
+</tr>
+<tr class="odd">
+<td align="right">15</td>
+<td align="left">De $980.001 a $1.100.000 mensuales liquidos</td>
+<td align="right">14</td>
+<td align="right">0.37</td>
+<td align="right">2.94</td>
+<td align="right">89.10</td>
+</tr>
+<tr class="even">
+<td align="right">16</td>
+<td align="left">De $1.100.001 a $1.260.000 mensuales liquidos</td>
+<td align="right">10</td>
+<td align="right">0.27</td>
+<td align="right">2.10</td>
+<td align="right">91.19</td>
+</tr>
+<tr class="odd">
+<td align="right">17</td>
+<td align="left">De $1.260.001 a $1.490.000 mensuales liquidos</td>
+<td align="right">7</td>
+<td align="right">0.19</td>
+<td align="right">1.47</td>
+<td align="right">92.66</td>
+</tr>
+<tr class="even">
+<td align="right">18</td>
+<td align="left">De $1.490.001 a $1.850.000 mensuales liquidos</td>
+<td align="right">11</td>
+<td align="right">0.29</td>
+<td align="right">2.31</td>
+<td align="right">94.97</td>
+</tr>
+<tr class="odd">
+<td align="right">19</td>
+<td align="left">De $1.850.001 a $2.700.000 mensuales liquidos</td>
+<td align="right">14</td>
+<td align="right">0.37</td>
+<td align="right">2.94</td>
+<td align="right">97.90</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="left">Mas de $2.700.000 a mensuales liquidos</td>
+<td align="right">10</td>
+<td align="right">0.27</td>
+<td align="right">2.10</td>
+<td align="right">100.00</td>
+</tr>
+<tr class="odd">
+<td align="right"></td>
+<td align="left"></td>
+<td align="right">3271</td>
+<td align="right">87.27</td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Si observamos la tabla de descriptivos para la variable ingreso del hogar (<code>inghogar</code>), tenemos un porcentaje 17,82% de datos perdidos. Por esta razón, emplearemos los datos disponibles en <code>inghogar_t</code> para recuperar información en los ingresos del hogar.</p>
+<p>La estrategia posee los siguientes pasos:</p>
+<ol style="list-style-type: decimal">
+<li>Calcular la media del tramo reportado.</li>
+<li>En el caso de que la persona no haya reportado el monto de los ingresos del hogar, remplazamos este valor perdido por el valor de la media del tramo, en el caso de estar disponible.</li>
+<li>Comparamos la variable original con la nueva variable que posee información recuperada.</li>
+</ol>
+<p><strong>Paso 1: Calcular la media por cada tramo</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">elsoc<span class="op">$</span>inghogar_t[elsoc<span class="op">$</span>inghogar_t<span class="op">==</span><span class="dv">1</span>] &lt;-(       <span class="dv">220000</span> )    <span class="co"># [1]  &quot;Menos de $220.000 mensuales liquidos&quot;          </span></a>
+<a class="sourceLine" id="cb13-2" title="2">elsoc<span class="op">$</span>inghogar_t[elsoc<span class="op">$</span>inghogar_t<span class="op">==</span><span class="dv">2</span>] &lt;-(<span class="dv">220001</span> <span class="op">+</span><span class="dv">280000</span> )<span class="op">/</span><span class="dv">2</span> <span class="co"># [2]  &quot;De $220.001 a $280.000 mensuales liquidos&quot;       </span></a>
+<a class="sourceLine" id="cb13-3" title="3">elsoc<span class="op">$</span>inghogar_t[elsoc<span class="op">$</span>inghogar_t<span class="op">==</span><span class="dv">3</span>] &lt;-(<span class="dv">280001</span> <span class="op">+</span><span class="dv">330000</span> )<span class="op">/</span><span class="dv">2</span> <span class="co"># [3]  &quot;De $280.001 a $330.000 mensuales liquidos&quot;       </span></a>
+<a class="sourceLine" id="cb13-4" title="4">elsoc<span class="op">$</span>inghogar_t[elsoc<span class="op">$</span>inghogar_t<span class="op">==</span><span class="dv">4</span>] &lt;-(<span class="dv">330001</span> <span class="op">+</span><span class="dv">380000</span> )<span class="op">/</span><span class="dv">2</span> <span class="co"># [4]  &quot;De $330.001 a $380.000 mensuales liquidos&quot;       </span></a>
+<a class="sourceLine" id="cb13-5" title="5">elsoc<span class="op">$</span>inghogar_t[elsoc<span class="op">$</span>inghogar_t<span class="op">==</span><span class="dv">5</span>] &lt;-(<span class="dv">380001</span> <span class="op">+</span><span class="dv">420000</span> )<span class="op">/</span><span class="dv">2</span> <span class="co"># [5]  &quot;De $380.001 a $420.000 mensuales liquidos&quot;       </span></a>
+<a class="sourceLine" id="cb13-6" title="6">elsoc<span class="op">$</span>inghogar_t[elsoc<span class="op">$</span>inghogar_t<span class="op">==</span><span class="dv">6</span>] &lt;-(<span class="dv">420001</span> <span class="op">+</span><span class="dv">470000</span> )<span class="op">/</span><span class="dv">2</span> <span class="co"># [6]  &quot;De $420.001 a $470.000 mensuales liquidos&quot;       </span></a>
+<a class="sourceLine" id="cb13-7" title="7">elsoc<span class="op">$</span>inghogar_t[elsoc<span class="op">$</span>inghogar_t<span class="op">==</span><span class="dv">7</span>] &lt;-(<span class="dv">470001</span> <span class="op">+</span><span class="dv">510000</span> )<span class="op">/</span><span class="dv">2</span> <span class="co"># [7]  &quot;De $470.001 a $510.000 mensuales liquidos&quot;       </span></a>
+<a class="sourceLine" id="cb13-8" title="8">elsoc<span class="op">$</span>inghogar_t[elsoc<span class="op">$</span>inghogar_t<span class="op">==</span><span class="dv">8</span>] &lt;-(<span class="dv">510001</span> <span class="op">+</span><span class="dv">560000</span> )<span class="op">/</span><span class="dv">2</span> <span class="co"># [8]  &quot;De $510.001 a $560.000 mensuales liquidos&quot;       </span></a>
+<a class="sourceLine" id="cb13-9" title="9">elsoc<span class="op">$</span>inghogar_t[elsoc<span class="op">$</span>inghogar_t<span class="op">==</span><span class="dv">9</span>] &lt;-(<span class="dv">560001</span> <span class="op">+</span><span class="dv">610000</span> )<span class="op">/</span><span class="dv">2</span> <span class="co"># [9]  &quot;De $560.001 a $610.000 mensuales liquidos&quot;       </span></a>
+<a class="sourceLine" id="cb13-10" title="10">elsoc<span class="op">$</span>inghogar_t[elsoc<span class="op">$</span>inghogar_t<span class="op">==</span><span class="dv">10</span>]&lt;-(<span class="dv">610001</span> <span class="op">+</span><span class="dv">670000</span> )<span class="op">/</span><span class="dv">2</span> <span class="co"># [10] &quot;De $610.001 a $670.000 mensuales liquidos&quot;       </span></a>
+<a class="sourceLine" id="cb13-11" title="11">elsoc<span class="op">$</span>inghogar_t[elsoc<span class="op">$</span>inghogar_t<span class="op">==</span><span class="dv">11</span>]&lt;-(<span class="dv">670001</span> <span class="op">+</span><span class="dv">730000</span> )<span class="op">/</span><span class="dv">2</span> <span class="co"># [11] &quot;De $670.001 a $730.000 mensuales liquidos&quot;       </span></a>
+<a class="sourceLine" id="cb13-12" title="12">elsoc<span class="op">$</span>inghogar_t[elsoc<span class="op">$</span>inghogar_t<span class="op">==</span><span class="dv">12</span>]&lt;-(<span class="dv">730001</span> <span class="op">+</span><span class="dv">800000</span> )<span class="op">/</span><span class="dv">2</span> <span class="co"># [12] &quot;De $730.001 a $800.000 mensuales liquidos&quot;       </span></a>
+<a class="sourceLine" id="cb13-13" title="13">elsoc<span class="op">$</span>inghogar_t[elsoc<span class="op">$</span>inghogar_t<span class="op">==</span><span class="dv">13</span>]&lt;-(<span class="dv">800001</span> <span class="op">+</span><span class="dv">890000</span> )<span class="op">/</span><span class="dv">2</span> <span class="co"># [13] &quot;De $800.001 a $890.000 mensuales liquidos&quot;       </span></a>
+<a class="sourceLine" id="cb13-14" title="14">elsoc<span class="op">$</span>inghogar_t[elsoc<span class="op">$</span>inghogar_t<span class="op">==</span><span class="dv">14</span>]&lt;-(<span class="dv">890001</span> <span class="op">+</span><span class="dv">980000</span> )<span class="op">/</span><span class="dv">2</span> <span class="co"># [14] &quot;De $890.001 a $980.000 mensuales liquidos&quot;       </span></a>
+<a class="sourceLine" id="cb13-15" title="15">elsoc<span class="op">$</span>inghogar_t[elsoc<span class="op">$</span>inghogar_t<span class="op">==</span><span class="dv">15</span>]&lt;-(<span class="dv">980001</span> <span class="op">+</span><span class="dv">1100000</span>)<span class="op">/</span><span class="dv">2</span> <span class="co"># [15] &quot;De $980.001 a $1.100.000 mensuales liquidos&quot;      </span></a>
+<a class="sourceLine" id="cb13-16" title="16">elsoc<span class="op">$</span>inghogar_t[elsoc<span class="op">$</span>inghogar_t<span class="op">==</span><span class="dv">16</span>]&lt;-(<span class="dv">1100001</span><span class="op">+</span><span class="dv">1260000</span>)<span class="op">/</span><span class="dv">2</span> <span class="co"># [16] &quot;De $1.100.001 a $1.260.000 mensuales liquidos&quot;    </span></a>
+<a class="sourceLine" id="cb13-17" title="17">elsoc<span class="op">$</span>inghogar_t[elsoc<span class="op">$</span>inghogar_t<span class="op">==</span><span class="dv">17</span>]&lt;-(<span class="dv">1260001</span><span class="op">+</span><span class="dv">1490000</span>)<span class="op">/</span><span class="dv">2</span> <span class="co"># [17] &quot;De $1.260.001 a $1.490.000 mensuales liquidos&quot;    </span></a>
+<a class="sourceLine" id="cb13-18" title="18">elsoc<span class="op">$</span>inghogar_t[elsoc<span class="op">$</span>inghogar_t<span class="op">==</span><span class="dv">18</span>]&lt;-(<span class="dv">1490001</span><span class="op">+</span><span class="dv">1850000</span>)<span class="op">/</span><span class="dv">2</span> <span class="co"># [18] &quot;De $1.490.001 a $1.850.000 mensuales liquidos&quot;    </span></a>
+<a class="sourceLine" id="cb13-19" title="19">elsoc<span class="op">$</span>inghogar_t[elsoc<span class="op">$</span>inghogar_t<span class="op">==</span><span class="dv">19</span>]&lt;-(<span class="dv">1850001</span><span class="op">+</span><span class="dv">2700000</span>)<span class="op">/</span><span class="dv">2</span> <span class="co"># [19] &quot;De $1.850.001 a $2.700.000 mensuales liquidos&quot;    </span></a>
+<a class="sourceLine" id="cb13-20" title="20">elsoc<span class="op">$</span>inghogar_t[elsoc<span class="op">$</span>inghogar_t<span class="op">==</span><span class="dv">20</span>]&lt;-(<span class="dv">2700000</span>)           <span class="co"># [20] &quot;Mas de $2.700.000 a mensuales liquidos&quot;</span></a></code></pre></div>
+<p><strong>Paso 2: En el caso de no tener información, remplazar por la media del tramo</strong></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">elsoc<span class="op">$</span>inghogar_i &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="dt">test =</span> (<span class="kw">is.na</span>(elsoc<span class="op">$</span>inghogar)), <span class="co">#¿existen NA en ingresos?</span></a>
+<a class="sourceLine" id="cb14-2" title="2">                           <span class="dt">yes =</span> elsoc<span class="op">$</span>inghogar_t,         <span class="co">#VERDADERO, remplazar con la media del tramo</span></a>
+<a class="sourceLine" id="cb14-3" title="3">                           <span class="dt">no =</span> elsoc<span class="op">$</span>inghogar)            <span class="co">#FALSE, mantener la variable original.</span></a>
+<a class="sourceLine" id="cb14-4" title="4"></a>
+<a class="sourceLine" id="cb14-5" title="5">elsoc<span class="op">$</span>inghogar_i &lt;-<span class="st"> </span><span class="kw">set_label</span>(elsoc<span class="op">$</span>inghogar_i,<span class="st">&quot;Ingreso total del hogar (imputada)&quot;</span>)</a></code></pre></div>
+<p><strong>Paso 3: Comparamos la variable original con la nueva</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">sjmisc<span class="op">::</span><span class="kw">descr</span>(elsoc[,<span class="kw">c</span>(<span class="st">&quot;inghogar&quot;</span>,<span class="st">&quot;inghogar_i&quot;</span>)],</a>
+<a class="sourceLine" id="cb15-2" title="2">              <span class="dt">show =</span><span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;n&quot;</span>, <span class="st">&quot;NA.prc&quot;</span>, <span class="st">&quot;mean&quot;</span>, <span class="st">&quot;md&quot;</span>,<span class="st">&quot;sd&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">var</th>
+<th align="left">label</th>
+<th align="right">n</th>
+<th align="right">NA.prc</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">md</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">inghogar</td>
+<td align="left">Ingreso total del hogar</td>
+<td align="right">3080</td>
+<td align="right">17.82</td>
+<td align="right">678842.5</td>
+<td align="right">781003.9</td>
+<td align="right">500000</td>
+</tr>
+<tr class="even">
+<td align="left">inghogar_i</td>
+<td align="left">Ingreso total del hogar (imputada)</td>
+<td align="right">3557</td>
+<td align="right">5.10</td>
+<td align="right">668539.5</td>
+<td align="right">752608.2</td>
+<td align="right">480000</td>
+</tr>
+</tbody>
+</table>
+<p>Vemos que pasamos de tener 17,82% de datos perdidos a un 5,1%, es decir recuperamos un 12,72% de los casos que antes tenían datos perdidos en la variable ingreso. Con estos datos podemos calcular el ingreso per capita del hogar, empleando la variable habitantes del hogar (<code>tamhogar</code>).</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">elsoc<span class="op">$</span>ing_pcap &lt;-<span class="st"> </span>elsoc<span class="op">$</span>inghogar_i<span class="op">/</span>elsoc<span class="op">$</span>tamhogar</a>
+<a class="sourceLine" id="cb16-2" title="2">elsoc<span class="op">$</span>ing_pcap &lt;-<span class="st"> </span><span class="kw">set_label</span>(elsoc<span class="op">$</span>ing_pcap,<span class="st">&quot;Ingreso per cápita del hogar&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">sjmisc<span class="op">::</span><span class="kw">descr</span>(elsoc[,<span class="kw">c</span>(<span class="st">&quot;inghogar&quot;</span>,<span class="st">&quot;inghogar_i&quot;</span>,<span class="st">&quot;tamhogar&quot;</span>,<span class="st">&quot;ing_pcap&quot;</span>)],</a>
+<a class="sourceLine" id="cb17-2" title="2">              <span class="dt">show =</span><span class="kw">c</span>(<span class="st">&quot;label&quot;</span>, <span class="st">&quot;n&quot;</span>, <span class="st">&quot;NA.prc&quot;</span>, <span class="st">&quot;mean&quot;</span>, <span class="st">&quot;md&quot;</span>,<span class="st">&quot;sd&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">var</th>
+<th align="right">lab</th>
+<th align="left">el</th>
+<th align="right">n NA</th>
+<th align="left">.prc</th>
+<th align="center">mean</th>
+<th align="center">sd</th>
+<th align="center">md</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">inghogar</td>
+<td align="left">Ingreso total del hogar</td>
+<td align="right">3080</td>
+<td align="left">17.82</td>
+<td align="center">678842.52</td>
+<td align="center">781003.92</td>
+<td align="center">500000.0</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">inghogar_i</td>
+<td align="left">Ingreso total del hogar (imputada)</td>
+<td align="right">3557</td>
+<td align="left">5.10</td>
+<td align="center">668539.54</td>
+<td align="center">752608.16</td>
+<td align="center">480000.0</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">tamhogar</td>
+<td align="left">Habitantes del hogar</td>
+<td align="right">3741</td>
+<td align="left">0.19</td>
+<td align="center">3.16</td>
+<td align="center">1.57</td>
+<td align="center">3.0</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">ing_pcap</td>
+<td align="left">Ingreso per cápita del hogar</td>
+<td align="right">3552</td>
+<td align="left">5.23</td>
+<td align="center">263057.71</td>
+<td align="center">350338.36</td>
+<td align="center">166666.7</td>
+</tr>
+</tbody>
+</table>
+<p>Vemos que la variable <code>tamhogar</code> posee un 0,19% de datos perdidos, por lo cual, al calcular el ingreso per cápita, vemos que el porcentaje de casos sin información en la nueva variable aumenta levemente a un 5,23%.</p>
+</div>
+<div id="ingresos-como-variable-categórica" class="section level2">
+<h2>Ingresos como variable categórica</h2>
+<p>Teniendo el ingreso per cápita del hogar, podemos calcular categorías de ingresos tales como los quintiles (o deciles). Por lo tanto, podemos clasificar a los individuos según sus ingresos en una variable categórica.</p>
+<p>El procedimiento es el siguiente:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">elsoc<span class="op">$</span>quintile&lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">ntile</span>(<span class="dt">x =</span> elsoc<span class="op">$</span>ing_pcap,</a>
+<a class="sourceLine" id="cb18-2" title="2">                              <span class="dt">n =</span> <span class="dv">5</span>) <span class="co"># n de categorias, para quintiles usamos 5 </span></a>
+<a class="sourceLine" id="cb18-3" title="3">elsoc<span class="op">$</span>quintile &lt;-<span class="st"> </span><span class="kw">factor</span>(elsoc<span class="op">$</span>quintile,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>), <span class="kw">c</span>(<span class="st">&quot;Quintil 1&quot;</span>,<span class="st">&quot;Quintil 2&quot;</span>,<span class="st">&quot;Quintil 3&quot;</span>,<span class="st">&quot;Quintil 4&quot;</span>,<span class="st">&quot;Quintil 5&quot;</span>)) </a>
+<a class="sourceLine" id="cb18-4" title="4">elsoc <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb18-5" title="5"><span class="st">  </span><span class="kw">group_by</span>(quintile) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb18-6" title="6"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n=</span><span class="kw">n</span>(),</a>
+<a class="sourceLine" id="cb18-7" title="7">            <span class="dt">Media=</span><span class="kw">mean</span>(ing_pcap,<span class="dt">na.rm =</span> T),</a>
+<a class="sourceLine" id="cb18-8" title="8">            <span class="dt">Mediana=</span><span class="kw">median</span>(ing_pcap,<span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb18-9" title="9"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">quintile</th>
+<th align="right">n</th>
+<th align="right">Media</th>
+<th align="right">Mediana</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Quintil 1</td>
+<td align="right">711</td>
+<td align="right">62859.09</td>
+<td align="right">66666.67</td>
+</tr>
+<tr class="even">
+<td align="left">Quintil 2</td>
+<td align="right">711</td>
+<td align="right">112218.97</td>
+<td align="right">111250.12</td>
+</tr>
+<tr class="odd">
+<td align="left">Quintil 3</td>
+<td align="right">710</td>
+<td align="right">167748.23</td>
+<td align="right">166666.67</td>
+</tr>
+<tr class="even">
+<td align="left">Quintil 4</td>
+<td align="right">710</td>
+<td align="right">262710.27</td>
+<td align="right">250000.50</td>
+</tr>
+<tr class="odd">
+<td align="left">Quintil 5</td>
+<td align="right">710</td>
+<td align="right">710246.41</td>
+<td align="right">500000.00</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right">196</td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+</tbody>
+</table>
+<p>En la tabla podemos observar que la variable <code>quintile</code> posee 5 grupos de tamaño equivalente. Además, agregamos la media y la mediana de los ingresos para cada categoría para ilustrar que podemos tratar esta variable como categórica y ordinal.</p>
+<p>Existe una última estrategia que podemos utilizar para recuperar ese 5,23% (n=196) de casos perdidos. Para esto, generamos una categoría adicional para los datos perdidos, es decir, recodificamos los NA para que se incluyan como una nueva categoría.</p>
+<p>El procedimiento es el siguiente:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">elsoc<span class="op">$</span>quintilemiss &lt;-<span class="st"> </span><span class="kw">factor</span>(elsoc<span class="op">$</span>quintile,<span class="dt">ordered =</span> T)</a>
+<a class="sourceLine" id="cb19-2" title="2">elsoc<span class="op">$</span>quintilemiss &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">is.na</span>(elsoc<span class="op">$</span>quintilemiss),<span class="dt">yes =</span> <span class="dv">6</span>,<span class="dt">no =</span> elsoc<span class="op">$</span>quintilemiss)</a>
+<a class="sourceLine" id="cb19-3" title="3">elsoc<span class="op">$</span>quintilemiss &lt;-<span class="st"> </span><span class="kw">factor</span>(elsoc<span class="op">$</span>quintilemiss ,<span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>),<span class="dt">labels =</span>  <span class="kw">c</span>(<span class="st">&quot;Quintil 1&quot;</span>,<span class="st">&quot;Quintil 2&quot;</span>,<span class="st">&quot;Quintil 3&quot;</span>,<span class="st">&quot;Quintil 4&quot;</span>,<span class="st">&quot;Quintil 5&quot;</span>,<span class="st">&quot;Missing&quot;</span>)) </a>
+<a class="sourceLine" id="cb19-4" title="4">elsoc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(quintilemiss) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">n=</span><span class="kw">n</span>())</a></code></pre></div>
+</div>
+</div>
+<div id="a-tibble-6-x-2" class="section level1">
+<h1>A tibble: 6 x 2</h1>
+<p>quintilemiss n
+<fct> <int>
+1 Quintil 1 711
+2 Quintil 2 711
+3 Quintil 3 710
+4 Quintil 4 710
+5 Quintil 5 710
+6 Missing 196</p>
+<p>Teniendo una nueva categoría de ingresos, podemos recuperar estos casos para los posteriores análisis. A continuación, se llevaran a cabo una serie de análisis que nos permitirán comprar los resultados según distintas especificaciones y empleando distintas maneras de operacionalizar la variable ingresos.</p>
+</div>
+<div id="estimación" class="section level1">
+<h1>Estimación</h1>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">fit01&lt;-<span class="st"> </span><span class="kw">lm</span>(partpol<span class="op">~</span>sexo<span class="op">+</span>edad<span class="op">+</span>ing_pcap<span class="op">+</span>pospol,<span class="dt">data=</span>elsoc)</a>
+<a class="sourceLine" id="cb20-2" title="2">fit02&lt;-<span class="st"> </span><span class="kw">lm</span>(partpol<span class="op">~</span>sexo<span class="op">+</span>edad<span class="op">+</span>quintile<span class="op">+</span>pospol,<span class="dt">data=</span>elsoc)</a>
+<a class="sourceLine" id="cb20-3" title="3">fit03&lt;-<span class="st"> </span><span class="kw">lm</span>(partpol<span class="op">~</span>sexo<span class="op">+</span>edad<span class="op">+</span>quintilemiss<span class="op">+</span>pospol,<span class="dt">data=</span>elsoc)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">labs01 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Intercepto&quot;</span>,<span class="st">&quot;Sexo (mujer=1)&quot;</span>,<span class="st">&quot;Edad&quot;</span>,<span class="st">&quot;Ingreso per/cap&quot;</span>,<span class="st">&quot;Centro (ref. derecha)&quot;</span>,<span class="st">&quot;Izquierda&quot;</span>,<span class="st">&quot;Idep./Ninguno&quot;</span>,</a>
+<a class="sourceLine" id="cb21-2" title="2">            <span class="st">&quot;Quintil 2&quot;</span>,<span class="st">&quot;Quintil 3&quot;</span>,<span class="st">&quot;Quintil 4&quot;</span>,<span class="st">&quot;Quintil 5&quot;</span>,</a>
+<a class="sourceLine" id="cb21-3" title="3">            <span class="st">&quot;Quintil 2&quot;</span>,<span class="st">&quot;Quintil 3&quot;</span>,<span class="st">&quot;Quintil 4&quot;</span>,<span class="st">&quot;Quintil 5&quot;</span>,<span class="st">&quot;Quintil perdido&quot;</span>)</a>
+<a class="sourceLine" id="cb21-4" title="4"><span class="kw">htmlreg</span>(<span class="kw">list</span>(fit01,fit02,fit03),<span class="dt">doctype =</span> <span class="ot">FALSE</span>, </a>
+<a class="sourceLine" id="cb21-5" title="5">        <span class="dt">custom.model.names =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 1&quot;</span>,<span class="st">&quot;Modelo 2&quot;</span>,<span class="st">&quot;Modelo 3&quot;</span>),</a>
+<a class="sourceLine" id="cb21-6" title="6">        <span class="dt">custom.coef.names =</span> labs01)</a></code></pre></div>
+<table cellspacing="0" align="center" style="border: none;">
+<caption align="bottom" style="margin-top:0.3em;">
+Statistical models
+</caption>
+<tr>
+<th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;">
+<b></b>
+</th>
+<th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;">
+<b>Modelo 1</b>
+</th>
+<th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;">
+<b>Modelo 2</b>
+</th>
+<th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;">
+<b>Modelo 3</b>
+</th>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Intercepto
+</td>
+<td style="padding-right: 12px; border: none;">
+8.27<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+7.94<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+7.97<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.14)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.16)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.16)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Sexo (mujer=1)
+</td>
+<td style="padding-right: 12px; border: none;">
+0.05
+</td>
+<td style="padding-right: 12px; border: none;">
+0.13
+</td>
+<td style="padding-right: 12px; border: none;">
+0.12
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.07)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.07)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Edad
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.04<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.04<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.04<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.00)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.00)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.00)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Ingreso per/cap
+</td>
+<td style="padding-right: 12px; border: none;">
+0.00<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.00)
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Centro (ref. derecha)
+</td>
+<td style="padding-right: 12px; border: none;">
+-1.02<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-1.04<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-1.04<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.10)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.10)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.10)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Izquierda
+</td>
+<td style="padding-right: 12px; border: none;">
+-1.10<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-1.12<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-1.13<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.11)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.11)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.11)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Idep./Ninguno
+</td>
+<td style="padding-right: 12px; border: none;">
+-1.59<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-1.58<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-1.60<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.10)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.10)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.10)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Quintil 2
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+0.22
+</td>
+<td style="padding-right: 12px; border: none;">
+0.21
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.11)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.11)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Quintil 3
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+0.51<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.51<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.11)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.11)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Quintil 4
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+0.51<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.50<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.11)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.11)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Quintil 5
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+0.89<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.88<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.12)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.12)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Quintil perdido
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+0.59<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.18)
+</td>
+</tr>
+<tr>
+<td style="border-top: 1px solid black;">
+R<sup style="vertical-align: 0px;">2</sup>
+</td>
+<td style="border-top: 1px solid black;">
+0.17
+</td>
+<td style="border-top: 1px solid black;">
+0.17
+</td>
+<td style="border-top: 1px solid black;">
+0.17
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Adj. R<sup style="vertical-align: 0px;">2</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.16
+</td>
+<td style="padding-right: 12px; border: none;">
+0.17
+</td>
+<td style="padding-right: 12px; border: none;">
+0.17
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Num. obs.
+</td>
+<td style="padding-right: 12px; border: none;">
+3475
+</td>
+<td style="padding-right: 12px; border: none;">
+3475
+</td>
+<td style="padding-right: 12px; border: none;">
+3656
+</td>
+</tr>
+<tr>
+<td style="border-bottom: 2px solid black;">
+RMSE
+</td>
+<td style="border-bottom: 2px solid black;">
+2.10
+</td>
+<td style="border-bottom: 2px solid black;">
+2.09
+</td>
+<td style="border-bottom: 2px solid black;">
+2.10
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;" colspan="5">
+<span style="font-size:0.8em"><sup style="vertical-align: 0px;"><em><strong></sup>p &lt; 0.001, <sup style="vertical-align: 0px;"></strong></sup>p &lt; 0.01, <sup style="vertical-align: 0px;"></em></sup>p &lt; 0.05</span>
+</td>
+</tr>
+</table>
+<div id="diágnosticos" class="section level2">
+<h2>Diágnosticos</h2>
+<div id="casos-influyentes" class="section level3">
+<h3>Casos influyentes</h3>
+<p>Para determinar si un outlier es un caso influyente, es decir que su presencia/ausencia genera un cambio importante en la estimación de los coeficientes de regresión, calculamos la <strong>Distancia de Cook.</strong>.</p>
+<p>Posteriormente, se establece un punto de corte de <span class="math inline">\(4/(n-k-1)\)</span>:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">n&lt;-<span class="st"> </span><span class="kw">nobs</span>(fit03) <span class="co">#n de observaciones</span></a>
+<a class="sourceLine" id="cb22-2" title="2">k&lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">coef</span>(fit03)) <span class="co"># n de parametros</span></a>
+<a class="sourceLine" id="cb22-3" title="3">dcook&lt;-<span class="st"> </span><span class="dv">4</span><span class="op">/</span>(n<span class="op">-</span>k<span class="dv">-1</span>) <span class="co">#punt de corte</span></a></code></pre></div>
+<p>Si lo graficamos se ve de la siguiente manera:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">final &lt;-<span class="st"> </span>broom<span class="op">::</span><span class="kw">augment_columns</span>(fit03,<span class="dt">data =</span> elsoc)</a>
+<a class="sourceLine" id="cb23-2" title="2">final<span class="op">$</span>id &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">row.names</span>(final))</a>
+<a class="sourceLine" id="cb23-3" title="3"><span class="co"># identify obs with Cook&#39;s D above cutoff</span></a>
+<a class="sourceLine" id="cb23-4" title="4"><span class="kw">ggplot</span>(final, <span class="kw">aes</span>(id, .cooksd))<span class="op">+</span></a>
+<a class="sourceLine" id="cb23-5" title="5"><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">position=</span><span class="st">&quot;identity&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb23-6" title="6"><span class="kw">xlab</span>(<span class="st">&quot;Obs. Number&quot;</span>)<span class="op">+</span><span class="kw">ylab</span>(<span class="st">&quot;Cook&#39;s distance&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb23-7" title="7"><span class="kw">geom_hline</span>(<span class="dt">yintercept=</span>dcook)<span class="op">+</span></a>
+<a class="sourceLine" id="cb23-8" title="8"><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span><span class="kw">ifelse</span>((.cooksd<span class="op">&gt;</span>dcook),id,<span class="st">&quot;&quot;</span>)),</a>
+<a class="sourceLine" id="cb23-9" title="9"><span class="dt">vjust=</span><span class="op">-</span><span class="fl">0.2</span>, <span class="dt">hjust=</span><span class="fl">0.5</span>)</a></code></pre></div>
+<p><img src="/assignment/11-code_files/figure-html/unnamed-chunk-25-1.png" width="960" /></p>
+<p>Identificamos los casos influyentes y filtramos la base de datos:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">ident&lt;-<span class="st"> </span>final <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(.cooksd<span class="op">&gt;</span>dcook)</a>
+<a class="sourceLine" id="cb24-2" title="2">elsoc02 &lt;-<span class="st"> </span>final <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span>(id <span class="op">%in%</span><span class="st"> </span>ident<span class="op">$</span>id))</a></code></pre></div>
+<p>Estimación sin casos influyentes:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">fit04&lt;-<span class="st"> </span><span class="kw">lm</span>(partpol<span class="op">~</span>sexo<span class="op">+</span>edad<span class="op">+</span>quintilemiss<span class="op">+</span>pospol,<span class="dt">data=</span>elsoc02)</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">labs02 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Intercepto&quot;</span>,<span class="st">&quot;Sexo (mujer=1)&quot;</span>,<span class="st">&quot;Edad&quot;</span>,</a>
+<a class="sourceLine" id="cb26-2" title="2">            <span class="st">&quot;Quintil 2&quot;</span>,<span class="st">&quot;Quintil 3&quot;</span>,<span class="st">&quot;Quintil 4&quot;</span>,<span class="st">&quot;Quintil 5&quot;</span>,<span class="st">&quot;Quintil perdido&quot;</span>,</a>
+<a class="sourceLine" id="cb26-3" title="3">            <span class="st">&quot;Izquierda (ref. derecha)&quot;</span>,<span class="st">&quot;Centro&quot;</span>,<span class="st">&quot;Idep./Ninguno&quot;</span>)</a>
+<a class="sourceLine" id="cb26-4" title="4"></a>
+<a class="sourceLine" id="cb26-5" title="5"><span class="kw">htmlreg</span>(<span class="kw">list</span>(fit03,fit04), </a>
+<a class="sourceLine" id="cb26-6" title="6">        <span class="dt">doctype =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb26-7" title="7">        <span class="dt">custom.model.names =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 3&quot;</span>, <span class="st">&quot;Modelo 4&quot;</span>),</a>
+<a class="sourceLine" id="cb26-8" title="8">        <span class="dt">custom.coef.names =</span> labs02)</a></code></pre></div>
+<table cellspacing="0" align="center" style="border: none;">
+<caption align="bottom" style="margin-top:0.3em;">
+Statistical models
+</caption>
+<tr>
+<th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;">
+<b></b>
+</th>
+<th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;">
+<b>Modelo 3</b>
+</th>
+<th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;">
+<b>Modelo 4</b>
+</th>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Intercepto
+</td>
+<td style="padding-right: 12px; border: none;">
+7.97<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+7.05<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.16)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.11)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Sexo (mujer=1)
+</td>
+<td style="padding-right: 12px; border: none;">
+0.12
+</td>
+<td style="padding-right: 12px; border: none;">
+0.07
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.07)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.05)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Edad
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.04<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.03<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.00)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.00)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Quintil 2
+</td>
+<td style="padding-right: 12px; border: none;">
+0.21
+</td>
+<td style="padding-right: 12px; border: none;">
+0.11
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.11)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Quintil 3
+</td>
+<td style="padding-right: 12px; border: none;">
+0.51<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.34<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.11)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Quintil 4
+</td>
+<td style="padding-right: 12px; border: none;">
+0.50<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.32<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.11)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Quintil 5
+</td>
+<td style="padding-right: 12px; border: none;">
+0.88<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.57<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.12)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Quintil perdido
+</td>
+<td style="padding-right: 12px; border: none;">
+0.59<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.31<sup style="vertical-align: 0px;">*</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.18)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.13)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Izquierda (ref. derecha)
+</td>
+<td style="padding-right: 12px; border: none;">
+-1.04<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.65<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.10)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.07)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Centro
+</td>
+<td style="padding-right: 12px; border: none;">
+-1.13<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.71<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.11)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Idep./Ninguno
+</td>
+<td style="padding-right: 12px; border: none;">
+-1.60<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-1.14<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.10)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.07)
+</td>
+</tr>
+<tr>
+<td style="border-top: 1px solid black;">
+R<sup style="vertical-align: 0px;">2</sup>
+</td>
+<td style="border-top: 1px solid black;">
+0.17
+</td>
+<td style="border-top: 1px solid black;">
+0.18
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Adj. R<sup style="vertical-align: 0px;">2</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.17
+</td>
+<td style="padding-right: 12px; border: none;">
+0.18
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Num. obs.
+</td>
+<td style="padding-right: 12px; border: none;">
+3656
+</td>
+<td style="padding-right: 12px; border: none;">
+3460
+</td>
+</tr>
+<tr>
+<td style="border-bottom: 2px solid black;">
+RMSE
+</td>
+<td style="border-bottom: 2px solid black;">
+2.10
+</td>
+<td style="border-bottom: 2px solid black;">
+1.48
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;" colspan="4">
+<span style="font-size:0.8em"><sup style="vertical-align: 0px;"><em><strong></sup>p &lt; 0.001, <sup style="vertical-align: 0px;"></strong></sup>p &lt; 0.01, <sup style="vertical-align: 0px;"></em></sup>p &lt; 0.05</span>
+</td>
+</tr>
+</table>
+<p>En términos generales, el sentido y significación estadística de los coeficientes del Modelo 4 se mantiene respecto al Modelo 3. Adicionalmente, si observamos que el modelo sin casos influyentes presenta una mejora en ajuste. Por lo tanto, los análisis posteriores se realizaran en base a este modelo.</p>
+</div>
+<div id="linealidad" class="section level3">
+<h3>Linealidad</h3>
+<p>Para analizar la linealidad respecto de un modelo de regresión, debemos analizar la distribución de los residuos con respecto a la recta de regresión.</p>
+<ul>
+<li>Los residuos deben ser independientes de los valores predichos (fitted values).</li>
+<li>Cualquier correlación entre residuo y valores predichos violarían este supuesto.</li>
+<li>La presencia de un patrón no lineal, es señal de que el modelo está especificado incorrectamente.</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">ggplot</span>(fit04, <span class="kw">aes</span>(.fitted, .resid)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb27-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb27-3" title="3"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb27-4" title="4"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-30"></span>
+<img src="/assignment/11-code_files/figure-html/unnamed-chunk-30-1.png" alt="Relación entre residuos y valores predichos" width="960" />
+<p class="caption">
+Figure 1: Relación entre residuos y valores predichos
+</p>
+</div>
+<p>El gráfico nos indica que existe un patrón en la distribución de los residuos. Para intentar mejorar la estimación podemos realizar una transformación de variables. A continuación presentaremos un ejemplo para la Edad y para los Ingresos.</p>
+<ul>
+<li>Polinomio: <span class="math inline">\(\text{Edad}^2\)</span></li>
+</ul>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">elsoc02<span class="op">$</span>edad2 &lt;-<span class="st"> </span>elsoc02<span class="op">$</span>edad<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb28-2" title="2">fit05&lt;-<span class="st"> </span><span class="kw">lm</span>(partpol<span class="op">~</span>sexo<span class="op">+</span>edad<span class="op">+</span>edad2<span class="op">+</span>quintilemiss<span class="op">+</span>pospol,<span class="dt">data=</span>elsoc02)</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">edad&lt;-<span class="st"> </span>fit05<span class="op">$</span>model<span class="op">$</span>edad</a>
+<a class="sourceLine" id="cb29-2" title="2">fit&lt;-<span class="st"> </span>fit05<span class="op">$</span>fitted.values</a>
+<a class="sourceLine" id="cb29-3" title="3">data01 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">cbind</span>(edad,fit))</a>
+<a class="sourceLine" id="cb29-4" title="4"></a>
+<a class="sourceLine" id="cb29-5" title="5"><span class="kw">ggplot</span>(data01, <span class="kw">aes</span>(<span class="dt">x =</span> edad, <span class="dt">y =</span> fit)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb29-6" title="6"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb29-7" title="7"><span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb29-8" title="8"><span class="st">  </span><span class="kw">geom_smooth</span>()</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-32"></span>
+<img src="/assignment/11-code_files/figure-html/unnamed-chunk-32-1.png" alt="Efecto cuadrático de la edad (Modelo 5)" width="960" />
+<p class="caption">
+Figure 2: Efecto cuadrático de la edad (Modelo 5)
+</p>
+</div>
+<ul>
+<li>Logaritmo: <span class="math inline">\(\log(\text{ingreso})\)</span></li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">elsoc02<span class="op">$</span>lningreso &lt;-<span class="st"> </span><span class="kw">log</span>(elsoc02<span class="op">$</span>ing_pcap)</a>
+<a class="sourceLine" id="cb30-2" title="2">elsoc02<span class="op">$</span>lningreso &lt;-<span class="st"> </span><span class="kw">set_label</span>(elsoc02<span class="op">$</span>lningreso,<span class="st">&quot;log(ingreso per cap)&quot;</span>)</a>
+<a class="sourceLine" id="cb30-3" title="3">fit06 &lt;-<span class="st"> </span><span class="kw">lm</span>(partpol<span class="op">~</span>sexo<span class="op">+</span>edad<span class="op">+</span>edad2<span class="op">+</span>lningreso<span class="op">+</span>pospol,<span class="dt">data=</span>elsoc02)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="kw">plot_frq</span>(elsoc02<span class="op">$</span>ing_pcap,<span class="dt">type =</span> <span class="st">&quot;hist&quot;</span>,<span class="dt">normal.curve =</span> T, <span class="dt">show.mean =</span> T)</a>
+<a class="sourceLine" id="cb31-2" title="2"><span class="kw">plot_frq</span>(elsoc02<span class="op">$</span>lningreso,<span class="dt">type =</span> <span class="st">&quot;hist&quot;</span>, <span class="dt">normal.curve =</span> T,<span class="dt">show.mean =</span> T)</a></code></pre></div>
+<p><img src="/assignment/11-code_files/figure-html/unnamed-chunk-34-1.png" width="50%" /><img src="/assignment/11-code_files/figure-html/unnamed-chunk-34-2.png" width="50%" /></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">labs03 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Intercepto&quot;</span>,<span class="st">&quot;Sexo (mujer=1)&quot;</span>,<span class="st">&quot;Edad&quot;</span>,</a>
+<a class="sourceLine" id="cb32-2" title="2">            <span class="st">&quot;Quintil 2&quot;</span>,<span class="st">&quot;Quintil 3&quot;</span>,<span class="st">&quot;Quintil 4&quot;</span>,<span class="st">&quot;Quintil 5&quot;</span>,<span class="st">&quot;Quintil perdido&quot;</span>,</a>
+<a class="sourceLine" id="cb32-3" title="3">            <span class="st">&quot;Izquierda (ref. derecha)&quot;</span>,<span class="st">&quot;Centro&quot;</span>,<span class="st">&quot;Idep./Ninguno&quot;</span>, <span class="st">&quot;Edad²&quot;,&quot;</span>Ingreso per <span class="kw">cap</span> (log)<span class="st">&quot;)</span></a>
+<a class="sourceLine" id="cb32-4" title="4"></a>
+<a class="sourceLine" id="cb32-5" title="5"><span class="st">htmlreg(list(fit04, fit05, fit06), doctype = FALSE,</span></a>
+<a class="sourceLine" id="cb32-6" title="6"><span class="st">        custom.model.names = c(&quot;</span>Modelo <span class="dv">4</span><span class="st">&quot;, &quot;</span>Modelo <span class="dv">5</span><span class="st">&quot;, &quot;</span>Modelo <span class="dv">6</span><span class="st">&quot;), </span></a>
+<a class="sourceLine" id="cb32-7" title="7"><span class="st">          custom.coef.names = labs03)</span></a></code></pre></div>
+<table cellspacing="0" align="center" style="border: none;">
+<caption align="bottom" style="margin-top:0.3em;">
+Statistical models
+</caption>
+<tr>
+<th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;">
+<b></b>
+</th>
+<th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;">
+<b>Modelo 4</b>
+</th>
+<th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;">
+<b>Modelo 5</b>
+</th>
+<th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;">
+<b>Modelo 6</b>
+</th>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Intercepto
+</td>
+<td style="padding-right: 12px; border: none;">
+7.05<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+7.62<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+4.98<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.11)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.24)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.46)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Sexo (mujer=1)
+</td>
+<td style="padding-right: 12px; border: none;">
+0.07
+</td>
+<td style="padding-right: 12px; border: none;">
+0.08
+</td>
+<td style="padding-right: 12px; border: none;">
+0.09
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.05)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.05)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.05)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Edad
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.03<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.06<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.06<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.00)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.01)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.01)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Quintil 2
+</td>
+<td style="padding-right: 12px; border: none;">
+0.11
+</td>
+<td style="padding-right: 12px; border: none;">
+0.11
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Quintil 3
+</td>
+<td style="padding-right: 12px; border: none;">
+0.34<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.34<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Quintil 4
+</td>
+<td style="padding-right: 12px; border: none;">
+0.32<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.32<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Quintil 5
+</td>
+<td style="padding-right: 12px; border: none;">
+0.57<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.57<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Quintil perdido
+</td>
+<td style="padding-right: 12px; border: none;">
+0.31<sup style="vertical-align: 0px;">*</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.31<sup style="vertical-align: 0px;">*</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.13)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.13)
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Izquierda (ref. derecha)
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.65<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.65<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.63<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.07)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.07)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Centro
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.71<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.70<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.70<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Idep./Ninguno
+</td>
+<td style="padding-right: 12px; border: none;">
+-1.14<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-1.13<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-1.12<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.07)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.07)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.07)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Edad²
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+0.00<sup style="vertical-align: 0px;">**</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.00<sup style="vertical-align: 0px;">**</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.00)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.00)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Ingreso per cap (log)
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+0.24<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.03)
+</td>
+</tr>
+<tr>
+<td style="border-top: 1px solid black;">
+R<sup style="vertical-align: 0px;">2</sup>
+</td>
+<td style="border-top: 1px solid black;">
+0.18
+</td>
+<td style="border-top: 1px solid black;">
+0.19
+</td>
+<td style="border-top: 1px solid black;">
+0.19
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Adj. R<sup style="vertical-align: 0px;">2</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.18
+</td>
+<td style="padding-right: 12px; border: none;">
+0.18
+</td>
+<td style="padding-right: 12px; border: none;">
+0.18
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Num. obs.
+</td>
+<td style="padding-right: 12px; border: none;">
+3460
+</td>
+<td style="padding-right: 12px; border: none;">
+3460
+</td>
+<td style="padding-right: 12px; border: none;">
+3305
+</td>
+</tr>
+<tr>
+<td style="border-bottom: 2px solid black;">
+RMSE
+</td>
+<td style="border-bottom: 2px solid black;">
+1.48
+</td>
+<td style="border-bottom: 2px solid black;">
+1.47
+</td>
+<td style="border-bottom: 2px solid black;">
+1.48
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;" colspan="5">
+<span style="font-size:0.8em"><sup style="vertical-align: 0px;"><em><strong></sup>p &lt; 0.001, <sup style="vertical-align: 0px;"></strong></sup>p &lt; 0.01, <sup style="vertical-align: 0px;"></em></sup>p &lt; 0.05</span>
+</td>
+</tr>
+</table>
+<p><strong>Interpretación</strong>: Vemos que el coeficiente de <code>lningreso</code> es de 0.24, sin embargo, debido a que la unidad de medida es logarítmica decimos que por una unidad de porcentaje (1%) de incremento en los ingresos per cápita del hogar, el promedio del índice de participación política aumenta en 0.24/100 = 0.0024, manteniendo todas las demás variables constantes. El coeficiente es estadísticamente significativo a uno 99.9% de confianza. En este caso particular, no es muy informativo, pero corresponde a una manera de especificar un modelo con los ingresos como una variable logaritmizada para hacernos cargo de posible problemas de linealidad.</p>
+<p>Debemos tener cautela al interpretar el ajuste del Modelo 5 y 6 debido a que las observaciones empleadas no son las mismas (3462 comparado con 3304) debido a que en el Modelo 5 se incluye la variable ingresos en quintiles con la categoría adicional para los casos perdidos. En este caso, realizamos la especificación a modo de ejemplo. Por lo tanto, seguiremos trabajando con el Modelo 5 para realizar los análisis posteriores.</p>
+</div>
+</div>
+</div>
+<div id="test-homogeneidad-de-varianza" class="section level1">
+<h1>Test homogeneidad de varianza</h1>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">car<span class="op">::</span><span class="kw">ncvTest</span>(fit05)</a></code></pre></div>
+<pre><code>## Non-constant Variance Score Test 
+## Variance formula: ~ fitted.values 
+## Chisquare = 521.5278, Df = 1, p = &lt; 2.22e-16</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">lmtest<span class="op">::</span><span class="kw">bptest</span>(fit05)</a></code></pre></div>
+<pre><code>## 
+##  studentized Breusch-Pagan test
+## 
+## data:  fit05
+## BP = 385.59, df = 11, p-value &lt; 2.2e-16</code></pre>
+<p>Tanto el test Breush-Pagan como el de Cook-Weisberg nos indican que existen problemas con respecto a homogeneidad en la distribución de los residuos del modelo debido a que <span class="math inline">\(p&gt;0.05\)</span> en ambos casos. Es decir, se rechaza <span class="math inline">\(H_0\)</span> donde se asume que la varianza del error es constante, lo cual nos indica que tenemos problemas de <strong>heterocedasticidad</strong> en los residuos.</p>
+<p>Para hacer frente a este problema, debemos calcular los errores estándar robustos para nuestra última estimación para corregir problemas de heterocedasticidad y así estimar el último modelo nuevamente:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">model_robust&lt;-<span class="st"> </span><span class="kw">coeftest</span>(fit05, <span class="dt">vcov=</span>vcovHC)</a></code></pre></div>
+<p><strong>Comparemos los resultados:</strong></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">labs04 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Intercepto&quot;</span>,<span class="st">&quot;Sexo (mujer=1)&quot;</span>,<span class="st">&quot;Edad&quot;</span>,</a>
+<a class="sourceLine" id="cb38-2" title="2">            <span class="st">&quot;Quintil 2&quot;</span>,<span class="st">&quot;Quintil 3&quot;</span>,<span class="st">&quot;Quintil 4&quot;</span>,<span class="st">&quot;Quintil 5&quot;</span>,<span class="st">&quot;Quintil perdido&quot;</span>,</a>
+<a class="sourceLine" id="cb38-3" title="3">            <span class="st">&quot;Izquierda (ref. derecha)&quot;</span>,<span class="st">&quot;Centro&quot;</span>,<span class="st">&quot;Idep./Ninguno&quot;</span>, <span class="st">&quot;Edad²&quot;)</span></a>
+<a class="sourceLine" id="cb38-4" title="4"></a>
+<a class="sourceLine" id="cb38-5" title="5"><span class="st">htmlreg(list(fit04, fit05, model_robust), doctype = FALSE,</span></a>
+<a class="sourceLine" id="cb38-6" title="6"><span class="st">          custom.model.names = c(&quot;</span>Modelo <span class="dv">4</span><span class="st">&quot;,&quot;</span>Modelo <span class="dv">5</span><span class="st">&quot;, &quot;</span>M5 Robust<span class="st">&quot;), custom.coef.names = labs04)</span></a></code></pre></div>
+<table cellspacing="0" align="center" style="border: none;">
+<caption align="bottom" style="margin-top:0.3em;">
+Statistical models
+</caption>
+<tr>
+<th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;">
+<b></b>
+</th>
+<th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;">
+<b>Modelo 4</b>
+</th>
+<th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;">
+<b>Modelo 5</b>
+</th>
+<th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;">
+<b>M5 Robust</b>
+</th>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Intercepto
+</td>
+<td style="padding-right: 12px; border: none;">
+7.05<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+7.62<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+7.62<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.11)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.24)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.27)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Sexo (mujer=1)
+</td>
+<td style="padding-right: 12px; border: none;">
+0.07
+</td>
+<td style="padding-right: 12px; border: none;">
+0.08
+</td>
+<td style="padding-right: 12px; border: none;">
+0.08
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.05)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.05)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.05)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Edad
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.03<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.06<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.06<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.00)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.01)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.01)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Quintil 2
+</td>
+<td style="padding-right: 12px; border: none;">
+0.11
+</td>
+<td style="padding-right: 12px; border: none;">
+0.11
+</td>
+<td style="padding-right: 12px; border: none;">
+0.11
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.07)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Quintil 3
+</td>
+<td style="padding-right: 12px; border: none;">
+0.34<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.34<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.34<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Quintil 4
+</td>
+<td style="padding-right: 12px; border: none;">
+0.32<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.32<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.32<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Quintil 5
+</td>
+<td style="padding-right: 12px; border: none;">
+0.57<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.57<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.57<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.09)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Quintil perdido
+</td>
+<td style="padding-right: 12px; border: none;">
+0.31<sup style="vertical-align: 0px;">*</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.31<sup style="vertical-align: 0px;">*</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.31<sup style="vertical-align: 0px;">**</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.13)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.13)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.12)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Izquierda (ref. derecha)
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.65<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.65<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.65<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.07)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.07)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.09)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Centro
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.71<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.70<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-0.70<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.09)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Idep./Ninguno
+</td>
+<td style="padding-right: 12px; border: none;">
+-1.14<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-1.13<sup style="vertical-align: 0px;">***</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+-1.13<sup style="vertical-align: 0px;">***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.07)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.07)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.08)
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Edad²
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+0.00<sup style="vertical-align: 0px;">**</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.00<sup style="vertical-align: 0px;">**</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.00)
+</td>
+<td style="padding-right: 12px; border: none;">
+(0.00)
+</td>
+</tr>
+<tr>
+<td style="border-top: 1px solid black;">
+R<sup style="vertical-align: 0px;">2</sup>
+</td>
+<td style="border-top: 1px solid black;">
+0.18
+</td>
+<td style="border-top: 1px solid black;">
+0.19
+</td>
+<td style="border-top: 1px solid black;">
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Adj. R<sup style="vertical-align: 0px;">2</sup>
+</td>
+<td style="padding-right: 12px; border: none;">
+0.18
+</td>
+<td style="padding-right: 12px; border: none;">
+0.18
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;">
+Num. obs.
+</td>
+<td style="padding-right: 12px; border: none;">
+3460
+</td>
+<td style="padding-right: 12px; border: none;">
+3460
+</td>
+<td style="padding-right: 12px; border: none;">
+</td>
+</tr>
+<tr>
+<td style="border-bottom: 2px solid black;">
+RMSE
+</td>
+<td style="border-bottom: 2px solid black;">
+1.48
+</td>
+<td style="border-bottom: 2px solid black;">
+1.47
+</td>
+<td style="border-bottom: 2px solid black;">
+</td>
+</tr>
+<tr>
+<td style="padding-right: 12px; border: none;" colspan="5">
+<span style="font-size:0.8em"><sup style="vertical-align: 0px;"><em><strong></sup>p &lt; 0.001, <sup style="vertical-align: 0px;"></strong></sup>p &lt; 0.01, <sup style="vertical-align: 0px;"></em></sup>p &lt; 0.05</span>
+</td>
+</tr>
+</table>
+<p>Los resultados del modelo con errores estándar robustos, nos indica que nuestras estimaciones son robustas a la presencia de heterocedasticidad en los residuos debido a que la significancia de los coeficientes se mantiene si lo comparamos con Modelo 4.</p>
+</div>
+<div id="multicolinealidad" class="section level1">
+<h1>Multicolinealidad</h1>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">car<span class="op">::</span><span class="kw">vif</span>(fit04)</a>
+<a class="sourceLine" id="cb39-2" title="2">car<span class="op">::</span><span class="kw">vif</span>(fit05)</a></code></pre></div>
+<pre><code>##                  GVIF Df GVIF^(1/(2*Df))
+## sexo         1.057775  1        1.028482
+## edad         1.012463  1        1.006212
+## quintilemiss 1.085365  5        1.008225
+## pospol       1.041316  3        1.006770
+##                   GVIF Df GVIF^(1/(2*Df))
+## sexo          1.058907  1        1.029032
+## edad         38.308809  1        6.189411
+## edad2        38.275011  1        6.186680
+## quintilemiss  1.087725  5        1.008444
+## pospol        1.042085  3        1.006894</code></pre>
+<p>Entonces, asumiendo que valores del VIF mayores a 2.5, vemos que en el modelo que no incorpora el término cuadrático de edad no tendríamos problemas de multicolinealidad. Sin embargo, al incorporar el término cuadrático, nos muestra un VIF de 6.2 en la variable <code>edad</code> y <code>edad2</code>.</p>
+<div id="referencias" class="section level2">
+<h2>Referencias</h2>
+<p><a href="https://multivariada.netlify.app/docs/lecturas/Darlington&amp;Hayes_16irregularities.pdf">Darlington &amp; Hayes 2016 Cap16 Detecting and Managing Irregularities</a></p>
+<p><a href="https://multivariada.netlify.app/docs/lecturas/Darlington&amp;Hayes_13nonlinear.pdf">Darlington &amp; Hayes 2016 Cap12 Nonlinear relationships</a></p>
+</div>
+</div>
+<div id="reporte-de-progreso" class="section level1">
+<h1>Reporte de progreso</h1>
+<p>Contestar <a href="https://forms.gle/c2mXB72uG3TwQjQT9">aquí</a>.</p>
+</div>
+<div id="foro-práctica-11" class="section level1">
+<h1>Foro práctica 11</h1>
+</div>
