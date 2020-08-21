@@ -57,9 +57,12 @@ Los datos a utilizar corresponden a la base de datos **gpa1** que incluye una mu
 
 - $colGPA$: promedio general de calificaciones de la universidad, en escala de 0 a 4 puntos.
 
+
 - $hsGPA$ : promedio general de calificaciones en la enseñanza media, en escala de 0 a 4 puntos
 
+
 - $ACT$ : puntaje en el examen de admisión a la universidad, que va de 16 a 33 puntos
+
 
 Primero, se cargará la base de datos que contiene la librería `wooldrige` y se seleccionarán las variables señaladas
 

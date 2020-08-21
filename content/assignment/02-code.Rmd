@@ -169,7 +169,7 @@ view(dfSummary(proc_elsoc, headings=FALSE))
 print(dfSummary(proc_elsoc, headings = FALSE), method = "render")
 ```
 
-**Nota sobre casos perdidos (NAs)**<span class="sidenote">na.omit(data)</span>
+#### Nota sobre casos perdidos (NAs) <span class="sidenote">na.omit(data)</span>
 
 Hasta ahora hemos mantenido los casos perdidos en la base de datos, ya que son importantes de reportar en la tabla general de variables. Sin embargo, de aquí en adelante se recomienda trabajar solo con casos completos, es decir, **sacar los casos perdidos**. El quitar los casos perdidos de una base de datos es muy simple con la función `na.omit`, pero para tomar precauciones y asegurarse que funciona se recomienda el siguiente procedimiento:
 

@@ -555,6 +555,10 @@
         <a href="/class/11-class/">11: Supuestos</a>
       </li>
       
+      <li >
+        <a href="/class/12-class/">12: Pendientes y comeplementos</a>
+      </li>
+      
     </ul>
     
 
@@ -766,6 +770,14 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2>Explorar base de datos</h2>
 <p>A partir de la siguiente tabla se obtienen estadísticos descriptivos que luego serán relevantes para la interpretación de nuestros modelos.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">view</span>(<span class="kw">dfSummary</span>(gpa1, <span class="dt">headings =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="st">&quot;render&quot;</span>))</a></code></pre></div>
+<pre><code>## Warning in png(png_loc &lt;- tempfile(fileext = &quot;.png&quot;), width = 150 *
+## graph.magnif, : X cannot set locale modifiers
+
+## Warning in png(png_loc &lt;- tempfile(fileext = &quot;.png&quot;), width = 150 *
+## graph.magnif, : X cannot set locale modifiers
+
+## Warning in png(png_loc &lt;- tempfile(fileext = &quot;.png&quot;), width = 150 *
+## graph.magnif, : X cannot set locale modifiers</code></pre>
 <div class="container st-container">
 <table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline ">
   <thead>
@@ -789,7 +801,7 @@ min < med < max:
 2.2 < 3 < 4
 IQR (CV) : 0.5 (0.1)</td>
       <td align="left" style="vertical-align:middle">19 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBh4OIjYcEdiLAAABjklEQVR42u3cwU3DMABAUYo6HgPAhDAA+8E1IEj0IG3s9r9bVSmKvmIrjZ2ePh4iHo8+gdkUDBUMnZcfLjmfvW0e/Pl0dIzfLE/s/OejsKfVb9+PacEakqhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGBox03B2/ukb8Guu6jX9knPskt6yxW3nV/S1tW93zsANxLseld3kz4qGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGJrk8c44T3MnCTbOv140JFHBUMEQzWHjTL3HwUn/HhbS1jUkUcFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMHQNCvf/7O+3iUv1txJsP1WuxqSaKArbI5l4oGCzbFI3JBEBUMFQwVDBUMFQwPdVhxn6w7wZfHTqWAPtkP7S7A57rWP9e0KG2U3/Lia9FHBUMHQaTnPvzbp/2h5W3GqkWlIooKhgqFPoDogP0w0CHYAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDYtMzBUMTQ6MzQ6NTQrMDA6MDCzylGJAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA2LTMwVDE0OjM0OjU0KzAwOjAwwpfpNQAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkCBQXJzkyo/elAAABjklEQVR42u3cwU3DMABAUYo6HgPAhDAA+8E1IEj0IG3s9r9bVSmKvmIrjZ2ePh4iHo8+gdkUDBUMnZcfLjmfvW0e/Pl0dIzfLE/s/OejsKfVb9+PacEakqhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGBox03B2/ukb8Guu6jX9knPskt6yxW3nV/S1tW93zsANxLseld3kz4qGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGJrk8c44T3MnCTbOv140JFHBUMEQzWHjTL3HwUn/HhbS1jUkUcFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMHQNCvf/7O+3iUv1txJsP1WuxqSaKArbI5l4oGCzbFI3JBEBUMFQwVDBUMFQwPdVhxn6w7wZfHTqWAPtkP7S7A57rWP9e0KG2U3/Lia9FHBUMHQaTnPvzbp/2h5W3GqkWlIooKhgqFPoDogP0w0CHYAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDgtMjBUMjM6Mzk6NTcrMDA6MDBlFT7yAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA4LTIwVDIzOjM5OjU3KzAwOjAwFEiGTgAAAABJRU5ErkJggg=="></td>
       <td align="center">141
 (100%)</td>
       <td align="center">0
@@ -804,7 +816,7 @@ min < med < max:
 2.4 < 3.4 < 4
 IQR (CV) : 0.4 (0.1)</td>
       <td align="left" style="vertical-align:middle">16 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBh4OIjYcEdiLAAABeElEQVR42u3cW0rDQABAUSNdngvQFeoCuj/9jVJITsljgvf8lUI6XJgwaTKZvl8iXs8ewNUUDBUM3eYfrnU++1ox3Pdpi1+aH+T29FEG8Lbw/X2H32xKooKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhQXeCrNkWc45Bgy1vi9lnY8yypiQqGCoYKhgqGCoYKhgqGCoYKhgqGNrhWvK490lsMRYdyS4X32e8T+KokTQlUcFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDB0LDPuB5lzV3Uj9m9y38fTB8+bkqigqGCoYKhgqGCoYKhk9Zh4+5WW3JSsHEeuVNNSVQwVDBUMFQwVDD0a1lx3dXRcf6sw9b8nXbdNdQWmpKoYGian7Y+O4c9NL8JMtXINCVRwVDB0A/ZEhvl/+TyMAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNi0zMFQxNDozNDo1NCswMDowMLPKUYkAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDYtMzBUMTQ6MzQ6NTQrMDA6MDDCl+k1AAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkCBQXJzkyo/elAAABeElEQVR42u3cW0rDQABAUSNdngvQFeoCuj/9jVJITsljgvf8lUI6XJgwaTKZvl8iXs8ewNUUDBUM3eYfrnU++1ox3Pdpi1+aH+T29FEG8Lbw/X2H32xKooKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhQXeCrNkWc45Bgy1vi9lnY8yypiQqGCoYKhgqGCoYKhgqGCoYKhgqGNrhWvK490lsMRYdyS4X32e8T+KokTQlUcFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDB0LDPuB5lzV3Uj9m9y38fTB8+bkqigqGCoYKhgqGCoYKhk9Zh4+5WW3JSsHEeuVNNSVQwVDBUMFQwVDD0a1lx3dXRcf6sw9b8nXbdNdQWmpKoYGian7Y+O4c9NL8JMtXINCVRwVDB0A/ZEhvl/+TyMAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wOC0yMFQyMzozOTo1NyswMDowMGUVPvIAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDgtMjBUMjM6Mzk6NTcrMDA6MDAUSIZOAAAAAElFTkSuQmCC"></td>
       <td align="center">141
 (100%)</td>
       <td align="center">0
@@ -819,7 +831,7 @@ min < med < max:
 16 < 24 < 33
 IQR (CV) : 4 (0.1)</td>
       <td align="left" style="vertical-align:middle">15 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkBh4OIjYcEdiLAAABiUlEQVR42u3cQU6DQABAUTE9ngfQE+oBvJ9u0eiQZysd2v92TRNCfjrAwNDl4yHi8do7cDQFQwVDp/WH/zyevW1u/Hm5dozfrHfs9OetsKfht+/XacEakqhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgaMdl51vGK/lnWcU/UbDROv55VvE3JFHBUMFQwdAFD/rb76vdgoueJY9xnjtPQxIVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQxNdE9/bOvm0V4PSQ4TbJa/OmpIooKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgiF6anQf66TH8DHbPayTHjvMc8kte70LdzPB9vrtd9BHBUMFQwVDBUMFQwVDBUMFQ1+u9Jtcb/s2NZplJem8bmYuOXbe2HlZTd3vJNh4ai7jalmnf+0Y9qP1L2ypkemyAhUMFQx9AiOeHu1b6sEzAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA2LTMwVDE0OjM0OjU0KzAwOjAws8pRiQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNi0zMFQxNDozNDo1NCswMDowMMKX6TUAAAAASUVORK5CYII="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkCBQXJzkyo/elAAABiUlEQVR42u3cQU6DQABAUTE9ngfQE+oBvJ9u0eiQZysd2v92TRNCfjrAwNDl4yHi8do7cDQFQwVDp/WH/zyevW1u/Hm5dozfrHfs9OetsKfht+/XacEakqhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgaMdl51vGK/lnWcU/UbDROv55VvE3JFHBUMFQwdAFD/rb76vdgoueJY9xnjtPQxIVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQxNdE9/bOvm0V4PSQ4TbJa/OmpIooKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgiF6anQf66TH8DHbPayTHjvMc8kte70LdzPB9vrtd9BHBUMFQwVDBUMFQwVDBUMFQ1+u9Jtcb/s2NZplJem8bmYuOXbe2HlZTd3vJNh4ai7jalmnf+0Y9qP1L2ypkemyAhUMFQx9AiOeHu1b6sEzAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA4LTIwVDIzOjM5OjU3KzAwOjAwZRU+8gAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wOC0yMFQyMzozOTo1NyswMDowMBRIhk4AAAAASUVORK5CYII="></td>
       <td align="center">141
 (100%)</td>
       <td align="center">0
@@ -827,30 +839,30 @@ IQR (CV) : 4 (0.1)</td>
     </tr>
   </tbody>
 </table>
-<p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 0.9.6 (<a href='https://www.r-project.org/'>R</a> version 4.0.0)<br/>2020-06-30</p>
+<p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 0.9.6 (<a href='https://www.r-project.org/'>R</a> version 4.0.0)<br/>2020-08-20</p>
 </div>
 </div>
 <div id="relacion-entre-variables" class="section level2">
 <h2>Relacion entre variables</h2>
 <p>Se grafican la relación entre las variables que determinarían <span class="math inline">\(colGPA\)</span> para comparar sus distribuciones y sus pendientes (<span class="math inline">\(b\)</span>) de sus regresiones simples. A su vez, se grafica un tercer gráfico que muestra la correlación entre las variables independientes.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co">#Grafico x1 = ACT y= colGPA</span></a>
-<a class="sourceLine" id="cb4-2" title="2">gact &lt;-<span class="st"> </span><span class="kw">ggscatter</span>(gpa1, <span class="dt">x =</span> <span class="st">&quot;ACT&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;colGPA&quot;</span>,</a>
-<a class="sourceLine" id="cb4-3" title="3">          <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="co"># Forma y tamaño de puntos</span></a>
-<a class="sourceLine" id="cb4-4" title="4">   <span class="dt">add =</span> <span class="st">&quot;reg.line&quot;</span>, <span class="co">#Agregar recta de regresion</span></a>
-<a class="sourceLine" id="cb4-5" title="5">   <span class="dt">cor.coef =</span> <span class="ot">TRUE</span>)<span class="co"># Agregar coeficiente correlacion</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co">#Grafico x2 = hsGPA y= colGPA</span></a>
-<a class="sourceLine" id="cb4-7" title="7">ghsGPA &lt;-<span class="st"> </span><span class="kw">ggscatter</span>(gpa1, <span class="dt">x =</span> <span class="st">&quot;hsGPA&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;colGPA&quot;</span>,</a>
-<a class="sourceLine" id="cb4-8" title="8">          <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">size =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb4-9" title="9">   <span class="dt">add =</span> <span class="st">&quot;reg.line&quot;</span>,</a>
-<a class="sourceLine" id="cb4-10" title="10">   <span class="dt">cor.coef =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb4-11" title="11"></a>
-<a class="sourceLine" id="cb4-12" title="12"><span class="co">#Grafico x2 = hsGPA x1 = ACT</span></a>
-<a class="sourceLine" id="cb4-13" title="13">gact_hs &lt;-<span class="st"> </span><span class="kw">ggscatter</span>(gpa1, <span class="dt">x =</span> <span class="st">&quot;hsGPA&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;ACT&quot;</span>,</a>
-<a class="sourceLine" id="cb4-14" title="14">          <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">size =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb4-15" title="15">   <span class="dt">add =</span> <span class="st">&quot;reg.line&quot;</span>,</a>
-<a class="sourceLine" id="cb4-16" title="16">   <span class="dt">cor.coef =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb4-17" title="17"></a>
-<a class="sourceLine" id="cb4-18" title="18"><span class="kw">grid.arrange</span>(gact, ghsGPA, gact_hs, <span class="dt">nrow =</span> <span class="dv">1</span>) <span class="co"># Unir graficos</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co">#Grafico x1 = ACT y= colGPA</span></a>
+<a class="sourceLine" id="cb5-2" title="2">gact &lt;-<span class="st"> </span><span class="kw">ggscatter</span>(gpa1, <span class="dt">x =</span> <span class="st">&quot;ACT&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;colGPA&quot;</span>,</a>
+<a class="sourceLine" id="cb5-3" title="3">          <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="co"># Forma y tamaño de puntos</span></a>
+<a class="sourceLine" id="cb5-4" title="4">   <span class="dt">add =</span> <span class="st">&quot;reg.line&quot;</span>, <span class="co">#Agregar recta de regresion</span></a>
+<a class="sourceLine" id="cb5-5" title="5">   <span class="dt">cor.coef =</span> <span class="ot">TRUE</span>)<span class="co"># Agregar coeficiente correlacion</span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="co">#Grafico x2 = hsGPA y= colGPA</span></a>
+<a class="sourceLine" id="cb5-7" title="7">ghsGPA &lt;-<span class="st"> </span><span class="kw">ggscatter</span>(gpa1, <span class="dt">x =</span> <span class="st">&quot;hsGPA&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;colGPA&quot;</span>,</a>
+<a class="sourceLine" id="cb5-8" title="8">          <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">size =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb5-9" title="9">   <span class="dt">add =</span> <span class="st">&quot;reg.line&quot;</span>,</a>
+<a class="sourceLine" id="cb5-10" title="10">   <span class="dt">cor.coef =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb5-11" title="11"></a>
+<a class="sourceLine" id="cb5-12" title="12"><span class="co">#Grafico x2 = hsGPA x1 = ACT</span></a>
+<a class="sourceLine" id="cb5-13" title="13">gact_hs &lt;-<span class="st"> </span><span class="kw">ggscatter</span>(gpa1, <span class="dt">x =</span> <span class="st">&quot;hsGPA&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;ACT&quot;</span>,</a>
+<a class="sourceLine" id="cb5-14" title="14">          <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">size =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb5-15" title="15">   <span class="dt">add =</span> <span class="st">&quot;reg.line&quot;</span>,</a>
+<a class="sourceLine" id="cb5-16" title="16">   <span class="dt">cor.coef =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb5-17" title="17"></a>
+<a class="sourceLine" id="cb5-18" title="18"><span class="kw">grid.arrange</span>(gact, ghsGPA, gact_hs, <span class="dt">nrow =</span> <span class="dv">1</span>) <span class="co"># Unir graficos</span></a></code></pre></div>
 <p><img src="/assignment/06-code_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Con el gráfico anterior podemos notar dos puntos relevantes:</p>
 <ul>
@@ -867,10 +879,10 @@ IQR (CV) : 4 (0.1)</td>
 modelo &lt;- lm(y ~ x1 + x2 , data = data)</p>
 </div>
 <p>Por fines de comparación, se estimaran primero dos regresiones simples con cada predictor, y luego la regresión múltiple en el Modelo 3:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">col_actmodel&lt;-<span class="kw">lm</span>(colGPA <span class="op">~</span><span class="st"> </span>ACT, <span class="dt">data=</span>gpa1)</a>
-<a class="sourceLine" id="cb5-2" title="2">col_hsmodel&lt;-<span class="kw">lm</span>(colGPA <span class="op">~</span><span class="st">  </span>hsGPA, <span class="dt">data=</span>gpa1)</a>
-<a class="sourceLine" id="cb5-3" title="3">col_model &lt;-<span class="st"> </span><span class="kw">lm</span>(colGPA <span class="op">~</span><span class="st"> </span>ACT <span class="op">+</span><span class="st"> </span>hsGPA, <span class="dt">data =</span> gpa1)</a></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(col_actmodel, col_hsmodel,col_model), <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">p.style =</span> <span class="st">&quot;asterisk&quot;</span>, <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 1&quot;</span>, <span class="st">&quot;Modelo 2&quot;</span>, <span class="st">&quot;Modelo 3&quot;</span>),<span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">col_actmodel&lt;-<span class="kw">lm</span>(colGPA <span class="op">~</span><span class="st"> </span>ACT, <span class="dt">data=</span>gpa1)</a>
+<a class="sourceLine" id="cb6-2" title="2">col_hsmodel&lt;-<span class="kw">lm</span>(colGPA <span class="op">~</span><span class="st">  </span>hsGPA, <span class="dt">data=</span>gpa1)</a>
+<a class="sourceLine" id="cb6-3" title="3">col_model &lt;-<span class="st"> </span><span class="kw">lm</span>(colGPA <span class="op">~</span><span class="st"> </span>ACT <span class="op">+</span><span class="st"> </span>hsGPA, <span class="dt">data =</span> gpa1)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(col_actmodel, col_hsmodel,col_model), <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">p.style =</span> <span class="st">&quot;asterisk&quot;</span>, <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 1&quot;</span>, <span class="st">&quot;Modelo 2&quot;</span>, <span class="st">&quot;Modelo 3&quot;</span>),<span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>)</a></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -1008,8 +1020,8 @@ Por otro, por cada punto que aumenta las notas en enseñanza media <span class="
 <p>En otras palabras, el <span class="math inline">\(b\)</span> de esta regresión es todo lo que comparte <span class="math inline">\(ACT\)</span> y <span class="math inline">\(hsGPA\)</span>. Mientras que el residuo es <strong>todo lo de <span class="math inline">\(ACT\)</span> que no es explicado po <span class="math inline">\(hsGPA\)</span></strong>. En síntesis, es con lo que nos deberíamos quedar en nuestros modelos de regresión múltiple al estimar el <span class="math inline">\(b_{1}\)</span> de <span class="math inline">\(ACT\)</span>.</p>
 <div id="paso-1-estimar-modelo" class="section level4">
 <h4>Paso 1: Estimar modelo</h4>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">model_act_hs =<span class="st"> </span><span class="kw">lm</span>(ACT <span class="op">~</span><span class="st"> </span>hsGPA, <span class="dt">data =</span> gpa1) <span class="co">#Crear regresion con predictores</span></a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="kw">coef</span>(model_act_hs)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">model_act_hs =<span class="st"> </span><span class="kw">lm</span>(ACT <span class="op">~</span><span class="st"> </span>hsGPA, <span class="dt">data =</span> gpa1) <span class="co">#Crear regresion con predictores</span></a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="kw">coef</span>(model_act_hs)</a></code></pre></div>
 <pre><code>## (Intercept)       hsGPA 
 ##   13.696763    3.074331</code></pre>
 <p>En consecuencia tenemos que
@@ -1018,10 +1030,10 @@ Por otro, por cada punto que aumenta las notas en enseñanza media <span class="
 <div id="paso-2-calcular-valores-predichos-y-residuos" class="section level4">
 <h4>Paso 2: calcular valores predichos y residuos</h4>
 <p>Sabemos que si tenemos un modelo de regresión podemos también obtener los residuos. Recordemos ¿qué es un residuo? Un residuo es la diferencia entre el valor observado y el valor predicho</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">fit_act_hs=<span class="kw">fitted.values</span>(model_act_hs) <span class="co"># Calcular valores predichos</span></a>
-<a class="sourceLine" id="cb9-2" title="2">res_act_hs=<span class="kw">residuals</span>(model_act_hs) <span class="co">#Calcular residuos</span></a>
-<a class="sourceLine" id="cb9-3" title="3">gpa1=<span class="kw">cbind</span>(gpa1, fit_act_hs,res_act_hs) <span class="co"># Unir columna de residuos y valores predichos a base de datos</span></a>
-<a class="sourceLine" id="cb9-4" title="4"><span class="kw">head</span>(gpa1) <span class="co">#Mostrar los primeros elementos de la base de datos</span></a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">fit_act_hs=<span class="kw">fitted.values</span>(model_act_hs) <span class="co"># Calcular valores predichos</span></a>
+<a class="sourceLine" id="cb10-2" title="2">res_act_hs=<span class="kw">residuals</span>(model_act_hs) <span class="co">#Calcular residuos</span></a>
+<a class="sourceLine" id="cb10-3" title="3">gpa1=<span class="kw">cbind</span>(gpa1, fit_act_hs,res_act_hs) <span class="co"># Unir columna de residuos y valores predichos a base de datos</span></a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="kw">head</span>(gpa1) <span class="co">#Mostrar los primeros elementos de la base de datos</span></a></code></pre></div>
 <pre><code>##   colGPA hsGPA ACT fit_act_hs res_act_hs
 ## 1    3.0   3.0  21   22.91975 -1.9197550
 ## 2    3.4   3.2  24   23.53462  0.4653787
@@ -1034,8 +1046,8 @@ Por otro, por cada punto que aumenta las notas en enseñanza media <span class="
 <div id="paso-3-crear-regresión-con-variable-parcializada" class="section level4">
 <h4>Paso 3: Crear regresión con variable parcializada</h4>
 <p>Ahora si hacemos la regresión con la variable <em>res_act_hs</em> notaremos que obtendremos el mismo <span class="math inline">\(b_{1}\)</span> de la regresión del modelo múltiple (modelo 3) pero por medio de una regresión simple (modelo 4).</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">act_hs_model &lt;-<span class="st"> </span><span class="kw">lm</span>(colGPA <span class="op">~</span><span class="st"> </span>res_act_hs, <span class="dt">data =</span> gpa1) <span class="co"># Estimar regresión simple con parcialización de ACT</span></a></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(col_actmodel, col_hsmodel,col_model, act_hs_model), <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">p.style =</span> <span class="st">&quot;asterisk&quot;</span>, <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 1&quot;</span>, <span class="st">&quot;Modelo 2&quot;</span>, <span class="st">&quot;Modelo 3&quot;</span>, <span class="st">&quot;Modelo 4&quot;</span>),<span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">act_hs_model &lt;-<span class="st"> </span><span class="kw">lm</span>(colGPA <span class="op">~</span><span class="st"> </span>res_act_hs, <span class="dt">data =</span> gpa1) <span class="co"># Estimar regresión simple con parcialización de ACT</span></a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(col_actmodel, col_hsmodel,col_model, act_hs_model), <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">p.style =</span> <span class="st">&quot;asterisk&quot;</span>, <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 1&quot;</span>, <span class="st">&quot;Modelo 2&quot;</span>, <span class="st">&quot;Modelo 3&quot;</span>, <span class="st">&quot;Modelo 4&quot;</span>),<span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>)</a></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -1182,7 +1194,7 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 <div id="control-estadístico" class="section level2">
 <h2>Control estadístico</h2>
 <p>¿En cuál variable me fijo para la interpretación? Podemos graficar los coeficientes de la regresión de modo de ver el impacto que tienen cada una de las variables sobre <span class="math inline">\(colGPA\)</span></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">plot_model</span>(col_model, <span class="dt">show.values =</span> <span class="ot">TRUE</span>)<span class="op">+</span><span class="st"> </span><span class="kw">theme_sjplot</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">plot_model</span>(col_model, <span class="dt">show.values =</span> <span class="ot">TRUE</span>)<span class="op">+</span><span class="st"> </span><span class="kw">theme_sjplot</span>()</a></code></pre></div>
 <p><img src="/assignment/06-code_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Como podemos ver el efecto que tiene <span class="math inline">\(hsGPA\)</span> sobre <span class="math inline">\(colGPA\)</span>, controlando por <span class="math inline">\(ACT\)</span>, es mucho mayor que el que tiene <span class="math inline">\(ACT\)</span> parcializado por <span class="math inline">\(colGPA\)</span>. Sin embargo, esto nada nos dice de qué variable enfatizar: <strong>esto dependen de las hipótesis que queremos probar con nuestros modelos</strong>.</p>
 </div>

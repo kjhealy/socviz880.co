@@ -1,0 +1,10 @@
+base
+texreg
+knitr
+dplyr
+sjmisc
+carData
+car
+sjlabelled
+stargazer
+wooldridge

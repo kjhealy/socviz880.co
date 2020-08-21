@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Estadística Multivariada</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=".small[Juan Carlos Castillo    Departamento de Sociología - UCH / COES   ]" />
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../custom_2020.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: front
+
+
+
+
+
+
+
+
+
+&lt;!---
+Para correr en ATOM
+- open terminal, abrir R (simplemente, R y enter)
+- rmarkdown::render('static/docpres/07_interacciones/7interacciones.Rmd', 'xaringan::moon_reader')
+
+About macros.js: permite escalar las imágenes como [scale 50%](path to image), hay si que grabar ese archivo js en el directorio.
+---&gt;
+
+
+.pull-left[
+# Estadística Multivariada
+## Juan Carlos Castillo
+## Sociología FACSO - UChile
+## 1er Sem 2020
+## [multivariada.netlify.com](https://multivariada.netlify.com)
+]
+
+
+.pull-right[
+.right[
+![:scale 70%](https://multivariada.netlify.com/img/hex_multiva.png)
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+## Sesión 12: Pendientes y complementos
+
+]
+
+]
+---
+
+layout: true
+class: animated, fadeIn
+
+---
+class: inverse
+
+## Temas varios pendientes &amp; complementos 
+
+*1. Variables*
+  - Valores perdidos
+  - Estandarización
+  - Índices
+  
+*2. Presentación modelos*
+
+*3. Correlaciones categóricas*
+---
+class: inverse
+
+## Temas varios pendientes &amp; complementos 
+
+*1. Variables*
+  - **Valores perdidos**
+  - Estandarización
+  - Índices
+  
+*2. Presentación modelos*
+
+*3. Correlaciones categóricas*
+
+---
+## Valores perdidos
+
+- la proporción de valores perdidos no es trivial para la estimación, principalmente si estos perdidos no son aleatorios
+
+- atender siempre al N de los modelos, no debería presentar una proporción de perdidos &gt; 30% (app)
+
+- ante alta proporción de valores perdidos, análizar causas e intentar rescatar la mayor cantidad de casos posibles
+
+---
+## Rescatando valores perdidos: variable dependiente
+
+- descriptivos y cruces, buscar el origen de los perdidos
+
+--
+
+- descartar posibles preguntas filtro en el instrumento
+
+--
+
+- evaluar si cambiar de base de datos
+
+--
+
+- evaluar alternativa a OLS que permita integrar perdidos como categoría luego de transformación (ej: regresión logistica multinomial)
+
+---
+## Rescatando valores perdidos: variable(s) independiente(s)
+
+- establecer origen de la pérdida de datos
+
+- procedimientos de imputación (avanzado)
+
+- alternativa simple: transformar a categórica e incluir un nivel/categoría de perdidos
+
+---
+## Rescatando perdidos: ingreso
+
+- caso típico de presencia de valores perdidos 
+
+- pasar a categorías (ej: deciles/quintiles) y agregar categoría con missings
+
+- Detalles en [Práctica 11](https://multivariada.netlify.app/assignment/11-code/#recuperar-casos-perdidos-1)
+
+---
+## Ejemplo: variable autoubicación izquierda-derecha
+
+Datos ELSOC 2016
+
+
+.tiny[
+
+```
+## 
+## Autoubicacion escala izquierda-derecha (x) &lt;numeric&gt;
+## # total N=2927  valid N=2927  mean=-13.20  sd=139.05
+## 
+## Value |                      Label |    N | Raw % | Valid % | Cum. %
+## --------------------------------------------------------------------
+##  -999 |      No Responde (no leer) |   23 |  0.79 |    0.79 |   0.79
+##  -888 |          No Sabe (no leer) |   43 |  1.47 |    1.47 |   2.25
+##     0 |                0 Izquierda |  122 |  4.17 |    4.17 |   6.42
+##     1 |                          1 |   58 |  1.98 |    1.98 |   8.40
+##     2 |                          2 |  111 |  3.79 |    3.79 |  12.20
+##     3 |                          3 |  135 |  4.61 |    4.61 |  16.81
+##     4 |                          4 |  157 |  5.36 |    5.36 |  22.17
+##     5 |                   5 Centro |  604 | 20.64 |   20.64 |  42.81
+##     6 |                          6 |   98 |  3.35 |    3.35 |  46.16
+##     7 |                          7 |   94 |  3.21 |    3.21 |  49.37
+##     8 |                          8 |   84 |  2.87 |    2.87 |  52.24
+##     9 |                          9 |   23 |  0.79 |    0.79 |  53.02
+##    10 |                 10 Derecha |  110 |  3.76 |    3.76 |  56.78
+##    11 | 11 Independiente (no leer) |  200 |  6.83 |    6.83 |  63.61
+##    12 |       12 Ninguno (no leer) | 1065 | 36.39 |   36.39 | 100.00
+##  &lt;NA&gt; |                       &lt;NA&gt; |    0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;
+```
+]
+---
+## Ejemplo: variable autoubicación izquierda-derecha
+
+- Definir categorías, ejemplo: Ninguno, Izquierda, Centro, Derecha, Independiente
+
+- Decidir sobre valores que se asocian a cada categoría
+
+- Recodificar
+
+- Re-etiquetar
+
+
+---
+## Ejemplo: variable autoubicación izquierda-derecha
+
+.medium[
+
+```r
+# Recodificar
+elsoc_2016$c15_cat &lt;- car::recode(elsoc_2016$c15,
+                                 "c(-888,-999,12)=1;
+                                  c(0,1,2,3)=2;
+                                  c(4,5,6)=3;
+                                  c(7,8,9,10)=4;
+                                  11=5")
+# Re-etiquetar
+elsoc_2016$c15_cat &lt;- set_labels(elsoc_2016$c15_cat,
+                    labels= c("Ninguno"=1,
+                              "Izquierda"=2,
+                              "Centro"=3,
+                              "Derecha"=4,
+                              "Independiente"=5))
+```
+]
+
+---
+## Ejemplo: variable autoubicación izquierda-derecha
+
+.medium[
+
+```
+## 
+## Autoubicacion escala izquierda-derecha (x) &lt;numeric&gt;
+## # total N=2927  valid N=2927  mean=2.32  sd=1.27
+## 
+## Value |         Label |    N | Raw % | Valid % | Cum. %
+## -------------------------------------------------------
+##     1 |       Ninguno | 1131 | 38.64 |   38.64 |  38.64
+##     2 |     Izquierda |  426 | 14.55 |   14.55 |  53.19
+##     3 |        Centro |  859 | 29.35 |   29.35 |  82.54
+##     4 |       Derecha |  311 | 10.63 |   10.63 |  93.17
+##     5 | Independiente |  200 |  6.83 |    6.83 | 100.00
+##  &lt;NA&gt; |          &lt;NA&gt; |    0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;
+```
+]
+
+---
+class: inverse middle center
+
+# Recordar reportar el proceso de transformación en la sección de variables
+
+---
+class: inverse
+
+## Temas varios pendientes &amp; complementos 
+
+*1. Variables*
+  - Valores perdidos
+  - **Estandarización**
+  - Índices
+  
+*2. Presentación modelos*
+
+*3. Correlaciones categóricas*
+
+
+---
+# Estandarización
+
+## ¿Qué coeficiente es mayor que otro?
+
+- usualmente, los coeficientes se encuentran en escalas diferentes
+
+- para poder comparar la magnitud de un coeficiente en relación a los otros se requiere pasar a una escala común
+
+- esto se efectúa mediante el proceso de **estandarización**
+
+---
+## Estandarización de Coeficientes
+
+- Para poder expresar las variables en escalas comparables, sus valores se ponderan respecto de su desviación estándar.
+
+- Para ello, a cada valor de la variable se le resta el promedio y se divide por su desviación estándar, lo que se conoce como **puntaje Z**:
+
+`$$z_x=\frac{x-\bar{x}}{sd(x)}$$`
+
+- Este procedimiento se aplica tanto a la dependiente como a las independientes
+---
+## Estandarización: interpretación
+
+- al estandarizar, los coeficientes de regresión reflejan cuantas **desviaciones estándar** cambia _Y_ como consecuencia del cambio en **una desviación estándar** _X_.
+
+- los coeficientes ahora son comparables entre sí en base a su magnitud
+
+---
+## Estandarización de Coeficientes
+
+De la [Práctica 6 - regresión multiple 2](https://multivariada.netlify.app/assignment/06-code/):
+
+- *colGPA*: promedio general de calificaciones de la universidad, en escala de 0 a 4 puntos.
+
+- *hsGPA*: promedio general de calificaciones en la enseñanza media, en escala de 0 a 4 puntos
+
+- *ACT* : puntaje en el examen de admisión a la universidad, que va de 16 a 33 puntos
+---
+## Estandarización de Coeficientes
+
+Función `scale`
+
+
+```r
+library(wooldridge)
+data('gpa1') # Cargar base de datos
+gpa1 &lt;- dplyr::select(gpa1, colGPA, hsGPA, ACT)
+
+col_model &lt;- lm(colGPA ~ ACT + hsGPA, data = gpa1)
+
+*gpa1_std = data.frame(scale(gpa1))
+
+col_model_std &lt;- lm(colGPA ~ ACT + hsGPA, data = gpa1_std)
+```
+
+---
+## Estandarización de Coeficientes
+
+&lt;br&gt;
+
+&lt;table style="border-collapse:collapse; border:none;"&gt;
+&lt;tr&gt;
+&lt;th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; "&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; "&gt;Modelo 1&lt;/th&gt;
+&lt;th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; "&gt;Modelo 2 (std)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; "&gt;Predictores&lt;/td&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  "&gt;β&lt;/td&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  "&gt;std. Error&lt;/td&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  "&gt;β&lt;/td&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  "&gt;std. Error&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;(Intercept)&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;1.286 &lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.341&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.000 &lt;sup&gt;&lt;/sup&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.077&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;ACT&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.009 &lt;sup&gt;&lt;/sup&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.011&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.072 &lt;sup&gt;&lt;/sup&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.082&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;hsGPA&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.453 &lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.096&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.390 &lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.082&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;"&gt;Observations&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2"&gt;141&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2"&gt;141&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;"&gt;R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2"&gt;0.176 / 0.164&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2"&gt;0.176 / 0.164&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td colspan="5" style="font-style:italic; border-top:double black; text-align:right;"&gt;* p&amp;lt;0.05&amp;nbsp;&amp;nbsp;&amp;nbsp;** p&amp;lt;0.01&amp;nbsp;&amp;nbsp;&amp;nbsp;*** p&amp;lt;0.001&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;
+
+
+---
+## Estandarización de Coeficientes
+
+
+En este caso se puede observar que por el aumento en **una desviación estándar** en las calificaciones de enseñanza media (hsGPA), el promedio de notas en la universidad (colGPA) aumenta  **0.39 desviaciones estándar**.
+
+Al estar en una misma unidad de medida, podemos comparar los coeficientes en términos de su tamaño.
+
+---
+class: inverse
+
+## Temas varios pendientes &amp; complementos 
+
+*1. Variables*
+  - Valores perdidos
+  - Estandarización
+  - **Índices**
+  
+*2. Presentación modelos*
+
+*3. Correlaciones categóricas*
+
+
+---
+
+.pull-left-narrow[
+# Índices
+
+Algunos conceptos o atributos pueden estar medidos por indicadores múltiples
+]
+
+--
+
+.pull-right-wide[
+![](bateria.png)
+]
+
+---
+# Índices
+
+- la presencia de indicadores múltiples para medir un mismo atributo/constructo se relaciona con la noción de **variable latente**
+
+- latente: subyace a los indicadores múltiples
+
+- para poder dar una métrica/puntaje a lo latente existen métodos como análisis factorial o construcción de índices
+
+---
+# Índices
+
+- la forma más usual de construir un índice es mediante una suma o un  promedio de los indicadores que (aparentemente) están midiendo lo mismo
+
+- Ejemplo: base de datos con indicadores c1 a c5, 4 casos: 
+
+
+```
+##   c1 c2 c3 c4 c5
+## 1  1 NA NA  2  1
+## 2  2  2  4  3  7
+## 3 NA NA NA  7  5
+## 4  4  5 NA  8  3
+```
+
+---
+# Índice promedio
+
+
+```r
+sjmisc::row_means(dat, n=5)
+```
+
+```
+##   c1 c2 c3 c4 c5 rowmeans
+## 1  1 NA NA  2  1       NA
+## 2  2  2  4  3  7      3.6
+## 3 NA NA NA  7  5       NA
+## 4  4  5 NA  8  3       NA
+```
+
+La opción `n=x` indica la cantidad de información completa requerida para poder calcular el índice; en este caso, solo casos que tengan toda la información (5 indicadores)
+
+---
+# Índices
+
+
+```r
+sjmisc::row_means(dat, n=1)
+```
+
+```
+##   c1 c2 c3 c4 c5 rowmeans
+## 1  1 NA NA  2  1 1.333333
+## 2  2  2  4  3  7 3.600000
+## 3 NA NA NA  7  5 6.000000
+## 4  4  5 NA  8  3 5.000000
+```
+.medium[
+- En este caso, basta con que tenga información en **un solo indicador** (`n=1`) para poder calcular el promedio.
+
+- Recomendación general: al menos la mitad de los indicadores]
+---
+# Consistencia interna del índice
+
+## ¿Qué tan bien representa el índice el atributo latente?
+
+- el supuesto detrás de la construcción del índice es que los indicadores estarían (co)relacionados entre sí.
+
+- una forma de dar cuenta del grado de asociación entre indicadores múltiples es el **Alfa de Cronbach**
+
+- El Alfa de Cronbach es a grandes rasgos un indicador de la magnitud promedio del tamaño de las correlaciones entre los indicadores.
+
+
+---
+# Consistencia interna del índice
+
+.medium[
+
+```r
+alpha &lt;-psych::alpha(dat)
+```
+
+```
+## Some items ( c5 ) were negatively correlated with the total scale and 
+## probably should be reversed.  
+## To do this, run the function again with the 'check.keys=TRUE' option
+```
+
+```r
+alpha$total
+```
+
+```
+##  raw_alpha std.alpha   G6(smc) average_r      S/N       ase     mean       sd
+##  0.6538953 0.7221169 0.5415877 0.3938141 2.598635 0.3087548 3.958333 2.029299
+##   median_r
+##  0.5474255
+```
+]
+---
+# Consistencia interna del índice
+
+El alpha que corresponde reportar es el `raw_alpha`=0.65
+
+En general un alpha igual o mayor a **0.7** es considerado aceptable para poder utilizar el índice
+
+
+---
+class: inverse
+
+## Temas varios pendientes &amp; complementos 
+
+*1. Variables*
+  - Valores perdidos
+  - Estandarización
+  - Índices
+  
+**2. Presentación modelos**
+
+*3. Correlaciones categóricas*
+
+---
+# Lógica de presentación de modelos
+
+- En general la presentación de los modelos de regresión debe permitir un buen análisis y discusión de los resultados.
+
+- Recomendaciones: modelos que vayan incorporando los predictores en orden de relevancia en la argumentación
+
+
+---
+# Lógica de presentación de modelos
+
+- Esquema de tabla de tres modelos:
+
+  - Modelo 1: predictor asociado a hipótesis principal
+
+  - Modelo 2: + otros predictores relevantes asociados a hipótesis
+
+  - Modelo 3: + controles
+
+---
+# Fijar N modelos para comparación
+
+- recordar que los distintos modelos de una misma tabla de regresión deben tener el **mismo N**
+
+- el N puede variar ya que predictores adicionales pueden agregar casos perdidos 
+
+- por lo tanto, se debe **fijar el N** al del modelo final (=con todas las variables)
+
+---
+# Fijar N modelos para comparación
+
+- genear nueva base de datos solamente las variables que van a aparecer en el modelo de regresión con `select` (dplyr)
+
+- luego de esta base con variables seleccionadas eliminar los casos perdidos: `base_seleccionada &lt;-na.omit(base_seleccionada)`
+
+- detalle aparece en [Nota sobre casos perdidos (NAs)](https://multivariada.netlify.app/assignment/02-code/#nota-sobre-casos-perdidos-nas-na-omit-data), práctica 2.
+
+---
+# Considerar en el análisis de la tabla de modelos
+
+- coeficientes
+
+- significación estadística
+
+- control estadístico
+
+- ajuste general (R2, deviance)
+
+- comparación de modelos
+
+---
+# Otras consideraciones: transformaciones
+
+- recordar posibilidades de transformación de variables por supuestos de linealidad, como polinomios y logaritmos ([Sesión 11 - Supuestos](https://multivariada.netlify.app/class/11-class/))
+
+- otras transformaciones para facilitar la interpretación
+  - ejemplo: dividir variables con un amplio rango de valores, como ingreso, por ejemplo por 100.000. Esto permite reflejar mejor el cambio en la dependiente (cambio cada 100.000 en lugar de cambio por cada peso)
+
+---
+class: inverse
+
+## Temas varios pendientes &amp; complementos 
+
+*1. Variables*
+  - Valores perdidos
+  - Estandarización
+  - Índices
+  
+*2. Presentación modelos*
+
+**3. Correlaciones categóricas**
+---
+
+# Sobre correlaciones con variables categóricas
+
+.medium[
+- el método de correlación de **Pearson** (que se utiliza muchas veces como sinónimo de correlación) esta diseñado en principio para variables continuas
+
+- sin embargo, sus coeficientes pueden ser también interpretados para el caso de una variable dicotómica con una continua (correlación punto biserial) o entre dos dicotómicas (coeficiente phi)
+
+- para correlación entre variables ordinales es más apropiado otras estimaciones como **Spearman**, que no hace supuestos distribucionales y ordena las observaciones en base a un ranking.]
+
+---
+# Sobre correlaciones con variables categóricas
+
+Recumendación general:
+
+- si el contraste de hipótesis no se basa en las correlaciones sino en regresión, una matriz con base Pearson es aceptable.
+
+- también se puede utilizar una matriz de correlaciones **policóricas**, que permite ajustar el cálculo de correlaciones a variables categóricas (avanzado).
+  - implementación en R vía librería [`psych`](https://personality-project.org/r/psych/help/tetrachor.html)
+
+
+---
+class: inverse
+
+## Resumen
+
+*1. Variables*
+  - Valores perdidos
+  - Estandarización
+  - Índices
+  
+*2. Presentación modelos*
+
+**3. Correlaciones categóricas**
+
+---
+class: front
+
+.pull-left[
+# Estadística Multivariada
+## Juan Carlos Castillo
+## Sociología FACSO - UChile
+## 1er Sem 2020
+## [multivariada.netlify.com](https://multivariada.netlify.com)
+]
+
+
+.pull-right[
+.right[
+&lt;br&gt;
+![:scale 80%](https://multivariada.netlify.com/img/hex_multiva.png)
+]
+
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://multinivel.netlify.com/docpres/xaringan_custom/macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
