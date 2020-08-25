@@ -524,7 +524,7 @@ Recumendación general:
 ---
 class: inverse
 
-## Resumen
+## Resumen varios pendientes y complementos
 
 *1. Variables*
   - Valores perdidos
@@ -533,7 +533,7 @@ class: inverse
   
 *2. Presentación modelos*
 
-**3. Correlaciones categóricas**
+*3. Correlaciones categóricas*
 
 ---
 class: front
