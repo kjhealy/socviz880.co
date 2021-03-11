@@ -13,8 +13,8 @@ hero_media: hex_multiva.png
 design:
   background:
     # Background gradient
-    gradient_start: '#A52C60'
-    gradient_end: '#CF4420'
+    gradient_start: '#CF4420'
+    gradient_end: '#FFE400'
 
     # Text color (true=light or false=dark).
     text_color_light: true
@@ -23,4 +23,4 @@ cta_note:
   label: Primer Semestre<br>Departamento de Sociología<br>Universidad de Chile<br>[multivariada.netlify.com]()
 ---
 
-**SOC 01024 / 2020**
+**SOC 01024 / 2021**

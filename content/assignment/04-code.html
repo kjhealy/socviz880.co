@@ -25,31 +25,33 @@ editor_options:
 ---
 
 <!-- BLOGDOWN-HEAD -->
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 <script src="/rmarkdown-libs/clipboard/clipboard.min.js"></script>
 <link href="/rmarkdown-libs/primer-tooltips/build.css" rel="stylesheet" />
 <link href="/rmarkdown-libs/klippy/css/klippy.min.css" rel="stylesheet" />
 <script src="/rmarkdown-libs/klippy/js/klippy.min.js"></script>
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -58,9 +60,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { background-color: #f8f8f8; }
+  {  background-color: #f8f8f8; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -120,13 +122,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="librerías" class="section level2">
 <h2>Librerías</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">pacman<span class="op">::</span><span class="kw">p_load</span>(stargazer, ggplot2, dplyr,webshot)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(stargazer, ggplot2, dplyr,webshot)</span></code></pre></div>
 </div>
 <div id="datos" class="section level2">
 <h2>Datos</h2>
 <p>Los datos a utilizar son los mismos que los de la práctica 3, corresponden a un ejemplo ficticio de 23 casos (individuos) y sus datos en dos variables relacionadas con un juego: el número de veces que se ha jugado antes (X) y el número de puntos ganados (Y).</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">datos &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://multivariada.netlify.app/slides/03-regsimple1/tacataca.txt&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</a>
-<a class="sourceLine" id="cb2-2" title="2">datos</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>datos &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://multivariada.netlify.app/slides/03-regsimple1/tacataca.txt&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>datos</span></code></pre></div>
 <pre><code>##    id juegos_x puntos_y
 ## 1   1        0        2
 ## 2   2        0        3
@@ -164,10 +166,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>Con esto entonces, si los datos están guardados en la misma carpeta, entonces se llaman simplemente <code>datos &lt;- read.csv("tacataca.txt", sep="")</code>. No se requiere dar la ruta completa justamente porque el programa ya sabe dónde uno está posicionado. Asimísmo, al momento de guardar/exportar algún resultado, automáticamente quedará en la carpeta de trabajo.</p>
 </div>
 <p>Recordando la distribución de los datos y la recta de regresión:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">g2=<span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(<span class="dt">x=</span>juegos_x, <span class="dt">y=</span>puntos_y)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span>lm, <span class="dt">se=</span><span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb4-4" title="4">g2</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>g2=<span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(<span class="dt">x=</span>juegos_x, <span class="dt">y=</span>puntos_y)) <span class="op">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span>lm, <span class="dt">se=</span><span class="ot">FALSE</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>g2</span></code></pre></div>
 <img src="/assignment/04-code_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 <div class="alert alert-info">
 <p><strong>Grabar / exportar gráficos</strong> :<span class="sidenote">Exportar gráficos </span>
@@ -197,8 +199,8 @@ dev.off() # se cierra el archivo
 <h2>Modelo y cálculo de parámetros</h2>
 <p>Como vimos la práctica anterior, el modelo de regresión entonces se relaciona con una ecuación de la recta, o recta de regresión, que se puede definir en términos simples de la siguiente manera:</p>
 <p><span class="math display">\[\widehat{Y}=b_{0} +b_{1}X \]</span></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">reg1 &lt;-<span class="kw">lm</span>(puntos_y <span class="op">~</span>juegos_x, <span class="dt">data =</span> datos)</a>
-<a class="sourceLine" id="cb7-2" title="2">reg1</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>reg1 &lt;-<span class="kw">lm</span>(puntos_y <span class="op">~</span>juegos_x, <span class="dt">data =</span> datos)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>reg1</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = puntos_y ~ juegos_x, data = datos)
@@ -207,7 +209,7 @@ dev.off() # se cierra el archivo
 ## (Intercept)     juegos_x  
 ##         2.5          0.5</code></pre>
 <p>Podemos generar una tabla en un formato más publicable:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">stargazer</span>(reg1, <span class="dt">type=</span><span class="st">&quot;text&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">stargazer</span>(reg1, <span class="dt">type=</span><span class="st">&quot;text&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## ===============================================
 ##                         Dependent variable:    
@@ -229,7 +231,7 @@ dev.off() # se cierra el archivo
 ## ===============================================
 ## Note:               *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
 <p>También es posible generar una tabla más resumida en formato publicable y visible en RStudio:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">sjPlot<span class="op">::</span><span class="kw">tab_model</span>(reg1, <span class="dt">show.ci=</span><span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a>sjPlot<span class="op">::</span><span class="kw">tab_model</span>(reg1, <span class="dt">show.ci=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -307,22 +309,22 @@ webshot(&quot;reg1_tab.html&quot;,&quot;reg1_tab.png&quot;)
 <p>No obstante, incluso cuando se ajusta el mejor modelo siempre existirá un grado de imprecisión, representado por las diferencias entre los datos observados y los valores predichos por la recta de regresión.</p>
 <p>La precisión de nuestro modelo se relaciona con el concepto de <strong>Bondad de Ajuste</strong>, y se evalúa a partir del estadístico <span class="math inline">\(R^2\)</span>.</p>
 <p>En el siguiente apartado se puede observar la manera de calcular la predicción de Y (puntos_y) en base a X (juegos_x), y almacenarlos en la base de datos, con los respectivos residuos.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co">#summary(lm(puntos_y~juegos_x, data=datos))</span></a>
-<a class="sourceLine" id="cb14-2" title="2"><span class="co">#beta=0.5 intercepto=2.5</span></a>
-<a class="sourceLine" id="cb14-3" title="3"></a>
-<a class="sourceLine" id="cb14-4" title="4"><span class="co">#Variable de valores predichos</span></a>
-<a class="sourceLine" id="cb14-5" title="5">datos<span class="op">$</span>estimado&lt;-<span class="st"> </span>(<span class="fl">2.5</span> <span class="op">+</span><span class="st"> </span>datos<span class="op">$</span>juegos_x<span class="op">*</span><span class="fl">0.5</span>)</a>
-<a class="sourceLine" id="cb14-6" title="6"></a>
-<a class="sourceLine" id="cb14-7" title="7"><span class="co"># Alternativa por comando</span></a>
-<a class="sourceLine" id="cb14-8" title="8"><span class="co">#datos$estimado &lt;- predict(reg1)</span></a>
-<a class="sourceLine" id="cb14-9" title="9"></a>
-<a class="sourceLine" id="cb14-10" title="10"><span class="co">#Estimamos el residuo</span></a>
-<a class="sourceLine" id="cb14-11" title="11">datos<span class="op">$</span>residuo &lt;-<span class="st"> </span>datos<span class="op">$</span>puntos_y <span class="op">-</span><span class="st"> </span>datos<span class="op">$</span>estimado</a>
-<a class="sourceLine" id="cb14-12" title="12"></a>
-<a class="sourceLine" id="cb14-13" title="13"><span class="co"># Alternativa por comando</span></a>
-<a class="sourceLine" id="cb14-14" title="14"><span class="co">#datos$residuo &lt;- residuals(reg1)</span></a>
-<a class="sourceLine" id="cb14-15" title="15"></a>
-<a class="sourceLine" id="cb14-16" title="16">datos <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(id, estimado, residuo)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="co">#summary(lm(puntos_y~juegos_x, data=datos))</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a><span class="co">#beta=0.5 intercepto=2.5</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a><span class="co">#Variable de valores predichos</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a>datos<span class="op">$</span>estimado&lt;-<span class="st"> </span>(<span class="fl">2.5</span> <span class="op">+</span><span class="st"> </span>datos<span class="op">$</span>juegos_x<span class="op">*</span><span class="fl">0.5</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true"></a><span class="co"># Alternativa por comando</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true"></a><span class="co">#datos$estimado &lt;- predict(reg1)</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true"></a><span class="co">#Estimamos el residuo</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true"></a>datos<span class="op">$</span>residuo &lt;-<span class="st"> </span>datos<span class="op">$</span>puntos_y <span class="op">-</span><span class="st"> </span>datos<span class="op">$</span>estimado</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true"></a><span class="co"># Alternativa por comando</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true"></a><span class="co">#datos$residuo &lt;- residuals(reg1)</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true"></a>datos <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(id, estimado, residuo)</span></code></pre></div>
 <pre><code>##    id estimado residuo
 ## 1   1      2.5    -0.5
 ## 2   2      2.5     0.5
@@ -356,54 +358,54 @@ webshot(&quot;reg1_tab.html&quot;,&quot;reg1_tab.png&quot;)
 </ul>
 <p><span class="math display">\[SS_{tot} = \sum(y-\bar{y})^2 \]</span>
 Y calculamos</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">ss_tot&lt;-<span class="st"> </span><span class="kw">sum</span>((datos<span class="op">$</span>puntos_y<span class="op">-</span><span class="kw">mean</span>(datos<span class="op">$</span>puntos_y))<span class="op">^</span><span class="dv">2</span>); ss_tot</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a>ss_tot&lt;-<span class="st"> </span><span class="kw">sum</span>((datos<span class="op">$</span>puntos_y<span class="op">-</span><span class="kw">mean</span>(datos<span class="op">$</span>puntos_y))<span class="op">^</span><span class="dv">2</span>); ss_tot</span></code></pre></div>
 <pre><code>## [1] 42</code></pre>
 <ul>
 <li><strong>Suma de cuadrados de la regresión</strong>: se refiere a la suma de diferencias (al cuadrado) entre el valor estimado por el modelo de regresión y la media. Expresa cuanto de la varianza de Y alcanzamos a predecir con X</li>
 </ul>
 <p><span class="math display">\[SS_{reg} = \sum(\hat{y}-\bar{y})^2\]</span></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">ss_reg&lt;-<span class="kw">sum</span>((datos<span class="op">$</span>estimado<span class="op">-</span><span class="kw">mean</span>(datos<span class="op">$</span>puntos_y))<span class="op">^</span><span class="dv">2</span>) ; ss_reg</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a>ss_reg&lt;-<span class="kw">sum</span>((datos<span class="op">$</span>estimado<span class="op">-</span><span class="kw">mean</span>(datos<span class="op">$</span>puntos_y))<span class="op">^</span><span class="dv">2</span>) ; ss_reg</span></code></pre></div>
 <pre><code>## [1] 17</code></pre>
 <ul>
 <li><strong>Suma de residuos al cuadrado</strong>: al contrario de el cálculo anterior, los residuos representan la parte de la varianza de <code>Y</code> que no alcanzamos a abarcar con nuestro modelo de regresión. Es decir, reprsentan el error en la predicción (diferencia entre lo estimado por el modelo y el valor observado)</li>
 </ul>
 <p><span class="math display">\[SS_{error} = \sum(y-\hat{y})^2\]</span></p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">ss_err&lt;-<span class="st"> </span><span class="kw">sum</span>((datos<span class="op">$</span>puntos_y <span class="op">-</span><span class="st"> </span>datos<span class="op">$</span>estimado)<span class="op">^</span><span class="dv">2</span>);ss_err</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a>ss_err&lt;-<span class="st"> </span><span class="kw">sum</span>((datos<span class="op">$</span>puntos_y <span class="op">-</span><span class="st"> </span>datos<span class="op">$</span>estimado)<span class="op">^</span><span class="dv">2</span>);ss_err</span></code></pre></div>
 <pre><code>## [1] 25</code></pre>
 <p>A partir de las sumas de cuadrados anteriores es posible calcular el estadístico <span class="math inline">\(R^{2}\)</span></p>
 <p><span class="math display">\[R^2=\frac{SS_{reg}}{SS_{tot}}= 1- \frac{SS_{error}}{SS_{tot}}\]</span></p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="co">#Opción 1</span></a>
-<a class="sourceLine" id="cb22-2" title="2">ss_reg<span class="op">/</span>ss_tot</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="co">#Opción 1</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true"></a>ss_reg<span class="op">/</span>ss_tot</span></code></pre></div>
 <pre><code>## [1] 0.4047619</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="co">#Opción 2</span></a>
-<a class="sourceLine" id="cb24-2" title="2"><span class="dv">1</span><span class="op">-</span>ss_err<span class="op">/</span>ss_tot</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a><span class="co">#Opción 2</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true"></a><span class="dv">1</span><span class="op">-</span>ss_err<span class="op">/</span>ss_tot</span></code></pre></div>
 <pre><code>## [1] 0.4047619</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co">#por comando</span></a>
-<a class="sourceLine" id="cb26-2" title="2"><span class="kw">summary</span>(<span class="kw">lm</span>(puntos_y<span class="op">~</span>juegos_x, <span class="dt">data=</span>datos))<span class="op">$</span>r.squared</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a><span class="co">#por comando</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true"></a><span class="kw">summary</span>(<span class="kw">lm</span>(puntos_y<span class="op">~</span>juegos_x, <span class="dt">data=</span>datos))<span class="op">$</span>r.squared</span></code></pre></div>
 <pre><code>## [1] 0.4047619</code></pre>
 </div>
 <div id="visualización" class="section level2">
 <h2>Visualización</h2>
 <p>En la siguiente sección se presentan distintas formas de visualizar los residuos a partir del paquete <strong>ggplot2</strong>.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co">#Visualizacion</span></a>
-<a class="sourceLine" id="cb28-2" title="2"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb28-3" title="3"></a>
-<a class="sourceLine" id="cb28-4" title="4"><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(<span class="dt">x=</span>juegos_x, <span class="dt">y=</span>puntos_y))<span class="op">+</span></a>
-<a class="sourceLine" id="cb28-5" title="5"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;lightgrey&quot;</span>) <span class="op">+</span><span class="co">#Pendiente de regresion</span></a>
-<a class="sourceLine" id="cb28-6" title="6"><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend=</span>juegos_x, <span class="dt">yend=</span>estimado), <span class="dt">alpha =</span> <span class="fl">.2</span>) <span class="op">+</span><span class="st"> </span><span class="co">#Distancia entre estimados y datos en lineas</span></a>
-<a class="sourceLine" id="cb28-7" title="7"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="co">#Capa 1</span></a>
-<a class="sourceLine" id="cb28-8" title="8"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>estimado), <span class="dt">shape =</span><span class="dv">1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb28-9" title="9"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true"></a><span class="co">#Visualizacion</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true"></a><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(<span class="dt">x=</span>juegos_x, <span class="dt">y=</span>puntos_y))<span class="op">+</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;lightgrey&quot;</span>) <span class="op">+</span><span class="co">#Pendiente de regresion</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend=</span>juegos_x, <span class="dt">yend=</span>estimado), <span class="dt">alpha =</span> <span class="fl">.2</span>) <span class="op">+</span><span class="st"> </span><span class="co">#Distancia entre estimados y datos en lineas</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="co">#Capa 1</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>estimado), <span class="dt">shape =</span><span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
 <p><img src="/assignment/04-code_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>En esta segunda opción, se agrega tamaño y color a los residuos mayores:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(<span class="dt">x=</span>juegos_x, <span class="dt">y=</span>puntos_y))<span class="op">+</span></a>
-<a class="sourceLine" id="cb29-2" title="2"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;lightgrey&quot;</span>) <span class="op">+</span><span class="co">#Pendiente de regresion</span></a>
-<a class="sourceLine" id="cb29-3" title="3"><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend=</span>juegos_x, <span class="dt">yend=</span>estimado), <span class="dt">alpha =</span> <span class="fl">.2</span>) <span class="op">+</span><span class="st"> </span><span class="co">#Distancia entre estimados y datos en lineas</span></a>
-<a class="sourceLine" id="cb29-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">abs</span>(residuo), <span class="dt">size =</span> <span class="kw">abs</span>(residuo))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb29-5" title="5"><span class="st">  </span><span class="kw">scale_color_continuous</span>(<span class="dt">low =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb29-6" title="6"><span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="ot">FALSE</span>, <span class="dt">size =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb29-7" title="7"><span class="st">   </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>estimado), <span class="dt">shape =</span><span class="dv">1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb29-8" title="8"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true"></a><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(<span class="dt">x=</span>juegos_x, <span class="dt">y=</span>puntos_y))<span class="op">+</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;lightgrey&quot;</span>) <span class="op">+</span><span class="co">#Pendiente de regresion</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend=</span>juegos_x, <span class="dt">yend=</span>estimado), <span class="dt">alpha =</span> <span class="fl">.2</span>) <span class="op">+</span><span class="st"> </span><span class="co">#Distancia entre estimados y datos en lineas</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">abs</span>(residuo), <span class="dt">size =</span> <span class="kw">abs</span>(residuo))) <span class="op">+</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_color_continuous</span>(<span class="dt">low =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="ot">FALSE</span>, <span class="dt">size =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true"></a><span class="st">   </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>estimado), <span class="dt">shape =</span><span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
 <p><img src="/assignment/04-code_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </div>
 <div id="el-coeficiente-de-regresión-versus-el-coeficiente-de-correlación" class="section level1">
@@ -411,28 +413,28 @@ Y calculamos</p>
 <p>Tanto <span class="math inline">\(r_{xy}\)</span> y <span class="math inline">\(\beta_1\)</span> son medidas de la relación entre X e Y. Ellas estan relacionadas con la formula de:</p>
 <p><span class="math display">\[\beta_1= r_{xy}(S_y/S_x)\]</span></p>
 <p>Es decir:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">beta&lt;-<span class="kw">cor</span>(datos<span class="op">$</span>juegos_x,datos<span class="op">$</span>puntos_y)<span class="op">*</span>(<span class="kw">sd</span>(datos<span class="op">$</span>puntos_y)<span class="op">/</span><span class="kw">sd</span>(datos<span class="op">$</span>juegos_x));beta</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true"></a>beta&lt;-<span class="kw">cor</span>(datos<span class="op">$</span>juegos_x,datos<span class="op">$</span>puntos_y)<span class="op">*</span>(<span class="kw">sd</span>(datos<span class="op">$</span>puntos_y)<span class="op">/</span><span class="kw">sd</span>(datos<span class="op">$</span>juegos_x));beta</span></code></pre></div>
 <pre><code>## [1] 0.5</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">reg1<span class="op">$</span>coefficients[<span class="dv">2</span>] <span class="co">#llamamos al coeficiente beta (en posición 2) en el objeto reg1</span></a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true"></a>reg1<span class="op">$</span>coefficients[<span class="dv">2</span>] <span class="co">#llamamos al coeficiente beta (en posición 2) en el objeto reg1</span></span></code></pre></div>
 <pre><code>## juegos_x 
 ##      0.5</code></pre>
 <p>Del mismo modo existe una relación entre <span class="math inline">\(r_{xy}\)</span> y <span class="math inline">\(R^2\)</span></p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co">#Correlación (Pearson) entre juegos_x y puntos_y (r)</span></a>
-<a class="sourceLine" id="cb34-2" title="2"><span class="kw">cor</span>(datos<span class="op">$</span>juegos_x,datos<span class="op">$</span>puntos_y)</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true"></a><span class="co">#Correlación (Pearson) entre juegos_x y puntos_y (r)</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true"></a><span class="kw">cor</span>(datos<span class="op">$</span>juegos_x,datos<span class="op">$</span>puntos_y)</span></code></pre></div>
 <pre><code>## [1] 0.636209</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="co">#Correlación entre juegos_x y puntos_y al cuadrado.</span></a>
-<a class="sourceLine" id="cb36-2" title="2">(<span class="kw">cor</span>(datos<span class="op">$</span>juegos_x,datos<span class="op">$</span>puntos_y))<span class="op">^</span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true"></a><span class="co">#Correlación entre juegos_x y puntos_y al cuadrado.</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true"></a>(<span class="kw">cor</span>(datos<span class="op">$</span>juegos_x,datos<span class="op">$</span>puntos_y))<span class="op">^</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 0.4047619</code></pre>
 <p>La correlación entre X e Y es la misma que entre Y e X,</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="kw">cor</span>(datos<span class="op">$</span>juegos_x,datos<span class="op">$</span>puntos_y)</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true"></a><span class="kw">cor</span>(datos<span class="op">$</span>juegos_x,datos<span class="op">$</span>puntos_y)</span></code></pre></div>
 <pre><code>## [1] 0.636209</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="kw">cor</span>(datos<span class="op">$</span>puntos_y,datos<span class="op">$</span>juegos_x)</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true"></a><span class="kw">cor</span>(datos<span class="op">$</span>puntos_y,datos<span class="op">$</span>juegos_x)</span></code></pre></div>
 <pre><code>## [1] 0.636209</code></pre>
 <p>… mientras la regresión entre X e Y <strong>no</strong> es la misma que entre Y e X</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="kw">lm</span>(datos<span class="op">$</span>puntos_y<span class="op">~</span>datos<span class="op">$</span>juegos_x)<span class="op">$</span>coefficients</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true"></a><span class="kw">lm</span>(datos<span class="op">$</span>puntos_y<span class="op">~</span>datos<span class="op">$</span>juegos_x)<span class="op">$</span>coefficients</span></code></pre></div>
 <pre><code>##    (Intercept) datos$juegos_x 
 ##            2.5            0.5</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="kw">lm</span>(datos<span class="op">$</span>juegos_x<span class="op">~</span>datos<span class="op">$</span>puntos_y)<span class="op">$</span>coefficients</a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true"></a><span class="kw">lm</span>(datos<span class="op">$</span>juegos_x<span class="op">~</span>datos<span class="op">$</span>puntos_y)<span class="op">$</span>coefficients</span></code></pre></div>
 <pre><code>##    (Intercept) datos$puntos_y 
 ##     -0.2380952      0.8095238</code></pre>
 </div>

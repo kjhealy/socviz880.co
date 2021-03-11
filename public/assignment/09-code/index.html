@@ -30,7 +30,7 @@
   
     
   
-  <meta name="description" content="a.sourceLine { display: inline-block; line-height: 1.25; } a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; } a.sourceLine:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } a.sourceLine { text-indent: -1em; padding-left: 1em; } } pre.">
+  <meta name="description" content="pre  code.sourceCode { white-space: pre; position: relative; } pre  code.sourceCode  span { display: inline-block; line-height: 1.25; } pre  code.sourceCode  span:empty { height: 1.2em; } code.sourceCode  span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre  code.sourceCode { white-space: pre-wrap; } pre  code.">
 
   
   <link rel="alternate" hreflang="en-us" href="/assignment/09-code/">
@@ -236,7 +236,7 @@
   <meta property="og:site_name" content="Estadística Multivariada">
   <meta property="og:url" content="/assignment/09-code/">
   <meta property="og:title" content="Práctica 9. Regresión Logística 1 | Estadística Multivariada">
-  <meta property="og:description" content="a.sourceLine { display: inline-block; line-height: 1.25; } a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; } a.sourceLine:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } a.sourceLine { text-indent: -1em; padding-left: 1em; } } pre."><meta property="og:image" content="/img/social-image.png">
+  <meta property="og:description" content="pre  code.sourceCode { white-space: pre; position: relative; } pre  code.sourceCode  span { display: inline-block; line-height: 1.25; } pre  code.sourceCode  span:empty { height: 1.2em; } code.sourceCode  span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre  code.sourceCode { white-space: pre-wrap; } pre  code."><meta property="og:image" content="/img/social-image.png">
   <meta property="twitter:image" content="/img/social-image.png"><meta property="og:locale" content="en-us">
   
     
@@ -644,31 +644,33 @@
                     <div class="article-style">
                         
 <!-- BLOGDOWN-HEAD -->
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 <script src="/rmarkdown-libs/clipboard/clipboard.min.js"></script>
 <link href="/rmarkdown-libs/primer-tooltips/build.css" rel="stylesheet" />
 <link href="/rmarkdown-libs/klippy/css/klippy.min.css" rel="stylesheet" />
 <script src="/rmarkdown-libs/klippy/js/klippy.min.js"></script>
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -677,9 +679,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { background-color: #f8f8f8; }
+  {  background-color: #f8f8f8; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -717,10 +719,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="#objetivo">Objetivo</a></li>
 <li><a href="#librerías">Librerías</a></li>
-<li><a href="#datos">Datos</a><ul>
+<li><a href="#datos">Datos</a>
+<ul>
 <li><a href="#explorar-datos">Explorar datos</a></li>
 </ul></li>
-<li><a href="#conceptos-centrales">Conceptos centrales</a><ul>
+<li><a href="#conceptos-centrales">Conceptos centrales</a>
+<ul>
 <li><a href="#probabilidades">Probabilidades</a></li>
 <li><a href="#odds">Odds</a></li>
 <li><a href="#odds-ratio-or">Odds Ratio (OR)</a></li>
@@ -741,17 +745,17 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="librerías" class="section level1">
 <h1>Librerías</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">pacman<span class="op">::</span><span class="kw">p_load</span>(dplyr, summarytools, ggmosaic, finalfit)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(dplyr, summarytools, ggmosaic, finalfit)</span></code></pre></div>
 </div>
 <div id="datos" class="section level1">
 <h1>Datos</h1>
 <p>¿Qué es el titanic? El <strong>RMS Titanic</strong> fue un transatlántico británico, el mayor barco del mundo al finalizar su construcción, que se hundió en la madrugada del 15 de abril de 1912 durante su viaje inaugural desde Southampton a Nueva York. En el hundimiento del Titanic <strong>murieron 619 personas</strong> de las <strong>1046</strong> que iban a bordo, lo que convierte a esta tragedia en uno de los mayores naufragios de la historia ocurridos en tiempo de paz.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co">#Cargamos la base de datos desde internet</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://multivariada.netlify.com/assignment/data/titanic.RData&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">#Cargamos la base de datos desde internet</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://multivariada.netlify.com/assignment/data/titanic.RData&quot;</span>))</span></code></pre></div>
 <div id="explorar-datos" class="section level2">
 <h2>Explorar datos</h2>
 <p>A partir de la siguiente tabla se obtienen estadísticos descriptivos que luego serán relevantes para la interpretación de nuestros modelos.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">view</span>(<span class="kw">dfSummary</span>(tt, <span class="dt">headings =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="st">&quot;render&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">view</span>(<span class="kw">dfSummary</span>(tt, <span class="dt">headings =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="st">&quot;render&quot;</span>))</span></code></pre></div>
 <div class="container st-container">
 <table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline ">
   <thead>
@@ -774,7 +778,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 2. Clase Intermedia
 3. Clase Baja</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">284</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">27.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">261</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">24.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">501</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">47.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFQAAABQCAQAAAAt85pcAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkCAUVByLGY/5/AAAAxUlEQVRo3u3aMQ7CMBBEUYx8wXRwwtBxxNCuaVJ4LM9I/1cgFPSkDZG8ol2PjJ67AUB31eubU37DvtrM1fXiPn50SJlf4XfFjB4oUPeAAnUPKFD3gAJ1Lwb6dxRRHh60tXqec1tG1MNdzOiBqht+TB/hTTq3eriB6hYQ+qdHzOiBAnUPKFD3gAJ1DyhQ94CqY1MiwZXXMaMHqm7ZpkTRu9ykS/+qMdf4BIoZPVCg7gEF6h5QoO4BBepeDDRzAeFczOiBqvsBzywRuTRDCJIAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDgtMDVUMjE6MDc6MzQrMDA6MDDbgIPAAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA4LTA1VDIxOjA3OjM0KzAwOjAwqt07fAAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFQAAABQCAQAAAAt85pcAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflAwsNIwSr4P1rAAAAxUlEQVRo3u3aMQ7CMBBEUYx8wXRwwtBxxNCuaVJ4LM9I/1cgFPSkDZG8ol2PjJ67AUB31eubU37DvtrM1fXiPn50SJlf4XfFjB4oUPeAAnUPKFD3gAJ1Lwb6dxRRHh60tXqec1tG1MNdzOiBqht+TB/hTTq3eriB6hYQ+qdHzOiBAnUPKFD3gAJ1DyhQ94CqY1MiwZXXMaMHqm7ZpkTRu9ykS/+qMdf4BIoZPVCg7gEF6h5QoO4BBepeDDRzAeFczOiBqvsBzywRuTRDCJIAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjEtMDMtMTFUMTM6MzU6MDQrMDA6MDA6bdqnAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIxLTAzLTExVDEzOjM1OjA0KzAwOjAwSzBiGwAAAABJRU5ErkJggg=="></td>
       <td align="center">1046
 (100%)</td>
       <td align="center">0
@@ -787,7 +791,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <td align="left">1. No sobrevive
 2. Sobrevive</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">619</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">59.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">427</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">40.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGUAAAA4CAQAAABOZf5tAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkCAUVByLGY/5/AAAAn0lEQVRo3u3YTQqAIBQAYY0u2K5OWDuPWFsLWvQDjo/5dm7EAQ16eU9RDK0PYErslLFerN09nCXfpKQ0tT7bI+W0CnTBTCEyhcgUIlOITCEyhcgUIlOITCG6/NuXd7sg5HrI0t3AJVUDl0gXzBSi07PfGj6WOX/dATKd/OPLGeiCmUJkCpEpRKYQmUJkCpEpRKYQmUIUdTrZt0AXzBSiA7f+C9XwQ17AAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA4LTA1VDIxOjA3OjM0KzAwOjAw24CDwAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wOC0wNVQyMTowNzozNCswMDowMKrdO3wAAAAASUVORK5CYII="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGUAAAA4CAQAAABOZf5tAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflAwsNIwSr4P1rAAAAn0lEQVRo3u3YTQqAIBQAYY0u2K5OWDuPWFsLWvQDjo/5dm7EAQ16eU9RDK0PYErslLFerN09nCXfpKQ0tT7bI+W0CnTBTCEyhcgUIlOITCEyhcgUIlOITCG6/NuXd7sg5HrI0t3AJVUDl0gXzBSi07PfGj6WOX/dATKd/OPLGeiCmUJkCpEpRKYQmUJkCpEpRKYQmUIUdTrZt0AXzBSiA7f+C9XwQ17AAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIxLTAzLTExVDEzOjM1OjA0KzAwOjAwOm3apwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMS0wMy0xMVQxMzozNTowNCswMDowMEswYhsAAAAASUVORK5CYII="></td>
       <td align="center">1046
 (100%)</td>
       <td align="center">0
@@ -800,7 +804,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <td align="left">1. Hombre
 2. Mujer</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">658</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">62.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">388</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">37.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGsAAAA4CAQAAABQrM7eAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkCAUVByLGY/5/AAAAoUlEQVRo3u3YOwqAMBAA0US8oJ2eUDuPqG0UBIn4mXWmSxPyIEmxeUkRa94+gCxZbbkY0Q9tyAeslLq3z1bdvFkFvYSySMkiJYuULFKySMkiJYuULFKySO1mGXPdLp8rl8Mm9OApFYOnqJdQFqnNlzE9/Lj6fH2PE6xnp7p3/rpBL6EsUrJIySIli5QsUrJIySIli5QsUn+Y6sYp6CWURWoFAfML1aXRT1UAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDgtMDVUMjE6MDc6MzQrMDA6MDDbgIPAAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA4LTA1VDIxOjA3OjM0KzAwOjAwqt07fAAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGsAAAA4CAQAAABQrM7eAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflAwsNIwSr4P1rAAAAoUlEQVRo3u3YOwqAMBAA0US8oJ2eUDuPqG0UBIn4mXWmSxPyIEmxeUkRa94+gCxZbbkY0Q9tyAeslLq3z1bdvFkFvYSySMkiJYuULFKySMkiJYuULFKySO1mGXPdLp8rl8Mm9OApFYOnqJdQFqnNlzE9/Lj6fH2PE6xnp7p3/rpBL6EsUrJIySIli5QsUrJIySIli5QsUn+Y6sYp6CWURWoFAfML1aXRT1UAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjEtMDMtMTFUMTM6MzU6MDQrMDA6MDA6bdqnAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIxLTAzLTExVDEzOjM1OjA0KzAwOjAwSzBiGwAAAABJRU5ErkJggg=="></td>
       <td align="center">1046
 (100%)</td>
       <td align="center">0
@@ -815,7 +819,7 @@ min < med < max:
 0.2 < 28 < 80
 IQR (CV) : 18 (0.5)</td>
       <td align="left" style="vertical-align:middle">98 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkCAUVByLGY/5/AAABvUlEQVR42u3cUW7CMBAA0abieD1Ae8JyAO7X/gYvxUwx8W4y7w9VQjDUIdlYLD9vIt5nv4BqDAYZDDqtH4w5np1vPM3nMvuNPmP94k//fpY7PprHl9nveCCXJGQwyGCQwSCDQQaDDAYZDDIYZDDIYJDBIINBL5lWRO3Ip+64Z6Ng1wOfyuMelyRkMMhgkMEgg0EGgwwGGQwyGGQwyGCQwSCDQQaDDAY9PQ87H2yT7IAB4p53g0UuSchgkMEgg0EGgwwGGQza6EZuK57uVrkXPilY3ZNdlyRkMMhgkMEgg0EGgwwGGQwyGDTpTD+qsm04TbAq24ZdkpDBIINBBoMMBhkMMhhkMMhgkMGgNJdGraw34tIGy3ojziUJGQwyGGQwKO1BP8rxvVkoWI7vzatg+/sF1vGa/7Acn2JmHvQhg0EGgwwGGQwyGGQwyGBQoUujaMaOn9LBZuz4cUlCBoO6S/JovxrQ0w0W5xdV9gq+RumDfmuLmeyugsXVMD7hroJF4weifktCBoMMBhkMMhhkMMhgkMGgnZ+4Rv1hwv1rgcMFa0cHj1xOfa0SLuu/fjvKuenPYOrzoA8ZDDIY9AufPTFYiWJIHwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wOC0wNVQyMTowNzozNCswMDowMNuAg8AAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDgtMDVUMjE6MDc6MzQrMDA6MDCq3Tt8AAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflAwsNIwSr4P1rAAABvUlEQVR42u3cUW7CMBAA0abieD1Ae8JyAO7X/gYvxUwx8W4y7w9VQjDUIdlYLD9vIt5nv4BqDAYZDDqtH4w5np1vPM3nMvuNPmP94k//fpY7PprHl9nveCCXJGQwyGCQwSCDQQaDDAYZDDIYZDDIYJDBIINBL5lWRO3Ip+64Z6Ng1wOfyuMelyRkMMhgkMEgg0EGgwwGGQwyGGQwyGCQwSCDQQaDDAY9PQ87H2yT7IAB4p53g0UuSchgkMEgg0EGgwwGGQza6EZuK57uVrkXPilY3ZNdlyRkMMhgkMEgg0EGgwwGGQwyGDTpTD+qsm04TbAq24ZdkpDBIINBBoMMBhkMMhhkMMhgkMGgNJdGraw34tIGy3ojziUJGQwyGGQwKO1BP8rxvVkoWI7vzatg+/sF1vGa/7Acn2JmHvQhg0EGgwwGGQwyGGQwyGBQoUujaMaOn9LBZuz4cUlCBoO6S/JovxrQ0w0W5xdV9gq+RumDfmuLmeyugsXVMD7hroJF4weifktCBoMMBhkMMhhkMMhgkMGgnZ+4Rv1hwv1rgcMFa0cHj1xOfa0SLuu/fjvKuenPYOrzoA8ZDDIY9AufPTFYiWJIHwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMS0wMy0xMVQxMzozNTowNCswMDowMDpt2qcAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjEtMDMtMTFUMTM6MzU6MDQrMDA6MDBLMGIbAAAAAElFTkSuQmCC"></td>
       <td align="center">1046
 (100%)</td>
       <td align="center">0
@@ -830,7 +834,7 @@ min < med < max:
 0 < 0 < 8
 IQR (CV) : 1 (1.8)</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">0</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">685</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">65.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">280</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">26.8%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">2</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">36</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">3.4%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">3</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">16</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">1.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">4</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">22</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">2.1%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">5</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">6</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">0.6%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">8</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">0.1%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG8AAACwCAQAAACrpPgRAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkCAUVByLGY/5/AAABcElEQVR42u3cMQ6CQAAFUdZ4QTs9oXQcEQsLAcFC1yzzmdfRECesFj9qGbtkp9YvwDzztpynF/eIN+KtbOR13aX1a/vZMLsKP5zmkZlHZh6ZeWTmkZlHZh6ZeWTheYsxYvjuLrtVputRxJLUTZak9MMZnjd77/XVT+e1/H6Panm1d872H1Thh9M8MvPIzCMzj8w8MvPIzCMzjyw8z52Txp0zRXje5ozbeoD9Q95rxk35BA0/nOaRmUdmHpl5ZOaRmUdmHpl5ZOF5zrg0zrgpVnbOjIXzafH0+D/L/5iXxjwy88jMIzOPzDwy88jMIzOPzDyyRZ4z7u4546ZY/bpqzpD7NuNmDbnhh9M8MvPIzCMzj8w8MvPIzCMzjyw8z6+r0rhzpjhSXj/W//vYHeXlMY/MPDLzyMwjM4/MPDLzyMwjM48sPM8Zl+xIeWkr57GeXh7zyMwjM4/MPDLzyMwjM4/MPDLzyErcejQT/vTMI3sAX60lvJwaHY0AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDgtMDVUMjE6MDc6MzQrMDA6MDDbgIPAAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA4LTA1VDIxOjA3OjM0KzAwOjAwqt07fAAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG8AAACwCAQAAACrpPgRAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflAwsNIwSr4P1rAAABcElEQVR42u3cMQ6CQAAFUdZ4QTs9oXQcEQsLAcFC1yzzmdfRECesFj9qGbtkp9YvwDzztpynF/eIN+KtbOR13aX1a/vZMLsKP5zmkZlHZh6ZeWTmkZlHZh6ZeWTheYsxYvjuLrtVputRxJLUTZak9MMZnjd77/XVT+e1/H6Panm1d872H1Thh9M8MvPIzCMzj8w8MvPIzCMzjyw8z52Txp0zRXje5ozbeoD9Q95rxk35BA0/nOaRmUdmHpl5ZOaRmUdmHpl5ZOF5zrg0zrgpVnbOjIXzafH0+D/L/5iXxjwy88jMIzOPzDwy88jMIzOPzDyyRZ4z7u4546ZY/bpqzpD7NuNmDbnhh9M8MvPIzCMzj8w8MvPIzCMzjyw8z6+r0rhzpjhSXj/W//vYHeXlMY/MPDLzyMwjM4/MPDLzyMwjM48sPM8Zl+xIeWkr57GeXh7zyMwjM4/MPDLzyMwjM4/MPDLzyErcejQT/vTMI3sAX60lvJwaHY0AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjEtMDMtMTFUMTM6MzU6MDQrMDA6MDA6bdqnAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIxLTAzLTExVDEzOjM1OjA0KzAwOjAwSzBiGwAAAABJRU5ErkJggg=="></td>
       <td align="center">1046
 (100%)</td>
       <td align="center">0
@@ -845,7 +849,7 @@ min < med < max:
 0 < 0 < 6
 IQR (CV) : 1 (2)</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">0</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">768</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">73.4%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">160</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">15.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">2</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">97</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">9.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">3</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">8</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">0.8%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">4</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">5</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">0.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">5</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">6</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">0.6%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">6</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">2</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">0.2%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHoAAACwCAQAAABqI7K9AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkCAUVByLGY/5/AAABS0lEQVR42u3awWrCQABF0Yz0B7urX1h3fqLdJgUtaRGbOffsAiJeMsni4bgtntOrf0DRRT/P2/ric+IH/DzuRC/L+6t/25NcN1fk8S5aUbSiaEXRiqIVRSuKVhStIKO/zUXX333LwYz1FjjxLrisdkHzeJPRm2f6svN8f4x9n/8v/rB7H/elRx7vohVFK4pWFK0oWlG0omhF0Qoyut273XtiRSt2jP1HnfZ/iH409s/0XiePd9GKohVFK4pWFK0oWlG0omgFGd3Y39g/saIvt71/cz+m7rSiaEXRiqIVRSuKVhStKFpRtKJoBRnd2K8ourF/YkUrilYUrShaUbSiaEXRiqIVRSvI6HZvRdGKxn5F0YqiFUUrilYUrShaUbSiaEXRCjK6sV9RtLF6d6cdRSuKVhStKFpRtKJoRdGKohVFKwayBW6Qd7poxReDIyYBYauFRwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wOC0wNVQyMTowNzozNCswMDowMNuAg8AAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDgtMDVUMjE6MDc6MzQrMDA6MDCq3Tt8AAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHoAAACwCAQAAABqI7K9AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflAwsNIwSr4P1rAAABS0lEQVR42u3awWrCQABF0Yz0B7urX1h3fqLdJgUtaRGbOffsAiJeMsni4bgtntOrf0DRRT/P2/ric+IH/DzuRC/L+6t/25NcN1fk8S5aUbSiaEXRiqIVRSuKVhStIKO/zUXX333LwYz1FjjxLrisdkHzeJPRm2f6svN8f4x9n/8v/rB7H/elRx7vohVFK4pWFK0oWlG0omhF0Qoyut273XtiRSt2jP1HnfZ/iH409s/0XiePd9GKohVFK4pWFK0oWlG0omgFGd3Y39g/saIvt71/cz+m7rSiaEXRiqIVRSuKVhStKFpRtKJoBRnd2K8ourF/YkUrilYUrShaUbSiaEXRiqIVRSvI6HZvRdGKxn5F0YqiFUUrilYUrShaUbSiaEXRCjK6sV9RtLF6d6cdRSuKVhStKFpRtKJoRdGKohVFKwayBW6Qd7poxReDIyYBYauFRwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMS0wMy0xMVQxMzozNTowNCswMDowMDpt2qcAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjEtMDMtMTFUMTM6MzU6MDQrMDA6MDBLMGIbAAAAAElFTkSuQmCC"></td>
       <td align="center">1046
 (100%)</td>
       <td align="center">0
@@ -853,7 +857,7 @@ IQR (CV) : 1 (2)</td>
     </tr>
   </tbody>
 </table>
-<p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 0.9.6 (<a href='https://www.r-project.org/'>R</a> version 4.0.0)<br/>2020-08-05</p>
+<p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 0.9.6 (<a href='https://www.r-project.org/'>R</a> version 4.0.2)<br/>2021-03-11</p>
 </div>
 <p>Para esta práctica nos centraremos en las variables <code>sex</code> y <code>survived</code>. Como podemos notar la categoría de respuesta de estas variables son 0 y 1, es decir, estamos ante variables dicotómicas.</p>
 <p>Con la función <code>ctable</code> del paquete <code>summarytools</code> podemos realizar una tabla de contingencia donde se señala la proporción de sobrevivientes según sexo</p>
@@ -932,13 +936,13 @@ IQR (CV) : 1 (2)</td>
 </tr>
 </tbody>
 </table>
-<p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 0.9.6 (<a href='https://www.r-project.org/'>R</a> version 4.0.0)<br/>2020-08-05</p>
+<p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 0.9.6 (<a href='https://www.r-project.org/'>R</a> version 4.0.2)<br/>2021-03-11</p>
 </div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">ctable</span>(tt<span class="op">$</span>survived, tt<span class="op">$</span>sex)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">ctable</span>(tt<span class="op">$</span>survived, tt<span class="op">$</span>sex)</span></code></pre></div>
 <p>La tabla muestra que la mayoría de los tripulantes no sobrevivió (619 no sobreviven, mientras que 427 si sobreviven). A su vez, la mayoría de los <em>no sobrevivientes</em> corresponden a hombres (84.5%), mientras que solo un 15.5% de las mujeres no sobrevive. En relación a sobrevivientes, la mayoría de los <em>sobrevivientes</em> corresponden a mujeres (68,4%), en desmedro de hombres (31.6%).</p>
 <p>Una forma gráfica de verlo es por medio del paquete <code>ggmosaic</code> que con su función <code>geom_mosaic</code> permite construir visualizaciones para datos categóricos. El mosaico general corresponde al total de tripulantes del titanic. Como podrán notar, hay más hombres tripulantes que mujeres, por lo que las barras para hombres son mas anchas. Luego, gracias al comando <code>fill</code> del <code>geom_mosaic</code> podemos distinguir en hombres y mujeres la proporción de cuantos <strong>sobrevivieron</strong> y cuantos <strong>no sobrevivieron</strong>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> tt) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="st">  </span><span class="kw">geom_mosaic</span>(<span class="kw">aes</span>(<span class="kw">product</span>(survived, sex), <span class="dt">fill=</span> survived)) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Sobreviviente&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Sexo&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> tt) <span class="op">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_mosaic</span>(<span class="kw">aes</span>(<span class="kw">product</span>(survived, sex), <span class="dt">fill=</span> survived)) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Sobreviviente&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Sexo&quot;</span>)</span></code></pre></div>
 <p><img src="/assignment/09-code_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 </div>
@@ -953,7 +957,7 @@ IQR (CV) : 1 (2)</td>
 Mientras que un 59.2% de los tripulantes no sobrevive, es decir, la probabilidad de no sobrevivir es de 0.592</p>
 <p><span class="math display">\[Probabilidades_{sobrevivientes} = \frac{619}{1046} = 0.592\]</span></p>
 <p>En R se realiza a través de la función <code>prop.table</code></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">prop.table</span>(<span class="kw">table</span>(tt<span class="op">$</span>survived))</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(tt<span class="op">$</span>survived))</span></code></pre></div>
 <pre><code>## 
 ## No sobrevive    Sobrevive 
 ##    0.5917782    0.4082218</code></pre>
@@ -965,7 +969,7 @@ Mientras que un 59.2% de los tripulantes no sobrevive, es decir, la probabilidad
 <p>Si seguimos el ejemplo del Titanic</p>
 <p><span class="math display">\[Odds = \frac{Sobrevivientes}{No{Sobrevivientes}}\]</span></p>
 <p>La función <code>addmargins</code> nos entrega las frecuencias marginales y absolutas para columnas (sexo) y filas (sobrevivencia)</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">addmargins</span>(<span class="kw">table</span>(tt<span class="op">$</span>survived,tt<span class="op">$</span>sex))</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">addmargins</span>(<span class="kw">table</span>(tt<span class="op">$</span>survived,tt<span class="op">$</span>sex))</span></code></pre></div>
 <pre><code>##               
 ##                Hombre Mujer  Sum
 ##   No sobrevive    523    96  619
@@ -983,7 +987,7 @@ Mientras que un 59.2% de los tripulantes no sobrevive, es decir, la probabilidad
 <li>Odds <strong>mayores</strong> que 1, indican una chance positiva</li>
 </ul>
 <p>En R esto podemos realizar este calculo directamente a través de las probabilidades marginales para cada sexo que entrega <code>prop.table</code>.El número 2 indica que las proporciones están calculadas por columna, es decir, las probabilidades indicadas se calculan considerando como total cada sexo.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">prop.table</span>(<span class="kw">table</span>(tt<span class="op">$</span>survived,tt<span class="op">$</span>sex),<span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(tt<span class="op">$</span>survived,tt<span class="op">$</span>sex),<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##               
 ##                   Hombre     Mujer
 ##   No sobrevive 0.7948328 0.2474227
@@ -1008,10 +1012,10 @@ Mientras que un 59.2% de los tripulantes no sobrevive, es decir, la probabilidad
 <li><p>Es una medida de magnitud de asociación simétrica: un <span class="math inline">\(Odds_{ratio}=4\)</span> es una asociación positiva proporcional a la asociación negativa <span class="math inline">\(Odds_{ratio}=1/4=0.25\)</span></p></li>
 </ul>
 <p>Los <span class="math inline">\(Odds_{ratio}\)</span> se pueden graficar por medio de la funcion <code>or_plor</code> de <code>finalfit</code>. Para ello solo de debe indicar cuál es la variable predictora (o explanatory en inglés) y la variable dependiente.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">explanatory =<span class="st"> &quot;sex&quot;</span></a>
-<a class="sourceLine" id="cb12-2" title="2">dependent =<span class="st"> &quot;survived&quot;</span></a>
-<a class="sourceLine" id="cb12-3" title="3"></a>
-<a class="sourceLine" id="cb12-4" title="4">tt <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">or_plot</span>(dependent, explanatory)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>explanatory =<span class="st"> &quot;sex&quot;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a>dependent =<span class="st"> &quot;survived&quot;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a>tt <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">or_plot</span>(dependent, explanatory)</span></code></pre></div>
 <p><img src="/assignment/09-code_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Como se puede ver, en el gráfico no solo se indican los <span class="math inline">\(Odds_{ratio}\)</span> de sobrevivencia de las mujeres por sobre los hombres (11.78), sino que estos se grafican en relacióna qué tan cerca están del 0 (y por tanto, cuánto se aleja del rango de asociación negativa).</p>
 </div>
@@ -1100,16 +1104,16 @@ Mientras que un 59.2% de los tripulantes no sobrevive, es decir, la probabilidad
             </p>
 
             <p>
-                <i class="far fa-calendar-alt"></i> Viernes &emsp;&emsp;
-                <i class="far fa-clock"></i> 10:15am - 12:00pm <br>
-                <i class="fas fa-university"></i> Online
+                <i class="far fa-calendar-alt"></i> Jueves y Viernes &emsp;&emsp;
+                <i class="far fa-clock"></i> 08:30am - 10:00am <br>
+                <i class="fas fa-university"></i> Online vía Zoom
             </p>
         </div>
 
         <div class="col-md-5 credits">
             <p>All content licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
             
-            <p>Content <i class="fab fa-creative-commons"></i> 2020 <a href="https://jc-castillo.com" target="_blank" rel="noopener">Juan Carlos Castillo</a></p>                    
+            <p>Content <i class="fab fa-creative-commons"></i> 2021 <a href="https://jc-castillo.com" target="_blank" rel="noopener">Juan Carlos Castillo</a></p>                    
             
             <p><a href="https://github.com/juancarloscastillo/multivariada" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the source at GitHub.</a></p>
         </div>

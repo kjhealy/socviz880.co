@@ -4,59 +4,62 @@
 
         <ul class="icon-list">
             <li><i class="fas fa-user"></i> <a href="{{ .Site.Params.Profesor.url }}" target="_blank" rel="noopener"> {{ .Site.Params.Profesor.name }}</a></li>
-            <li><i class="fas fa-university"></i> {{ .Site.Params.Profesor.office }}</li>
             <li><i class="fas fa-envelope"></i> <a href="mailto:{{ .Site.Params.Profesor.email }}"> {{ .Site.Params.Profesor.email }}</a></li>
             <li><i class="fab fa-github"></i> <a href="https://github.com/{{ .Site.Params.course.github }}" target="_blank" rel="noopener"> {{ .Site.Params.Profesor.github }}</a></li>
+            <li><i class="fas fa-university"></i> <a href="https://juancarloscastillo.github.io/jc-castillo/contact.html">Horas de reunión: Miércoles 15 a 17hrs</a></li>
         </ul>
     </div>
+
+    <div class="col-md-4">
+        <h3>Apoyo docente</h3>
+
+        <ul class="icon-list">
+            <li><i class="fas fa-user"></i> <a href="https://valentinaandrade.netlify.app/">Valentina Andrade</a></li>
+            <li><i class="fas fa-envelope"></i> <a href="mailto:valentinaandrade@uchile.cl">valentinaandrade@uchile.cl</a></li>
+            <li><i class="fab fa-github"></i> <a href="https://github.com/valentinaandrade"valentinaandrade target="_blank" rel="noopener"> valentinaandrade</a></li>
+        </ul>
+    </div>
+
 
     <div class="col-md-4">
         <h3>Horario clases</h3>
 
         <ul class="icon-list">
             <li><i class="far fa-calendar"></i> {{ .Site.Params.course.days }}</li>
-            <li><i class="far fa-calendar-alt"></i> {{ .Site.Params.course.dates }}</li>
             <li><i class="far fa-clock"></i> {{ .Site.Params.course.time }}</li>
+            <li><i class="far fa-calendar-alt"></i> {{ .Site.Params.course.dates }}</li>
             <li><i class="fas fa-university"></i> {{ .Site.Params.course.location }}</li>
             {{ if isset .Site.Params.course "slack" }}<li><i class="fab fa-slack"></i> <a href="{{ .Site.Params.course.slack }}" target="_blank" rel="noopener">Slack</a></li>{{ end }}
         </ul>
     </div>
 
-    <div class="col-md-4">
-        <h3>Horario prácticas</h3>
-
-        <ul class="icon-list">
-            <li><i class="far fa-calendar"></i> Sección 1: Jueves </li>
-            <li><i class="far fa-calendar"></i> Sección 2: Viernes </li>
-            <li><i class="far fa-clock"></i> 8:30 a 10:00</li>
-        </ul>
-    </div>
-
 
     <div class="col-md-4">
-        <h3>Sección 1</h3>
-        <b> Apoyo docente</b>: <a href="mailto:valentina.vasquez.a@ug.uchile.cl">Valentina Andrade</a>  <br>
-        <b> Ayudantes</b>: <br>
-        - Andreas Lafferte <br>
-        - Cristóbal Ortiz <br>
-        - Karen Tapia <br>
-        - Sebastián Cortínez<br>
-        - Kevin Carrasco
+        <h3>Ayudantes</h3>
+
+        <b> Sección 1</b>: <br>
+        - Andreas Lafferte<br>
+        - Emilia Barrientos<br>
+        - Paulina Gamboa<br>
+        - Pablo Campos<br>
+        - Alberto Reyes<br>
+        - Kevin Carrasco<br>
+        - Víctor Jiménez<br>
 
       </div>
 
     <div class="col-md-4">
-        <h3>Sección 2</h3>
-        <b> Apoyo docente</b>: <a href="mailto:julioiturrasanhueza@gmail.com">Julio Iturra</a> <br>
-        <b> Ayudantes</b>: <br>
-        - Diego Esturillo <br>
-        - Martín Venegas <br>
-        - Vanessa Leyton <br>
-        - Víctor Jiménez<br>
-        - Camilo Lazo <br>
-        - Catalina Flores
-    </div>
+         <h3><p style="color:white">This is a paragraph.</p></h3>
 
+        <b>Sección 2</b>: <br>
+        - Catalina Flores<br>
+        - Dafne Jaime<br>
+        - Nicolás Tobar<br>
+        - Nicolás Godoy<br>
+        - Álvaro Serrano<br>
+        - Sebastián Cortínez<br>
+        - Cristóbal Ortiz<br>
+    </div>
 
 
 <br>
@@ -67,5 +70,11 @@
       <p>{{ .Site.Params.Profesor.contact_policy | markdownify}}</p>
 
 </div>
+<div class="contact-policy">
+  <h3>Versiones anteriores del sitio delcurso:</h3>
+<p>- <a href="https://2020--multivariada.netlify.app/">2020</a></p>
+<p>- <a href="https://juancarloscastillo.github.io/metsoc-facsouchile/index.html">2019</a></p>
 
+
+</div>
 </div>

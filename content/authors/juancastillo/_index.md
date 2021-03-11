@@ -1,6 +1,6 @@
 ---
 authors:
-- JC
+- juancastillo
 name: Juan Castillo
 superuser: true
 ---

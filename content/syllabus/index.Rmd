@@ -12,10 +12,15 @@ output:
 [^courseinfo]: {-}
   `r blogdown::shortcode("courseinfo")`
 
+## Concepto del curso (nuevo)
+
+A pesar de su nombre, este no es un curso de (mera) estadística. Es un curso que enseña algunas técnicas de análisis cuantitativo orientadas al contraste empírico de teoría sociológica, para lo cual se vale tanto de técnicas estadísticas como de procedimientos de presentación y comunicación de resultados. En este contexto, los métodos son considerados funcionales a preocupaciones sustantivas y relevantes del mundo social, y el objetivo es proveer de herramientas que sirvan para entender y aplicar y comunicar este tipo de análisis.
+
 
 ## Propósito general del curso
 
 Al finalizar el curso los estudiantes conocerán los fundamentos del análisis estadístico multivariado.
+
 Se espera que los estudiantes sean capaces de:
 
 - identificar las principales técnicas de análisis estadístico multivariado utilizadas en la investigación sociológica
@@ -34,6 +39,7 @@ Complementariamente se espera que los estudiantes adquieran herramientas que les
 - Comunicar los saberes disciplinares de manera pertinente a las características de distintos contextos y audiencias, utilizando diversas estrategias y formatos.
 
 ### Sub-Competencias
+
 - Diseñar y aplicar diversas técnicas de recolección y producción de información empírica, pertinentes al objeto de estudio.
 
 -  Interpretar información empírica aplicando diversas técnicas, en función de un plan de análisis.
@@ -47,12 +53,15 @@ Complementariamente se espera que los estudiantes adquieran herramientas que les
 Al finalizar el curso, los estudiantes:
 
 - Serán capaces de explicar los conceptos y fundamentos teóricos y estadísticos de la investigación social basada en modelos predictivos para variables observadas y serán capaces de explicar su utilidad para la sociología.
+
 - Serán capaces de preparar y depurar bases de datos para su análisis utilizando técnicas multivariadas, evaluando la pertinencia y la presencia de condiciones para la aplicación de modelos predictivos para variables observadas.
+
 - Serán capaces de manejar software especializado y reportar los resultados de modelos predictivos para variables observadas cuantitativas y no cuantitativas.
 
 ## Saberes / contenidos
 
 ### UNIDAD 1: Introducción al modelamiento de datos sociales
+
 - Tipos de investigación (descriptiva vs relacional y explicativa) y su materialización en el análisis estadístico.
 - La explicación en ciencias sociales: su relación con el concepto de covariación; la explicación como dependencia robusta y como cadena causal y el trabajo con modelos.
 - El trabajo con modelos: tipos de modelos (modelo teórico, modelo normativo, modelo científico, modelo estadístico); la vinculación entre los modelos científicos y los modelos teóricos; los modelos estadísticos como tipo de modelo científico.
@@ -79,13 +88,13 @@ Al finalizar el curso, los estudiantes:
 - Generalización de modelos de regresión logística: modelo de regresión logística multinomial y ordinal.
 - Empleo de otras matrices de correlación (tetracórica, biserial y policórica).
 
-## Metodología (**actualizado**)
+## Metodología
 
-En las circunstancias excepcionales de este semestre dada la crisis santiaria, se han realizado una serie de ajustes metodológicos. De todas maneras estos se irán actualizando en el transcurso del semestre según varíe la contingencia y también atendiendio a necesidades y sugerencias de l_s participantes.
+En las circunstancias excepcionales de este semestre dada la crisis santiaria, se han realizado una serie de ajustes metodológicos. De todas maneras estos se irán actualizando en el transcurso del semestre según varíe la contingencia y también atendiendo a necesidades y sugerencias de l_s participantes.
 
 Tendremos tres espacios principales de aprendizaje:
 
-1. **Sesiones de clases**: mientras dure la emergencia se realizaran online mediante la plataforma Zoom para las dos secciones; eventualmente algunas de las clases serán reemplazadas por videos explicativos. Todo el material de presentaciones se encontrará disponible en este sitio.
+1. **Sesiones de clases lectivas**, donde se presentarán los aspectos centrales de los contenidos correspondientes a la semana vía Zoom. Tanto el documento de presentación como el video de la clase se encontrará disponible en la pestaña de [Contenidos](/class/) de este sitio.
 
 2. **Prácticas guiadas**: cada tema de las sesiones se acompaña de una guía práctica de aplicación de contenidos. Estas guías están diseñadas para ser desarrolladas de manera autónoma por cada estudiante semana a semana. También serán desarrolladas y revisadas cada semana separados por secciones, para dar mayor oportunidad de participación y resolver las dudas respectivas. Estas prácticas serán supervisadas principalmente por los apoyos docentes.
 

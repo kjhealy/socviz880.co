@@ -25,31 +25,33 @@ editor_options:
 ---
 
 <!-- BLOGDOWN-HEAD -->
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 <script src="/rmarkdown-libs/clipboard/clipboard.min.js"></script>
 <link href="/rmarkdown-libs/primer-tooltips/build.css" rel="stylesheet" />
 <link href="/rmarkdown-libs/klippy/css/klippy.min.css" rel="stylesheet" />
 <script src="/rmarkdown-libs/klippy/js/klippy.min.js"></script>
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -58,9 +60,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { background-color: #f8f8f8; }
+  {  background-color: #f8f8f8; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -99,7 +101,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#objetivo-de-la-práctica">Objetivo de la práctica</a></li>
 <li><a href="#sobre-hoja-de-código">Sobre hoja de código</a></li>
 <li><a href="#librerías">Librerías</a></li>
-<li><a href="#datos">Datos</a><ul>
+<li><a href="#datos">Datos</a>
+<ul>
 <li><a href="#verificación-y-descriptivos">Verificación y descriptivos</a></li>
 <li><a href="#experiencia-en-juegos-y-puntuación">Experiencia en juegos y puntuación</a></li>
 <li><a href="#medias-condicionales">Medias condicionales</a></li>
@@ -128,7 +131,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="librerías" class="section level1">
 <h1>Librerías</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">pacman<span class="op">::</span><span class="kw">p_load</span>(stargazer, ggplot2, dplyr)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(stargazer, ggplot2, dplyr)</span></code></pre></div>
 </div>
 <div id="datos" class="section level1">
 <h1>Datos</h1>
@@ -137,11 +140,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>bajarlos al computador local desde <a href="https://multivariada.netlify.app/slides/03-regsimple1/tacataca.txt">este link</a> y luego llamarlos desde el directorio respectivo donde se guardaron:</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">datos &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;( ...ruta hacia el archivo ...)</span><span class="ch">\t</span><span class="st">acataca.txt&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>datos &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;( ...ruta hacia el archivo ...)</span><span class="ch">\t</span><span class="st">acataca.txt&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <ul>
 <li>llamarlos directamente desde su ubicación en la web:</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">datos &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://multivariada.netlify.app/slides/03-regsimple1/tacataca.txt&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>datos &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://multivariada.netlify.app/slides/03-regsimple1/tacataca.txt&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <p>Como es un archivo de texto simple (txt), los cargamos con la función <code>read.csv</code>, para datos guardados en texto simple separados por coma. Como en el caso de nuestros datos la separación es por espacios en lugar de comas, agregamos esta información con la instrucción <code>sep=""</code>
 Para abrirlos datos recordemos que en la lógica de R se debe generar un objeto donde se guardan los datos. Este objeto puede tener cualquier nombre, en este caso lo llamaremos simplemente “datos”.</p>
 <div class="alert alert-info">
@@ -158,7 +161,7 @@ Para abrirlos datos recordemos que en la lógica de R se debe generar un objeto 
 <div id="verificación-y-descriptivos" class="section level2">
 <h2>Verificación y descriptivos</h2>
 <p>Verificamos si los datos fueron correctamente cargados:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">View</span>(datos)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">View</span>(datos)</span></code></pre></div>
 <p><img src="../../slides/03-regsimple1/tacataca.png" /></p>
 <p>Tenemos entonces tres columnas:}</p>
 <ul>
@@ -168,7 +171,7 @@ Para abrirlos datos recordemos que en la lógica de R se debe generar un objeto 
 </ul>
 <p>Generamos una tabla de descriptivos básicos con lo aprendido en la práctica de descripción de datos:</p>
 <p>Y para publicar, usando la librería <code>stargazer</code></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">stargazer</span>(datos, <span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">stargazer</span>(datos, <span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## ======================================================
 ## Statistic N   Mean  St. Dev. Min Pctl(25) Pctl(75) Max
@@ -178,7 +181,7 @@ Para abrirlos datos recordemos que en la lógica de R se debe generar un objeto 
 ## puntos_y  23 4.000   1.382    2     3        5      6 
 ## ------------------------------------------------------</code></pre>
 <p>En la tabla vemos los estadísticos básicos de las variables juegos y puntos, y además aparece la variable <code>id</code>, que es el identificador y por lo tanto no tiene sentido que salga en la tabla. Para corregir, seleccionamos las variables de interés de <code>datos</code> con el <strong>operador pipa %&gt;%</strong> <span class="sidenote">operador pipa %&gt;%</span>. Este operador permite unir distintas funciones en una misma línea de código, y es muy utilizado por librerías de manejo de datos como <code>dplyr</code>. Por ejemplo, ahora la instrucción es “de la base de datos <code>datos</code>” %&gt;% “selecciona solo las columnas juegos y puntos”:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">stargazer</span>(datos <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(juegos_x,puntos_y) , <span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">stargazer</span>(datos <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(juegos_x,puntos_y) , <span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## =====================================================
 ## Statistic N  Mean  St. Dev. Min Pctl(25) Pctl(75) Max
@@ -191,13 +194,13 @@ Para abrirlos datos recordemos que en la lógica de R se debe generar un objeto 
 <h2>Experiencia en juegos y puntuación</h2>
 <p>La pregunta que nos hacemos para este ejercicio de demostración es: <em>¿tiene relación la experiencia previa (juegos jugados previamente) con el desempeño actual (puntos obtenidos)?</em></p>
 <p>Veamos un gráfico de nube de puntos / scatter de ambas variables. Para eso, primero cargamos la librería <code>ggplot</code>de R. Recordar que hay que instalarla primero si es que no se ha hecho previamente con <code>install.packages("ggplot")</code><span class="sidenote">ggplot</span>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">g=<span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(<span class="dt">x=</span>juegos_x, <span class="dt">y=</span>puntos_y)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>()</a>
-<a class="sourceLine" id="cb9-3" title="3">g</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>g=<span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(<span class="dt">x=</span>juegos_x, <span class="dt">y=</span>puntos_y)) <span class="op">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a>g</span></code></pre></div>
 <p><img src="/assignment/03-code_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 Primero, sobre librerías y visualización: lo que hicimos fue crear un objeto gráfico scatterplot <code>g</code> con la librería <code>ggplot</code>..</p>
 <p>En términos de correlación se observa una posible asociación positiva, que podemos corroborar con la función <code>cor</code>:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">cor</span>(datos<span class="op">$</span>juegos_x,datos<span class="op">$</span>puntos_y)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">cor</span>(datos<span class="op">$</span>juegos_x,datos<span class="op">$</span>puntos_y)</span></code></pre></div>
 <pre><code>## [1] 0.636209</code></pre>
 <p>Tenemos una <strong>correlación positiva</strong> (dirección de la relación) y de un <strong>tamaño de efecto grande</strong> (magnitud de la relación), para ciencias sociales. Es decir, existe una asociación positiva entre ambas variables: a medida que aumenta la experiencia en juegos, aumentan también los puntos obtenidos en el partido de taca taca. Ahora bien, ¿cómo se relaciona <strong>más específcamente</strong> la experiencia en juegos con los puntos obtenidos posteriormente?</p>
 </div>
@@ -209,10 +212,10 @@ Primero, sobre librerías y visualización: lo que hicimos fue crear un objeto g
 <p><img src="../../slides/03-regsimple1/condmeans.png" /></p>
 <p>Mirando el gráfico de nube de puntos, sabemos que tres personas han jugado antes una vez, pero una de ellas tuvo 2 puntos, otra 3 y otra 4. Con estos datos podemos calcular la media de Y para X=1, que sería igual a 3. En otras palabras, <em>la media condicional de Y cuando X=1 es 3</em>. Con esto, uno podría calcular la media condicional para cada punto de X y hacer una estimación más precisa de Y. Sin embargo, este proceso todavía <em>no nos permite generalizar más eficientemte</em> la relación entre X e Y.</p>
 <p><em>¿Cuántos puntos (Y) se obtienen según la experiencia previa de juego (X)?</em> Esta pregunta nos conduce al cálculo de una <strong>recta</strong> que atraviese los puntos y que generalice la relación entre X e Y:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">g2=<span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(<span class="dt">x=</span>juegos_x, <span class="dt">y=</span>puntos_y)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span>lm, <span class="dt">se=</span><span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb12-4" title="4">g2</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>g2=<span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(<span class="dt">x=</span>juegos_x, <span class="dt">y=</span>puntos_y)) <span class="op">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span>lm, <span class="dt">se=</span><span class="ot">FALSE</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a>g2</span></code></pre></div>
 <p><img src="/assignment/03-code_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 <div id="residuos" class="section level2">
@@ -247,12 +250,12 @@ En términos más suntantivos se puede entender como qué parte de la covariaci�
 Y simplificando</p>
 <p><span class="math display">\[b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})}\]</span></p>
 <p>Como sabemos, la base para todos estos cálculos es el valor de cada variable menos su promedio. Vamos a crear un vector en nuestra base de datos difx=<span class="math inline">\(x-\bar{x}\)</span> y dify=<span class="math inline">\(y-\bar{y}\)</span></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">datos<span class="op">$</span>difx=datos<span class="op">$</span>juegos_x<span class="op">-</span><span class="kw">mean</span>(datos<span class="op">$</span>juegos_x)</a>
-<a class="sourceLine" id="cb13-2" title="2">datos<span class="op">$</span>dify=datos<span class="op">$</span>puntos_y<span class="op">-</span><span class="kw">mean</span>(datos<span class="op">$</span>puntos_y)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a>datos<span class="op">$</span>difx=datos<span class="op">$</span>juegos_x<span class="op">-</span><span class="kw">mean</span>(datos<span class="op">$</span>juegos_x)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a>datos<span class="op">$</span>dify=datos<span class="op">$</span>puntos_y<span class="op">-</span><span class="kw">mean</span>(datos<span class="op">$</span>puntos_y)</span></code></pre></div>
 <p>Y ahora con esto podemos obtener la diferencia de productos cruzados dif_cru=<span class="math inline">\((x-\bar{x})*(y-\bar{y})\)</span>, así como la diferencia de X de su promedio al cuadrado SSx=<span class="math inline">\((x-\bar{x})^2\)</span></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">datos<span class="op">$</span>difcru=datos<span class="op">$</span>difx<span class="op">*</span>datos<span class="op">$</span>dify</a>
-<a class="sourceLine" id="cb14-2" title="2">datos<span class="op">$</span>difx2=datos<span class="op">$</span>difx<span class="op">^</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb14-3" title="3">datos</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a>datos<span class="op">$</span>difcru=datos<span class="op">$</span>difx<span class="op">*</span>datos<span class="op">$</span>dify</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a>datos<span class="op">$</span>difx2=datos<span class="op">$</span>difx<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a>datos</span></code></pre></div>
 <pre><code>##    id juegos_x puntos_y difx dify difcru difx2
 ## 1   1        0        2   -3   -2      6     9
 ## 2   2        0        3   -3   -1      3     9
@@ -278,9 +281,9 @@ Y simplificando</p>
 ## 22 22        6        5    3    1      3     9
 ## 23 23        6        6    3    2      6     9</code></pre>
 <p>Y con esto podemos obtener la suma de productos cruzados y la suma de cuadrados de X</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">sum</span>(datos<span class="op">$</span>difcru)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="kw">sum</span>(datos<span class="op">$</span>difcru)</span></code></pre></div>
 <pre><code>## [1] 34</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">sum</span>(datos<span class="op">$</span>difx2)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="kw">sum</span>(datos<span class="op">$</span>difx2)</span></code></pre></div>
 <pre><code>## [1] 68</code></pre>
 <p>Reemplazando en la fórmula</p>
 <p><span class="math display">\[b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})}=\frac{34}{68}=0.5\]</span></p>
@@ -304,9 +307,9 @@ Por ejemplo, cuál es el valor estimado de <span class="math inline">\(Y\)</span
 <li>data = el nombre del objeto de nuestros datos en R</li>
 </ul>
 <p>Ejemplo con los datos de taca taca:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">reg1 &lt;-<span class="kw">lm</span>(puntos_y <span class="op">~</span><span class="st"> </span>juegos_x, <span class="dt">data =</span> datos)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a>reg1 &lt;-<span class="kw">lm</span>(puntos_y <span class="op">~</span><span class="st"> </span>juegos_x, <span class="dt">data =</span> datos)</span></code></pre></div>
 <p>Con esta operación ya estimamos nuestra primera regresión simple. Para ver la estimación de los parámetros principales (intercepto y pendiente) simplemente ejecutamos el nombre del objeto:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">reg1</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a>reg1</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = puntos_y ~ juegos_x, data = datos)
@@ -316,7 +319,7 @@ Por ejemplo, cuál es el valor estimado de <span class="math inline">\(Y\)</span
 ##         2.5          0.5</code></pre>
 <p>Y obtenemos los valores que calculamos previamente.</p>
 <p>Podemos tener un output en un formato más apropiado utilizando la librería <code>stargazer</code></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">stargazer</span>(reg1, <span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a><span class="kw">stargazer</span>(reg1, <span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## ===============================================
 ##                         Dependent variable:    
