@@ -5,7 +5,7 @@ main:
   - name: Planificación
     url: /schedule/
     weight: 2
-  - name: Material
+  - name: Contenidos
     url: /class/
     weight: 3
   - name: Trabajos

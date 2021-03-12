@@ -45,25 +45,7 @@ El informe tiene las siguientes secciones:
 
 Fecha de entrega: ver Planificación.
 
-## Ejemplo para Informe 1 [aquí](../assignment/ejemplocasencovid/ejemploinforme1.html)
-
-## Comentarios generales trabajo 1
-
-- En general muy buenos informes, sobre todo considerando que no contempla solo regresión, sino también un reporte completo de investigación con todas sus secciones.
-
-- La pauta y ejemplo son una referencia, en algunos casos el apego estricto a la pauta o ejemplo no se adecuaba bien a los temas y datos utilizados
-
-  - Ej: uso de scatterplot (nube de puntos) para variables categóricas, en ocasiones no es informativo.
-
-- Entonces, criterio general para la presentación de resultados: ¿es informativo / ilustrativo?, recordar siempre el énfasis comunicacional del informe, pensar en la audiencia.
-
-- En general los tamaños de los betas son pequeños, R2s también, lo que es esperable sobre todo en trabajos iniciales. Ahora, si esto es relevante o significativo es otra pregunta, tiene relación con la literatura y con inferencia estadística.
-
-- Como referencia a los análisis, siempre tener como antecedentes temas de variabilidad / covariabilidad de las variables. Si hay poca varianza, es poco lo que se puede esperar.
-
-- Mayor cuestionamiento y propuestas de formas de medición de las variables
-
-- En ocasiones se recomienda recodificar las variables para favorecer la interpretación. Por ejemplo, que el mayor valor de la variable exprese la mayor presencia del atributo. Esto sucede a menudo en escalas likert donde 1 es totalmente de acuerdo, se recomienda recodificación inversa (reverse coding).
+**Ejemplo para Informe 1 [aquí](../assignment/ejemplocasencovid/ejemploinforme1.html)**
 
 # Pauta de trabajo grupal (Informes 2 y 3)
 
@@ -99,7 +81,6 @@ Recomendamos utilizar alguna de las siguientes fuentes de datos para realizar lo
   - [ESI](https://datosabiertos.ine.cl/dashboards/20610/esi/)
   - [ENUT](https://datosabiertos.ine.cl/dashboards/20612/enut/)
   - OHL, ENCLA y otras pueden ser solicitadas directamente a **Valentina Andrade**
-
 
 ## Modalidad de trabajo y asesorías
 

@@ -12,12 +12,10 @@ output:
     toc: true
 menu:
   class:
-    parent: Contenidos
+    parent: Clases
     weight: 1
 type: docs
 weight: 1
-pdf: /slides/01_dataviz_s20_looking_at_data.pdf
-thumb: /slides/01_dataviz_s20_looking_at_data.png
 editor_options:
   chunk_output_type: console
 ---
