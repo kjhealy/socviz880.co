@@ -38,18 +38,17 @@ klippy::klippy(position = c('bottom', 'right')) # chunks con botón de copiar
 
 El desarrollo de esta guía tiene por objetivo revisar algunos procedimientos básicos de la preparación de datos con R, que son necesarios para luego poder aplicar los contenidos más específicos de este curso.
 
-En este curso vamos a distinguir **dos momentos** del trabajo con datos: procesamiento y análisis.
+Por temas de orden y reproducibilidad, en este curso vamos a separar en **dos momentos** el trabajo con datos, y dos archivos de código correspondientes:
 
-  - **Preparación** corresponde a lo que se conoce generalmente como "limpieza", es decir, realizar las modificaciones necesarias para poder efectuar los análisis. Estas modificaciones previas al análisis son necesarias ya que los datos originales con los que se va a trabajar en general no vienen perfectamente adaptados a los análisis que se quieren hacer. Por lo tanto, en cuanto a datos también hacemos la distinción entre datos originales y datos procesados.
+  - **Preparación** corresponde a lo que se conoce generalmente como "limpieza", es decir, realizar las modificaciones necesarias para poder efectuar los análisis. Estas modificaciones previas al análisis son necesarias ya que los datos originales con los que se va a trabajar en general no vienen perfectamente adaptados a los análisis que se quieren hacer. Por lo tanto, en cuanto a datos también hacemos la distinción entre datos originales y datos preparados (o procesados).
 
-  - **Análisis**: se relaciona principalmente con análisis descriptivos asociados a las preguntas de investigación y también modelamiento de datos para contrastar hipótesis de investigación.
+  - **Análisis**: se relaciona tanto con análisis descriptivos asociados a las preguntas de investigación y como también modelamiento de datos para contrastar hipótesis de investigación.
 
 #### Los procesos de preparación y análisis vinculados a datos y resultados se presentan en el siguiente esquema:{#flujo}
 
 ![](/images/produccion.png)
 
-
-Tanto la preparación como el análisis (que son parte del concepto más general de procesamiento) quedan registrados en un documento de código, en este caso de código R<span class="sidenote">Archivo de código R: archivo con extensión .R donde se almacena el código de análisis. Para generarlo desde RStudio: menú File > Save, y darle nombre (recordar: sin tilde ni ñ, y evitar espacios) </span>
+Tanto la preparación como el análisis (que son parte del concepto más general de procesamiento) quedan registrados cada en un _archivo de código_. Los detalles de este tipo de archivos se pueden revisar [aquí](/class/#codigoR). <span class="sidenote">**Archivo de código R**: archivo con extensión .R donde se almacena el código de análisis. Para generarlo desde RStudio: _File > New File > R Script_ (o ctrl+shift+N), y para grabarlo  _File > Save (o ctrl+s)_, y darle nombre la primera vez (recordar: sin tilde ni ñ, y evitar espacios) </span>
 
 El documento de **código de preparación** posee 5 partes, más una sección de identificación inicial:
 
@@ -58,13 +57,13 @@ El documento de **código de preparación** posee 5 partes, más una sección de
 2. Datos: carga de datos
 3. Selección de variables a utilizar
 4. Procesamiento de variables: en este punto, por cada variable se realiza lo siguiente:
-    a. Descriptivo
+    a. Descriptivo básico
     b. Recodificación: (datos perdidos y valores (en caso de ser necesario)
     c. Etiquetamiento: de variable y valores (en caso de ser necesario)
     e. Otros ajustes
 
 
-5. Generación de base de datos procesada para el análisis.
+5. Generación de base de datos preparada para el análisis.
 
 Al final de esta práctica la idea es que cada un_ elabore y entienda su propio documento de preparación de datos.
 
@@ -77,19 +76,6 @@ El Estudio Longitudinal Social de Chile (ELSOC) es una encuesta desarrollada par
 Uno de los módulos de **ELSOC** es "Desigualdad y Legitimidad". Este módulo busca estudiar las percepciones y atribuciones asociadas a las desigualdades sociales. Se ve motivado por el interés de comprender cómo las personas perciben, legitiman y reproducen las diferencias de ingresos, estatus y poder presentes en el Chile contemporáneo.
 
 El presente ejercicio tiene por objetivo el procesar los datos para obtener las variables relevantes para el estudio de la **Percepción de Meritocracia**, entendida como el grado en que los individuos consideran que su sociedad cumple con los principios de una meritocracia, es decir, que funciona como un sistema que asigna recompensas en función del esfuerzo y las habilidades. Para ello, junto con variables de meritocracia, consideraremos también variables de estatus (educación y estatus subjetivo), y variables de caracterización sociodemográfica (sexo y edad).
-
-## Video - Tutoriales
-
-- Si se requiere instalar R, ir al siguiente tutorial en la página de descripción del uso de R en las prácticas haciendo click [aquí.](/class#installR)
-
-- También se agrega un segundo tutorial con instrucciones paso a paso para poder comenzar a realizar esta Práctica 1 usando RStudio:
-
-<div style="width: 100%; height: 600px; overflow: hidden;">
-<video  style="width: 100%;" controls>
-<source src="https://www.dropbox.com/s/dya7gr6jdc9nqfi/practica1_update.mp4?raw=1" type="video/mp4">
-</video>
-</div>
-
 
 # Preparación de datos ELSOC 2016
 
@@ -104,7 +90,7 @@ Para utilizar la primera vez (si es que no está instalada):
 install.packages("pacman")
 ```
 
-Y en adelante, las librerías se cargan así:
+Y en adelante, las librerías se cargan así <span class="sidenote"> pacman::p_load(libreria1,libreria2,libreriaX) </span>:
 
 
 ```{r}

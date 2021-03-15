@@ -1,8 +1,8 @@
 ---
-title: "Práctica 2. Descripción de variables"
+# title: "Práctica 2. Descripción de variables"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
 author: "Valentina Andrade"
-linktitle: "Práctica 2: Descripción de variables"
+# linktitle: "Práctica 2: Descripción de variables"
 date: "2020-01-10"
 class_date: "2020-04-23"
 citeproc: false

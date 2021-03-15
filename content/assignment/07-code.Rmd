@@ -1,8 +1,8 @@
 ---
-title: "Práctica 7. Inferencia y predictores categóricos"
+# title: "Práctica 7. Inferencia y predictores categóricos"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
 author: "Julio César Iturra Sanhueza"
-linktitle: "Práctica 7. Inferencia y predictores categóricos"
+# linktitle: "Práctica 7. Inferencia y predictores categóricos"
 date: "2020-07-03"
 class_date: "2020-07-03"
 citeproc: false
@@ -260,7 +260,7 @@ sjPlot::tab_model(list(reg3,reg4), show.ci=FALSE, p.style = "asterisk",string.pr
 ```
 
 
-### Interpretación 
+### Interpretación
 
 Al igual que en el modelo empleando Educación como variable continua, el modelo con Educación categórica muestra que a medida que aumenta el nivel educacional, el promedio de estatus subjetivo tiende a ser más alto. Por otro lado, en este caso la categoría de referenca es Primaria Incompleta o menos. Entonces:
 

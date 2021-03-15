@@ -21,40 +21,31 @@ Todo el material es accesible desde el menú de la izquierda <--
 
 ## Instrucciones generales para las prácticas
 
-- Las prácticas se desarrollarán semana a semana en el horario correspondiente a cada sección (Jueves Sección 1, Viernes Sección 2, de 8:30 a 10:00); ver detalles en la [planificación del curso](/schedule).
-
-- Estas sesiones acompañarán el desarrollo de las guías prácticas disponibles en este sitio.
-
-- Los contenidos de las guías refieren a aplicaciones de análisis de datos de lo visto en clases la semana anterior
-
-- En las prácticas vamos a trabajar con el software R, Versión 4.0. Para su instalación consultar el video-tutorial disponible en la página de la práctica 1 (click [aquí](/assignment/01-code#videos_inicio))
-
-- Para poder tener una asesoría y monitoreo más cercano en el desarrollo de las guías, los estudiantes han sido divididos en grupos asignados a un/a ayudante (ver en UCursos)
+- Las instancia práctica consiste en el desarrollo de una guía práctica cada semana donde se aplican y profundizan los contenidos de las clases. La organización de estas prácticas se puede revisar en la [planificación del curso](/schedule).
 
 - El trabajo con estas guías se organiza en los siguientes momentos:
 
-  - cada estudiante realiza la guía de manera autónoma durante la semana correspondiente, antes de la sesión de práctica
-  - en caso de dudas, las realizan en los foros disponibles o se contactan directamente con su ayudante
-  - durante las sesiones prácticas, cada ayudante se reunirá con su grupo de estudiantes asignado para revisar la guía paso a paso y resolver dudas
-  - cada semana se completa un **reporte de progreso** (detalles abajo) que va a ser implementado en la plataforma de UCursos
+  - cada estudiante realiza la guía de manera autónoma durante la semana
+  - en caso de dudas que surjan durante la semana se recomienda preguntar en el foro de U-Cursos o preferentemente en el foro de _Disqus_ al final de la página de cada práctica.
+  - en la sesión del día jueves se revisará la guía, se resolverán dudas y se entregaran complementos en caso de ser necesario.
+  - las sesiones de los jueves se realizarán en grupos pequeños guiados por ayudantes. Estos grupos serán inicialmente asignados al azar y luego corresponderan a los grupos conformados para realizar el trabajo final del curso.
+  - cada semana se completa un **reporte de progreso** (detalles abajo)
+
+- En las prácticas vamos a trabajar con el software R, Versión 4.0. Para su instalación consultar el video-tutorial disponible en la página de la práctica 1 (click [aquí](/assignment/01-code#videos_inicio))
 
 ## Reportes de progreso{#reporte}
 
-Este curso se caracteriza por el desarrollo secuencial y acumulativo de aprendizajes. En otras palabras, va a ser muy difícil poder lograr los objetivos de aprendizaje posteriores sin haber logrado los objetivos de contenidos previos. Y nuevamente en otras palabras: es muy difícil aprender a multiplicar sin saber sumar. Por lo tanto, como equipo a cargo del curso nos interesa poder monitorear permanentemente el cumplimiento de objetivos de aprendizaje semana a semana para así poder prestar asesoría oportuna.
+Este curso se caracteriza por el desarrollo secuencial y acumulativo de aprendizajes. En otras palabras, va a ser muy difícil poder lograr los objetivos de aprendizaje posteriores sin haber logrado los objetivos de contenidos previos. En otras palabras: es muy difícil aprender a multiplicar sin saber sumar. Por lo tanto, como equipo a cargo del curso nos interesa poder monitorear permanentemente el cumplimiento de objetivos de aprendizaje semana a semana para así poder prestar asesoría oportuna.
 
-El sistema de monitoreo de cumplimiento de objetivos se llevará a cabo mediante **reportes de progreso**. Un ejemplo de este reporte se ve así:
+El sistema de monitoreo permanente de cumplimiento de objetivos se llevará a cabo mediante **reportes de progreso**. Un ejemplo de este reporte se ve así:
 
 ![](/images/reporte_progreso.png)
 
-Los reportes consisten en completar una encuesta simple y breve, donde se preguntará por el cumplimiento de los objetivos de las prácticas respectivas. La idea es que los puedan completar durante la semana en que se desarrolla la guía, a más tardar los días viernes.
+Los reportes consisten en completar una encuesta simple y breve, donde se preguntará por el cumplimiento de los objetivos de las prácticas respectivas. El link para completar el reporte se encuentra al final de cada práctica. Se deben completar durante la semana en que se desarrolla la guía, a más tardar los días viernes.
 
-**Actualización (22/05)**
+Como incentivo para completar los reportes de progreso, se entregarán **dos décimas adicionales** a la evaluación a quienes tengan sus reportes de progreso completados entre instancias de evaluación (por ejemplo, en el caso de la evaluación 2 se deben tener todos los reportes de progreso completados entre la evaluación 1 y 2).
 
-1- El primer reporte (Praćtica 1) se generó en la función Test de UCursos, pero lamentablemente la forma en que se entregan los resultados no nos permitió un análisis desagregado por pregunta, que es importante para poder monitorear distintos objetivos. Por eso, desde la práctica 2 hay disponible una encuesta formato web (Forms), a la que se accede directamente la final de la página de cada práctica.
-2- Como incentivo para completar los reportes de progreso, se entregarán dos décimas adicionales a cada evaluación para quienes tengan sus reportes completados.
-
-
-## Notas sobre trabajo con software R
+## Trabajo con software R
 
 Para los análisis estadísticos de este curso usamos el programa R, principalmente porque es gratuito, pero la principal razón es que es de código abierto. Esto quiere decir que cualquier persona puede revisar cómo está hecho y aportar con modificaciones y procedimientos nuevos, como son las librerías que realizan funciones específicas.
 
@@ -63,26 +54,37 @@ El carácter de apertura de R posee muchas ventajas, pero también conlleva comp
 Para minimizar estos posibles problemas en este curso, vamos a:
 
 - trabajar con la misma y última versión de R, que es la 4.0
-- evitar uso de tilde, ñ, espacios y mayusculas tanto en carpetas y archivos, así como también en los nombres de las variable
-- al momento de hacer consultas sobre problemas en la ejecución del código, adjuntar archivo con:
+- evitar uso de tilde, ñ, espacios y mayúsculas tanto en carpetas y archivos, así como también en los nombres de las variable
+- al momento de hacer consultas sobre problemas en la ejecución del código, adjuntar la siguiente información:
 
   1. Código completo hasta que se produce el problema
   2. Indicar línea del código donde se produce el problema
   3. Adjuntar el resultado del output de la información de la sesión (`sessionInfo()`)
 
-### Tutorial de instalación de R {#installR}
+### Instalación de R & RStudio {#installR}
 
-- Para quienes no trabajan en R constantemente, abajo un primer tutorial  sobre instalación de R y RStudio, necesarios para poder desarrollar esta práctica: <span class="sidenote"> Actualizado a versión 4.0 </span>
+Para esta versión del curso vamos a trabajar con el programa R Version 4.0 (se sugiere la última versión de Febrero 2021, 4.0.4) y con RStudio, que ofrece un entorno más amigable para trabajar con R.
 
-<div style="width: 100%; height: 600px; overflow: hidden;">
-<video  style="width: 100%;" controls>
-<source src="https://www.dropbox.com/s/goofz32r5htw6pt/tutorialR-4.0.mp4?raw=1" type="video/mp4">
-</video>
-</div>
+Para **instalar R**: ir a [https://cran.r-project.org/index.html](https://cran.r-project.org/index.html) y bajar/instalar la versión correspondiente a la plataforma utilizada (Windows, Mac o Linux)
+
+Para instalar **RStudio**: ir a [https://rstudio.com/products/rstudio/](https://rstudio.com/products/rstudio/) y bajar/instalar RStudio desktop, Open Source License (libre).
+
+### Sobre el trabajo en hojas de código en RStudio {#codigoR}
+
+- El trabajo de análisis en RStudio se efectua en una _hoja de código_ (o R script o sintaxis, o para los usuarios de Stata la _do-file_), que es donde se anotan los comandos y funciones. Para abrir una hoja, en RStudio ir a File > New File > R Script (o ctrl+shift+N),y aparecerá un panel con una pestaña "Untitled" (sin título). Esta es la hoja de código donde se anotan los comandos.
+
+- Los contenidos de las hojas de código son básicamente 2:
+
+  - comandos o funciones: se escriben en la hoja, y para ejecutarlos posicionar el cursor en la línea respectiva y ctrl+enter, el resultado aparecerá en el panel de resultados o _Consola_.
+  - texto: para escribir títulos, comentarios, y todo lo que permita entender qué se está haciendo, al principio de la línea respectiva escribir el signo `#`
+
+
+
+- Para grabar nuestra hoja de código y así respaldar nuestros análisis, File > Save (o ctrl+s), y dar un nombre al archivo. Recordar: breve, sin espacios ni tildes ni eñes. Por defecto, la extensión de estos archivos es .R
 
 ### Tutorial RCloud
 
-RCloud permite trabajar con RStudio en línea, sin necesidad de instalar localmente. Puede ser muy útil para quienes tengan problemas de instalación, así como también para trabajo colaborativo.
+RCloud permite trabajar con RStudio en línea, sin necesidad de instalar localmente. Puede ser muy útil para quienes tengan problemas de instalación, así como también para trabajo colaborativo. Abajo un video tutorial para una versión anterior del curso:
 
 <div style="width: 100%; height: 600px; overflow: hidden;">
 <video  style="width: 100%;" controls>

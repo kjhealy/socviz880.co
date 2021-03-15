@@ -1,8 +1,8 @@
 ---
-title: "Práctica 11: Transformación de variables y supuestos de regresión"
+# title: "Práctica 11: Transformación de variables y supuestos de regresión"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
 author: "Julio César Iturra Sanhueza"
-linktitle: "Práctica 11: Transformación de variables y supuestos de regresión"
+#linktitle: "Práctica 11: Transformación de variables y supuestos de regresión"
 date: "2020-08-21"
 class_date: "2020-08-14"
 citeproc: false
@@ -52,7 +52,7 @@ remotes::install_github("leifeld/texreg") # Se debe usar esta version para agreg
 
 # Datos
 
-El Estudio Longitudinal Social del Chile  (ENACOES 2014), único en Chile y América Latina, consiste en encuestar a casi 3.000 chilenos, anualmente, a lo largo de una década. ELSOC ha sido diseñado para evaluar la manera cómo piensan, sienten y se comportan los chilenos en torno a un conjunto de temas referidos al conflicto y la cohesión social en Chile. La población objetivo son hombres y mujeres entre 15 y 75 años de edad con un alcance nacional, donde se obtuvo una muestra final de **3748** casos en el año 2018. 
+El Estudio Longitudinal Social del Chile  (ENACOES 2014), único en Chile y América Latina, consiste en encuestar a casi 3.000 chilenos, anualmente, a lo largo de una década. ELSOC ha sido diseñado para evaluar la manera cómo piensan, sienten y se comportan los chilenos en torno a un conjunto de temas referidos al conflicto y la cohesión social en Chile. La población objetivo son hombres y mujeres entre 15 y 75 años de edad con un alcance nacional, donde se obtuvo una muestra final de **3748** casos en el año 2018.
 
 ```{r echo=TRUE}
 load("content/assignment/data/elsoc18p11.RData")
@@ -84,13 +84,13 @@ view_df(elsoc,max.len = 50)
 
 ## Creación de índice
 
-En ELSOC existen cuatro preguntas referentes a la participación política o ciudadana, donde se le pregunta a las personas por la frecuencia en que han participado de determinados eventos vinculados a su rol como ciudadanos. Para esto, se emplearon escalas likert de 5 categorías para medir dicha participación. 
+En ELSOC existen cuatro preguntas referentes a la participación política o ciudadana, donde se le pregunta a las personas por la frecuencia en que han participado de determinados eventos vinculados a su rol como ciudadanos. Para esto, se emplearon escalas likert de 5 categorías para medir dicha participación.
 
 ```{r, fig.width=10}
 plot_stackfrq(elsoc[,c("part01","part02","part03","part04")]) + theme(legend.position="bottom")
 ```
 
-En la figura anterior, podemos ver que existe un alto porcentaje de personas que declaran no haber participado nunca en alguna de estas expresiones de la participación ciudadana. En este sentido, para la creación de un índice o medida agrupada, nos interesa saber si existe algún grado de relación entre nuestros indicadores. Para esto, lo que tradicionalmente se realiza es realizar un análisis de correlación entre los indicadores. 
+En la figura anterior, podemos ver que existe un alto porcentaje de personas que declaran no haber participado nunca en alguna de estas expresiones de la participación ciudadana. En este sentido, para la creación de un índice o medida agrupada, nos interesa saber si existe algún grado de relación entre nuestros indicadores. Para esto, lo que tradicionalmente se realiza es realizar un análisis de correlación entre los indicadores.
 
 ```{r}
 corrplot.mixed(cor(select(elsoc,part01,part02,part03,part04),
@@ -112,49 +112,49 @@ Vemos que el índice sumatorio posee valores que van desde 4 hasta 20, con una m
 
 ## Recuperar casos perdidos
 
-Es común que en las encuestas sociales cierta variables posean una alta proporción de datos perdidos. Un ejemplo común es en el reporte de los ingresos de los hogares o individuos. Esto generalmente puede generarse por características de la persona (p.ej. desempleado, estudiante) o por deseabilidad social (personas de altos ingresos desisten de reportar). En el caso de ELSOC, existen dos estrategias para solicitar que las personas reporten sus ingresos. La primera consiste en preguntar directamente por el monto en pesos chilenos de los ingresos totales del hogar. Alternativamente, si la persona no reporta los ingresos, se le presenta la posibilidad de ubicar los ingresos del hogar en tramos (Por ejemplo "De \$560.001 a \$610.000 mensuales liquidos"). De esta manera, si existen datos perdidos en la primera, se emplea la segunda pregunta para tener un nivel aproximado del ingreso del hogar.  
+Es común que en las encuestas sociales cierta variables posean una alta proporción de datos perdidos. Un ejemplo común es en el reporte de los ingresos de los hogares o individuos. Esto generalmente puede generarse por características de la persona (p.ej. desempleado, estudiante) o por deseabilidad social (personas de altos ingresos desisten de reportar). En el caso de ELSOC, existen dos estrategias para solicitar que las personas reporten sus ingresos. La primera consiste en preguntar directamente por el monto en pesos chilenos de los ingresos totales del hogar. Alternativamente, si la persona no reporta los ingresos, se le presenta la posibilidad de ubicar los ingresos del hogar en tramos (Por ejemplo "De \$560.001 a \$610.000 mensuales liquidos"). De esta manera, si existen datos perdidos en la primera, se emplea la segunda pregunta para tener un nivel aproximado del ingreso del hogar.
 
 ```{r echo=TRUE, results='asis'}
 descr(elsoc$inghogar,style = "rmarkdown",stats = "common", transpose = T,headings = F)
 ```
 
-```{r, results='asis'} 
+```{r, results='asis'}
 sjmisc::frq(elsoc$inghogar_t,
             out = "txt",
             show.na = T) %>% knitr::kable()
 ```
 
 
-Si observamos la tabla de descriptivos para la variable ingreso del hogar (`inghogar`), tenemos un porcentaje 17,82% de datos perdidos. Por esta razón, emplearemos los datos disponibles en `inghogar_t` para recuperar información en los ingresos del hogar. 
+Si observamos la tabla de descriptivos para la variable ingreso del hogar (`inghogar`), tenemos un porcentaje 17,82% de datos perdidos. Por esta razón, emplearemos los datos disponibles en `inghogar_t` para recuperar información en los ingresos del hogar.
 
 La estrategia posee los siguientes pasos:
 
 1. Calcular la media del tramo reportado.
 2. En el caso de que la persona no haya reportado el monto de los ingresos del hogar, remplazamos este valor perdido por el valor de la media del tramo, en el caso de estar disponible.
-3. Comparamos la variable original con la nueva variable que posee información recuperada.  
+3. Comparamos la variable original con la nueva variable que posee información recuperada.
 
 **Paso 1: Calcular la media por cada tramo**
 
 ```{r}
-elsoc$inghogar_t[elsoc$inghogar_t==1] <-(       220000 )    # [1]  "Menos de $220.000 mensuales liquidos"          
-elsoc$inghogar_t[elsoc$inghogar_t==2] <-(220001 +280000 )/2 # [2]  "De $220.001 a $280.000 mensuales liquidos"       
-elsoc$inghogar_t[elsoc$inghogar_t==3] <-(280001 +330000 )/2 # [3]  "De $280.001 a $330.000 mensuales liquidos"       
-elsoc$inghogar_t[elsoc$inghogar_t==4] <-(330001 +380000 )/2 # [4]  "De $330.001 a $380.000 mensuales liquidos"       
-elsoc$inghogar_t[elsoc$inghogar_t==5] <-(380001 +420000 )/2 # [5]  "De $380.001 a $420.000 mensuales liquidos"       
-elsoc$inghogar_t[elsoc$inghogar_t==6] <-(420001 +470000 )/2 # [6]  "De $420.001 a $470.000 mensuales liquidos"       
-elsoc$inghogar_t[elsoc$inghogar_t==7] <-(470001 +510000 )/2 # [7]  "De $470.001 a $510.000 mensuales liquidos"       
-elsoc$inghogar_t[elsoc$inghogar_t==8] <-(510001 +560000 )/2 # [8]  "De $510.001 a $560.000 mensuales liquidos"       
-elsoc$inghogar_t[elsoc$inghogar_t==9] <-(560001 +610000 )/2 # [9]  "De $560.001 a $610.000 mensuales liquidos"       
-elsoc$inghogar_t[elsoc$inghogar_t==10]<-(610001 +670000 )/2 # [10] "De $610.001 a $670.000 mensuales liquidos"       
-elsoc$inghogar_t[elsoc$inghogar_t==11]<-(670001 +730000 )/2 # [11] "De $670.001 a $730.000 mensuales liquidos"       
-elsoc$inghogar_t[elsoc$inghogar_t==12]<-(730001 +800000 )/2 # [12] "De $730.001 a $800.000 mensuales liquidos"       
-elsoc$inghogar_t[elsoc$inghogar_t==13]<-(800001 +890000 )/2 # [13] "De $800.001 a $890.000 mensuales liquidos"       
-elsoc$inghogar_t[elsoc$inghogar_t==14]<-(890001 +980000 )/2 # [14] "De $890.001 a $980.000 mensuales liquidos"       
-elsoc$inghogar_t[elsoc$inghogar_t==15]<-(980001 +1100000)/2 # [15] "De $980.001 a $1.100.000 mensuales liquidos"      
-elsoc$inghogar_t[elsoc$inghogar_t==16]<-(1100001+1260000)/2 # [16] "De $1.100.001 a $1.260.000 mensuales liquidos"    
-elsoc$inghogar_t[elsoc$inghogar_t==17]<-(1260001+1490000)/2 # [17] "De $1.260.001 a $1.490.000 mensuales liquidos"    
-elsoc$inghogar_t[elsoc$inghogar_t==18]<-(1490001+1850000)/2 # [18] "De $1.490.001 a $1.850.000 mensuales liquidos"    
-elsoc$inghogar_t[elsoc$inghogar_t==19]<-(1850001+2700000)/2 # [19] "De $1.850.001 a $2.700.000 mensuales liquidos"    
+elsoc$inghogar_t[elsoc$inghogar_t==1] <-(       220000 )    # [1]  "Menos de $220.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==2] <-(220001 +280000 )/2 # [2]  "De $220.001 a $280.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==3] <-(280001 +330000 )/2 # [3]  "De $280.001 a $330.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==4] <-(330001 +380000 )/2 # [4]  "De $330.001 a $380.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==5] <-(380001 +420000 )/2 # [5]  "De $380.001 a $420.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==6] <-(420001 +470000 )/2 # [6]  "De $420.001 a $470.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==7] <-(470001 +510000 )/2 # [7]  "De $470.001 a $510.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==8] <-(510001 +560000 )/2 # [8]  "De $510.001 a $560.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==9] <-(560001 +610000 )/2 # [9]  "De $560.001 a $610.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==10]<-(610001 +670000 )/2 # [10] "De $610.001 a $670.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==11]<-(670001 +730000 )/2 # [11] "De $670.001 a $730.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==12]<-(730001 +800000 )/2 # [12] "De $730.001 a $800.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==13]<-(800001 +890000 )/2 # [13] "De $800.001 a $890.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==14]<-(890001 +980000 )/2 # [14] "De $890.001 a $980.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==15]<-(980001 +1100000)/2 # [15] "De $980.001 a $1.100.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==16]<-(1100001+1260000)/2 # [16] "De $1.100.001 a $1.260.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==17]<-(1260001+1490000)/2 # [17] "De $1.260.001 a $1.490.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==18]<-(1490001+1850000)/2 # [18] "De $1.490.001 a $1.850.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==19]<-(1850001+2700000)/2 # [19] "De $1.850.001 a $2.700.000 mensuales liquidos"
 elsoc$inghogar_t[elsoc$inghogar_t==20]<-(2700000)           # [20] "Mas de $2.700.000 a mensuales liquidos"
 ```
 
@@ -176,7 +176,7 @@ sjmisc::descr(elsoc[,c("inghogar","inghogar_i")],
               show =c("label", "n", "NA.prc", "mean", "md","sd")) %>% knitr::kable(digits = 2)
 ```
 
-Vemos que pasamos de tener 17,82% de datos perdidos a un 5,1%, es decir recuperamos un 12,72% de los casos que antes tenían datos perdidos en la variable ingreso. Con estos datos podemos calcular el ingreso per capita del hogar, empleando la variable habitantes del hogar (`tamhogar`). 
+Vemos que pasamos de tener 17,82% de datos perdidos a un 5,1%, es decir recuperamos un 12,72% de los casos que antes tenían datos perdidos en la variable ingreso. Con estos datos podemos calcular el ingreso per capita del hogar, empleando la variable habitantes del hogar (`tamhogar`).
 
 ```{r}
 elsoc$ing_pcap <- elsoc$inghogar_i/elsoc$tamhogar
@@ -188,7 +188,7 @@ sjmisc::descr(elsoc[,c("inghogar","inghogar_i","tamhogar","ing_pcap")],
               show =c("label", "n", "NA.prc", "mean", "md","sd")) %>% knitr::kable(digits = 2)
 ```
 
-Vemos que la variable `tamhogar` posee un 0,19% de datos perdidos, por lo cual, al calcular el ingreso per cápita, vemos que el porcentaje de casos sin información en la nueva variable aumenta levemente a un 5,23%. 
+Vemos que la variable `tamhogar` posee un 0,19% de datos perdidos, por lo cual, al calcular el ingreso per cápita, vemos que el porcentaje de casos sin información en la nueva variable aumenta levemente a un 5,23%.
 
 ## Ingresos como variable categórica
 
@@ -198,32 +198,32 @@ El procedimiento es el siguiente:
 
 ```{r, results='asis'}
 elsoc$quintile<- dplyr::ntile(x = elsoc$ing_pcap,
-                              n = 5) # n de categorias, para quintiles usamos 5 
-elsoc$quintile <- factor(elsoc$quintile,c(1,2,3,4,5), c("Quintil 1","Quintil 2","Quintil 3","Quintil 4","Quintil 5")) 
-elsoc %>% 
-  group_by(quintile) %>% 
+                              n = 5) # n de categorias, para quintiles usamos 5
+elsoc$quintile <- factor(elsoc$quintile,c(1,2,3,4,5), c("Quintil 1","Quintil 2","Quintil 3","Quintil 4","Quintil 5"))
+elsoc %>%
+  group_by(quintile) %>%
   summarise(n=n(),
             Media=mean(ing_pcap,na.rm = T),
-            Mediana=median(ing_pcap,na.rm = T)) %>% 
+            Mediana=median(ing_pcap,na.rm = T)) %>%
   knitr::kable()
 
 ```
 
-En la tabla podemos observar que la variable  `quintile` posee 5 grupos de tamaño equivalente. Además, agregamos la media y la mediana de los ingresos para cada categoría para ilustrar que podemos tratar esta variable como categórica y ordinal. 
+En la tabla podemos observar que la variable  `quintile` posee 5 grupos de tamaño equivalente. Además, agregamos la media y la mediana de los ingresos para cada categoría para ilustrar que podemos tratar esta variable como categórica y ordinal.
 
-Existe una última estrategia que podemos utilizar para recuperar ese 5,23% (n=196) de casos perdidos. Para esto, generamos una categoría adicional para los datos perdidos, es decir, recodificamos los NA para que se incluyan como una nueva categoría. 
+Existe una última estrategia que podemos utilizar para recuperar ese 5,23% (n=196) de casos perdidos. Para esto, generamos una categoría adicional para los datos perdidos, es decir, recodificamos los NA para que se incluyan como una nueva categoría.
 
 El procedimiento es el siguiente:
 
 ```{r, results='asis'}
 elsoc$quintilemiss <- factor(elsoc$quintile,ordered = T)
 elsoc$quintilemiss <- ifelse(is.na(elsoc$quintilemiss),yes = 6,no = elsoc$quintilemiss)
-elsoc$quintilemiss <- factor(elsoc$quintilemiss ,levels = c(1,2,3,4,5,6),labels =  c("Quintil 1","Quintil 2","Quintil 3","Quintil 4","Quintil 5","Missing")) 
+elsoc$quintilemiss <- factor(elsoc$quintilemiss ,levels = c(1,2,3,4,5,6),labels =  c("Quintil 1","Quintil 2","Quintil 3","Quintil 4","Quintil 5","Missing"))
 elsoc %>% group_by(quintilemiss) %>% summarise(n=n())
 ```
 
-Teniendo una nueva categoría de ingresos, podemos recuperar estos casos para los posteriores análisis. A continuación, se llevaran a cabo una serie de análisis que nos permitirán comprar los resultados según distintas especificaciones y empleando distintas maneras de operacionalizar la variable ingresos.  
- 
+Teniendo una nueva categoría de ingresos, podemos recuperar estos casos para los posteriores análisis. A continuación, se llevaran a cabo una serie de análisis que nos permitirán comprar los resultados según distintas especificaciones y empleando distintas maneras de operacionalizar la variable ingresos.
+
 # Estimación
 
 ```{r}
@@ -236,7 +236,7 @@ fit03<- lm(partpol~sexo+edad+quintilemiss+pospol,data=elsoc)
 labs01 <- c("Intercepto","Sexo (mujer=1)","Edad","Ingreso per/cap","Centro (ref. derecha)","Izquierda","Idep./Ninguno",
             "Quintil 2","Quintil 3","Quintil 4","Quintil 5",
             "Quintil 2","Quintil 3","Quintil 4","Quintil 5","Quintil perdido")
-htmlreg(list(fit01,fit02,fit03),doctype = FALSE, 
+htmlreg(list(fit01,fit02,fit03),doctype = FALSE,
         custom.model.names = c("Modelo 1","Modelo 2","Modelo 3"),
         custom.coef.names = labs01)
 ```
@@ -249,7 +249,7 @@ screenreg(list(fit01,fit02,fit03),custom.coef.names = labs01)
 
 ### Casos influyentes
 
-Para determinar si un outlier es un caso influyente, es decir que su presencia/ausencia genera un cambio importante en la estimación de los coeficientes de regresión, calculamos la **Distancia de Cook.**. 
+Para determinar si un outlier es un caso influyente, es decir que su presencia/ausencia genera un cambio importante en la estimación de los coeficientes de regresión, calculamos la **Distancia de Cook.**.
 
 Posteriormente, se establece un punto de corte de $4/(n-k-1)$:
 
@@ -291,14 +291,14 @@ labs02 <- c("Intercepto","Sexo (mujer=1)","Edad",
             "Quintil 2","Quintil 3","Quintil 4","Quintil 5","Quintil perdido",
             "Izquierda (ref. derecha)","Centro","Idep./Ninguno")
 
-htmlreg(list(fit03,fit04), 
+htmlreg(list(fit03,fit04),
         doctype = FALSE,
         custom.model.names = c("Modelo 3", "Modelo 4"),
         custom.coef.names = labs02)
 ```
 
 ```{r eval=FALSE, include=FALSE}
-screenreg(list(fit03,fit04), 
+screenreg(list(fit03,fit04),
         custom.model.names = c("Modelo 3", "Modelo 4"),
         custom.coef.names = labs02
         )
@@ -313,7 +313,7 @@ En términos generales, el sentido y significación estadística de los coeficie
 Para analizar la linealidad respecto de un modelo de regresión, debemos analizar la distribución de los residuos con respecto a la recta de regresión.
 
 * Los residuos deben ser independientes de los valores predichos (fitted values).
-* Cualquier correlación entre residuo y valores predichos violarían este supuesto. 
+* Cualquier correlación entre residuo y valores predichos violarían este supuesto.
 * La presencia de un patrón no lineal, es señal de que el modelo está especificado incorrectamente.
 
 
@@ -363,13 +363,13 @@ labs03 <- c("Intercepto","Sexo (mujer=1)","Edad",
             "Izquierda (ref. derecha)","Centro","Idep./Ninguno", "Edad²","Ingreso per cap (log)")
 
 htmlreg(list(fit04, fit05, fit06), doctype = FALSE,
-        custom.model.names = c("Modelo 4", "Modelo 5", "Modelo 6"), 
+        custom.model.names = c("Modelo 4", "Modelo 5", "Modelo 6"),
           custom.coef.names = labs03)
 ```
 
 ```{r eval=FALSE, include=FALSE}
 screenreg(list(fit04, fit05, fit06),
-        custom.model.names = c("Modelo 4", "Modelo 5", "Modelo 6"), 
+        custom.model.names = c("Modelo 4", "Modelo 5", "Modelo 6"),
           custom.coef.names = labs03)
 ```
 
@@ -388,7 +388,7 @@ car::ncvTest(fit05)
 lmtest::bptest(fit05)
 ```
 
-Tanto el test Breush-Pagan como el de Cook-Weisberg nos indican que existen problemas con respecto a homogeneidad en la distribución de los residuos del modelo debido a que $p>0.05$ en ambos casos. Es decir, se rechaza $H_0$ donde se asume que la varianza del error es constante, lo cual nos indica que tenemos problemas de **heterocedasticidad** en los residuos. 
+Tanto el test Breush-Pagan como el de Cook-Weisberg nos indican que existen problemas con respecto a homogeneidad en la distribución de los residuos del modelo debido a que $p>0.05$ en ambos casos. Es decir, se rechaza $H_0$ donde se asume que la varianza del error es constante, lo cual nos indica que tenemos problemas de **heterocedasticidad** en los residuos.
 
 Para hacer frente a este problema, debemos calcular los errores estándar robustos para nuestra última estimación para corregir problemas de heterocedasticidad y así estimar el último modelo nuevamente:
 
@@ -408,7 +408,7 @@ htmlreg(list(fit04, fit05, model_robust), doctype = FALSE,
 ```
 
 ```{r eval=FALSE, include=FALSE}
-screenreg(list(fit04, fit05, model_robust), 
+screenreg(list(fit04, fit05, model_robust),
           custom.model.names = c("Modelo 4","Modelo 5", "M5 Robust"), custom.coef.names = labs04)
 ```
 

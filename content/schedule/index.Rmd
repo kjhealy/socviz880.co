@@ -5,9 +5,11 @@ slug: schedule
 
 Los dos componentes centrales del curso son las sesiones de clases y las actividades prácticas.
 
-- Las **clases** son sesiones online/sincrónicas donde se exponen y explican los contenidos programados, y se realizan por regla general los días **Viernes**
+- Las **clases** son sesiones online/sincrónicas donde se exponen y explican los contenidos programados, y se realizan por regla general los días **Viernes** (en caso de viernes feriados, la clase se realiza el jueves).
 
-- Las **prácticas** consisten en tareas semanales relacionadas con los contenidos de la semana, que se basan en el desarrollo de una guía de trabajo. Se espera que estas prácticas sean desarrolladas de manera autónoma por cada alumno durante la semana siguiente a la presentación de los contenidos, y el día jueves siguiente a las 8:30 se revisará de manera conjunta en trabajo grupal y se resolveran las dudas respectivas.
+- Las **prácticas** consisten en tareas semanales relacionadas con los contenidos de la semana, que se basan en el desarrollo de una guía de trabajo. Se espera que estas prácticas sean desarrolladas de manera autónoma por cada alumno durante la semana siguiente a la presentación de los contenidos, y el día jueves se revisará de manera conjunta en trabajo grupal y se resolveran las dudas respectivas en nuestra sesión de las 8:30.
+
+![](/img/clasesypracticas.png)
 
 | |<i class="fas fa-chalkboard-teacher"></i>  Clases  |  <i class="fas fa-user-edit"></i>  Prácticas y evaluaciones | <i class="fas fa-book-reader"></i> Lecturas y material adicional
 -----|---------|-----------|-----------
@@ -16,14 +18,14 @@ Jueves 18 | [**0. Presentación del curso**](/class/01-class) | |
 Viernes 19 | [**1. Explicación en ciencias sociales**](/class/01-class)  |  [Práctica 1: Preparación de datos](/assignment/01-code) <br> Revisión: Jueves 25 |  - [*Linares (2018) Sociología y teoría social analíticas, cap. 2: La explicación en ciencias sociales](/docs/lecturas/linares 2018 Cap.2 Explicacion en sociologia.pdf) <br> - [Salgado (2009) Construyendo explicaciones en sociología](/docs/lecturas/salgado 2009 modelos sociologia.pdf)
 Viernes 26 | [**2. Bases/Repaso**](/class/02-class) <br> - Datos y variables <br> - Preparación y descripción <br> - Varianza y covarianza <br> - Correlación (descriptiva)  |  [Práctica 2: Descripción de variables](/assignment/02-code)  | -  [Moore: 1.Comprensión de los datos (1-54)](/docs/lecturas/moore_comprensiondelosdatos.pdf)
 <font color="orange"> **Abril** </font> |   |   |
-Jueves 3  | [**3. Regresión simple I**](/class/03-class) <br>Distribución condicional<br>Mínimos cuadrados y recta de regresión  | [Práctica 3: Correlación y regresión](/assignment/03-code) |- [Moore: 2. Análisis de relaciones (97-131)](/docs/lecturas/moore_analisisderelaciones1.pdf) <br>
+Jueves 1  | [**3. Regresión simple I**](/class/03-class) <br>Distribución condicional<br>Mínimos cuadrados y recta de regresión  | [Práctica 3: Correlación y regresión](/assignment/03-code) |- [Moore: 2. Análisis de relaciones (97-131)](/docs/lecturas/moore_analisisderelaciones1.pdf) <br>
 Viernes 9  |  Semana mechona |   |
 Viernes 16 | [**4. Regresión simple II**](/class/04-class) <br> Regresión vs correlación <br> Residuos y ajuste general (R2) <br> Presentación pauta de Trabajo del curso | [Practica 4: Residuos y ajuste](/assignment/04-code) |- [Moore: Residuos (144-154)](/docs/lecturas/moore_residuos.pdf)
 Viernes 23    | **Semana preparación Informe 1**   | **Informe 1**: Regresión simple (individual) 20%, entrega **Jueves 29** |  Ejemplo de informe [aquí](../assignment/ejemplocasencovid/ejemploinforme1.html) |
 Viernes 30 | [**5. Regresión múltiple 1**](/class/05-class) <br> - Introducción   | [Práctica 5: Tabla de regresión múltiple](/assignment/05-code)  | - * [Wooldridge (2010) Cap 3 (parcial): Análisis de regresión múltiple: estimación (68-80)](/docs/lecturas/Wooldridge_cap3estimacion.pdf)
 <font color="orange"> **Mayo** </font> |   |   |
-Viernes 8  | Semana de receso  |   |
-Viernes 15  | [**6. Regresión múltiple 2**](/class/06-class) <br> - Coeficientes de regresión parcial <br>  - Correlación parcial y semiparcial <br>    | [Práctica 6: Parcialización y control estadístico](/assignment/06-code)  | - * [Wooldridge (2010) Cap 3 (parcial): Análisis de regresión múltiple: estimación (68-80)](/docs/lecturas/Wooldridge_cap3estimacion.pdf)
+Viernes 7  | Semana de receso  |   |
+Viernes 14  | [**6. Regresión múltiple 2**](/class/06-class) <br> - Coeficientes de regresión parcial <br>  - Correlación parcial y semiparcial <br>    | [Práctica 6: Parcialización y control estadístico](/assignment/06-code)  | - * [Wooldridge (2010) Cap 3 (parcial): Análisis de regresión múltiple: estimación (68-80)](/docs/lecturas/Wooldridge_cap3estimacion.pdf)
 Jueves 20| [**7. Regresión e inferencia**](/class/07-class) <br>- Conceptos y supuestos <br> - Tabla ANOVA <br> - Inferencia sobre coeficientes | [Práctica 7: Inferencia](/assignment/07-code) |- [Moore 7: Inferencia para medias (482-543)](/docs/lecturas/Moore_inferencia_medias.pdf)
 Viernes 28 | **Semana preparación informe 2**   | **Informe 2**: Regresión múltiple (grupal) 30%, entrega **Jueves 3**   |  - * [Wooldridge (2010) Cap 19: Realización de un proyecto empírico (668-694)](/docs/lecturas/Wooldridge_19proyectoempirico.pdf) |  |   |   |
 <font color="orange"> **Junio** </font> |   |   |

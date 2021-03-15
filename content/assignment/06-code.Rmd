@@ -1,8 +1,8 @@
 ---
-title: "Práctica 6. Regresión múltiple 2"
+#title: "Práctica 6. Regresión múltiple 2"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
 author: "Valentina Andrade"
-linktitle: "Práctica 6: Regresión múltiple 2"
+#linktitle: "Práctica 6: Regresión múltiple 2"
 date: "2020-06-19"
 class_date: "2020-06-19"
 citeproc: false

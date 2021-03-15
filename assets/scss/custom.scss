@@ -186,3 +186,39 @@ pre.sourceCode {
   left: auto!important;
   right: 0;
 }
+
+/* imagenes circulares
+<div class="image-cropper">
+  <img src="/avatar.jpg" alt="avatar" class="profile-pic">
+</div>
+*/
+
+.image-cropper {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.profile-pic {
+  display: inline;
+  margin: 0 auto;
+  margin-right: inherit; //centers the image
+  height: 100%;
+  width: auto;
+}
+
+/* img hoover from bw to color */
+
+img {
+    /* filter: url(filters.svg#grayscale); Firefox 3.5+ */
+      filter: gray; /* IE5+ */
+      -webkit-filter: grayscale(1); /* Webkit Nightlies & Chrome Canary */
+      -webkit-transition: all .8s ease-in-out;
+    }
+
+    img:hover {
+    filter: none;
+      -webkit-filter: grayscale(0);
+      -webkit-transform: scale(1.01);
+    }

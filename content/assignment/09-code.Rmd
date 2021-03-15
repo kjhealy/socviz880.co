@@ -1,8 +1,8 @@
 ---
-title: "Práctica 9. Regresión Logística 1"
+#title: "Práctica 9. Regresión Logística 1"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
 author: "Valentina Andrade"
-linktitle: "Práctica 9. Regresión Logística 1"
+#linktitle: "Práctica 9. Regresión Logística 1"
 date: "2020-08-02"
 class_date: "2020-07-31"
 citeproc: false

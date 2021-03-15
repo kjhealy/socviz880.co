@@ -14,8 +14,11 @@ output:
 
 ## Concepto del curso (nuevo)
 
-A pesar de su nombre, este no es un curso de (mera) estadística. Es un curso que enseña algunas técnicas de análisis cuantitativo orientadas al contraste empírico de teoría sociológica, para lo cual se vale tanto de técnicas estadísticas como de procedimientos de presentación y comunicación de resultados. En este contexto, los métodos son considerados funcionales a preocupaciones sustantivas y relevantes del mundo social, y el objetivo es proveer de herramientas que sirvan para entender y aplicar y comunicar este tipo de análisis.
+a) A pesar de su nombre, este no es un curso de (mera) estadística. Es un curso que enseña algunas técnicas de análisis cuantitativo orientadas al **contraste empírico de teoría sociológica**, para lo cual se vale de técnicas estadísticas como la regresión múltiple. En este contexto, los métodos son considerados funcionales a preocupaciones sustantivas y relevantes del mundo social
 
+b) Además de las herramientas de análisis, el curso pone también énfasis en el **reporte y comunicación de resultados**. Los análisis de datos son siempre realizados en relación a otr_s, quienes tienen ser capaz de entender lo que se está presentando. Este aspecto se relaciona con tener en cuenta la relevancia y aporte del conocimiento científico en temas sociales.
+
+c) Un tercer énfasis transversal en el curso es la **apertura del proceso de investigación**. Para poder realizar investigación de manera eficiente y generativa es importante no "reinventar la rueda", preocupándose de que nuestros análisis sean comprensibles para los demás (y para nosotr_s en el futuro). Por ello utilizamos programas de análisis de código abierto (como R) y promovemos que los códigos de análisis sean reproducibles.
 
 ## Propósito general del curso
 
@@ -24,9 +27,13 @@ Al finalizar el curso los estudiantes conocerán los fundamentos del análisis e
 Se espera que los estudiantes sean capaces de:
 
 - identificar las principales técnicas de análisis estadístico multivariado utilizadas en la investigación sociológica
+
 - depurar y preparar datos para la aplicación de distintas técnicas de análisis estadístico multivariado; corroborar las condiciones de aplicación de distintas técnicas de análisis estadístico multivariado
+
 - utilizar  software de análisis estadístico
+
 - contrastar hipótesis de investigación
+
 - elaborar reportes de resultados y conclusiones a partir de la aplicación de diferentes técnicas de análisis estadístico multivariado.
 
 Complementariamente se espera que los estudiantes adquieran herramientas que les permitan comunicar resultados de investigación en contextos sociales, profesionales y académicos.
@@ -90,13 +97,11 @@ Al finalizar el curso, los estudiantes:
 
 ## Metodología
 
-En las circunstancias excepcionales de este semestre dada la crisis santiaria, se han realizado una serie de ajustes metodológicos. De todas maneras estos se irán actualizando en el transcurso del semestre según varíe la contingencia y también atendiendo a necesidades y sugerencias de l_s participantes.
-
-Tendremos tres espacios principales de aprendizaje:
+En las circunstancias excepcionales de este semestre dada la crisis sanitaria, se han realizado una serie de ajustes metodológicos. En este contexto, tendremos tres espacios principales de aprendizaje:
 
 1. **Sesiones de clases lectivas**, donde se presentarán los aspectos centrales de los contenidos correspondientes a la semana vía Zoom. Tanto el documento de presentación como el video de la clase se encontrará disponible en la pestaña de [Contenidos](/class/) de este sitio.
 
-2. **Prácticas guiadas**: cada tema de las sesiones se acompaña de una guía práctica de aplicación de contenidos. Estas guías están diseñadas para ser desarrolladas de manera autónoma por cada estudiante semana a semana. También serán desarrolladas y revisadas cada semana separados por secciones, para dar mayor oportunidad de participación y resolver las dudas respectivas. Estas prácticas serán supervisadas principalmente por los apoyos docentes.
+2. **Prácticas guiadas**: cada tema de las sesiones se acompaña de una _guía práctica_ de aplicación de contenidos. Estas guías están diseñadas para ser desarrolladas de manera autónoma por cada estudiante semana a semana. También serán desarrolladas y revisadas cada semana en grupos pequeños con supervisión de ayudantes para dar mayor oportunidad de participación y resolver las dudas respectivas. Existe un reporte de progreso asociado a estas guías que deberá ser completado semanalmente con fines de monitoreo y retroalimentación.
 
 3. **Trabajos**: se desarrollarán trabajos de investigación durante el semestre (ver sección evaluación abajo) que permitirán a l_s participantes aplicar contenidos y recibir retroalimentación de su desempeño. Los trabajos serán asesorados principalmente por ayudantes que se asignarán a cada grupo.
 
@@ -122,6 +127,7 @@ Requisitos de eximición de examen:
 Requisitos para presentación a examen:
 
 - Podrán presentarse al examen de primera oportunidad los estudiantes que hayan obtenido una calificación final igual o superior a 3.5.
+-
 - El examen de segunda oportunidad será para aquellos estudiantes que presenten una nota igual o inferior a 3.5 o aquellos que en el examen de primera oportunidad no hubiesen logrado una nota igual o superior a 4.0.
 
 ## Bibliografía
@@ -132,9 +138,9 @@ La bibliografía obligatoria para cada semana se presenta en la [planificación 
 
 Hay cuatro referencias principales recomendadas para este curso:
 
-- **Moore (2010) Estadística aplicada básica. Barcelona: Antoni Bosch**. No estaba en la bibliografía original, pero se incluye porque explica de manera bastante clara (y en español) una serie de análisis estadístico que sirven de base para este curso.
+- **Moore (2010) Estadística aplicada básica. Barcelona: Antoni Bosch**. Explica de manera bastante clara (y en español) una serie de análisis estadísticos que sirven de base para este curso.
 
-- **Darlington, R. B., & Hayes, A. F. (2017). Regression analysis and linear models: concepts, applications, and implementation. Guilford Press.** Este libro me parece un muy buen texto para acompañar un curso de regresión en ciencias sociales, lamentablemente está en inglés y por lo tanto solo es bibliografía sugerida. Los capítulos más relevantes estarán a disposición,
+- **Darlington, R. B., & Hayes, A. F. (2017). Regression analysis and linear models: concepts, applications, and implementation. Guilford Press.** Este libro me parece un muy buen texto para acompañar un curso de regresión en ciencias sociales, lamentablemente está en inglés y por lo tanto solo es bibliografía sugerida.
 
 - **Wooldridge, J. M. (2008). Introducción a la econometría: un enfoque moderno. Paraninfo Cengage Learning.** Libro clásico de regresión para economístas, la ventaja es que está en español, la desventaja (para nosotros) es que en ocasiones utiliza un lenguaje y ejemplos lejanos a la sociología.
 
@@ -144,6 +150,7 @@ Hay cuatro referencias principales recomendadas para este curso:
 
 
 ### MODELOS CIENTÍFICOS (Unidad 1)
+
 - García-Ferrando, M. (1985). Análisis y modelización causal en sociología. Reis, 29(1), 143-164.
 - Goldthorpe, J. H. (2001). Causation, statistics, and sociology. European Sociological Review, 17(1), 1-20.
 - Ramón, L., & Ángeles, M. (2006). Estadística y causalidad en la sociología empírica del XX. Papers: revista de sociología, 80(1), 223-255.
@@ -173,8 +180,7 @@ Usaremos R 4.0 a través de la interfaz de RStudio. También realizaremos ejerci
 ## Plataformas de comunicación y discusión
 
 - Foros Ucursos
-- En evaluación
-  - Disqus
+- Disqus
 
 
 ## VARIOS
@@ -186,7 +192,6 @@ Usaremos R 4.0 a través de la interfaz de RStudio. También realizaremos ejerci
   - “el ppt” (ni mucho menos “la ppt”)
 
 - **Políticas de participación y trato**: se espera y enfatiza la participación por distintos canales disponibles. También se enfatiza un trato respetuoso y horizontal. Quienes están tomando este curso serán referidos como participantes y/o estudiantes, evitar el uso de "l_s cabr_s" o "l_s chiquill_s". Quien no se sienta tratad_ apropiadamente o vea que otr_s no lo estan siendo, se solicita reportar para solucionar la situación.
-
 
 
 ## Programación de sesiones

@@ -1,8 +1,8 @@
 ---
-title: "Práctica 10: Regresión Logística 2"
+#title: "Práctica 10: Regresión Logística 2"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
 author: "Julio César Iturra Sanhueza"
-linktitle: "Práctica 10: Regresión Logística 2"
+#linktitle: "Práctica 10: Regresión Logística 2"
 date: "2020-08-14"
 class_date: "2020-08-07"
 citeproc: false
