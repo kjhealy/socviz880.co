@@ -139,7 +139,7 @@ a, a > code {
 }
 
 .front {
-  background: linear-gradient(180deg, #A52C60 0%, #CF4420 100%);
+  background: linear-gradient(90deg, #cd4521 0%, #fae301 100%);
 }
 
 .front h1 {
@@ -292,11 +292,13 @@ table {
     table tr th :last-child, table tr td :last-child {
       margin-bottom: 0; }
 
+/* 
 br {
             display: block; /* makes it have a width */
             content: ""; /* clears default height */
             margin-top: 2; /* change this to whatever height you want it */
 }
+*/
 
 
 /*
@@ -403,3 +405,13 @@ br {
 
 .bold { font-weight: bold; }
 .bolder { font-weight: bolder; }
+
+
+iframe {
+    border: 1px solid black;
+    width: 100%;
+}
+
+.output {
+    background: #eee;
+}
