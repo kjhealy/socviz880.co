@@ -1,8 +1,8 @@
 ---
 title: "Presentación del curso"
-linktitle: "0: Presentación"
+linktitle: "1: Presentación"
 date: "2020-01-10"
-class_date: "2021-03-18"
+class_date: "2021-03-19"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
@@ -22,12 +22,10 @@ editor_options:
 
 ## Documento presentación
 
-<span class="sidenote">Para ver en pantalla completa click [**aquí**](/slides/01-programa/01_multiva_intro.html). Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. </span>
-
-<iframe src=/slides/01-programa/01_multiva_intro.html height="550" width=100% allowfullscreen="true">
+<iframe src=/slides/01-intro/01_multiva_intro.html height="550" width=100% allowfullscreen="true">
 </iframe>
 
-## Video de clase (proximamente aquí)
+## Video de la clase
 
 <span class="sidenote">  </span>
 
@@ -36,8 +34,3 @@ editor_options:
 <source src=" type="video/mp4">
 </video>
 </div>
-
-
-## Lecturas
-
-- [Linares (2018) La explicación en sociología](../../docs/lecturas/linares 2018 Cap.2 Explicacion en sociologia.pdf)

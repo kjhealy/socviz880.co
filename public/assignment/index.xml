@@ -9790,6 +9790,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;li&gt;&lt;a href=&#34;#generación-de-base-de-datos-procesada-para-el-análisis&#34;&gt;5. Generación de base de datos procesada para el análisis&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#archivo-de-código&#34;&gt;Archivo de código&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#reporte-de-progreso&#34;&gt;Reporte de progreso&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#foro&#34;&gt;Foro&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
@@ -10329,6 +10330,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;div id=&#34;archivo-de-código&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Archivo de código&lt;/h1&gt;
 &lt;p&gt;El archivo de código R de esta práctica se puede descargar &lt;a href=&#34;https://raw.githubusercontent.com/juancarloscastillo/multivariada/master/static/assignment/practica_1.R&#34;&gt;aquí&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;reporte-de-progreso&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Reporte de progreso&lt;/h1&gt;
+&lt;p&gt;Completar el reporte de progreso correspondiente a esta práctica &lt;a href=&#34;https://forms.gle/wKUnEo78u3rudZHWA&#34;&gt;aquí&lt;/a&gt;. El plazo para contestarlo es antes que se publique la siguiente práctica el día viernes después de clases.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;foro&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Foro&lt;/h1&gt;

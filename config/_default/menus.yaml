@@ -11,6 +11,3 @@ main:
   - name: Trabajos
     url: /reference/
     weight: 4
-  - name: RStudio.cloud
-    url: /tutorial/
-    weight: 5

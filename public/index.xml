@@ -10017,31 +10017,23 @@ Computed correlation used pearson-method with listwise-deletion.
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#documento-presentación&#34;&gt;Documento presentación&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#video-de-clase-proximamente-aquí&#34;&gt;Video de clase (proximamente aquí)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#lecturas&#34;&gt;Lecturas&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#video-de-la-clase&#34;&gt;Video de la clase&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
 &lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Documento presentación&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/01-programa/01_multiva_intro.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
-&lt;iframe src=&#34;/slides/01-programa/01_multiva_intro.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;iframe src=&#34;/slides/01-intro/01_multiva_intro.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
-&lt;div id=&#34;video-de-clase-proximamente-aquí&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Video de clase (proximamente aquí)&lt;/h2&gt;
+&lt;div id=&#34;video-de-la-clase&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Video de la clase&lt;/h2&gt;
 &lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt; &lt;/span&gt;&lt;/p&gt;
 &lt;div style=&#34;width: 100%; height: 600px; overflow: hidden;&#34;&gt;
 &lt;video style=&#34;width: 100%;&#34; controls&gt;
 &amp;lt;source src=&#34; type=“video/mp4”&amp;gt;
 &lt;/video&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;lecturas&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Lecturas&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;../../docs/lecturas/linares%202018%20Cap.2%20Explicacion%20en%20sociologia.pdf&#34;&gt;Linares (2018) La explicación en sociología&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 &lt;/div&gt;
 </description>
     </item>
@@ -10233,6 +10225,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;li&gt;&lt;a href=&#34;#generación-de-base-de-datos-procesada-para-el-análisis&#34;&gt;5. Generación de base de datos procesada para el análisis&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#archivo-de-código&#34;&gt;Archivo de código&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#reporte-de-progreso&#34;&gt;Reporte de progreso&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#foro&#34;&gt;Foro&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
@@ -10773,6 +10766,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;h1&gt;Archivo de código&lt;/h1&gt;
 &lt;p&gt;El archivo de código R de esta práctica se puede descargar &lt;a href=&#34;https://raw.githubusercontent.com/juancarloscastillo/multivariada/master/static/assignment/practica_1.R&#34;&gt;aquí&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
+&lt;div id=&#34;reporte-de-progreso&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Reporte de progreso&lt;/h1&gt;
+&lt;p&gt;Completar el reporte de progreso correspondiente a esta práctica &lt;a href=&#34;https://forms.gle/wKUnEo78u3rudZHWA&#34;&gt;aquí&lt;/a&gt;. El plazo para contestarlo es antes que se publique la siguiente práctica el día viernes después de clases.&lt;/p&gt;
+&lt;/div&gt;
 &lt;div id=&#34;foro&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Foro&lt;/h1&gt;
 &lt;/div&gt;
@@ -11066,13 +11063,13 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
 &lt;td&gt;Viernes 19&lt;/td&gt;
 &lt;td&gt;&lt;a href=&#34;/class/01-class&#34;&gt;&lt;strong&gt;1. Presentación e introducción&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;&lt;a href=&#34;/assignment/01-code&#34;&gt;Práctica 1: Preparación de datos&lt;/a&gt; &lt;br&gt; Revisión: Jueves 25&lt;/td&gt;
-&lt;td&gt;- &lt;a href=&#34;/docs/lecturas/linares%202018%20Cap.2%20Explicacion%20en%20sociologia.pdf&#34;&gt;*Linares (2018) Sociología y teoría social analíticas, cap. 2: La explicación en ciencias sociales&lt;/a&gt; &lt;br&gt; - &lt;a href=&#34;/docs/lecturas/salgado%202009%20modelos%20sociologia.pdf&#34;&gt;Salgado (2009) Construyendo explicaciones en sociología&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
 &lt;td&gt;Viernes 26&lt;/td&gt;
 &lt;td&gt;&lt;a href=&#34;/class/02-class&#34;&gt;&lt;strong&gt;2. Bases/Repaso&lt;/strong&gt;&lt;/a&gt; &lt;br&gt; - Datos y variables &lt;br&gt; - Preparación y descripción &lt;br&gt; - Varianza y covarianza &lt;br&gt; - Correlación (descriptiva)&lt;/td&gt;
 &lt;td&gt;&lt;a href=&#34;/assignment/02-code&#34;&gt;Práctica 2: Descripción de variables&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;- &lt;a href=&#34;/docs/lecturas/moore_comprensiondelosdatos.pdf&#34;&gt;Moore: 1.Comprensión de los datos (1-54)&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;- &lt;a href=&#34;static/docs/lecturas/Lizon%202006%20Estadistica%20y%20causalidad%20en%20sociologia.pdf&#34;&gt;Lizon (2006) Estadística y causalidad en sociología&lt;/a&gt; &lt;br&gt; - &lt;a href=&#34;/docs/lecturas/moore_comprensiondelosdatos.pdf&#34;&gt;Moore: 1.Comprensión de los datos (1-54)&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td&gt;&lt;font color=&#34;orange&#34;&gt; &lt;strong&gt;Abril&lt;/strong&gt; &lt;/font&gt;&lt;/td&gt;
@@ -11084,7 +11081,7 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
 &lt;td&gt;Jueves 1&lt;/td&gt;
 &lt;td&gt;&lt;a href=&#34;/class/03-class&#34;&gt;&lt;strong&gt;3. Regresión simple I&lt;/strong&gt;&lt;/a&gt; &lt;br&gt;Distribución condicional&lt;br&gt;Mínimos cuadrados y recta de regresión&lt;/td&gt;
 &lt;td&gt;&lt;a href=&#34;/assignment/03-code&#34;&gt;Práctica 3: Correlación y regresión&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;- &lt;a href=&#34;/docs/lecturas/moore_analisisderelaciones1.pdf&#34;&gt;Moore: 2. Análisis de relaciones (97-131)&lt;/a&gt; &lt;br&gt;&lt;/td&gt;
+&lt;td&gt;- &lt;a href=&#34;/docs/lecturas/salgado%202009%20modelos%20sociologia.pdf&#34;&gt;Salgado (2009) Construyendo explicaciones en sociología&lt;/a&gt;- &lt;br&gt; &lt;a href=&#34;/docs/lecturas/moore_analisisderelaciones1.pdf&#34;&gt;Moore: 2. Análisis de relaciones (97-131)&lt;/a&gt; &lt;br&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td&gt;Viernes 9&lt;/td&gt;
@@ -11096,7 +11093,7 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
 &lt;td&gt;Viernes 16&lt;/td&gt;
 &lt;td&gt;&lt;a href=&#34;/class/04-class&#34;&gt;&lt;strong&gt;4. Regresión simple II&lt;/strong&gt;&lt;/a&gt; &lt;br&gt; Regresión vs correlación &lt;br&gt; Residuos y ajuste general (R2) &lt;br&gt; Presentación pauta de Trabajo del curso&lt;/td&gt;
 &lt;td&gt;&lt;a href=&#34;/assignment/04-code&#34;&gt;Practica 4: Residuos y ajuste&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;- &lt;a href=&#34;/docs/lecturas/moore_residuos.pdf&#34;&gt;Moore: Residuos (144-154)&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;- &lt;a href=&#34;/docs/lecturas/linares%202018%20Cap.2%20Explicacion%20en%20sociologia.pdf&#34;&gt;*Linares (2018) Sociología y teoría social analíticas, cap. 2: La explicación en ciencias sociales&lt;/a&gt; &lt;br&gt; - &lt;a href=&#34;/docs/lecturas/moore_residuos.pdf&#34;&gt;Moore: Residuos (144-154)&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td&gt;Viernes 23&lt;/td&gt;
@@ -11108,7 +11105,7 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
 &lt;td&gt;Viernes 30&lt;/td&gt;
 &lt;td&gt;&lt;a href=&#34;/class/05-class&#34;&gt;&lt;strong&gt;5. Regresión múltiple 1&lt;/strong&gt;&lt;/a&gt; &lt;br&gt; - Introducción&lt;/td&gt;
 &lt;td&gt;&lt;a href=&#34;/assignment/05-code&#34;&gt;Práctica 5: Tabla de regresión múltiple&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;- * &lt;a href=&#34;/docs/lecturas/Wooldridge_cap3estimacion.pdf&#34;&gt;Wooldridge (2010) Cap 3 (parcial): Análisis de regresión múltiple: estimación (68-80)&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;- &lt;a href=&#34;/docs/lecturas/Esser%202010%20Sociología%20de%20las%20Variables.pdf&#34;&gt;Esser 2010 Sociología de las Variables&lt;/a&gt; &lt;br&gt; - &lt;a href=&#34;/docs/lecturas/Wooldridge_cap3estimacion.pdf&#34;&gt;Wooldridge (2010) Cap 3 (parcial): Análisis de regresión múltiple: estimación (68-80)&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td&gt;&lt;font color=&#34;orange&#34;&gt; &lt;strong&gt;Mayo&lt;/strong&gt; &lt;/font&gt;&lt;/td&gt;
@@ -11217,7 +11214,7 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
 &lt;li&gt;&lt;a href=&#34;#unidad-3-regresión-múltiple-para-variables-dependientes-categóricas&#34;&gt;UNIDAD 3: Regresión múltiple para variables dependientes categóricas&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#metodología&#34;&gt;Metodología&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#evaluación-actualizado-detalles-en-pestaña-trabajos&#34;&gt;Evaluación (&lt;strong&gt;actualizado&lt;/strong&gt;) (detalles en pestaña Trabajos)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#evaluación-detalles-en-pestaña-trabajos&#34;&gt;Evaluación (detalles en pestaña &lt;span&gt;Trabajos&lt;/span&gt;)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#requisitos-de-aprobación&#34;&gt;Requisitos de aprobación&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#bibliografía&#34;&gt;Bibliografía&lt;/a&gt;
 &lt;ul&gt;
@@ -11326,8 +11323,8 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Trabajos&lt;/strong&gt;: se desarrollarán trabajos de investigación durante el semestre (ver sección evaluación abajo) que permitirán a l_s participantes aplicar contenidos y recibir retroalimentación de su desempeño. Los trabajos serán asesorados principalmente por ayudantes que se asignarán a cada grupo.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-&lt;div id=&#34;evaluación-actualizado-detalles-en-pestaña-trabajos&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Evaluación (&lt;strong&gt;actualizado&lt;/strong&gt;) (detalles en pestaña Trabajos)&lt;/h2&gt;
+&lt;div id=&#34;evaluación-detalles-en-pestaña-trabajos&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Evaluación (detalles en pestaña &lt;a href=&#34;/reference/&#34;&gt;Trabajos&lt;/a&gt;)&lt;/h2&gt;
 &lt;p&gt;El curso tendrá tres instancias de evaluación:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Trabajo 1&lt;/strong&gt; (individual): Correlación y regresión simple (20%).&lt;/li&gt;
@@ -11346,9 +11343,8 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
 &lt;/ol&gt;
 &lt;p&gt;Requisitos para presentación a examen:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Podrán presentarse al examen de primera oportunidad los estudiantes que hayan obtenido una calificación final igual o superior a 3.5.&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;li&gt;El examen de segunda oportunidad será para aquellos estudiantes que presenten una nota igual o inferior a 3.5 o aquellos que en el examen de primera oportunidad no hubiesen logrado una nota igual o superior a 4.0.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Podrán presentarse al examen de primera oportunidad los estudiantes que hayan obtenido una calificación final igual o superior a 3.5.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;El examen de segunda oportunidad será para aquellos estudiantes que presenten una nota igual o inferior a 3.5 o aquellos que en el examen de primera oportunidad no hubiesen logrado una nota igual o superior a 4.0.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;bibliografía&#34; class=&#34;section level2&#34;&gt;

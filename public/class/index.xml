@@ -339,31 +339,23 @@
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#documento-presentación&#34;&gt;Documento presentación&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#video-de-clase-proximamente-aquí&#34;&gt;Video de clase (proximamente aquí)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#lecturas&#34;&gt;Lecturas&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#video-de-la-clase&#34;&gt;Video de la clase&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
 &lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Documento presentación&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/01-programa/01_multiva_intro.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
-&lt;iframe src=&#34;/slides/01-programa/01_multiva_intro.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;iframe src=&#34;/slides/01-intro/01_multiva_intro.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
-&lt;div id=&#34;video-de-clase-proximamente-aquí&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Video de clase (proximamente aquí)&lt;/h2&gt;
+&lt;div id=&#34;video-de-la-clase&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Video de la clase&lt;/h2&gt;
 &lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt; &lt;/span&gt;&lt;/p&gt;
 &lt;div style=&#34;width: 100%; height: 600px; overflow: hidden;&#34;&gt;
 &lt;video style=&#34;width: 100%;&#34; controls&gt;
 &amp;lt;source src=&#34; type=“video/mp4”&amp;gt;
 &lt;/video&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;lecturas&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Lecturas&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;../../docs/lecturas/linares%202018%20Cap.2%20Explicacion%20en%20sociologia.pdf&#34;&gt;Linares (2018) La explicación en sociología&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 &lt;/div&gt;
 </description>
     </item>

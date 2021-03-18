@@ -105,7 +105,7 @@ En las circunstancias excepcionales de este semestre dada la crisis sanitaria, s
 
 3. **Trabajos**: se desarrollarán trabajos de investigación durante el semestre (ver sección evaluación abajo) que permitirán a l_s participantes aplicar contenidos y recibir retroalimentación de su desempeño. Los trabajos serán asesorados principalmente por ayudantes que se asignarán a cada grupo.
 
-## Evaluación (**actualizado**) (detalles en pestaña Trabajos)
+## Evaluación (detalles en pestaña [Trabajos](/reference/))
 
 El curso tendrá tres instancias de evaluación:
 
@@ -127,7 +127,7 @@ Requisitos de eximición de examen:
 Requisitos para presentación a examen:
 
 - Podrán presentarse al examen de primera oportunidad los estudiantes que hayan obtenido una calificación final igual o superior a 3.5.
--
+
 - El examen de segunda oportunidad será para aquellos estudiantes que presenten una nota igual o inferior a 3.5 o aquellos que en el examen de primera oportunidad no hubiesen logrado una nota igual o superior a 4.0.
 
 ## Bibliografía

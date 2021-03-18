@@ -3,7 +3,7 @@ title: "Práctica 1. Preparación de datos en R"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
 linktitle: "Práctica 1: Preparación datos"
 date: "2020-01-10"
-class_date: "2020-04-03"
+class_date: "2021-03-19"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
@@ -476,5 +476,11 @@ save(proc_elsoc,file = "content/assignment/data/proc/ELSOC_ess_merit2016.RData")
 # Archivo de código
 
 El archivo de código R de esta práctica se puede descargar [aquí](https://raw.githubusercontent.com/juancarloscastillo/multivariada/master/static/assignment/practica_1.R)
+
+# Reporte de progreso
+
+Completar el reporte de progreso correspondiente a esta práctica [aquí](https://forms.gle/wKUnEo78u3rudZHWA). El plazo para contestarlo es antes que se publique la siguiente práctica el día viernes después de clases.
+
+
 
 # Foro

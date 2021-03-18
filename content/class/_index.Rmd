@@ -41,7 +41,7 @@ El sistema de monitoreo permanente de cumplimiento de objetivos se llevará a ca
 
 ![](/images/reporte_progreso.png)
 
-Los reportes consisten en completar una encuesta simple y breve, donde se preguntará por el cumplimiento de los objetivos de las prácticas respectivas. El link para completar el reporte se encuentra al final de cada práctica. Se deben completar durante la semana en que se desarrolla la guía, a más tardar los días viernes.
+Los reportes consisten en completar una encuesta simple y breve, donde se preguntará por el cumplimiento de los objetivos de las prácticas respectivas. El link para completar el reporte se encuentra al final de cada práctica. Se deben completar durante la semana en que se desarrolla la guía, a más tardar los días viernes (ya que ese día se publican las guías prácticas correspondientes a la semana siguiente).
 
 Como incentivo para completar los reportes de progreso, se entregarán **dos décimas adicionales** a la evaluación a quienes tengan sus reportes de progreso completados entre instancias de evaluación (por ejemplo, en el caso de la evaluación 2 se deben tener todos los reportes de progreso completados entre la evaluación 1 y 2).
 
@@ -78,16 +78,8 @@ Para instalar **RStudio**: ir a [https://rstudio.com/products/rstudio/](https://
   - comandos o funciones: se escriben en la hoja, y para ejecutarlos posicionar el cursor en la línea respectiva y ctrl+enter, el resultado aparecerá en el panel de resultados o _Consola_.
   - texto: para escribir títulos, comentarios, y todo lo que permita entender qué se está haciendo, al principio de la línea respectiva escribir el signo `#`
 
-
-
 - Para grabar nuestra hoja de código y así respaldar nuestros análisis, File > Save (o ctrl+s), y dar un nombre al archivo. Recordar: breve, sin espacios ni tildes ni eñes. Por defecto, la extensión de estos archivos es .R
 
 ### Tutorial RCloud
 
-RCloud permite trabajar con RStudio en línea, sin necesidad de instalar localmente. Puede ser muy útil para quienes tengan problemas de instalación, así como también para trabajo colaborativo. Abajo un video tutorial para una versión anterior del curso:
-
-<div style="width: 100%; height: 600px; overflow: hidden;">
-<video  style="width: 100%;" controls>
-<source src="https://www.dropbox.com/s/6nqm99dqnjvtmry/rcloud.mp4?raw=1" type="video/mp4">
-</video>
-</div>
+RCloud permite trabajar con RStudio en línea, sin necesidad de instalar localmente. Puede ser muy útil para quienes tengan problemas de instalación, así como también para trabajo colaborativo. Tenemos a disposición una [página tutorial de cómo usar RCloud](/tutorial/).

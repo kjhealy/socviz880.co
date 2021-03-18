@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Estadística Multivariada</title>
     <meta charset="utf-8" />
     <meta name="author" content=".small[Juan Carlos Castillo    Departamento de Sociología - UCH / COES   ]" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="../custom_2020.css" type="text/css" />
   </head>
   <body>
@@ -25,40 +26,47 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 ---&gt;
 
 
-.pull-left[
+.pull-left-narrow[
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2020
-## [multivariada.netlify.com](https://multivariada.netlify.com)
+## 1er Sem 2021 
+## [.white[multivariada.netlify.app]](https://multivariada.netlify.com)
 ]
 
-
-.pull-right[
+.pull-right-wide[
 .right[
-![:scale 70%](https://multivariada.netlify.com/img/hex_multiva.png)
-]
+
+
+![:scale 50%](https://multivariada.netlify.com/img/hex_multiva.png)
 &lt;br&gt;
-## Sesión 1: Programa e introducción
+&lt;br&gt;
+
+
+##.red[Sesión 1: Presentación &amp; organización]
+
 ]
-
-
-
+]
 
 ---
-class: roja, middle, center
+class: roja, bottom, center
 
 
-# Presentación
+# 1.Presentación
+
+---
+class: inverse, middle, center
+
+# ¿Dónde estamos?
 
 
 ---
 # Ciclo de formación en métodos cuantitativos
 
-![:scale 85%](ciclo.png)
-
+![:scale 75%](ciclo.png)
 --
-### --- Descripción ------------------- Asociación ------------------- Explicación ---
+
+### Descripción --------- Asociación --------- Explicación/predicción 
 
 ---
 class: inverse middle center
@@ -66,46 +74,104 @@ class: inverse middle center
 # Este curso
 
 ---
-# Estadística multivariada
+.small[Ir a [https://www.menti.com/jmasfc4qfd](https://www.menti.com/jmasfc4qfd)]
 
-- Hacia la **explicación** de los fenómenos sociales
+&lt;iframe src="https://www.menti.com/jmasfc4qfd" height="500" width=100% allowfullscreen="true"&gt;
+&lt;/iframe&gt;
 
-![:scale 55%](simple.png)
+???
+- ¿Cuál es su principal tema de interés social o preocupación actual en términos de la sociedad?
+- ¿Por qué esto podría ser un problema?
+- ¿Por que podría ser un problema de investigación?
 
 ---
-# Estadística multivariada
+class: center, middle
 
-- Hechos sociales: **multicausales**
+![](temaproblema.png)
 
+???
+Dar un par de pasos hacia atrás para llegar hasta la la explicación de fenómenos sociales, y conectar con intereses de la audiencia
+
+---
+
+- Hacia la **explicación** de los fenómenos o problemas sociales: **teoría**
+.center[
+![:scale 55%](simple.png)]
+
+---
+
+- Hacia la **explicación** de los fenómenos o problemas sociales: **teoría**, multicausalidad y contexto
+
+.center[
 ![:scale 55%](multiple.png)
+]
+
+???
+
+"Todo tiene que ver con todo ... " ,  "La realidad social es compleja ..." ... o, somos capaces de decir algo más como cieníficos sociales.
 
 ---
+class: inverse, middle, center
 
+## ¿Podemos decir algo más que _"depende", "la realidad social es compleja"_ o que _"los fenómenos sociales son multicausales"_?
+
+---
 # Estadística multivariada
 
-### - Intentando dar cuenta de la complejidad: **modelos matemáticos**
+- provee de **herramientas** estadísticas para el contraste de teorías relacionadas con problemas de investigación en .blue[contextos sociales complejos].
 
 --
 
-.center[
-![](regequation.png)
+- para ello se centra en la estimación y análisis de un **modelo** estadístico (probabilístico) que permite comparar la influencia de distintos factores en un fenómeno social de .red[manera simultánea].
+
+--
+
+- esta pretensión se acompaña siempre del supuesto del **error**
+
+
+---
+# ... y énfasis transversales en 
+
+.pull-left[
+&lt;br&gt;
+
+- reporte y comunicación de resultados
+
+- apertura y reproducibilidad
 ]
-### - A partir de un modelo matemático denominado **regresión**, este curso busca entregar herramientas de análisis de datos que permitan aproximarse a la **explicación de fenómenos sociales multicausales**.
+
+
+.pull-right[
+
+![:scale 80%](https://s3-eu-west-1.amazonaws.com/cp-cloudpublish-public/p6/5bf437f4a4745.png)
+]
+
+---
+class: roja bottom right
+
+
+# 2. Organización 
+
+---
+# Estructura general del curso
+
+![:scale 110%](plan.png)
+
+---
+# Clases y prácticas
+
+
+![](https://multivariada.netlify.app/img/clasesypracticas.png)
 
 
 ---
-# Estructura general
+# _Prácticas_
 
-![](plan.png)
+- Se basa en el desarrollo autónomo de una **guía de trabajo** relacionada a los contenidos de la clase
 
----
-class: roja, middle, center
+- En el espacio simultáneo de revisión de práctica se revisa la guía en grupos pequeños bajo la supervisión de apoyo docente y profesor
 
-# Equipo
----
-class: middle center
-
-![](equipo.png)
+- Se completa el **reporte de progreso** respectivo (para monitoreo y retroalimentación)
 
 ---
 class: inverse, middle, center
@@ -114,7 +180,18 @@ class: inverse, middle, center
 
 ----
 
-# [multivariada.netlify.com](https://multivariada.netlify.com/)
+# [.red[multivariada.netlify.app]](https://multivariada.netlify.com/)
+---
+# Desarrollo del Práctico 1: Preparación de datos
+
+- disponible en sitio web - marcha blanca
+
+- repaso de contenidos anteriores y propuesta de trabajo (reproducible) en el análisis de datos
+
+- realizar durante la semana 
+
+- dudas: **Disqus**, foros UCursos, ayudantes, apoyo docente, profesor
+
 ---
 class: front
 
@@ -122,8 +199,8 @@ class: front
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2020
-## [multivariada.netlify.com](https://multivariada.netlify.com)
+## 1er Sem 2021
+## [multivariada.netlify.app](https://multivariada.netlify.com)
 ]
 
 
@@ -183,6 +260,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -200,17 +303,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {

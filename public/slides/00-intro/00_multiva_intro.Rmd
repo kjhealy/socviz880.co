@@ -60,7 +60,7 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 <br>
 
 
-##.red[Sesión 0: Presentación & organización]
+##.red[Sesión 1: Presentación & organización]
 
 ]
 ]
@@ -69,7 +69,7 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 class: roja, bottom, center
 
 
-# Presentación
+# 1.Presentación
 
 ---
 class: inverse, middle, center
@@ -90,7 +90,6 @@ class: inverse middle center
 
 # Este curso
 
-
 ---
 .small[Ir a [https://www.menti.com/jmasfc4qfd](https://www.menti.com/jmasfc4qfd)]
 
@@ -107,20 +106,22 @@ class: center, middle
 
 ![](temaproblema.png)
 
-
+???
+Dar un par de pasos hacia atrás para llegar hasta la la explicación de fenómenos sociales, y conectar con intereses de la audiencia
 
 ---
 
 - Hacia la **explicación** de los fenómenos o problemas sociales: **teoría**
-
-![:scale 55%](simple.png)
+.center[
+![:scale 55%](simple.png)]
 
 ---
 
 - Hacia la **explicación** de los fenómenos o problemas sociales: **teoría**, multicausalidad y contexto
 
+.center[
 ![:scale 55%](multiple.png)
-
+]
 
 ???
 
@@ -129,20 +130,16 @@ class: center, middle
 ---
 class: inverse, middle, center
 
-## ¿Podemos decir algo más que _"la realidad social es compleja"_ o que _"los fenómenos sociales son multicausales"_?
----
-class: roja
-
-# Este curso
+## ¿Podemos decir algo más que _"depende", "la realidad social es compleja"_ o que _"los fenómenos sociales son multicausales"_?
 
 ---
 # Estadística multivariada
 
-- provee de **herramientas** estadísticas para el contraste de teorías relacionadas con problemas de investigación complejos.
+- provee de **herramientas** estadísticas para el contraste de teorías relacionadas con problemas de investigación en .blue[contextos sociales complejos].
 
 --
 
-- para ello se centra en la estimación y análisis de un **modelo** estadístico (probabilístico) que permite comparar la influencia de distintos factores en un fenómeno social de manera simultánea.
+- para ello se centra en la estimación y análisis de un **modelo** estadístico (probabilístico) que permite comparar la influencia de distintos factores en un fenómeno social de .red[manera simultánea].
 
 --
 
@@ -167,10 +164,10 @@ class: roja
 ]
 
 ---
-class: inverse middle right
+class: roja bottom right
 
 
-# Organización 
+# 2. Organización 
 
 ---
 # Estructura general del curso
@@ -189,15 +186,9 @@ class: inverse middle right
 
 - Se basa en el desarrollo autónomo de una **guía de trabajo** relacionada a los contenidos de la clase
 
-- El día **jueves** se revisa la guía en grupos pequeños bajo la supervisión de apoyo docente y profesor
+- En el espacio simultáneo de revisión de práctica se revisa la guía en grupos pequeños bajo la supervisión de apoyo docente y profesor
 
 - Se completa el **reporte de progreso** respectivo (para monitoreo y retroalimentación)
-
-
----
-# Práctico 1: calentando motores
-
-
 
 ---
 class: inverse, middle, center
@@ -207,6 +198,17 @@ class: inverse, middle, center
 ----
 
 # [.red[multivariada.netlify.app]](https://multivariada.netlify.com/)
+---
+# Desarrollo del Práctico 1: Preparación de datos
+
+- disponible en sitio web - marcha blanca
+
+- repaso de contenidos anteriores y propuesta de trabajo (reproducible) en el análisis de datos
+
+- realizar durante la semana 
+
+- dudas: **Disqus**, foros UCursos, ayudantes, apoyo docente, profesor
+
 ---
 class: front
 
