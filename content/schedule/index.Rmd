@@ -15,7 +15,7 @@ Los dos componentes centrales del curso son las sesiones de clases y las activid
 -----|---------|-----------|-----------
 <font color="orange"> **Marzo** </font> |   |   |
 Viernes 19 | [**1. Presentación e introducción**](/class/01-class)  |  [Práctica 1: Preparación de datos](/assignment/01-code) <br> Revisión: Jueves 25 |
-Viernes 26 | [**2. Bases/Repaso**](/class/02-class) <br> - Datos y variables <br> - Preparación y descripción <br> - Varianza y covarianza <br> - Correlación (descriptiva)  |  [Práctica 2: Descripción de variables](/assignment/02-code)  | - [Lizon (2006) Estadística y causalidad en sociología](static/docs/lecturas/Lizon 2006 Estadistica y causalidad en sociologia.pdf) <br> -  [Moore: 1.Comprensión de los datos (1-54)](/docs/lecturas/moore_comprensiondelosdatos.pdf)
+Viernes 26 | [**2. Bases/Repaso**](/class/02-class) <br> - Datos y variables <br> - Preparación y descripción <br> - Varianza y covarianza <br> - Correlación (descriptiva)  |  [Práctica 2: Descripción de variables](/assignment/02-code)  | - [Lizon (2006) Estadística y causalidad en sociología](/docs/lecturas/Lizon 2006 Estadistica y causalidad en sociologia.pdf) <br> -  [Moore: 1.Comprensión de los datos (1-54)](/docs/lecturas/moore_comprensiondelosdatos.pdf)
 <font color="orange"> **Abril** </font> |   |   |
 Jueves 1  | [**3. Regresión simple I**](/class/03-class) <br>Distribución condicional<br>Mínimos cuadrados y recta de regresión  | [Práctica 3: Correlación y regresión](/assignment/03-code) |- [Salgado (2009) Construyendo explicaciones en sociología](/docs/lecturas/salgado 2009 modelos sociologia.pdf)- <br> [Moore: 2. Análisis de relaciones (97-131)](/docs/lecturas/moore_analisisderelaciones1.pdf) <br>
 Viernes 9  |  Semana mechona |   |
