@@ -4,12 +4,25 @@
     <title>Estadística Multivariada</title>
     <meta charset="utf-8" />
     <meta name="author" content=".small[Juan Carlos Castillo    Departamento de Sociología - UCH / COES   ]" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30}) })</script>
+    <link href="libs/animate.css-xaringan/animate.fade.css" rel="stylesheet" />
     <link rel="stylesheet" href="../custom_2020.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 
-class: front
+class: front, hide-logo
+
+
+
+
+
+
+
 
 
 
@@ -29,7 +42,7 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2020
+## 1er Sem 2021
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 
@@ -43,12 +56,35 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 
 ]
 
+
+???
+
+
+
+```{=html}
+&lt;style&gt;.shareagain-bar {
+--shareagain-foreground: rgb(255, 255, 255);
+--shareagain-background: rgba(0, 0, 0, 0.5);
+--shareagain-twitter: none;
+--shareagain-facebook: none;
+--shareagain-linkedin: none;
+--shareagain-pinterest: none;
+--shareagain-pocket: none;
+--shareagain-reddit: none;
+}&lt;/style&gt;
+```
+
+
+
+
+
+
 ---
 class: inverse
 
 ## Contenidos
 
- 
+
 1. Repaso de sesión anterior
 
 2. Datos y variables
@@ -67,14 +103,14 @@ class: roja, middle, center
 
 - Hacia la **explicación** de los fenómenos sociales
 
-![:scale 45%](../01-programa/simple.png)
+![:scale 45%](../01-intro/simple.png)
 
 ---
 ## Estadística multivariada
 
 - Hechos sociales: **multicausales**
 
-![:scale 45%](../01-programa/multiple.png)
+![:scale 45%](../01-intro/multiple.png)
 
 ---
 
@@ -85,30 +121,54 @@ class: roja, middle, center
 --
 
 .center[
-![](../01-programa/regequation.png)
+![](../01-intro/regequation.png)
 ]
-- A partir de un modelo matemático denominado **regresión**, este curso busca entregar herramientas de análisis de datos que permitan aproximarse a la **explicación de fenómenos sociales multicausales**.
+- A partir de un modelo matemático denominado **regresión**, este curso busca entregar **herramientas** de análisis de datos que permitan aproximarse a la **explicación** de fenómenos sociales **multicausales**.
 
 
 
 ---
 class: middle, center
 
-# Más sobre explicación en: 
+# Más sobre explicación en:
 
-## [Linares 2018: La explicación en Ciencias Sociales ](https://multivariada.netlify.app/docs/lecturas/linares%202018%20Cap.2%20Explicacion%20en%20sociologia.pdf)
+##-  [Lizon (2006) Estadística y causalidad en sociología](/docs/lecturas/Lizon 2006 Estadistica y causalidad en sociologia.pdf)
+
+
+---
+class: inverse middle center
+
+... y sobre la estructura del curso
+
+---
+
+![](/../img/clasesypracticas.png)
 
 
 ---
 
-![](../../images/organizacion.png)
+![:scale 110%](../01-intro/plan.png)
+
 
 
 
 ---
 class: roja, center, middle
 
-# 2. Datos y variables
+# 2. Bases
+## Datos y variables
+## Tendencia central y variabilidad
+## Correlación
+
+---
+class: roja, center, middle
+
+# 2. Bases
+
+.large[##.yellow[Datos y variables]]
+
+## Tendencia central y variabilidad
+## Correlación
 
 
 ---
@@ -135,12 +195,12 @@ class: roja, center, middle
 ---
 ## Base de Datos
 
-  - cada fila representa una unidad o caso (ej: un entrevistad_)
-  
-  - cada columna una variable (ej: edad)
-  
-  - cada variable posee valores numéricos
-  
+  - cada .blue[fila] representa una unidad o caso (ej: un entrevistad_)
+
+  - cada .orange[columna] una variable (ej: edad)
+
+  - cada .purple[variable] posee valores numéricos
+
   - los valores numéricos pueden estar asociados a una etiqueta (ej: 1=Mujer)
 
 
@@ -177,7 +237,7 @@ class: roja, center, middle
       - Rango (teóricamente) infinito de valores.
 
 ---
-## Escalas de medición de variables 
+## Escalas de medición de variables
 
 - NOIR: Nominal, Ordinal, Intervalar, Razón
 
@@ -203,9 +263,11 @@ class: roja, center, middle
 ---
 ## Tipos de datos en relación a escalas de medición.
 
-* *Datos categóricos*: pueden ser medidos sólo mediante escalas nominales, u ordinales en caso de orden de rango
+* **Datos categóricos**:
 
-* *Datos continuos*:
+    - pueden ser medidos sólo mediante escalas nominales, u ordinales en caso de orden de rango
+
+* **Datos continuos**:
     - Medidos en escalas intervalares o de razón
     - Pueden ser transformados a datos categóricos
 
@@ -216,11 +278,12 @@ Conversión de continuo a categórico: estatura (cm) a categorías bajo – medi
 ---
 ## Descriptivos según tipo de variable
 
+&lt;br&gt;
 .small[
 |             	| Categórica                      	| Continua                      	| Categ.(y)/Categ.(x)                    	| Cont.(y)/Categ.(x)                	|
 |-------------	|---------------------------------	|-------------------------	|------------------------------------------------	|------------------------------------------	|
 | **Ejemplo**     	| **Estatus Ocupacional**             	| **Ingreso**                       	| **Estatus Ocupacional (Y) / Género (X)**           	| **Ingreso (Y) / Género (X)**                 	|
-| Tabla       	| Frecuencias / porcentajes                  	| Necesidad de recodificar      	| Tabla de Contingencia                          	| Clasificar Y                             	|
+| Tabla       	| Frecuencias / porcentajes                  	| `\(\bar{X}\)`/sd ... o recodificar en categorías      	| Tabla de Contingencia                          	| Clasificar Y                             	|
 | Gráfico     	| Barras                          	| Histograma / boxplot          	| Gráfico de barras condicionado                 	| Histograma, box plot condicionado        	|
 ]
 
@@ -244,16 +307,21 @@ Ojo, técnicamente tambien podemos generalizar los modelos de regresión con var
 ---
 class: roja, center, middle
 
-# 3. Bases: Tendencia central y variabilidad
+# 2. Bases
+
+##Datos y variables
+
+.large[##.yellow[Tendencia central y variabilidad]]
+## Correlación
 
 ---
 ## Tendencia Central
 
-* Moda: valor que ocurre más frecuentemente
+* **Moda**: valor que ocurre más frecuentemente
 
-* Mediana: valor medio de la distribución ordenada. Si N es par, entonces es el promedio de los valores medios
+* **Mediana**: valor medio de la distribución ordenada. Si N es par, entonces es el promedio de los valores medios
 
-* Media o promedio aritmético: suma de los valores dividido por el total de casos
+* **Media** o promedio aritmético: suma de los valores dividido por el total de casos
 
 ---
 .pull-left-narrow[
@@ -315,10 +383,38 @@ class: inverse, middle, center
 ]
 
 
----
-class: roja, middle
 
-# 4. Correlación
+---
+class: middle, center
+
+# Más sobre datos, variables y varianza en:
+
+##-  [Moore: 1.Comprensión de los datos (1-54)](/docs/lecturas/moore_comprensiondelosdatos.pdf)
+
+
+
+---
+class: roja, center, middle
+
+# 2. Bases
+
+##Datos y variables
+
+## Tendencia central y variabilidad
+
+.large[##.yellow[Correlación]]
+
+
+
+---
+[https://www.menti.com/w2e8w8epgb](https://www.menti.com/w2e8w8epgb)
+
+&lt;iframe src="https://www.mentimeter.com/s/5b8f13fedfd5923a150896a2c43c1ab1/1c42dbf2b932" height="500" width=100% allowfullscreen="true"&gt;
+&lt;/iframe&gt;
+
+
+
+
 
 ---
 class: inverse, center
@@ -355,6 +451,14 @@ class: inverse, center
 
 .center[![:scale 80%](correlacion2.png)]
 
+
+---
+## Adivina la correlación - [http://guessthecorrelation.com/](guessthecorrelation.com)
+
+&lt;iframe src="http://guessthecorrelation.com/" height="500" width=100% allowfullscreen="true"&gt;
+&lt;/iframe&gt;
+
+
 ---
 class: inverse
 
@@ -370,25 +474,29 @@ class: inverse
 
 
 ---
-class: roja, right
-# Próxima semana:
+class: roja, left
 
-## - Correlación y regresión simple
+## Próxima sesión (ver ajuste en [programación](https://multivariada.netlify.app/schedule/)):
 
-## - Práctica 2: Descripción de variables
+- Correlación y regresión simple
 
-## - [Moore: 1.Comprensión de los datos (1-54)](../../docs/lecturas/moore_comprensiondelosdatos.pdf) 
+- Práctica 2: Descripción de variables
+
+- Lecturas:
+
+  - [.yellow[Salgado (2009) Construyendo explicaciones en  sociología]](/docs/lecturas/salgado 2009 modelos sociologia.pdf)
+  - [.yellow[Moore: 2. Análisis de relaciones]](/docs/lecturas/moore_analisisderelaciones1.pdf)
 
 
 ---
-class: front
+class: front hide-logo
 
 .pull-left[
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2020
-## [multivariada.netlify.com](https://multivariada.netlify.com)
+## 1er Sem 2021
+## [multivariada.netlify.app](https://multivariada.netlify.com)
 ]
 
 
@@ -491,6 +599,33 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
+<style>
+.logo {
+  background-image: url("hex_multiva_white.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 17em;
+  right: 30.5em;
+  width: 110px;
+  height: 70px;
+  z-index: 0;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.title-slide)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="logo"></div>';
+  });
+</script>
 
 <script>
 slideshow._releaseMath = function(el) {

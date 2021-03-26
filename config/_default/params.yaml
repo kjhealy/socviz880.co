@@ -104,8 +104,8 @@ Profesor:
 course:
   number: "SOC 01024"
   semester: "Primer semestre"
-  days: "Jueves y Viernes"
-  time: "08:30am - 10:00am"
+  days: "Viernes"
+  time: "10:15am - 11:30am"
   location: "Online vía Zoom"
   dates: "Marzo-Julio 2021"
   github: "juancarloscastillo/multivariada"

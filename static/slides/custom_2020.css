@@ -98,15 +98,15 @@ a, a > code {
 
 
 .inverse h1{
-  font-size: 3em;  
+  font-size: 3em;
 }
 
 .inverse h2{
-  font-size: 75px;  
+  font-size: 75px;
 }
 
 .inverse h3{
-  font-size: 65px;  
+  font-size: 65px;
 }
 
 .inverse .MathJax_CHTML {
@@ -234,7 +234,7 @@ table {
 table thead th { border-bottom: 1px solid #ddd; }
 th, td { padding: 5px; }
 
-.large { font-size: 130%w
+.large { font-size: 130%
 }
 
 .medium { font-size: 85%
@@ -263,7 +263,7 @@ th, td { padding: 5px; }
 }
 
 .MathJax_CHTML {
-    font-size: 0.5em !important;
+    font-size: 1em !important;
     color: #225b7c;
 }
 
@@ -292,7 +292,7 @@ table {
     table tr th :last-child, table tr td :last-child {
       margin-bottom: 0; }
 
-/* 
+/*
 br {
             display: block; /* makes it have a width */
             content: ""; /* clears default height */
@@ -313,13 +313,13 @@ br {
 
 
 /******************
- * 
+ *
  * Coloured content boxes
  *
  ****************/
 
 
-.content-box { 
+.content-box {
     box-sizing: content-box;
     	background-color: #e2e2e2;
   /* Total width: 160px + (2 * 20px) + (2 * 8px) = 216px

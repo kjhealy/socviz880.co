@@ -240,7 +240,7 @@
   <meta property="twitter:image" content="/img/social-image.png"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2020-01-10T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2021-03-26T00:00:00&#43;00:00">
     
     <meta property="article:modified_time" content="2021-03-15T15:01:32-03:00">
   
@@ -493,6 +493,10 @@
         <a href="/class/01-class/">1: Presentación</a>
       </li>
       
+      <li >
+        <a href="/class/02-class/">2: Bases</a>
+      </li>
+      
     </ul>
     
 
@@ -535,7 +539,7 @@
 
                     
                     <div class="due-date p-2 mb-3 bg-secondary text-white">
-                        Materiales de la sesión del 23 Apr 2020
+                        Materiales de la sesión del 26 Mar 2021
                     </div>
                     
 
@@ -673,15 +677,17 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="cargar-base-de-datos" class="section level2">
 <h2>2. Cargar base de datos</h2>
-<p>Vamos a cargar la base de datos <strong>ELSOC_ess_merit2016.Rproc_elsoc</strong>, que generamos durante la práctica 1. Se puede llamar desde el directorio en que la guardaron dando la ruta completa, o también para esta práctica la podemos llamar directamente desde nuestro sitio web:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess_merit2016.RData&quot;</span>)) <span class="co">#Cargar base de datos</span></span></code></pre></div>
+<p>Vamos a cargar la base de datos <strong>ELSOC_ess_merit2016.Rproc_elsoc</strong>, que generamos durante la práctica 1. Se puede llamar desde el directorio en que se guardó anteriormente dando la ruta completa:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">load</span>(<span class="st">&quot;ruta-hacia-carpeta-local/ELSOC_ess_merit2016.RData&quot;</span>) <span class="co">#Cargar base de datos</span></span></code></pre></div>
+<p>O también para esta práctica la podemos llamar directamente desde nuestro sitio web:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess_merit2016.RData&quot;</span>)) <span class="co">#Cargar base de datos</span></span></code></pre></div>
 <ul>
 <li>Exploración inicial general de la base de datos</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">names</span>(proc_elsoc) <span class="co"># Muestra los nombres de las variables de la base de datos</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">names</span>(proc_elsoc) <span class="co"># Muestra los nombres de las variables de la base de datos</span></span></code></pre></div>
 <pre><code>## [1] &quot;mesfuerzo&quot; &quot;mtalento&quot;  &quot;ess&quot;       &quot;edcine&quot;    &quot;sexo&quot;      &quot;edad&quot;     
 ## [7] &quot;pmerit&quot;</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">dim</span>(proc_elsoc) <span class="co"># Dimensiones</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">dim</span>(proc_elsoc) <span class="co"># Dimensiones</span></span></code></pre></div>
 <pre><code>## [1] 2927    7</code></pre>
 <p>En el caso de esta base, 2927 casos y 7 variables</p>
 <p>Recordando el contenido de cada variable preparada en la práctica 1:</p>
@@ -705,7 +711,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>A continuación se presentan dos opciones de generar esta tabla descriptiva de variables con distintas librerías de R.</p>
 <p><strong>a. Tabla descriptiva con <code>stargazer</code></strong><span class="sidenote">stargazer</span></p>
 <p>La función <code>stargazer</code> (de la librería del mismo nombre) permitirá mostrar los principales estadísticos descriptivos univariados de las variables: medidas de tendencia central (media), de dispersión (desviación estándar) y posición (mínimo, máximo, percentiles).</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">stargazer</span>(proc_elsoc,<span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">stargazer</span>(proc_elsoc,<span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## ==============================================================
 ## Statistic   N    Mean  St. Dev.  Min  Pctl(25) Pctl(75)  Max  
@@ -725,7 +731,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><strong>b. Tablas descriptivas con <code>descr</code>, librería sjmisc</strong><span class="sidenote">sjmisc::descr</span></p>
 <p>La opción básica de <code>descr</code> es la siguiente:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>sjmisc<span class="op">::</span><span class="kw">descr</span>(proc_elsoc)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>sjmisc<span class="op">::</span><span class="kw">descr</span>(proc_elsoc)</span></code></pre></div>
 <pre><code>## 
 ## ## Basic descriptive statistics
 ## 
@@ -747,9 +753,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##     2.66    4 (1-5)  0.26</code></pre>
 <p>En este caso utilizamos la forma <code>librería::función</code> (<code>sjmisc::descr</code>), ya que la función <code>descr</code> también existe en otras librerías y así nos aseguramos que la función utilizada es de esa librería específica.</p>
 <p>Seleccionamos algunas columnas específicas con información más relevante con la opción <code>show</code>. Además, agregamos la función <code>kable</code> para obtener una tabla que luego sea fácilmente publicable en distintos formatos (a profundizar en una práctica posterior):</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a>sjmisc<span class="op">::</span><span class="kw">descr</span>(proc_elsoc,</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a>      <span class="dt">show =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>,<span class="st">&quot;range&quot;</span>, <span class="st">&quot;mean&quot;</span>, <span class="st">&quot;sd&quot;</span>, <span class="st">&quot;NA.prc&quot;</span>, <span class="st">&quot;n&quot;</span>))<span class="op">%&gt;%</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a><span class="st">      </span><span class="kw">kable</span>(.,<span class="st">&quot;markdown&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>sjmisc<span class="op">::</span><span class="kw">descr</span>(proc_elsoc,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a>      <span class="dt">show =</span> <span class="kw">c</span>(<span class="st">&quot;label&quot;</span>,<span class="st">&quot;range&quot;</span>, <span class="st">&quot;mean&quot;</span>, <span class="st">&quot;sd&quot;</span>, <span class="st">&quot;NA.prc&quot;</span>, <span class="st">&quot;n&quot;</span>))<span class="op">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="st">      </span><span class="kw">kable</span>(.,<span class="st">&quot;markdown&quot;</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -839,7 +845,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>c. Tabla descriptiva con <code>summarytools::dfSummary</code></strong><span class="sidenote">summarytools::dfSummary</span></p>
 <p>Esta tercera opción nos ofrece una tabla aún más detallada, con gráficos para cada variable, las frecuencias para cada valor, y las etiquetas de las variables, por lo que es muy recomendable.</p>
 <p>Se específica de la siguiente manera:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">dfSummary</span>(proc_elsoc, <span class="dt">plain.ascii =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">dfSummary</span>(proc_elsoc, <span class="dt">plain.ascii =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>## ### Data Frame Summary  
 ## #### proc_elsoc  
 ## **Dimensions:** 2927 x 7  
@@ -895,7 +901,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##                                                                         5.00 :   42 ( 1.5%)                                             
 ## ----------------------------------------------------------------------------------------------------------------------------------------</code></pre>
 <p>Es muy ancha para visualizar bien en la consola de R, pero en su versión más definitiva de publicación se verá así:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="kw">view</span>(<span class="kw">dfSummary</span>(proc_elsoc, <span class="dt">headings=</span><span class="ot">FALSE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="kw">view</span>(<span class="kw">dfSummary</span>(proc_elsoc, <span class="dt">headings=</span><span class="ot">FALSE</span>))</span></code></pre></div>
 <div class="container st-container">
 <table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline ">
   <thead>
@@ -1037,15 +1043,15 @@ IQR (CV) : 1.5 (0.4)</td>
 <li>contamos nuevamente con <code>dim</code> para asegurarnos que se borraron</li>
 <li>y por temas de funcionamiento de R, al realizar la operación de sacar casos perdidos, se borra toda la información de las etiquetas (labels), así que las recuperamos de la base original con el comando <code>copy_labels</code>, de la librería <code>sjlabelled</code>.</li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a>proc_elsoc_original &lt;-proc_elsoc</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a><span class="kw">dim</span>(proc_elsoc)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a>proc_elsoc_original &lt;-proc_elsoc</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="kw">dim</span>(proc_elsoc)</span></code></pre></div>
 <pre><code>## [1] 2927    7</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="kw">sum</span>(<span class="kw">is.na</span>(proc_elsoc))</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="kw">sum</span>(<span class="kw">is.na</span>(proc_elsoc))</span></code></pre></div>
 <pre><code>## [1] 81</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a>proc_elsoc &lt;-<span class="kw">na.omit</span>(proc_elsoc)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a><span class="kw">dim</span>(proc_elsoc)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a>proc_elsoc &lt;-<span class="kw">na.omit</span>(proc_elsoc)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a><span class="kw">dim</span>(proc_elsoc)</span></code></pre></div>
 <pre><code>## [1] 2887    7</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a>proc_elsoc &lt;-sjlabelled<span class="op">::</span><span class="kw">copy_labels</span>(proc_elsoc,proc_elsoc_original)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a>proc_elsoc &lt;-sjlabelled<span class="op">::</span><span class="kw">copy_labels</span>(proc_elsoc,proc_elsoc_original)</span></code></pre></div>
 </div>
 </div>
 <div id="exploración-de-asociación-entre-variables" class="section level3">
@@ -1062,7 +1068,7 @@ IQR (CV) : 1.5 (0.4)</td>
 <div id="tablas-de-contingencia-para-variables-categóricas" class="section level4">
 <h4>Tablas de contingencia para variables categóricas</h4>
 <p>Para tablas de contingencia categóricas utilizaremos la función sjt.xtab, de la librería <code>sjPlot</code>. Veamos primero una especificación simple: <span class="sidenote">sjPlot::sjt.xtab</span></p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="kw">sjt.xtab</span>(proc_elsoc<span class="op">$</span>edcine, proc_elsoc<span class="op">$</span>sexo)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a><span class="kw">sjt.xtab</span>(proc_elsoc<span class="op">$</span>edcine, proc_elsoc<span class="op">$</span>sexo)</span></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2">
@@ -1173,10 +1179,10 @@ Total
 </tr>
 </table>
 <p>Al ejecutar el comando, el resultado aparece automáticamente en el visor de RStudio. A esta tabla podemos también agregar porcentajes de filas y/o columnas, según sea lo más relevante analizar. En general se recomienda agregar solo un porcentaje, de otra manera la tabla se satura de información. Además, vamos a quitar el pie de la tabla (conviene dejarlo solo si hay hipótesis asociadas al cruce simple entre las dos variables).</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a><span class="kw">sjt.xtab</span>(proc_elsoc<span class="op">$</span>edcine, proc_elsoc<span class="op">$</span>sexo,</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true"></a>        <span class="dt">show.col.prc=</span><span class="ot">TRUE</span>,</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true"></a>        <span class="dt">show.summary=</span><span class="ot">FALSE</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a><span class="kw">sjt.xtab</span>(proc_elsoc<span class="op">$</span>edcine, proc_elsoc<span class="op">$</span>sexo,</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true"></a>        <span class="dt">show.col.prc=</span><span class="ot">TRUE</span>,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true"></a>        <span class="dt">show.summary=</span><span class="ot">FALSE</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true"></a>)</span></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2">
@@ -1287,15 +1293,15 @@ Total
 <h4>Tablas de promedio de variable continua por una categóricas</h4>
 <p>En ejemplo vamos a explorar datos de nuestra variable de percepción de meritocracia <em>pmerit</em> por los niveles educacionales <em>edcine</em>.</p>
 <p>Una forma rápida de explorar esto es mediante la función <code>tapply</code>, que nos entrega de manera simple el promedio de una variable por otra:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a><span class="kw">tapply</span>(proc_elsoc<span class="op">$</span>pmerit, proc_elsoc<span class="op">$</span>edcine, mean)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a><span class="kw">tapply</span>(proc_elsoc<span class="op">$</span>pmerit, proc_elsoc<span class="op">$</span>edcine, mean)</span></code></pre></div>
 <pre><code>##        1        2        3        4        5 
 ## 2.968481 2.697595 2.662763 2.479079 2.559322</code></pre>
 <p>Aquí vemos en promedio de <em>pmerit</em> para cada uno de los 5 niveles de la variable educación <em>edcine</em>. Si se estima conveniente este tipo de cruces se puede representar también en una tabla con más opciones de información y también de publicación. Para esto utilizaremos una función algo más compleja de la librería <code>dplyr</code>.<span class="sidenote">dplyr</span> Esta librería permite aplicar una serie de funciones concatenadas y enlazadas mediante el operador <code>%&gt;%</code>. El sentido de cada función aparece comentado abajo:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a>proc_elsoc <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se especifica la base de datos</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(pmerit,edcine) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se seleccionan las variables</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(Educación=sjlabelled<span class="op">::</span><span class="kw">as_label</span>(edcine)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se agrupan por la variable categórica y se usan sus etiquetas con as_label</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">Obs.=</span><span class="kw">n</span>(),<span class="dt">Promedio=</span><span class="kw">mean</span>(pmerit),<span class="dt">SD=</span><span class="kw">sd</span>(pmerit)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se agregan las operaciones a presentar en la tabla</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">kable</span>(, <span class="dt">format =</span> <span class="st">&quot;markdown&quot;</span>) <span class="co"># se genera la tabla</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a>proc_elsoc <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se especifica la base de datos</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(pmerit,edcine) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se seleccionan las variables</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(Educación=sjlabelled<span class="op">::</span><span class="kw">as_label</span>(edcine)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se agrupan por la variable categórica y se usan sus etiquetas con as_label</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">Obs.=</span><span class="kw">n</span>(),<span class="dt">Promedio=</span><span class="kw">mean</span>(pmerit),<span class="dt">SD=</span><span class="kw">sd</span>(pmerit)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># se agregan las operaciones a presentar en la tabla</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">kable</span>(, <span class="dt">format =</span> <span class="st">&quot;markdown&quot;</span>) <span class="co"># se genera la tabla</span></span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1339,8 +1345,8 @@ Total
 </tbody>
 </table>
 <p>Esta asocación también se puede representar de manera más simple con un gráfico, en este caso de cajas o boxplot mediante la función <code>plot_grpfrq</code> de <code>sjPlot</code>:<span class="sidenote">sjPlot::plot_grpfrq</span></p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a><span class="kw">plot_grpfrq</span>(proc_elsoc<span class="op">$</span>pmerit,proc_elsoc<span class="op">$</span>edcine,</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true"></a>            <span class="dt">type =</span> <span class="st">&quot;box&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true"></a><span class="kw">plot_grpfrq</span>(proc_elsoc<span class="op">$</span>pmerit,proc_elsoc<span class="op">$</span>edcine,</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true"></a>            <span class="dt">type =</span> <span class="st">&quot;box&quot;</span>)</span></code></pre></div>
 <p><img src="/assignment/02-code_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 </div>
 <div id="correlaciones-variables-continuas" class="section level4">
@@ -1361,8 +1367,8 @@ Total
 <p><strong>Tablas/matrices de correlación</strong></p>
 <p>Las correlaciones entre variables se presentan en general en modo de matrices, es decir, las variables se presentan en las filas y las columnas y en las celdas donde se cruzan los pares de variables se muestra su coeficiente de correlación.</p>
 <p>En su forma simple en R se aplica la función <code>cor</code> a la<span class="sidenote">cor</span> base de datos, y la guardamos en un objeto que le damos el nombre M para futuras operaciones:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true"></a>M &lt;-<span class="st"> </span><span class="kw">cor</span>(proc_elsoc)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true"></a>M</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true"></a>M &lt;-<span class="st"> </span><span class="kw">cor</span>(proc_elsoc)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true"></a>M</span></code></pre></div>
 <pre><code>##              mesfuerzo    mtalento          ess      edcine        sexo
 ## mesfuerzo  1.000000000  0.69768811 -0.004312135 -0.12167659 -0.04480502
 ## mtalento   0.697688106  1.00000000  0.018447696 -0.10582754 -0.03759340
@@ -1380,7 +1386,7 @@ Total
 ## edad       1.00000000  0.092369792
 ## pmerit     0.09236979  1.000000000</code></pre>
 <p>Este es el reporte simple, pero no muy amigable a la vista. Para una versión más amable utilizamos la función sjt.corr<span class="sidenote">sjPlot::sjt.corr</span>:<span class="sidenote">NOTA: sjPlot actualizó su librería a fines de Mayo (versión 2.8.4); para quienes hayan actualizado a esta versión, la función para tabla de correlaciones ahora es <code>tab_corr</code></span></p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true"></a><span class="kw">sjt.corr</span>(proc_elsoc)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a><span class="kw">sjt.corr</span>(proc_elsoc)</span></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
@@ -1603,8 +1609,8 @@ Computed correlation used pearson-method with listwise-deletion.
 <li>La información de cada coeficiente se repite sobre y bajo la diagonal, ya que es el mismo par de variables pero en el orden alterno.</li>
 <li>En la diagonal corresponde que todos los coeficientes sean 1, ya que la correlación de una variable consigo misma es perfectamente positiva. En esta tabla se omiten y aparece la diagonal vacía, ya que es información redundante. Por lo mismo, también se recomienda eliminar el triangulo superior de la tabla (redundante) de la siguiente manera:</li>
 </ul>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a><span class="kw">sjt.corr</span>(proc_elsoc,</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true"></a>         <span class="dt">triangle =</span> <span class="st">&quot;lower&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true"></a><span class="kw">sjt.corr</span>(proc_elsoc,</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true"></a>         <span class="dt">triangle =</span> <span class="st">&quot;lower&quot;</span>)</span></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
@@ -1821,14 +1827,14 @@ Computed correlation used pearson-method with listwise-deletion.
 </tr>
 </table>
 <p>Una segunda forma de presentar matrices de correlaciones es de manera gráfica con la librería <code>corrplot</code>, cuya función <code>corrplot.mixed</code> <span class="sidenote">corrplot::corrplot.mixed</span>se aplica al objeto que generamos con la función <code>cor</code> (M):</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true"></a><span class="kw">corrplot.mixed</span>(M)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true"></a><span class="kw">corrplot.mixed</span>(M)</span></code></pre></div>
 <p><img src="/assignment/02-code_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>Este gráfico/matriz representa el grado de asociación entre variables mediante el tamaño de los círculos e intensidad de colores, y el signo de la asociación se representa con una gradiente de colores que va del azul (positivo) al rojo (negativo). Bajo la diagonal aparecen los indices de correlación entre pares de variables.</p>
 <p>Finalmente, también se puede representar la correlación entre dos variables en un gráfico de nube de puntos o scatterplot:<span class="sidenote">sjPlot::plot_scatter</span></p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true"></a><span class="kw">names</span>(proc_elsoc)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true"></a><span class="kw">names</span>(proc_elsoc)</span></code></pre></div>
 <pre><code>## [1] &quot;mesfuerzo&quot; &quot;mtalento&quot;  &quot;ess&quot;       &quot;edcine&quot;    &quot;sexo&quot;      &quot;edad&quot;     
 ## [7] &quot;pmerit&quot;</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true"></a><span class="kw">plot_scatter</span>(proc_elsoc, edad, ess)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true"></a><span class="kw">plot_scatter</span>(proc_elsoc, edad, ess)</span></code></pre></div>
 <p><img src="/assignment/02-code_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>Donde:</p>
 <ul>
@@ -1843,7 +1849,7 @@ Computed correlation used pearson-method with listwise-deletion.
 <div id="nota-final-información-de-la-sesión-de-r" class="section level2">
 <h2>Nota final: Información de la sesión de R</h2>
 <p>R y sus librerías tienen distintas versiones. Esto puede representar algunos problemas de compatibilidad entre usuarios, por ejemplo, dos personas que trabajan en el mismo proyecto pero con distintas versiones (librerías y/o de R), pueden tener ocasionalmente complicaciones. Por eso, una buena práctica es registrar al final del código la información de la sesión. Y como siempre en R, varias maneras de hacer esto. Vamos con la más genérica que es muy simple: <code>sessionInfo()</code> <span class="sidenote">sessionInfo()</span></p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true"></a><span class="kw">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true"></a><span class="kw">sessionInfo</span>()</span></code></pre></div>
 <pre><code>## R version 4.0.0 (2020-04-24)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 16.04.6 LTS
@@ -1899,7 +1905,7 @@ Computed correlation used pearson-method with listwise-deletion.
 ## [97] viridisLite_0.3.0  tcltk_4.0.0</code></pre>
 <p>Acá vemos un listado de información muy completo, desde versión de R, sistema operativo, opciones de idioma local (LOCALE), y muchas librerías. Si optamos por esta versión de la información de la sesión, lo importante es fijarse en (a) version de R, y (b) de las librerías cargadas al principio, que aquí aparecen bajo “other attached packages”.</p>
 <p>La segunda opción permite obtener información más precisa, con <code>sessioninfo</code> <span class="sidenote">sessioninfo()</span>(la única diferencia con la anterior en el nombre es que info es con minúscula <code>sessioninfo</code>). Con un poco más de especificaciones de sintaxis se pueden obtener directamente los puntos (a) y (b) mencionados anteriormente:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true"></a><span class="kw">session_info</span>(<span class="st">&quot;sessioninfo&quot;</span>)<span class="op">$</span>platform</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true"></a><span class="kw">session_info</span>(<span class="st">&quot;sessioninfo&quot;</span>)<span class="op">$</span>platform</span></code></pre></div>
 <pre><code>##  setting  value                       
 ##  version  R version 4.0.0 (2020-04-24)
 ##  os       Ubuntu 16.04.6 LTS          
@@ -1910,7 +1916,7 @@ Computed correlation used pearson-method with listwise-deletion.
 ##  ctype    en_US.UTF-8                 
 ##  tz       America/Santiago            
 ##  date     2020-05-16</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true"></a><span class="kw">package_info</span>(<span class="dt">pkgs =</span> (<span class="kw">.packages</span>()), <span class="dt">dependencies =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true"></a><span class="kw">package_info</span>(<span class="dt">pkgs =</span> (<span class="kw">.packages</span>()), <span class="dt">dependencies =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>##  package      * version    date       lib source        
 ##  car          * 3.0-7      2020-03-11 [1] CRAN (R 4.0.0)
 ##  carData      * 3.0-3      2019-11-16 [1] CRAN (R 4.0.0)
@@ -2036,8 +2042,8 @@ Computed correlation used pearson-method with listwise-deletion.
             </p>
 
             <p>
-                <i class="far fa-calendar-alt"></i> Jueves y Viernes &emsp;&emsp;
-                <i class="far fa-clock"></i> 08:30am - 10:00am <br>
+                <i class="far fa-calendar-alt"></i> Viernes &emsp;&emsp;
+                <i class="far fa-clock"></i> 10:15am - 11:30am <br>
                 <i class="fas fa-university"></i> Online vía Zoom
             </p>
         </div>

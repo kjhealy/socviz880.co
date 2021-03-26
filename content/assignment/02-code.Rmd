@@ -1,10 +1,10 @@
 ---
 # title: "Práctica 2. Descripción de variables"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
-author: "Valentina Andrade"
+author: "Juan Castillo"
 # linktitle: "Práctica 2: Descripción de variables"
-date: "2020-01-10"
-class_date: "2020-04-23"
+date: "2021-03-26"
+class_date: "2021-03-26"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
@@ -75,15 +75,20 @@ pacman::p_load(dplyr, #Manipulacion de datos
 
 ## 2. Cargar base de datos
 
-Vamos a cargar la base de datos **ELSOC_ess_merit2016.Rproc_elsoc**, que generamos durante la práctica 1. Se puede llamar desde el directorio en que la guardaron dando la ruta completa, o también para esta práctica la podemos llamar directamente desde nuestro sitio web:
+Vamos a cargar la base de datos **ELSOC_ess_merit2016.Rproc_elsoc**, que generamos durante la práctica 1. Se puede llamar desde el directorio en que se guardó anteriormente dando la ruta completa:
+
+
+```{r eval=FALSE, message=FALSE, warning=FALSE}
+load("ruta-hacia-carpeta-local/ELSOC_ess_merit2016.RData") #Cargar base de datos
+```
+
+O también para esta práctica la podemos llamar directamente desde nuestro sitio web:
 
 ```{r }
 load(url("https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess_merit2016.RData")) #Cargar base de datos
 ```
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
-load("content/assignment/data/proc/ELSOC_ess_merit2016.RData") #Cargar base de datos
-```
+
 
 - Exploración inicial general de la base de datos
 
