@@ -19,7 +19,12 @@ output:
 class: front, hide-logo
 
 
-
+```{r xaringanExtra, include=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css"))
+xaringanExtra::use_share_again()
+xaringanExtra::use_scribble()
+xaringanExtra::style_share_again(share_buttons = c("none"))
+```
 
 
 ```{r eval=FALSE, include=FALSE}
@@ -34,7 +39,7 @@ o en RStudio:
 
 ```
 
-
+ 
 
 ```{r setup, include=FALSE, cache = FALSE}
 require("knitr")
@@ -80,14 +85,7 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 ???
 
 
-```{r xaringanExtra, echo=FALSE}
-xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css"))
-xaringanExtra::use_share_again()
-xaringanExtra::use_scribble()
-xaringanExtra::style_share_again(
-  share_buttons = c("none")
-)
-```
+
 
 
 ```{r echo=FALSE}
@@ -426,11 +424,16 @@ class: roja, center, middle
 ---
 [https://www.menti.com/w2e8w8epgb](https://www.menti.com/w2e8w8epgb)
 
-<iframe src="https://www.mentimeter.com/s/5b8f13fedfd5923a150896a2c43c1ab1/1c42dbf2b932" height="500" width=100% allowfullscreen="true">
-</iframe>
+![:scale 90%](corrmenti.png)
 
 
+---
+class: inverse middle center
 
+### Respuesta correcta:
+
+
+# ENTRE -1  y +1
 
 
 ---

@@ -24,6 +24,10 @@ class: front, hide-logo
 
 
 
+ 
+
+
+
 
 
 <!---
@@ -57,32 +61,26 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 ???
 
 
-```{=html}
-<style>.shareagain-bar {
---shareagain-foreground: rgb(255, 255, 255);
---shareagain-background: rgba(0, 0, 0, 0.5);
---shareagain-twitter: none;
---shareagain-facebook: none;
---shareagain-linkedin: none;
---shareagain-pinterest: none;
---shareagain-pocket: none;
---shareagain-reddit: none;
-}</style>
-```
+
+
+
+
+
+
 
 ---
 class: inverse
 
 ## Contenidos
-   
- 
+
+
 1. Repaso de sesión anterior
 
-2. Datos y variables 
+2. Datos y variables
 
 3. Bases: Tendencia central y dispersión
 
-4. Correlación 
+4. Correlación
 
 ---
 class: roja, middle, center
@@ -105,7 +103,7 @@ class: roja, middle, center
 
 ---
 
-## Estadística multivariada 
+## Estadística multivariada
 
 - Intentando dar cuenta de la complejidad: **modelos matemáticos**
 
@@ -121,16 +119,25 @@ class: roja, middle, center
 ---
 class: middle, center
 
-# Más sobre explicación en:  
+# Más sobre explicación en:
 
 ##-  [Lizon (2006) Estadística y causalidad en sociología](/docs/lecturas/Lizon 2006 Estadistica y causalidad en sociologia.pdf)
 
-##-  [Moore: 1.Comprensión de los datos (1-54)](/docs/lecturas/moore_comprensiondelosdatos.pdf)
+
+---
+class: inverse middle center
+
+... y sobre la estructura del curso
+
+---
+
+![](/../img/clasesypracticas.png)
 
 
 ---
 
 ![:scale 110%](../01-intro/plan.png)
+
 
 
 
@@ -178,11 +185,11 @@ class: roja, center, middle
 ## Base de Datos
 
   - cada .blue[fila] representa una unidad o caso (ej: un entrevistad_)
-  
+
   - cada .orange[columna] una variable (ej: edad)
-  
+
   - cada .purple[variable] posee valores numéricos
-  
+
   - los valores numéricos pueden estar asociados a una etiqueta (ej: 1=Mujer)
 
 
@@ -219,7 +226,7 @@ class: roja, center, middle
       - Rango (teóricamente) infinito de valores.
 
 ---
-## Escalas de medición de variables 
+## Escalas de medición de variables
 
 - NOIR: Nominal, Ordinal, Intervalar, Razón
 
@@ -245,7 +252,7 @@ class: roja, center, middle
 ---
 ## Tipos de datos en relación a escalas de medición.
 
-* **Datos categóricos**: 
+* **Datos categóricos**:
 
     - pueden ser medidos sólo mediante escalas nominales, u ordinales en caso de orden de rango
 
@@ -299,11 +306,11 @@ class: roja, center, middle
 ---
 ## Tendencia Central
 
-* Moda: valor que ocurre más frecuentemente
+* **Moda**: valor que ocurre más frecuentemente
 
-* Mediana: valor medio de la distribución ordenada. Si N es par, entonces es el promedio de los valores medios
+* **Mediana**: valor medio de la distribución ordenada. Si N es par, entonces es el promedio de los valores medios
 
-* Media o promedio aritmético: suma de los valores dividido por el total de casos
+* **Media** o promedio aritmético: suma de los valores dividido por el total de casos
 
 ---
 .pull-left-narrow[
@@ -365,6 +372,16 @@ class: inverse, middle, center
 ]
 
 
+
+---
+class: middle, center
+
+# Más sobre datos, variables y varianza en:
+
+##-  [Moore: 1.Comprensión de los datos (1-54)](/docs/lecturas/moore_comprensiondelosdatos.pdf)
+
+
+
 ---
 class: roja, center, middle
 
@@ -381,11 +398,16 @@ class: roja, center, middle
 ---
 [https://www.menti.com/w2e8w8epgb](https://www.menti.com/w2e8w8epgb)
 
-<iframe src="https://www.mentimeter.com/s/5b8f13fedfd5923a150896a2c43c1ab1/1c42dbf2b932" height="500" width=100% allowfullscreen="true">
-</iframe>
- 
+![:scale 90%](corrmenti.png)
 
 
+---
+class: inverse middle center
+
+### Respuesta correcta:
+
+
+# ENTRE -1  y +1
 
 
 ---
@@ -423,6 +445,14 @@ class: inverse, center
 
 .center[![:scale 80%](correlacion2.png)]
 
+
+---
+## Adivina la correlación - [http://guessthecorrelation.com/](guessthecorrelation.com)
+
+<iframe src="http://guessthecorrelation.com/" height="500" width=100% allowfullscreen="true">
+</iframe>
+
+
 ---
 class: inverse
 
@@ -440,7 +470,7 @@ class: inverse
 ---
 class: roja, left
 
-## Próxima sesión:
+## Próxima sesión (ver ajuste en [programación](https://multivariada.netlify.app/schedule/)):
 
 - Correlación y regresión simple
 
@@ -448,7 +478,7 @@ class: roja, left
 
 - Lecturas:
 
-  - [.yellow[Salgado (2009) Construyendo explicaciones en sociología]](/docs/lecturas/salgado 2009 modelos sociologia.pdf)
+  - [.yellow[Salgado (2009) Construyendo explicaciones en  sociología]](/docs/lecturas/salgado 2009 modelos sociologia.pdf)
   - [.yellow[Moore: 2. Análisis de relaciones]](/docs/lecturas/moore_analisisderelaciones1.pdf)
 
 
