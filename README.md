@@ -1,7 +1,7 @@
-# Estadística multivariada - 2020
+# Estadística multivariada - 2021
 ### Departamento de Sociología, Universidad de Chile
 
-Este repositorio contiene el código para generar el sitio del curso [Estadística Multivariada](https://multivariada.netlify.com/)
+Este repositorio contiene el código para generar el sitio del curso [Estadística Multivariada](https://multivariada.netlify.app/)
 
 Varios elementos del sitio fueron tomados de
 [Andrew Heiss](https://www.andrewheiss.com) y de [Kieran Healey](https://kieranhealy.org/).
