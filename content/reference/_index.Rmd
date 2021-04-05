@@ -16,10 +16,10 @@ La nota ponderada de los trabajos equivaldrá al 60% de la nota del curso y el e
 
 # Pauta de trabajo individual (Informe 1)
 
-Este trabajo abarca la primera parte del curso hasta regresión simple (Sesión 4: Regresión simple 2). Este trabajo consiste en un informe breve, consistente en preparación y análisis de datos incluyendo como producto final la estimación e interpretación de una regresión simple. Para ello, los pasos son los siguientes:
+Este trabajo abarca la primera parte del curso hasta regresión simple (Sesión 4: Regresión simple 2). Es un informe breve, consistente en preparación y análisis de datos incluyendo como producto final la estimación e interpretación de una regresión simple. Para ello, los pasos son los siguientes:
 
 - seleccionar una base de datos de interés (ver abajo las sugeridas para los trabajos grupales)
-- seleccionar las variables a analizar, dar una breve justificación
+- seleccionar las variables a analizar, dar una breve justificación 
 - generar el código de preparación de datos y la base procesada
 - generar el código de análisis y reportar los resultados.
 
@@ -87,12 +87,9 @@ Recomendamos utilizar alguna de las siguientes fuentes de datos para realizar lo
 - Trabajo de carácter grupal
   - N° integrantes: **5 estudiantes**. Solo excepcional y justificadamente podrán ser de 4.
 
-- **Inscripción**
-  - Debe realizarse vía **u-cursos**
+- **Inscripción de temas**
+  - Debe realizarse a principios de Mayo vía **U-Cursos**
   - El documento debe indicar claramente integrantes, correo, tema y base de datos a utilizar
-  - Es **muy** importante que el correo electrónico a señalar sea el mismo durante todo el semestre, debido a que este es central para el uso de plataformas virtuales
-  - Fecha: Ver planificación.
-
 
 ## Entregas
 
@@ -102,7 +99,7 @@ Este trabajo posee dos entregas, tal como se señala en el programa del curso
 
   - Consideraciones: En el caso de los trabajos donde la variable dependiente sea dicotómica, para esta primera entrega la estimación puede ser realizada preliminarmente con regresión lineal, y para la segunda se espera estimación con regresión logística
 
-- **Informe 3 (final)**: Su formato es de artículo/ reporte breve de investigación. En esta entrega se corrigen aspectos del **Informe 2**, junto con profundizar en el chequeo de supuestos, casos influyentes e interacciones (total máximo 3.500 palabras).
+- **Informe 3 (final)**: Su formato es de artículo/ reporte breve de investigación. En esta entrega se corrigen aspectos del **Informe 2**, junto con profundizar en el chequeo de supuestos, casos influyentes, interacciones. Aquellos grupos que trabajen con una variable dependiente continua deberán realizar además al menos una estimación de regresión logística (y su correspondiente interpretación) con la variable dependiente dicotomizada (total máximo 3.500 palabras).
 
 ## Secciones del trabajo
 
@@ -128,7 +125,7 @@ Este trabajo posee dos entregas, tal como se señala en el programa del curso
 - Esta sección también incluye una tabla de descriptivos básicos, y una descripción detallada de la operacionalización y medición de las variables.
 - **Sobre la selección de la variable dependiente**: por definición la variable dependiente en regresión múltiple OLS es continua. Escalas tipo likert pueden ser utilizadas en casos justificados y también teniendo en cuenta su variabilidad (si muchos casos se acumulan en pocas categorías la varianza va a ser pequeña, menos posibilidades de covarianza, y por tanto baja probabilidad de encontrar efectos significativos).
 
-6. Análisis (1500 palabras) (8 puntos)
+6. Análisis (1500 palabras) (6 puntos)
 - **La sección de análisis sigue la lógica del trabajo anterior**: análisis descriptivo y luego análisis de modelos de regresión
 - Comenzar con análisis descriptivo uni y bivariado, nubes de puntos, tabla de correlaciones (1 punto).
 - Introducción del sentido de los modelos en relación a las hipótesis (1 punto)
@@ -136,8 +133,9 @@ Este trabajo posee dos entregas, tal como se señala en el programa del curso
 - Interpretación (4 puntos).
 - **sobre número de predictores**: al menos tres
 
-7. Discusión de los resultados, con énfasis en la relación entre variable dependiente e independientes, limitaciones, posibles estudios futuros. (500 palabras) (3 puntos)
+7. Discusión de los resultados, con énfasis en la relación entre variable dependiente e independientes, limitaciones, posibles estudios futuros. (500 palabras) (2 puntos)
 
+8. Video-cápsula de presentación del trabajo: video de máximo 5 minutos donde se presente resumidamente el trabajo de investigación (3 puntos)
 
 ## Formato
 
@@ -154,13 +152,13 @@ Este trabajo posee dos entregas, tal como se señala en el programa del curso
 
 ## Fechas:
 
-- Ver Planificación
+- Ver planificación
 
-- Descuento por atraso: 0.5 por día, luego de 3 días de atraso se da el trabajo por reprobado.
+- Descuento por atraso: 0.5 por día corrido, luego de 3 días de atraso se da el trabajo por reprobado.
 
 ## Modalidad de entrega
 
-En la sección de tareas de UCursos. Para la **Entrega 1** y **Entrega 2** se debe adjuntar un archivo comprimido con los siguientes elementos:
+En la sección de tareas de UCursos. Se debe adjuntar un archivo comprimido con los siguientes elementos:
 
 1. Base de datos original y procesada
 
