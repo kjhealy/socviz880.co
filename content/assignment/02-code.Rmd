@@ -365,4 +365,15 @@ Completar el reporte de progreso correspondiente a esta práctica [aquí](https:
 
 El archivo de código R de esta práctica se puede descargar [aquí](https://raw.githubusercontent.com/juancarloscastillo/multivariada/master/static/assignment/practica_2.R)
 
+# Video tutorial práctica 2
+
+<div style="width: 100%; height: 600px; overflow: hidden;">
+<video  style="width: 100%;" controls>
+<source src="https://www.dropbox.com/s/zdnt6cyw7rdjug4/practico2.webm?raw=1" type="video/mp4">
+</video>
+</div>
+
+
+
+
 # Foro práctica 2

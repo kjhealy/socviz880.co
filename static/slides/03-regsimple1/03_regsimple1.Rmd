@@ -49,24 +49,33 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 --->
 
 
-.pull-left[
+.pull-left-wide[
 # Estadística Multivariada
-## Juan Carlos Castillo
+
 ## Sociología FACSO - UChile
-## 1er Sem 2020
+
+<br>
+# Tutorial Práctico 2: Descripción de Variables
+
+
+##.black[Catalina Flores & Andreas Lafferte]
+
+]
+
+
+.pull-right-narrow[
+.right[
+![:scale 100%](https://multivariada.netlify.com/img/hex_multiva.png)
+<br>
+<br>
+<br>
+
+
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 
-
-.pull-right[
-.right[
-![:scale 70%](https://multivariada.netlify.com/img/hex_multiva.png)
-<br>
-<br>
-## Sesión 3: Regresión simple (1)
 ]
 
-]
 ---
 class: inverse
 
