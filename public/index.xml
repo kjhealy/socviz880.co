@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Course materials | Estadística Multivariada</title>
-    <link>/</link>
-      <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://multivariada.netlify.app/</link>
+      <atom:link href="https://multivariada.netlify.app/index.xml" rel="self" type="application/rss+xml" />
     <description>Course materials</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <image>
-      <url>/img/social-image.png</url>
+      <url>https://multivariada.netlify.app/img/social-image.png</url>
       <title>Course materials</title>
-      <link>/</link>
+      <link>https://multivariada.netlify.app/</link>
     </image>
     
     <item>
       <title>Bases</title>
-      <link>/class/02-class/</link>
+      <link>https://multivariada.netlify.app/class/02-class/</link>
       <pubDate>Fri, 26 Mar 2021 00:00:00 +0000</pubDate>
-      <guid>/class/02-class/</guid>
+      <guid>https://multivariada.netlify.app/class/02-class/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
 
 &lt;h2&gt;Índice&lt;/h2&gt;
@@ -33,7 +33,7 @@
 
 &lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Documento presentación&lt;/h2&gt;
-&lt;iframe src=&#34;/slides/02-bases/02_bases.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;iframe src=&#34;https://multivariada.netlify.app/slides/02-bases/02_bases.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;div id=&#34;video-de-clase&#34; class=&#34;section level2&#34;&gt;
@@ -58,16 +58,16 @@
     
     <item>
       <title>Práctica 2. Descripción de variables</title>
-      <link>/assignment/02-code/</link>
+      <link>https://multivariada.netlify.app/assignment/02-code/</link>
       <pubDate>Fri, 26 Mar 2021 00:00:00 +0000</pubDate>
-      <guid>/assignment/02-code/</guid>
+      <guid>https://multivariada.netlify.app/assignment/02-code/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;link href=&#34;/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
 &lt;style type=&#34;text/css&#34;&gt;
 pre &gt; code.sourceCode { white-space: pre; position: relative; }
 pre &gt; code.sourceCode &gt; span { display: inline-block; line-height: 1.25; }
@@ -151,6 +151,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;li&gt;&lt;a href=&#34;#resumen-práctica-2-descripción-de-variables&#34;&gt;Resumen Práctica 2: Descripción de variables&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#reporte-de-progreso&#34;&gt;Reporte de progreso&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#archivo-de-código&#34;&gt;Archivo de código&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#video-tutorial-práctica-2&#34;&gt;Video tutorial práctica 2&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#foro-práctica-2&#34;&gt;Foro práctica 2&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
@@ -161,9 +162,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;/script&gt;
 &lt;div id=&#34;objetivo-de-la-práctica&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Objetivo de la práctica&lt;/h1&gt;
-&lt;p&gt;Esta segunda práctica tiene por objetivo repasar algunos conceptos básicos de los cursos anteriores de &lt;strong&gt;Estadística Descriptiva&lt;/strong&gt; y &lt;strong&gt;Estadística Correlacional&lt;/strong&gt;. Asume como base el desarrollo de la &lt;a href=&#34;/assignment/01-code&#34;&gt;Práctica 1&lt;/a&gt;, a la cual se hará referencia permanente.&lt;/p&gt;
-&lt;p&gt;En la &lt;a href=&#34;/assignment/01-code&#34;&gt;Práctica 1&lt;/a&gt; se desarrolló un código de preparación de datos que generó una base de datos procesada para el análisis. En esta &lt;strong&gt;Práctica 2&lt;/strong&gt; comenzamos con el segundo momento de procesamiento de datos, que es el análisis propiamente tal. El análisis se divide en descripción de variables y contraste de hipótesis. En esta práctica nos enfocaremos en la primera fase, que llega hasta el punto 3 del código de análisis:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/produccion2.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Esta segunda práctica tiene por objetivo repasar algunos conceptos básicos de los cursos anteriores de &lt;strong&gt;Estadística Descriptiva&lt;/strong&gt; y &lt;strong&gt;Estadística Correlacional&lt;/strong&gt;. Asume como base el desarrollo de la &lt;a href=&#34;https://multivariada.netlify.app/assignment/01-code&#34;&gt;Práctica 1&lt;/a&gt;, a la cual se hará referencia permanente.&lt;/p&gt;
+&lt;p&gt;En la &lt;a href=&#34;https://multivariada.netlify.app/assignment/01-code&#34;&gt;Práctica 1&lt;/a&gt; se desarrolló un código de preparación de datos que generó una base de datos procesada para el análisis. En esta &lt;strong&gt;Práctica 2&lt;/strong&gt; comenzamos con el segundo momento de procesamiento de datos, que es el análisis propiamente tal. El análisis se divide en descripción de variables y contraste de hipótesis. En esta práctica nos enfocaremos en la primera fase, que llega hasta el punto 3 del código de análisis:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/images/produccion2.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Al igual que el Código de Preparación, el Código de Análisis posee una estructura definida. En este caso son 4 partes, donde las primeras son similares al código de preparación:&lt;/p&gt;
 &lt;ol start=&#34;0&#34; style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;Identificación y descripción general: Título, autor(es), fecha, información breve sobre el contenido del documento&lt;/li&gt;
@@ -182,7 +183,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;h1&gt;Código de análisis&lt;/h1&gt;
 &lt;div id=&#34;librerías&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;1. Librerías&lt;/h2&gt;
-&lt;p&gt;La explicación de esta parte del código se encuentra en la sección correspondiente de la &lt;a href=&#34;/assignment/01-code#librerias&#34;&gt;práctica 1&lt;/a&gt;.&lt;span class=&#34;sidenote&#34;&gt;pacman::p_load&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;La explicación de esta parte del código se encuentra en la sección correspondiente de la &lt;a href=&#34;https://multivariada.netlify.app/assignment/01-code#librerias&#34;&gt;práctica 1&lt;/a&gt;.&lt;span class=&#34;sidenote&#34;&gt;pacman::p_load&lt;/span&gt;&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;pacman&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;p_load&lt;/span&gt;(dplyr, &lt;span class=&#34;co&#34;&gt;#Manipulacion de datos&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;              stargazer, &lt;span class=&#34;co&#34;&gt;#Tablas&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb1-3&#34;&gt;&lt;a href=&#34;#cb1-3&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;              sjmisc, &lt;span class=&#34;co&#34;&gt;# Tablas&lt;/span&gt;&lt;/span&gt;
@@ -864,7 +865,7 @@ Total
 &lt;p&gt;Esta asocación también se puede representar de manera más simple con un gráfico, en este caso de cajas o boxplot mediante la función &lt;code&gt;plot_grpfrq&lt;/code&gt; de &lt;code&gt;sjPlot&lt;/code&gt;:&lt;span class=&#34;sidenote&#34;&gt;sjPlot::plot_grpfrq&lt;/span&gt;&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb28&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb28-1&#34;&gt;&lt;a href=&#34;#cb28-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;plot_grpfrq&lt;/span&gt;(proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;pmerit,proc_elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine,&lt;/span&gt;
 &lt;span id=&#34;cb28-2&#34;&gt;&lt;a href=&#34;#cb28-2&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;            &lt;span class=&#34;dt&#34;&gt;type =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;box&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/02-code_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/02-code_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;correlaciones-variables-continuas&#34; class=&#34;section level4&#34;&gt;
 &lt;h4&gt;Correlaciones (variables continuas)&lt;/h4&gt;
@@ -1345,14 +1346,14 @@ Computed correlation used pearson-method with listwise-deletion.
 &lt;/table&gt;
 &lt;p&gt;Una segunda forma de presentar matrices de correlaciones es de manera gráfica con la librería &lt;code&gt;corrplot&lt;/code&gt;, cuya función &lt;code&gt;corrplot.mixed&lt;/code&gt; &lt;span class=&#34;sidenote&#34;&gt;corrplot::corrplot.mixed&lt;/span&gt;se aplica al objeto que generamos con la función &lt;code&gt;cor&lt;/code&gt; (M):&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb33&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb33-1&#34;&gt;&lt;a href=&#34;#cb33-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;corrplot.mixed&lt;/span&gt;(M)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/02-code_files/figure-html/unnamed-chunk-20-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/02-code_files/figure-html/unnamed-chunk-20-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Este gráfico/matriz representa el grado de asociación entre variables mediante el tamaño de los círculos e intensidad de colores, y el signo de la asociación se representa con una gradiente de colores que va del azul (positivo) al rojo (negativo). Bajo la diagonal aparecen los indices de correlación entre pares de variables.&lt;/p&gt;
 &lt;p&gt;Finalmente, también se puede representar la correlación entre dos variables en un gráfico de nube de puntos o scatterplot:&lt;span class=&#34;sidenote&#34;&gt;sjPlot::plot_scatter&lt;/span&gt;&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb34&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb34-1&#34;&gt;&lt;a href=&#34;#cb34-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;names&lt;/span&gt;(proc_elsoc)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## [1] &amp;quot;mesfuerzo&amp;quot; &amp;quot;mtalento&amp;quot;  &amp;quot;ess&amp;quot;       &amp;quot;edcine&amp;quot;    &amp;quot;sexo&amp;quot;      &amp;quot;edad&amp;quot;     
 ## [7] &amp;quot;pmerit&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb36&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb36-1&#34;&gt;&lt;a href=&#34;#cb36-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;plot_scatter&lt;/span&gt;(proc_elsoc, edad, ess)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/02-code_files/figure-html/unnamed-chunk-21-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/02-code_files/figure-html/unnamed-chunk-21-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Donde:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;cada punto representa un caso&lt;/li&gt;
@@ -1484,6 +1485,14 @@ Computed correlation used pearson-method with listwise-deletion.
 &lt;h1&gt;Archivo de código&lt;/h1&gt;
 &lt;p&gt;El archivo de código R de esta práctica se puede descargar &lt;a href=&#34;https://raw.githubusercontent.com/juancarloscastillo/multivariada/master/static/assignment/practica_2.R&#34;&gt;aquí&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
+&lt;div id=&#34;video-tutorial-práctica-2&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Video tutorial práctica 2&lt;/h1&gt;
+&lt;div style=&#34;width: 100%; height: 600px; overflow: hidden;&#34;&gt;
+&lt;video  style=&#34;width: 100%;&#34; controls&gt;
+&lt;source src=&#34;https://www.dropbox.com/s/zdnt6cyw7rdjug4/practico2.webm?raw=1&#34; type=&#34;video/mp4&#34;&gt;
+&lt;/video&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;div id=&#34;foro-práctica-2&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Foro práctica 2&lt;/h1&gt;
 &lt;/div&gt;
@@ -1492,16 +1501,16 @@ Computed correlation used pearson-method with listwise-deletion.
     
     <item>
       <title></title>
-      <link>/assignment/11-code/</link>
+      <link>https://multivariada.netlify.app/assignment/11-code/</link>
       <pubDate>Fri, 21 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>/assignment/11-code/</guid>
+      <guid>https://multivariada.netlify.app/assignment/11-code/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;link href=&#34;/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
 &lt;style type=&#34;text/css&#34;&gt;
 pre &gt; code.sourceCode { white-space: pre; position: relative; }
 pre &gt; code.sourceCode &gt; span { display: inline-block; line-height: 1.25; }
@@ -2030,11 +2039,11 @@ Habitantes del hogar
 &lt;h2&gt;Creación de índice&lt;/h2&gt;
 &lt;p&gt;En ELSOC existen cuatro preguntas referentes a la participación política o ciudadana, donde se le pregunta a las personas por la frecuencia en que han participado de determinados eventos vinculados a su rol como ciudadanos. Para esto, se emplearon escalas likert de 5 categorías para medir dicha participación.&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb6&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb6-1&#34;&gt;&lt;a href=&#34;#cb6-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;plot_stackfrq&lt;/span&gt;(elsoc[,&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;part01&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;part02&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;part03&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;part04&amp;quot;&lt;/span&gt;)]) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;theme&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;legend.position=&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;bottom&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/11-code_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/11-code_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;En la figura anterior, podemos ver que existe un alto porcentaje de personas que declaran no haber participado nunca en alguna de estas expresiones de la participación ciudadana. En este sentido, para la creación de un índice o medida agrupada, nos interesa saber si existe algún grado de relación entre nuestros indicadores. Para esto, lo que tradicionalmente se realiza es realizar un análisis de correlación entre los indicadores.&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb7&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb7-1&#34;&gt;&lt;a href=&#34;#cb7-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;corrplot.mixed&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;cor&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;select&lt;/span&gt;(elsoc,part01,part02,part03,part04),&lt;/span&gt;
 &lt;span id=&#34;cb7-2&#34;&gt;&lt;a href=&#34;#cb7-2&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;                   &lt;span class=&#34;dt&#34;&gt;use =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;complete.obs&amp;quot;&lt;/span&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/11-code_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/11-code_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;La matriz de correlación nos indica que existen correlaciones moderadas entre los indicadores, donde 0.25 es la más baja y 0.44 la más alta. Es muy importante realizar este paso, debido a que si nuestros indicadores no correlacionan en absoluto, es posible que estemos frente a un atributo distinto. Por lo tanto, sería poco adecuado realizar la construcción de un índice que busque representar un fenómeno o constructo “común” a través de indicadores que no poseen ningún grado de correlación. En nuestro caso, hemos decidido elaborar un &lt;strong&gt;índice sumatorio&lt;/strong&gt; a través de la suma de las respuestas de cada individuo. Para ello emplearemos las funciones &lt;code&gt;mutate&lt;/code&gt; (para crear una nueva variable) y &lt;code&gt;rowSums()&lt;/code&gt; (para sumar los indicadores) de la librería &lt;code&gt;dplyr&lt;/code&gt;.&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb8&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb8-1&#34;&gt;&lt;a href=&#34;#cb8-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;elsoc &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;elsoc &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;mutate&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;partpol=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;rowSums&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;select&lt;/span&gt;(., part01,part02,part03,part04)))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb9&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb9-1&#34;&gt;&lt;a href=&#34;#cb9-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;descr&lt;/span&gt;(elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;partpol,&lt;span class=&#34;dt&#34;&gt;style =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;rmarkdown&amp;quot;&lt;/span&gt;,&lt;span class=&#34;dt&#34;&gt;stats =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;common&amp;quot;&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;transpose =&lt;/span&gt; T,&lt;span class=&#34;dt&#34;&gt;headings =&lt;/span&gt; F)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -2065,7 +2074,7 @@ Habitantes del hogar
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb10&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb10-1&#34;&gt;&lt;a href=&#34;#cb10-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;plot_frq&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;data =&lt;/span&gt; elsoc&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;partpol,&lt;span class=&#34;dt&#34;&gt;type =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;hist&amp;quot;&lt;/span&gt;,&lt;span class=&#34;dt&#34;&gt;show.mean =&lt;/span&gt; T)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/11-code_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/11-code_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Vemos que el índice sumatorio posee valores que van desde 4 hasta 20, con una media de 5,47 y una mediana de 4. Además, vemos algo que ya se había identificado en el gráfico descriptivo de cada indicador por separado, el hecho que existe una proporción importante de personas que respondieron “nunca” en los cuatro indicadores, los cuales son representados por una alta frecuencia de 4 en el histograma. Con esto hemos creado nuestro índice sumatorio de Participación Política.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;recuperar-casos-perdidos&#34; class=&#34;section level2&#34;&gt;
@@ -2924,7 +2933,7 @@ RMSE
 &lt;span id=&#34;cb23-7&#34;&gt;&lt;a href=&#34;#cb23-7&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;geom_hline&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;yintercept=&lt;/span&gt;dcook)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb23-8&#34;&gt;&lt;a href=&#34;#cb23-8&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;geom_text&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;aes&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;label=&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;ifelse&lt;/span&gt;((.cooksd&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt;dcook),id,&lt;span class=&#34;st&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt;)),&lt;/span&gt;
 &lt;span id=&#34;cb23-9&#34;&gt;&lt;a href=&#34;#cb23-9&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;vjust=&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;fl&#34;&gt;0.2&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;hjust=&lt;/span&gt;&lt;span class=&#34;fl&#34;&gt;0.5&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/11-code_files/figure-html/unnamed-chunk-25-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/11-code_files/figure-html/unnamed-chunk-25-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Identificamos los casos influyentes y filtramos la base de datos:&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb24&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb24-1&#34;&gt;&lt;a href=&#34;#cb24-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;ident&amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;final &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;filter&lt;/span&gt;(.cooksd&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt;dcook)&lt;/span&gt;
 &lt;span id=&#34;cb24-2&#34;&gt;&lt;a href=&#34;#cb24-2&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;elsoc02 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;final &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;filter&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;!&lt;/span&gt;(id &lt;span class=&#34;op&#34;&gt;%in%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;ident&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;id))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -3249,7 +3258,7 @@ RMSE
 &lt;span id=&#34;cb27-3&#34;&gt;&lt;a href=&#34;#cb27-3&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_hline&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;yintercept =&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb27-4&#34;&gt;&lt;a href=&#34;#cb27-4&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_smooth&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;se =&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;TRUE&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-30&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/assignment/11-code_files/figure-html/unnamed-chunk-30-1.png&#34; alt=&#34;Relación entre residuos y valores predichos&#34; width=&#34;960&#34; /&gt;
+&lt;img src=&#34;https://multivariada.netlify.app/assignment/11-code_files/figure-html/unnamed-chunk-30-1.png&#34; alt=&#34;Relación entre residuos y valores predichos&#34; width=&#34;960&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 1: Relación entre residuos y valores predichos
 &lt;/p&gt;
@@ -3269,7 +3278,7 @@ Figure 1: Relación entre residuos y valores predichos
 &lt;span id=&#34;cb29-7&#34;&gt;&lt;a href=&#34;#cb29-7&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_point&lt;/span&gt;()&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb29-8&#34;&gt;&lt;a href=&#34;#cb29-8&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_smooth&lt;/span&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-32&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/assignment/11-code_files/figure-html/unnamed-chunk-32-1.png&#34; alt=&#34;Efecto cuadrático de la edad (Modelo 5)&#34; width=&#34;960&#34; /&gt;
+&lt;img src=&#34;https://multivariada.netlify.app/assignment/11-code_files/figure-html/unnamed-chunk-32-1.png&#34; alt=&#34;Efecto cuadrático de la edad (Modelo 5)&#34; width=&#34;960&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 2: Efecto cuadrático de la edad (Modelo 5)
 &lt;/p&gt;
@@ -3282,7 +3291,7 @@ Figure 2: Efecto cuadrático de la edad (Modelo 5)
 &lt;span id=&#34;cb30-3&#34;&gt;&lt;a href=&#34;#cb30-3&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;fit06 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;lm&lt;/span&gt;(partpol&lt;span class=&#34;op&#34;&gt;~&lt;/span&gt;sexo&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;edad&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;edad2&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;lningreso&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;pospol,&lt;span class=&#34;dt&#34;&gt;data=&lt;/span&gt;elsoc02)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb31&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb31-1&#34;&gt;&lt;a href=&#34;#cb31-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;plot_frq&lt;/span&gt;(elsoc02&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ing_pcap,&lt;span class=&#34;dt&#34;&gt;type =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;hist&amp;quot;&lt;/span&gt;,&lt;span class=&#34;dt&#34;&gt;normal.curve =&lt;/span&gt; T, &lt;span class=&#34;dt&#34;&gt;show.mean =&lt;/span&gt; T)&lt;/span&gt;
 &lt;span id=&#34;cb31-2&#34;&gt;&lt;a href=&#34;#cb31-2&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;plot_frq&lt;/span&gt;(elsoc02&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;lningreso,&lt;span class=&#34;dt&#34;&gt;type =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;hist&amp;quot;&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;normal.curve =&lt;/span&gt; T,&lt;span class=&#34;dt&#34;&gt;show.mean =&lt;/span&gt; T)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/11-code_files/figure-html/unnamed-chunk-34-1.png&#34; width=&#34;50%&#34; /&gt;&lt;img src=&#34;/assignment/11-code_files/figure-html/unnamed-chunk-34-2.png&#34; width=&#34;50%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/11-code_files/figure-html/unnamed-chunk-34-1.png&#34; width=&#34;50%&#34; /&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/11-code_files/figure-html/unnamed-chunk-34-2.png&#34; width=&#34;50%&#34; /&gt;&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb32&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb32-1&#34;&gt;&lt;a href=&#34;#cb32-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;labs03 &amp;lt;-&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Intercepto&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;Sexo (mujer=1)&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;Edad&amp;quot;&lt;/span&gt;,&lt;/span&gt;
 &lt;span id=&#34;cb32-2&#34;&gt;&lt;a href=&#34;#cb32-2&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;            &lt;span class=&#34;st&#34;&gt;&amp;quot;Quintil 2&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;Quintil 3&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;Quintil 4&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;Quintil 5&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;Quintil perdido&amp;quot;&lt;/span&gt;,&lt;/span&gt;
 &lt;span id=&#34;cb32-3&#34;&gt;&lt;a href=&#34;#cb32-3&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;            &lt;span class=&#34;st&#34;&gt;&amp;quot;Izquierda (ref. derecha)&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;Centro&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;Idep./Ninguno&amp;quot;&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;Edad²&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;Ingreso per cap (log)&amp;quot;&lt;/span&gt;)&lt;/span&gt;
@@ -4166,12 +4175,12 @@ RMSE
     
     <item>
       <title>12: Pendientes y complementos</title>
-      <link>/class/12-class/</link>
+      <link>https://multivariada.netlify.app/class/12-class/</link>
       <pubDate>Fri, 21 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>/class/12-class/</guid>
+      <guid>https://multivariada.netlify.app/class/12-class/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
 
 &lt;h2&gt;Índice&lt;/h2&gt;
@@ -4184,8 +4193,8 @@ RMSE
 
 &lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Documento presentación&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/12-apendice/12_apendice.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
-&lt;iframe src=&#34;/slides/12-apendice/12_apendice.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;https://multivariada.netlify.app/slides/12-apendice/12_apendice.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
+&lt;iframe src=&#34;https://multivariada.netlify.app/slides/12-apendice/12_apendice.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;div id=&#34;video-de-la-clase&#34; class=&#34;section level2&#34;&gt;
@@ -4198,16 +4207,16 @@ RMSE
     
     <item>
       <title></title>
-      <link>/assignment/10-code/</link>
+      <link>https://multivariada.netlify.app/assignment/10-code/</link>
       <pubDate>Fri, 14 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>/assignment/10-code/</guid>
+      <guid>https://multivariada.netlify.app/assignment/10-code/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;link href=&#34;/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
 &lt;style type=&#34;text/css&#34;&gt;
 pre &gt; code.sourceCode { white-space: pre; position: relative; }
 pre &gt; code.sourceCode &gt; span { display: inline-block; line-height: 1.25; }
@@ -4609,7 +4618,7 @@ Total
 &lt;span id=&#34;cb6-29&#34;&gt;&lt;a href=&#34;#cb6-29&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;scale_y_continuous&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;breaks =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;),&lt;span class=&#34;dt&#34;&gt;labels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;No votó&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;Votó&amp;quot;&lt;/span&gt;)) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb6-30&#34;&gt;&lt;a href=&#34;#cb6-30&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;theme&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;legend.position=&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;bottom&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-9&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/assignment/10-code_files/figure-html/unnamed-chunk-9-1.png&#34; alt=&#34;Participación electoral en 2013 según Sexo y Nivel Educacional&#34; width=&#34;75%&#34; /&gt;&lt;img src=&#34;/assignment/10-code_files/figure-html/unnamed-chunk-9-2.png&#34; alt=&#34;Participación electoral en 2013 según Sexo y Nivel Educacional&#34; width=&#34;75%&#34; /&gt;
+&lt;img src=&#34;https://multivariada.netlify.app/assignment/10-code_files/figure-html/unnamed-chunk-9-1.png&#34; alt=&#34;Participación electoral en 2013 según Sexo y Nivel Educacional&#34; width=&#34;75%&#34; /&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/10-code_files/figure-html/unnamed-chunk-9-2.png&#34; alt=&#34;Participación electoral en 2013 según Sexo y Nivel Educacional&#34; width=&#34;75%&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 1: Participación electoral en 2013 según Sexo y Nivel Educacional
 &lt;/p&gt;
@@ -5118,7 +5127,7 @@ Num. obs.
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb15&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb15-1&#34;&gt;&lt;a href=&#34;#cb15-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;plot_model&lt;/span&gt;(m03,&lt;span class=&#34;dt&#34;&gt;type =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;pred&amp;quot;&lt;/span&gt;,&lt;/span&gt;
 &lt;span id=&#34;cb15-2&#34;&gt;&lt;a href=&#34;#cb15-2&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;           &lt;span class=&#34;dt&#34;&gt;terms =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;educ&amp;quot;&lt;/span&gt;,&lt;/span&gt;
 &lt;span id=&#34;cb15-3&#34;&gt;&lt;a href=&#34;#cb15-3&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;           &lt;span class=&#34;dt&#34;&gt;title =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Probabilidades predichas para Voto según nivel educacional&amp;quot;&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_line&lt;/span&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/10-code_files/figure-html/unnamed-chunk-18-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/10-code_files/figure-html/unnamed-chunk-18-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;En conjunto, podemos observar que en la medida que aumenta el nivel educacional de las personas, la probabilidad de que participen en las elecciones tiende a ser mayor, manteniendo edad y sexo constante.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -5719,7 +5728,7 @@ Num. obs.
 &lt;span id=&#34;cb25-3&#34;&gt;&lt;a href=&#34;#cb25-3&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;plot_grid&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;list&lt;/span&gt;(plot02,plot01),&lt;span class=&#34;dt&#34;&gt;tags =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot; &amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot; &amp;quot;&lt;/span&gt;),&lt;/span&gt;
 &lt;span id=&#34;cb25-4&#34;&gt;&lt;a href=&#34;#cb25-4&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;          &lt;span class=&#34;dt&#34;&gt;margin =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;,&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-27&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/assignment/10-code_files/figure-html/unnamed-chunk-27-1.png&#34; alt=&#34;Modelo de regresión con y sin exponenciar (exp)&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;https://multivariada.netlify.app/assignment/10-code_files/figure-html/unnamed-chunk-27-1.png&#34; alt=&#34;Modelo de regresión con y sin exponenciar (exp)&#34; width=&#34;672&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 2: Modelo de regresión con y sin exponenciar (exp)
 &lt;/p&gt;
@@ -5743,12 +5752,12 @@ Figure 2: Modelo de regresión con y sin exponenciar (exp)
     
     <item>
       <title>11: Supuestos</title>
-      <link>/class/11-class/</link>
+      <link>https://multivariada.netlify.app/class/11-class/</link>
       <pubDate>Fri, 14 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>/class/11-class/</guid>
+      <guid>https://multivariada.netlify.app/class/11-class/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
 
 &lt;h2&gt;Índice&lt;/h2&gt;
@@ -5761,8 +5770,8 @@ Figure 2: Modelo de regresión con y sin exponenciar (exp)
 
 &lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Documento presentación&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/11-supuestos/11_supuestos.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
-&lt;iframe src=&#34;/slides/11-supuestos/11_supuestos.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;https://multivariada.netlify.app/slides/11-supuestos/11_supuestos.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
+&lt;iframe src=&#34;https://multivariada.netlify.app/slides/11-supuestos/11_supuestos.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;div id=&#34;video-de-la-clase&#34; class=&#34;section level2&#34;&gt;
@@ -5775,12 +5784,12 @@ Figure 2: Modelo de regresión con y sin exponenciar (exp)
     
     <item>
       <title>10: Regresión logística (2)</title>
-      <link>/class/10-class/</link>
+      <link>https://multivariada.netlify.app/class/10-class/</link>
       <pubDate>Fri, 07 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>/class/10-class/</guid>
+      <guid>https://multivariada.netlify.app/class/10-class/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
 
 &lt;h2&gt;Índice&lt;/h2&gt;
@@ -5793,8 +5802,8 @@ Figure 2: Modelo de regresión con y sin exponenciar (exp)
 
 &lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Documento presentación&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/10-logit2/10_logit2.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
-&lt;iframe src=&#34;/slides/10-logit2/10_logit2.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;https://multivariada.netlify.app/slides/10-logit2/10_logit2.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
+&lt;iframe src=&#34;https://multivariada.netlify.app/slides/10-logit2/10_logit2.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;div id=&#34;video-de-la-clase---no-disponible-falla-de-zoom&#34; class=&#34;section level2&#34;&gt;
@@ -5805,16 +5814,16 @@ Figure 2: Modelo de regresión con y sin exponenciar (exp)
     
     <item>
       <title></title>
-      <link>/assignment/09-code/</link>
+      <link>https://multivariada.netlify.app/assignment/09-code/</link>
       <pubDate>Sun, 02 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>/assignment/09-code/</guid>
+      <guid>https://multivariada.netlify.app/assignment/09-code/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;link href=&#34;/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
 &lt;style type=&#34;text/css&#34;&gt;
 pre &gt; code.sourceCode { white-space: pre; position: relative; }
 pre &gt; code.sourceCode &gt; span { display: inline-block; line-height: 1.25; }
@@ -6109,7 +6118,7 @@ IQR (CV) : 1 (2)&lt;/td&gt;
 &lt;p&gt;Una forma gráfica de verlo es por medio del paquete &lt;code&gt;ggmosaic&lt;/code&gt; que con su función &lt;code&gt;geom_mosaic&lt;/code&gt; permite construir visualizaciones para datos categóricos. El mosaico general corresponde al total de tripulantes del titanic. Como podrán notar, hay más hombres tripulantes que mujeres, por lo que las barras para hombres son mas anchas. Luego, gracias al comando &lt;code&gt;fill&lt;/code&gt; del &lt;code&gt;geom_mosaic&lt;/code&gt; podemos distinguir en hombres y mujeres la proporción de cuantos &lt;strong&gt;sobrevivieron&lt;/strong&gt; y cuantos &lt;strong&gt;no sobrevivieron&lt;/strong&gt;.&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb5&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb5-1&#34;&gt;&lt;a href=&#34;#cb5-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;ggplot&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;data =&lt;/span&gt; tt) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb5-2&#34;&gt;&lt;a href=&#34;#cb5-2&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_mosaic&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;aes&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;product&lt;/span&gt;(survived, sex), &lt;span class=&#34;dt&#34;&gt;fill=&lt;/span&gt; survived)) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;labs&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;y =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Sobreviviente&amp;quot;&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;Sexo&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/09-code_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/09-code_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;conceptos-centrales&#34; class=&#34;section level1&#34;&gt;
@@ -6182,7 +6191,7 @@ Mientras que un 59.2% de los tripulantes no sobrevive, es decir, la probabilidad
 &lt;span id=&#34;cb12-2&#34;&gt;&lt;a href=&#34;#cb12-2&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;dependent =&lt;span class=&#34;st&#34;&gt; &amp;quot;survived&amp;quot;&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb12-3&#34;&gt;&lt;a href=&#34;#cb12-3&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;/span&gt;
 &lt;span id=&#34;cb12-4&#34;&gt;&lt;a href=&#34;#cb12-4&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;tt &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;or_plot&lt;/span&gt;(dependent, explanatory)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/09-code_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/09-code_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Como se puede ver, en el gráfico no solo se indican los &lt;span class=&#34;math inline&#34;&gt;\(Odds_{ratio}\)&lt;/span&gt; de sobrevivencia de las mujeres por sobre los hombres (11.78), sino que estos se grafican en relacióna qué tan cerca están del 0 (y por tanto, cuánto se aleja del rango de asociación negativa).&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;referencias&#34; class=&#34;section level2&#34;&gt;
@@ -6203,12 +6212,12 @@ Mientras que un 59.2% de los tripulantes no sobrevive, es decir, la probabilidad
     
     <item>
       <title>9: Regresión logística (1)</title>
-      <link>/class/09-class/</link>
+      <link>https://multivariada.netlify.app/class/09-class/</link>
       <pubDate>Fri, 31 Jul 2020 00:00:00 +0000</pubDate>
-      <guid>/class/09-class/</guid>
+      <guid>https://multivariada.netlify.app/class/09-class/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
 
 &lt;h2&gt;Índice&lt;/h2&gt;
@@ -6221,8 +6230,8 @@ Mientras que un 59.2% de los tripulantes no sobrevive, es decir, la probabilidad
 
 &lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Documento presentación&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/09-logit1/9_logit1.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
-&lt;iframe src=&#34;/slides/09-logit1/9_logit1.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;https://multivariada.netlify.app/slides/09-logit1/9_logit1.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
+&lt;iframe src=&#34;https://multivariada.netlify.app/slides/09-logit1/9_logit1.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;div id=&#34;video-de-la-clase&#34; class=&#34;section level2&#34;&gt;
@@ -6235,16 +6244,16 @@ Mientras que un 59.2% de los tripulantes no sobrevive, es decir, la probabilidad
     
     <item>
       <title></title>
-      <link>/assignment/08-code/</link>
+      <link>https://multivariada.netlify.app/assignment/08-code/</link>
       <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
-      <guid>/assignment/08-code/</guid>
+      <guid>https://multivariada.netlify.app/assignment/08-code/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;link href=&#34;/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
 &lt;style type=&#34;text/css&#34;&gt;
 pre &gt; code.sourceCode { white-space: pre; position: relative; }
 pre &gt; code.sourceCode &gt; span { display: inline-block; line-height: 1.25; }
@@ -6818,7 +6827,7 @@ extract_eq(reg2)
 &lt;p&gt;Una manera de presentar los resultados de un modelo de regresión es a través de la visualización de los coeficientes de regresión con sus respectivos intervalos de confianza. La ventaja de este tipo de gráficos es que podemos observar la magnitud del coeficiente y las “barras de error” que representan el intervalo de confianza inferior y superior. Utilizando un intervalo de confianza de 95% de confianza:&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb11&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb11-1&#34;&gt;&lt;a href=&#34;#cb11-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;sjPlot&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;plot_model&lt;/span&gt;(reg2,&lt;span class=&#34;dt&#34;&gt;ci.lvl =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;fl&#34;&gt;0.95&lt;/span&gt;), &lt;span class=&#34;dt&#34;&gt;title =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt;,&lt;span class=&#34;dt&#34;&gt;vline.color =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;grey&amp;quot;&lt;/span&gt;,&lt;span class=&#34;dt&#34;&gt;line.size =&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-13&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/assignment/08-code_files/figure-html/unnamed-chunk-13-1.png&#34; alt=&#34;Modelo 2&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;https://multivariada.netlify.app/assignment/08-code_files/figure-html/unnamed-chunk-13-1.png&#34; alt=&#34;Modelo 2&#34; width=&#34;672&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 1: Modelo 2
 &lt;/p&gt;
@@ -6849,12 +6858,12 @@ Statistical Consulting Group. &lt;a href=&#34;https://stats.idre.ucla.edu/stata/
     
     <item>
       <title>8: Inferencia en regresión (2)</title>
-      <link>/class/08-class/</link>
+      <link>https://multivariada.netlify.app/class/08-class/</link>
       <pubDate>Fri, 10 Jul 2020 00:00:00 +0000</pubDate>
-      <guid>/class/08-class/</guid>
+      <guid>https://multivariada.netlify.app/class/08-class/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
 
 &lt;h2&gt;Índice&lt;/h2&gt;
@@ -6867,8 +6876,8 @@ Statistical Consulting Group. &lt;a href=&#34;https://stats.idre.ucla.edu/stata/
 
 &lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Documento presentación&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/08-infcomp/8_infcomp.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
-&lt;iframe src=&#34;/slides/08-infcomp/8_infcomp.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;https://multivariada.netlify.app/slides/08-infcomp/8_infcomp.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
+&lt;iframe src=&#34;https://multivariada.netlify.app/slides/08-infcomp/8_infcomp.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;div id=&#34;video-de-la-clase&#34; class=&#34;section level2&#34;&gt;
@@ -6881,16 +6890,16 @@ Statistical Consulting Group. &lt;a href=&#34;https://stats.idre.ucla.edu/stata/
     
     <item>
       <title></title>
-      <link>/assignment/07-code/</link>
+      <link>https://multivariada.netlify.app/assignment/07-code/</link>
       <pubDate>Fri, 03 Jul 2020 00:00:00 +0000</pubDate>
-      <guid>/assignment/07-code/</guid>
+      <guid>https://multivariada.netlify.app/assignment/07-code/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;link href=&#34;/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
 &lt;style type=&#34;text/css&#34;&gt;
 pre &gt; code.sourceCode { white-space: pre; position: relative; }
 pre &gt; code.sourceCode &gt; span { display: inline-block; line-height: 1.25; }
@@ -7203,10 +7212,10 @@ IQR (CV) : 1 (0.4)&lt;/td&gt;
 &lt;h2&gt;Relacion entre variables&lt;/h2&gt;
 &lt;p&gt;Visualizar la asociación entre variables puede ser informativo. Sin embargo, en ocasiones es necesario prestar mayor atención al tipo de gráfico que utilizamos para esto. Por ejemplo, veamos un scatter de Estatus social Subjetivo &lt;span class=&#34;math inline&#34;&gt;\(Y_\text{estatus}\)&lt;/span&gt; con sexo como independiente &lt;span class=&#34;math inline&#34;&gt;\(X_\text{sexo}\)&lt;/span&gt; para comparar sus distribuciones y sus pendientes&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb5&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb5-1&#34;&gt;&lt;a href=&#34;#cb5-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;plot_scatter&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;data =&lt;/span&gt; elsoc_&lt;span class=&#34;dv&#34;&gt;18&lt;/span&gt;,&lt;span class=&#34;dt&#34;&gt;x =&lt;/span&gt; sexo,&lt;span class=&#34;dt&#34;&gt;y =&lt;/span&gt; ess,&lt;span class=&#34;dt&#34;&gt;fit.grps =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;lm&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/07-code_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/07-code_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;El scatterplot no es muy informativo debido a que nuestra variable independiente solamente posee dos niveles, de modo tal que la distribución de Estatus Social Subjetivo se separa en dos grandes grupos. Por esta razón, una alternativa para visualizar la distirbución es elaborar un gráfico de cajas para ambas categorías:&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb6&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb6-1&#34;&gt;&lt;a href=&#34;#cb6-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;plot_grpfrq&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;var.cnt =&lt;/span&gt; elsoc_&lt;span class=&#34;dv&#34;&gt;18&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;ess,&lt;span class=&#34;dt&#34;&gt;var.grp =&lt;/span&gt; elsoc_&lt;span class=&#34;dv&#34;&gt;18&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;sexo,&lt;span class=&#34;dt&#34;&gt;type =&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;box&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/07-code_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/07-code_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;En este sentido, al tener solamente dos niveles en los valores de la variable X: 0 (Hombre) y 1 (Mujer). Obtenemos solamente dos medias condicionales.&lt;/p&gt;
 &lt;p&gt;Entonces, si calculamos el promedio simple para Estatus Social Subjetivo por sexo tenemos:&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb7&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb7-1&#34;&gt;&lt;a href=&#34;#cb7-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;elsoc_&lt;span class=&#34;dv&#34;&gt;18&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%&amp;gt;%&lt;/span&gt;&lt;/span&gt;
@@ -7409,7 +7418,7 @@ Al controlar por la Edad de las personas, las mujeres tienen un promedio 0.126 m
 ##     5 |      Terciaria y Postgrado |  715 | 19.31 |   19.31 | 100.00&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Y se distribuye de esta manera:&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb17&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb17-1&#34;&gt;&lt;a href=&#34;#cb17-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;plot_frq&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;data =&lt;/span&gt; elsoc_&lt;span class=&#34;dv&#34;&gt;18&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/07-code_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/07-code_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Para poder incluir esta variable en la regresión como categórica en R la manera más simple es definirla como un factor. Primero necesitamos conocer la estructura de la variable, ya que puede venir previamente definida como factor:&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb18&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb18-1&#34;&gt;&lt;a href=&#34;#cb18-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;class&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;18&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;edcine)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## [1] &amp;quot;numeric&amp;quot;&lt;/code&gt;&lt;/pre&gt;
@@ -7876,7 +7885,7 @@ R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted
 &lt;li&gt;Es posible observar que tanto la media como la desviación estándar van cambiando en la medida que aumenta el tamaño de la muestra, pero si observamos el Error Estándar, este va sistemáticamente disminuyendo en la medida que aumenta el tamaño muestral.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Para ilustrar cómo va cambiando la dispersión y la media “muestral” (rojo) con respecto a la “poblacional” (verde), se puede observar el siguiente gráfico:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/ess_hist.gif&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/images/ess_hist.gif&#34; /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Este ejemplo sirve para ilustrar de qué manera el Error Estándar de la media &lt;span class=&#34;math inline&#34;&gt;\(\bar{x}\)&lt;/span&gt; nos permite determinar la significancia estadística de un coeficiente de regresión &lt;span class=&#34;math inline&#34;&gt;\(\beta\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;En regresión nos interesa saber si las diferencias en Y con respecto a los distintos niveles o valores de X son significativas, es decir &lt;strong&gt;estadisticamente distintas de 0&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
@@ -7959,7 +7968,7 @@ En relación a la hipótesis alternativa:&lt;/p&gt;
 &lt;span id=&#34;cb50-6&#34;&gt;&lt;a href=&#34;#cb50-6&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;                    &lt;span class=&#34;dt&#34;&gt;linetype =&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb50-7&#34;&gt;&lt;a href=&#34;#cb50-7&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;                    &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;scale_y_discrete&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt;,&lt;span class=&#34;dt&#34;&gt;labels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Sexo (mujer=1)&amp;quot;&lt;/span&gt;)) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb50-8&#34;&gt;&lt;a href=&#34;#cb50-8&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;                    &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;theme_bw&lt;/span&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/07-code_files/figure-html/unnamed-chunk-39-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/07-code_files/figure-html/unnamed-chunk-39-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;De manera resumida en una tabla podemos verlo así:&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb51&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb51-1&#34;&gt;&lt;a href=&#34;#cb51-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;sjPlot&lt;span class=&#34;op&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;tab_model&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;list&lt;/span&gt;(reg100,reg1500,reg2000,reg2500),&lt;/span&gt;
 &lt;span id=&#34;cb51-2&#34;&gt;&lt;a href=&#34;#cb51-2&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;                  &lt;span class=&#34;dt&#34;&gt;dv.labels =&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;c&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;n=100&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;n=1500&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;n=2000&amp;quot;&lt;/span&gt;,&lt;span class=&#34;st&#34;&gt;&amp;quot;n=2500&amp;quot;&lt;/span&gt;),&lt;/span&gt;
@@ -8125,12 +8134,12 @@ R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted
     
     <item>
       <title>7: Categóricos / inferencia (1)</title>
-      <link>/class/07-class/</link>
+      <link>https://multivariada.netlify.app/class/07-class/</link>
       <pubDate>Fri, 03 Jul 2020 00:00:00 +0000</pubDate>
-      <guid>/class/07-class/</guid>
+      <guid>https://multivariada.netlify.app/class/07-class/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
 
 &lt;h2&gt;Índice&lt;/h2&gt;
@@ -8143,8 +8152,8 @@ R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted
 
 &lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Documento presentación&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/07-catinf/7_catinf.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
-&lt;iframe src=&#34;/slides/07-catinf/7_catinf.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;https://multivariada.netlify.app/slides/07-catinf/7_catinf.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
+&lt;iframe src=&#34;https://multivariada.netlify.app/slides/07-catinf/7_catinf.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;div id=&#34;video-de-la-clase&#34; class=&#34;section level2&#34;&gt;
@@ -8160,12 +8169,12 @@ R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted
     
     <item>
       <title>Regresión múltiple 2</title>
-      <link>/class/06-class/</link>
+      <link>https://multivariada.netlify.app/class/06-class/</link>
       <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>/class/06-class/</guid>
+      <guid>https://multivariada.netlify.app/class/06-class/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
 
 &lt;h2&gt;Índice&lt;/h2&gt;
@@ -8179,8 +8188,8 @@ R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted
 
 &lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Documento presentación&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/06-regmul2/6_regmul2.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
-&lt;iframe src=&#34;/slides/06-regmul2/6_regmul2.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;https://multivariada.netlify.app/slides/06-regmul2/6_regmul2.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
+&lt;iframe src=&#34;https://multivariada.netlify.app/slides/06-regmul2/6_regmul2.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;div id=&#34;video-de-la-clase&#34; class=&#34;section level2&#34;&gt;
@@ -8193,23 +8202,23 @@ R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted
 &lt;/div&gt;
 &lt;div id=&#34;lecturas&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Lecturas&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;/docs/lecturas/moore_residuos.pdf&#34;&gt;Moore: Residuos (144-154)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/moore_residuos.pdf&#34;&gt;Moore: Residuos (144-154)&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
     
     <item>
       <title></title>
-      <link>/assignment/05-code/</link>
+      <link>https://multivariada.netlify.app/assignment/05-code/</link>
       <pubDate>Mon, 22 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>/assignment/05-code/</guid>
+      <guid>https://multivariada.netlify.app/assignment/05-code/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;link href=&#34;/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
 &lt;style type=&#34;text/css&#34;&gt;
 pre &gt; code.sourceCode { white-space: pre; position: relative; }
 pre &gt; code.sourceCode &gt; span { display: inline-block; line-height: 1.25; }
@@ -8436,7 +8445,7 @@ R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted
 &lt;span id=&#34;cb7-10&#34;&gt;&lt;a href=&#34;#cb7-10&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;   &lt;span class=&#34;dt&#34;&gt;cor.coef =&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;TRUE&lt;/span&gt;)&lt;/span&gt;
 &lt;span id=&#34;cb7-11&#34;&gt;&lt;a href=&#34;#cb7-11&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;/span&gt;
 &lt;span id=&#34;cb7-12&#34;&gt;&lt;a href=&#34;#cb7-12&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;grid.arrange&lt;/span&gt;(gact, ghsGPA, &lt;span class=&#34;dt&#34;&gt;nrow =&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# Unir graficos&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/05-code_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/05-code_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Con el gráfico anterior podemos notar que si bien ambas variables tienen una asociación positiva con &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt;, el tamaño efecto de esta relación es distinta. Incluso, &lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt; que no había sido considerada en nuestro modelo inicial, tiene una asociación más grande con nuestra variable dependiente.
 Ahora bien, ¿cómo incide &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt; y &lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt; en conjunto sobre &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt;?&lt;/p&gt;
 &lt;/div&gt;
@@ -8621,16 +8630,16 @@ R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted
     
     <item>
       <title></title>
-      <link>/assignment/06-code/</link>
+      <link>https://multivariada.netlify.app/assignment/06-code/</link>
       <pubDate>Fri, 19 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>/assignment/06-code/</guid>
+      <guid>https://multivariada.netlify.app/assignment/06-code/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;link href=&#34;/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
 &lt;style type=&#34;text/css&#34;&gt;
 pre &gt; code.sourceCode { white-space: pre; position: relative; }
 pre &gt; code.sourceCode &gt; span { display: inline-block; line-height: 1.25; }
@@ -8842,7 +8851,7 @@ IQR (CV) : 4 (0.1)&lt;/td&gt;
 &lt;span id=&#34;cb4-16&#34;&gt;&lt;a href=&#34;#cb4-16&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;   &lt;span class=&#34;dt&#34;&gt;cor.coef =&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;TRUE&lt;/span&gt;)&lt;/span&gt;
 &lt;span id=&#34;cb4-17&#34;&gt;&lt;a href=&#34;#cb4-17&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;/span&gt;
 &lt;span id=&#34;cb4-18&#34;&gt;&lt;a href=&#34;#cb4-18&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;grid.arrange&lt;/span&gt;(gact, ghsGPA, gact_hs, &lt;span class=&#34;dt&#34;&gt;nrow =&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# Unir graficos&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/06-code_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/06-code_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Con el gráfico anterior podemos notar dos puntos relevantes:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Si bien ambas variables tienen una asociación positiva con &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt;, el tamaño efecto de esta relación es distinta. Incluso, &lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt; que no había sido considerada en nuestro modelo inicial, tiene una asociación más grande con nuestra variable dependiente.&lt;/p&gt;&lt;/li&gt;
@@ -9174,7 +9183,7 @@ R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted
 &lt;h2&gt;Control estadístico&lt;/h2&gt;
 &lt;p&gt;¿En cuál variable me fijo para la interpretación? Podemos graficar los coeficientes de la regresión de modo de ver el impacto que tienen cada una de las variables sobre &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt;&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb13&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb13-1&#34;&gt;&lt;a href=&#34;#cb13-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;plot_model&lt;/span&gt;(col_model, &lt;span class=&#34;dt&#34;&gt;show.values =&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;TRUE&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;theme_sjplot&lt;/span&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/06-code_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/06-code_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Como podemos ver el efecto que tiene &lt;span class=&#34;math inline&#34;&gt;\(hsGPA\)&lt;/span&gt; sobre &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt;, controlando por &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt;, es mucho mayor que el que tiene &lt;span class=&#34;math inline&#34;&gt;\(ACT\)&lt;/span&gt; parcializado por &lt;span class=&#34;math inline&#34;&gt;\(colGPA\)&lt;/span&gt;. Sin embargo, esto nada nos dice de qué variable enfatizar: &lt;strong&gt;esto dependen de las hipótesis que queremos probar con nuestros modelos&lt;/strong&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;qué-significa-mantener-todos-los-demás-factores-constantes&#34; class=&#34;section level2&#34;&gt;
@@ -9203,12 +9212,12 @@ Más bien, la regresión múltiple permite imitar esta situación “constante�
     
     <item>
       <title>Regresión múltiple 1</title>
-      <link>/class/05-class/</link>
+      <link>https://multivariada.netlify.app/class/05-class/</link>
       <pubDate>Fri, 12 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>/class/05-class/</guid>
+      <guid>https://multivariada.netlify.app/class/05-class/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
 
 &lt;h2&gt;Índice&lt;/h2&gt;
@@ -9222,8 +9231,8 @@ Más bien, la regresión múltiple permite imitar esta situación “constante�
 
 &lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Documento presentación&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/05-regmul1/05_regmul1.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
-&lt;iframe src=&#34;/slides/05-regmul1/05_regmul1.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;https://multivariada.netlify.app/slides/05-regmul1/05_regmul1.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
+&lt;iframe src=&#34;https://multivariada.netlify.app/slides/05-regmul1/05_regmul1.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;div id=&#34;video-de-la-clase&#34; class=&#34;section level2&#34;&gt;
@@ -9236,23 +9245,23 @@ Más bien, la regresión múltiple permite imitar esta situación “constante�
 &lt;/div&gt;
 &lt;div id=&#34;lecturas&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Lecturas&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;/docs/lecturas/moore_residuos.pdf&#34;&gt;Moore: Residuos (144-154)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/moore_residuos.pdf&#34;&gt;Moore: Residuos (144-154)&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
     
     <item>
       <title></title>
-      <link>/assignment/04-code/</link>
+      <link>https://multivariada.netlify.app/assignment/04-code/</link>
       <pubDate>Fri, 29 May 2020 00:00:00 +0000</pubDate>
-      <guid>/assignment/04-code/</guid>
+      <guid>https://multivariada.netlify.app/assignment/04-code/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;link href=&#34;/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
 &lt;style type=&#34;text/css&#34;&gt;
 pre &gt; code.sourceCode { white-space: pre; position: relative; }
 pre &gt; code.sourceCode &gt; span { display: inline-block; line-height: 1.25; }
@@ -9393,7 +9402,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;span id=&#34;cb4-2&#34;&gt;&lt;a href=&#34;#cb4-2&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_point&lt;/span&gt;() &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb4-3&#34;&gt;&lt;a href=&#34;#cb4-3&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_smooth&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;method=&lt;/span&gt;lm, &lt;span class=&#34;dt&#34;&gt;se=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;)&lt;/span&gt;
 &lt;span id=&#34;cb4-4&#34;&gt;&lt;a href=&#34;#cb4-4&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;g2&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;img src=&#34;/assignment/04-code_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;https://multivariada.netlify.app/assignment/04-code_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;div class=&#34;alert alert-info&#34;&gt;
 &lt;p&gt;&lt;strong&gt;Grabar / exportar gráficos&lt;/strong&gt; :&lt;span class=&#34;sidenote&#34;&gt;Exportar gráficos &lt;/span&gt;
 Si se quiere grabar un gráfico para luego utilizarlo en algún documento fuera del entorno R, algunas alternativas:&lt;/p&gt;
@@ -9619,7 +9628,7 @@ Y calculamos&lt;/p&gt;
 &lt;span id=&#34;cb28-7&#34;&gt;&lt;a href=&#34;#cb28-7&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_point&lt;/span&gt;() &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; &lt;/span&gt;&lt;span class=&#34;co&#34;&gt;#Capa 1&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb28-8&#34;&gt;&lt;a href=&#34;#cb28-8&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_point&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;aes&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;y=&lt;/span&gt;estimado), &lt;span class=&#34;dt&#34;&gt;shape =&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb28-9&#34;&gt;&lt;a href=&#34;#cb28-9&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;theme_bw&lt;/span&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/04-code_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/04-code_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;En esta segunda opción, se agrega tamaño y color a los residuos mayores:&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb29&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb29-1&#34;&gt;&lt;a href=&#34;#cb29-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;ggplot&lt;/span&gt;(datos, &lt;span class=&#34;kw&#34;&gt;aes&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x=&lt;/span&gt;juegos_x, &lt;span class=&#34;dt&#34;&gt;y=&lt;/span&gt;puntos_y))&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb29-2&#34;&gt;&lt;a href=&#34;#cb29-2&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_smooth&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;method=&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;lm&amp;quot;&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;se=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;color=&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;lightgrey&amp;quot;&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;co&#34;&gt;#Pendiente de regresion&lt;/span&gt;&lt;/span&gt;
@@ -9629,7 +9638,7 @@ Y calculamos&lt;/p&gt;
 &lt;span id=&#34;cb29-6&#34;&gt;&lt;a href=&#34;#cb29-6&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;guides&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;color =&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;size =&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb29-7&#34;&gt;&lt;a href=&#34;#cb29-7&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;   &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_point&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;aes&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;y=&lt;/span&gt;estimado), &lt;span class=&#34;dt&#34;&gt;shape =&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb29-8&#34;&gt;&lt;a href=&#34;#cb29-8&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;theme_bw&lt;/span&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/04-code_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/04-code_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;el-coeficiente-de-regresión-versus-el-coeficiente-de-correlación&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;El coeficiente de Regresión versus el coeficiente de correlación&lt;/h1&gt;
@@ -9673,12 +9682,12 @@ Y calculamos&lt;/p&gt;
     
     <item>
       <title>Regresión simple 2</title>
-      <link>/class/04-class/</link>
+      <link>https://multivariada.netlify.app/class/04-class/</link>
       <pubDate>Fri, 29 May 2020 00:00:00 +0000</pubDate>
-      <guid>/class/04-class/</guid>
+      <guid>https://multivariada.netlify.app/class/04-class/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
 
 &lt;h2&gt;Índice&lt;/h2&gt;
@@ -9692,8 +9701,8 @@ Y calculamos&lt;/p&gt;
 
 &lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Documento presentación&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/04-regsimple2/04_regsimple2.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
-&lt;iframe src=&#34;/slides/04-regsimple2/04_regsimple2.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;https://multivariada.netlify.app/slides/04-regsimple2/04_regsimple2.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
+&lt;iframe src=&#34;https://multivariada.netlify.app/slides/04-regsimple2/04_regsimple2.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;div id=&#34;video-de-la-clase&#34; class=&#34;section level2&#34;&gt;
@@ -9706,23 +9715,23 @@ Y calculamos&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;lecturas&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Lecturas&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;/docs/lecturas/moore_residuos.pdf&#34;&gt;Moore: Residuos (144-154)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/moore_residuos.pdf&#34;&gt;Moore: Residuos (144-154)&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
     
     <item>
       <title></title>
-      <link>/assignment/03-code/</link>
+      <link>https://multivariada.netlify.app/assignment/03-code/</link>
       <pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate>
-      <guid>/assignment/03-code/</guid>
+      <guid>https://multivariada.netlify.app/assignment/03-code/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;link href=&#34;/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
 &lt;style type=&#34;text/css&#34;&gt;
 pre &gt; code.sourceCode { white-space: pre; position: relative; }
 pre &gt; code.sourceCode &gt; span { display: inline-block; line-height: 1.25; }
@@ -9890,7 +9899,7 @@ Para abrirlos datos recordemos que en la lógica de R se debe generar un objeto 
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb9&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb9-1&#34;&gt;&lt;a href=&#34;#cb9-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;g=&lt;span class=&#34;kw&#34;&gt;ggplot&lt;/span&gt;(datos, &lt;span class=&#34;kw&#34;&gt;aes&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;x=&lt;/span&gt;juegos_x, &lt;span class=&#34;dt&#34;&gt;y=&lt;/span&gt;puntos_y)) &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb9-2&#34;&gt;&lt;a href=&#34;#cb9-2&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_point&lt;/span&gt;()&lt;/span&gt;
 &lt;span id=&#34;cb9-3&#34;&gt;&lt;a href=&#34;#cb9-3&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;g&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/03-code_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/03-code_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;
 Primero, sobre librerías y visualización: lo que hicimos fue crear un objeto gráfico scatterplot &lt;code&gt;g&lt;/code&gt; con la librería &lt;code&gt;ggplot&lt;/code&gt;..&lt;/p&gt;
 &lt;p&gt;En términos de correlación se observa una posible asociación positiva, que podemos corroborar con la función &lt;code&gt;cor&lt;/code&gt;:&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb10&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb10-1&#34;&gt;&lt;a href=&#34;#cb10-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;cor&lt;/span&gt;(datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;juegos_x,datos&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;puntos_y)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -9909,13 +9918,13 @@ Primero, sobre librerías y visualización: lo que hicimos fue crear un objeto g
 &lt;span id=&#34;cb12-2&#34;&gt;&lt;a href=&#34;#cb12-2&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_point&lt;/span&gt;() &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb12-3&#34;&gt;&lt;a href=&#34;#cb12-3&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;st&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;geom_smooth&lt;/span&gt;(&lt;span class=&#34;dt&#34;&gt;method=&lt;/span&gt;lm, &lt;span class=&#34;dt&#34;&gt;se=&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;FALSE&lt;/span&gt;)&lt;/span&gt;
 &lt;span id=&#34;cb12-4&#34;&gt;&lt;a href=&#34;#cb12-4&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;g2&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;/assignment/03-code_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/assignment/03-code_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;residuos&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Residuos&lt;/h2&gt;
 &lt;p&gt;En el gráfico anterior vemos que la línea resume la relación entre X e Y, pero claramente es una simplificación que &lt;strong&gt;no abarca toda la variabilidad de los datos&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Por ejemplo, para el sujeto cuya experiencia es haber jugado 1 vez y luego gana 3 puntos, esta línea predice exáctamente su puntaje basada en su experiencia. Sin embargo, el sujeto que ha jugado 3 veces y saca 6 puntos se encuentra más lejos de la línea y por lo tanto esta línea o “modelo predictivo” no representa tan bien su puntaje. A esto se refieren los &lt;em&gt;residuos&lt;/em&gt;, que es la diferencia entre el valor predicho (o &lt;span class=&#34;math inline&#34;&gt;\(\widehat{Y}\)&lt;/span&gt;) y el observado &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt;, siendo los valores predichos de Y los que pasan por la recta a la altura de cada valor de X. Por lo tanto, la mejor recta será aquella que minimice al máximo los residuos.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/slides/03-regsimple1/fig2-4woo.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/slides/03-regsimple1/fig2-4woo.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;El sentido de la recta que resume de mejor manera la relación entre dos variables es que &lt;strong&gt;minimice la suma de todos los residuos&lt;/strong&gt;. ¿Cómo realizar este procedimiento?&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Para realizar la suma de los residuos estos se elevan al cuadrado, lo que se denomina &lt;strong&gt;Suma de residuos al cuadrado&lt;/strong&gt; o &lt;span class=&#34;math inline&#34;&gt;\(SS_{residual}\)&lt;/span&gt;. Se eleva al cuadrado ya que como hay residuos positivos y negativos, unos cancelarían a otros y la suma seía 0, tal como sucede en la formula de la varianza.&lt;/p&gt;&lt;/li&gt;
@@ -10051,12 +10060,12 @@ Por ejemplo, cuál es el valor estimado de &lt;span class=&#34;math inline&#34;&
     
     <item>
       <title>Presentación del curso</title>
-      <link>/class/01-class/</link>
+      <link>https://multivariada.netlify.app/class/01-class/</link>
       <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/class/01-class/</guid>
+      <guid>https://multivariada.netlify.app/class/01-class/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
 
 &lt;h2&gt;Índice&lt;/h2&gt;
@@ -10069,7 +10078,7 @@ Por ejemplo, cuál es el valor estimado de &lt;span class=&#34;math inline&#34;&
 
 &lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Documento presentación&lt;/h2&gt;
-&lt;iframe src=&#34;/slides/01-intro/01_multiva_intro.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;iframe src=&#34;https://multivariada.netlify.app/slides/01-intro/01_multiva_intro.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;div id=&#34;video-de-la-clase&#34; class=&#34;section level2&#34;&gt;
@@ -10086,12 +10095,12 @@ Por ejemplo, cuál es el valor estimado de &lt;span class=&#34;math inline&#34;&
     
     <item>
       <title>Regresión simple 1</title>
-      <link>/class/03-class/</link>
+      <link>https://multivariada.netlify.app/class/03-class/</link>
       <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/class/03-class/</guid>
+      <guid>https://multivariada.netlify.app/class/03-class/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
 
 &lt;h2&gt;Índice&lt;/h2&gt;
@@ -10105,8 +10114,8 @@ Por ejemplo, cuál es el valor estimado de &lt;span class=&#34;math inline&#34;&
 
 &lt;div id=&#34;documento-presentación&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Documento presentación&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;/slides/03-regsimple1/03_regsimple1.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
-&lt;iframe src=&#34;/slides/03-regsimple1/03_regsimple1.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;sidenote&#34;&gt;Para ver en pantalla completa click &lt;a href=&#34;https://multivariada.netlify.app/slides/03-regsimple1/03_regsimple1.html&#34;&gt;&lt;strong&gt;aquí&lt;/strong&gt;&lt;/a&gt;. Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. &lt;/span&gt;&lt;/p&gt;
+&lt;iframe src=&#34;https://multivariada.netlify.app/slides/03-regsimple1/03_regsimple1.html&#34; height=&#34;550&#34; width=&#34;100%&#34; allowfullscreen=&#34;true&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;div id=&#34;video-de-clase&#34; class=&#34;section level2&#34;&gt;
@@ -10120,7 +10129,7 @@ Por ejemplo, cuál es el valor estimado de &lt;span class=&#34;math inline&#34;&
 &lt;div id=&#34;lecturas&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Lecturas&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;/docs/lecturas/moore_analisisderelaciones1.pdf&#34;&gt;Moore: 2. Análisis de relaciones (97-131)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/moore_analisisderelaciones1.pdf&#34;&gt;Moore: 2. Análisis de relaciones (97-131)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 </description>
@@ -10128,16 +10137,16 @@ Por ejemplo, cuál es el valor estimado de &lt;span class=&#34;math inline&#34;&
     
     <item>
       <title>Práctica 1. Preparación de datos en R</title>
-      <link>/assignment/01-code/</link>
+      <link>https://multivariada.netlify.app/assignment/01-code/</link>
       <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/assignment/01-code/</guid>
+      <guid>https://multivariada.netlify.app/assignment/01-code/</guid>
       <description>
 &lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;link href=&#34;/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/clipboard/clipboard.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/primer-tooltips/build.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/css/klippy.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/klippy/js/klippy.min.js&#34;&gt;&lt;/script&gt;
 &lt;style type=&#34;text/css&#34;&gt;
 pre &gt; code.sourceCode { white-space: pre; position: relative; }
 pre &gt; code.sourceCode &gt; span { display: inline-block; line-height: 1.25; }
@@ -10247,8 +10256,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;/ul&gt;
 &lt;div id=&#34;flujo&#34; class=&#34;section level4&#34;&gt;
 &lt;h4&gt;Los procesos de preparación y análisis vinculados a datos y resultados se presentan en el siguiente esquema:&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;/images/produccion.png&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Tanto la preparación como el análisis (que son parte del concepto más general de procesamiento) quedan registrados cada en un &lt;em&gt;archivo de código&lt;/em&gt;. Los detalles de este tipo de archivos se pueden revisar &lt;a href=&#34;/class/#codigoR&#34;&gt;aquí&lt;/a&gt;. &lt;span class=&#34;sidenote&#34;&gt;&lt;strong&gt;Archivo de código R&lt;/strong&gt;: archivo con extensión .R donde se almacena el código de análisis. Para generarlo desde RStudio: &lt;em&gt;File &amp;gt; New File &amp;gt; R Script&lt;/em&gt; (o ctrl+shift+N), y para grabarlo &lt;em&gt;File &amp;gt; Save (o ctrl+s)&lt;/em&gt;, y darle nombre la primera vez (recordar: sin tilde ni ñ, y evitar espacios) &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/images/produccion.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Tanto la preparación como el análisis (que son parte del concepto más general de procesamiento) quedan registrados cada en un &lt;em&gt;archivo de código&lt;/em&gt;. Los detalles de este tipo de archivos se pueden revisar &lt;a href=&#34;https://multivariada.netlify.app/class/#codigoR&#34;&gt;aquí&lt;/a&gt;. &lt;span class=&#34;sidenote&#34;&gt;&lt;strong&gt;Archivo de código R&lt;/strong&gt;: archivo con extensión .R donde se almacena el código de análisis. Para generarlo desde RStudio: &lt;em&gt;File &amp;gt; New File &amp;gt; R Script&lt;/em&gt; (o ctrl+shift+N), y para grabarlo &lt;em&gt;File &amp;gt; Save (o ctrl+s)&lt;/em&gt;, y darle nombre la primera vez (recordar: sin tilde ni ñ, y evitar espacios) &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;El documento de &lt;strong&gt;código de preparación&lt;/strong&gt; posee 5 partes, más una sección de identificación inicial:&lt;/p&gt;
 &lt;ol start=&#34;0&#34; style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;Identificación y descripción general: Título, autor(es), fecha, información breve sobre el contenido del documento&lt;/li&gt;
@@ -10304,7 +10313,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb4&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb4-1&#34;&gt;&lt;a href=&#34;#cb4-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;#cargamos la base de datos desde internet&lt;/span&gt;&lt;/span&gt;
 &lt;span id=&#34;cb4-2&#34;&gt;&lt;a href=&#34;#cb4-2&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;load&lt;/span&gt;(&lt;span class=&#34;kw&#34;&gt;url&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;https://multivariada.netlify.com/assignment/data/original/ELSOC_W01_v3.10.RData&amp;quot;&lt;/span&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;La base de datos aparece como un objeto en nuestro espacio de trabajo, con el nombre original con la que fue guardada (elsoc_2016):&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/basecargada.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/images/basecargada.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Realizamos un chequeo básico de la lectura de datos: nombres de las variables y tamaño de la base en términos de casos y variables (en este ejemplo, 2927 casos y 383 variables).&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb5&#34;&gt;&lt;pre class=&#34;sourceCode r&#34;&gt;&lt;code class=&#34;sourceCode r&#34;&gt;&lt;span id=&#34;cb5-1&#34;&gt;&lt;a href=&#34;#cb5-1&#34; aria-hidden=&#34;true&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;dim&lt;/span&gt;(elsoc_&lt;span class=&#34;dv&#34;&gt;2016&lt;/span&gt;) &lt;span class=&#34;co&#34;&gt;# dimension de la base&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 2927  383&lt;/code&gt;&lt;/pre&gt;
@@ -10779,9 +10788,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
     
     <item>
       <title>Material 1. Procesamiento de datos en R</title>
-      <link>/assignment/01material/prep-datos/</link>
+      <link>https://multivariada.netlify.app/assignment/01material/prep-datos/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/assignment/01material/prep-datos/</guid>
+      <guid>https://multivariada.netlify.app/assignment/01material/prep-datos/</guid>
       <description>
 
 
@@ -11025,11 +11034,11 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
     
     <item>
       <title>Planificación</title>
-      <link>/schedule/</link>
+      <link>https://multivariada.netlify.app/schedule/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/schedule/</guid>
+      <guid>https://multivariada.netlify.app/schedule/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Los dos componentes centrales del curso son las sesiones de clases y las actividades prácticas.&lt;/p&gt;
@@ -11037,7 +11046,7 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
 &lt;li&gt;&lt;p&gt;Las &lt;strong&gt;clases&lt;/strong&gt; son sesiones online/sincrónicas donde se exponen y explican los contenidos programados. Se realizan los días &lt;strong&gt;Viernes 10:15-11:30&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Las &lt;strong&gt;prácticas&lt;/strong&gt; consisten en tareas semanales relacionadas con los contenidos de la semana, que se basan en el desarrollo de una guía de trabajo. Se espera que estas prácticas sean desarrolladas de manera autónoma por cada alumno durante la semana siguiente a la presentación de los contenidos. Se realizan los días &lt;strong&gt;Jueves (Sección 1) y Viernes (Sección 2) 8:30-10:00&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;/img/clasesypracticas.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://multivariada.netlify.app/img/clasesypracticas.png&#34; /&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;colgroup&gt;
 &lt;col width=&#34;13%&#34; /&gt;
@@ -11062,15 +11071,15 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td&gt;Viernes 19&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/class/01-class&#34;&gt;&lt;strong&gt;1. Presentación e introducción&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/assignment/01-code&#34;&gt;Práctica 1: Preparación de datos&lt;/a&gt; &lt;br&gt; Revisión: Jueves 25&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/class/01-class&#34;&gt;&lt;strong&gt;1. Presentación e introducción&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/assignment/01-code&#34;&gt;Práctica 1: Preparación de datos&lt;/a&gt; &lt;br&gt; Revisión: Jueves 25&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
 &lt;td&gt;Viernes 26&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/class/02-class&#34;&gt;&lt;strong&gt;2. Bases/Repaso&lt;/strong&gt;&lt;/a&gt; &lt;br&gt; - Datos y variables &lt;br&gt; - Preparación y descripción &lt;br&gt; - Varianza y covarianza &lt;br&gt; - Correlación (descriptiva)&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/assignment/02-code&#34;&gt;Práctica 2: Descripción de variables&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;- &lt;a href=&#34;/docs/lecturas/Lizon%202006%20Estadistica%20y%20causalidad%20en%20sociologia.pdf&#34;&gt;Lizon (2006) Estadística y causalidad en sociología&lt;/a&gt; &lt;br&gt; - &lt;a href=&#34;/docs/lecturas/moore_comprensiondelosdatos.pdf&#34;&gt;Moore: 1.Comprensión de los datos (1-54)&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/class/02-class&#34;&gt;&lt;strong&gt;2. Bases/Repaso&lt;/strong&gt;&lt;/a&gt; &lt;br&gt; - Datos y variables &lt;br&gt; - Preparación y descripción &lt;br&gt; - Varianza y covarianza &lt;br&gt; - Correlación (descriptiva)&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/assignment/02-code&#34;&gt;Práctica 2: Descripción de variables&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;- &lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/Lizon%202006%20Estadistica%20y%20causalidad%20en%20sociologia.pdf&#34;&gt;Lizon (2006) Estadística y causalidad en sociología&lt;/a&gt; &lt;br&gt; - &lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/moore_comprensiondelosdatos.pdf&#34;&gt;Moore: 1.Comprensión de los datos (1-54)&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td&gt;&lt;font color=&#34;orange&#34;&gt; &lt;strong&gt;Abril&lt;/strong&gt; &lt;/font&gt;&lt;/td&gt;
@@ -11086,15 +11095,15 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td&gt;Viernes 9&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/class/03-class&#34;&gt;&lt;strong&gt;3. Regresión simple I&lt;/strong&gt;&lt;/a&gt; &lt;br&gt; (&lt;em&gt;Clase sincrónica no obligatoria por semana mechona&lt;/em&gt;) &lt;br&gt;Distribución condicional&lt;br&gt;Mínimos cuadrados y recta de regresión&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/assignment/03-code&#34;&gt;Práctica 3: Correlación y regresión&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;- &lt;a href=&#34;/docs/lecturas/salgado%202009%20modelos%20sociologia.pdf&#34;&gt;Salgado (2009) Construyendo explicaciones en sociología&lt;/a&gt;- &lt;br&gt; &lt;a href=&#34;/docs/lecturas/moore_analisisderelaciones1.pdf&#34;&gt;Moore: 2. Análisis de relaciones (97-131)&lt;/a&gt; &lt;br&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/class/03-class&#34;&gt;&lt;strong&gt;3. Regresión simple I&lt;/strong&gt;&lt;/a&gt; &lt;br&gt; (&lt;em&gt;Clase sincrónica no obligatoria por semana mechona&lt;/em&gt;) &lt;br&gt;Distribución condicional&lt;br&gt;Mínimos cuadrados y recta de regresión&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/assignment/03-code&#34;&gt;Práctica 3: Correlación y regresión&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;- &lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/salgado%202009%20modelos%20sociologia.pdf&#34;&gt;Salgado (2009) Construyendo explicaciones en sociología&lt;/a&gt;- &lt;br&gt; &lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/moore_analisisderelaciones1.pdf&#34;&gt;Moore: 2. Análisis de relaciones (97-131)&lt;/a&gt; &lt;br&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
 &lt;td&gt;Viernes 16&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/class/04-class&#34;&gt;&lt;strong&gt;4. Regresión simple II&lt;/strong&gt;&lt;/a&gt; &lt;br&gt; Regresión vs correlación &lt;br&gt; Residuos y ajuste general (R2) &lt;br&gt; Presentación pauta de Trabajo del curso&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/assignment/04-code&#34;&gt;Practica 4: Residuos y ajuste&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;- &lt;a href=&#34;/docs/lecturas/linares%202018%20Cap.2%20Explicacion%20en%20sociologia.pdf&#34;&gt;*Linares (2018) Sociología y teoría social analíticas, cap. 2: La explicación en ciencias sociales&lt;/a&gt; &lt;br&gt; - &lt;a href=&#34;/docs/lecturas/moore_residuos.pdf&#34;&gt;Moore: Residuos (144-154)&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/class/04-class&#34;&gt;&lt;strong&gt;4. Regresión simple II&lt;/strong&gt;&lt;/a&gt; &lt;br&gt; Regresión vs correlación &lt;br&gt; Residuos y ajuste general (R2) &lt;br&gt; Presentación pauta de Trabajo del curso&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/assignment/04-code&#34;&gt;Practica 4: Residuos y ajuste&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;- &lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/linares%202018%20Cap.2%20Explicacion%20en%20sociologia.pdf&#34;&gt;*Linares (2018) Sociología y teoría social analíticas, cap. 2: La explicación en ciencias sociales&lt;/a&gt; &lt;br&gt; - &lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/moore_residuos.pdf&#34;&gt;Moore: Residuos (144-154)&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td&gt;Viernes 23&lt;/td&gt;
@@ -11104,9 +11113,9 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
 &lt;td&gt;Viernes 30&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/class/05-class&#34;&gt;&lt;strong&gt;5. Regresión múltiple 1&lt;/strong&gt;&lt;/a&gt; &lt;br&gt; - Introducción&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/assignment/05-code&#34;&gt;Práctica 5: Tabla de regresión múltiple&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;- &lt;a href=&#34;/docs/lecturas/Esser%202010%20Sociología%20de%20las%20Variables.pdf&#34;&gt;Esser 2010 Sociología de las Variables&lt;/a&gt; &lt;br&gt; - &lt;a href=&#34;/docs/lecturas/Wooldridge_cap3estimacion.pdf&#34;&gt;Wooldridge (2010) Cap 3 (parcial): Análisis de regresión múltiple: estimación (68-80)&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/class/05-class&#34;&gt;&lt;strong&gt;5. Regresión múltiple 1&lt;/strong&gt;&lt;/a&gt; &lt;br&gt; - Introducción&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/assignment/05-code&#34;&gt;Práctica 5: Tabla de regresión múltiple&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;- &lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/Esser%202010%20Sociología%20de%20las%20Variables.pdf&#34;&gt;Esser 2010 Sociología de las Variables&lt;/a&gt; &lt;br&gt; - &lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/Wooldridge_cap3estimacion.pdf&#34;&gt;Wooldridge (2010) Cap 3 (parcial): Análisis de regresión múltiple: estimación (68-80)&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td&gt;&lt;font color=&#34;orange&#34;&gt; &lt;strong&gt;Mayo&lt;/strong&gt; &lt;/font&gt;&lt;/td&gt;
@@ -11122,21 +11131,21 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td&gt;Viernes 14&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/class/06-class&#34;&gt;&lt;strong&gt;6. Regresión múltiple 2&lt;/strong&gt;&lt;/a&gt; &lt;br&gt; - Coeficientes de regresión parcial &lt;br&gt; - Correlación parcial y semiparcial &lt;br&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/assignment/06-code&#34;&gt;Práctica 6: Parcialización y control estadístico&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;- * &lt;a href=&#34;/docs/lecturas/Wooldridge_cap3estimacion.pdf&#34;&gt;Wooldridge (2010) Cap 3 (parcial): Análisis de regresión múltiple: estimación (68-80)&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/class/06-class&#34;&gt;&lt;strong&gt;6. Regresión múltiple 2&lt;/strong&gt;&lt;/a&gt; &lt;br&gt; - Coeficientes de regresión parcial &lt;br&gt; - Correlación parcial y semiparcial &lt;br&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/assignment/06-code&#34;&gt;Práctica 6: Parcialización y control estadístico&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;- * &lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/Wooldridge_cap3estimacion.pdf&#34;&gt;Wooldridge (2010) Cap 3 (parcial): Análisis de regresión múltiple: estimación (68-80)&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
 &lt;td&gt;Viernes 21&lt;/td&gt;
 &lt;td&gt;&lt;strong&gt;Semana preparación informe 2&lt;/strong&gt;&lt;/td&gt;
 &lt;td&gt;&lt;strong&gt;Informe 2&lt;/strong&gt;: Regresión múltiple (grupal) 30%, entrega &lt;strong&gt;Jueves 3&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;- * &lt;a href=&#34;/docs/lecturas/Wooldridge_19proyectoempirico.pdf&#34;&gt;Wooldridge (2010) Cap 19: Realización de un proyecto empírico (668-694)&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;- * &lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/Wooldridge_19proyectoempirico.pdf&#34;&gt;Wooldridge (2010) Cap 19: Realización de un proyecto empírico (668-694)&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td&gt;Viernes 28&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/class/07-class&#34;&gt;&lt;strong&gt;7. Regresión e inferencia&lt;/strong&gt;&lt;/a&gt; &lt;br&gt;- Conceptos y supuestos &lt;br&gt; - Tabla ANOVA &lt;br&gt; - Inferencia sobre coeficientes&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/assignment/07-code&#34;&gt;Práctica 7: Inferencia&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;- &lt;a href=&#34;/docs/lecturas/Moore_inferencia_medias.pdf&#34;&gt;Moore 7: Inferencia para medias (482-543)&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/class/07-class&#34;&gt;&lt;strong&gt;7. Regresión e inferencia&lt;/strong&gt;&lt;/a&gt; &lt;br&gt;- Conceptos y supuestos &lt;br&gt; - Tabla ANOVA &lt;br&gt; - Inferencia sobre coeficientes&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/assignment/07-code&#34;&gt;Práctica 7: Inferencia&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;- &lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/Moore_inferencia_medias.pdf&#34;&gt;Moore 7: Inferencia para medias (482-543)&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
 &lt;td&gt;&lt;font color=&#34;orange&#34;&gt; &lt;strong&gt;Junio&lt;/strong&gt; &lt;/font&gt;&lt;/td&gt;
@@ -11146,9 +11155,9 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td&gt;Viernes 4&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/class/09-class&#34;&gt;&lt;strong&gt;8. Regresión logística I&lt;/strong&gt;&lt;/a&gt; &lt;br&gt; - Probabilidades &lt;br&gt;- Odds ratios&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/assignment/09-code&#34;&gt;Práctica 8: Probabilidades y Odds&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/docs/lecturas/Camarero_Odd_Ratio_LogitV2.pdf&#34;&gt;Camarero et al (2017) Regresión logística (1-29)&lt;/a&gt; &lt;br&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/class/09-class&#34;&gt;&lt;strong&gt;8. Regresión logística I&lt;/strong&gt;&lt;/a&gt; &lt;br&gt; - Probabilidades &lt;br&gt;- Odds ratios&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/assignment/09-code&#34;&gt;Práctica 8: Probabilidades y Odds&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/Camarero_Odd_Ratio_LogitV2.pdf&#34;&gt;Camarero et al (2017) Regresión logística (1-29)&lt;/a&gt; &lt;br&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
 &lt;td&gt;Viernes 11&lt;/td&gt;
@@ -11158,15 +11167,15 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td&gt;Viernes 18&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/class/10-class&#34;&gt;&lt;strong&gt;9. Regresión logística II&lt;/strong&gt;&lt;/a&gt; &lt;br&gt;- Estimación de parámetros &lt;br&gt;- Inferencia &lt;br&gt;- Predicción&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/assignment/10-code&#34;&gt;Práctica 9: Estimación logística&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;- &lt;a href=&#34;/docs/lecturas/Camarero_Odd_Ratio_LogitV2.pdf&#34;&gt;Camarero et al (2017) Regresión logística (30-52)&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/class/10-class&#34;&gt;&lt;strong&gt;9. Regresión logística II&lt;/strong&gt;&lt;/a&gt; &lt;br&gt;- Estimación de parámetros &lt;br&gt;- Inferencia &lt;br&gt;- Predicción&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/assignment/10-code&#34;&gt;Práctica 9: Estimación logística&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;- &lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/Camarero_Odd_Ratio_LogitV2.pdf&#34;&gt;Camarero et al (2017) Regresión logística (30-52)&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
 &lt;td&gt;Viernes 25&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/class/11-class&#34;&gt;&lt;strong&gt;10. Supuestos y chequeos de robustez&lt;/strong&gt;&lt;/a&gt; &lt;br&gt; - Relaciones no lineales &lt;br&gt; -Transformaciones &lt;br&gt; - Centrado&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/assignment/11-code&#34;&gt;Práctica 10: Transformación de variables y supuestos de regresión&lt;/a&gt; &lt;br&gt; &lt;strong&gt;Preparación Informe 3&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;- &lt;a href=&#34;/docs/lecturas/Darlington&amp;amp;Hayes_16irregularities.pdf&#34;&gt;Darlington &amp;amp; Hayes 2016 Cap16 Detecting and Managing Irregularities&lt;/a&gt; &lt;br&gt; - &lt;a href=&#34;/docs/lecturas/Darlington&amp;amp;Hayes_13nonlinear.pdf&#34;&gt;Darlington &amp;amp; Hayes 2016 Cap12 Nonlinear relationships&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/class/11-class&#34;&gt;&lt;strong&gt;10. Supuestos y chequeos de robustez&lt;/strong&gt;&lt;/a&gt; &lt;br&gt; - Relaciones no lineales &lt;br&gt; -Transformaciones &lt;br&gt; - Centrado&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/assignment/11-code&#34;&gt;Práctica 10: Transformación de variables y supuestos de regresión&lt;/a&gt; &lt;br&gt; &lt;strong&gt;Preparación Informe 3&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;- &lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/Darlington&amp;amp;Hayes_16irregularities.pdf&#34;&gt;Darlington &amp;amp; Hayes 2016 Cap16 Detecting and Managing Irregularities&lt;/a&gt; &lt;br&gt; - &lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/Darlington&amp;amp;Hayes_13nonlinear.pdf&#34;&gt;Darlington &amp;amp; Hayes 2016 Cap12 Nonlinear relationships&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td&gt;&lt;font color=&#34;orange&#34;&gt; &lt;strong&gt;Julio&lt;/strong&gt; &lt;/font&gt;&lt;/td&gt;
@@ -11176,9 +11185,9 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
 &lt;td&gt;Viernes 2&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/class/12-class&#34;&gt;&lt;strong&gt;11. Repaso, pendientes y cierre de los contenidos&lt;/strong&gt;&lt;/a&gt; &lt;br&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/class/12-class&#34;&gt;&lt;strong&gt;11. Repaso, pendientes y cierre de los contenidos&lt;/strong&gt;&lt;/a&gt; &lt;br&gt;&lt;/td&gt;
 &lt;td&gt;&lt;strong&gt;Entrega Informe 3&lt;/strong&gt;: Regresión logística, predictores categóricos y supuestos (grupal) 50%&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;/docs/lecturas/Wooldridge_6temasadicionales.pdf&#34;&gt;Wooldridge cap 6 Temas adicionales&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://multivariada.netlify.app/docs/lecturas/Wooldridge_6temasadicionales.pdf&#34;&gt;Wooldridge cap 6 Temas adicionales&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td&gt;Lunes 12&lt;/td&gt;
@@ -11193,11 +11202,11 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
     
     <item>
       <title>Programa</title>
-      <link>/programa/</link>
+      <link>https://multivariada.netlify.app/programa/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/programa/</guid>
+      <guid>https://multivariada.netlify.app/programa/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
@@ -11319,13 +11328,13 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
 &lt;h2&gt;Metodología&lt;/h2&gt;
 &lt;p&gt;En las circunstancias excepcionales de este semestre dada la crisis sanitaria, se han realizado una serie de ajustes metodológicos. En este contexto, tendremos tres espacios principales de aprendizaje:&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Sesiones de clases lectivas&lt;/strong&gt;, donde se presentarán los aspectos centrales de los contenidos correspondientes a la semana vía Zoom. Tanto el documento de presentación como el video de la clase se encontrará disponible en la pestaña de &lt;a href=&#34;/class/&#34;&gt;Contenidos&lt;/a&gt; de este sitio.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Sesiones de clases lectivas&lt;/strong&gt;, donde se presentarán los aspectos centrales de los contenidos correspondientes a la semana vía Zoom. Tanto el documento de presentación como el video de la clase se encontrará disponible en la pestaña de &lt;a href=&#34;https://multivariada.netlify.app/class/&#34;&gt;Contenidos&lt;/a&gt; de este sitio.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Prácticas guiadas&lt;/strong&gt;: cada tema de las sesiones se acompaña de una &lt;em&gt;guía práctica&lt;/em&gt; de aplicación de contenidos. Estas guías están diseñadas para ser desarrolladas de manera autónoma por cada estudiante semana a semana. También serán desarrolladas y revisadas cada semana en grupos pequeños con supervisión de ayudantes para dar mayor oportunidad de participación y resolver las dudas respectivas. Existe un reporte de progreso asociado a estas guías que deberá ser completado semanalmente con fines de monitoreo y retroalimentación.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Trabajos&lt;/strong&gt;: se desarrollarán trabajos de investigación durante el semestre (ver sección evaluación abajo) que permitirán a l_s participantes aplicar contenidos y recibir retroalimentación de su desempeño. Los trabajos serán asesorados principalmente por ayudantes que se asignarán a cada grupo.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;div id=&#34;evaluación-detalles-en-pestaña-trabajos&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Evaluación (detalles en pestaña &lt;a href=&#34;/reference/&#34;&gt;Trabajos&lt;/a&gt;)&lt;/h2&gt;
+&lt;h2&gt;Evaluación (detalles en pestaña &lt;a href=&#34;https://multivariada.netlify.app/reference/&#34;&gt;Trabajos&lt;/a&gt;)&lt;/h2&gt;
 &lt;p&gt;El curso tendrá tres instancias de evaluación:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Trabajo 1&lt;/strong&gt; (individual): Correlación y regresión simple (20%).&lt;/li&gt;
@@ -11350,7 +11359,7 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
 &lt;/div&gt;
 &lt;div id=&#34;bibliografía&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Bibliografía&lt;/h2&gt;
-&lt;p&gt;La bibliografía obligatoria para cada semana se presenta en la &lt;a href=&#34;/schedule/&#34;&gt;planificación del curso&lt;/a&gt;, desde donde se puede acceder directamente a los documentos. De todas maneras, abajo algunos textos comentados y referencias para cada unidad.&lt;/p&gt;
+&lt;p&gt;La bibliografía obligatoria para cada semana se presenta en la &lt;a href=&#34;https://multivariada.netlify.app/schedule/&#34;&gt;planificación del curso&lt;/a&gt;, desde donde se puede acceder directamente a los documentos. De todas maneras, abajo algunos textos comentados y referencias para cada unidad.&lt;/p&gt;
 &lt;div id=&#34;textos-principales.&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Textos principales.&lt;/h3&gt;
 &lt;p&gt;Hay cuatro referencias principales recomendadas para este curso:&lt;/p&gt;
@@ -11410,7 +11419,7 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
 &lt;div id=&#34;varios&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;VARIOS&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Las clases en general se acompañan de documentos de presentación, que estarán disponibles antes de la sesión en la página de &lt;a href=&#34;/class/&#34;&gt;Materiales&lt;/a&gt;, y están desarrollados con base en Rmarkdown/XaringanRmarkdown/ Xaringan. Estos documentos no son:&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;Las clases en general se acompañan de documentos de presentación, que estarán disponibles antes de la sesión en la página de &lt;a href=&#34;https://multivariada.netlify.app/class/&#34;&gt;Materiales&lt;/a&gt;, y están desarrollados con base en Rmarkdown/XaringanRmarkdown/ Xaringan. Estos documentos no son:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;“la clase”&lt;/li&gt;
 &lt;li&gt;autoexplicativos (ni aspiran a serlo)&lt;/li&gt;
@@ -11421,18 +11430,18 @@ save(elsoc_16,file = &amp;quot;data/proc/ELSOC_ess_merit2016.RData&amp;quot;)&lt
 &lt;/div&gt;
 &lt;div id=&#34;programación-de-sesiones&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Programación de sesiones&lt;/h2&gt;
-&lt;p&gt;Visitar la página de &lt;a href=&#34;/schedule/&#34;&gt;Planificación&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Visitar la página de &lt;a href=&#34;https://multivariada.netlify.app/schedule/&#34;&gt;Planificación&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
     
     <item>
       <title>Truth, Beauty, and Data</title>
-      <link>/reading/01-reading/</link>
+      <link>https://multivariada.netlify.app/reading/01-reading/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/reading/01-reading/</guid>
+      <guid>https://multivariada.netlify.app/reading/01-reading/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;div id=&#34;required&#34; class=&#34;section level1&#34;&gt;

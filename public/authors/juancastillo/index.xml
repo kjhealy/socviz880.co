@@ -2,14 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Estadística Multivariada</title>
-    <link>/authors/juancastillo/</link>
-      <atom:link href="/authors/juancastillo/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://multivariada.netlify.app/authors/juancastillo/</link>
+      <atom:link href="https://multivariada.netlify.app/authors/juancastillo/index.xml" rel="self" type="application/rss+xml" />
     <description>Estadística Multivariada</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <image>
-      <url>/img/social-image.png</url>
+      <url>https://multivariada.netlify.app/img/social-image.png</url>
       <title>Estadística Multivariada</title>
-      <link>/authors/juancastillo/</link>
+      <link>https://multivariada.netlify.app/authors/juancastillo/</link>
     </image>
     
   </channel>

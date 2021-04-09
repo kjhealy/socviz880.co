@@ -1,10 +1,10 @@
 ---
-# title: "Práctica 3. Regresión simple 1"
+title: "Práctica 3. Regresión simple 1"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
 author: "Juan Carlos Castillo"
-# linktitle: "Práctica 3: Regresión simple 1"
-date: "2020-05-22"
-class_date: "2020-05-22"
+linktitle: "Práctica 3: Regresión simple 1"
+date: "2021-03-09"
+class_date: "2021-03-09"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
@@ -145,8 +145,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>llamarlos directamente desde su ubicación en la web:</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>datos &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://multivariada.netlify.app/slides/03-regsimple1/tacataca.txt&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<p>Como es un archivo de texto simple (txt), los cargamos con la función <code>read.csv</code>, para datos guardados en texto simple separados por coma. Como en el caso de nuestros datos la separación es por espacios en lugar de comas, agregamos esta información con la instrucción <code>sep=""</code>
-Para abrirlos datos recordemos que en la lógica de R se debe generar un objeto donde se guardan los datos. Este objeto puede tener cualquier nombre, en este caso lo llamaremos simplemente “datos”.</p>
+<p>Como es un archivo de texto simple (txt), los cargamos con la función <code>read.csv</code>, para datos guardados en texto simple separados por coma. Como en el caso de nuestros datos la separación es por espacios en lugar de comas, agregamos esta información con la instrucción <code>sep=""</code>.</p>
+<p>Para abrir los datos recordemos que en la lógica de R se debe generar un objeto donde se guardan los datos. Este objeto puede tener cualquier nombre, en este caso lo llamaremos simplemente “datos”.</p>
 <div class="alert alert-info">
 <p><strong>Rutas:</strong> ¿Cómo identifico la ruta hacia mi archivo? Dos maneras:</p>
 <ul>
@@ -160,10 +160,12 @@ Para abrirlos datos recordemos que en la lógica de R se debe generar un objeto 
 </div>
 <div id="verificación-y-descriptivos" class="section level2">
 <h2>Verificación y descriptivos</h2>
-<p>Verificamos si los datos fueron correctamente cargados:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">View</span>(datos)</span></code></pre></div>
+<p>Verificamos si los datos fueron correctamente cargados con <code>View</code>, también la dimensión de la base de datos con <code>dim</code>, y la naturaleza de las variables con <code>sapply</code> :</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">View</span>(datos)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">dim</span>(datos)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="kw">sapply</span>(datos, class)</span></code></pre></div>
 <p><img src="../../slides/03-regsimple1/tacataca.png" /></p>
-<p>Tenemos entonces tres columnas:}</p>
+<p>Tenemos entonces tres columnas:</p>
 <ul>
 <li><p><code>id</code>: número único que identifica a cada sujeto</p></li>
 <li><p><code>juegos_x</code>: número de veces que ha jugado previamente</p></li>
@@ -192,7 +194,7 @@ Para abrirlos datos recordemos que en la lógica de R se debe generar un objeto 
 </div>
 <div id="experiencia-en-juegos-y-puntuación" class="section level2">
 <h2>Experiencia en juegos y puntuación</h2>
-<p>La pregunta que nos hacemos para este ejercicio de demostración es: <em>¿tiene relación la experiencia previa (juegos jugados previamente) con el desempeño actual (puntos obtenidos)?</em></p>
+<p>La pregunta que nos hacemos para este ejercicio de demostración es: <strong>¿tiene relación la experiencia previa (juegos jugados previamente) con el desempeño actual (puntos obtenidos)?</strong></p>
 <p>Veamos un gráfico de nube de puntos / scatter de ambas variables. Para eso, primero cargamos la librería <code>ggplot</code>de R. Recordar que hay que instalarla primero si es que no se ha hecho previamente con <code>install.packages("ggplot")</code><span class="sidenote">ggplot</span>.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>g=<span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(<span class="dt">x=</span>juegos_x, <span class="dt">y=</span>puntos_y)) <span class="op">+</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>()</span>
@@ -344,7 +346,7 @@ Por ejemplo, cuál es el valor estimado de <span class="math inline">\(Y\)</span
 </div>
 <div id="reporte-de-progreso" class="section level1">
 <h1>Reporte de progreso</h1>
-<p>Completar el reporte de progreso correspondiente a esta práctica <a href="https://forms.gle/2vJQzzWetx12fEYi6">aquí</a></p>
+<p>Completar el reporte de progreso correspondiente a esta práctica <a href="https://forms.gle/nDJ9wsieJ8b6sd3j8">aquí</a></p>
 </div>
 <div id="archivo-de-código" class="section level1">
 <h1>Archivo de código</h1>

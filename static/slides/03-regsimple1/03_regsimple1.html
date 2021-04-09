@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="author" content=".small[Juan Carlos Castillo    Departamento de Sociología - UCH / COES   ]" />
     <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/animate.css-xaringan/animate.fade.css" rel="stylesheet" />
     <script src="libs/htmlwidgets/htmlwidgets.js"></script>
     <script src="libs/plotly-binding/plotly.js"></script>
     <script src="libs/typedarray/typedarray.min.js"></script>
@@ -19,7 +20,7 @@
   <body>
     <textarea id="source">
 
-class: front
+class: front 
 
 
 
@@ -35,32 +36,33 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 ---&gt;
 
 
-.pull-left-wide[
+
+.pull-left[
 # Estadística Multivariada
-
+## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-
-&lt;br&gt;
-# Tutorial Práctico 2: Descripción de Variables
-
-
-##.black[Catalina Flores &amp; Andreas Lafferte]
-
-]
-
-
-.pull-right-narrow[
-.right[
-![:scale 100%](https://multivariada.netlify.com/img/hex_multiva.png)
-&lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
-
-
+## 1er Sem 2021
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 
+
+.pull-right[
+.right[
+![:scale 70%](https://multivariada.netlify.com/img/hex_multiva.png)
+&lt;br&gt;
+# Sesión 3: Regresión simple 1
 ]
+
+]
+
+
+???
+
+
+
+
+
+
 
 ---
 class: inverse
@@ -218,6 +220,17 @@ class: roja, bottom
 # 2. Modelo de regresión simple
 
 ---
+class: inverse
+
+...sobre modelos: .orange[Del rigor de la ciencia (Borges)]
+
+.medium[En aquel Imperio, el Arte de la Cartografía logró tal Perfección que el mapa de una sola Provincia ocupaba toda una Ciudad, y el mapa del Imperio, toda una Provincia. Con el tiempo, estos Mapas Desmesurados no satisficieron y los Colegios de Cartógrafos levantaron un Mapa del Imperio, que tenía el tamaño del Imperio y coincidía puntualmente con él.
+
+Menos Adictas al Estudio de la Cartografía, las Generaciones Siguientes entendieron que ese dilatado Mapa era Inútil y no sin Impiedad lo entregaron a las Inclemencias del Sol y los Inviernos. En los desiertos del Oeste perduran despedazadas Ruinas del Mapa, habitadas por Animales y por Mendigos; en todo el País no hay otra reliquia de las Disciplinas Geográficas.]
+
+.tiny[Suárez Miranda, Viajes de Varones Prudentes, Libro Cuarto, Cap. XLV, Lérida, 1658.]
+
+---
 # Objetivos centrales del modelo de regresión:
 
 1. **Conocer**: la variación de la variable dependiente de acuerdo a la variación de otra(s) variable(s) independiente(s)
@@ -249,7 +262,7 @@ class: roja, bottom
 ---
 # Ejemplo
 
-### _¿En qué medida la experiencia previa jugando un juego predice el nivel de puntos (en juego posterior)?_
+### _¿En qué medida la experiencia previa jugando un juego predice el número de puntos obtenidos (en juego posterior)?_
 
 
 .center[![:scale 120%](juegospuntos.png)]
@@ -278,8 +291,8 @@ ggplotly(ggplot(datos, aes(x=juegos_x, y=puntos_y)) +
   scale_y_continuous(breaks = seq(min(0), max(6), by = 1)) )
 ```
 
-<div id="htmlwidget-32697d7b84b045bf9e9c" style="width:396px;height:396px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-32697d7b84b045bf9e9c">{"x":{"data":[{"x":[0,0,1,1,1,2,2,2,2,3,3,3,3,3,4,4,4,4,5,5,5,6,6],"y":[2,3,2,3,4,2,3,4,5,2,3,4,5,6,3,4,5,6,4,5,6,5,6],"text":["juegos_x: 0<br />puntos_y: 2","juegos_x: 0<br />puntos_y: 3","juegos_x: 1<br />puntos_y: 2","juegos_x: 1<br />puntos_y: 3","juegos_x: 1<br />puntos_y: 4","juegos_x: 2<br />puntos_y: 2","juegos_x: 2<br />puntos_y: 3","juegos_x: 2<br />puntos_y: 4","juegos_x: 2<br />puntos_y: 5","juegos_x: 3<br />puntos_y: 2","juegos_x: 3<br />puntos_y: 3","juegos_x: 3<br />puntos_y: 4","juegos_x: 3<br />puntos_y: 5","juegos_x: 3<br />puntos_y: 6","juegos_x: 4<br />puntos_y: 3","juegos_x: 4<br />puntos_y: 4","juegos_x: 4<br />puntos_y: 5","juegos_x: 4<br />puntos_y: 6","juegos_x: 5<br />puntos_y: 4","juegos_x: 5<br />puntos_y: 5","juegos_x: 5<br />puntos_y: 6","juegos_x: 6<br />puntos_y: 5","juegos_x: 6<br />puntos_y: 6"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"visible":false,"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.3059360730594,"r":7.30593607305936,"b":37.2602739726027,"l":31.4155251141553},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.3,6.3],"tickmode":"array","ticktext":["0","1","2","3","4","5","6"],"tickvals":[0,1,2,3,4,5,6],"categoryorder":"array","categoryarray":["0","1","2","3","4","5","6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"juegos_x","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"scaleanchor":"y","scaleratio":1,"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.35,7.35],"tickmode":"array","ticktext":["0","1","2","3","4","5","6"],"tickvals":[0,1,2,3,4,5,6],"categoryorder":"array","categoryarray":["0","1","2","3","4","5","6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"puntos_y","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"scaleanchor":"x","scaleratio":1,"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"43cc1513698e":{"x":{},"y":{},"type":"scatter"},"43cc65755cee":{"x":{},"y":{}}},"cur_data":"43cc1513698e","visdat":{"43cc1513698e":["function (y) ","x"],"43cc65755cee":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d8fa727a28df247516cc" style="width:396px;height:396px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d8fa727a28df247516cc">{"x":{"data":[{"x":[0,0,1,1,1,2,2,2,2,3,3,3,3,3,4,4,4,4,5,5,5,6,6],"y":[2,3,2,3,4,2,3,4,5,2,3,4,5,6,3,4,5,6,4,5,6,5,6],"text":["juegos_x: 0<br />puntos_y: 2","juegos_x: 0<br />puntos_y: 3","juegos_x: 1<br />puntos_y: 2","juegos_x: 1<br />puntos_y: 3","juegos_x: 1<br />puntos_y: 4","juegos_x: 2<br />puntos_y: 2","juegos_x: 2<br />puntos_y: 3","juegos_x: 2<br />puntos_y: 4","juegos_x: 2<br />puntos_y: 5","juegos_x: 3<br />puntos_y: 2","juegos_x: 3<br />puntos_y: 3","juegos_x: 3<br />puntos_y: 4","juegos_x: 3<br />puntos_y: 5","juegos_x: 3<br />puntos_y: 6","juegos_x: 4<br />puntos_y: 3","juegos_x: 4<br />puntos_y: 4","juegos_x: 4<br />puntos_y: 5","juegos_x: 4<br />puntos_y: 6","juegos_x: 5<br />puntos_y: 4","juegos_x: 5<br />puntos_y: 5","juegos_x: 5<br />puntos_y: 6","juegos_x: 6<br />puntos_y: 5","juegos_x: 6<br />puntos_y: 6"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"visible":false,"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.3059360730594,"r":7.30593607305936,"b":37.2602739726027,"l":31.4155251141553},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.3,6.3],"tickmode":"array","ticktext":["0","1","2","3","4","5","6"],"tickvals":[0,1,2,3,4,5,6],"categoryorder":"array","categoryarray":["0","1","2","3","4","5","6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"juegos_x","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"scaleanchor":"y","scaleratio":1,"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.35,7.35],"tickmode":"array","ticktext":["0","1","2","3","4","5","6"],"tickvals":[0,1,2,3,4,5,6],"categoryorder":"array","categoryarray":["0","1","2","3","4","5","6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"puntos_y","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"scaleanchor":"x","scaleratio":1,"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"2930ba42f6a":{"x":{},"y":{},"type":"scatter"},"29301ac0d452":{"x":{},"y":{}}},"cur_data":"2930ba42f6a","visdat":{"2930ba42f6a":["function (y) ","x"],"29301ac0d452":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 ]
 ]
 
@@ -830,9 +843,22 @@ ggplot(datos, aes(x=juegos_x, y=puntos_y)) + geom_point() +
   geom_smooth(method=lm, se=FALSE) 
 ```
 
-![](03_regsimple1_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+![](03_regsimple1_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
 ]
 ]
+
+---
+# En resumen: ¿qué gano con el modelo de regresión?
+
+Al igual que en correlación
+- intensidad de la relación entre variables
+- dirección de la relación
+
+Y además:
+- predicción en el puntaje real de la variable dependiente
+- estimación del ajuste o cantidad de error en la estimación (próxima clase) 
+- incluir más de una variable predictora (en 2 clases más)
+
 ---
 class: inverse, middle, center
 
@@ -890,36 +916,45 @@ reg1
 
 
 ---
-.left-column[
-## Y en formato publicable
-]
+# Y en formato publicable
 
-.center[
-.tiny[
+&lt;br&gt;
 
-```r
-stargazer(reg1, type = "html")
-```
+&lt;table style="border-collapse:collapse; border:none;"&gt;
+&lt;tr&gt;
+&lt;th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; "&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; "&gt;Modelo 1&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; "&gt;Predictores&lt;/td&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  "&gt;β&lt;/td&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  "&gt;p&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;(Intercept)&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;2.500&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;strong&gt;&amp;lt;0.001&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;juegos_x&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.500&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;strong&gt;0.001&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;"&gt;Observations&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2"&gt;23&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;"&gt;R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2"&gt;0.405 / 0.376&lt;/td&gt;
+&lt;/tr&gt;
 
-
-&lt;table style="text-align:center"&gt;&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan="1" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;puntos_y&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;juegos_x&lt;/td&gt;&lt;td&gt;0.500&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(0.132)&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;Constant&lt;/td&gt;&lt;td&gt;2.500&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(0.458)&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Observations&lt;/td&gt;&lt;td&gt;23&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.405&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;Adjusted R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.376&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;Residual Std. Error&lt;/td&gt;&lt;td&gt;1.091 (df = 21)&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;F Statistic&lt;/td&gt;&lt;td&gt;14.280&lt;sup&gt;***&lt;/sup&gt; (df = 1; 21)&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td style="text-align:right"&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
-]
-]
+
+
+
+
+
 ---
 class: roja, right
 # Próxima semana:
@@ -938,7 +973,7 @@ class: front
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2020
+## 1er Sem 2021
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 
@@ -1042,6 +1077,33 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
+<style>
+.logo {
+  background-image: url("../hex_multiva_white.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 17em;
+  right: 30.5em;
+  width: 110px;
+  height: 70px;
+  z-index: 0;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.title-slide)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="logo"></div>';
+  });
+</script>
 
 <script>
 slideshow._releaseMath = function(el) {

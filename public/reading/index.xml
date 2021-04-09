@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Reading | Estadística Multivariada</title>
-    <link>/reading/</link>
-      <atom:link href="/reading/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://multivariada.netlify.app/reading/</link>
+      <atom:link href="https://multivariada.netlify.app/reading/index.xml" rel="self" type="application/rss+xml" />
     <description>Reading</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <image>
-      <url>/img/social-image.png</url>
+      <url>https://multivariada.netlify.app/img/social-image.png</url>
       <title>Reading</title>
-      <link>/reading/</link>
+      <link>https://multivariada.netlify.app/reading/</link>
     </image>
     
     <item>
       <title>Truth, Beauty, and Data</title>
-      <link>/reading/01-reading/</link>
+      <link>https://multivariada.netlify.app/reading/01-reading/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/reading/01-reading/</guid>
+      <guid>https://multivariada.netlify.app/reading/01-reading/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://multivariada.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;div id=&#34;required&#34; class=&#34;section level1&#34;&gt;

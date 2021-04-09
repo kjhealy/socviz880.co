@@ -1,10 +1,10 @@
 ---
-# title: "Práctica 3. Regresión simple 1"
+title: "Práctica 3. Regresión simple 1"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
 author: "Juan Carlos Castillo"
-# linktitle: "Práctica 3: Regresión simple 1"
-date: "2020-05-22"
-class_date: "2020-05-22"
+linktitle: "Práctica 3: Regresión simple 1"
+date: "2021-03-09"
+class_date: "2021-03-09"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
@@ -66,8 +66,9 @@ datos <- read.csv("( ...ruta hacia el archivo ...)\tacataca.txt", sep="")
 ```{r}
 datos <- read.csv("https://multivariada.netlify.app/slides/03-regsimple1/tacataca.txt", sep="")
 ```
-Como es un archivo de texto simple (txt), los cargamos con la función `read.csv`, para datos guardados en texto simple separados por coma. Como en el caso de nuestros datos la separación es por espacios en lugar de comas, agregamos esta información con la instrucción `sep=""`
-Para abrirlos datos recordemos que en la lógica de R se debe generar un objeto donde se guardan los datos. Este objeto puede tener cualquier nombre, en este caso lo llamaremos simplemente "datos".
+Como es un archivo de texto simple (txt), los cargamos con la función `read.csv`, para datos guardados en texto simple separados por coma. Como en el caso de nuestros datos la separación es por espacios en lugar de comas, agregamos esta información con la instrucción `sep=""`.
+
+Para abrir los datos recordemos que en la lógica de R se debe generar un objeto donde se guardan los datos. Este objeto puede tener cualquier nombre, en este caso lo llamaremos simplemente "datos".
 
 <div class="alert alert-info">
   <strong>Rutas:</strong> ¿Cómo identifico la ruta hacia mi archivo? Dos maneras:
@@ -79,13 +80,15 @@ Para abrirlos datos recordemos que en la lógica de R se debe generar un objeto 
 
 ## Verificación y descriptivos
 
-Verificamos si los datos fueron correctamente cargados:
+Verificamos si los datos fueron correctamente cargados con `View`, también la dimensión de la base de datos con `dim`, y la naturaleza de las variables con `sapply` :
 ```{r eval=FALSE}
 View(datos)
+dim(datos)
+sapply(datos, class)
 ```
 ![](../../slides/03-regsimple1/tacataca.png)
 
-Tenemos entonces tres columnas:}
+Tenemos entonces tres columnas:
 
 - `id`: número único que identifica a cada sujeto
 
@@ -110,7 +113,7 @@ stargazer(datos %>% select(juegos_x,puntos_y) , type = "text")
 
 ## Experiencia en juegos y puntuación
 
-La pregunta que nos hacemos para este ejercicio de demostración es: *¿tiene relación la experiencia previa (juegos jugados previamente) con el desempeño actual (puntos obtenidos)?*
+La pregunta que nos hacemos para este ejercicio de demostración es: **¿tiene relación la experiencia previa (juegos jugados previamente) con el desempeño actual (puntos obtenidos)?**
 
 Veamos un gráfico de nube de puntos / scatter de ambas variables. Para eso, primero cargamos la librería `ggplot`de R. Recordar que hay que instalarla primero si es que no se ha hecho previamente con `install.packages("ggplot")`<span class="sidenote">ggplot</span>.
 
@@ -267,7 +270,7 @@ Vemos que en la tabla aparecen una serie de elementos adicionales, además de $b
 
 # Reporte de progreso
 
-Completar el reporte de progreso correspondiente a esta práctica [aquí](https://forms.gle/2vJQzzWetx12fEYi6)
+Completar el reporte de progreso correspondiente a esta práctica [aquí](https://forms.gle/nDJ9wsieJ8b6sd3j8)
 
 # Archivo de código
 
