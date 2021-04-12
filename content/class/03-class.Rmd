@@ -22,6 +22,10 @@ editor_options:
   chunk_output_type: console
 ---
 
+<div id="sfck52qp7tw9lrymemuq9jj289tuqx7ahld"></div>
+<script type="text/javascript" src="https://counter4.stat.ovh/private/counter.js?c=k52qp7tw9lrymemuq9jj289tuqx7ahld&down=async" async></script>
+<noscript><a href="https://www.freecounterstat.com" title="website counter"><img src="https://counter4.stat.ovh/private/freecounterstat.php?c=k52qp7tw9lrymemuq9jj289tuqx7ahld" border="0" title="website counter" alt="website counter"></a></noscript>
+
 ## Documento presentación
 
 <iframe src=/slides/03-regsimple1/03_regsimple1.html height="550" width=100% allowfullscreen="true">
@@ -35,6 +39,6 @@ editor_options:
 </video>
 </div>
 
-## Lecturas
+## Lecturas 
 
 - [Moore: 2. Análisis de relaciones (97-131)](/docs/lecturas/moore_analisisderelaciones1.pdf)
