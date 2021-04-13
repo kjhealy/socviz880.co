@@ -22,6 +22,8 @@ type: docs
 weight: 1
 editor_options:
   chunk_output_type: console
+header-includes:
+- \usepackage{amsmath}
 ---
 
 ```{r setup, include=FALSE}
@@ -34,7 +36,6 @@ Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
 ```{r klippy, echo=FALSE, include=TRUE}
 klippy::klippy(position = c('bottom', 'right')) # chunks con botón de copiar
 ```
-
 
 # Objetivo de la práctica
 
@@ -175,7 +176,11 @@ El sentido de la recta que resume de mejor manera la relación entre dos variabl
 
 El modelo de regresión se representa con una ecuación de la recta, o recta de regresión. Esta recta representa los valores predichos para Y según los distintos valores de X:
 
-$$\widehat{Y}=b_{0} +b_{1}X $$
+
+\begin{equation}
+\widehat{Y}=b_{0} +b_{1}X
+(\#eq:reg)
+\end{equation}
 
 Donde
 
@@ -188,13 +193,25 @@ Donde
 
 $b_{1}$, o comunmente llamado "beta de regresión" se obtiene de la siguiente manera:
 
-$$b_{1}=\frac{Cov(XY)}{VarX}$$
+
+\begin{equation}
+b_{1}=\frac{Cov(XY)}{VarX}
+(\#eq:beta)
+\end{equation}
+
 En términos más suntantivos se puede entender como qué parte de la covariación que hay entre X e Y se relaciona con (la varianza de) X. Especificando la fórmula:
 
-$$b_{1}=\frac{\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {n-1}}{\frac{\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})} {n-1}}$$
+\begin{equation}
+b_{1}=\frac{\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {n-1}}{\frac{\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})} {n-1}}
+(\#eq:beta2)
+\end{equation}
+
 Y simplificando
 
-$$b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})}$$
+\begin{equation}
+b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})}
+(\#eq:beta3)
+\end{equation}
 
 Como sabemos, la base para todos estos cálculos es el valor de cada variable menos su promedio. Vamos a crear un vector en nuestra base de datos difx=$x-\bar{x}$ y dify=$y-\bar{y}$
 

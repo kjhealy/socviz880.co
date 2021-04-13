@@ -22,6 +22,8 @@ type: docs
 weight: 1
 editor_options:
   chunk_output_type: console
+header-includes:
+- \usepackage{amsmath}
 ---
 
 <!-- BLOGDOWN-HEAD -->
@@ -235,7 +237,10 @@ Primero, sobre librerías y visualización: lo que hicimos fue crear un objeto g
 <h2>Modelo de regresión y cálculo de parámetros</h2>
 <p><span class="sidenote">El nombre regresión hace alusión a investigaciones sobre estaturas de padres e hij_s en el S.XIX. La estatura de hij_s de padres muy altos es en promedio menor, y si sus padres son baj_s, es mayor (en comparación con sus padres). Este fenómeno se conoce como “regresión hacia el promedio” </span></p>
 <p>El modelo de regresión se representa con una ecuación de la recta, o recta de regresión. Esta recta representa los valores predichos para Y según los distintos valores de X:</p>
-<p><span class="math display">\[\widehat{Y}=b_{0} +b_{1}X \]</span></p>
+<p><span class="math display" id="eq:reg">\[\begin{equation}
+\widehat{Y}=b_{0} +b_{1}X
+\tag{1}
+\end{equation}\]</span></p>
 <p>Donde</p>
 <ul>
 <li><span class="math inline">\(\widehat{Y}\)</span> es el valor estimado/predicho de <span class="math inline">\(Y\)</span></li>
@@ -246,11 +251,20 @@ Primero, sobre librerías y visualización: lo que hicimos fue crear un objeto g
 <div id="cálculo-de-los-parámetros-del-modelo-de-regresión" class="section level2">
 <h2>Cálculo de los parámetros del modelo de regresión</h2>
 <p><span class="math inline">\(b_{1}\)</span>, o comunmente llamado “beta de regresión” se obtiene de la siguiente manera:</p>
-<p><span class="math display">\[b_{1}=\frac{Cov(XY)}{VarX}\]</span>
-En términos más suntantivos se puede entender como qué parte de la covariación que hay entre X e Y se relaciona con (la varianza de) X. Especificando la fórmula:</p>
-<p><span class="math display">\[b_{1}=\frac{\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {n-1}}{\frac{\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})} {n-1}}\]</span>
-Y simplificando</p>
-<p><span class="math display">\[b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})}\]</span></p>
+<p><span class="math display" id="eq:beta">\[\begin{equation}
+b_{1}=\frac{Cov(XY)}{VarX}
+\tag{2}
+\end{equation}\]</span></p>
+<p>En términos más suntantivos se puede entender como qué parte de la covariación que hay entre X e Y se relaciona con (la varianza de) X. Especificando la fórmula:</p>
+<p><span class="math display" id="eq:beta2">\[\begin{equation}
+b_{1}=\frac{\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {n-1}}{\frac{\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})} {n-1}}
+\tag{3}
+\end{equation}\]</span></p>
+<p>Y simplificando</p>
+<p><span class="math display" id="eq:beta3">\[\begin{equation}
+b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})}
+\tag{4}
+\end{equation}\]</span></p>
 <p>Como sabemos, la base para todos estos cálculos es el valor de cada variable menos su promedio. Vamos a crear un vector en nuestra base de datos difx=<span class="math inline">\(x-\bar{x}\)</span> y dify=<span class="math inline">\(y-\bar{y}\)</span></p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a>datos<span class="op">$</span>difx=datos<span class="op">$</span>juegos_x<span class="op">-</span><span class="kw">mean</span>(datos<span class="op">$</span>juegos_x)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a>datos<span class="op">$</span>dify=datos<span class="op">$</span>puntos_y<span class="op">-</span><span class="kw">mean</span>(datos<span class="op">$</span>puntos_y)</span></code></pre></div>
