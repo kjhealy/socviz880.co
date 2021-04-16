@@ -1,8 +1,8 @@
 ---
 title: "Regresión simple 2"
 linktitle: "4: Regresión simple 2"
-date: "2020-05-29"
-class_date: "2020-05-29"
+date: "2021-04-16"
+class_date: "2021-04-16"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
@@ -12,7 +12,7 @@ output:
     toc: true
 menu:
   class:
-    parent: Contenidos
+    parent: Clases
     weight: 1
 type: docs
 weight: 1
@@ -22,7 +22,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-## Documento presentación
+## Documento presentación 
 
 <span class="sidenote">Para ver en pantalla completa click [**aquí**](/slides/04-regsimple2/04_regsimple2.html). Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. </span>
 
@@ -31,9 +31,9 @@ editor_options:
 
 ## Video de la clase
 
-<div style="width: 100%; height: 600px; overflow: hidden;">
+<div style="width: 1  00%; height: 600px; overflow: hidden;">
 <video  style="width: 100%;" controls>
-<source src="https://www.dropbox.com/s/z3qmykvsros69sv/clase4.mp4?raw=1" type="video/mp4">
+<source src="?raw=1" type="video/mp4">
 </video>
 </div>
 
