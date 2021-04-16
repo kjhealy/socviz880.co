@@ -1,10 +1,10 @@
 ---
-# title: "Práctica 4. Regresión simple 2"
+title: "Práctica 4. Regresión simple 2"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
 author: "Juan Carlos Castillo"
-# linktitle: "Práctica 4: Regresión simple 2"
-date: "2020-05-29"
-class_date: "2020-05-29"
+linktitle: "Práctica 4: Regresión simple 2"
+date: "2021-04-16"
+class_date: "2021-04-16"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
@@ -65,11 +65,12 @@ Para el trabajo de análisis de datos se recomienda establecer claramente el dir
 Para esto, varias opciones:
 
 - en RStudio, Session > Set Working Directory > Choose Directory
-- o también vía consola con el comando `setwd(ruta-hacia-la-carpeta-local)`
+- también vía consola con el comando `setwd(ruta-hacia-la-carpeta-local)`
+- o también se puede trabajar en un directorio contenido o cerrado con Rprojects, ejemplo aquí: [https://www.doctormetrics.com/r-projects/](https://www.doctormetrics.com/r-projects/).
 
 Si se quiere verificar en qué carpeta se está trabajando, comando `getwd()`
 
-Con esto entonces, si los datos están guardados en la misma carpeta, entonces se llaman simplemente `datos <- read.csv("tacataca.txt", sep="")`. No se requiere dar la ruta completa justamente porque el programa ya sabe dónde uno está posicionado. Asimísmo, al momento de guardar/exportar algún resultado, automáticamente quedará en la carpeta de trabajo.
+Con esto entonces, si los datos están guardados en la misma carpeta, entonces se llaman simplemente `datos <- read.csv("tacataca.txt", sep="")`. No se requiere dar la ruta completa justamente porque el programa ya sabe dónde uno está posicionado. Asimismo, al momento de guardar/exportar algún resultado, automáticamente quedará en la carpeta de trabajo.
 </div>
 
 Recordando la distribución de los datos y la recta de regresión:
@@ -130,7 +131,7 @@ Podemos generar una tabla en un formato más publicable:
 stargazer(reg1, type="text")
 ```
 
-También es posible generar una tabla más resumida en formato publicable y visible en RStudio:
+También es posible generar una tabla más resumida en formato publicable y visible en RStudio, que tiene la información de los parámetros de regresión (intercepto y pendiente), además se presenta el ajuste (R2, además de R2 ajustado- tema de próxima clase), y también información de inferencia (valores p), que también veremos más adelante.
 
 ```{r}
 sjPlot::tab_model(reg1, show.ci=FALSE)
@@ -250,14 +251,14 @@ ggplot(datos, aes(x=juegos_x, y=puntos_y))+
   theme_bw()
 ```
 
-En esta segunda opción, se agrega tamaño y color a los residuos mayores:
+En esta segunda opción, se agrega tamaño y color a los residuos mayores: 
 
 ```{r}
 ggplot(datos, aes(x=juegos_x, y=puntos_y))+
   geom_smooth(method="lm", se=FALSE, color="lightgrey") +#Pendiente de regresion
   geom_segment(aes(xend=juegos_x, yend=estimado), alpha = .2) + #Distancia entre estimados y datos en lineas
-  geom_point(aes(color = abs(residuo), size = abs(residuo))) +
-  scale_color_continuous(low = "black", high = "red") +
+  geom_point(aes(color = abs(residuo), size = abs(residuo))) + #tamaño de residuoes
+  scale_color_continuous(low = "black", high = "red") + # color de los residuos
   guides(color = FALSE, size = FALSE) +
    geom_point(aes(y=estimado), shape =1) +
   theme_bw()
