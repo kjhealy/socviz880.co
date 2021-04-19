@@ -22,18 +22,18 @@ editor_options:
   chunk_output_type: console
 ---
 
-## Documento presentación 
+## Documento presentación
 
 <span class="sidenote">Para ver en pantalla completa click [**aquí**](/slides/04-regsimple2/04_regsimple2.html). Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. </span>
 
 <iframe src=/slides/04-regsimple2/04_regsimple2.html height="550" width=100% allowfullscreen="true">
 </iframe>
 
-## Video de la clase
+## Video de la clase 
 
 <div style="width: 1  00%; height: 600px; overflow: hidden;">
 <video  style="width: 100%;" controls>
-<source src="?raw=1" type="video/mp4">
+<source src="https://www.dropbox.com/s/jdbr8fttc72pnfs/04-regsim2.webm?raw=1" type="video/mp4">
 </video>
 </div>
 

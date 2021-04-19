@@ -251,7 +251,7 @@ ggplot(datos, aes(x=juegos_x, y=puntos_y))+
   theme_bw()
 ```
 
-En esta segunda opción, se agrega tamaño y color a los residuos mayores: 
+En esta segunda opción, se agrega tamaño y color a los residuos mayores:
 
 ```{r}
 ggplot(datos, aes(x=juegos_x, y=puntos_y))+
@@ -290,7 +290,7 @@ cor(datos$juegos_x,datos$puntos_y)
 
 ```
 
-La correlación entre X e Y es la misma que entre Y e X,
+La correlación entre X e Y es la misma que entre Y e X, 
 ```{r}
 cor(datos$juegos_x,datos$puntos_y)
 cor(datos$puntos_y,datos$juegos_x)
@@ -307,7 +307,7 @@ lm(datos$juegos_x~datos$puntos_y)$coefficients
 
 # Reporte de progreso
 
-Completar el reporte de progreso [aquí](https://forms.gle/dY98zd6C8ZND7ANZ9).
+Completar el reporte de progreso [aquí](https://forms.gle/Q1D23W3Cuou5ATkLA).
 
 
 # Foro
