@@ -19,7 +19,7 @@ La nota ponderada de los trabajos equivaldrá al 60% de la nota del curso y el e
 Este trabajo abarca la primera parte del curso hasta regresión simple (Sesión 4: Regresión simple 2). Es un informe breve, consistente en preparación y análisis de datos incluyendo como producto final la estimación e interpretación de una regresión simple. Para ello, los pasos son los siguientes:
 
 - seleccionar una base de datos de interés (ver abajo las sugeridas para los trabajos grupales)
-- seleccionar las variables a analizar, dar una breve justificación 
+- seleccionar las variables a analizar, dar una breve justificación
 - generar el código de preparación de datos y la base procesada
 - generar el código de análisis y reportar los resultados.
 
@@ -63,23 +63,23 @@ De modo de lograr una mayor colaboración desde el equipo docente a sus trabajos
 
 Recomendamos utilizar alguna de las siguientes fuentes de datos para realizar los trabajos:
 
-- [ELSOC](http://www.elsoc.cl/) (Ola 1)
+- [ELSOC](https://coes.cl/encuesta-panel/) (Ola 1)
   - [Manual de Usuario](/docs/Manual_Usuario_ELSOC_W01_v2.00.pdf)
   - [base de datos Ola 1](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/0KIRBJ&version=2.0)
-- [CASEN](http://observatorio.ministeriodesarrollosocial.gob.cl/casen-multidimensional/casen/basedatos.php) (evt. subset)
-- [SIMCE](https://www.agenciaeducacion.cl/evaluaciones/que-es-el-simce/) (evt. subset)
-- [LAPOP](https://www.vanderbilt.edu/lapop-espanol/) - OLA 2016
+- [CASEN](http://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-casen-2017) (evt. subset)
+- [SIMCE](https://informacionestadistica.agenciaeducacion.cl/#/bases) (evt. subset)
+- [LAPOP](https://www.vanderbilt.edu/lapop-espanol/)
 - [Desiguales](https://www.desiguales.org/descripcin-del-libro)
 - [CEP 83 -  Módulo Desigualdad Social ISSP 2019](https://www.cepchile.cl/cep/encuestas-cep/encuestas-2009-2018/estudio-nacional-de-opinion-publica-mayo-2019)
 - ISSP (International Social Survey Programme)
   - [Desigualdad Social](https://www.gesis.org/issp/modules/issp-modules-by-topic/social-inequality)
-  - [Rol del Gobierno](documents/data/encuesta_cep77_jul_ago2016.zip)
+  - [Rol del Gobierno](https://www.gesis.org/en/issp/modules/issp-modules-by-topic/role-of-government)
   - [Orientaciones del trabajo](https://www.gesis.org/issp/modules/issp-modules-by-topic/work-orientations/2015)
 - [ICTWSS](http://uva-aias.net/en/ictwss)
 - Encuestas Laborales
-  - [ENE](http://webanterior.ine.cl/estadisticas/laborales/ene)
-  - [ESI](https://datosabiertos.ine.cl/dashboards/20610/esi/)
-  - [ENUT](https://datosabiertos.ine.cl/dashboards/20612/enut/)
+  - [ENE](http://bancodatosene.ine.cl/)
+  - [ESI](https://www.ine.cl/estadisticas/sociales/ingresos-y-gastos/encuesta-suplementaria-de-ingresos)
+  - [ENUT](https://www.ine.cl/estadisticas/sociales/genero/uso-del-tiempo)
   - OHL, ENCLA y otras pueden ser solicitadas directamente a **Valentina Andrade**
 
 ## Modalidad de trabajo y asesorías
