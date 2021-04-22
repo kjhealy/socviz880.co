@@ -290,7 +290,7 @@ cor(datos$juegos_x,datos$puntos_y)
 
 ```
 
-La correlación entre X e Y es la misma que entre Y e X, 
+La correlación entre X e Y es la misma que entre Y e X,
 ```{r}
 cor(datos$juegos_x,datos$puntos_y)
 cor(datos$puntos_y,datos$juegos_x)
@@ -308,6 +308,11 @@ lm(datos$juegos_x~datos$puntos_y)$coefficients
 # Reporte de progreso
 
 Completar el reporte de progreso [aquí](https://forms.gle/Q1D23W3Cuou5ATkLA).
+
+# Archivo de código
+ 
+El archivo de código R de esta práctica se puede descargar [aquí](https://raw.githubusercontent.com/juancarloscastillo/multivariada/master/static/assignment/practica_4.R)
+
 
 
 # Foro
