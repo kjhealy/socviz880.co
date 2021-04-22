@@ -121,7 +121,7 @@ La función `rm(list=ls())` permite comenzar con un espacio de trabajo (environm
 
 **Datos**
 
-Las bases de datos se pueden cargar de un archivo local o en línea. Para este caso utilizaremos un archivo en línea que viene en formato RData: **ELSOC_W01_v3.10.RData**.
+Las bases de datos se pueden cargar de un archivo local o en línea. Para este caso utilizaremos un archivo en línea que viene en formato RData: **ELSOC_W01_v3.10.RData**. <span class="sidenote">**Abrir bases de datos en otros formatos**: Los formatos mas comunes en que se almacenan las bases de datos son .dta (Stata) y .sav (Spss). Para abrir desde R utlilizamos la librería `haven` y sus funciones read_dta y read_sav según corresponda. Ej: `datos <- read_dta("base_casen.dta")`. Recordar antes instalar/cargar la librería: `pacman::p_load(haven)`   </span>
 
 ```{r eval=TRUE}
 #cargamos la base de datos desde internet

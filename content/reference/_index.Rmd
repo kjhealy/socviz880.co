@@ -61,7 +61,7 @@ De modo de lograr una mayor colaboración desde el equipo docente a sus trabajos
 - Estratificación social, política educativa, sociología política
 - Economía laboral, relaciones laborales, acción colectiva y condiciones de empleo
 
-Recomendamos utilizar alguna de las siguientes fuentes de datos para realizar los trabajos:
+Recomendamos utilizar alguna de las siguientes fuentes de datos para realizar los trabajos (para abrir bases de datos en formatos distintos a R revisar nota correspondiente en práctica 1, link [aquí](/assignment/01-code/#2-cargar-base-de-datos)):
 
 - [ELSOC](https://coes.cl/encuesta-panel/) (Ola 1)
   - [Manual de Usuario](/docs/Manual_Usuario_ELSOC_W01_v2.00.pdf)
