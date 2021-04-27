@@ -80,7 +80,7 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 ![:scale 70%](https://multivariada.netlify.com/img/hex_multiva.png)
 <br>
 <br>
-## Sesión 4: .red[Regresión simple (2)] 
+## Repaso y preparación Informe 1] 
 ]
 
 ]
@@ -91,6 +91,13 @@ class: animated, fadeIn
 
 ---
 class: inverse
+
+
+---
+# 1. Librerías y versiones
+
+- 
+
 
 ##.red[Contenidos]
 

@@ -71,6 +71,7 @@ Recomendamos utilizar alguna de las siguientes fuentes de datos para realizar lo
 - [LAPOP](https://www.vanderbilt.edu/lapop-espanol/)
 - [Desiguales](https://www.desiguales.org/descripcin-del-libro)
 - [CEP 83 -  Módulo Desigualdad Social ISSP 2019](https://www.cepchile.cl/cep/encuestas-cep/encuestas-2009-2018/estudio-nacional-de-opinion-publica-mayo-2019)
+- [CEP: varios temas/preguntas para encuestas desde 1990 en adelante, muy buen buscador!](https://www.cepchile.cl/cep/site/edic/base/port/buscador.html)
 - ISSP (International Social Survey Programme)
   - [Desigualdad Social](https://www.gesis.org/issp/modules/issp-modules-by-topic/social-inequality)
   - [Rol del Gobierno](https://www.gesis.org/en/issp/modules/issp-modules-by-topic/role-of-government)
@@ -165,6 +166,9 @@ En la sección de tareas de UCursos. Se debe adjuntar un archivo comprimido con 
 2. Código de preparación y de análisis
 
 2. Documento del trabajo (que puede ser un archivo RMarkdown o Word)
+
+El documento del trabajo debe ser ingresado además por **Turnitin**, se enviará link en la fecha de entrega para esto.
+
 
 ---
 

@@ -451,6 +451,39 @@ get_label(proc_elsoc$edad)
 proc_elsoc$edad <- set_label(x = proc_elsoc$edad,label = "Edad")
 ```
 
+
+## Bonus track: generación de índices
+<div class="alert alert-info">
+¿Qué pasa si quiero crear un índice para cada una de mis observaciones?
+El procedimiento consiste en el siguiente. Imaginemos que queremos crear un índice sumativo de puntaje de mérito (pt_merit)
+
+```{r}
+proc_elsoc <- proc_elsoc %>%
+  rowwise() %>%
+  mutate(sum_merit =
+           sum(mtalento,mesfuerzo, na.rm = T))
+```
+
+Con esto estaremos sumando cada puntaje de mtalento y mesfuerzo para cada una de las observaciones. La función que nos permite hacer esto es rowwise(). Luego con mutate crearemos la nueva variable pt_merit basada en la suma de las variables. Para generar el índice en base a el promedio solo indicar `mean`:
+
+```{r}
+proc_elsoc <- proc_elsoc %>%
+  rowwise() %>%
+  mutate(mean_merit =
+           mean(c(mtalento,mesfuerzo), na.rm = T))
+
+proc_elsoc %>% select(mtalento, mesfuerzo,sum_merit,mean_merit) %>% head(.)
+
+
+```
+
+El argumento na.rm = T nos permite lidiar con los NA, esto es, si estamos haciendo una suma considerarlas como un neutro sumativo (0) y si es en las medias no ser consideradas en el cálculo. El valor 0 puede distorsionar los resultados basados en nuestro índice, así que es mejor luego recodificar como NA:
+
+```{r}
+proc_elsoc$pt_merit <- car::recode(proc_elsoc$sum_merit, "0=NA")
+```
+</div>
+
 ## 5. Generación de base de datos procesada para el análisis
 
 Antes de guardar la base procesada, revisamos nuevamente todas las variables con una tabla descriptiva general mediante la función `stargazer` (de la librería homónima)
