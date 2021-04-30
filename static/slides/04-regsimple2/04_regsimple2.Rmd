@@ -13,7 +13,7 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
-      beforeInit: "https://multinivel.netlify.com/docpres/xaringan_custom/macros.js"
+      beforeInit: "../macros.js"
     seal: false # esto omite title slide automática
 ---
 class: front
@@ -80,7 +80,8 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 ![:scale 70%](https://multivariada.netlify.com/img/hex_multiva.png)
 <br>
 <br>
-## Repaso y preparación Informe 1] 
+## Sesión 4: Regresión simple 2
+] 
 ]
 
 ]
@@ -91,12 +92,6 @@ class: animated, fadeIn
 
 ---
 class: inverse
-
-
----
-# 1. Librerías y versiones
-
-- 
 
 
 ##.red[Contenidos]
