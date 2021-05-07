@@ -4,6 +4,8 @@ author: ".small[Juan Carlos Castillo <br><br> Departamento de Sociología - UCH 
 date: "2do Sem 2019"
 output:
   xaringan::moon_reader:
+    includes:
+      after_body: "../insert-logo.html"     
     css: ["../custom_2020.css","https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"] # "../ninjutsu.css", paraflipbook
     lib_dir: libs
     nature:
@@ -40,6 +42,21 @@ library(flipbookr)
 library(tidyverse)
 ```
 
+
+```{r xaringanExtra, include=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css"))
+xaringanExtra::use_share_again()
+xaringanExtra::use_scribble()
+```
+
+
+```{r style-share-again, echo=FALSE}
+xaringanExtra::style_share_again(
+  share_buttons = c("none")
+)
+```
+
+
 <!---
 Para correr en ATOM
 - open terminal, abrir R (simplemente, R y enter)
@@ -53,17 +70,18 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2020
+## 1er Sem 2021
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 
 
 .pull-right[
 .right[
+<br>
+## .purple[Sesión 5: Regresión múltiple (1)]
 ![:scale 70%](https://multivariada.netlify.com/img/hex_multiva.png)
-<br>
-<br>
-## Sesión 5: Regresión múltiple (1)
+
+
 ]
 
 ]
@@ -122,7 +140,6 @@ Donde
 ---
 # Descomponiendo Y
 
-Conceptualmente:
 
 $$SS_{tot}=SS_{reg} + SS_{error}$$
 .center[
@@ -154,35 +171,75 @@ class: inverse
 - El **ajuste** del modelo a los datos se relaciona con la proporción de residuos generados por el modelo respecto de la varianza total de Y (R2)
 
 ---
-class: roja, bottom, center
+class: roja left
 
-.pull-right[
-# Introducción a regresión múltiple
+.left[
+
+# Introducción
+#a regresión múltiple
 ]
 
 ---
 # Estadística multivariada
 
-- Hacia la **explicación** de los fenómenos sociales
+- Hacia la **explicación** de los fenómenos sociales  
 
-![:scale 55%](../01-programa/simple.png)
+<br>
+.center[
+![:scale 55%](regmod1.png)
+]
+---
+# Estadística multivariada
 
+- Hacia la **explicación** de los fenómenos sociales  
+
+.center[
+![:scale 55%](regmod2.png)
+]
+
+$$\widehat{Y}=\beta_{0} +\beta_{1}X_{1}$$
+ 
+
+ 
 ---
 # Estadística multivariada
 
 - Hechos sociales: **multicausales**
 
-![:scale 55%](../01-programa/multiple.png)
+.center[
+![:scale 55%](regmod3.png)
+]
+
+---
+# Estadística multivariada y regresión múltiple
+
+- Hechos sociales: **multicausales**
+
+.center[
+![:scale 55%](regmod4.png)
+]
+
+$$\widehat{Y}=\beta_{0} +\beta_{1}X_{1} + \beta_{2}X_{2}+ \beta_{3}X_{3}$$
+---
+class: inverse, middle, center
+
+.large[
+# El modelo de regresión es un modelo .red[SUMATIVO]
+
+]
+
 ---
 # Problema de la multicausalidad
 
 - posibilidad de predictores correlacionados 
 
-![:scale 55%](multicausal.png)
 
+.center[
+![:scale 55%](regmod5.png)
+]
 
 ---
-# Problema de la multicausalidad
+# Problema de la multicausalidad 
 
 \begin{align*}
 (1) Y(ingreso) &=\beta_0 + \beta_1(educación) \\ 
@@ -190,18 +247,14 @@ class: roja, bottom, center
 (3) Y(ingreso) &=\beta_0 + \beta_1(educación) + \beta_2(inteligencia) \\
 \end{align*}
 
+--
+
+
 .center[
 ## ¿Qué sucedería si la educación estuviera relacionada con la inteligencia? 
 -> estaríamos sobreestimando el ingreso al hacer un modelo sumativo "puro"
 ]
 
-
----
-# Regresión múltiple
-
-### En simple: modelo de regresión con más de un predictor o variable independiente
-
-.center[![:scale 65%](regmulwool.png)]
 
 
 ---
@@ -248,7 +301,7 @@ $$\widehat{Ingreso}=b_0+b_1(Educ)+b_2(Int)$$
 ]
 
 ---
-class:roja, middle, center
+class:roja
 
 
 
@@ -256,7 +309,11 @@ class:roja, middle, center
 
 
 ---
-# Concepto de control
+class: inverse, middle, center
+
+# .large[.yellow[Concepto de .red[control]]]
+
+---
 
 ## 1. Control por diseño
 
@@ -271,7 +328,7 @@ class:roja, middle, center
 
 ## 2. Control estadístico
 
-- En datos observacionales no hay (en principio) control por diseño, por lo que se recurre al **control estadístico**
+- En datos observacionales de encuestas en general no hay  control por diseño, por lo que se recurre al **control estadístico**
 
 --
 
@@ -300,14 +357,12 @@ class:roja, middle, center
 ]
 
 
-
-
 ---
 class: inverse, center, middle, exclude
 
 # POR LO TANTO
 
-## Un aspecto **clave** de la regresión múltiple, tanto conceptual como estadísticamente, tiene que ver con el control de la CORRELACION ENTRE PREDICTORES O VARIABLES INDEPENDIENTES (X)
+## Un aspecto **clave** de la regresión múltiple, tanto conceptual como estadísticamente, tiene que ver con el .yellow[control de la CORRELACION] ENTRE .red[PREDICTORES] O VARIABLES INDEPENDIENTES (X)
 
 ---
 ### Simulación 1: sin correlación relevante entre predictores
@@ -328,19 +383,28 @@ m<- matrix(c(1.0,0.4,0.2,
              0.4,1.0,0.0,
              0.2,0.0,1.0),nrow=3,ncol=3)
 
+m
+
 # Cholesky decomposition
 l = chol(m)
 nvars = dim(l)[1]
 r = t(l) %*% matrix(rnorm(nvars*nobs), nrow=nvars, ncol=nobs)
+r
 r = t(r)
 
 rdata1 = as.data.frame(r)
+rdata1
 names(rdata1) = c('ingreso', 'educacion', 'inteligencia')
+
+cor(rdata1)
+
+cor_rdata1 <-cor(rdata1)
 ```
 
 ```{r fig.width=8, fig.height=8, echo=FALSE}
 library(corrplot)
-corrplot.mixed(m1, number.cex=2, tl.cex=2)
+corrplot.mixed(cor_rdata1, number.cex=2, tl.cex=1.5)
+
 ```
 
 ]
@@ -438,7 +502,7 @@ htmlreg(list(r1dat2, r2dat1, r3dat2), booktabs = TRUE, dcolumn = TRUE, doctype =
 ---
 # Estimación de parámetros y control estadístico
 
-- Los coeficientes de regresión (X) no alteran su valor en los modelos en ausencia de correlación entre ellos (Ejemplo 1)
+- Los coeficientes de regresión $\beta$ no alteran su valor en los modelos en ausencia de correlación entre predictores $X$ (Ejemplo 1)
 
 --
 
@@ -484,7 +548,7 @@ class: front
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2020
+## 1er Sem 2021
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 

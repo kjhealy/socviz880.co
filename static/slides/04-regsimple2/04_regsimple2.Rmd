@@ -25,7 +25,7 @@ xaringan::inf_mr('/static/docpres/02_bases/2mlmbases.Rmd')
 
 o en RStudio:
   - abrir desde carpeta root del proyecto
-  - Addins-> infinite moon reader
+  - Addins-> infinite moon reader 
 ```
 
 
@@ -67,7 +67,7 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 
 
 .pull-left[
-# Estadística Multivariada 
+# Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
 ## 1er Sem 2021
@@ -122,7 +122,7 @@ class: inverse, middle, center
 ---
 class: inverse, center
 
-## El **modelo de regresión** busca representar de manera simplificada la relación entre dos variables
+## El **modelo de regresión** busca representar de manera simplificada la relación entre dos variables 
 
 --
 
@@ -163,7 +163,7 @@ Y simplificando
 $$b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})}$$
 
 ---
-# Estimación de los coeficientes de la ecuación:
+# Estimación de los coeficientes de la ecuación: 
 
 Luego despejando el valor de $b_{0}$
 
@@ -235,7 +235,7 @@ Coefficients:
 <br>
 Si tenemos
 
-- Y = ingreso al egresar de la universidad
+- Y = ingreso al egresar de la universidad  
 
 - X = puntaje PSU
 
