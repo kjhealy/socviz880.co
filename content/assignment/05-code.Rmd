@@ -1,8 +1,8 @@
 ---
-# title: "Práctica 5. Regresión múltiple 1 "
+title: "Práctica 5. Regresión múltiple 1 "
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
-author: "Valentina Andrade"
-# linktitle: "Práctica 5: Regresión múltiple 1"
+author: "Juan Castillo"
+linktitle: "Práctica 5: Regresión múltiple 1"
 date: "2020-06-22"
 class_date: "2020-06-22"
 citeproc: false
@@ -55,15 +55,21 @@ pacman::p_load(ggpubr, #graficos
 
 ## Datos
 
-Los datos a utilizar corresponden a la base de datos **gpa1** que incluye una muestra de 141 estudiantes de una universidad. La base contiene vaiables
-- [$colGPA$]: promedio general de calificaciones de la universidad, en escala de 0 a 4 puntos.
-- [$hsGPA$]: promedio general de calificaciones en la enseñanza media, en escala de 0 a 4 puntos
-- [$ACT$]: puntaje en el examen de admisión a la universidad, que va de 16 a 33 puntos
+Los datos a utilizar corresponden a la base de datos **gpa1** que incluye una muestra de 141 estudiantes de una universidad. La base contiene las variables:
+
+- `colGPA`: (col:college, GPA:notas) promedio general de calificaciones de la universidad, en escala de 0 a 4 puntos
+
+- `hsGPA`: (hs: high school) promedio general de calificaciones en la enseñanza media, en escala de 0 a 4 puntos
+
+- `ACT`: puntaje en el examen de admisión a la universidad, que va de 16 a 33 puntos
+
 Primero, se cargará la base de datos que contiene la librería `wooldridge` y se seleccionarán las variables señaladas
+
 ```{r}
 data('gpa1') # Cargar base de datos
 gpa1 <- dplyr::select(gpa1, colGPA, hsGPA, ACT) #Seleccion de variables
 ```
+
 ## Explorar base de datos
 
 A partir de la siguiente tabla se obtienen estadísticos descriptivos que luego serán relevantes para la interpretación de nuestros modelos.
@@ -88,7 +94,7 @@ En formato publicable:
 sjPlot::tab_model(col_actmodel, show.ci=FALSE) #Tabla resumen de resultados
 ```
 
-En consecuencia, nuestro modelo que relaciona el promedio de calificaciones en la universidad solo con el puntaje obtenido en el examen de admisión señala que por cada punto adicional que se obtiene en la prueba de admisión, el promedio de la universidad aumenta en 0.027 (aproximado en la tabla de sjPlot a 0.03) puntos promedio.
+En consecuencia, nuestro modelo que relaciona el promedio de calificaciones en la universidad solo con el puntaje obtenido en el examen de admisión señala que por cada punto adicional que se obtiene en la prueba de admisión, el promedio de la universidad aumenta en 0.027 (aproximado en la tabla de sjPlot a 0.03) puntos en promedio.
 
 $$\widehat{colGPA} = 2.40 +0.0271ACT $$
 
@@ -114,7 +120,7 @@ grid.arrange(gact, ghsGPA, nrow = 1) # Unir graficos
 
 ```
 
-Con el gráfico anterior podemos notar que si bien ambas variables tienen una asociación positiva con $colGPA$, el tamaño efecto de esta relación es distinta. Incluso, $hsGPA$ que no había sido considerada en nuestro modelo inicial, tiene una asociación más grande con nuestra variable dependiente.
+Con el gráfico anterior podemos notar que, si bien ambas variables tienen una asociación positiva con $colGPA$, el tamaño efecto de esta relación es distinto. Incluso, $hsGPA$ que no había sido considerada en nuestro modelo inicial, tiene una asociación más grande con nuestra variable dependiente.
 Ahora bien, ¿cómo incide $ACT$ y $hsGPA$ en conjunto sobre $colGPA$?
 
 ## Modelo de regresión multiple
@@ -133,7 +139,11 @@ col_model <- lm(colGPA ~ ACT + hsGPA, data = gpa1)
 ```
 
 ```{r}
-sjPlot::tab_model(list(col_actmodel, col_hsmodel,col_model), show.ci=FALSE, p.style = "asterisk", dv.labels = c("Modelo 1", "Modelo 2", "Modelo 3"),string.pred = "Predictores", string.est = "β")
+sjPlot::tab_model(list(col_actmodel, col_hsmodel,col_model), # los modelos estimados
+  show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
+  p.style = "stars", # asteriscos de significación estadística
+  dv.labels = c("Modelo 1", "Modelo 2", "Modelo 3"), # etiquetas de modelos o variables dep.
+  string.pred = "Predictores", string.est = "β") # nombre predictores y símbolo beta en tabla
 ```
 
 $$\widehat{colGPA} = 1.29 +0.0094 \dot\ ACT + 0.453\dot\ hsGPA $$
@@ -144,13 +154,13 @@ $$\widehat{colGPA} = 1.29 +0.0094 \dot\ ACT + 0.453\dot\ hsGPA $$
 
 ### Intercepto
 
-- El intercepto 1.20 indica la predicción del promedio general de calificaciones en la universidad ($colGPA$) si $hsGPA$ y $ACT$ son ambos cero. Este intercepto no tiene mucho significado debido a que eso implica un individuo ficticio que no haya ni asistido a la universidad ni haya asistido a la enseñanza media, por lo cual no es parte de nuestra pregunta por las **determinantes del promedio en la universidad**.
+- El intercepto 1.29 indica la predicción del promedio general de calificaciones en la universidad ($colGPA$) si $hsGPA$ y $ACT$ son ambos cero. Este intercepto no tiene mucho significado debido a que eso implica un individuo ficticio que no haya ni asistido a la universidad ni haya asistido a la enseñanza media, por lo cual no es parte de nuestra pregunta por las **determinantes del promedio en la universidad**.
 
-### Coeficientes de regresion
+### Coeficientes de regresión
 
 - Fijémonos en los coeficientes de regresión de $hsGPA$. Como era de esperar en función de los gráficos que habíamos presentado, existe una relación positiva entre $hsGPA$ y $colGPA$: con $ACT$ constante, cada punto más en $hsGPA$ se relaciona con un aumento en 0.453 puntos adicionales en $colGPA$, es decir, casi medio punto.
 
-En otras palabras, si se eligen dos estudiantes, A y B, y estos tienen la misma puntación en el exámen de admisión ($ACT$), pero el promedio en la enseñanza media de A es mayor al de B ($hsGPA$), entonces se predice que **en la universidad el estudiante A tendrá un promedio general de 0.453 puntos más altos que el estudiante B**.
+En otras palabras, si se eligen dos estudiantes, A y B, y estos tienen la misma puntación en el exámen de admisión ($ACT$), pero el promedio en la enseñanza media de A es superior al de B ($hsGPA$), entonces se predice que **en la universidad el estudiante A tendrá un promedio general de 0.45 puntos más altos que el estudiante B**.
 
 - Fijémonos ahora en el coeficiente de regresión de $ACT$: si $hsGPA$ permanece constante, un aumento en un punto de $ACT$ solo  produce un aumento en 0.0094 puntos en $colGPA$, es decir, un cambio muy pequeño.
 
@@ -176,9 +186,9 @@ Ahora bien, es esperable que a medida que añadimos más variables a una regresi
 
 Por ello, el $R^2$ ajustado se utiliza en la regresión múltiple para analizar en conjunto la **intensidad** que tienen las variables independientes en explicar la variable dependiente. Es decir, el $R^2$  ajustado nos dice qué porcentaje de variación de la variable dependiente es explicado **colectivamente por todas las variables independientes**.
 
-En consecuencia, $R^2$ ajustado nos permite determinar mejor si añadir una nueva variable al modelo permite explicar una mayor parte de la variación de la variable dependientE.
+En consecuencia, $R^2$ ajustado nos permite determinar mejor si añadir una nueva variable al modelo permite explicar una mayor parte de la variación de la variable dependiente.
 
-En el ejercicio anterior bien podemos hacer este análisis comparando los $R^2$ de nuestros modelos 1 y 2 para luego mirar el resultado de nuestro $R^2$ ajustado en nuestro modelo 3. Como podremos notar el $R^2$ del modelo 2 es de 17%, mientras que el $R^2$ es de 18% y el $R^2$ ajustado de 16%.
+En el ejercicio anterior bien podemos hacer este análisis comparando los $R^2$ de nuestros modelos 1 y 2 para luego mirar el resultado de nuestro $R^2$ ajustado en nuestro modelo 3. Como podremos notar el $R^2$ del modelo 2 es de 17%, mientras que el $R^2$ del modelo 3 es de 18% y el $R^2$ ajustado de 16%.
 
 En palabras más simples, si solo miramos el $R^2$ llegaremos a la conclusión de que aunque por mínimo que sea, nuestro modelo 3 ajusta mejor que el modelo 2 pues la variable $ACT$ permitiría predecir mejor $colGPA$ en conjunto a $hsGPA$. Sin embargo, $R^2 ajustado$ del modelo 3 (16%) es menor que la del modelo 2 (17%) por lo que la incorporación de $ACT$ al modelo múltiple no tiene un aporte significativo.
 
