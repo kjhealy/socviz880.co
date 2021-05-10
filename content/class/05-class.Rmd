@@ -29,10 +29,10 @@ editor_options:
 </iframe>
 
 ## Video de la clase
-
+ 
 <div style="width: 100%; height: 600px; overflow: hidden;">
 <video  style="width: 100%;" controls>
-<source src="raw=1" type="video/mp4">
+<source src="https://www.dropbox.com/s/gst81azvalrqp83/05-regmul1.mkv?raw=1" type="video/mp4">
 </video>
 </div>
 
