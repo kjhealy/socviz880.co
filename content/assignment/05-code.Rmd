@@ -209,4 +209,9 @@ En esta práctica revisamos los siguientes contenidos
 
 Completar el reporte de progreso correspondiente a esta práctica [aquí](https://forms.gle/3n1quyGizDwEzBkw8).
 
+# Video Tutorial 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/k-ELY01AAi8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
 # Foro práctica 5
