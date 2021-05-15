@@ -1,10 +1,10 @@
 ---
-#title: "Práctica 6. Regresión múltiple 2"
+title: "Práctica 6. Regresión múltiple 2"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
 author: "Valentina Andrade"
-#linktitle: "Práctica 6: Regresión múltiple 2"
-date: "2020-06-19"
-class_date: "2020-06-19"
+linktitle: "Práctica 6: Regresión múltiple 2"
+date: "2021-05-14"
+class_date: "2021-05-14"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
@@ -139,7 +139,7 @@ col_model <- lm(colGPA ~ ACT + hsGPA, data = gpa1)
 ```
 
 ```{r}
-sjPlot::tab_model(list(col_actmodel, col_hsmodel,col_model), show.ci=FALSE, p.style = "asterisk", dv.labels = c("Modelo 1", "Modelo 2", "Modelo 3"),string.pred = "Predictores", string.est = "β")
+sjPlot::tab_model(list(col_actmodel, col_hsmodel,col_model), show.ci=FALSE, p.style = "stars", dv.labels = c("Modelo 1", "Modelo 2", "Modelo 3"),string.pred = "Predictores", string.est = "β")
 ```
 
 $$\widehat{colGPA} = 1.29 +0.01 \dot\ ACT + 0.453\dot\ hsGPA $$
@@ -163,7 +163,7 @@ Cuando se incorporan más variables en el modelo se descuenta este elemento en c
 
 ## Parcialización
 
-La forma de hacer este procedimiento de "mantener constante" el efecto de la otra variable se llama **parcialización**. Este procedimiento implica sacar la **covarianza común** entre mis variables independientes, es decir, lo que tienen en compun $hsGPA$ y $ACT$
+La forma de hacer este procedimiento de "mantener constante" el efecto de la otra variable se llama **parcialización**. Este procedimiento implica sacar la **covarianza común** entre mis variables independientes, es decir, lo que tienen en común $hsGPA$ y $ACT$
 
 Se habla de **efectos parciales** porque se estiman las regresiones solo con una de las variables independientes. Por ejemplo, ¿Cómo se predice $colGPA$ en función $ACT$, despejando el efecto de $hsGPA$?
 
@@ -185,7 +185,7 @@ $$\triangle{colGPA} =  b_{2}\triangle{hsGPA} $$
 
 Para ello se realiza (a) una **regresión simple** donde los predictores son las variables del modelo ($ACT$ dependiente y $hsGPA$ independiente) y (b) en donde a la predicción de $ACT$ hay asociado un **residuo**.
 
-En otras palabras, el $b$ de esta regresión es todo lo que comparte $ACT$ y $hsGPA$. Mientras que el residuo es **todo lo de $ACT$ que no es explicado po $hsGPA$**. En síntesis, es con lo que nos deberíamos quedar en nuestros modelos de regresión múltiple al estimar el $b_{1}$ de $ACT$.
+En otras palabras, el $b$ de esta regresión es todo lo que comparte $ACT$ y $hsGPA$. Mientras que el residuo es **todo lo de $ACT$ que no es explicado por $hsGPA$**. En síntesis, es con lo que nos deberíamos quedar en nuestros modelos de regresión múltiple al estimar el $b_{1}$ de $ACT$.
 
 #### Paso 1: Estimar modelo
 ```{r}
@@ -217,7 +217,7 @@ act_hs_model <- lm(colGPA ~ res_act_hs, data = gpa1) # Estimar regresión simple
 ```
 
 ```{r}
-sjPlot::tab_model(list(col_actmodel, col_hsmodel,col_model, act_hs_model), show.ci=FALSE, p.style = "asterisk", dv.labels = c("Modelo 1", "Modelo 2", "Modelo 3", "Modelo 4"),string.pred = "Predictores", string.est = "β")
+sjPlot::tab_model(list(col_actmodel, col_hsmodel,col_model, act_hs_model), show.ci=FALSE, p.style = "stars", dv.labels = c("Modelo 1", "Modelo 2", "Modelo 3", "Modelo 4"),string.pred = "Predictores", string.est = "β")
 ```
 
 Lo que tengo en ese modelo es la variable puntaje en el examen de admisión $ACT$ sin las notas de enseñanza media $hsGPA$. Lo mismo se podría realizar con la parcialización de $hsGPA$.
@@ -239,7 +239,7 @@ Como podemos ver el efecto que tiene $hsGPA$ sobre $colGPA$, controlando por $AC
 
 En la interpretación del modelo vimos que los coeficientes de regresión nos permiten entender el efecto de $ACT$ sobre $colGPA$, manteniendo $hsGPA$ constante. También, $hsGPA$ sobre $colGPA$, manteniendo $ACT$ constante.
 
-La regresión múltiple nos proporciona esta interpretación "manteniendo constante las variables", incluso cuando en nuestros mismos datos no hayan sido recoltados de manera constante. Esto es lo que hemos llamado una interpretación de **efecto parcial de los coeficientes de regresión**. Esto no implica que se haya  encuestado personas con el mismo $hsGPA$ pero con puntuaciones en $ACT$. Para obtener los datos no se pusieron restricciones sobre los valores muestrales de $hsGPA$ o de $ACT$.
+La regresión múltiple nos proporciona esta interpretación "manteniendo constante las variables", incluso cuando en nuestros mismos datos no hayan sido recolectados considerando que algunas variables se mantengan constantes. Esto es lo que hemos llamado una interpretación de **efecto parcial de los coeficientes de regresión**. Esto no implica que se haya  encuestado personas con el mismo $hsGPA$ pero con puntuaciones en $ACT$. Para obtener los datos no se pusieron restricciones sobre los valores muestrales de $hsGPA$ o de $ACT$.
 Más bien, la regresión múltiple permite imitar esta situación "constante" sin restringir los valores de ninguna de las variables independientes.
 
 # Resumen Práctica 6:
@@ -251,11 +251,7 @@ En esta práctica revisamos los siguientes contenidos
 
 # Reporte de progreso
 
-
-
-
-Completar el reporte de progreso correspondiente a esta práctica [https://forms.gle/mMmR8qZxVJ1uYeUw8]
-
+Completar el reporte de progreso correspondiente a esta práctica [Comprender el sentido general de la regresión múltiple ]
 
 
 # Foro práctica 6

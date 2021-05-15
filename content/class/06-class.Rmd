@@ -29,11 +29,11 @@ editor_options:
 <iframe src=/slides/06-regmul2/6_regmul2.html height="550" width=100% allowfullscreen="true">
 </iframe>
 
-## Video de la clase
- 
+## Video de la clase 
+
 <div style="width: 100%; height: 600px; overflow: hidden;">
 <video  style="width: 100%;" controls>
-<source src="?raw=1" type="video/mp4">
+<source src="https://www.dropbox.com/s/xe59c0k1klkowms/06-regmul2.webm?raw=1" type="video/mp4">
 </video>
 </div>
 
