@@ -251,7 +251,12 @@ En esta práctica revisamos los siguientes contenidos
 
 # Reporte de progreso
 
-Completar el reporte de progreso correspondiente a esta práctica [Comprender el sentido general de la regresión múltiple ]
+Completar el reporte de progreso correspondiente a esta práctica [aquí](https://forms.gle/6Gjkx8MzAJ2h88QVA)
+
+# Video tutorial
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Hkxkvvui_qI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 
 # Foro práctica 6
