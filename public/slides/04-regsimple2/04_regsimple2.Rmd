@@ -1,9 +1,11 @@
 ---
 title: "Estadística Multivariada"
 author: ".small[Juan Carlos Castillo <br><br> Departamento de Sociología - UCH / COES <br><br>]"
-date: "2do Sem 2019"
+date: "1er Sem 2021"
 output:
   xaringan::moon_reader:
+    includes:
+      after_body: "../insert-logo.html"    
     css: ["../custom_2020.css","https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"] # "../ninjutsu.css", paraflipbook
     lib_dir: libs
     nature:
@@ -11,7 +13,7 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
-      beforeInit: "https://multinivel.netlify.com/docpres/xaringan_custom/macros.js"
+      beforeInit: "../macros.js"
     seal: false # esto omite title slide automática
 ---
 class: front
@@ -23,7 +25,7 @@ xaringan::inf_mr('/static/docpres/02_bases/2mlmbases.Rmd')
 
 o en RStudio:
   - abrir desde carpeta root del proyecto
-  - Addins-> infinite moon reader
+  - Addins-> infinite moon reader 
 ```
 
 
@@ -40,8 +42,23 @@ library(flipbookr)
 library(tidyverse)
 ```
 
+
+```{r xaringanExtra, include=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css"))
+xaringanExtra::use_share_again()
+xaringanExtra::use_scribble()
+```
+
+
+```{r style-share-again, echo=FALSE}
+xaringanExtra::style_share_again(
+  share_buttons = c("none")
+)
+```
+
+
 <!---
-Para correr en ATOM
+Para correr en ATOM 
 - open terminal, abrir R (simplemente, R y enter)
 - rmarkdown::render('static/docpres/07_interacciones/7interacciones.Rmd', 'xaringan::moon_reader')
 
@@ -53,7 +70,7 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2020
+## 1er Sem 2021
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 
@@ -63,7 +80,8 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 ![:scale 70%](https://multivariada.netlify.com/img/hex_multiva.png)
 <br>
 <br>
-## Sesión 4: Regresión simple (2)
+## Sesión 4: Regresión simple 2
+] 
 ]
 
 ]
@@ -75,19 +93,41 @@ class: animated, fadeIn
 ---
 class: inverse
 
-## Contenidos
 
-- Repaso de sesión anterior
+##.red[Contenidos]
 
-- Ajuste y residuos
+### .red[1.] Repaso de sesión anterior
 
-- Notas sobre regresión y correlación
+### .red[2.]  Ajuste y residuos
+
+### .red[3.] Notas sobre regresión y correlación
 
 
 ---
 class: roja, middle, bottom, slideInRight
 
 # 1. Repaso sesión anterior
+---
+class: inverse, middle, center
+
+.pull-left[
+<br>
+# .red[MODELO:] 
+]
+
+.pull-right[
+##  representación simplificada
+
+![](cat.png)]
+---
+class: inverse, center
+
+## El **modelo de regresión** busca representar de manera simplificada la relación entre dos variables 
+
+--
+
+## Permite el **contraste empírico de teoría** con datos cuantitativos
+
 ---
 # Objetivos centrales del modelo de regresión:
 
@@ -109,7 +149,7 @@ Donde
 
 - $b_{0}$ es el intercepto de la recta (el valor de Y cuando X es 0)
 
-- $b_{1}$ es el coeficiente de regresión, que nos dice cuánto aumenta Y por cada punto que aumenta X
+- $b_{1}$ es el coeficiente de regresión, que nos dice .red[cuánto aumenta Y por cada punto que aumenta X]
 
 ---
 # Estimación de los coeficientes de la ecuación:
@@ -123,7 +163,7 @@ Y simplificando
 $$b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})}$$
 
 ---
-# Estimación de los coeficientes de la ecuación:
+# Estimación de los coeficientes de la ecuación: 
 
 Luego despejando el valor de $b_{0}$
 
@@ -135,17 +175,20 @@ La función para estimar regresión en `R` es `lm` (linear model):
 
 `objeto <- lm(dependiente ~ independiente, data=datos)`
 
-Donde
+--
 
+Donde
+.medium[
 - **objeto**: el nombre (cualquiera) que le damos al objeto donde se guardan los resultados de la estimación
 - **dependiente / independiente**: los nombres de las variables en los datos
 - **datos** = el nombre del objeto de nuestros datos en R
+]
 
 ---
 class: inverse, middle, center
 # INTERPRETACIÓN
 
-#por cada unidad que aumenta X, Y aumenta en *Beta*
+#por cada unidad que aumenta .red[X], .yellow[Y] aumenta en .orange[*Beta*]
 
 
 ---
@@ -160,9 +203,9 @@ class: inverse, middle, center
 
 .small[
 ```{r echo=FALSE}
-mama_x=c(2,3,5)
-hijo_y=c(6,9,15)
-datos1 <-as.data.frame(cbind(mama_x,hijo_y))
+pasos_mama_x=c(1,3,5)
+pasos_hijo_y=c(3,9,15)
+datos1 <-as.data.frame(cbind(pasos_mama_x,pasos_hijo_y))
 options(scipen=3)
 ```
 
@@ -171,13 +214,13 @@ print(datos1)
 ```
 
 ```{r results='hide'}
-reg<-lm(hijo_y ~ mama_x, data = datos1)
+reg<-lm(pasos_hijo_y ~ pasos_mama_x, data = datos1)
 ```
 
 ```
 Coefficients:
-(Intercept)       mama_x  
-     -4.1          3.0  
+(Intercept)       pasos_mama_x  
+     0.0            3.0  
 ```
 ]]
 
@@ -192,7 +235,7 @@ Coefficients:
 <br>
 Si tenemos
 
-- Y = ingreso al egresar de la universidad
+- Y = ingreso al egresar de la universidad  
 
 - X = puntaje PSU
 
@@ -226,6 +269,23 @@ $$Ingreso=200.000+400(puntajePSU)$$
 {{content}}
 
 ---
+class: inverse
+
+## Hasta ahora deberíamos saber:
+
+--
+
+1- Modelo de regresión como una **representación simplificada** de la relación compleja entre variables
+
+--
+
+2- El $\beta$ de regresión nos dice **cuanto aumenta $Y$ ** (variable dependiente) *en promedio* por ** cada punto que aumenta** $X$ (variable independiente).
+
+--
+
+3- El modelo nos permite **estimar** el puntaje de $Y$ para cada valor de $X$
+
+---
 class: roja, bottom, right
 
 # 2. Ajuste y residuos
@@ -250,6 +310,25 @@ class: roja, bottom, right
 Podemos tener un mismo modelo de regresión para relaciones distintas entre datos
 ]
 ]
+
+---
+# Minimización de residuos y ajuste
+
+- El cálculo del $\beta$ busca minimizar los residuos (de ahí "mínimos cuadrados ordinarios")
+
+- Una vez minimizados los residuos, se puede evaluar el ajuste
+
+
+
+---
+
+.medium[
+```{r, echo=FALSE}
+library(tweetrmd)
+tweet_embed("https://twitter.com/jorge_pacheco/status/1327398681239314434")
+```
+]
+
 
 ---
 class: inverse, right
@@ -287,6 +366,8 @@ datos$estimado <- fitted(reg1)
 datos$residuo = datos$puntos-datos$estimado
 round(datos,2)
 ```
+$$\widehat{Y}=2.5 + 0.5X$$
+
 ]
 ]
 
@@ -295,7 +376,6 @@ round(datos,2)
 .pull-right[
 .right[
 ## Ajuste y Residuos 
-
 
 $$\widehat{Y}=b_{0} +b_{1}X$$
 
@@ -345,9 +425,9 @@ $\bar{Y}$ = promedio de Y
 ]]
 
 .pull-left-wide[
-$$Y=\bar{Y}+(\bar{Y}-\widehat{Y})+(Y-\widehat{Y})$$
+$$Y=\bar{Y}+(\widehat{Y}-\bar{Y}) + (Y-\widehat{Y})$$
 
-$$ \Sigma(y_i - \bar{y})^2=\Sigma (\bar{y}-\hat{y}_i)^2 + \Sigma(y_i-\hat{y}_i)^2$$
+$$ \Sigma(y_i - \bar{y})^2=\Sigma (\hat{y}_i-\bar{y})^2 +\Sigma(y_i-\hat{y}_i)^2$$
 ]
 
 ---
@@ -433,26 +513,32 @@ class: inverse, middle, center
 
 
 ---
-.pull-left-narrow[
 # Directamente en R
 
-.smally[
+.pull-left[
+
+.medium[
 ```{r}
 reg1 <-lm( puntos_y ~ 
               juegos_x, 
               data = datos)
 ```
 ]
-
 ]
 
-.pull-right-wide[
-.tiny[
-```{r echo=FALSE, results='asis'}
 
-stargazer::stargazer(reg1, type = "html")
+.pull-right[
+```{r, echo=FALSE}
+sjPlot::tab_model(reg1,
+        show.se=FALSE,
+        show.ci=FALSE,
+        digits=3,
+        dv.labels = c("Modelo 1"),
+        string.pred = "Predictores",
+        string.est = "β")
 ```
-]]
+]
+
 ---
 class:roja, right, bottom
 
@@ -472,7 +558,7 @@ Correlación entre juegos y puntos **al cuadrado**
 (cor(datos$juegos_x,datos$puntos_y))^2
 ```
 
-Es decir: correlación de Pearson al cuadrado ( $r^2$ ) es $R^2$
+  - Es decir: correlación de Pearson al cuadrado ( $r^2$ ) es $R^2$
 ---
 ## Diferencias en regresión y correlación
 
@@ -486,8 +572,8 @@ Es decir: correlación de Pearson al cuadrado ( $r^2$ ) es $R^2$
 
 .small[
 ```{r}
-cor(juegos_x,puntos_y)
-cor(puntos_y,juegos_x)
+cor(datos$juegos_x,datos$puntos_y)
+cor(datos$puntos_y,datos$juegos_x)
 ```
 ]
 ]
@@ -505,8 +591,8 @@ cor(puntos_y,juegos_x)
 
 .small[
 ```{r}
-lm(puntos_y ~ juegos_x)$coefficients
-lm(juegos_x ~ puntos_y)$coefficients
+lm(datos$puntos_y ~ datos$juegos_x)$coefficients
+lm(datos$juegos_x ~ datos$puntos_y)$coefficients
 ```
 ]
 ]
@@ -514,11 +600,11 @@ lm(juegos_x ~ puntos_y)$coefficients
 ---
 class: inverse
 
-#RESUMEN
+##RESUMEN
 
-- Ajuste del modelo de regresión (R2): porcentaje de la varianza de la variable dependiente (Y) que se asocia a la independiente (X) 
+### - .red[Ajuste] del modelo de regresión (R2): porcentaje de la varianza de la variable dependiente (Y) que se asocia a la independiente (X) 
 
-- Correlación y regresión: primos cercanos, principalmente en regresión simple.
+### - .red[Correlación y regresión]: primos cercanos, principalmente en regresión simple.
 
 
 ---
@@ -526,23 +612,10 @@ class: roja, right
 # Próxima semana:
 
 ## Práctica 4: Ajuste y residuos
-## Informe 1 
-
+## Preparar Informe 1
 
 ## - Lectura: [Moore: Residuos (144-154)](https://multivariada.netlify.app/docs/lecturas/moore_residuos.pdf)
 
----
-class: roja, slideInDown
-
-# Varios
-
-- Tutorial RCloud
-
-- Guía ejemplo Trabajo 1 y tutorial (Miércoles)
-
-- Entrega Trabajo 1: se aplaza a Miércoles 10 de Junio
-
-- Horario de clases será dedicado a asesoría para la elaboración del Informe 1
 
 ---
 class: front
@@ -554,7 +627,7 @@ class: front
 
 ## Sociología FACSO 
 ## UChile
-## 1er Sem 2020
+## 1er Sem 2021
 
 ]
 

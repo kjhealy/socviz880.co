@@ -4,6 +4,8 @@ author: ".small[Juan Carlos Castillo <br><br> Departamento de Sociología - UCH 
 date: "2do Sem 2019"
 output:
   xaringan::moon_reader:
+    includes:
+      after_body: "../insert-logo.html"
     css: ["../custom_2020.css","https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"] # "../ninjutsu.css", paraflipbook
     lib_dir: libs
     nature:
@@ -11,7 +13,7 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
-      beforeInit: "https://multinivel.netlify.com/docpres/xaringan_custom/macros.js"
+      beforeInit: "../macros.js"
     seal: false # esto omite title slide automática
 ---
 class: front
@@ -53,7 +55,7 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2020
+## 1er Sem 2021
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 
@@ -78,23 +80,6 @@ class: animated, fadeIn
 .center[
 ![:scale 70%](Assimilation-Akkomodation.jpg)
 ]
-
-
----
-class: inverse
-
-## Flujo de trabajo
-
-1. Revisar estudios - grupo 1 y 7 - Julio & Kevin
-
-2. Seleccionar variables - grupo 2 -  Víctor
-
-3. Procesamiento 
-
-  - preparación - grupo 3 - Camilo
-  - análisis - grupo 4 y 6 - Andreas & Martin
-
-4. Escritura & varios - grupo 5 
 
 ---
 # 1. Revisar estudios disponibles
@@ -122,15 +107,31 @@ class: inverse
 # 3. Procesamiento
 
 
-![](http://127.0.0.1:3390/images/produccion2.png)
+![](https://multivariada.netlify.app/images/produccion2.png)
 
 
 ---
-# 4. Escritura
+# Temas R
+
+- versiones, librerías y otros problemas
+
+  - `sessionifo()`
+  - `update.packages()` , `old.packages()`
+  - actualización R
+
+- bases de datos en distintos formatos: librería `haven`
+
+
+---
+# 5. Escritura
 
 --> respetar pauta y secciones
 
 --> ver [ejemplo Informe 1]()
+
+---
+# 6. Comentarios reporte progreso
+
 
 ---
 class: front
@@ -142,7 +143,7 @@ class: front
 
 ## Sociología FACSO 
 ## UChile
-## 1er Sem 2020
+## 1er Sem 2021
 
 ]
 

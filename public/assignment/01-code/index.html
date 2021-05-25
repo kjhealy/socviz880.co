@@ -30,7 +30,7 @@
   
     
   
-  <meta name="description" content="pre  code.sourceCode { white-space: pre; position: relative; } pre  code.sourceCode  span { display: inline-block; line-height: 1.25; } pre  code.sourceCode  span:empty { height: 1.2em; } code.sourceCode  span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre  code.sourceCode { white-space: pre-wrap; } pre  code.">
+  <meta name="description" content="pre  code.sourceCode { white-space: pre; position: relative; }pre  code.sourceCode  span { display: inline-block; line-height: 1.25; }pre  code.sourceCode  span:empty { height: 1.2em; }code.sourceCode  span { color: inherit; text-decoration: inherit; }div.sourceCode { margin: 1em 0; }pre.sourceCode { margin: 0; }@media screen {div.sourceCode { overflow: auto; }}@media print {pre  code.sourceCode { white-space: pre-wrap; }pre  code.">
 
   
   <link rel="alternate" hreflang="en-us" href="https://multivariada.netlify.app/assignment/01-code/">
@@ -236,13 +236,13 @@
   <meta property="og:site_name" content="Estadística Multivariada">
   <meta property="og:url" content="https://multivariada.netlify.app/assignment/01-code/">
   <meta property="og:title" content="Práctica 1. Preparación de datos en R | Estadística Multivariada">
-  <meta property="og:description" content="pre  code.sourceCode { white-space: pre; position: relative; } pre  code.sourceCode  span { display: inline-block; line-height: 1.25; } pre  code.sourceCode  span:empty { height: 1.2em; } code.sourceCode  span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre  code.sourceCode { white-space: pre-wrap; } pre  code."><meta property="og:image" content="https://multivariada.netlify.app/img/social-image.png">
+  <meta property="og:description" content="pre  code.sourceCode { white-space: pre; position: relative; }pre  code.sourceCode  span { display: inline-block; line-height: 1.25; }pre  code.sourceCode  span:empty { height: 1.2em; }code.sourceCode  span { color: inherit; text-decoration: inherit; }div.sourceCode { margin: 1em 0; }pre.sourceCode { margin: 0; }@media screen {div.sourceCode { overflow: auto; }}@media print {pre  code.sourceCode { white-space: pre-wrap; }pre  code."><meta property="og:image" content="https://multivariada.netlify.app/img/social-image.png">
   <meta property="twitter:image" content="https://multivariada.netlify.app/img/social-image.png"><meta property="og:locale" content="en-us">
   
     
       <meta property="article:published_time" content="2020-01-10T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2021-03-18T15:11:56-03:00">
+    <meta property="article:modified_time" content="2021-04-27T12:54:15-04:00">
   
 
   
@@ -497,17 +497,37 @@
         <a href="/class/02-class/">2: Bases</a>
       </li>
       
+      <li >
+        <a href="/class/03-class/">3: Regresión simple 1</a>
+      </li>
+      
+      <li >
+        <a href="/class/04-class/">4: Regresión simple 2</a>
+      </li>
+      
+      <li >
+        <a href="/class/05-class/">5: Regresión múltiple 1</a>
+      </li>
+      
+      <li >
+        <a href="/class/06-class/">6: Regresión múltiple 2</a>
+      </li>
+      
+      <li >
+        <a href="/class/04-1-class/">Repaso informe 1</a>
+      </li>
+      
     </ul>
     
 
   </div>
   
   <div class="docs-toc-item">
-    <a class="docs-toc-link" href="/assignment/03-code/">Practicas</a>
+    <a class="docs-toc-link" href="/assignment/07-code/">Practicas</a>
     <ul class="nav docs-sidenav">
       
       <li >
-        <a href="/assignment/03-code/"></a>
+        <a href="/assignment/07-code/"></a>
       </li>
       
       <li class="active">
@@ -516,6 +536,26 @@
       
       <li >
         <a href="/assignment/02-code/">Práctica 2: Descripción de variables</a>
+      </li>
+      
+      <li >
+        <a href="/assignment/03-code/">Práctica 3: Regresión simple 1</a>
+      </li>
+      
+      <li >
+        <a href="/assignment/04-code/">Práctica 4: Regresión simple 2</a>
+      </li>
+      
+      <li >
+        <a href="/assignment/05-code/">Práctica 5: Regresión múltiple 1</a>
+      </li>
+      
+      <li >
+        <a href="/assignment/06.2-code/">Práctica 6.2 Predictores categóricos</a>
+      </li>
+      
+      <li >
+        <a href="/assignment/06-code/">Práctica 6: Regresión múltiple 2</a>
       </li>
       
     </ul>
@@ -640,6 +680,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#sexo">4.4. Sexo</a></li>
 <li><a href="#edad">4.5 Edad</a></li>
 </ul></li>
+<li><a href="#bonus-track-generación-de-índices">Bonus track: generación de índices</a></li>
 <li><a href="#generación-de-base-de-datos-procesada-para-el-análisis">5. Generación de base de datos procesada para el análisis</a></li>
 </ul></li>
 <li><a href="#archivo-de-código">Archivo de código</a></li>
@@ -717,7 +758,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">options</span>(<span class="dt">scipen=</span><span class="dv">999</span>) <span class="co"># valores sin notación científica</span></span></code></pre></div>
 <p>La función <code>rm(list=ls())</code> permite comenzar con un espacio de trabajo (environment) vacío y sin otros objetos. Así también, la función <code>options(scipen=999)</code> desactiva la notación científica, es decir, veremos los valores numéricos con todos sus decimales.</p>
 <p><strong>Datos</strong></p>
-<p>Las bases de datos se pueden cargar de un archivo local o en línea. Para este caso utilizaremos un archivo en línea que viene en formato RData: <strong>ELSOC_W01_v3.10.RData</strong>.</p>
+<p>Las bases de datos se pueden cargar de un archivo local o en línea. Para este caso utilizaremos un archivo en línea que viene en formato RData: <strong>ELSOC_W01_v3.10.RData</strong>. <span class="sidenote"><strong>Abrir bases de datos en otros formatos</strong>: Los formatos mas comunes en que se almacenan las bases de datos son .dta (Stata) y .sav (Spss). Para abrir desde R utlilizamos la librería <code>haven</code> y sus funciones read_dta y read_sav según corresponda. Ej: <code>datos &lt;- read_dta("base_casen.dta")</code>. Recordar antes instalar/cargar la librería: <code>pacman::p_load(haven)</code> </span></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">#cargamos la base de datos desde internet</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://multivariada.netlify.com/assignment/data/original/ELSOC_W01_v3.10.RData&quot;</span>))</span></code></pre></div>
 <p>La base de datos aparece como un objeto en nuestro espacio de trabajo, con el nombre original con la que fue guardada (elsoc_2016):</p>
@@ -1156,28 +1197,50 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true"></a>proc_elsoc<span class="op">$</span>edad &lt;-<span class="st"> </span><span class="kw">set_label</span>(<span class="dt">x =</span> proc_elsoc<span class="op">$</span>edad,<span class="dt">label =</span> <span class="st">&quot;Edad&quot;</span>)</span></code></pre></div>
 </div>
 </div>
+<div id="bonus-track-generación-de-índices" class="section level2">
+<h2>Bonus track: generación de índices</h2>
+<div class="alert alert-info">
+<p>¿Qué pasa si quiero crear un índice para cada una de mis observaciones?
+El procedimiento consiste en el siguiente. Imaginemos que queremos crear un índice sumativo de puntaje de mérito (pt_merit)</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true"></a>proc_elsoc &lt;-<span class="st"> </span>proc_elsoc <span class="op">%&gt;%</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum_merit =</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true"></a>           <span class="kw">sum</span>(mtalento,mesfuerzo, <span class="dt">na.rm =</span> T))</span></code></pre></div>
+<p>Con esto estaremos sumando cada puntaje de mtalento y mesfuerzo para cada una de las observaciones. La función que nos permite hacer esto es rowwise(). Luego con mutate crearemos la nueva variable pt_merit basada en la suma de las variables. Para generar el índice en base a el promedio solo indicar <code>mean</code>:</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true"></a>proc_elsoc &lt;-<span class="st"> </span>proc_elsoc <span class="op">%&gt;%</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mean_merit =</span></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true"></a>           <span class="kw">mean</span>(<span class="kw">c</span>(mtalento,mesfuerzo), <span class="dt">na.rm =</span> T))</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true"></a></span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true"></a>proc_elsoc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(mtalento, mesfuerzo,sum_merit,mean_merit) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(.)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+## # Rowwise: 
+##   mtalento mesfuerzo sum_merit mean_merit
+##      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+## 1        4         4         8        4  
+## 2        4         4         8        4  
+## 3        4         2         6        3  
+## 4        4         4         8        4  
+## 5        2         5         7        3.5
+## 6        5         3         8        4</code></pre>
+<p>El argumento na.rm = T nos permite lidiar con los NA, esto es, si estamos haciendo una suma considerarlas como un neutro sumativo (0) y si es en las medias no ser consideradas en el cálculo. El valor 0 puede distorsionar los resultados basados en nuestro índice, así que es mejor luego recodificar como NA:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true"></a>proc_elsoc<span class="op">$</span>pt_merit &lt;-<span class="st"> </span>car<span class="op">::</span><span class="kw">recode</span>(proc_elsoc<span class="op">$</span>sum_merit, <span class="st">&quot;0=NA&quot;</span>)</span></code></pre></div>
+</div>
+</div>
 <div id="generación-de-base-de-datos-procesada-para-el-análisis" class="section level2">
 <h2>5. Generación de base de datos procesada para el análisis</h2>
 <p>Antes de guardar la base procesada, revisamos nuevamente todas las variables con una tabla descriptiva general mediante la función <code>stargazer</code> (de la librería homónima)</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true"></a><span class="kw">stargazer</span>(proc_elsoc, <span class="dt">type=</span><span class="st">&quot;text&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true"></a><span class="kw">stargazer</span>(proc_elsoc, <span class="dt">type=</span><span class="st">&quot;text&quot;</span>)</span></code></pre></div>
 <pre><code>## 
-## ==============================================================
-## Statistic   N    Mean  St. Dev.  Min  Pctl(25) Pctl(75)  Max  
-## --------------------------------------------------------------
-## mesfuerzo 2,909 2.573   1.047   1.000  2.000    3.000   5.000 
-## mtalento  2,907 2.739   1.060   1.000  2.000    4.000   5.000 
-## ess       2,915 4.330   1.567   0.000  3.000    5.000   10.000
-## edcine    2,925 3.184   1.207   1.000  3.000    4.000   5.000 
-## sexo      2,927 0.603   0.489     0      0        1       1   
-## edad      2,927 46.091  15.287   18      33       58      88  
-## pmerit    2,898 2.654   0.969   1.000  2.000    3.500   5.000 
-## --------------------------------------------------------------</code></pre>
+## ===================================================
+## Statistic N Mean St. Dev. Min Pctl(25) Pctl(75) Max
+## ===================================================</code></pre>
 <ul>
 <li>Guardar base de datos procesada: en carpeta local <span class="sidenote">La ruta hacia su carpeta local si está trabajando en windows debería ser algo como "C:/Users/Lenovo/Clases/y aquí nombre del archivo a grabar</span></li>
 </ul>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true"></a><span class="kw">save</span>(proc_elsoc,<span class="dt">file =</span> <span class="st">&quot;[ruta hacia carpeta local en su computador]/ELSOC_ess_merit2016.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true"></a><span class="kw">save</span>(proc_elsoc,<span class="dt">file =</span> <span class="st">&quot;[ruta hacia carpeta local en su computador]/ELSOC_ess_merit2016.RData&quot;</span>)</span></code></pre></div>
 <p>En este caso, seguimos una estructura de carpetas de datos, separando en una carpeta los datos originales, y en otra (proc) los datos procesados:</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true"></a><span class="kw">save</span>(proc_elsoc,<span class="dt">file =</span> <span class="st">&quot;content/assignment/data/proc/ELSOC_ess_merit2016.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true"></a><span class="kw">save</span>(proc_elsoc,<span class="dt">file =</span> <span class="st">&quot;content/assignment/data/proc/ELSOC_ess_merit2016.RData&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="archivo-de-código" class="section level1">
@@ -1202,7 +1265,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
                 </div>
 
                 <div class="body-footer">
-                    <p>Last updated on March 18, 2021</p>
+                    <p>Last updated on April 27, 2021</p>
 
                     
 

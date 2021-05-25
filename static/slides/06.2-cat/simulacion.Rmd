@@ -1,0 +1,188 @@
+---
+class: inverse, middle, center
+
+# (Sólo si hay tiempo)
+
+--
+
+# ¿Y si simulamos un mundo?
+
+---
+
+## Demostración a partir de simulaciones
+
+Comunmente cuando se enseña estadística inferencial y se hace referencia al nivel de confianza para inferir al parametro poblacional se hace la siguiente analogía:
+
+- De 100 muestras aleatorias que tu tomes de una población, el 95% de confianza implica que en 95 muestras aproximadamente tendrías un determinado resultado.
+
+Hoy en día gracias a la potencia de los softwares, estas aseveraciones pueden ser demotradas empíricamente (más allá de nuestra fe a la teoría de probabilidades). Una de las demostraciones empíricas que podemos hacer para evaluar este tipo de resultados son las **simulaciones**
+
+
+---
+
+## Generado un mundo
+
+
+
+Vamos a simular un mundo de 200.000 casos, en donde queremos predecir la calificación o nota de un caso en un tiempo 2, en base a la nota en un tiempo 1, controlando además por sexo y por asistencia.
+
+En este mundo simulado fijamos arbitrariamente la forma en que se asocian, especificamente se van a comportar de manera lineal;
+
+$$Nota2= \beta_{0}+\beta_{1}Nota1+\beta_{2}Sexo+\beta_{3}Asistencia+\epsilon$$
+Y con los siguientes valores de coeficientes beta
+
+$$Nota2=1+0.65Nota1+0.05Sexo+0.8Asistencia+\epsilon$$
+
+---
+### Y lo simulamos en R
+
+.pull-left[.small[
+
+```{r}
+set.seed(123)
+#simulaciones
+n<-200000                        #N de casos
+nota_1<-round(rnorm(n,5.2,0.5),2)  #Nota
+sexo<-rbinom(n,1,.4)             #Sexo
+asis<-round(rnorm(n,65,15),1)#asistencia
+b0 <- 1
+b1 <- 1.95
+b2 <- 0.05
+b3 <- 0.8
+e  <- rnorm(n,0,1)
+nota_2 <- round((b0 + b1*nota_1  +
+                   b2*sexo  +
+                   b3*asis + e),2)
+
+datos<- as.data.frame(cbind(nota_1,
+                            sexo,asis,nota_2))
+
+```
+]
+]
+.pull-right[.small[
+
+```{r results='asis'}
+
+#regresión en la población
+m_poblacion <-lm(nota_2~nota_1+
+                   as.factor(sexo)+
+                   asis, data = datos)
+```
+
+```{r echo=FALSE, results='asis'}
+htmlreg(m_poblacion,
+       single.row = T, #para que la DS este en una linea
+       booktabs = TRUE, dcolumn = TRUE, doctype = FALSE)
+```
+
+```{r eval=FALSE,echo=FALSE}
+screenreg(m_poblacion,
+       single.row = T, #para que la DS este en una linea
+       booktabs = TRUE, dcolumn = TRUE, doctype = FALSE)
+
+```
+
+]
+]
+---
+
+## Muestreo
+
+Tipicamente nunca o casi nunca podríamos llegar a estos parametros poblacionales (necesitariamos un censo a las 200.000 casos). Por este motivo hacemos un muestreo que permita seleccionar de manera aleatoria a estos casos, y por teoria de probabilidades podríamos llegar a un resultado representativo de la población.
+
+### Muestreo aleatorio simple en R.
+
+Para este caso, a los datos generados haremos un muestreo alestorio simple de 500 casos (sin reemplazo), y armaremos una nueva base de datos con este muestreo.
+```{r}
+index <- sample(1:nrow(datos),
+                500, replace=F)
+muestra<-datos[index,]
+```
+
+---
+# Regresiones población vs. muestra.
+
+
+.pull-left[.small[
+```{r results='asis'}
+m_muestra <-lm(nota_2~nota_1+
+            as.factor(sexo)+
+              asis, data = muestra)
+```
+
+```{r echo=FALSE, results='asis'}
+htmlreg(list(m_poblacion,m_muestra),
+       single.row = T, #para que la DS este en una linea
+       booktabs = TRUE, dcolumn = TRUE, doctype = FALSE)
+```
+
+```{r eval=FALSE,echo=FALSE}
+screenreg(list(m_poblacion,m_muestra),
+       single.row = T, #para que la DS este en una linea
+       booktabs = TRUE, dcolumn = TRUE, doctype = FALSE)
+```
+]]
+
+.pull-left[.small[
+```{r}
+#al 90% a dos colas
+confint(m_muestra, level = 0.9)
+#al 95% a dos colas
+confint(m_muestra, level = 0.95)
+#Y al 99% a dos colas
+confint(m_muestra, level = 0.99)
+```
+
+
+]]
+
+
+---
+## El valor de un Beta en 100 muestras diferentes
+
+.pull-left[.small[
+
+```{r}
+
+beta_j<-100 #variable en la que se almacenaran los valores de beta para 100 muestras
+#funcion de regresion
+regresion<-function(muestra){
+  lm(nota_2~nota_1+
+       as.factor(sexo)+asis, data = muestra)
+}
+#loop
+for(j in 1:100){
+sampl<-datos[sample(1:nrow(datos),
+              500, replace = F),]
+beta_j[j]<-regresion(sampl)$coefficients[2]
+  }
+summary(beta_j)
+
+
+```
+Sabemos que:
+
+**Coeficiente poblacional** =1.95
+
+**Coeficiente muestral**    =1.85
+
+**Media de betas extraidas**=1.95
+
+]]
+--
+.pull-right[.small[
+```{r echo=F }
+plot(density(beta_j), main = "Distribución de Betas Simulados", ylab = "densidad")
+curve(dnorm(x,1.949895,sqrt(0.008)), add = T, lty=2) #distribución normal
+abline(v=1.949895, col="purple") #Promedo
+abline(v=1.85, col="red") #Estimación muestra
+abline(v=1.9501270, col="black") #Estimación población
+abline(v=1.68, col="blue")
+abline(v=2.02, col="blue")
+
+
+```
+
+Sabemos que para el coeficiente muestral de la nota en tiempo 1, el intervalo a un 95% de confianza se mueve entre 1.68 y 2.02. **Dentro de este intervalo se encuentra el coeficiente poblacional de 1.95**
+]]

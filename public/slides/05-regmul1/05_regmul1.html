@@ -4,6 +4,19 @@
     <title>Estadística Multivariada</title>
     <meta charset="utf-8" />
     <meta name="author" content=".small[Juan Carlos Castillo    Departamento de Sociología - UCH / COES   ]" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30}) })</script>
     <link rel="stylesheet" href="../custom_2020.css" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" type="text/css" />
   </head>
@@ -15,6 +28,22 @@ class: front
 
 
 
+
+
+
+
+
+
+<style>.shareagain-bar {
+--shareagain-foreground: rgb(255, 255, 255);
+--shareagain-background: rgba(0, 0, 0, 0.5);
+--shareagain-twitter: none;
+--shareagain-facebook: none;
+--shareagain-linkedin: none;
+--shareagain-pinterest: none;
+--shareagain-pocket: none;
+--shareagain-reddit: none;
+}</style>
 
 
 &lt;!---
@@ -30,17 +59,18 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2020
+## 1er Sem 2021
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 
 
 .pull-right[
 .right[
+&lt;br&gt;
+## .purple[Sesión 5: Regresión múltiple (1)]
 ![:scale 70%](https://multivariada.netlify.com/img/hex_multiva.png)
-&lt;br&gt;
-&lt;br&gt;
-## Sesión 5: Regresión múltiple (1)
+
+
 ]
 
 ]
@@ -99,7 +129,6 @@ Donde
 ---
 # Descomponiendo Y
 
-Conceptualmente:
 
 `$$SS_{tot}=SS_{reg} + SS_{error}$$`
 .center[
@@ -131,35 +160,75 @@ class: inverse
 - El **ajuste** del modelo a los datos se relaciona con la proporción de residuos generados por el modelo respecto de la varianza total de Y (R2)
 
 ---
-class: roja, bottom, center
+class: roja left
 
-.pull-right[
-# Introducción a regresión múltiple
+.left[
+
+# Introducción
+#a regresión múltiple
 ]
 
 ---
 # Estadística multivariada
 
-- Hacia la **explicación** de los fenómenos sociales
+- Hacia la **explicación** de los fenómenos sociales  
 
-![:scale 55%](../01-programa/simple.png)
+&lt;br&gt;
+.center[
+![:scale 55%](regmod1.png)
+]
+---
+# Estadística multivariada
 
+- Hacia la **explicación** de los fenómenos sociales  
+
+.center[
+![:scale 55%](regmod2.png)
+]
+
+`$$\widehat{Y}=\beta_{0} +\beta_{1}X_{1}$$`
+ 
+
+ 
 ---
 # Estadística multivariada
 
 - Hechos sociales: **multicausales**
 
-![:scale 55%](../01-programa/multiple.png)
+.center[
+![:scale 55%](regmod3.png)
+]
+
+---
+# Estadística multivariada y regresión múltiple
+
+- Hechos sociales: **multicausales**
+
+.center[
+![:scale 55%](regmod4.png)
+]
+
+`$$\widehat{Y}=\beta_{0} +\beta_{1}X_{1} + \beta_{2}X_{2}+ \beta_{3}X_{3}$$`
+---
+class: inverse, middle, center
+
+.large[
+# El modelo de regresión es un modelo .red[SUMATIVO]
+
+]
+
 ---
 # Problema de la multicausalidad
 
 - posibilidad de predictores correlacionados 
 
-![:scale 55%](multicausal.png)
 
+.center[
+![:scale 55%](regmod5.png)
+]
 
 ---
-# Problema de la multicausalidad
+# Problema de la multicausalidad 
 
 `\begin{align*}
 (1) Y(ingreso) &amp;=\beta_0 + \beta_1(educación) \\ 
@@ -167,18 +236,14 @@ class: roja, bottom, center
 (3) Y(ingreso) &amp;=\beta_0 + \beta_1(educación) + \beta_2(inteligencia) \\
 \end{align*}`
 
+--
+
+
 .center[
 ## ¿Qué sucedería si la educación estuviera relacionada con la inteligencia? 
 -&gt; estaríamos sobreestimando el ingreso al hacer un modelo sumativo "puro"
 ]
 
-
----
-# Regresión múltiple
-
-### En simple: modelo de regresión con más de un predictor o variable independiente
-
-.center[![:scale 65%](regmulwool.png)]
 
 
 ---
@@ -225,7 +290,7 @@ class: roja, bottom, center
 ]
 
 ---
-class:roja, middle, center
+class:roja
 
 
 
@@ -233,7 +298,11 @@ class:roja, middle, center
 
 
 ---
-# Concepto de control
+class: inverse, middle, center
+
+# .large[.yellow[Concepto de .red[control]]]
+
+---
 
 ## 1. Control por diseño
 
@@ -248,7 +317,7 @@ class:roja, middle, center
 
 ## 2. Control estadístico
 
-- En datos observacionales no hay (en principio) control por diseño, por lo que se recurre al **control estadístico**
+- En datos observacionales de encuestas en general no hay  control por diseño, por lo que se recurre al **control estadístico**
 
 --
 
@@ -277,14 +346,12 @@ class:roja, middle, center
 ]
 
 
-
-
 ---
 class: inverse, center, middle, exclude
 
 # POR LO TANTO
 
-## Un aspecto **clave** de la regresión múltiple, tanto conceptual como estadísticamente, tiene que ver con el control de la CORRELACION ENTRE PREDICTORES O VARIABLES INDEPENDIENTES (X)
+## Un aspecto **clave** de la regresión múltiple, tanto conceptual como estadísticamente, tiene que ver con el .yellow[control de la CORRELACION] ENTRE .red[PREDICTORES] O VARIABLES INDEPENDIENTES (X)
 
 ---
 ### Simulación 1: sin correlación relevante entre predictores
@@ -306,78 +373,77 @@ class: inverse, center, middle, exclude
 ---
 ### Simulación 1: sin correlación relevante entre predictores
 .small[
-
-&lt;table cellspacing="0" align="center" style="border: none;"&gt;
-&lt;caption align="bottom" style="margin-top:0.3em;"&gt; &lt;/caption&gt;
+&lt;table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;"&gt;
+&lt;caption&gt; &lt;/caption&gt;
+&lt;thead&gt;
 &lt;tr&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 1&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 2&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 3&lt;/b&gt;&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 1&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 2&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 3&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr style="border-top: 1px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(Intercept)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;-0.15&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;-0.15&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;-0.16&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(Intercept)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;-0.15&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;-0.15&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;-0.16&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.09)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.10)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.09)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.09)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.10)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.09)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;educacion&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.40&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.40&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;educacion&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.40&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.40&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.10)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.10)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.10)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.10)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;inteligencia&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.30&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.31&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;inteligencia&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.30&lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.31&lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.10)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.10)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style="border-top: 1px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.13&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.08&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.21&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.10)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.10)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;Adj. R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.12&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.07&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.20&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr style="border-bottom: 2px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;Num. obs.&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;100&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;100&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;100&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;
 &lt;tr&gt;
-&lt;td style="border-top: 1px solid black;"&gt;R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.13&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.08&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.21&lt;/td&gt;
+&lt;td style="font-size: 0.8em;" colspan="4"&gt;&lt;sup&gt;***&lt;/sup&gt;p &amp;lt; 0.001; &lt;sup&gt;**&lt;/sup&gt;p &amp;lt; 0.01; &lt;sup&gt;*&lt;/sup&gt;p &amp;lt; 0.05&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;Adj. R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.12&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.07&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.20&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;Num. obs.&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;100&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;100&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;100&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;RMSE&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;0.94&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;0.97&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;0.90&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;" colspan="5"&gt;&lt;span style="font-size:0.8em"&gt;&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;p &amp;lt; 0.001, &lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;p &amp;lt; 0.01, &lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;p &amp;lt; 0.05&lt;/span&gt;&lt;/td&gt;
-&lt;/tr&gt;
+&lt;/tfoot&gt;
 &lt;/table&gt;
 ]
 ---
@@ -400,78 +466,77 @@ class: inverse, center, middle, exclude
 ### Simulación 2: con correlación entre predictores
 
 .small[
-
-&lt;table cellspacing="0" align="center" style="border: none;"&gt;
-&lt;caption align="bottom" style="margin-top:0.3em;"&gt; &lt;/caption&gt;
+&lt;table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;"&gt;
+&lt;caption&gt; &lt;/caption&gt;
+&lt;thead&gt;
 &lt;tr&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 1&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 2&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 3&lt;/b&gt;&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 1&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 2&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 3&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr style="border-top: 1px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(Intercept)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;-0.15&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;-0.15&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;-0.16&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(Intercept)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;-0.15&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;-0.15&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;-0.16&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.09)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.10)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.09)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.09)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.10)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.09)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;educacion&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.40&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.35&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;educacion&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.40&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.35&lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.10)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.11)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.10)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.11)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;inteligencia&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.30&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.18&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;inteligencia&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.30&lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.18&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.10)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.11)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style="border-top: 1px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.13&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.08&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.16&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.10)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.11)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;Adj. R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.12&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.07&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.14&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr style="border-bottom: 2px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;Num. obs.&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;100&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;100&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;100&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;
 &lt;tr&gt;
-&lt;td style="border-top: 1px solid black;"&gt;R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.13&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.08&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.16&lt;/td&gt;
+&lt;td style="font-size: 0.8em;" colspan="4"&gt;&lt;sup&gt;***&lt;/sup&gt;p &amp;lt; 0.001; &lt;sup&gt;**&lt;/sup&gt;p &amp;lt; 0.01; &lt;sup&gt;*&lt;/sup&gt;p &amp;lt; 0.05&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;Adj. R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.12&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.07&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.14&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;Num. obs.&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;100&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;100&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;100&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;RMSE&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;0.94&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;0.97&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;0.93&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;" colspan="5"&gt;&lt;span style="font-size:0.8em"&gt;&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;p &amp;lt; 0.001, &lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;p &amp;lt; 0.01, &lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;p &amp;lt; 0.05&lt;/span&gt;&lt;/td&gt;
-&lt;/tr&gt;
+&lt;/tfoot&gt;
 &lt;/table&gt;
 ]
 
@@ -480,156 +545,154 @@ class: inverse, center, middle, exclude
 
 .pull-left[
 .small[
-
-&lt;table cellspacing="0" align="center" style="border: none;"&gt;
-&lt;caption align="bottom" style="margin-top:0.3em;"&gt; &lt;/caption&gt;
+&lt;table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;"&gt;
+&lt;caption&gt; &lt;/caption&gt;
+&lt;thead&gt;
 &lt;tr&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 1&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 2&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 3&lt;/b&gt;&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 1&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 2&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 3&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr style="border-top: 1px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(Intercept)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;-0.15&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;-0.15&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;-0.16&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(Intercept)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;-0.15&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;-0.15&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;-0.16&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.09)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.10)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.09)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.09)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.10)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.09)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;educacion&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.40&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.40&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;educacion&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.40&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.40&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.10)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.10)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.10)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.10)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;inteligencia&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.30&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.31&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;inteligencia&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.30&lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.31&lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.10)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.10)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style="border-top: 1px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.13&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.08&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.21&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.10)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.10)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;Adj. R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.12&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.07&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.20&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr style="border-bottom: 2px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;Num. obs.&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;100&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;100&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;100&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;
 &lt;tr&gt;
-&lt;td style="border-top: 1px solid black;"&gt;R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.13&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.08&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.21&lt;/td&gt;
+&lt;td style="font-size: 0.8em;" colspan="4"&gt;&lt;sup&gt;***&lt;/sup&gt;p &amp;lt; 0.001; &lt;sup&gt;**&lt;/sup&gt;p &amp;lt; 0.01; &lt;sup&gt;*&lt;/sup&gt;p &amp;lt; 0.05&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;Adj. R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.12&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.07&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.20&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;Num. obs.&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;100&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;100&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;100&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;RMSE&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;0.94&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;0.97&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;0.90&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;" colspan="5"&gt;&lt;span style="font-size:0.8em"&gt;&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;p &amp;lt; 0.001, &lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;p &amp;lt; 0.01, &lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;p &amp;lt; 0.05&lt;/span&gt;&lt;/td&gt;
-&lt;/tr&gt;
+&lt;/tfoot&gt;
 &lt;/table&gt;
 ]
 ]
 
 .pull-right[
 .small[
-
-&lt;table cellspacing="0" align="center" style="border: none;"&gt;
-&lt;caption align="bottom" style="margin-top:0.3em;"&gt; &lt;/caption&gt;
+&lt;table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;"&gt;
+&lt;caption&gt; &lt;/caption&gt;
+&lt;thead&gt;
 &lt;tr&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 1&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 2&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 3&lt;/b&gt;&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 1&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 2&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 3&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr style="border-top: 1px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(Intercept)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;-0.15&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;-0.15&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;-0.16&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(Intercept)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;-0.15&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;-0.15&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;-0.16&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.09)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.10)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.09)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.09)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.10)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.09)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;educacion&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.40&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.35&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;educacion&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.40&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.35&lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.10)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.11)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.10)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.11)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;inteligencia&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.30&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.18&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;inteligencia&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.30&lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.18&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.10)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(0.11)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style="border-top: 1px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.13&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.08&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.16&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.10)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(0.11)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;Adj. R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.12&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.07&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.14&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr style="border-bottom: 2px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;Num. obs.&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;100&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;100&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;100&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;
 &lt;tr&gt;
-&lt;td style="border-top: 1px solid black;"&gt;R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.13&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.08&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.16&lt;/td&gt;
+&lt;td style="font-size: 0.8em;" colspan="4"&gt;&lt;sup&gt;***&lt;/sup&gt;p &amp;lt; 0.001; &lt;sup&gt;**&lt;/sup&gt;p &amp;lt; 0.01; &lt;sup&gt;*&lt;/sup&gt;p &amp;lt; 0.05&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;Adj. R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.12&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.07&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.14&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;Num. obs.&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;100&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;100&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;100&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;RMSE&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;0.94&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;0.97&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;0.93&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;" colspan="5"&gt;&lt;span style="font-size:0.8em"&gt;&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;p &amp;lt; 0.001, &lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;p &amp;lt; 0.01, &lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;p &amp;lt; 0.05&lt;/span&gt;&lt;/td&gt;
-&lt;/tr&gt;
+&lt;/tfoot&gt;
 &lt;/table&gt;
 ]
 
@@ -638,27 +701,25 @@ class: inverse, center, middle, exclude
 ---
 # Estimación de parámetros y control estadístico
 
-- Los coeficientes de regresión (X) no alteran su valor en los modelos en ausencia de correlación entre ellos (Ejemplo 1)
+- Los coeficientes de regresión `\(\beta\)` no alteran su valor en los modelos en ausencia de correlación entre predictores `\(X\)` (Ejemplo 1)
 
 --
 
-- Si hay correlación entre predictores, el valor de los coeficientes de regresión será distinto en modelos simples y en modelos múltiples
+- Si hay correlación entre predictores, el valor de los coeficientes de regresión será distinto en modelos simples y en modelos múltiples -&gt; **control estadístico**
 
 --
 
 - Por ello, en regresión múltiple se habla de coeficientes de regresión **parciales**
 
---
 
-- Esta diferencia se relaciona con el concepto de **control estadístico**
 
 
 ---
 # Estimación de parámetros y control estadístico
 
-- Ejemplo 2, modelo 3: El ingreso aumenta en 0.4 puntos por cada nivel adicional de educación, **controlando por experiencia**. O también ...
+- Ejemplo 2, modelo 3: El ingreso aumenta en 0.4 puntos por cada nivel adicional de educación, **controlando por inteligencia**. O también ...
 
-      - manteniendo la experiencia _constante_
+      - manteniendo la inteligencia _constante_
 
       - _ceteris paribus_
 
@@ -684,7 +745,7 @@ class: front
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2020
+## 1er Sem 2021
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 
@@ -696,10 +757,12 @@ class: front
 ]
 
 ]
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script src="https://multinivel.netlify.com/docpres/xaringan_custom/macros.js"></script>
+<script src="../macros.js"></script>
 <script>var slideshow = remark.create({
 "ratio": "16:9",
 "highlightStyle": "github",
@@ -788,6 +851,33 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
+<style>
+.logo {
+  background-image: url("../hex_multiva_white.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 16.3em;
+  right: 31em;
+  width: 110px;
+  height: 70px;
+  z-index: 0;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.title-slide)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="logo"></div>';
+  });
+</script>
 
 <script>
 slideshow._releaseMath = function(el) {

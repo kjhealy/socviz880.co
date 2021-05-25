@@ -4,6 +4,11 @@
     <title>Estadística Multivariada</title>
     <meta charset="utf-8" />
     <meta name="author" content=".small[Juan Carlos Castillo    Departamento de Sociología - UCH / COES   ]" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30}) })</script>
     <link rel="stylesheet" href="../custom_2020.css" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" type="text/css" />
   </head>
@@ -15,6 +20,21 @@ class: front
 
 
 
+
+
+
+
+
+<style>.shareagain-bar {
+--shareagain-foreground: rgb(255, 255, 255);
+--shareagain-background: rgba(0, 0, 0, 0.5);
+--shareagain-twitter: none;
+--shareagain-facebook: none;
+--shareagain-linkedin: none;
+--shareagain-pinterest: none;
+--shareagain-pocket: none;
+--shareagain-reddit: none;
+}</style>
 
 
 &lt;!---
@@ -30,17 +50,17 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2020
-## [multivariada.netlify.com](https://multivariada.netlify.com)
+## 1er Sem 2021
+## [.purple[multivariada.netlify.com]](https://multivariada.netlify.com)
 ]
 
 
 .pull-right[
 .right[
+&lt;br&gt;
+## Sesión 6: .purple[Regresión múltiple (2)]
 ![:scale 70%](https://multivariada.netlify.com/img/hex_multiva.png)
-&lt;br&gt;
-&lt;br&gt;
-## Sesión 6: Regresión múltiple (2)
+
 ]
 
 ]
@@ -93,54 +113,31 @@ class: roja, middle, right
 ]
 
 ---
-# Estadística multivariada
-
-- Hechos sociales: **multicausales**
-
-![:scale 55%](../05-regmul1/multicausal.png)
-
----
-# Regresión múltiple: más de 1 predictor
-
-`$$\widehat{Y}=b_{0}+b_{1}X_{1}+b_{2}X_{2}+b_{3}X_{3}+...+b_{k}X_{k}$$`
-
---
-
-.center[![:scale 50%](../images/regmul.png)]
-
----
-# Regresión múltiple: más de 1 predictor
-
-- es un modelo **SUMATIVO**
-
-`$$\widehat{Y}=b_{0}+b_{1}X_{1}+b_{2}X_{2}+b_{3}X_{3}+...+b_{k}X_{k}$$`
-
-- para que esta suma tenga sentido, se deben descontar los aportes "duplicados" o que se traslapan entre predictores
-
-- es decir, si los predictores correlacionan, se debe **remover** la parte de la variable que correlacinoa con la otra variable
-
-  - ## = Parcialización
-
-
-
----
-# Regresión múltiple: más de 1 predictor
-
+# Regresión múltiple
 
 .pull-left[
-.center[![:scale 60%](../images/ingresoeduc.png)]
-.small[
-`$$\widehat{Ingreso}=b_0+b_1(Educ)$$`
+&lt;br&gt;
+### - Más de un predictor (x)
+### - Modelo sumativo
 ]
-]
-
---
 
 .pull-right[
-.center[![:scale 60%](../05-regmul1/ingresoeducexp.png)]
-.small[
-`$$\widehat{Ingreso}=b_0+b_1(Educ)+b_2(Int)$$`
-]]
+
+.center[
+![](../05-regmul1/regmod4.png)
+]
+]
+
+`$$\widehat{Y}=\beta_{0} +\beta_{1}X_{1} + \beta_{2}X_{2}+ \beta_{3}X_{3}+...+\beta_{k}X_{k}$$`
+
+---
+# Regresión múltiple y predictores correlacionados 
+
+.center[
+![:scale 80%](corr-pred.png)
+]
+
+
 
 ---
 .pull-left-wide[
@@ -161,12 +158,8 @@ class: roja, middle, right
 ]
 
 ---
-# Ejemplo
 
-.center[![](../images/paperclasemedia.png)]
 
-.small[Castillo, J., Miranda, D. &amp; Madero, I. (2013) Todos somos de clase media: Sobre el estatus social subjetivo en Chile. _Latin American Research Review_ 48(1) 155-173
-]
 
 
 ---
@@ -191,7 +184,7 @@ class: roja, middle, center
 
 .medium[
 
-
+ 
 
 ```
 ##    ID    ingr educ intelig
@@ -223,7 +216,7 @@ class: roja, middle, center
 ---
 # Ejemplo: correlaciones
 
-.pull-left[.small[
+.pull-left[.medium[
 
 ```
 ##         ingr educ intelig
@@ -512,7 +505,7 @@ Estimando valor predicho según nuestro modelo:
 
 - sabemos que el valor observado de educación para el caso 1 es igual a **2**
 
-- por lo tanto, el residuo para este caso (valor observado - valor estimado `\(=2-3.196=-1.2\)`
+- por lo tanto, el residuo para este caso (valor observado - valor estimado `\(=2-3.196=-1.196\)`
 
 
 ---
@@ -850,7 +843,7 @@ class: front
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2020
+## 1er Sem 2021
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 
@@ -862,6 +855,8 @@ class: front
 ]
 
 ]
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -954,6 +949,33 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
+<style>
+.logo {
+  background-image: url("../hex_multiva_white.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 16.3em;
+  right: 31em;
+  width: 110px;
+  height: 70px;
+  z-index: 0;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.title-slide)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="logo"></div>';
+  });
+</script>
 
 <script>
 slideshow._releaseMath = function(el) {
