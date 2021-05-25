@@ -17,7 +17,7 @@ output:
 menu:
   class:
     parent: Practicas
-    weight: 1
+    weight: 7
 type: docs
 weight: 1
 editor_options:
@@ -313,7 +313,7 @@ Si observamos la tabla de arriba, vemos que las estimaciones para el modelo 4 y 
 
 #
 
-# Video Tutorial 
+# Video Tutorial
 <iframe width="560" height="315" src="https://www.youtube.com/embed/NVNrGtNMmbQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
