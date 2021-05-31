@@ -324,8 +324,5 @@ Si observamos la tabla de arriba, vemos que las estimaciones para el modelo 4 y 
 </iframe>
 
 
-# Reporte de progreso
-
-Completar el reporte de progreso correspondiente a esta práctica []
 
 # Foro práctica 6.2
