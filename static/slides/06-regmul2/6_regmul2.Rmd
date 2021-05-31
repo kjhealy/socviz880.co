@@ -6,7 +6,7 @@ output:
   xaringan::moon_reader:
     includes:
       after_body: "../insert-logo.html"  
-    css: ["../custom_2020.css","https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"] # "../ninjutsu.css", paraflipbook
+    css: ["custom_2020.css","https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"] # "../ninjutsu.css", paraflipbook
     lib_dir: libs
     nature:
       ratio: '16:9'

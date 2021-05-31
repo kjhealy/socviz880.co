@@ -1,8 +1,8 @@
 ---
-title: "7: Categóricos / inferencia (1)"
-linktitle: "7: Categóricos / inferencia (1)"
-date: "2020-07-03"
-class_date: "2020-07-03"
+title: "7: Inferencia"
+linktitle: "7: Inferencia"
+date: "2021-05-28"
+class_date: "2021-05-28"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
@@ -12,7 +12,7 @@ output:
     toc: true
 menu:
   class:
-    parent: Contenidos
+    parent: Clases
     weight: 1
 type: docs
 weight: 1
@@ -24,15 +24,15 @@ editor_options:
 
 ## Documento presentación
 
-<span class="sidenote">Para ver en pantalla completa click [**aquí**](/slides/07-catinf/7_catinf.html). Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. </span>
+<span class="sidenote">Para ver en pantalla completa click [**aquí**](/slides/07-inferencia/7_inferencia.html). Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. </span>
 
-<iframe src=/slides/07-catinf/7_catinf.html height="550" width=100% allowfullscreen="true">
+<iframe src=/slides/07-inferencia/7_inferencia.html height="550" width=100% allowfullscreen="true">
 </iframe>
 
 ## Video de la clase
 
 <div style="width: 100%; height: 600px; overflow: hidden;">
 <video  style="width: 100%;" controls>
-<source src="https://www.dropbox.com/s/l214pv5ht84qifh/7catinf.mp4?raw=1" type="video/mp4">
+<source src="https://www.dropbox.com/s/wefs5227l3w2ik6/07-inferencia.webm?raw=1" type="video/mp4">
 </video>
 </div>
