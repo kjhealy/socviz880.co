@@ -269,11 +269,11 @@ remotes::install_github("datalorax/equatiomatic")
 Los datos a utilizar corresponden a resultados de pruebas de conocimiento en distintas areas de 200 estudiantes de educación secundaria.
 
 ```{r echo=FALSE }
-data <-read_excel("content/assignment/data/hsb2.xls")
+data <-read.csv("content/assignment/data/hsb2.csv")
 ```
 
 ```{r eval=FALSE}
-data <-read_excel("https://multivariada.netlify.app/assignment/data/hsb2.xls")
+data <- read.csv("https://multivariada.netlify.app/assignment/data/hsb2.csv")
 ```
 
 ## Ajustes y descriptivos
