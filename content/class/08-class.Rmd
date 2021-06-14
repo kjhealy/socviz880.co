@@ -31,4 +31,4 @@ editor_options:
 
 ## Video de la clase
 
-<iframe src=" " width="940" height="520"></iframe>
+<iframe src="https://www.dropbox.com/s/s9gv3x3eoxxk2ho/08-logit1.webm?raw=1 " width="940" height="520"></iframe>

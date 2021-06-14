@@ -189,8 +189,11 @@ El OR permite expresar **en un número** la relación entre variables categóric
 
 Sin embargo, los odds también poseen algunas limitaciones por resolver y que requieren su transformación para ajustarlos al modelo de regresión. Esta transformación es el **logaritmo de los odds o logit** (de ahí el nombre de regresión logística), tema del siguiente práctico.
 
+# Video tutorial
 
-## Referencias
+<iframe width="560" height="315" src="https://www.youtube.com/embed/GYo5Xyoc7zM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+# Referencias
 
 [Camarero et al (2017) Regresión logística: Fundamentos y aplicación a la investigación sociológica (p.1-29)](https://multivariada.netlify.app/docs/lecturas/Camarero_Odd_Ratio_LogitV2.pdf)
 
