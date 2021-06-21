@@ -445,7 +445,12 @@ plot_grid(list(plot02,plot01),tags = c(" "," "),
           margin = c(0,0,0,0))
 ```
 
-## Referencias
+# Video tutorial
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dmVmTO68MfE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+# Referencias
 
 [Camarero et al (2017) Regresión logística: Fundamentos y aplicación a la investigación sociológica (p.30-52)](https://multivariada.netlify.app/docs/lecturas/Camarero_Odd_Ratio_LogitV2.pdf)
 
