@@ -1,0 +1,471 @@
+---
+# title: "Práctica 11: Transformación de variables y supuestos de regresión"
+subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
+author: "Julio César Iturra Sanhueza"
+#linktitle: "Práctica 11: Transformación de variables y supuestos de regresión"
+date: "2020-08-21"
+class_date: "2020-08-14"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+    highlight: tango
+    number_sections: FALSE
+menu:
+  class:
+    parent: Practicas
+    weight: 11
+type: docs
+weight: 1
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=FALSE, warning=FALSE, message=FALSE)
+knitr::opts_knit$set(root.dir ="../../")
+Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
+options(knitr.kable.NA = '')
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position = c('bottom', 'right')) # chunks con botón de copiar
+```
+
+# Objetivo
+
+La siguiente práctica tiene el objetivo de introducir a los estudiantes en los **supuestos y robustez del modelo de regresión**. Por esta razón, volveremos a algunos de los contenidos previos relacionados con la estimación, análisis de residuos y ajuste.  Para ello, utilizaremos la base de datos de la tercera ola del [*Estudio Longitudinal Social del Chile 2018*](https://doi.org/10.7910/DVN/H8OVMF) con el objetivo de analizar los determinantes de la **Participación Ciudadana.**
+
+
+# Librerías
+
+```{r}
+pacman::p_load(dplyr, summarytools, sjPlot,texreg, corrplot,ggplot2,ggfortify,sandwich,lmtest,sjlabelled)
+```
+
+```{r eval=FALSE, include=FALSE}
+remotes::install_github("leifeld/texreg") # Se debe usar esta version para agregar deviance test y pseudo r2
+```
+
+# Datos
+
+El Estudio Longitudinal Social del Chile  (ENACOES 2014), único en Chile y América Latina, consiste en encuestar a casi 3.000 chilenos, anualmente, a lo largo de una década. ELSOC ha sido diseñado para evaluar la manera cómo piensan, sienten y se comportan los chilenos en torno a un conjunto de temas referidos al conflicto y la cohesión social en Chile. La población objetivo son hombres y mujeres entre 15 y 75 años de edad con un alcance nacional, donde se obtuvo una muestra final de **3748** casos en el año 2018.
+
+```{r echo=TRUE}
+load("content/assignment/data/elsoc18p11.RData")
+```
+
+```{r eval=FALSE}
+#Cargamos la base de datos desde internet
+load(url("https://multivariada.netlify.com/assignment/data/elsoc18p11.RData"))
+```
+
+## Explorar datos
+
+A partir de la siguiente tabla se obtienen estadísticos descriptivos que luego serán relevantes para realizar las transformaciones y análisis posteriores.
+
+```{r eval=FALSE}
+view(dfSummary(elsoc, headings = FALSE, method = "render"))
+```
+
+```{r echo=FALSE}
+print(dfSummary(elsoc, headings = FALSE,), method = 'render')
+```
+
+```{r}
+view_df(elsoc,max.len = 50)
+```
+
+
+# Medición y transformación de variables
+
+## Creación de índices
+
+En ELSOC existen cuatro preguntas referentes a la participación política o ciudadana, donde se le pregunta a las personas por la frecuencia en que han participado de determinados eventos vinculados a su rol como ciudadanos. Para esto, se emplearon escalas likert de 5 categorías para medir dicha participación.
+
+```{r, fig.width=10}
+plot_stackfrq(elsoc[,c("part01","part02","part03","part04")]) + theme(legend.position="bottom")
+```
+
+En la figura anterior, podemos ver que existe un alto porcentaje de personas que declaran no haber participado nunca en alguna de estas expresiones de la participación ciudadana. En este sentido, para la creación de un índice o medida agrupada, nos interesa saber si existe algún grado de relación entre nuestros indicadores. Para esto, lo que tradicionalmente se realiza es realizar un análisis de correlación entre los indicadores.
+
+```{r}
+corrplot.mixed(cor(select(elsoc,part01,part02,part03,part04),
+                   use = "complete.obs"))
+```
+
+La matriz de correlación nos indica que existen correlaciones moderadas entre los indicadores, donde 0.25 es la más baja y 0.44 la más alta. Es muy importante realizar este paso, debido a que si nuestros indicadores no correlacionan en absoluto, es posible que estemos frente a un atributo distinto. Por lo tanto, sería poco adecuado realizar la construcción de un índice que busque representar un fenómeno o constructo "común" a través de indicadores que no poseen ningún grado de correlación.
+
+En nuestro caso, hemos decidido elaborar un **índice sumatorio** a través de la suma de las respuestas de cada individuo. Para ello emplearemos las funciones `mutate` (para crear una nueva variable) y `rowwise()` (para sumar los valores de varias filas) de la librería `dplyr`.
+
+```{r}
+elsoc <- elsoc %>% rowwise() %>% mutate(partpol = sum(part01,part02,part03,part04, na.rm = T))
+```
+
+Esta sintaxis genera un índice sumativo en la variable `partpol`. En caso de índice promedio, simplemente remplazar `sum` por `mean`
+
+```{r echo=TRUE, results='asis'}
+descr(elsoc$partpol,style = "rmarkdown",stats = "common", transpose = T,headings = F)
+plot_frq(data = elsoc$partpol,type = "hist",show.mean = T)
+```
+
+Vemos que el índice sumatorio posee valores que van desde 4 hasta 20, con una media de 5,47 y una mediana de 4. Además, vemos algo que ya se había identificado en el gráfico descriptivo de cada indicador por separado, el hecho que existe una proporción importante de personas que respondieron "nunca" en los cuatro indicadores, los cuales son representados por una alta frecuencia de 4 en el histograma. Con esto hemos creado nuestro índice sumatorio de Participación Política.
+
+_Sobre tratamiento de casos perdidos en el índice_
+
+Partamos viendo lo siguiente
+
+```{r}
+elsoc %>% select(part01,part02,part03,part04,partpol) %>% filter(is.na(part04))
+```
+
+Acá se muestra una selección de filtrados con NAs en una de las variables (part04), y la información de las variables que componen el índice y la variable partpol, que es el índice sumativo que generamos. Vemos que en el caso que todos los valores de las variables sean NA se genera el valor 0, de otra manera se suma la información disponible. Ante esto se abren una serie de alternativas:
+
+a. dejar así el valor 0, considerando que puede distorsionar nuestros resultados
+
+b. reemplazar el valor 0 en esta variable por NA
+
+```{r}
+elsoc$partpol <- car::recode(elsoc$partpol, "0=NA")
+
+# Resultado
+elsoc %>% select(part01,part02,part03,part04,partpol) %>% filter(is.na(part04))
+```
+
+c. no sumar si es que hay algún caso perdido en la fila (no muy recomendable, ya que se generan muchos casos perdidos). Para esto, simplemente omitir el `na.rm = T` de la sintaxis de generación original
+
+```{r}
+elsoc <- elsoc %>% rowwise() %>% mutate(partpol = sum(part01,part02,part03,part04))
+elsoc %>% select(part01,part02,part03,part04,partpol) %>% filter(is.na(part04))
+```
+
+## Recuperar casos perdidos
+
+Es común que en las encuestas sociales cierta variables posean una alta proporción de datos perdidos. Un ejemplo común es en el reporte de los ingresos de los hogares o individuos. Esto generalmente puede generarse por características de la persona (p.ej. desempleado, estudiante) o por deseabilidad social (personas de altos ingresos desisten de reportar). En el caso de ELSOC, existen dos estrategias para solicitar que las personas reporten sus ingresos. La primera consiste en preguntar directamente por el monto en pesos chilenos de los ingresos totales del hogar. Alternativamente, si la persona no reporta los ingresos, se le presenta la posibilidad de ubicar los ingresos del hogar en tramos (Por ejemplo "De \$560.001 a \$610.000 mensuales liquidos"). De esta manera, si existen datos perdidos en la primera, se emplea la segunda pregunta para tener un nivel aproximado del ingreso del hogar.
+
+```{r echo=TRUE, results='asis'}
+descr(elsoc$inghogar,style = "rmarkdown",stats = "common", transpose = T,headings = F)
+```
+
+```{r, results='asis'}
+sjmisc::frq(elsoc$inghogar_t,
+            out = "txt",
+            show.na = T) %>% knitr::kable()
+```
+
+
+Si observamos la tabla de descriptivos para la variable ingreso del hogar (`inghogar`), tenemos un porcentaje 17,82% de datos perdidos. Por esta razón, emplearemos los datos disponibles en `inghogar_t` para recuperar información en los ingresos del hogar.
+
+La estrategia posee los siguientes pasos:
+
+1. Calcular la media del tramo reportado.
+2. En el caso de que la persona no haya reportado el monto de los ingresos del hogar, remplazamos este valor perdido por el valor de la media del tramo, en el caso de estar disponible.
+3. Comparamos la variable original con la nueva variable que posee información recuperada.
+
+**Paso 1: Calcular la media por cada tramo**
+
+```{r}
+elsoc$inghogar_t[elsoc$inghogar_t==1] <-(       220000 )    # [1]  "Menos de $220.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==2] <-(220001 +280000 )/2 # [2]  "De $220.001 a $280.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==3] <-(280001 +330000 )/2 # [3]  "De $280.001 a $330.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==4] <-(330001 +380000 )/2 # [4]  "De $330.001 a $380.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==5] <-(380001 +420000 )/2 # [5]  "De $380.001 a $420.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==6] <-(420001 +470000 )/2 # [6]  "De $420.001 a $470.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==7] <-(470001 +510000 )/2 # [7]  "De $470.001 a $510.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==8] <-(510001 +560000 )/2 # [8]  "De $510.001 a $560.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==9] <-(560001 +610000 )/2 # [9]  "De $560.001 a $610.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==10]<-(610001 +670000 )/2 # [10] "De $610.001 a $670.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==11]<-(670001 +730000 )/2 # [11] "De $670.001 a $730.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==12]<-(730001 +800000 )/2 # [12] "De $730.001 a $800.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==13]<-(800001 +890000 )/2 # [13] "De $800.001 a $890.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==14]<-(890001 +980000 )/2 # [14] "De $890.001 a $980.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==15]<-(980001 +1100000)/2 # [15] "De $980.001 a $1.100.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==16]<-(1100001+1260000)/2 # [16] "De $1.100.001 a $1.260.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==17]<-(1260001+1490000)/2 # [17] "De $1.260.001 a $1.490.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==18]<-(1490001+1850000)/2 # [18] "De $1.490.001 a $1.850.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==19]<-(1850001+2700000)/2 # [19] "De $1.850.001 a $2.700.000 mensuales liquidos"
+elsoc$inghogar_t[elsoc$inghogar_t==20]<-(2700000)           # [20] "Mas de $2.700.000 a mensuales liquidos"
+```
+
+
+**Paso 2: En el caso de no tener información, remplazar por la media del tramo**
+
+```{r}
+elsoc$inghogar_i <- ifelse(test = (is.na(elsoc$inghogar)), #¿existen NA en ingresos?
+                           yes = elsoc$inghogar_t,         #VERDADERO, remplazar con la media del tramo
+                           no = elsoc$inghogar)            #FALSE, mantener la variable original.
+
+elsoc$inghogar_i <- set_label(elsoc$inghogar_i,"Ingreso total del hogar (imputada)")
+```
+
+**Paso 3: Comparamos la variable original con la nueva**
+
+```{r echo=TRUE}
+sjmisc::descr(elsoc[,c("inghogar","inghogar_i")],
+              show =c("label", "n", "NA.prc", "mean", "md","sd")) %>% knitr::kable(digits = 2)
+```
+
+Vemos que pasamos de tener 17,82% de datos perdidos a un 5,1%, es decir recuperamos un 12,72% de los casos que antes tenían datos perdidos en la variable ingreso. Con estos datos podemos calcular el ingreso per capita del hogar, empleando la variable habitantes del hogar (`tamhogar`).
+
+```{r}
+elsoc$ing_pcap <- elsoc$inghogar_i/elsoc$tamhogar
+elsoc$ing_pcap <- set_label(elsoc$ing_pcap,"Ingreso per cápita del hogar")
+```
+
+```{r, results='asis'}
+sjmisc::descr(elsoc[,c("inghogar","inghogar_i","tamhogar","ing_pcap")],
+              show =c("label", "n", "NA.prc", "mean", "md","sd")) %>% knitr::kable(digits = 2)
+```
+
+Vemos que la variable `tamhogar` posee un 0,19% de datos perdidos, por lo cual, al calcular el ingreso per cápita, vemos que el porcentaje de casos sin información en la nueva variable aumenta levemente a un 5,23%.
+
+## Ingresos como variable categórica
+
+Teniendo el ingreso per cápita del hogar, podemos calcular categorías de ingresos tales como los quintiles (o deciles). Por lo tanto, podemos clasificar a los individuos según sus ingresos en una variable categórica.
+
+El procedimiento es el siguiente:
+
+```{r, results='asis'}
+elsoc$quintile<- dplyr::ntile(x = elsoc$ing_pcap,
+                              n = 5) # n de categorias, para quintiles usamos 5
+elsoc$quintile <- factor(elsoc$quintile,c(1,2,3,4,5), c("Quintil 1","Quintil 2","Quintil 3","Quintil 4","Quintil 5"))
+elsoc %>%
+  group_by(quintile) %>%
+  summarise(n=n(),
+            Media=mean(ing_pcap,na.rm = T),
+            Mediana=median(ing_pcap,na.rm = T)) %>%
+  knitr::kable()
+
+```
+
+En la tabla podemos observar que la variable  `quintile` posee 5 grupos de tamaño equivalente. Además, agregamos la media y la mediana de los ingresos para cada categoría para ilustrar que podemos tratar esta variable como categórica y ordinal.
+
+Existe una última estrategia que podemos utilizar para recuperar ese 5,23% (n=196) de casos perdidos. Para esto, generamos una categoría adicional para los datos perdidos, es decir, recodificamos los NA para que se incluyan como una nueva categoría.
+
+El procedimiento es el siguiente:
+
+```{r, results='asis'}
+elsoc$quintilemiss <- factor(elsoc$quintile,ordered = T)
+elsoc$quintilemiss <- ifelse(is.na(elsoc$quintilemiss),yes = 6,no = elsoc$quintilemiss)
+elsoc$quintilemiss <- factor(elsoc$quintilemiss ,levels = c(1,2,3,4,5,6),labels =  c("Quintil 1","Quintil 2","Quintil 3","Quintil 4","Quintil 5","Missing"))
+elsoc %>% group_by(quintilemiss) %>% summarise(n=n())
+```
+
+Teniendo una nueva categoría de ingresos, podemos recuperar estos casos para los posteriores análisis. A continuación, se llevaran a cabo una serie de análisis que nos permitirán comprar los resultados según distintas especificaciones y empleando distintas maneras de operacionalizar la variable ingresos.
+
+# Estimación
+
+```{r}
+fit01<- lm(partpol~sexo+edad+ing_pcap+pospol,data=elsoc)
+fit02<- lm(partpol~sexo+edad+quintile+pospol,data=elsoc)
+fit03<- lm(partpol~sexo+edad+quintilemiss+pospol,data=elsoc)
+```
+
+```{r, results='asis'}
+labs01 <- c("Intercepto","Sexo (mujer=1)","Edad","Ingreso per/cap","Centro (ref. derecha)","Izquierda","Idep./Ninguno",
+            "Quintil 2","Quintil 3","Quintil 4","Quintil 5",
+            "Quintil 2","Quintil 3","Quintil 4","Quintil 5","Quintil perdido")
+htmlreg(list(fit01,fit02,fit03),doctype = FALSE,
+        custom.model.names = c("Modelo 1","Modelo 2","Modelo 3"),
+        custom.coef.names = labs01)
+```
+
+```{r eval=FALSE, include=FALSE}
+screenreg(list(fit01,fit02,fit03),custom.coef.names = labs01)
+```
+
+## Diágnosticos
+
+### Casos influyentes
+
+Para determinar si un outlier es un caso influyente, es decir que su presencia/ausencia genera un cambio importante en la estimación de los coeficientes de regresión, calculamos la **Distancia de Cook.**.
+
+Posteriormente, se establece un punto de corte de $4/(n-k-1)$:
+
+```{r}
+n<- nobs(fit03) #n de observaciones
+k<- length(coef(fit03)) # n de parametros
+dcook<- 4/(n-k-1) #punt de corte
+```
+
+Si lo graficamos se ve de la siguiente manera:
+
+```{r, fig.width=10}
+final <- broom::augment_columns(fit03,data = elsoc)
+final$id <- as.numeric(row.names(final))
+# identify obs with Cook's D above cutoff
+ggplot(final, aes(id, .cooksd))+
+geom_bar(stat="identity", position="identity")+
+xlab("Obs. Number")+ylab("Cook's distance")+
+geom_hline(yintercept=dcook)+
+geom_text(aes(label=ifelse((.cooksd>dcook),id,"")),
+vjust=-0.2, hjust=0.5)
+```
+
+Identificamos los casos influyentes y filtramos la base de datos:
+
+```{r}
+ident<- final %>% filter(.cooksd>dcook)
+elsoc02 <- final %>% filter(!(id %in% ident$id))
+```
+
+Estimación sin casos influyentes:
+
+```{r}
+fit04<- lm(partpol~sexo+edad+quintilemiss+pospol,data=elsoc02)
+```
+
+```{r, results='asis'}
+labs02 <- c("Intercepto","Sexo (mujer=1)","Edad",
+            "Quintil 2","Quintil 3","Quintil 4","Quintil 5","Quintil perdido",
+            "Izquierda (ref. derecha)","Centro","Idep./Ninguno")
+
+htmlreg(list(fit03,fit04),
+        doctype = FALSE,
+        custom.model.names = c("Modelo 3", "Modelo 4"),
+        custom.coef.names = labs02)
+```
+
+```{r eval=FALSE, include=FALSE}
+screenreg(list(fit03,fit04),
+        custom.model.names = c("Modelo 3", "Modelo 4"),
+        custom.coef.names = labs02
+        )
+```
+
+
+En términos generales, el sentido y significación estadística de los coeficientes del Modelo 4 se mantiene respecto al Modelo 3. Adicionalmente, si observamos que el modelo sin casos influyentes presenta una mejora en ajuste. Por lo tanto, los análisis posteriores se realizaran en base a este modelo.
+
+
+### Linealidad
+
+Para analizar la linealidad respecto de un modelo de regresión, debemos analizar la distribución de los residuos con respecto a la recta de regresión.
+
+* Los residuos deben ser independientes de los valores predichos (fitted values).
+* Cualquier correlación entre residuo y valores predichos violarían este supuesto.
+* La presencia de un patrón no lineal, es señal de que el modelo está especificado incorrectamente.
+
+
+```{r, fig.cap="Relación entre residuos y valores predichos", fig.width=10}
+ggplot(fit04, aes(.fitted, .resid)) +
+  geom_point() +
+  geom_hline(yintercept = 0) +
+  geom_smooth(se = TRUE)
+```
+
+El gráfico nos indica que existe un patrón en la distribución de los residuos. Para intentar mejorar la estimación podemos realizar una transformación de variables. A continuación presentaremos un ejemplo para la Edad y para los Ingresos.
+
+* Polinomio: $\text{Edad}^2$
+
+```{r}
+elsoc02$edad2 <- elsoc02$edad^2
+fit05<- lm(partpol~sexo+edad+edad2+quintilemiss+pospol,data=elsoc02)
+```
+
+```{r, fig.cap="Efecto cuadrático de la edad (Modelo 5)", fig.width=10}
+edad<- fit05$model$edad
+fit<- fit05$fitted.values
+data01 <- as.data.frame(cbind(edad,fit))
+
+ggplot(data01, aes(x = edad, y = fit)) +
+  theme_bw() +
+  geom_point()+
+  geom_smooth()
+```
+
+* Logaritmo: $\log(\text{ingreso})$
+
+```{r}
+elsoc02$lningreso <- log(elsoc02$ing_pcap)
+elsoc02$lningreso <- set_label(elsoc02$lningreso,"log(ingreso per cap)")
+fit06 <- lm(partpol~sexo+edad+edad2+lningreso+pospol,data=elsoc02)
+```
+
+```{r out.width=c('50%', '50%'), fig.show='hold'}
+plot_frq(elsoc02$ing_pcap,type = "hist",normal.curve = T, show.mean = T)
+plot_frq(elsoc02$lningreso,type = "hist", normal.curve = T,show.mean = T)
+```
+
+```{r, results='asis'}
+labs03 <- c("Intercepto","Sexo (mujer=1)","Edad",
+            "Quintil 2","Quintil 3","Quintil 4","Quintil 5","Quintil perdido",
+            "Izquierda (ref. derecha)","Centro","Idep./Ninguno", "Edad²","Ingreso per cap (log)")
+
+htmlreg(list(fit04, fit05, fit06), doctype = FALSE,
+        custom.model.names = c("Modelo 4", "Modelo 5", "Modelo 6"),
+          custom.coef.names = labs03)
+```
+
+```{r eval=FALSE, include=FALSE}
+screenreg(list(fit04, fit05, fit06),
+        custom.model.names = c("Modelo 4", "Modelo 5", "Modelo 6"),
+          custom.coef.names = labs03)
+```
+
+
+**Interpretación**: Vemos que el coeficiente de `lningreso` es de 0.24, sin embargo, debido a que la unidad de medida es logarítmica decimos que por una unidad de porcentaje (1%) de incremento en los ingresos per cápita del hogar, el promedio del índice de participación política aumenta en 0.24/100 = 0.0024, manteniendo todas las demás variables constantes. El coeficiente es estadísticamente significativo a uno 99.9% de confianza. En este caso particular, no es muy informativo, pero corresponde a una manera de especificar un modelo con los ingresos como una variable logaritmizada para hacernos cargo de posible problemas de linealidad.
+
+Debemos tener cautela al interpretar el ajuste del Modelo 5 y 6 debido a que las observaciones empleadas no son las mismas (3462 comparado con 3304) debido a que en el Modelo 5 se incluye la variable ingresos en quintiles con la categoría adicional para los casos perdidos. En este caso, realizamos la especificación a modo de ejemplo. Por lo tanto, seguiremos trabajando con el Modelo 5 para realizar los análisis posteriores.
+
+# Test homogeneidad de varianza
+
+```{r}
+car::ncvTest(fit05)
+```
+
+```{r}
+lmtest::bptest(fit05)
+```
+
+Tanto el test Breush-Pagan como el de Cook-Weisberg nos indican que existen problemas con respecto a homogeneidad en la distribución de los residuos del modelo debido a que $p>0.05$ en ambos casos. Es decir, se rechaza $H_0$ donde se asume que la varianza del error es constante, lo cual nos indica que tenemos problemas de **heterocedasticidad** en los residuos.
+
+Para hacer frente a este problema, debemos calcular los errores estándar robustos para nuestra última estimación para corregir problemas de heterocedasticidad y así estimar el último modelo nuevamente:
+
+```{r}
+model_robust<- coeftest(fit05, vcov=vcovHC)
+```
+
+**Comparemos los resultados:**
+
+```{r, results='asis'}
+labs04 <- c("Intercepto","Sexo (mujer=1)","Edad",
+            "Quintil 2","Quintil 3","Quintil 4","Quintil 5","Quintil perdido",
+            "Izquierda (ref. derecha)","Centro","Idep./Ninguno", "Edad²")
+
+htmlreg(list(fit04, fit05, model_robust), doctype = FALSE,
+          custom.model.names = c("Modelo 4","Modelo 5", "M5 Robust"), custom.coef.names = labs04)
+```
+
+```{r eval=FALSE, include=FALSE}
+screenreg(list(fit04, fit05, model_robust),
+          custom.model.names = c("Modelo 4","Modelo 5", "M5 Robust"), custom.coef.names = labs04)
+```
+
+
+Los resultados del modelo con errores estándar robustos, nos indica que nuestras estimaciones son robustas a la presencia de heterocedasticidad en los residuos debido a que la significancia de los coeficientes se mantiene si lo comparamos con Modelo 4.
+
+# Multicolinealidad
+
+```{r, results='hold'}
+car::vif(fit04)
+car::vif(fit05)
+```
+
+Entonces, asumiendo que valores del VIF mayores a 2.5, vemos que en el modelo que no incorpora el término cuadrático de edad no tendríamos problemas de multicolinealidad. Sin embargo, al incorporar el término cuadrático, nos muestra un VIF de 6.2 en la variable `edad` y `edad2`.
+
+## Referencias
+
+[Darlington & Hayes 2016 Cap16 Detecting and Managing Irregularities](https://multivariada.netlify.app/docs/lecturas/Darlington&Hayes_16irregularities.pdf)
+
+[Darlington & Hayes 2016 Cap12 Nonlinear relationships ](https://multivariada.netlify.app/docs/lecturas/Darlington&Hayes_13nonlinear.pdf)
+
+
+# Reporte de progreso
+
+Contestar [aquí](https://forms.gle/c2mXB72uG3TwQjQT9).
+
+
+# Foro práctica 11

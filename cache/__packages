@@ -1,0 +1,10 @@
+base
+knitr
+dplyr
+sjPlot
+summarytools
+fastDummies
+sjlabelled
+ggplot2
+coefplot
+flipbookr

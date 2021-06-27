@@ -1,0 +1,912 @@
+---
+title: "Práctica 7. Inferencia y reporte"
+subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
+author: "Juan Castillo"
+linktitle: "Práctica 7. Inferencia y reporte"
+date: "2021-05-28"
+class_date: "2021-05-28"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+    highlight: tango
+    number_sections: FALSE
+menu:
+  class:
+    parent: Practicas
+    weight: 8
+type: docs
+weight: 1
+editor_options:
+  chunk_output_type: console
+---
+
+<!-- BLOGDOWN-HEAD -->
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<script src="/rmarkdown-libs/clipboard/clipboard.min.js"></script>
+<link href="/rmarkdown-libs/primer-tooltips/build.css" rel="stylesheet" />
+<link href="/rmarkdown-libs/klippy/css/klippy.min.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/klippy/js/klippy.min.js"></script>
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<!-- /BLOGDOWN-HEAD -->
+
+<h2>Índice</h2>
+<div id="TOC">
+<ul>
+<li><a href="#inferencia">Inferencia</a>
+<ul>
+<li><a href="#error-estándar-se-y-tamaño-muestral">Error estándar (SE) y tamaño muestral</a></li>
+<li><a href="#inferencia-en-regresión">Inferencia en regresión</a>
+<ul>
+<li><a href="#intervalos-de-confianza">Intervalos de confianza</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#reporte-e-interpretación">Reporte e interpretación</a>
+<ul>
+<li><a href="#librerías">Librerías</a></li>
+<li><a href="#datos">Datos</a></li>
+<li><a href="#ajustes-y-descriptivos">Ajustes y descriptivos</a></li>
+<li><a href="#modelos-de-regresión">Modelos de regresión</a>
+<ul>
+<li><a href="#lógica-de-presentación-de-modelos">Lógica de presentación de modelos</a></li>
+<li><a href="#estimación">Estimación</a></li>
+<li><a href="#interpretación">Interpretación</a></li>
+<li><a href="#ajuste-global-del-modelo">Ajuste global del modelo</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#video-tutorial">Video tutorial</a></li>
+<li><a href="#reporte-de-progreso">Reporte de progreso</a></li>
+<li><a href="#foro-práctica-7">Foro práctica 7</a></li>
+</ul>
+</div>
+
+<script>
+  addClassKlippyTo("pre.r, pre.markdown");
+  addKlippy('right', 'bottom', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<div id="inferencia" class="section level1">
+<h1>Inferencia</h1>
+<p>Una de las ideas fundamentales de la inferencia es determinar si nuestros análisis estadísticos pueden ser extrapolados a la población que estamos estudiando. En el contexto de regresión, esto se traduce en <strong>la significación estadística del coeficiente</strong> <span class="math inline">\(\beta\)</span>, lo que es distinto del tamaño del efecto del <span class="math inline">\(\beta\)</span>. Por ejemplo, podemos tener un <span class="math inline">\(\beta\)</span> de tamaño 3, pero eso no nos dice nada todavía sobre si es estadísticamente significativo.</p>
+<p>Entonces, la pregunta central de inferencia en regresión es: <strong>¿Es nuestro coeficiente <span class="math inline">\(\beta\)</span> estadísticamente significativo?</strong></p>
+<p>La significación estadística se refiere a poder afirmar si el <span class="math inline">\(\beta\)</span> es <strong>distinto de cero</strong> en la población. Esta afirmación se puede realizar con un cierto nivel de <strong>probabilidad de error <em>p</em></strong>, donde el concepto central es el <strong>error estándar</strong>.</p>
+<div id="error-estándar-se-y-tamaño-muestral" class="section level2">
+<h2>Error estándar (SE) y tamaño muestral</h2>
+<p>El error estándar (SE, por su sigla en inglés) es un concepto central en inferencia ya que nos permite aseverar con un grado de probabilidad de error si nuestro coeficiente existe en la población (o en otras palabras, que nuestro coeficiente es distinto de cero en la población).</p>
+<p>El ejemplo más simple para dar cuenta del error estándar es relativo al promedio: podemos calcular el promedio de la muestra, pero no sabemos con certeza si este promedio corresponde al de la población. Podríamos hacer una estimación más apropiada si extrajéramos varias muestras de datos, obtuviéramos el promedio de cada una y calcularamos una desviación estándar de estos promedios. Esta es justamente la idea detrás del cálculo del error estándar: entregar un posible rango de variación del promedio en la población (sumando y restando errores estándar al promedio). Y para ello, hacemos referencia a la distribución normal, que nos dice que aproximadamente el 68% de los valores se encuentran a +/- 1 SE y un 95% de los valores a +/- 2 SE.</p>
+<p>Pero claramente es muy costoso extraer varias muestras y en general trabajamos con una; por ello, se utiliza una fórmula de SE para una muestra basada en el teorema central del límite, que nos dice (para el caso del promedio) que <span class="math inline">\(SE_{\bar{x}}\frac{s}{\sqrt{N}}\)</span> donde <span class="math inline">\(s\)</span> es la desviación estándar y <span class="math inline">\(N\)</span> es el tamaño de la muestra.</p>
+<p>Ahora, como N está en el denominador, en la medida que aumente el N de la muestra, el error estándar será más pequeño. Esto es relevante saberlo, ya que un promedio o también un <span class="math inline">\(\beta\)</span> puede ser o no estadísticamente significativo según el tamaño muestral, y por lo tanto el tamaño del coeficiente no está relacionado directamente con su significación estadística.</p>
+<p><em>Ejemplo</em></p>
+<p>Supongamos que nuestra muestra de 3703 casos en realidad corresponde a la <strong>Población</strong>, de modo tal que vamos a extraer 14 muestras aleatorias de distinto tamaño a modo de ilustrar cambios en la estimación en la medida que aumenta el tamaño muestral.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess.RData&quot;</span>)) <span class="co"># Cargar base de datos</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>elsoc_n30  &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">30</span> )  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">30</span> ,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>elsoc_n50  &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">50</span> )  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">50</span> ,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>elsoc_n75  &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">75</span> )  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">75</span> ,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>elsoc_n100 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">100</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">100</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>elsoc_n200 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">200</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">200</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>elsoc_n300 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">300</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">300</span> ,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>elsoc_n400 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">400</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">400</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>elsoc_n700 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">700</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">700</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>elsoc_n800 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">800</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">800</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>elsoc_n900 &lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">900</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">900</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>elsoc_n1000&lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">1000</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">1000</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>elsoc_n1500&lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">1500</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">1500</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>elsoc_n2000&lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">2000</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">2000</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>elsoc_n2500&lt;-<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">tbl =</span> elsoc_<span class="dv">18</span>,<span class="dt">size =</span> <span class="dv">2500</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dataset=</span><span class="dv">2500</span>,<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a><span class="co"># elsoc      &lt;- elsoc_18 %&gt;% mutate(dataset=3703,mean_ess=mean(ess,na.rm = T))</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>fullmat&lt;-<span class="st"> </span><span class="kw">bind_rows</span>(elsoc_n30 ,elsoc_n50 ,elsoc_n75 ,elsoc_n100,elsoc_n200,elsoc_n300,elsoc_n400,elsoc_n700,elsoc_n800,elsoc_n900,elsoc_n1000,elsoc_n1500,elsoc_n2000,elsoc_n2500)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>fullmat &lt;-<span class="st"> </span>fullmat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">mean_ssta=</span><span class="kw">mean</span>(elsoc_<span class="dv">18</span><span class="op">$</span>ess,<span class="dt">na.rm =</span> T))</span></code></pre></div>
+<p>Luego de obtener las muestras, calculamos la media, desviación estándar y error estándar para cada una de ellas:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>tab_full&lt;-<span class="st"> </span>fullmat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(dataset) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">mean=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T), <span class="dt">sd=</span><span class="kw">sd</span>(ess,<span class="dt">na.rm =</span> T),<span class="dt">SE=</span>sd<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>tab_full</span></code></pre></div>
+<pre><code>## # A tibble: 14 x 4
+##    dataset  mean    sd     SE
+##      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+##  1      30  4.07  1.41 0.258 
+##  2      50  4.58  1.59 0.225 
+##  3      75  4.39  1.60 0.185 
+##  4     100  4.4   1.49 0.149 
+##  5     200  4.46  1.47 0.104 
+##  6     300  4.3   1.55 0.0893
+##  7     400  4.36  1.58 0.0789
+##  8     700  4.35  1.62 0.0611
+##  9     800  4.38  1.54 0.0544
+## 10     900  4.36  1.58 0.0525
+## 11    1000  4.40  1.57 0.0498
+## 12    1500  4.39  1.56 0.0403
+## 13    2000  4.42  1.56 0.0349
+## 14    2500  4.38  1.58 0.0317</code></pre>
+<p>Es posible observar que tanto la media como la desviación estándar van cambiando en la medida que aumenta el tamaño de la muestra, pero si observamos el error estándar, este va sistemáticamente disminuyendo en la medida que aumenta el tamaño muestral.</p>
+<p>Para ilustrar cómo va cambiando la dispersión y la media “muestral” (rojo) con respecto a la “poblacional” (verde), se puede observar el siguiente gráfico:</p>
+<p><img src="/images/ess_hist.gif" /></p>
+<p>Por lo tanto, el valor del error estándar depende del tamaño de la muestra, y por lo tanto el tamaño de la muestra va a afectar la significación estadística de los coeficientes de regresión.</p>
+</div>
+<div id="inferencia-en-regresión" class="section level2">
+<h2>Inferencia en regresión</h2>
+<p>En <strong>regresión</strong> nos interesa saber si las diferencias en Y con respecto a los distintos niveles o valores de X son significativas, es decir <strong>estadísticamente distintas de 0</strong> con un cierto nivel de probabilidad.</p>
+<p>Para poder calcular la probabilidad de error nos basamos en una distribución teórica, que es la distribución normal en su versión ajustada al tamaño muestral: la distribución <strong>T</strong>. Esta distribución nos permite obtener un valor de contraste o <strong>valor crítico</strong> para un cierto nivel de probabilidad de error (por ejemplo, p=0.05), con el cual contrastamos el T obtenido en nuestra estimación.</p>
+<p>Por lo tanto, para esto se requiere:</p>
+<ul>
+<li>calcular el T de cada <span class="math inline">\(\beta\)</span> de regresión</li>
+<li>establecer un nivel de probabilidad de error (ej: p=0.05, para un 95% de confianza)</li>
+<li>calcular el valor crítico</li>
+<li>contrastar: si T &gt; valor crítico T, entonces se puede establecer que el coeficiente es estadísticamente significativo con una probabilidad de error p&lt;0.05. O alternativamente, se rechaza la hipótesis nula (que nos dice que <span class="math inline">\(\beta=0\)</span>) con un 95% de confianza.</li>
+</ul>
+<p>Todos estos pasos son realizados automáticamente mediante software de estimación (como R), pero vamos a hacerlo paso a paso en un ejemplo mínimo (=pocos datos) con los datos de la <a href="/assignment/03-code/">práctica 3 de regresión simple</a>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>datos &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://multivariada.netlify.app/slides/03-regsimple1/tacataca.txt&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="../../slides/03-regsimple1/tacataca.png" /></p>
+<p>Tenemos entonces tres columnas:</p>
+<ul>
+<li><p><code>id</code>: número único que identifica a cada sujeto</p></li>
+<li><p><code>juegos_x</code>: número de veces que ha jugado previamente</p></li>
+<li><p><code>puntos_y</code>: numero de puntos que obtuvo en el juego actual</p></li>
+</ul>
+<p>Estimamos el modelo de regresión y vemos los resultados:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>reg1 &lt;-<span class="kw">lm</span>(puntos_y <span class="op">~</span><span class="st"> </span>juegos_x, <span class="dt">data =</span> datos)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>stargazer<span class="op">::</span><span class="kw">stargazer</span>(reg1, <span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## ===============================================
+##                         Dependent variable:    
+##                     ---------------------------
+##                              puntos_y          
+## -----------------------------------------------
+## juegos_x                     0.500***          
+##                               (0.132)          
+##                                                
+## Constant                     2.500***          
+##                               (0.458)          
+##                                                
+## -----------------------------------------------
+## Observations                    23             
+## R2                             0.405           
+## Adjusted R2                    0.376           
+## Residual Std. Error       1.091 (df = 21)      
+## F Statistic           14.280*** (df = 1; 21)   
+## ===============================================
+## Note:               *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+<p>El <span class="math inline">\(\beta\)</span> (calculado paso a paso en la <a href="/assignment/03-code/">Práctica 3</a>) nos dice que por cada punto que aumenta la experiencia en juegos (X), el puntaje obtenido (Y) aumenta 0.5 puntos. Atendamos ahora a la información adicional de la tabla relacionada con inferencia:</p>
+<ul>
+<li>un número entre paréntesis bajo el <span class="math inline">\(\beta\)</span>, corresponde al error estándar</li>
+<li>tres asteriscos al lado del <span class="math inline">\(\beta\)</span>, que refieren al pie de la tabla donde el número de asteriscos (entre 1 y 3) se asocia a distintos niveles de probabilidad de error.</li>
+</ul>
+<p>El error estándar del <span class="math inline">\(\beta\)</span> o <span class="math inline">\(SE_{\beta}\)</span> es lo que nos permite calcular T, ya que <span class="math inline">\(T=\beta / SE_{\beta}\)</span>. Existen diferentes alternativas para el cálculo de <span class="math inline">\(SE_{\beta}\)</span>, para el caso de este ejemplo con un predictor X continuo vamos a utilizar:</p>
+<p><span class="math display">\[SE_{\beta}=\sqrt{\frac{ \frac{1}{N-2}-\sum(\hat{y}-y)²}{\sum(x-\bar{x})²}}\]</span></p>
+<p>Donde en el numerador se encuentra la sumatoria de los residuos al cuadrado multiplicado por 1/N-2, y en el denominador es la suma de cuadrados de X. Para demostrar paso a paso la obtención de estos términos vamos a agregar una serie de columnas a nuestra base de datos:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="co">#Variable de valores predichos</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>datos<span class="op">$</span>estimado&lt;-<span class="st"> </span>(<span class="fl">2.5</span> <span class="op">+</span><span class="st"> </span>datos<span class="op">$</span>juegos_x<span class="op">*</span><span class="fl">0.5</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="co"># Estimamos el residuo</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>datos<span class="op">$</span>residuo &lt;-<span class="st"> </span>datos<span class="op">$</span>puntos_y <span class="op">-</span><span class="st"> </span>datos<span class="op">$</span>estimado</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="co"># Estimamos los residuos al cuadrado</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a>datos<span class="op">$</span>residuo2 &lt;-<span class="st"> </span>datos<span class="op">$</span>residuo<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a><span class="co"># Y finalmente las diferencias de X del promedio</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a>datos<span class="op">$</span>xprom_x &lt;-<span class="st"> </span>datos<span class="op">$</span>juegos_x <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(datos<span class="op">$</span>juegos_x)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a><span class="co"># ... al cuadrado</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a>datos<span class="op">$</span>xprom_x2 &lt;-<span class="st"> </span>(datos<span class="op">$</span>xprom_x)<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true"></a>datos</span></code></pre></div>
+<pre><code>##    id juegos_x puntos_y estimado residuo residuo2 xprom_x xprom_x2
+## 1   1        0        2      2.5    -0.5     0.25      -3        9
+## 2   2        0        3      2.5     0.5     0.25      -3        9
+## 3   3        1        2      3.0    -1.0     1.00      -2        4
+## 4   4        1        3      3.0     0.0     0.00      -2        4
+## 5   5        1        4      3.0     1.0     1.00      -2        4
+## 6   6        2        2      3.5    -1.5     2.25      -1        1
+## 7   7        2        3      3.5    -0.5     0.25      -1        1
+## 8   8        2        4      3.5     0.5     0.25      -1        1
+## 9   9        2        5      3.5     1.5     2.25      -1        1
+## 10 10        3        2      4.0    -2.0     4.00       0        0
+## 11 11        3        3      4.0    -1.0     1.00       0        0
+## 12 12        3        4      4.0     0.0     0.00       0        0
+## 13 13        3        5      4.0     1.0     1.00       0        0
+## 14 14        3        6      4.0     2.0     4.00       0        0
+## 15 15        4        3      4.5    -1.5     2.25       1        1
+## 16 16        4        4      4.5    -0.5     0.25       1        1
+## 17 17        4        5      4.5     0.5     0.25       1        1
+## 18 18        4        6      4.5     1.5     2.25       1        1
+## 19 19        5        4      5.0    -1.0     1.00       2        4
+## 20 20        5        5      5.0     0.0     0.00       2        4
+## 21 21        5        6      5.0     1.0     1.00       2        4
+## 22 22        6        5      5.5    -0.5     0.25       3        9
+## 23 23        6        6      5.5     0.5     0.25       3        9</code></pre>
+<p>Ahora obtenemos la suma de los residuos al cuadrado (residuo2) y la suma de las diferencias de promedio de X al cuadrado:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">sum</span>(datos<span class="op">$</span>residuo2)</span></code></pre></div>
+<pre><code>## [1] 25</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">sum</span>(datos<span class="op">$</span>xprom_x2)</span></code></pre></div>
+<pre><code>## [1] 68</code></pre>
+<p>Reemplazamos en la fórmula:</p>
+<p><span class="math inline">\(SE_{\beta}=\sqrt{\frac{ \frac{1}{N-2}*\sum(\hat{y}-y)²}{\sum(x-\bar{x})²}}=\sqrt{\frac{ \frac{1}{23-2}*25}{68}}\)</span></p>
+<p>Y realizamos el cálculo:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">sqrt</span>(((<span class="dv">1</span><span class="op">/</span><span class="dv">21</span>)<span class="op">*</span><span class="dv">25</span>)<span class="op">/</span><span class="dv">68</span> )</span></code></pre></div>
+<pre><code>## [1] 0.132314</code></pre>
+<p>Que es equivalente al valor entre paréntesis bajo el <span class="math inline">\(\beta\)</span> en la tabla de regresión de arriba, y que corresponde al error estándar.</p>
+<p>Con el error estándar, ahora calculamos T:</p>
+<p><span class="math inline">\(T=\frac{\beta}{SE_{\beta}}=\frac{0.5}{0.132}=3.787\)</span></p>
+<p>Y ahora contrastamos este valor con el <strong>valor crítico de T</strong>, basado en la distribución T y que se obtiene de la tabla de valores correspondiente o de un software estadístico como R. Para esto necesitamos establecer el nivel deseado de probabilidad de error, convencionalmente p=0.05, y los <strong>grados de libertad (gl)</strong> que se calculan como N-k-1, donde <em>k</em> equivale al número de predictores (en este caso 1). Por lo tanto gl=23-1-1=21.</p>
+<p>Y un tema adicional sobre el valor p: vamos a establecer un valor que considere tanto situaciones de coeficiente positivo como negativo (prueba de dos colas), que es la manera convencional para rechazar hipótesis nulas en el caso de regresión. Por lo tanto, para la búsqueda del valor crítico dividimos el p a la mitad (0.05/2), quedando entonces en 0.025.</p>
+<p>Con p=0.025 y gl=21 obtenemos el valor crítico:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dv">21</span>)</span></code></pre></div>
+<pre><code>## [1] 2.079614</code></pre>
+<p>Nuestro valor T de 3.387 es mayor que el valor crítico de 2.07, por lo tanto podemos decir que nuestro beta es estadísticamente significativo con un 95% de confianza. Veamos ahora si podemos hacer esta afirmación con un mayor nivel de confianza: 99%. Para eso, calculamos la T de dos colas para un p=0.01/2=0.005, por lo tanto el valor crítico se calcula a partir de 0.995</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="kw">qt</span>(<span class="fl">0.995</span>, <span class="dv">21</span>)</span></code></pre></div>
+<pre><code>## [1] 2.83136</code></pre>
+<p>En este caso, el T del <span class="math inline">\(\beta\)</span> de nuestro modelo también es superior a este valor crítico (3.387&gt;2.831), por lo que podemos decir que nuestro beta es estadísticamente significativo con un 99% de confianza. Alternativamente, que rechazamos la hipótesis nula (que dice que <span class="math inline">\(\beta=0\)</span> en la población) con una probabilidad de error p&lt;0.01. Esto se representa en la tabla de regresión con asteriscos al lado del <span class="math inline">\(\beta\)</span>, lo cual puede variar según la función que produzca la tabla. En la tabla de arriba generada con <code>stargazer</code> un nivel de probabilidad de error p&lt;0.01 se representa con 3 asteriscos, pero otras funciones como la que veremos más adelante sjPlot::tab_model los dos asteriscos equivalen a p&lt;0.01 y tres a p&lt;0.001:</p>
+<div id="intervalos-de-confianza" class="section level3">
+<h3>Intervalos de confianza</h3>
+<p>Otro concepto asociado con inferencia es el intervalo de confianza, que se obtiene sumando y restando errores estándar al <span class="math inline">\(\beta\)</span> de regresión. Con esto no solo se obtiene un rango probable de variación del <span class="math inline">\(\beta\)</span>, sino que también es posible establecer falta de significancia estadística cuando el intervalo pasa por el valor 0. De esta manera, es una manera relacionada y complementaria de hacer análisis de inferencia además de la prueba T.</p>
+<p>Para obtener el intervalo de confianza se suma/resta al <span class="math inline">\(\beta\)</span> el error estándar por el valor crítico de T para el nivel de confianza correspondiente. En nuestro ejemplo, para un 95% de confianza el T crítico es 2.079, por lo tanto considerando el <span class="math inline">\(\beta\)</span> de 0.5 y el error de 0.132:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="fl">0.5</span> <span class="op">-</span><span class="st"> </span>(<span class="fl">2.079</span> <span class="op">*</span><span class="st"> </span><span class="fl">0.132</span>)</span></code></pre></div>
+<pre><code>## [1] 0.225572</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a><span class="fl">0.5</span> <span class="op">+</span><span class="st"> </span>(<span class="fl">2.079</span> <span class="op">*</span><span class="st"> </span><span class="fl">0.132</span>)</span></code></pre></div>
+<pre><code>## [1] 0.774428</code></pre>
+<p>Por lo tanto, podemos decir con un 95% de confianza que <span class="math inline">\(\beta\)</span> varía entre 0.225 y 0.774, y que es estadísticamente significativo ya que el intervalo no pasa por cero, que es lo mismo que decir que es estadísticamente distinto de 0.</p>
+<p>Toda esta información la podemos obtener en R con tablas como la siguiente:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a>sjPlot<span class="op">::</span><span class="kw">tab_model</span>(reg1,</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true"></a>        <span class="dt">show.se=</span><span class="ot">TRUE</span>,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true"></a>        <span class="dt">digits=</span><span class="dv">3</span>,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true"></a>        <span class="dt">p.style =</span> <span class="st">&quot;star&quot;</span>)</span></code></pre></div>
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+ 
+</th>
+<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+puntos y
+</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+Predictors
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+Estimates
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+std. Error
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+CI
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+2.500 <sup>***</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.458
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.549 – 3.451
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+juegos_x
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.500 <sup>**</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.132
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.225 – 0.775
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+Observations
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">
+23
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+R<sup>2</sup> / R<sup>2</sup> adjusted
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+0.405 / 0.376
+</td>
+</tr>
+<tr>
+<td colspan="4" style="font-style:italic; border-top:double black; text-align:right;">
+<ul>
+<li>p&lt;0.05   ** p&lt;0.01   *** p&lt;0.001
+</td>
+</tr></li>
+</ul>
+</table>
+<p>A continuación más detalles de generación de tablas e interpretación</p>
+</div>
+</div>
+</div>
+<div id="reporte-e-interpretación" class="section level1">
+<h1>Reporte e interpretación</h1>
+<p>En esta sección se presenta un ejemplo de análisis e interpretación de una tabla de regresión múltiple, que puede servir como referencia para la entrega de los informes 2 y 3. El ejemplo está adaptado de <a href="https://stats.idre.ucla.edu/stata/output/regression-analysis/">https://stats.idre.ucla.edu/stata/output/regression-analysis/</a></p>
+<div id="librerías" class="section level2">
+<h2>Librerías</h2>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(dplyr,readxl, summarytools, stargazer, equatiomatic)</span></code></pre></div>
+</div>
+<div id="datos" class="section level2">
+<h2>Datos</h2>
+<p>Los datos a utilizar corresponden a resultados de pruebas de conocimiento en distintas areas de 200 estudiantes de educación secundaria.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a>data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://multivariada.netlify.app/assignment/data/hsb2.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="ajustes-y-descriptivos" class="section level2">
+<h2>Ajustes y descriptivos</h2>
+<p>Primero seleccionamos las variables que vamos a usar en el ejemplo y cambiamos las etiquetas de las variables a español.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a><span class="kw">names</span>(data)</span></code></pre></div>
+<pre><code>##  [1] &quot;id&quot;      &quot;female&quot;  &quot;race&quot;    &quot;ses&quot;     &quot;schtyp&quot;  &quot;prog&quot;    &quot;read&quot;   
+##  [8] &quot;write&quot;   &quot;math&quot;    &quot;science&quot; &quot;socst&quot;</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span> (science,math,female, socst, read)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="dt">ciencia=</span>science, <span class="dt">matematicas =</span>math, <span class="dt">mujer=</span>female, <span class="dt">status=</span>socst, <span class="dt">lectura=</span>read)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true"></a><span class="kw">print</span>(<span class="kw">dfSummary</span>(data, <span class="dt">headings =</span> <span class="ot">FALSE</span>), <span class="dt">method =</span> <span class="st">&quot;render&quot;</span>)</span></code></pre></div>
+<div class="container st-container">
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline ">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>No</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Valid</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">1</td>
+      <td align="left">ciencia
+[integer]</td>
+      <td align="left">Mean (sd) : 51.9 (9.9)
+min < med < max:
+26 < 53 < 74
+IQR (CV) : 14 (0.2)</td>
+      <td align="left" style="vertical-align:middle">34 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflBgIUMgq5nqt5AAABmUlEQVR42u3aUU7CQBRAUWtYnSvQFcoK3J7++FGNDL2EWgrn/BkTbW54zTAz0+cTxfPWD7A3gkWCRYf5D7fzPjsOH+V1+t+nmf+7w8V/ZWUvJ3/zselzGclo00/Y8XbeAYttPJKnBm/bsRsxkpFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYNHNnnxfZv0rBncWbP0rBkYyEiwSLBIsEiwSLBIsEixafeG6x1uGI/+w0r/V672XMZLRLr9Lbjnmuwy25ZAbyUiwSLBIsEiwSLBIsEiwSLDoKiv9e9uRGLnSV6P72pEYMZKRYJFgkWCRYNEuNxAvNVr+LL0K9VDBrrH4MZKRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYNHi7Z1HOkobCfthj3OUNmIkI8EiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsGih7qBODLagn+bXecU7NvSDXgjGf34hDkZOu/XSDoZOsdIRoJFgkXT/D3/7qX/p/k6bNKoMZKRYJFg0Rdm8iLqWC8mEgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMS0wNi0wMlQyMDo1MDoxMCswMDowMF1bRDMAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjEtMDYtMDJUMjA6NTA6MTArMDA6MDAsBvyPAAAAAElFTkSuQmCC"></td>
+      <td align="center">200
+(100.0%)</td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">2</td>
+      <td align="left">matematicas
+[integer]</td>
+      <td align="left">Mean (sd) : 52.6 (9.4)
+min < med < max:
+33 < 52 < 75
+IQR (CV) : 14 (0.2)</td>
+      <td align="left" style="vertical-align:middle">40 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflBgIUMgq5nqt5AAABf0lEQVR42u3dQU7CQABAUWs4HSfQE+oJvJ7uTCWmzbMtbfG/HSGF5idDB2aA4fMp4nnvEzibgqGCocv4xp6vZ+8zT/4y7Hdu46e+/PlRVneduO9j75P71pBEBUMFQwVDBUMFQytOK+ZmUts++r3maavOw6ZnUtfJY+dmWsuOXk9DEhUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwdaEPdMtMr4+utiz9MsHvtX2xIooKhgqGCoYKhgqGCoYKhgqGCoYKhgiF6873tTvxzwE8rzvGdxi01JFHBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDB0MPsop62bAn6dbRp/Z8EW++n4BqSqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGDoxyJIX++bd7NqdJQ/wzmuhiQqGCoYKhgaxhfGt66SvxrvrRhqZBqSqGCoYOgLUSYc5VOy1CEAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjEtMDYtMDJUMjA6NTA6MTArMDA6MDBdW0QzAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIxLTA2LTAyVDIwOjUwOjEwKzAwOjAwLAb8jwAAAABJRU5ErkJggg=="></td>
+      <td align="center">200
+(100.0%)</td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">3</td>
+      <td align="left">mujer
+[integer]</td>
+      <td align="left">Min : 0
+Mean : 0.5
+Max : 1</td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">0</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">91</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">45.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">109</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">54.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAF4AAAA3CAQAAAAvIDV3AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflBgIUMgq5nqt5AAAAnElEQVRo3u3YsQ2AMAwFUQdlOiaACWEC1oPWQQqK0tgf3VWgULzCIOFym25LNAC8YtXfHGlegK30TvxBbY/WaLWZmV2Dz0mPDXjw4IUCDx68UODBgxcKPPiJXv+wo3+POSp+YZBmefAFdtfSYyONb2b+FJib3c1NyqVTv/aDIj024MGDFwo8ePBCgQcPXijw4Cf6z9JJLemxAR/VA9voC+JUf/KjAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIxLTA2LTAyVDIwOjUwOjEwKzAwOjAwXVtEMwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMS0wNi0wMlQyMDo1MDoxMCswMDowMCwG/I8AAAAASUVORK5CYII="></td>
+      <td align="center">200
+(100.0%)</td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">4</td>
+      <td align="left">status
+[integer]</td>
+      <td align="left">Mean (sd) : 52.4 (10.7)
+min < med < max:
+26 < 52 < 71
+IQR (CV) : 15 (0.2)</td>
+      <td align="left" style="vertical-align:middle">22 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflBgIUMgq5nqt5AAABjklEQVR42u3bW07CUBRAUWsYnSPQEcoInJ7++FGJVPZNa3ms9UcIj+z0QEMP0+cTxfPeb+DWCBYJFh3mN27j8+y4+DZfp/Vfcf6Uh+Fn2dHL2Xs+Nn9tIxld6RF2HP50WHrkGuN6pcHGx27rcTWSkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFgkWCRYJFg0dVe+d7CGmsEDxVsjTUCIxnteoSN7+jsZ+eRPDck2y/GjTKS0eZH2C2O3ZJ/GMk9N1LXZyQjwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBoos3EO9t9XJUWNlcWr28r7XMJUYyEiwSLBIseqh/sy1ZOgt4m/01ULBvl37PG8lIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLDox68VLnT87eTnnce5mDHKSEaCRYJFgkWCRYJFgkXT/Fz13Ynrr+bXJSeNGiMZCRYJFn0B5DshO3EnJq4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjEtMDYtMDJUMjA6NTA6MTArMDA6MDBdW0QzAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIxLTA2LTAyVDIwOjUwOjEwKzAwOjAwLAb8jwAAAABJRU5ErkJggg=="></td>
+      <td align="center">200
+(100.0%)</td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">5</td>
+      <td align="left">lectura
+[integer]</td>
+      <td align="left">Mean (sd) : 52.2 (10.3)
+min < med < max:
+28 < 50 < 76
+IQR (CV) : 16 (0.2)</td>
+      <td align="left" style="vertical-align:middle">30 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflBgIUMgq5nqt5AAABpUlEQVR42u3bwU3DMABAUYo6XSeACWEC1oMbCghDHyUkbv+7tQcafcWJE5vD613E/dYHMJuCoYKh4/LD/1zPnoc/83DYuMbA8rCOv/4rFzh9+e3LFofCGpKoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgqGCoYKhgaLXtTs9Xunl2xf1hp8H3c+wDG2lIooKhgqGCoYKhTXZRj8ywIX1XwWaYiDQkUcFQwVDB0K4u+uq7B/y17qtTB9vivtqQRAVDBUMFQwVDk9wl97NCMEmw/fyXeEMSFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMFQwVDBUMXfhOfz+LE//l4kWQGXYN/qVJVo3cWvtlrzbYWmd+F31UMFQwVDBUMFQwVDB05jzs9h6BRs6euO5nh9a2rnamPzYaLec9Mt1gsMvGShd9VDBUMFQwVDBUMFQwVDBUMHSDM/2R8QuGx8VDU8HenbfO9CFYL3F+9ukMu7V1bHdYnlRPnWFfWl7DDjUyTStQwVDB0BuTJSZH0/M1qAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMS0wNi0wMlQyMDo1MDoxMCswMDowMF1bRDMAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjEtMDYtMDJUMjA6NTA6MTArMDA6MDAsBvyPAAAAAElFTkSuQmCC"></td>
+      <td align="center">200
+(100.0%)</td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 0.9.9 (<a href='https://www.r-project.org/'>R</a> version 4.0.2)<br/>2021-06-02</p>
+</div>
+</div>
+<div id="modelos-de-regresión" class="section level2">
+<h2>Modelos de regresión</h2>
+<div id="lógica-de-presentación-de-modelos" class="section level3">
+<h3>Lógica de presentación de modelos</h3>
+<p>La forma en que se presentan los modelos en regresión múltiple depende de las hipótesis que se estan contrastando, y de la definición del/a investigador/a sobre cuáles son los predictores principales y cuáles son las variables de control. Pensemos en este caso que nuestra hipótesis principal es que el puntaje de ciencias se puede predecir con los puntajes de matemáticas y lectura, pero queremos controlar estas asociaciones por sexo y estatus. En este caso, podríamos presentar dos modelos, uno solamente con los predictores principales, y luego un segundo modelo con los controles para ver si los efectos se mantienen. También podríamos pensar en tres modelos: uno con matemáticas, otro con ciencias, y otro con ambos y además controles. La decisión de cómo presentar los modelos depende principalmente de las hipótesis que se están contrastando, y también de que los resultados permitan hacer la mejor discusión posible.</p>
+</div>
+<div id="estimación" class="section level3">
+<h3>Estimación</h3>
+<p>Vamos a estimar un primer modelo con las variables asociadas a la hipótesis principal, y luego un segundo con las variables control:</p>
+<p><span class="math display">\[
+\operatorname{ciencia} = \alpha + \beta_{1}(\operatorname{matematicas}) + \beta_{2}(\operatorname{lectura}) + \epsilon
+\]</span><span class="math display">\[
+\operatorname{ciencia} = \alpha + \beta_{1}(\operatorname{matematicas}) + \beta_{2}(\operatorname{lectura}) + \beta_{3}(\operatorname{mujer}) + \beta_{4}(\operatorname{status}) + \epsilon
+\]</span></p>
+<p>Para estimar estos modelos en <code>R</code>:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true"></a>reg1 &lt;-<span class="st"> </span><span class="kw">lm</span>(ciencia <span class="op">~</span><span class="st"> </span>matematicas <span class="op">+</span><span class="st"> </span>lectura, <span class="dt">data=</span>data)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true"></a>reg2 &lt;-<span class="st"> </span><span class="kw">lm</span>(ciencia <span class="op">~</span><span class="st"> </span>matematicas <span class="op">+</span><span class="st"> </span>lectura <span class="op">+</span><span class="st"> </span>mujer <span class="op">+</span><span class="st"> </span>status, <span class="dt">data=</span>data)</span></code></pre></div>
+<p>Para presentar los resultados de regresión existen diferentes librerías en R, como
+stargazer, texreg, sjPlot. En este caso vamos a utilizar la función tab_model de sjPlot:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a>sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg1,reg2))</span></code></pre></div>
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+ 
+</th>
+<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+ciencia
+</th>
+<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+ciencia
+</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+Predictors
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+Estimates
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+CI
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+p
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+Estimates
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+CI
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col7">
+p
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+11.62
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+5.59 – 17.64
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>&lt;0.001
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+12.33
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+6.03 – 18.62
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<strong>&lt;0.001
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+matematicas
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.40
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.26 – 0.54
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>&lt;0.001
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.39
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.24 – 0.54
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<strong>&lt;0.001
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+lectura
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.37
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.23 – 0.50
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>&lt;0.001
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.34
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.19 – 0.48
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<strong>&lt;0.001
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+mujer
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-2.01
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-4.03 – 0.01
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+0.051
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+status
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.05
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.07 – 0.17
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+0.424
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+Observations
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">
+200
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">
+200
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+R<sup>2</sup> / R<sup>2</sup> adjusted
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+0.478 / 0.473
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+0.489 / 0.479
+</td>
+</tr>
+</table>
+<p>Esta tabla tiene las opciones por defecto. En general, para cada predictor hay dos piezas de información importante: la estimación del coeficiente de regresión <span class="math inline">\(\beta\)</span> (estimates), y una estimación referida a inferencia/significación estadística (en este caso CI, intervalo de confianza). Esta segunda información es en general el error estándar, pero también puede ser <em>t</em> (que es el coeficiente dividido por el error estándar), o el intervalo de confianza, dado usualmente por el <span class="math inline">\(\beta\)</span> +/- 1.96 SE para un 95% de confianza (como aparece en esta tabla). Según el output, la información de inferencia puede aparecer abajo del coeficiente, o al lado como en esta tabla.</p>
+<p>Abajo vamos a hacer algunos ajustes en la tabla, presentando el error estándar en lugar del intervalo, y reemplazando la columna del nivel de probabilidad de error (<em>p</em>) por asteriscos que indican el nivel de significación de cada coeficiente, lo cual hace más rápida la interpretación. También cambiamos algunas etiquetas de la tabla para que sea más fácil de leer:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true"></a>sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg1,reg2),</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true"></a>        <span class="dt">show.se=</span><span class="ot">TRUE</span>,</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true"></a>        <span class="dt">show.ci=</span><span class="ot">FALSE</span>,</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true"></a>        <span class="dt">digits=</span><span class="dv">3</span>,</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true"></a>        <span class="dt">p.style =</span> <span class="st">&quot;stars&quot;</span>,</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true"></a>        <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 1&quot;</span>, <span class="st">&quot;Modelo 2&quot;</span>),</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true"></a>        <span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>,</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true"></a>        <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>)</span></code></pre></div>
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+ 
+</th>
+<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+Modelo 1
+</th>
+<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+Modelo 2
+</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+Predictores
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+β
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+std. Error
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+β
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+std. Error
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+11.616 <sup>***</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+3.054
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+12.325 <sup>***</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+3.194
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+matematicas
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.402 <sup>***</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.073
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.389 <sup>***</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.074
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+lectura
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.365 <sup>***</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.066
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.335 <sup>***</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.073
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+mujer
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-2.010 <sup></sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.023
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+status
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.050 <sup></sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.062
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+Observations
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
+200
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
+200
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+R<sup>2</sup> / R<sup>2</sup> adjusted
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
+0.478 / 0.473
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
+0.489 / 0.479
+</td>
+</tr>
+<tr>
+<td colspan="5" style="font-style:italic; border-top:double black; text-align:right;">
+<ul>
+<li>p&lt;0.05   ** p&lt;0.01   *** p&lt;0.001
+</td>
+</tr></li>
+</ul>
+</table>
+<p>Y para presentar en forma de ecuaciones, quedaría de la siguiente manera:</p>
+<p><span class="math display">\[
+\operatorname{\widehat{ciencia}} = 11.62 + 0.4(\operatorname{matematicas}) + 0.37(\operatorname{lectura})
+\]</span><span class="math display">\[
+\operatorname{\widehat{ciencia}} = 12.33 + 0.39(\operatorname{matematicas}) + 0.34(\operatorname{lectura}) - 2.01(\operatorname{mujer}) + 0.05(\operatorname{status})
+\]</span></p>
+<div class="alert alert-info">
+<p>Para transformar automáticamente las estimaciones de regresión en R a ecuaciones:</p>
+<p>Esto se puede hacer si se utiliza RMarkdown (no es requisito en este curso, para los interesad_s pueden revisar material del curso <a href="https://cienciasocialabierta.netlify.app/class/04-class/">ciencia social abierta</a> )</p>
+<ol style="list-style-type: decimal">
+<li><p>Instalar librería <strong>equatiomatic</strong>. No está en CRAN, así que para instalar:<code>remotes::install_github("datalorax/equatiomatic")</code></p></li>
+<li><p>La función para extraer la ecuación es <code>extract_eq</code>, por ejemplo: <code>extract_eq(reg1)</code></p></li>
+<li><p>Para que el resultado pueda ser <code>renderizado</code> desde un documento RMarkdown a pdf o html, debe estar en un chunk con las siguientes especificaciones:</p></li>
+</ol>
+<pre><code>```{r results=&#39;asis&#39;, echo=FALSE}
+extract_eq(reg1)
+extract_eq(reg2)
+```</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Para presentar las ecuaciones con los coeficientes ya estimados, <code>extract_eq(reg1, use_coefs = TRUE)</code></li>
+</ol>
+</div>
+</div>
+<div id="interpretación" class="section level3">
+<h3>Interpretación</h3>
+<p>Los coeficientes nos hablan de la relación entre las variables independientes y la variable dependiente. Nos muestran la magnitud del cambio predicho en el puntaje de ciencia por cada 1 unidad en que aumenta el predictor.</p>
+<p>Para <code>matematica</code> el coeficiente es de 0.402 en el modelo 1 y baja a 0.389 en el modelo 2. Entonces, por cada punto adicional en la prueba de matemáticas en el modelo 2 se presenta un incremento de 0.389 en el puntaje de <code>ciencia</code>, <strong>manteniendo todas las demás variables constantes</strong>. Respecto a la inferencia, existen distintas maneras de dar cuenta de la significación estadística. Por ejemplo, se puede decir que este valor es estadísticamente significativo con un 99,9% de confianza, o con una probabilidad de error p&lt;0.001.</p>
+<div class="alert alert-info">
+<p>Para reportar estos resultados de manera más resumida siguiendo las indicaciones de reporte de <strong>APA</strong> (American Psychological Association): El puntaje en matemáticas predice significativamente el puntaje de ciencias (modelo 1), b = -.40, SE = .07, p &lt; .001, controlando por el puntaje en lectura. Al agregar los controles de sexo y estatus (modelo 2), el puntaje en matemáticas disminuye levemente pero mantiene su nivel de significación, b = -.39, SE = .07, p &lt; .001.</p>
+</div>
+<p>Con respecto a <code>lectura</code>, en el modelo 2 es posible observar un coeficiente de 0.335. Esto implica que por cada unidad que aumenta el puntaje de <code>lectura</code> se predice un incremento de 0.335 puntos en <code>ciencia</code>, manteniendo todas las demás variables contantes. El coeficiente es estadísticamente significativo con una probabilidad de error p&lt;0.001.</p>
+<p>Para la variable <code>mujer</code> podemos observar que el coeficiente tiene un valor de -2.010 en el modelo 2. Al ser <code>mujer</code> una variable dicotómica donde 1 es mujer y 0 es hombre, la estimación nos indica que para las mujeres el puntaje predicho promedio en ciencias es -2.010 puntos más bajo con respecto al promedio de los hombres, manteniendo todas las demás variables constantes. En términos exclusivamente estadísticos, la variable <code>mujer</code> no es significativamente distinta de 0 cuando empleamos un nivel de confianza del 95%, debido a que el valor <span class="math inline">\(p\)</span> es mayor a 0.05.</p>
+<p>Si observamos el coeficiente de <code>status</code> tenemos un valor de 0.050. Entonces, por cada unidad en que incrementa el estatus se predice un incremento de 0.050 puntos en <code>ciencia</code>, manteniendo todas las demás variables constantes. Sin embargo, no es estadísticamente significativo a un 95% de confianza.</p>
+<p><strong>Std Error</strong>: Esta columna corresponde a los errores estándar de los coeficientes de regresión (Estimate). Estos errores estándar son empleados para testear en qué medida los coeficientes son distintos de 0 en la población. El procedimiento es dividir el coeficiente por su error estándar para obtener el valor <span class="math inline">\(t\)</span>, los que luego se contrastan con la tabla de valores críticos t para obtener la probabilidad de error (que ya aparece automáticamente en la tabla). Además, los errores estándar pueden ser utilizados para calcular los intervalos de confianza.</p>
+<p>Una manera de presentar los resultados de un modelo de regresión es a través de la visualización de los coeficientes de regresión con sus respectivos intervalos de confianza. La ventaja de este tipo de gráficos es que podemos observar la magnitud del coeficiente y las “barras de error” que representan el intervalo de confianza inferior y superior. Utilizando un intervalo de confianza de 95% de confianza:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true"></a>sjPlot<span class="op">::</span><span class="kw">plot_model</span>(reg2,<span class="dt">ci.lvl =</span> <span class="kw">c</span>(<span class="fl">0.95</span>), <span class="dt">title =</span> <span class="st">&quot;&quot;</span>,<span class="dt">vline.color =</span> <span class="st">&quot;grey&quot;</span>,<span class="dt">line.size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-26"></span>
+<img src="/assignment/07-code_files/figure-html/unnamed-chunk-26-1.png" alt="Modelo 2" width="672" />
+<p class="caption">
+Figure 1: Modelo 2
+</p>
+</div>
+<p>Lo que nos muestra este gráfico es el valor del coeficiente en el punto, y en las líneas que salen del punto se extienden según su intervalo de confianza. De acuerdo a las reglas de inferencia en regresión, lo que estamos contrastando es que el valor de este coeficiente es distinto de 0 en la población, con un cierto valor de probabilidad. Por lo tanto, si agregamos un intervalo de confianza (valores probables) asociado a una probabilidad de error, entonces podemos decir que este coeficiente es estadísticamente distinto de 0 en la población. Y en el gráfico, esto sucede cuando los intervalos no tocan el 0.</p>
+</div>
+<div id="ajuste-global-del-modelo" class="section level3">
+<h3>Ajuste global del modelo</h3>
+<p><strong><code>R2</code></strong>: El R2 (R-cuadrado) es la proporción de la varianza de la variable dependiente (ciencias) la cual puede ser predicha por las variables independientes (matemáticas, mujer, estatus, lectura). En la Tabla 1 tenemos que para el Modelo (1), este valor nos indica que un 47,7% de la varianza en el puntaje de ciencias se asocia a matemáticas. Luego, en el Modelo (2), el R-cuadrado nos indica que el 48,9% de la varianza de ciencias puede ser predicha conjuntamente por las variables independientes matemáticas, lectura, mujer y status. Como vemos, la incorporación de controles aporta levemente al R2, lo cual se relaciona con que estos predictores no son estadísticamente significativos.</p>
+<p><strong><code>Adjusted R2</code></strong>: En la medida que se incorporan predictores al modelo, cada uno va contribuyendo a explicar la varianza de la variable dependiente. Así, se podría continuar agregando predictores al modelo, incrementando la capacidad explicativa pero también de cierto modo debido a la variabilidad adicional en una muestra particular con la que estemos trabajando. Por esta razón, el <strong>R-cuadrado ajustado</strong> busca demostrar un valor estimado más realista del R-cuadrado para la población bajo análisis, penalizando por la inclusión de predictores adicionales. En el caso del Modelo (2) de la Tabla 1, el valor del R-cuadrado es de <strong>0.489</strong>, mientras que el R-cuadrado ajustado es de <strong>0.479</strong>, el cual es calculado a través de la fórmula <span class="math inline">\(1 – ((1 – R^2)((N – 1) /( N – k – 1))\)</span>.</p>
+<p>Entonces, si el número de observaciones (<span class="math inline">\(N\)</span>) es pequeño y el número de predictores (<span class="math inline">\(k\)</span>)es grande, tendremos una mayor discrepancia entre el R-cuadrado y el R-cuadrado ajustado. Por otro lado, cuando el número de observaciones es grande en contraste con el número de predictores tendremos que el valor del R-cuadrado y el R-cuadrado ajustado serán mucho más similares debido.</p>
+<p>Por lo tanto, al momento de realizar la intepretación <strong>corresponde basarse en los coeficientes del R2 ajustado</strong>.</p>
+</div>
+</div>
+</div>
+<div id="video-tutorial" class="section level1">
+<h1>Video tutorial</h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LOqsepqM02E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+<div id="reporte-de-progreso" class="section level1">
+<h1>Reporte de progreso</h1>
+<p>Completar el reporte de progreso correspondiente a esta práctica <a href="https://forms.gle/3wk98kEk2UwyYfBTA">aquí.</a></p>
+</div>
+<div id="foro-práctica-7" class="section level1">
+<h1>Foro práctica 7</h1>
+</div>

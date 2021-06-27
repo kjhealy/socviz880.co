@@ -1,8 +1,8 @@
 ---
-title: "Tables, Text, Labels, Notes"
-linktitle: "3: Work with Geoms"
-date: "2020-01-23"
-class_date: "2020-01-23"
+title: "Regresión simple 1"
+linktitle: "3: Regresión simple 1"
+date: "2021-03-09"
+class_date: "2021-03-09"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
@@ -12,19 +12,33 @@ output:
     toc: true
 menu:
   class:
-    parent: Class sessions
+    parent: Clases
     weight: 1
 type: docs
 weight: 1
-pdf: /slides/03_dataviz_s20_work_with_geoms.pdf
-thumb: /slides/03_dataviz_s20_work_with_geoms.png    
-editor_options: 
+pdf: /slides/01_dataviz_s20_looking_at_data.pdf
+thumb: /slides/01_dataviz_s20_looking_at_data.png
+editor_options:
   chunk_output_type: console
 ---
 
-## Slides
+<div id="sfck52qp7tw9lrymemuq9jj289tuqx7ahld"></div>
+<script type="text/javascript" src="https://counter4.stat.ovh/private/counter.js?c=k52qp7tw9lrymemuq9jj289tuqx7ahld&down=async" async></script>
+<noscript><a href="https://www.freecounterstat.com" title="website counter"><img src="https://counter4.stat.ovh/private/freecounterstat.php?c=k52qp7tw9lrymemuq9jj289tuqx7ahld" border="0" title="website counter" alt="website counter"></a></noscript>
 
-`r blogdown::shortcode("slides")`
+## Documento presentación
 
+<iframe src=/slides/03-regsimple1/03_regsimple1.html height="550" width=100% allowfullscreen="true">
+</iframe>
 
+## Video de clase
 
+<div style="width: 100%; height: 600px; overflow: hidden;">
+<video  style="width: 100%;" controls>
+<source src="https://www.dropbox.com/s/ci013k63u01byl3/03-regsim1.webm?raw=1" type="video/mp4">
+</video>
+</div>
+
+## Lecturas 
+
+- [Moore: 2. Análisis de relaciones (97-131)](/docs/lecturas/moore_analisisderelaciones1.pdf)

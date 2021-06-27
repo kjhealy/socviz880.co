@@ -1,11 +1,85 @@
 ---
-title: Class details
+title: "Contenidos"
+slug: class
 menu:
   class:
-    parent: Class details
+    parent: Contenidos
     weight: 1
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+    highlight: tango
+    number_sections: FALSE
 type: docs
 weight: 1
 ---
 
-I'll post relevant materials (slides, example code, in-class activities, etc.) from each class session.
+Esta página contiene los materiales de los **contenidos** de cada sesión (documento de presentación, lecturas, links), y también las **guías prácticas**.
+
+Todo el material es accesible desde el menú de la izquierda <--
+
+## Instrucciones generales para las prácticas
+
+- Las instancia práctica consiste en el desarrollo de una guía práctica cada semana donde se aplican y profundizan los contenidos de las clases. La organización de estas prácticas se puede revisar en la [planificación del curso](/schedule).
+
+- El trabajo con estas guías se organiza en los siguientes momentos:
+
+  - cada estudiante realiza la guía de manera autónoma durante la semana
+  - en caso de dudas que surjan durante la semana se recomienda preguntar en el foro de U-Cursos o preferentemente en el foro de _Disqus_ al final de la página de cada práctica.
+  - en la sesión del día jueves se revisará la guía, se resolverán dudas y se entregaran complementos en caso de ser necesario.
+  - las sesiones de los jueves se realizarán en grupos pequeños guiados por ayudantes. Estos grupos serán inicialmente asignados al azar y luego corresponderan a los grupos conformados para realizar el trabajo final del curso.
+  - cada semana se completa un **reporte de progreso** (detalles abajo)
+
+- En las prácticas vamos a trabajar con el software R, Versión 4.0. Para su instalación consultar el video-tutorial disponible en la página de la práctica 1 (click [aquí](/assignment/01-code#videos_inicio))
+
+## Reportes de progreso{#reporte}
+
+Este curso se caracteriza por el desarrollo secuencial y acumulativo de aprendizajes. En otras palabras, va a ser muy difícil poder lograr los objetivos de aprendizaje posteriores sin haber logrado los objetivos de contenidos previos. En otras palabras: es muy difícil aprender a multiplicar sin saber sumar. Por lo tanto, como equipo a cargo del curso nos interesa poder monitorear permanentemente el cumplimiento de objetivos de aprendizaje semana a semana para así poder prestar asesoría oportuna.
+
+El sistema de monitoreo permanente de cumplimiento de objetivos se llevará a cabo mediante **reportes de progreso**. Un ejemplo de este reporte se ve así:
+
+![](/images/reporte_progreso.png)
+
+Los reportes consisten en completar una encuesta simple y breve, donde se preguntará por el cumplimiento de los objetivos de las prácticas respectivas. El link para completar el reporte se encuentra al final de cada práctica. Se deben completar durante la semana en que se desarrolla la guía, a más tardar los días viernes (ya que ese día se publican las guías prácticas correspondientes a la semana siguiente).
+
+Como incentivo para completar los reportes de progreso, se entregarán **dos décimas adicionales** a la evaluación a quienes tengan sus reportes de progreso completados entre instancias de evaluación (por ejemplo, en el caso de la evaluación 2 se deben tener todos los reportes de progreso completados entre la evaluación 1 y 2).
+
+## Trabajo con software R
+
+Para los análisis estadísticos de este curso usamos el programa R, principalmente porque es gratuito, pero la principal razón es que es de código abierto. Esto quiere decir que cualquier persona puede revisar cómo está hecho y aportar con modificaciones y procedimientos nuevos, como son las librerías que realizan funciones específicas.
+
+El carácter de apertura de R posee muchas ventajas, pero también conlleva complicaciones. Se actualiza permanentemente, así como también las librerías, y esto puede generar problemas de compatibilidad y de fallas en ejecución del código de análisis.
+
+Para minimizar estos posibles problemas en este curso, vamos a:
+
+- trabajar con la misma y última versión de R, que es la 4.0
+- evitar uso de tilde, ñ, espacios y mayúsculas tanto en carpetas y archivos, así como también en los nombres de las variable
+- al momento de hacer consultas sobre problemas en la ejecución del código, adjuntar la siguiente información:
+
+  1. Código completo hasta que se produce el problema
+  2. Indicar línea del código donde se produce el problema
+  3. Adjuntar el resultado del output de la información de la sesión (`sessionInfo()`)
+
+### Instalación de R & RStudio {#installR}
+
+Para esta versión del curso vamos a trabajar con el programa R Version 4.0 (se sugiere la última versión de Febrero 2021, 4.0.4) y con RStudio, que ofrece un entorno más amigable para trabajar con R.
+
+Para **instalar R**: ir a [https://cran.r-project.org/index.html](https://cran.r-project.org/index.html) y bajar/instalar la versión correspondiente a la plataforma utilizada (Windows, Mac o Linux)
+
+Para instalar **RStudio**: ir a [https://rstudio.com/products/rstudio/](https://rstudio.com/products/rstudio/) y bajar/instalar RStudio desktop, Open Source License (libre).
+
+### Sobre el trabajo en hojas de código en RStudio {#codigoR}
+
+- El trabajo de análisis en RStudio se efectua en una _hoja de código_ (o R script o sintaxis, o para los usuarios de Stata la _do-file_), que es donde se anotan los comandos y funciones. Para abrir una hoja, en RStudio ir a File > New File > R Script (o ctrl+shift+N),y aparecerá un panel con una pestaña "Untitled" (sin título). Esta es la hoja de código donde se anotan los comandos.
+
+- Los contenidos de las hojas de código son básicamente 2:
+
+  - comandos o funciones: se escriben en la hoja, y para ejecutarlos posicionar el cursor en la línea respectiva y ctrl+enter, el resultado aparecerá en el panel de resultados o _Consola_.
+  - texto: para escribir títulos, comentarios, y todo lo que permita entender qué se está haciendo, al principio de la línea respectiva escribir el signo `#`
+
+- Para grabar nuestra hoja de código y así respaldar nuestros análisis, File > Save (o ctrl+s), y dar un nombre al archivo. Recordar: breve, sin espacios ni tildes ni eñes. Por defecto, la extensión de estos archivos es .R
+
+### Tutorial RCloud
+
+RCloud permite trabajar con RStudio en línea, sin necesidad de instalar localmente. Puede ser muy útil para quienes tengan problemas de instalación, así como también para trabajo colaborativo. Tenemos a disposición una [página tutorial de cómo usar RCloud](/tutorial/).

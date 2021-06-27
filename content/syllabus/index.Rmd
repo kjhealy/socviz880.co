@@ -1,6 +1,6 @@
 ---
-title: Syllabus
-slug: syllabus
+title: Programa
+slug: programa
 citeproc: true
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
@@ -9,92 +9,191 @@ output:
       toc: TRUE
 ---
 
-```{r load-libraries, message=FALSE, warning=FALSE, include=FALSE}
-library(dplyr)
-library(tibble)
-library(pander)
-```
-
 [^courseinfo]: {-}
   `r blogdown::shortcode("courseinfo")`
 
+## Concepto del curso (nuevo)
 
-## Overview
+a) A pesar de su nombre, este no es un curso de (mera) estadística. Es un curso que enseña algunas técnicas de análisis cuantitativo orientadas al **contraste empírico de teoría sociológica**, para lo cual se vale de técnicas estadísticas como la regresión múltiple. En este contexto, los métodos son considerados funcionales a preocupaciones sustantivas y relevantes del mundo social
 
-This is a half-semester graduate seminar. It's self-contained, but goes well with its companion on Data Management, taught in the second half on the semester.
+b) Además de las herramientas de análisis, el curso pone también énfasis en el **reporte y comunicación de resultados**. Los análisis de datos son siempre realizados en relación a otr_s, quienes tienen ser capaz de entender lo que se está presentando. Este aspecto se relaciona con tener en cuenta la relevancia y aporte del conocimiento científico en temas sociales.
 
-## Course objectives
+c) Un tercer énfasis transversal en el curso es la **apertura del proceso de investigación**. Para poder realizar investigación de manera eficiente y generativa es importante no "reinventar la rueda", preocupándose de que nuestros análisis sean comprensibles para los demás (y para nosotr_s en el futuro). Por ello utilizamos programas de análisis de código abierto (como R) y promovemos que los códigos de análisis sean reproducibles.
 
-This class will teach you how to use modern, widely-used tools to create insightful, effective, reproducible visualizations of social science data. We will also put the theory and practice of visualization into context. By that I mean that we will think about different ways of looking at social science data, about where data comes from in the first place, and the implications of choosing to represent it in different ways.
+## Propósito general del curso
 
-By the end of the course you will
+Al finalizar el curso los estudiantes conocerán los fundamentos del análisis estadístico multivariado.
 
-- Understand the basic principles behind effective data visualization.
-- Have a practical sense for why some graphs and figures work well,
-  while others may fail to inform or actively mislead.
-- Know how to create a wide range of plots in R using ggplot2.
-- Know how to refine plots for effective presentation.
+Se espera que los estudiantes sean capaces de:
 
-## Core Texts
+- identificar las principales técnicas de análisis estadístico multivariado utilizadas en la investigación sociológica
 
-I strongly recommend (but do not require) you buy two books: 
+- depurar y preparar datos para la aplicación de distintas técnicas de análisis estadístico multivariado; corroborar las condiciones de aplicación de distintas técnicas de análisis estadístico multivariado
 
-- [@Healy:2019] [Draft version free online; print version at [Amazon](https://amzn.to/2vfAixM) and all good bookshops.]
-- [@WickhamGrolemund:2017] [Free online; print version at [Amazon](https://www.amazon.com/R-Data-Science-Hadley-Wickham/dp/1491910399/) and all good bookshops.]
+- utilizar  software de análisis estadístico
 
-You should also be aware of:
+- contrastar hipótesis de investigación
 
-- [@Wilke:2019] [Draft version free online; print version at  [Amazon](https://www.amazon.com/Fundamentals-Data-Visualization-Informative-Compelling/dp/1492031089)]
+- elaborar reportes de resultados y conclusiones a partir de la aplicación de diferentes técnicas de análisis estadístico multivariado.
+
+Complementariamente se espera que los estudiantes adquieran herramientas que les permitan comunicar resultados de investigación en contextos sociales, profesionales y académicos.
 
 
-## Other Material 
+## Competencias a las que contribuye el curso
 
-We may also read other material as we go. I will make it available to you beforehand. It will include material from the following books, amongst other sources:
+- Diseñar y desarrollar estrategias de investigación social.
 
-- [@battle-baptiste18:_w]
-- [@berinato16:_good_chart]
-- [@cairo16:_truth_art]
-- [@cleveland1994]
-- [@few09:_now_you_see_it]
-- [@lupton10:_think_type]
-- [@munzer14:_visual_analy_desig]
-- [@tufte83:_visual_displ_quant_infor]
-- [@ware08:_visual_think_desig]
-- [@yau11:_visual_this]
+- Comunicar los saberes disciplinares de manera pertinente a las características de distintos contextos y audiencias, utilizando diversas estrategias y formatos.
+
+### Sub-Competencias
+
+- Diseñar y aplicar diversas técnicas de recolección y producción de información empírica, pertinentes al objeto de estudio.
+
+-  Interpretar información empírica aplicando diversas técnicas, en función de un plan de análisis.
+
+- Diseñar estrategias para comunicar los saberes disciplinares considerando las características de distintos contextos y audiencias.
+
+- Comunicar en forma oral y escrita los saberes disciplinares considerando distintos contextos y audiencias, haciendo un uso creativo de distintas estrategias.
+
+## Resultados de Aprendizaje
+
+Al finalizar el curso, los estudiantes:
+
+- Serán capaces de explicar los conceptos y fundamentos teóricos y estadísticos de la investigación social basada en modelos predictivos para variables observadas y serán capaces de explicar su utilidad para la sociología.
+
+- Serán capaces de preparar y depurar bases de datos para su análisis utilizando técnicas multivariadas, evaluando la pertinencia y la presencia de condiciones para la aplicación de modelos predictivos para variables observadas.
+
+- Serán capaces de manejar software especializado y reportar los resultados de modelos predictivos para variables observadas cuantitativas y no cuantitativas.
+
+## Saberes / contenidos
+
+### UNIDAD 1: Introducción al modelamiento de datos sociales
+
+- Tipos de investigación (descriptiva vs relacional y explicativa) y su materialización en el análisis estadístico.
+- La explicación en ciencias sociales: su relación con el concepto de covariación; la explicación como dependencia robusta y como cadena causal y el trabajo con modelos.
+- El trabajo con modelos: tipos de modelos (modelo teórico, modelo normativo, modelo científico, modelo estadístico); la vinculación entre los modelos científicos y los modelos teóricos; los modelos estadísticos como tipo de modelo científico.
+- Ciencia abierta y modelamiento: transparencia, reproducibilidad y replicación.
+
+### UNIDAD 2: Regresión Lineal Simple y Múltiple
+
+- Bases: varianza, covarianza y correlación.
+- Usos y aplicaciones en ciencias sociales de la regresión lineal.
+- Supuestos y condiciones de aplicación de la regresión lineal.
+- Manejo de casos influyentes
+- Procedimientos de estimación e interpretación de parámetros.
+- Introducción de variables de control estadístico.
+- Criterios de validez, capacidad predictiva y evaluación del ajuste de la regresión lineal.
+- Temas avanzados de regresión lineal: introducción de predictores categóricos, estimación de efectos de interacción y mediación, y uso de herramientas gráficas como apoyo a la interpretación y análisis de datos.
+
+### UNIDAD 3: Regresión múltiple para variables dependientes categóricas
+
+- Limitaciones de la regresión lineal y potencialidades de la introducción de variables dependientes categóricas.
+- Concepto y sentido de la función logística y funciones afines.
+- Supuestos y condiciones de aplicación de la regresión para variables categóricas.
+- Procedimientos de estimación e interpretación de parámetros de regresión logística.
+- Criterios de validez, capacidad predictiva y evaluación del ajuste de la regresión Logística.
+- Generalización de modelos de regresión logística: modelo de regresión logística multinomial y ordinal.
+- Empleo de otras matrices de correlación (tetracórica, biserial y policórica).
+
+## Metodología
+
+En las circunstancias excepcionales de este semestre dada la crisis sanitaria, se han realizado una serie de ajustes metodológicos. En este contexto, tendremos tres espacios principales de aprendizaje:
+
+1. **Sesiones de clases lectivas**, donde se presentarán los aspectos centrales de los contenidos correspondientes a la semana vía Zoom. Tanto el documento de presentación como el video de la clase se encontrará disponible en la pestaña de [Contenidos](/class/) de este sitio.
+
+2. **Prácticas guiadas**: cada tema de las sesiones se acompaña de una _guía práctica_ de aplicación de contenidos. Estas guías están diseñadas para ser desarrolladas de manera autónoma por cada estudiante semana a semana. También serán desarrolladas y revisadas cada semana en grupos pequeños con supervisión de ayudantes para dar mayor oportunidad de participación y resolver las dudas respectivas. Existe un reporte de progreso asociado a estas guías que deberá ser completado semanalmente con fines de monitoreo y retroalimentación.
+
+3. **Trabajos**: se desarrollarán trabajos de investigación durante el semestre (ver sección evaluación abajo) que permitirán a l_s participantes aplicar contenidos y recibir retroalimentación de su desempeño. Los trabajos serán asesorados principalmente por ayudantes que se asignarán a cada grupo.
+
+## Evaluación (detalles en pestaña [Trabajos](/reference/))
+
+El curso tendrá tres instancias de evaluación:
+
+- **Trabajo 1** (individual): Correlación y regresión simple (20%).
+- **Trabajo 2** (grupal): Regresión multiple e inferencia estadística (30%)
+- **Trabajo 3** (grupal): Regresión logística, predictores categóricos y supuestos (50%)
+
+La nota ponderada de los trabajos equivaldrá al 60% de la nota del curso y el examen final al 40% restante.
+
+## Requisitos de aprobación
+
+Nota mínima de aprobación: 4,0 (en escala de 1 a 7).
+
+Requisitos de eximición de examen:
+
+1. contar con un promedio ponderado igual o superior a 5.5.
+2. no tener nota bajo 4 en ninguno de los trabajos
+
+Requisitos para presentación a examen:
+
+- Podrán presentarse al examen de primera oportunidad los estudiantes que hayan obtenido una calificación final igual o superior a 3.5.
+
+- El examen de segunda oportunidad será para aquellos estudiantes que presenten una nota igual o inferior a 3.5 o aquellos que en el examen de primera oportunidad no hubiesen logrado una nota igual o superior a 4.0.
+
+## Bibliografía
+
+La bibliografía obligatoria para cada semana se presenta en la [planificación del curso](/schedule/), desde donde se puede acceder directamente a los documentos. De todas maneras, abajo algunos textos comentados y referencias para cada unidad.
+
+### Textos principales.
+
+Hay cuatro referencias principales recomendadas para este curso:
+
+- **Moore (2010) Estadística aplicada básica. Barcelona: Antoni Bosch**. Explica de manera bastante clara (y en español) una serie de análisis estadísticos que sirven de base para este curso.
+
+- **Darlington, R. B., & Hayes, A. F. (2017). Regression analysis and linear models: concepts, applications, and implementation. Guilford Press.** Este libro me parece un muy buen texto para acompañar un curso de regresión en ciencias sociales, lamentablemente está en inglés y por lo tanto solo es bibliografía sugerida.
+
+- **Wooldridge, J. M. (2008). Introducción a la econometría: un enfoque moderno. Paraninfo Cengage Learning.** Libro clásico de regresión para economístas, la ventaja es que está en español, la desventaja (para nosotros) es que en ocasiones utiliza un lenguaje y ejemplos lejanos a la sociología.
+
+- **Wickham, H., & Grolemund, G. (2016). R for data science: import, tidy, transform, visualize, and model data (First edition). Sebastopol: O’Reilly.** Libro con enfoque en el aprendizaje de R con técnicas que ciertamente van más allá del curso, pero muy util como referencia general. Además, está disponible también en español como ["R para ciencia de datos"](https://es.r4ds.hadley.nz/).
+
+**Abajo bilbiografía recomendada para cada unidad**
+
+
+### MODELOS CIENTÍFICOS (Unidad 1)
+
+- García-Ferrando, M. (1985). Análisis y modelización causal en sociología. Reis, 29(1), 143-164.
+- Goldthorpe, J. H. (2001). Causation, statistics, and sociology. European Sociological Review, 17(1), 1-20.
+- Ramón, L., & Ángeles, M. (2006). Estadística y causalidad en la sociología empírica del XX. Papers: revista de sociología, 80(1), 223-255.
+- Salgado, M. (2009). Construyendo explicaciones: el uso de modelos en sociología. Persona y Sociedad, 30 (3), 29-60.
+
+### MODELOS DE REGRESIÓN LINEAL (Unidad 2)
+- Etxeberria, J. (1999). Regresión múltiple. Madrid: La Muralla.
+- Fox, J. & Weisberg, S. (2011) An R Companion to Applied Regression (149-183). London: Sage.
+- Pértega-Díaz, S., & Pita-Fernández, S. (2000). Técnicas de regresión: Regresión lineal múltiple. Cuadernos de atención primaria, 7(3), 173-176. En: https://dialnet.unirioja.es/servlet/articulo?codigo=2331162
+- Pértega-Díaz, S., & Pita-Fernández, S. (2000). Técnicas de regresión: Regresión lineal simple. Cuadernos de atención primaria, 7(2), 91-94. En: https://dialnet.unirioja.es/servlet/articulo?codigo=2331559
+- Grolemund, G. & Wickam, H. (2017) R for Data Science. Disponible en: https://r4ds.had.co.nz/
+
+### MODELOS DE REGRESIÓN PARA VARIABLES CATEGÓRICAS (Unidad 3)
+- Silva LC, Barroso J. (2004). Regresión Logística. Cuaderno 27. Madrid: La Muralla.
+- Silva LC. (1995). Excursión a la regresión logística en ciencias de la salud. Madrid: Díaz de Santos; 1995.
+- Jovell, A.J. (1995). Análisis de regresión logística, Cuadernos Metodológicos del CIS. Madrid.
+
+### Links & otras recomendaciones
+
+- [Econometrics with R](https://www.econometrics-with-r.org/6-2-tmrm.html)
 
 
 ## Software
 
-We will do all of our visualization work in this class using [R](https://cran.r-project.org/). We will use [RStudio](https://www.rstudio.com/) to manage our code and projects. 
+Usaremos R 4.0 a través de la interfaz de RStudio. También realizaremos ejercicios y prácticas online en RCloud.
 
-You will need to install some software first. Here is what to do:
+## Plataformas de comunicación y discusión
 
-1. Get the most recent version of R. R is free and available for Windows, Mac, and Linux operating systems. [Download](http://cloud.r-project.org) the version of R compatible with your operating system. If you are running Windows or MacOS, you should choose one of the *precompiled binary* distributions (i.e., ready-to-run applications) linked at the top of the R Project's webpage. 
-2. Once R is installed, [download and install R Studio](http://rstudio.com). R Studio is an "Integrated Development Environment", or IDE. This means it is a front-end for R that makes it much easier to work with. R Studio is also free, and available for Windows, Mac, and Linux platforms.
-3. [Install the tidyverse library](http://tidyverse.org) and several other add-on packages for R. These libraries provide useful functionality that we will take advantage of throughout the book. You can learn more about the tidyverse's family of packages at its website.
+- Foros Ucursos
+- Disqus
 
-   To install the tidyverse, make sure you have an Internet connection and then launch R Studio. Type the following lines of code at R's command prompt, located in the window named "Console", and hit return. In the code below, the `<-` arrow is made up of two keystrokes, first `<` and then the short dash or minus symbol, `-`.
 
-```{r, echo=TRUE, eval=FALSE, tidy = FALSE}
-my_packages <- c("tidyverse", "broom", "cowplot", "drat",
-                 "gapminder", "GGally", "ggforce", "ggrepel", "ggridges", "gridExtra",
-                 "here", "interplot", "margins", "maps", "mapproj",
-                 "mapdata", "MASS", "quantreg", "rlang", "scales",
-                 "survey", "srvyr", "devtools")
+## VARIOS
 
-install.packages(my_packages, repos = "http://cran.rstudio.com")
-```
+- Las clases en general se acompañan de documentos de presentación, que estarán disponibles antes de la sesión en la página de [Materiales](/class/), y están desarrollados con base en Rmarkdown/XaringanRmarkdown/ Xaringan. Estos documentos no son:
 
-R Studio should then download and install these packages for you. It may take a little while to download everything.
+  - “la clase”
+  - autoexplicativos (ni aspiran a serlo)
+  - “el ppt” (ni mucho menos “la ppt”)
 
-With these packages available, you can then install one last library of material that's useful specifically for this course:
+- **Políticas de participación y trato**: se espera y enfatiza la participación por distintos canales disponibles. También se enfatiza un trato respetuoso y horizontal. Quienes están tomando este curso serán referidos como participantes y/o estudiantes, evitar el uso de "l_s cabr_s" o "l_s chiquill_s". Quien no se sienta tratad_ apropiadamente o vea que otr_s no lo estan siendo, se solicita reportar para solucionar la situación.
 
-```{r, echo=TRUE, eval=FALSE}
-install.packages("socviz", repos = "http://cran.rstudio.com")
-```
 
-## Schedule
+## Programación de sesiones
 
-`r blogdown::shortcode("topiclist")`
-
-As the weeks go by, consult the [Schedule Page](/schedule/) for more information on weekly topics, problem sets, readings, and other materials. The schedule is likely to change as we go. Links to readings, assignments, and other materials from class will be posted on that page. 
+Visitar la página de [Planificación](/schedule/).

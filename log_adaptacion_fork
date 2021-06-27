@@ -1,0 +1,62 @@
+# Log adaptación desde fork original
+
+## Para montar
+
+- 1 fork desde andrew heiss (original https://github.com/andrewheiss/evalsp20.classes.andrewheiss.com), pero genera una función que re-instala librerías de R en la misma carpeta del sitio (?), poco práctico. Por eso, voy al sitio de Healey que no tiene esa función y se hace fork desde ahí: https://github.com/kjhealy/socviz880.co
+- cambio nombre repositorio a multivaweb
+- clone en carpeta local multiva_web
+- cambio nombre Rproject a multivaweb
+- Problemas al compilar
+  - install.packages("blogdown") # reinstalar
+  - blogdown::update_hugo() # update hugo
+- problemas, finalmente se soluciona reemplazando el Makefile del root con un script simple (ver  actual) en lugar del set de instrucciones que había en el de Healey.
+-
+
+## modificar
+
+- se cambian los nombres de las páginas (en contents y respectivos Rmds) y los links respectivos del config(_default) menus.yaml, EXCEPTO schedule, que tiene una arquitectura muy distinta.
+- algunos como programa se modifican en el mismo Rmd, para schedule ir a data/schedule.yaml, ahí está la arquitectura de esto ligado a sesiones, slides, lecturas, etc.
+- para cambiar el ícono del tab, reemplazar el creado en icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2, carpeta resources/images/images
+- en hero.md se puede cambiar el color/gradiente del banner de la portada
+- en assets/scss/custom.css se agrega:
+.sidenote {
+  width: 30%;
+  float: right;
+  clear: right;
+  margin-right: -35%;
+  font-size: 0.8rem;
+  font-family: courier;
+  color: #BC1A1A;
+}
+
+Esto para crear notas al margen de la siguiente manera:
+<span class="sidenote">Several variations of this sentence are known.</span>
+
+- Sobre tema scroll en chunks: hay ajustes por defecto en el archivo  _root.scss, pero esto no surge efecto al modificar haciendo deploy, porque es una carpeta que tiene su propio git. Por lo tanto se modifican en custom.css
+
+pre code, pre, code {
+  white-space: pre !important;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  word-break: keep-all !important;
+  word-wrap: initial !important;
+    max-height: 300px;
+    font-family: $sta-font-mono, monospace;
+    color: #c7254e;
+    background-color: #f9f2f4;
+}
+
+
+## deploy
+
+- conectar con repositorio github desde netlify
+- build command: anotar version de hugo, para eso
+  - primero desde terminal: hugo version, entrega algo como esto  Hugo Static Site Generator v0.68.1-98DC46E1/extended; o, desde R: blogdown::hugo_version()
+  - anotar esto en el build command requerido por netlify de la siguiente manera: hugo_0.68.1
+- publish directory: public
+- el Base directory puede quedar en blanco (not set)
+- add netlify.toml file, reemplazando las versiones de hugo donde corresponda
+- para deploy branches:
+  - en netlify, ir a settings de build&deploy, y en deploy context seleccionar branch deploy: all
+  - update en el toml lo referido a deploy branches, como aparece en este netlify.toml
+  - al hacer deploy, con una branch activa, debería entonces registrarse el deploy en el log de deploys. Para poder ver la branch online: nombre de la branch--multivariada.netilify.com
