@@ -102,6 +102,7 @@ Este trabajo posee dos entregas, tal como se señala en el programa del curso
 
 - **Informe 3 (final)**: Su formato es de artículo/ reporte breve de investigación. En esta entrega se corrigen aspectos del **Informe 2**, junto con profundizar en el chequeo de supuestos, casos influyentes, interacciones. Aquellos grupos que trabajen con una variable dependiente continua deberán realizar además al menos una estimación de regresión logística (y su correspondiente interpretación) con la variable dependiente dicotomizada (total máximo 3.500 palabras).
 
+<div class="alert alert-info">
 **Actualización Informe 3**
 
 - Lo central en este informe es incorporar las correcciones al informe 2
@@ -109,6 +110,8 @@ Este trabajo posee dos entregas, tal como se señala en el programa del curso
 - La estimación de regresión logística es opcional (excepto para quienes tengan una variable dependiente dicotómica o que haya sido sugerido dicotomizarla por temas de distribución)
 
 - No se incluye en la evaluación de este informe el chequeo de supuestos del modelo de regresión. De todas maneras en la página quedará un tutorial disponible sobre este tema.
+
+</div>
 
 ## Secciones del trabajo
 
@@ -145,7 +148,11 @@ Este trabajo posee dos entregas, tal como se señala en el programa del curso
 7. Discusión de los resultados, con énfasis en la relación entre variable dependiente e independientes, limitaciones, posibles estudios futuros. (500 palabras) (2 puntos)
 
 8. Video-cápsula de presentación del trabajo: video de máximo 5 minutos donde se presente resumidamente el trabajo de investigación (3 puntos)
+
+<div class="alert alert-info">
 **Actualización**: también existe la alterntiva de realizar un poster en lugar del video, los detalles para cada uno de los formatos en [este link](/docs/difusion-trabajos.html)
+</div>
+
 
 ## Formato
 
