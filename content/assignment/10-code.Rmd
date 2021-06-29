@@ -1,8 +1,8 @@
 ---
-title: "Práctica 10. Diagnóstico de la calidad de los modelos: supuestos y transformación de variables"
+# title: "Práctica 10. Diagnóstico de la calidad de los modelos: supuestos y transformación de variables"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
 author: "Valentina Andrade"
-linktitle: "Práctica 10. Diagnóstico de la calidad de los modelos: supuestos y transformación de variables"
+# linktitle: "Práctica 10. Diagnóstico de la calidad de los modelos: supuestos y transformación de variables"
 date: "2021-06-29"
 class_date: "2021-06-29"
 citeproc: false
@@ -16,8 +16,8 @@ output:
     number_sections: FALSE
 menu:
   class:
-    parent: Practicas
-    weight: 11
+    parent: # Practicas
+    weight: 20
 type: docs
 weight: 1
 editor_options:
@@ -38,9 +38,11 @@ remotes::install_github("haozhu233/kableExtra", ref="a6af5c0")
 klippy::klippy(position = c('bottom', 'right')) # chunks con botón de copiar
 ```
 
-# Objetivo
+# Presentación
 
-La siguiente práctica tiene el objetivo de introducir a los estudiantes en los **supuestos y robustez del modelo de regresión**. Por esta razón, volveremos a algunos de los contenidos previos relacionados con la estimación, análisis de residuos y ajuste.  Para ello, utilizaremos los datos de la encuesta [MOVID-IMPACT](https://movid-impact.netlify.app/) con el objetivo de analizar los determinantes de la **Fatiga pandémica**
+Esta práctica tiene que ver con poner en cuestión la calidad de nuestros modelos de regresión. Si bien en la estimación tenemos información sobre el ajuste genera según el R2, existen una serie de aspectos que podrían estar afectando nuestra estimación y haciendo que nuestro modelo no represente de buena manera las asociaciones entre las variables.
+
+La siguiente práctica tiene el objetivo de introducir a los estudiantes en los **supuestos y robustez del modelo de regresión**, así como también las posibles alternativas de transformación de variables para corregir las estimaciones cuando los supuestos no se cumplen. Para ello, utilizaremos los datos de la encuesta [MOVID-IMPACT](https://movid-impact.netlify.app/) con el objetivo de analizar los determinantes de la **Fatiga pandémica**
 
 # Librerías
 
@@ -48,7 +50,6 @@ La siguiente práctica tiene el objetivo de introducir a los estudiantes en los 
 pacman::p_load(tidyverse, magrittr,
                summarytools, sjPlot, performance, see)
 ```
-
 
 # Datos
 
@@ -66,12 +67,12 @@ Filtraremos los datos solo con la información de los encuestados, seleccionarem
 ```{r echo = T, results= 'asis'}
 movid_proc <- movid %>%
   group_by(id_encuesta) %>%  #Para calcular tamano de hogar
-  mutate(tamanohogar = n()) %>% 
-  ungroup() %>% 
+  mutate(tamanohogar = n()) %>%
+  ungroup() %>%
   filter(entrevistado == 1) %>% #Filtrar solo a entrevistados
   select(sexo, edad, trabaja = g1,ingreso = g47_monto, tingreso= g48, tamanohogar, starts_with("c2"), fatiga = f5_3) %>% #Seleccionar variabes
   mutate_at(vars(-tingreso), ~car::recode(.,"c(8,9) = NA")) %>%
-  mutate(tingreso = car::recode(tingreso,"c(98,99) = NA")) %>% 
+  mutate(tingreso = car::recode(tingreso,"c(98,99) = NA")) %>%
   mutate_at(vars(sexo, trabaja, starts_with("c2"), tingreso, -fatiga), ~as_factor(.))
 ```
 
@@ -91,14 +92,6 @@ print(dfSummary(movid_proc, headings = FALSE, method = "render", na.col = F, val
 
 # Introducción
 
-Un aspecto crucial cuando construimos modelos de regresión es la evaluación de la calidad del modelo. Hasta ahora habíamos conocido algunos algunos índices que nos permitían saber "la bondad de ajuste del modelo", lo que nos indicaban qué tan bien ajustan los modelos construidos a los datos recopilados. Ahora bien la evaluación del modelo consta más bien de tres ejes
-
-![](https://docs.google.com/drawings/d/e/2PACX-1vQU-ZZaq8rGgECgd2uZ_nkbBCncvHWEUZDxkik0C-QBwln43qpOFvp0nv-qCt9p4RelA8TSOlI8gNVk/pub?w=480&amp;h=360)
-
-**Figura 1**. Proceso de evaluación de la calidad de los modelos estimados. Elaboración propia
-
-**1. Robustez** (*pre-hoc*): los modelos de regresión tienen una serie de **supuestos** que se deben cumplir para que las estimaciones sean **fidedignas**.En esa sesión consideraremos los supuestos más esenciales: linealidad, normalidad de residuos, homogeneidad de la varianza,  independencia de variables, multicolinealidad y casos influyentes (*los primeros tres aplican solo para regresiones lineales*).
-
 **2. Ajuste** (*post-hoc*): implica abordar qué tan bien ajustan nuestros modelos con los datos utilizados. La *bondad de ajuste* implica que si trabajamos con una
 
   - 2.1 *Regresión lineal múltiple*, analizaremos el $R^2$ ajustado
@@ -106,11 +99,11 @@ Un aspecto crucial cuando construimos modelos de regresión es la evaluación de
 
 **3. Comparación**: luego de que hacemos **transformaciones** a los modelos, una etapa importante para la **selección** de estos es compararlos. Para ello consideraremos toda la información que tenemos de ellos en su diagnóstico de **pre y post hoc.**
 
-## ¿Cómo evaluar la robustez y ajuste de modelos en **R**?
+**¿Cómo evaluar la robustez y ajuste de modelos en `R`?**
 
 En R existen diversas funciones para crear un diagnóstico de supuestos y de ajuste a nuestros modelos. Ahora bien, la gran parte de ello se desenvuelve en distintos paquetes, sobre todo  considerando que, como vimos, **no existen criterios únicos** para evaluar la calidad de nuestros modelos (más aún cuando son su variable dependiente tiene un nivel distinto de medición).
 
-La buena noticia es que el paquete `performace`  que reúne todas estas herramientas, y que los tres ejes de la **calidad de los modelos** también las distingue en una función para cada una.
+La buena noticia es que el paquete `performace` reúne todas estas herramientas, y que los tres ejes de la **calidad de los modelos** también las distingue en una función para cada una.
 
 ![](https://github.com/easystats/performance/blob/master/paper/figure_workflow.png?raw=true)
 
@@ -118,7 +111,7 @@ La buena noticia es que el paquete `performace`  que reúne todas estas herramie
 
 # Diagnóstico de la calidad de los modelos
 
-Imaginemos que queremos analizar los determinantes de la **Fatiga pandémica**, y para ello estimaremos un modelo de regresión lineal. 
+Imaginemos que queremos analizar los determinantes de la **Fatiga pandémica**, y para ello estimaremos un modelo de regresión lineal.
 ```{r}
 model1 <- lm(as.numeric(fatiga) ~ c2_1 + c2_2 + c2_3 + c2_4 +
                trabaja + sexo + edad + ingreso,
@@ -131,9 +124,9 @@ texreg::htmlreg(model1, custom.model.names = "Modelo 1", caption = "")
 ```
 
 
-## 1. Supuestos{#supuestos}
+## 1. Robustez y supuestos{#supuestos}
 
-No dejemos las tareas a medias. Antes de interpretar un modelo (ver el tamaño efecto y significancia de sus coeficientes) y ver su ajuste, es evidente que primero debemos chequear la validez. En el siguiente apartado les presentaremos uno de los 5 supuestos más básicos, y que en caso de no cumplirse se presentan una serie de problemas que **debemos** solucionar. En la siguiente figura puedes ver un resumen de lo que revisaremos
+Los modelos de regresión tienen una serie de **supuestos** que se deben cumplir para que las estimaciones sean **fidedignas**.En esa sesión consideraremos los supuestos más esenciales: linealidad, normalidad de residuos, homogeneidad de la varianza,  independencia de variables, multicolinealidad y casos influyentes (*los primeros tres aplican solo para regresiones lineales*).
 
 ![](https://docs.google.com/drawings/d/e/2PACX-1vQbb26p4E5LLFdGLr7t_3fvNHEn38d9E4D8uAdLMYk58GMp98uBpfsDqtEoMY4AdvBYftihC_Bst1G1/pub?w=480&amp;h=360)
 
@@ -167,22 +160,22 @@ Para comprobar el supuesto de homocedasticidad de manera más certera utilizarem
 
 $H_0$: La varianza de los residuos del modelo de regresión no es constante (**heterocedasticidad**)
 
-En este caso, buscaremos que rechazar la $H_0$. Esto implicaría que *"en suma y resta"* si bien hay residuos, estos tienen una variación **homogénea** en todos los tramos de la relación de la variable dependiente con la independiente. 
+En este caso, buscaremos que rechazar la $H_0$. Esto implicaría que *"en suma y resta"* si bien hay residuos, estos tienen una variación **homogénea** en todos los tramos de la relación de la variable dependiente con la independiente.
 
 A partir de la función `check_heteroscedasticity` verificaremos qué ocurre con la hipótesis nula
 ```{r}
 check_heteroscedasticity(model1)
 ```
 
-✔️ La varianza es homocedástica 
+✔️ La varianza es homocedástica
 
-## 1.3 Normalidad de residuos{#normalidad}
+### 1.3 Normalidad de residuos{#normalidad}
 
 Además de la linealidad (media 0), la homocedasticidad (varianza mínima y constante), el método de estimación de la regresión lineal (*OLS* o *MCO* en español) requiere asegurar una **distribución normal** de los residuos pues en caso contrario el modelo no es consistente a través de las variables y observaciones (esto significa que los errores no son aleteatorios).
 
 Al igual que con los otros supuestos, la **normalidad** de los residuos se puede evaluar con métodos numéricos con pruebas que ya conocemos de otros cursos como la prueba de *Shapiro-Wilk* y Kolmogorov-Smirnov
 
-A partir de la función `check_normality` utilizaremos la prueba *Shapiro-Wilk* para ver qué ocurre con la hipótesis nula a 
+A partir de la función `check_normality` utilizaremos la prueba *Shapiro-Wilk* para ver qué ocurre con la hipótesis nula a
 ```{r}
 check_normality(model1)
 ```
@@ -193,7 +186,7 @@ check_normality(model1)
 
 Evidentemente si los residuos no siguen una distribución normal, es probable que estos no sean independientes entre sí. Esto significa que buscaremos que los errores asociados a nuestro modelo de regresión sean **independientes**. Para saber si se cumple ese criterio se utiliza la prueba de *Durbin-Watson*, donde la $H_0$ supone que **los residuos son independientes**
 
-A partir de la función `check_autocorrelation` utilizaremos la prueba *Durbin-Watson* para ver qué ocurre con la hipótesis nula a 
+A partir de la función `check_autocorrelation` utilizaremos la prueba *Durbin-Watson* para ver qué ocurre con la hipótesis nula a
 
 ```{r}
 check_autocorrelation(model1)
@@ -220,13 +213,13 @@ Para evaluar esto ocuparemos el comando `check_collinearity()`. Como podemos ver
 plot(check_collinearity(model1))
 ```
 
-Ahora bien, dado que sabemos que las correlaciones en ciencias sociales nunca son tan altas, un criterio que se ocupa en nuestras disciplinas para evaluar *multicolinealidad* es es evitar valores del VIF mayores a 2.5. 
+Ahora bien, dado que sabemos que las correlaciones en ciencias sociales nunca son tan altas, un criterio que se ocupa en nuestras disciplinas para evaluar *multicolinealidad* es es evitar valores del VIF mayores a 2.5.
 
 ```{r}
 check_collinearity(model1)
 ```
 
-⚠️ Como podemos ver los ítems del módulo de salud mental tienen todos valores sobre 2.5. Como veremos en el segundo apartado de esta sesión, las recomendaciones son o eliminar alguno de los predictores o *evaluar si es que estas variables más bien son parte de un mismo constructo* (y para ello las correlacionaremos) 
+⚠️ Como podemos ver los ítems del módulo de salud mental tienen todos valores sobre 2.5. Como veremos en el segundo apartado de esta sesión, las recomendaciones son o eliminar alguno de los predictores o *evaluar si es que estas variables más bien son parte de un mismo constructo* (y para ello las correlacionaremos)
 
 ### 1.6 Casos influyentes{#outliers}
 
@@ -257,7 +250,7 @@ Sabemos por la [práctica 5](https://multivariada.netlify.app/assignment/05-code
 2.2 Si trabajamos una regresión logística: Pseudo $R^2$ y los *Criterios de Información* BIC y AIC (ambos nos dicen cuánta información se está "perdiendo" con las variables que se ocupan en cada modelo. Por ello elegiremos el modelo que tenga un BIC y AIC más bajo).
 
 ```{r}
-performance::model_performance(model1) %>% 
+performance::model_performance(model1) %>%
   print_md() #print_md() nos permite hacer tablas en buen formato
 ```
 
@@ -268,7 +261,7 @@ Ya hemos dado una serie de  recomendaciones de transformaciones a las variables 
 ```{r, echo = F}
 table <- readxl::read_excel(path = "static/assignment/10code/tab-performance.xlsx")
 
-table %>%  
+table %>%
 kableExtra::kbl(., full_width = T, linesep = "", escape = FALSE) %>%
   kableExtra::kable_styling(
     full_width = F,
@@ -289,14 +282,14 @@ movid_proc <- movid_proc %>% mutate(edad2 = (edad)^2)
 
 ### 2.2 Logaritmizar variable dependiente
 
-Otro caso similar ocurre con *ingresos*, donde lo que se hace frecuentemente es transformar ingresos en un logaritmo de ingresos (*log(ingresos)*). 
+Otro caso similar ocurre con *ingresos*, donde lo que se hace frecuentemente es transformar ingresos en un logaritmo de ingresos (*log(ingresos)*).
 
 #### 2.2.1 Recuperar casos perdidos
 
 ¡Pero antes! Es común que en las encuestas sociales cierta variables posean una alta proporción de datos perdidos. Un ejemplo común es en el reporte de los ingresos de los hogares o individuos. Esto generalmente puede generarse por características de la persona (eg. desempleado, estudiante) o por deseabilidad social (eg. personas de altos ingresos desisten de reportar). Por lo general, existen dos estrategias para solicitar que las personas reporten sus ingresos: (1) reporte directo del monto y (2) si la persona no reporta los ingresos, se le presenta la posibilidad de ubicar los ingresos del hogar en tramos.
 
 ```{r, results='asis'}
-movid_proc %>% select(ingreso, tingreso) %$% 
+movid_proc %>% select(ingreso, tingreso) %$%
 print(dfSummary(., headings = FALSE, method = "render", varnumbers = F, lang = "es"))
 ```
 
@@ -309,7 +302,7 @@ La estrategia posee los siguientes pasos:
 - **Paso 2:** En el caso de no tener información, remplazar por la media del tramo
 
 ```{r}
-movid_proc <- movid_proc %>% 
+movid_proc <- movid_proc %>%
   mutate(tingreso = case_when(tingreso == "Menos de $200 mil pesos" ~ 200000,
                               tingreso == "Entre $200 y 350 mil pesos" ~ 275000,
                               tingreso == "Entre $351 y 500 mil pesos" ~ 425500,
@@ -325,7 +318,7 @@ movid_proc <- movid_proc %>%
 
 
 ```{r, results='asis'}
-movid_proc %>% select(ingreso, tingreso) %$% 
+movid_proc %>% select(ingreso, tingreso) %$%
 print(dfSummary(., headings = FALSE, method = "render", varnumbers = F, lang = "es")) #Paso 3
 ```
 
@@ -335,7 +328,7 @@ Vemos que pasamos de tener 25,3% de datos perdidos en ingresos a un 8,72% (es de
 
 **2. Calcular el ingreso per cápita**: si dividimos el ingreso por el tamaño del hogar (n° de habitantes en este), obtendremos el ingreso por persona.
 
-**3. Cálculo de medidas de posición acumulada**: con los ingresos per cápita se puede calcular la media o mediana de medidas de posición acumulada como quitiles 
+**3. Cálculo de medidas de posición acumulada**: con los ingresos per cápita se puede calcular la media o mediana de medidas de posición acumulada como quitiles
 
 ```{r}
 movid_proc <- movid_proc %>%
@@ -347,20 +340,20 @@ movid_proc <- movid_proc %>%
 
 ### 2.3 Dicotomizar variable dependiente
 
-Es recurrente que en las encuestas sociales nos encontremos con preguntas con *Escala Likert*. Sin embargo, muchas veces estas no tienen una distribución normal, y más bien las respuestas están concentradas en algunas categorías de referencia. 
+Es recurrente que en las encuestas sociales nos encontremos con preguntas con *Escala Likert*. Sin embargo, muchas veces estas no tienen una distribución normal, y más bien las respuestas están concentradas en algunas categorías de referencia.
 
-Si bien no hay criterios canónicos para trabajar esas variables, tiene sentido indicar que más bien no representan un constructo con 5 o más niveles, sino que probablemente de 2. Re-especificar la variable como dicotómica no solo ayudará a trabajar de manera más *realista* el constructo, sino que **facilitará** las interpretaciones que queramos hacer de nuestro modelo. 
+Si bien no hay criterios canónicos para trabajar esas variables, tiene sentido indicar que más bien no representan un constructo con 5 o más niveles, sino que probablemente de 2. Re-especificar la variable como dicotómica no solo ayudará a trabajar de manera más *realista* el constructo, sino que **facilitará** las interpretaciones que queramos hacer de nuestro modelo.
 
 Ocuparemos dos criterios para la **dicotomización**:
 
-1. **Medias**: se ocupará como criterio discriminante la media de la variable (donde 1 puede ser los valores mayores a la media, y 0 los inferiores). 
+1. **Medias**: se ocupará como criterio discriminante la media de la variable (donde 1 puede ser los valores mayores a la media, y 0 los inferiores).
 
 2. **Mediana**: la más frecuente en medidas ordinales como las *escalas Likert* es cuando el 50% de los casos se concentra en unas pocas categoría de respuesta (eg, "Muy de acuerdo" y "De acuerdo" serán 1 y el resto 0).
 
 En el caso de la variable `fatiga` que indica *"A medida que ha avanzado la crisis sanitaria, me siento cada vez más desmotivado para seguir las medidas de protección recomendadas"*, recodificaremos a aquellos como *1* a quiénes asienten a esta frase (*"Muy de acuerdo" y "De acuerdo"*)
 
 ```{r}
-movid_proc <- movid_proc %>% 
+movid_proc <- movid_proc %>%
   mutate(fatigadummy = case_when(fatiga %in% c(5,4) ~ 1,
                                  fatiga %in% c(3,2,1) ~ 0, TRUE ~ NA_real_))
 ```
@@ -381,16 +374,16 @@ En el [tutorial de dplyr](https://www.youtube.com/watch?v=APzU10EMMjg&t=321s) ya
 
 ```{r}
 movid_proc %>% select(starts_with("c2")) %>%
-  mutate_all(~as.numeric(.)) %>% 
+  mutate_all(~as.numeric(.)) %>%
 sjPlot::tab_corr(., triangle = "lower")
 ```
 
 2. **Construcción de índice**: este puede ser sumativo o promedio. Esto dependerá de la escala de los ítems y del sentido del constructo final que queremos utilizar. En nuestro caso crearemos una índice sumativa de `salud mental`
 
 ```{r}
-movid_proc <- movid_proc %>% 
-  mutate_at(vars(starts_with("c2")),~as.numeric(.)) %>% 
-  rowwise() %>% 
+movid_proc <- movid_proc %>%
+  mutate_at(vars(starts_with("c2")),~as.numeric(.)) %>%
+  rowwise() %>%
   mutate(salud_mental = sum(c2_1,c2_2,c2_3,c2_4, na.rm = T))
 ```
 
@@ -406,7 +399,7 @@ dcook<- 4/(n-k-1) #Punto de corte
 
 # Datos donde se filtran los valores sobre el punto de corte
 
-movid_proc_so <- broom::augment_columns(model1,data = movid_proc) %>% filter(.cooksd<dcook) 
+movid_proc_so <- broom::augment_columns(model1,data = movid_proc) %>% filter(.cooksd<dcook)
 ```
 
 Una vez finalizada las transformaciones calcular
@@ -451,7 +444,7 @@ texreg::htmlreg(list(model1,model2,model3), custom.model.names = c("Modelo 1", "
 
 Si bien en con la tabla N°3  podemos tener un panorama, es **imprescindible** recordar que para comparar modelos (en su robustez y ajuste) es necesario que estos tengan *(1) la misma variable de respuesta y (2) el mismo número de observaciones.*
 ```{r}
-compare_performance(model1_fit, model2) %>% 
+compare_performance(model1_fit, model2) %>%
   print_md()
 plot(compare_performance(model1_fit, model2))
 ```
@@ -483,5 +476,3 @@ Fox J, Weisberg S. Visualizing Fit and Lack of Fit in Complex Regression Models 
 
 <iframe src=/slides/10-robustezyadj/10robustez.html height="550" width=100% allowfullscreen="true">
 </iframe>
-
-

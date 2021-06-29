@@ -1,8 +1,8 @@
 ---
-title: "Práctica 10. Diagnóstico de la calidad de los modelos: supuestos y transformación de variables"
+# title: "Práctica 10. Diagnóstico de la calidad de los modelos: supuestos y transformación de variables"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
 author: "Valentina Andrade"
-linktitle: "Práctica 10. Diagnóstico de la calidad de los modelos: supuestos y transformación de variables"
+# linktitle: "Práctica 10. Diagnóstico de la calidad de los modelos: supuestos y transformación de variables"
 date: "2021-06-29"
 class_date: "2021-06-29"
 citeproc: false
@@ -16,8 +16,8 @@ output:
     number_sections: FALSE
 menu:
   class:
-    parent: Practicas
-    weight: 10
+    parent: # Practicas
+    weight: 20
 type: docs
 weight: 1
 editor_options:
@@ -36,7 +36,6 @@ editor_options:
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -101,26 +100,21 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2>Índice</h2>
 <div id="TOC">
 <ul>
-<li><a href="#objetivo">Objetivo</a></li>
+<li><a href="#presentación">Presentación</a></li>
 <li><a href="#librerías">Librerías</a></li>
 <li><a href="#datos">Datos</a>
 <ul>
 <li><a href="#procesamiento">Procesamiento</a></li>
 <li><a href="#explorar-datos">Explorar datos</a></li>
 </ul></li>
-<li><a href="#introducción">Introducción</a>
-<ul>
-<li><a href="#cómo-evaluar-la-robustez-y-ajuste-de-modelos-en-r">¿Cómo evaluar la robustez y ajuste de modelos en <strong>R</strong>?</a></li>
-</ul></li>
+<li><a href="#introducción">Introducción</a></li>
 <li><a href="#diagnóstico-de-la-calidad-de-los-modelos">Diagnóstico de la calidad de los modelos</a>
 <ul>
-<li><a href="#supuestos">1. Supuestos</a>
+<li><a href="#supuestos">1. Robustez y supuestos</a>
 <ul>
 <li><a href="#linealidad">1.1 Linealidad</a></li>
 <li><a href="#homocedasticidad">1.2 Homocedasticidad</a></li>
-</ul></li>
-<li><a href="#normalidad">1.3 Normalidad de residuos</a>
-<ul>
+<li><a href="#normalidad">1.3 Normalidad de residuos</a></li>
 <li><a href="#independencia">1.4 Independencia</a></li>
 <li><a href="#multicolinealidad">1.5 Multicolinealidad</a></li>
 </ul></li>
@@ -140,6 +134,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#comparación">3. Comparación</a></li>
 </ul></li>
 <li><a href="#referencias">Referencias</a></li>
+<li><a href="#video-tutorial">Video Tutorial</a></li>
+<li><a href="#documento-presentación">Documento presentación</a></li>
 </ul>
 </div>
 
@@ -147,38 +143,39 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   addClassKlippyTo("pre.r, pre.markdown");
   addKlippy('right', 'bottom', 'auto', '1', 'Copy code', 'Copied!');
 </script>
-<div id="objetivo" class="section level1">
-<h1>Objetivo</h1>
-<p>La siguiente práctica tiene el objetivo de introducir a los estudiantes en los <strong>supuestos y robustez del modelo de regresión</strong>. Por esta razón, volveremos a algunos de los contenidos previos relacionados con la estimación, análisis de residuos y ajuste. Para ello, utilizaremos los datos de la encuesta <a href="https://movid-impact.netlify.app/">MOVID-IMPACT</a> con el objetivo de analizar los determinantes de la <strong>Fatiga pandémica</strong></p>
+<div id="presentación" class="section level1">
+<h1>Presentación</h1>
+<p>Esta práctica tiene que ver con poner en cuestión la calidad de nuestros modelos de regresión. Si bien en la estimación tenemos información sobre el ajuste genera según el R2, existen una serie de aspectos que podrían estar afectando nuestra estimación y haciendo que nuestro modelo no represente de buena manera las asociaciones entre las variables.</p>
+<p>La siguiente práctica tiene el objetivo de introducir a los estudiantes en los <strong>supuestos y robustez del modelo de regresión</strong>, así como también las posibles alternativas de transformación de variables para corregir las estimaciones cuando los supuestos no se cumplen. Para ello, utilizaremos los datos de la encuesta <a href="https://movid-impact.netlify.app/">MOVID-IMPACT</a> con el objetivo de analizar los determinantes de la <strong>Fatiga pandémica</strong></p>
 </div>
 <div id="librerías" class="section level1">
 <h1>Librerías</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, magrittr,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>               summarytools, sjPlot, performance, see)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse, magrittr,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>               summarytools, sjPlot, performance, see)</span></code></pre></div>
 </div>
 <div id="datos" class="section level1">
 <h1>Datos</h1>
 <p><a href="https://movid-impact.netlify.app/">MOVID-IMPACT</a> es una encuesta transversal telefónica realizada por el equipo <a href="https://movid19.cl/">CoV-IMPACT-C</a> del proyecto <a href="https://movid19.cl/somos/cov-impact">ANID N°960</a>.El objetivo de la encuesta es conocer el impacto en la salud y socioeconómico que ha tenido la pandemia sobre la población chilena.</p>
 <p>Se cargan los datos directamente desde el sitio de la encuesta</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>movid <span class="ot">&lt;-</span> haven<span class="sc">::</span><span class="fu">read_dta</span>(<span class="fu">url</span>(<span class="st">&quot;https://movid-impact.netlify.app/input/data/MOVID-IMPACT.dta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>movid &lt;-<span class="st"> </span>haven<span class="op">::</span><span class="kw">read_dta</span>(<span class="kw">url</span>(<span class="st">&quot;https://movid-impact.netlify.app/input/data/MOVID-IMPACT.dta&quot;</span>))</span></code></pre></div>
 <div id="procesamiento" class="section level2">
 <h2>Procesamiento</h2>
 <p>Filtraremos los datos solo con la información de los encuestados, seleccionaremos las variables de interés para el práctico y recodificaremos los casos perdidos (para repasar, <a href="https://www.youtube.com/watch?v=APzU10EMMjg&amp;t=321s">ver tutorial de dplyr</a>)</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>movid_proc <span class="ot">&lt;-</span> movid <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_encuesta) <span class="sc">%&gt;%</span>  <span class="co">#Para calcular tamano de hogar</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tamanohogar =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(entrevistado <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtrar solo a entrevistados</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sexo, edad, <span class="at">trabaja =</span> g1,<span class="at">ingreso =</span> g47_monto, <span class="at">tingreso=</span> g48, tamanohogar, <span class="fu">starts_with</span>(<span class="st">&quot;c2&quot;</span>), <span class="at">fatiga =</span> f5_3) <span class="sc">%&gt;%</span> <span class="co">#Seleccionar variabes</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="sc">-</span>tingreso), <span class="sc">~</span>car<span class="sc">::</span><span class="fu">recode</span>(.,<span class="st">&quot;c(8,9) = NA&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tingreso =</span> car<span class="sc">::</span><span class="fu">recode</span>(tingreso,<span class="st">&quot;c(98,99) = NA&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(sexo, trabaja, <span class="fu">starts_with</span>(<span class="st">&quot;c2&quot;</span>), tingreso, <span class="sc">-</span>fatiga), <span class="sc">~</span><span class="fu">as_factor</span>(.))</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>movid_proc &lt;-<span class="st"> </span>movid <span class="op">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(id_encuesta) <span class="op">%&gt;%</span><span class="st">  </span><span class="co">#Para calcular tamano de hogar</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">tamanohogar =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">filter</span>(entrevistado <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Filtrar solo a entrevistados</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(sexo, edad, <span class="dt">trabaja =</span> g1,<span class="dt">ingreso =</span> g47_monto, <span class="dt">tingreso=</span> g48, tamanohogar, <span class="kw">starts_with</span>(<span class="st">&quot;c2&quot;</span>), <span class="dt">fatiga =</span> f5_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Seleccionar variabes</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(<span class="op">-</span>tingreso), <span class="op">~</span>car<span class="op">::</span><span class="kw">recode</span>(.,<span class="st">&quot;c(8,9) = NA&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">tingreso =</span> car<span class="op">::</span><span class="kw">recode</span>(tingreso,<span class="st">&quot;c(98,99) = NA&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(sexo, trabaja, <span class="kw">starts_with</span>(<span class="st">&quot;c2&quot;</span>), tingreso, <span class="op">-</span>fatiga), <span class="op">~</span><span class="kw">as_factor</span>(.))</span></code></pre></div>
 </div>
 <div id="explorar-datos" class="section level2">
 <h2>Explorar datos</h2>
 <p>Los datos utilizados tienen 1261 observaciones y 11 variables, las cuales serán descritas en la siguiente tabla</p>
 <p><strong>Tabla N°1</strong> Estadísticos descriptivos de base de datos procesadas de MOVID-IMPACT</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(<span class="fu">dfSummary</span>(movid_proc, <span class="at">headings =</span> <span class="cn">FALSE</span>, <span class="at">method =</span> <span class="st">&quot;render&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">view</span>(<span class="kw">dfSummary</span>(movid_proc, <span class="dt">headings =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="st">&quot;render&quot;</span>))</span></code></pre></div>
 <p>Fuente: Elaboración propia en base a MOVID-IMPACT (n=909 casos)</p>
 <table>
 <colgroup>
@@ -228,7 +225,7 @@ RI (CV) : 30 (0.4)</td>
 <tr class="odd">
 <td align="left">trabaja<br />
 [factor]</td>
-<td align="left">Durante la semana pasada, Â¿trabajÃ³ al
+<td align="left">Durante la semana pasada, ¿trabajó al
 menos una hora, sin considerar los
 quehace</td>
 <td align="left">1. Sí<br />
@@ -323,7 +320,7 @@ I<br />
 <tr class="odd">
 <td align="left">c2_1<br />
 [factor]</td>
-<td align="left">Ãšltimas 2 semanas: se ha sentido
+<td align="left">Últimas 2 semanas: se ha sentido
 nervioso, ansioso o con los nervios de
 punta</td>
 <td align="left">1. Nunca<br />
@@ -348,7 +345,7 @@ III<br />
 <tr class="even">
 <td align="left">c2_2<br />
 [factor]</td>
-<td align="left">Ãšltimas 2 semanas: No ha podido dejar de
+<td align="left">Últimas 2 semanas: No ha podido dejar de
 preocuparse o no ha podido controlar su</td>
 <td align="left">1. Nunca<br />
 2. Varios días<br />
@@ -372,7 +369,7 @@ II<br />
 <tr class="odd">
 <td align="left">c2_3<br />
 [factor]</td>
-<td align="left">Ãšltimas 2 semanas: Se ha sentido
+<td align="left">Últimas 2 semanas: Se ha sentido
 bajoneado, deprimido, irritable o
 desesperanzad</td>
 <td align="left">1. Nunca<br />
@@ -397,8 +394,8 @@ II<br />
 <tr class="even">
 <td align="left">c2_4<br />
 [factor]</td>
-<td align="left">Ãšltimas 2 semanas: Ha sentido poco
-interÃ©s o placer al hacer las cosas</td>
+<td align="left">Últimas 2 semanas: Ha sentido poco
+interés o placer al hacer las cosas</td>
 <td align="left">1. Nunca<br />
 2. Varios días<br />
 3. Más de la mitad de los dí<br />
@@ -421,8 +418,8 @@ II<br />
 <tr class="odd">
 <td align="left">fatiga<br />
 [haven_labelled, vctrs_vctr, double]</td>
-<td align="left">Me siento cada vez mÃ¡s desmotivado para
-seguir las medidas de protecciÃ³n…</td>
+<td align="left">Me siento cada vez más desmotivado para
+seguir las medidas de protección…</td>
 <td align="left">Media (d-s) : 2.8 (1.1)<br />
 min &lt; mediana &lt; max:<br />
 1 &lt; 2 &lt; 5<br />
@@ -444,30 +441,24 @@ I</td>
 </div>
 <div id="introducción" class="section level1">
 <h1>Introducción</h1>
-<p>Un aspecto crucial cuando construimos modelos de regresión es la evaluación de la calidad del modelo. Hasta ahora habíamos conocido algunos algunos índices que nos permitían saber “la bondad de ajuste del modelo”, lo que nos indicaban qué tan bien ajustan los modelos construidos a los datos recopilados. Ahora bien la evaluación del modelo consta más bien de tres ejes</p>
-<p><img src="https://docs.google.com/drawings/d/e/2PACX-1vQU-ZZaq8rGgECgd2uZ_nkbBCncvHWEUZDxkik0C-QBwln43qpOFvp0nv-qCt9p4RelA8TSOlI8gNVk/pub?w=480&amp;h=360" /></p>
-<p><strong>Figura 1</strong>. Proceso de evaluación de la calidad de los modelos estimados. Elaboración propia</p>
-<p><strong>1. Robustez</strong> (<em>pre-hoc</em>): los modelos de regresión tienen una serie de <strong>supuestos</strong> que se deben cumplir para que las estimaciones sean <strong>fidedignas</strong>.En esa sesión consideraremos los supuestos más esenciales: linealidad, normalidad de residuos, homogeneidad de la varianza, independencia de variables, multicolinealidad y casos influyentes (<em>los primeros tres aplican solo para regresiones lineales</em>).</p>
 <p><strong>2. Ajuste</strong> (<em>post-hoc</em>): implica abordar qué tan bien ajustan nuestros modelos con los datos utilizados. La <em>bondad de ajuste</em> implica que si trabajamos con una</p>
 <ul>
 <li>2.1 <em>Regresión lineal múltiple</em>, analizaremos el <span class="math inline">\(R^2\)</span> ajustado</li>
 <li>2.2 <em>Regresión logística</em>, analizaremos el <span class="math inline">\(Pseudo\)</span> <span class="math inline">\(R^2\)</span> y los <em>Criterios de Información</em> <span class="math inline">\(BIC\)</span> y <span class="math inline">\(AIC\)</span> (ambos nos dicen cuánta información se está “perdiendo” con las variables que se ocupan en cada modelo. Por ello elegiremos el modelo que tenga un BIC y AIC más bajo)</li>
 </ul>
 <p><strong>3. Comparación</strong>: luego de que hacemos <strong>transformaciones</strong> a los modelos, una etapa importante para la <strong>selección</strong> de estos es compararlos. Para ello consideraremos toda la información que tenemos de ellos en su diagnóstico de <strong>pre y post hoc.</strong></p>
-<div id="cómo-evaluar-la-robustez-y-ajuste-de-modelos-en-r" class="section level2">
-<h2>¿Cómo evaluar la robustez y ajuste de modelos en <strong>R</strong>?</h2>
+<p><strong>¿Cómo evaluar la robustez y ajuste de modelos en <code>R</code>?</strong></p>
 <p>En R existen diversas funciones para crear un diagnóstico de supuestos y de ajuste a nuestros modelos. Ahora bien, la gran parte de ello se desenvuelve en distintos paquetes, sobre todo considerando que, como vimos, <strong>no existen criterios únicos</strong> para evaluar la calidad de nuestros modelos (más aún cuando son su variable dependiente tiene un nivel distinto de medición).</p>
-<p>La buena noticia es que el paquete <code>performace</code> que reúne todas estas herramientas, y que los tres ejes de la <strong>calidad de los modelos</strong> también las distingue en una función para cada una.</p>
+<p>La buena noticia es que el paquete <code>performace</code> reúne todas estas herramientas, y que los tres ejes de la <strong>calidad de los modelos</strong> también las distingue en una función para cada una.</p>
 <p><img src="https://github.com/easystats/performance/blob/master/paper/figure_workflow.png?raw=true" /></p>
 <p><strong>Figura 2.</strong> paquete <code>performance</code> del proyecto easystats de <a href="https://easystats.github.io/performance/">Lüdecke et al. (2021)</a></p>
-</div>
 </div>
 <div id="diagnóstico-de-la-calidad-de-los-modelos" class="section level1">
 <h1>Diagnóstico de la calidad de los modelos</h1>
 <p>Imaginemos que queremos analizar los determinantes de la <strong>Fatiga pandémica</strong>, y para ello estimaremos un modelo de regresión lineal.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">as.numeric</span>(fatiga) <span class="sc">~</span> c2_1 <span class="sc">+</span> c2_2 <span class="sc">+</span> c2_3 <span class="sc">+</span> c2_4 <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>               trabaja <span class="sc">+</span> sexo <span class="sc">+</span> edad <span class="sc">+</span> ingreso,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> movid_proc)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">as.numeric</span>(fatiga) <span class="op">~</span><span class="st"> </span>c2_<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>c2_<span class="dv">2</span> <span class="op">+</span><span class="st"> </span>c2_<span class="dv">3</span> <span class="op">+</span><span class="st"> </span>c2_<span class="dv">4</span> <span class="op">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="st">               </span>trabaja <span class="op">+</span><span class="st"> </span>sexo <span class="op">+</span><span class="st"> </span>edad <span class="op">+</span><span class="st"> </span>ingreso,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>             <span class="dt">data =</span> movid_proc)</span></code></pre></div>
 <strong>Tabla 1</strong>. Modelo de regresión que predice la fatiga a la pandemia
 <table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;">
 <thead>
@@ -787,15 +778,15 @@ Num. obs.
 </tfoot>
 </table>
 <div id="supuestos" class="section level2">
-<h2>1. Supuestos</h2>
-<p>No dejemos las tareas a medias. Antes de interpretar un modelo (ver el tamaño efecto y significancia de sus coeficientes) y ver su ajuste, es evidente que primero debemos chequear la validez. En el siguiente apartado les presentaremos uno de los 5 supuestos más básicos, y que en caso de no cumplirse se presentan una serie de problemas que <strong>debemos</strong> solucionar. En la siguiente figura puedes ver un resumen de lo que revisaremos</p>
+<h2>1. Robustez y supuestos</h2>
+<p>Los modelos de regresión tienen una serie de <strong>supuestos</strong> que se deben cumplir para que las estimaciones sean <strong>fidedignas</strong>.En esa sesión consideraremos los supuestos más esenciales: linealidad, normalidad de residuos, homogeneidad de la varianza, independencia de variables, multicolinealidad y casos influyentes (<em>los primeros tres aplican solo para regresiones lineales</em>).</p>
 <p><img src="https://docs.google.com/drawings/d/e/2PACX-1vQbb26p4E5LLFdGLr7t_3fvNHEn38d9E4D8uAdLMYk58GMp98uBpfsDqtEoMY4AdvBYftihC_Bst1G1/pub?w=480&amp;h=360" /></p>
 <p><strong>Figura 3</strong>. Diferentes funciones de <code>performance</code> para evaluar robustez del modelo</p>
 <div id="linealidad" class="section level3">
 <h3>1.1 Linealidad</h3>
 <p>Para la regresión lineal múltiple, un supuesto importante es que existe una <strong>relación lineal entre la variable dependiente e independiente</strong>.</p>
 <p>Podemos saber si se cumple este supuesto a partir de un <em>gráfico de dispersión de datos</em>, que relacione la variable dependiente y la independiente, y verificar de manera “intuitiva” si la <strong>tendencia</strong> de esta relación se puede describir por una <strong>línea recta</strong>. El paquete <code>performace</code> nos permite hacer esto con su función <code>check_model</code> indicando en el argumento <code>check = "ncv</code></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_model</span>(model1, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">&quot;ncv&quot;</span>, <span class="st">&quot;linearity&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">check_model</span>(model1, <span class="dt">check =</span> <span class="kw">c</span>(<span class="st">&quot;ncv&quot;</span>, <span class="st">&quot;linearity&quot;</span>))</span></code></pre></div>
 <p><img src="/assignment/10-code_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>En este caso podemos notar claramente que no hay una relación lineal. En caso de que no sea claro, una forma numérica para chequear este supuesto es que el valor promedio de los residuos sea cero. Si esto no es así los residuos están sesgados sistemáticamente, entonces probable que el modelo no sea realmente lineal, y esta desviación de los residuos deba corregirse re-especificando (medir de otra manera la variable) algún término de la ecuación de regresión al cuadrado o al cubo. Un modo que se ocupa para testear la necesidad de esta re-especificación es el test RESET de Ramsey que indica que:</p>
 <p><span class="math inline">\(H_o\)</span> cuando el modelo tiene algún término al cuadrado o cubo, la media de los residuos es cero. Es decir, que si no podemos rechazar <span class="math inline">\(H_0\)</span>, nuestro modelo está bien especificado (es decir, es lineal). Como en este caso es claro que se necesita respecificar el predictor elevamos edad al cuadrado. Imaginemos que es el caso</p>
@@ -809,25 +800,25 @@ Num. obs.
 <p><span class="math inline">\(H_0\)</span>: La varianza de los residuos del modelo de regresión no es constante (<strong>heterocedasticidad</strong>)</p>
 <p>En este caso, buscaremos que rechazar la <span class="math inline">\(H_0\)</span>. Esto implicaría que <em>“en suma y resta”</em> si bien hay residuos, estos tienen una variación <strong>homogénea</strong> en todos los tramos de la relación de la variable dependiente con la independiente.</p>
 <p>A partir de la función <code>check_heteroscedasticity</code> verificaremos qué ocurre con la hipótesis nula</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_heteroscedasticity</span>(model1)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">check_heteroscedasticity</span>(model1)</span></code></pre></div>
 <p>OK: Error variance appears to be homoscedastic (p = 0.494).</p>
 <p>✔️ La varianza es homocedástica</p>
 </div>
-</div>
-<div id="normalidad" class="section level2">
-<h2>1.3 Normalidad de residuos</h2>
+<div id="normalidad" class="section level3">
+<h3>1.3 Normalidad de residuos</h3>
 <p>Además de la linealidad (media 0), la homocedasticidad (varianza mínima y constante), el método de estimación de la regresión lineal (<em>OLS</em> o <em>MCO</em> en español) requiere asegurar una <strong>distribución normal</strong> de los residuos pues en caso contrario el modelo no es consistente a través de las variables y observaciones (esto significa que los errores no son aleteatorios).</p>
 <p>Al igual que con los otros supuestos, la <strong>normalidad</strong> de los residuos se puede evaluar con métodos numéricos con pruebas que ya conocemos de otros cursos como la prueba de <em>Shapiro-Wilk</em> y Kolmogorov-Smirnov</p>
 <p>A partir de la función <code>check_normality</code> utilizaremos la prueba <em>Shapiro-Wilk</em> para ver qué ocurre con la hipótesis nula a</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_normality</span>(model1)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">check_normality</span>(model1)</span></code></pre></div>
 <p>Warning: Non-normality of residuals detected (p &lt; .001).</p>
 <p>⚠️ Los residuos no son normales</p>
+</div>
 <div id="independencia" class="section level3">
 <h3>1.4 Independencia</h3>
 <p>Evidentemente si los residuos no siguen una distribución normal, es probable que estos no sean independientes entre sí. Esto significa que buscaremos que los errores asociados a nuestro modelo de regresión sean <strong>independientes</strong>. Para saber si se cumple ese criterio se utiliza la prueba de <em>Durbin-Watson</em>, donde la <span class="math inline">\(H_0\)</span> supone que <strong>los residuos son independientes</strong></p>
 <p>A partir de la función <code>check_autocorrelation</code> utilizaremos la prueba <em>Durbin-Watson</em> para ver qué ocurre con la hipótesis nula a</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_autocorrelation</span>(model1)</span></code></pre></div>
-<p>Warning: Autocorrelated residuals detected (p = 0.016).</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">check_autocorrelation</span>(model1)</span></code></pre></div>
+<p>Warning: Autocorrelated residuals detected (p = 0.010).</p>
 <p>⚠️ Hay correlación entre los residuos</p>
 <p>En síntesis sabemos la regresión lineal requiere de una relación lineal entre sus variables independientes y dependiente. Para ello no solo es importante chequear la distribución de los residuos, sino
 dos posibilidades que pueden <em>tendenciar</em> esa relación lineal: como casos influyentes en la muestra y predictores que están altamente relacionados. Revisaremos la última de estas</p>
@@ -839,10 +830,10 @@ dos posibilidades que pueden <em>tendenciar</em> esa relación lineal: como caso
 <p>Para la regresión múltiple esto implica un problema pues suponemos que podemos <em>“controlar”</em> por el otro valor de la variable.</p>
 <p>Esta relación <strong>endógena</strong> entre predictores la podemos examinar ante la existencia de altas correlaciones (<em>lineales</em>) entre variables. La aproximación numérica más utilizada es el <strong>VIF</strong> (factor de inflación de varianza) que indica hasta que punto la varianza de los coeficientes de regresión se debe a la colinealidad (o dependencia) entre otras variables del modelo.</p>
 <p>Para evaluar esto ocuparemos el comando <code>check_collinearity()</code>. Como podemos ver en el gráfico, todos los valores son menores a 5 (<em>como recomienda el paquete</em>).</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">check_collinearity</span>(model1))</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">plot</span>(<span class="kw">check_collinearity</span>(model1))</span></code></pre></div>
 <p><img src="/assignment/10-code_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Ahora bien, dado que sabemos que las correlaciones en ciencias sociales nunca son tan altas, un criterio que se ocupa en nuestras disciplinas para evaluar <em>multicolinealidad</em> es es evitar valores del VIF mayores a 2.5.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_collinearity</span>(model1)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">check_collinearity</span>(model1)</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -864,10 +855,10 @@ ingreso 1.00 1.00</p>
 <p>Un último supuesto que revisaremos, y es el que probablemente parte del que más nos enfrentamos en las ciencias sociales, son los <strong>casos influyentes</strong> (también llamados en inglés, <em>outliers</em>). Un ejemplo claro de esto son las variables como ingresos, donde muchas veces tenemos casos extremos con muy bajos salarios y otros muy altos, y que pueden tendenciar nuestras rectas de regresión pese a que no es evidente una relación lineal(o algún tipo de relación) entre la variable independiente y dependiente.</p>
 <p>Para verificar si un “caso es <em>influyente</em>” examinaremos si la ausencia o presencia de ese caso genera un cambio importante en la estimación del modelo de regresión. Este enfoque se aborda a partir del cálculo de la <strong>Distancia de Cook</strong> (Cook,1977)</p>
 <p>Primero podemos graficar la influencia de los casos con <code>check_outliers()</code> dentro de un <code>plot()</code></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">check_outliers</span>(model1))</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">plot</span>(<span class="kw">check_outliers</span>(model1))</span></code></pre></div>
 <p><img src="/assignment/10-code_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>Luego para verificar si la ausencia o presencia de eliminar algunos de estos casos que presentan mayor distancia producen una <strong>diferencia</strong> significativa en la estimación del modelo, realizamos</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_outliers</span>(model1)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">check_outliers</span>(model1)</span></code></pre></div>
 <p>OK: No outliers detected.</p>
 <p>✔️ No hay outliers</p>
 </div>
@@ -876,8 +867,8 @@ ingreso 1.00 1.00</p>
 <p>Sabemos por la <a href="https://multivariada.netlify.app/assignment/05-code/">práctica 5</a> que podemos evaluar qué tan bien ajustan nuestros modelos con los datos utilizados. Sabemos que:</p>
 <p>2.1 Si trabajamos una regresión lineal: el <span class="math inline">\(R^2\)</span> ajustado</p>
 <p>2.2 Si trabajamos una regresión logística: Pseudo <span class="math inline">\(R^2\)</span> y los <em>Criterios de Información</em> BIC y AIC (ambos nos dicen cuánta información se está “perdiendo” con las variables que se ocupan en cada modelo. Por ello elegiremos el modelo que tenga un BIC y AIC más bajo).</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>performance<span class="sc">::</span><span class="fu">model_performance</span>(model1) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print_md</span>() <span class="co">#print_md() nos permite hacer tablas en buen formato</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a>performance<span class="op">::</span><span class="kw">model_performance</span>(model1) <span class="op">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">print_md</span>() <span class="co">#print_md() nos permite hacer tablas en buen formato</span></span></code></pre></div>
 <table>
 <caption>Indices of model performance</caption>
 <thead>
@@ -1004,7 +995,7 @@ Eliminar casos influyentes
 <div id="transformar-predictor-al-cuadrado-o-cubo" class="section level3">
 <h3>2.1 Transformar predictor al cuadrado o cubo</h3>
 <p>Si estamos ante problemas de linealidad, indicamos que el término cuadrático o al cubo de algún predictor produce que la media de los residuos sea 0. Por lo general, por su distribución, esta variable es edad.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>movid_proc <span class="ot">&lt;-</span> movid_proc <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">edad2 =</span> (edad)<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a>movid_proc &lt;-<span class="st"> </span>movid_proc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">edad2 =</span> (edad)<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
 </div>
 <div id="logaritmizar-variable-dependiente" class="section level3">
 <h3>2.2 Logaritmizar variable dependiente</h3>
@@ -1012,8 +1003,8 @@ Eliminar casos influyentes
 <div id="recuperar-casos-perdidos" class="section level4">
 <h4>2.2.1 Recuperar casos perdidos</h4>
 <p>¡Pero antes! Es común que en las encuestas sociales cierta variables posean una alta proporción de datos perdidos. Un ejemplo común es en el reporte de los ingresos de los hogares o individuos. Esto generalmente puede generarse por características de la persona (eg. desempleado, estudiante) o por deseabilidad social (eg. personas de altos ingresos desisten de reportar). Por lo general, existen dos estrategias para solicitar que las personas reporten sus ingresos: (1) reporte directo del monto y (2) si la persona no reporta los ingresos, se le presenta la posibilidad de ubicar los ingresos del hogar en tramos.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>movid_proc <span class="sc">%&gt;%</span> <span class="fu">select</span>(ingreso, tingreso) <span class="sc">%$%</span> </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(., <span class="at">headings =</span> <span class="cn">FALSE</span>, <span class="at">method =</span> <span class="st">&quot;render&quot;</span>, <span class="at">varnumbers =</span> F, <span class="at">lang =</span> <span class="st">&quot;es&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a>movid_proc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(ingreso, tingreso) <span class="op">%$%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="kw">print</span>(<span class="kw">dfSummary</span>(., <span class="dt">headings =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="st">&quot;render&quot;</span>, <span class="dt">varnumbers =</span> F, <span class="dt">lang =</span> <span class="st">&quot;es&quot;</span>))</span></code></pre></div>
 <table style="width:100%;">
 <colgroup>
 <col width="8%" />
@@ -1105,21 +1096,21 @@ I<br />
 <li><strong>Paso 1:</strong> Calcular la media por cada tramo</li>
 <li><strong>Paso 2:</strong> En el caso de no tener información, remplazar por la media del tramo</li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>movid_proc <span class="ot">&lt;-</span> movid_proc <span class="sc">%&gt;%</span> </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tingreso =</span> <span class="fu">case_when</span>(tingreso <span class="sc">==</span> <span class="st">&quot;Menos de $200 mil pesos&quot;</span> <span class="sc">~</span> <span class="dv">200000</span>,</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                              tingreso <span class="sc">==</span> <span class="st">&quot;Entre $200 y 350 mil pesos&quot;</span> <span class="sc">~</span> <span class="dv">275000</span>,</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                              tingreso <span class="sc">==</span> <span class="st">&quot;Entre $351 y 500 mil pesos&quot;</span> <span class="sc">~</span> <span class="dv">425500</span>,</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                              tingreso <span class="sc">==</span> <span class="st">&quot;Entre 501 y 800 mil pesos&quot;</span> <span class="sc">~</span> <span class="dv">650500</span>,</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                              tingreso <span class="sc">==</span> <span class="st">&quot;Entre 801 mil y 1 millón 200 mil pesos&quot;</span> <span class="sc">~</span> <span class="dv">1000500</span>,</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                              tingreso <span class="sc">==</span> <span class="st">&quot;Entre 1 millón 201 mil y 2 millones de pesos&quot;</span> <span class="sc">~</span> <span class="dv">1600500</span>,</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                              tingreso <span class="sc">==</span> <span class="st">&quot;Entre 2 millones y 5 millones de pesos&quot;</span> <span class="sc">~</span> <span class="dv">3500000</span>,</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>                              tingreso <span class="sc">==</span> <span class="st">&quot;Más de 5 millones de pesos&quot;</span> <span class="sc">~</span> <span class="dv">5000000</span>), <span class="co">#Paso 1</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">ingreso =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(ingreso), tingreso, ingreso))</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a>movid_proc &lt;-<span class="st"> </span>movid_proc <span class="op">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">tingreso =</span> <span class="kw">case_when</span>(tingreso <span class="op">==</span><span class="st"> &quot;Menos de $200 mil pesos&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">200000</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a>                              tingreso <span class="op">==</span><span class="st"> &quot;Entre $200 y 350 mil pesos&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">275000</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a>                              tingreso <span class="op">==</span><span class="st"> &quot;Entre $351 y 500 mil pesos&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">425500</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true"></a>                              tingreso <span class="op">==</span><span class="st"> &quot;Entre 501 y 800 mil pesos&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">650500</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true"></a>                              tingreso <span class="op">==</span><span class="st"> &quot;Entre 801 mil y 1 millón 200 mil pesos&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1000500</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true"></a>                              tingreso <span class="op">==</span><span class="st"> &quot;Entre 1 millón 201 mil y 2 millones de pesos&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1600500</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true"></a>                              tingreso <span class="op">==</span><span class="st"> &quot;Entre 2 millones y 5 millones de pesos&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">3500000</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true"></a>                              tingreso <span class="op">==</span><span class="st"> &quot;Más de 5 millones de pesos&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">5000000</span>), <span class="co">#Paso 1</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true"></a>         <span class="dt">ingreso =</span> <span class="kw">if_else</span>(<span class="kw">is.na</span>(ingreso), tingreso, ingreso))</span></code></pre></div>
 <ul>
 <li><strong>Paso 3:</strong> Comparar el resultado de los tramos</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>movid_proc <span class="sc">%&gt;%</span> <span class="fu">select</span>(ingreso, tingreso) <span class="sc">%$%</span> </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(., <span class="at">headings =</span> <span class="cn">FALSE</span>, <span class="at">method =</span> <span class="st">&quot;render&quot;</span>, <span class="at">varnumbers =</span> F, <span class="at">lang =</span> <span class="st">&quot;es&quot;</span>)) <span class="co">#Paso 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a>movid_proc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(ingreso, tingreso) <span class="op">%$%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a><span class="kw">print</span>(<span class="kw">dfSummary</span>(., <span class="dt">headings =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="st">&quot;render&quot;</span>, <span class="dt">varnumbers =</span> F, <span class="dt">lang =</span> <span class="st">&quot;es&quot;</span>)) <span class="co">#Paso 3</span></span></code></pre></div>
 <table>
 <colgroup>
 <col width="11%" />
@@ -1191,11 +1182,11 @@ I<br />
 <p><strong>1. Logaritmizar</strong>: en caso de que queramos seguir trabajando ingresos como una variable continua es una buena opción.</p>
 <p><strong>2. Calcular el ingreso per cápita</strong>: si dividimos el ingreso por el tamaño del hogar (n° de habitantes en este), obtendremos el ingreso por persona.</p>
 <p><strong>3. Cálculo de medidas de posición acumulada</strong>: con los ingresos per cápita se puede calcular la media o mediana de medidas de posición acumulada como quitiles</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>movid_proc <span class="ot">&lt;-</span> movid_proc <span class="sc">%&gt;%</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log_ing =</span> <span class="fu">log</span>(ingreso), <span class="co">#Log ingresos</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">ing_per =</span> ingreso<span class="sc">/</span>tamanohogar, <span class="co">#Ingreso percapita</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">quintiles =</span> dplyr<span class="sc">::</span><span class="fu">ntile</span>(ing_per,</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">n =</span> <span class="dv">5</span>)) <span class="co"># n de categorias, para quintiles usamos 5</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a>movid_proc &lt;-<span class="st"> </span>movid_proc <span class="op">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">log_ing =</span> <span class="kw">log</span>(ingreso), <span class="co">#Log ingresos</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true"></a>         <span class="dt">ing_per =</span> ingreso<span class="op">/</span>tamanohogar, <span class="co">#Ingreso percapita</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true"></a>    <span class="dt">quintiles =</span> dplyr<span class="op">::</span><span class="kw">ntile</span>(ing_per,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true"></a>                              <span class="dt">n =</span> <span class="dv">5</span>)) <span class="co"># n de categorias, para quintiles usamos 5</span></span></code></pre></div>
 </div>
 </div>
 <div id="dicotomizar-variable-dependiente" class="section level3">
@@ -1208,14 +1199,14 @@ I<br />
 <li><p><strong>Mediana</strong>: la más frecuente en medidas ordinales como las <em>escalas Likert</em> es cuando el 50% de los casos se concentra en unas pocas categoría de respuesta (eg, “Muy de acuerdo” y “De acuerdo” serán 1 y el resto 0).</p></li>
 </ol>
 <p>En el caso de la variable <code>fatiga</code> que indica <em>“A medida que ha avanzado la crisis sanitaria, me siento cada vez más desmotivado para seguir las medidas de protección recomendadas”</em>, recodificaremos a aquellos como <em>1</em> a quiénes asienten a esta frase (<em>“Muy de acuerdo” y “De acuerdo”</em>)</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>movid_proc <span class="ot">&lt;-</span> movid_proc <span class="sc">%&gt;%</span> </span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fatigadummy =</span> <span class="fu">case_when</span>(fatiga <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">4</span>) <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                                 fatiga <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>) <span class="sc">~</span> <span class="dv">0</span>, <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_real_</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a>movid_proc &lt;-<span class="st"> </span>movid_proc <span class="op">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">fatigadummy =</span> <span class="kw">case_when</span>(fatiga <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">4</span>) <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true"></a>                                 fatiga <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>) <span class="op">~</span><span class="st"> </span><span class="dv">0</span>, <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="ot">NA_real_</span>))</span></code></pre></div>
 </div>
 <div id="errores-estándares-robustos" class="section level3">
 <h3>2.4 Errores estándares robustos</h3>
 <p>En caso de que estemos ante problemas de heterocedasticidad debemos re-estimar nuestro modelo considerando errores estándares robustos</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>model_robust<span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">coeftest</span>(model1, <span class="at">vcov=</span>sandwich<span class="sc">::</span><span class="fu">vcovHC</span>(model1))</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a>model_robust&lt;-<span class="st"> </span>lmtest<span class="op">::</span><span class="kw">coeftest</span>(model1, <span class="dt">vcov=</span>sandwich<span class="op">::</span><span class="kw">vcovHC</span>(model1))</span></code></pre></div>
 </div>
 <div id="creación-de-índices" class="section level3">
 <h3>2.5 Creación de índices</h3>
@@ -1223,9 +1214,9 @@ I<br />
 <ol style="list-style-type: decimal">
 <li><strong>Correlacionar</strong> para verificar que estamos ante la presencia de ítems que podrían estar midiendo un constructo común. Como vemos en la siguiente tabla, las correlaciones son altas</li>
 </ol>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>movid_proc <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;c2&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_all</span>(<span class="sc">~</span><span class="fu">as.numeric</span>(.)) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">tab_corr</span>(., <span class="at">triangle =</span> <span class="st">&quot;lower&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a>movid_proc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">starts_with</span>(<span class="st">&quot;c2&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate_all</span>(<span class="op">~</span><span class="kw">as.numeric</span>(.)) <span class="op">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true"></a>sjPlot<span class="op">::</span><span class="kw">tab_corr</span>(., <span class="dt">triangle =</span> <span class="st">&quot;lower&quot;</span>)</span></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
@@ -1321,40 +1312,40 @@ Computed correlation used pearson-method with listwise-deletion.
 <ol start="2" style="list-style-type: decimal">
 <li><strong>Construcción de índice</strong>: este puede ser sumativo o promedio. Esto dependerá de la escala de los ítems y del sentido del constructo final que queremos utilizar. En nuestro caso crearemos una índice sumativa de <code>salud mental</code></li>
 </ol>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>movid_proc <span class="ot">&lt;-</span> movid_proc <span class="sc">%&gt;%</span> </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="fu">starts_with</span>(<span class="st">&quot;c2&quot;</span>)),<span class="sc">~</span><span class="fu">as.numeric</span>(.)) <span class="sc">%&gt;%</span> </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">salud_mental =</span> <span class="fu">sum</span>(c2_1,c2_2,c2_3,c2_4, <span class="at">na.rm =</span> T))</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a>movid_proc &lt;-<span class="st"> </span>movid_proc <span class="op">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(<span class="kw">starts_with</span>(<span class="st">&quot;c2&quot;</span>)),<span class="op">~</span><span class="kw">as.numeric</span>(.)) <span class="op">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">salud_mental =</span> <span class="kw">sum</span>(c2_<span class="dv">1</span>,c2_<span class="dv">2</span>,c2_<span class="dv">3</span>,c2_<span class="dv">4</span>, <span class="dt">na.rm =</span> T))</span></code></pre></div>
 </div>
 <div id="eliminar-casos-influyentes" class="section level3">
 <h3>2.6 Eliminar casos influyentes</h3>
 <p>En caso de que estemos ante la prescencia de casos influyentes debemos seguir los siguientes pasos</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>n<span class="ot">&lt;-</span> <span class="fu">nobs</span>(model1) <span class="co">#n de observaciones</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>k<span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">coef</span>(model1)) <span class="co"># n de parametros</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>dcook<span class="ot">&lt;-</span> <span class="dv">4</span><span class="sc">/</span>(n<span class="sc">-</span>k<span class="dv">-1</span>) <span class="co">#Punto de corte</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Datos donde se filtran los valores sobre el punto de corte</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>movid_proc_so <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">augment_columns</span>(model1,<span class="at">data =</span> movid_proc) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(.cooksd<span class="sc">&lt;</span>dcook) </span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a>n&lt;-<span class="st"> </span><span class="kw">nobs</span>(model1) <span class="co">#n de observaciones</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true"></a>k&lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">coef</span>(model1)) <span class="co"># n de parametros</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true"></a>dcook&lt;-<span class="st"> </span><span class="dv">4</span><span class="op">/</span>(n<span class="op">-</span>k<span class="dv">-1</span>) <span class="co">#Punto de corte</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true"></a><span class="co"># Datos donde se filtran los valores sobre el punto de corte</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true"></a>movid_proc_so &lt;-<span class="st"> </span>broom<span class="op">::</span><span class="kw">augment_columns</span>(model1,<span class="dt">data =</span> movid_proc) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(.cooksd<span class="op">&lt;</span>dcook)</span></code></pre></div>
 <p>Una vez finalizada las transformaciones calcular
 dos nuevos modelos</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>model1_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">as.numeric</span>(fatiga) <span class="sc">~</span> salud_mental <span class="sc">+</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>               trabaja <span class="sc">+</span> sexo <span class="sc">+</span> edad <span class="sc">+</span> ing_per,</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> movid_proc)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">as.numeric</span>(fatiga) <span class="sc">~</span> salud_mental <span class="sc">+</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>               trabaja <span class="sc">+</span> sexo <span class="sc">+</span> edad2 <span class="sc">+</span> ing_per,</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> movid_proc)</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">glm</span>(fatigadummy <span class="sc">~</span> salud_mental <span class="sc">+</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>               trabaja <span class="sc">+</span> sexo <span class="sc">+</span> edad2 <span class="sc">+</span> ing_per, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>,</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> movid_proc)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a>model1_fit &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">as.numeric</span>(fatiga) <span class="op">~</span><span class="st"> </span>salud_mental <span class="op">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a><span class="st">               </span>trabaja <span class="op">+</span><span class="st"> </span>sexo <span class="op">+</span><span class="st"> </span>edad <span class="op">+</span><span class="st"> </span>ing_per,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true"></a>             <span class="dt">data =</span> movid_proc)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true"></a>model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">as.numeric</span>(fatiga) <span class="op">~</span><span class="st"> </span>salud_mental <span class="op">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true"></a><span class="st">               </span>trabaja <span class="op">+</span><span class="st"> </span>sexo <span class="op">+</span><span class="st"> </span>edad2 <span class="op">+</span><span class="st"> </span>ing_per,</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true"></a>             <span class="dt">data =</span> movid_proc)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true"></a>model3 &lt;-<span class="st"> </span><span class="kw">glm</span>(fatigadummy <span class="op">~</span><span class="st"> </span>salud_mental <span class="op">+</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true"></a><span class="st">               </span>trabaja <span class="op">+</span><span class="st"> </span>sexo <span class="op">+</span><span class="st"> </span>edad2 <span class="op">+</span><span class="st"> </span>ing_per, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>,</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true"></a>             <span class="dt">data =</span> movid_proc)</span></code></pre></div>
 <p>Luego, podemos hacer un chequeo general de diagnósticos de robustez con <code>check_model</code>, pero ahora indicando que queremos evaluar todos los indicadores posibles</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_model</span>(model1_fit, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">&quot;vif&quot;</span>,<span class="st">&quot;normality&quot;</span>, <span class="st">&quot;linearity&quot;</span>, <span class="st">&quot;ncv&quot;</span>, <span class="st">&quot;homogeneity&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a><span class="kw">check_model</span>(model1_fit, <span class="dt">check =</span> <span class="kw">c</span>(<span class="st">&quot;vif&quot;</span>,<span class="st">&quot;normality&quot;</span>, <span class="st">&quot;linearity&quot;</span>, <span class="st">&quot;ncv&quot;</span>, <span class="st">&quot;homogeneity&quot;</span>))</span></code></pre></div>
 <p><img src="/assignment/10-code_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_model</span>(model2, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">&quot;vif&quot;</span>,  <span class="st">&quot;normality&quot;</span>, <span class="st">&quot;linearity&quot;</span>, <span class="st">&quot;ncv&quot;</span>, <span class="st">&quot;homogeneity&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a><span class="kw">check_model</span>(model2, <span class="dt">check =</span> <span class="kw">c</span>(<span class="st">&quot;vif&quot;</span>,  <span class="st">&quot;normality&quot;</span>, <span class="st">&quot;linearity&quot;</span>, <span class="st">&quot;ncv&quot;</span>, <span class="st">&quot;homogeneity&quot;</span>))</span></code></pre></div>
 <p><img src="/assignment/10-code_files/figure-html/unnamed-chunk-29-2.png" width="672" /></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_model</span>(model3, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">&quot;vif&quot;</span>,  <span class="st">&quot;homogeneity&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true"></a><span class="kw">check_model</span>(model3, <span class="dt">check =</span> <span class="kw">c</span>(<span class="st">&quot;vif&quot;</span>,  <span class="st">&quot;homogeneity&quot;</span>))</span></code></pre></div>
 <p><img src="/assignment/10-code_files/figure-html/unnamed-chunk-29-3.png" width="672" /></p>
 <p>Existen otros diagnósticos posibles para abordar en nuestros modelos, todo con el propósito de mejorar la calidad de estos. Uno de ellos, y que no abordaremos por su extensión, es la ausencia de
 posibles <strong>interacciones</strong> entre las variables que no han sido modeladas (Fox &amp; Weisberg 2018). En caso de su interés pueden revisar esto y ver su <a href="https://strengejacke.github.io/ggeffects/articles/introduction_partial_residuals.html">aplicación simple en R en el siguiente link.</a></p>
@@ -2049,8 +2040,8 @@ Deviance
 </tfoot>
 </table>
 <p>Si bien en con la tabla N°3 podemos tener un panorama, es <strong>imprescindible</strong> recordar que para comparar modelos (en su robustez y ajuste) es necesario que estos tengan <em>(1) la misma variable de respuesta y (2) el mismo número de observaciones.</em></p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">compare_performance</span>(model1_fit, model2) <span class="sc">%&gt;%</span> </span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print_md</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true"></a><span class="kw">compare_performance</span>(model1_fit, model2) <span class="op">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">print_md</span>()</span></code></pre></div>
 <table>
 <caption>Comparison of Model Performance Indices</caption>
 <thead>
@@ -2088,29 +2079,32 @@ Deviance
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">compare_performance</span>(model1_fit, model2))</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true"></a><span class="kw">plot</span>(<span class="kw">compare_performance</span>(model1_fit, model2))</span></code></pre></div>
 <p><img src="/assignment/10-code_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 <p>Ahora bien, esto no quita que, considerando que el ajuste entre el <code>model1_fit</code> y el <code>modelo2</code> no cambia sustantivamente, consideremos en seleccionar el <code>modelo3</code> por criterios más sustantivos. Podemos asegurarnos de esta comparación entre el modelo1 y modelo2 con un test que permite facilitar la decisión sobre la significancia de los índices que estamos viendo</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_performance</span>(model1_fit, model2) <span class="sc">%&gt;%</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print_md</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a><span class="kw">test_performance</span>(model1_fit, model2) <span class="op">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">print_md</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
 <th align="left">Name</th>
 <th align="right">Model</th>
-<th align="left">BF</th>
+<th align="right">log_BF</th>
+<th align="right">BF</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">model1_fit</td>
 <td align="right">lm</td>
-<td align="left">1.00</td>
+<td align="right">0.00</td>
+<td align="right"></td>
 </tr>
 <tr class="even">
 <td align="left">model2</td>
 <td align="right">lm</td>
-<td align="left">1.02</td>
+<td align="right">0.02</td>
+<td align="right"></td>
 </tr>
 </tbody>
 </table>
@@ -2122,4 +2116,14 @@ Deviance
 <p>Lüdecke, Makowski, Waggoner &amp; Patil (2020). Assessment of Regression Models Performance. CRAN. Available from <a href="https://easystats.github.io/performance/" class="uri">https://easystats.github.io/performance/</a></p>
 <p>Lüdecke, Makowski, Waggoner &amp; Patil (2021). performance: Assessment of Regression Models Performance. Journal of Open Source Software. 60(6). pp.3139. doi: 10.21105/joss.03139</p>
 <p>Fox J, Weisberg S. Visualizing Fit and Lack of Fit in Complex Regression Models with Predictor Effect Plots and Partial Residuals. Journal of Statistical Software 2018;87. <a href="https://www.jstatsoft.org/article/view/v087i09" class="uri">https://www.jstatsoft.org/article/view/v087i09</a></p>
+</div>
+<div id="video-tutorial" class="section level1">
+<h1>Video Tutorial</h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Jkwp1A_t3UI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+<div id="documento-presentación" class="section level1">
+<h1>Documento presentación</h1>
+<iframe src="/slides/10-robustezyadj/10robustez.html" height="550" width="100%" allowfullscreen="true">
+</iframe>
 </div>

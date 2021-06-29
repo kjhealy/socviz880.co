@@ -102,6 +102,14 @@ Este trabajo posee dos entregas, tal como se señala en el programa del curso
 
 - **Informe 3 (final)**: Su formato es de artículo/ reporte breve de investigación. En esta entrega se corrigen aspectos del **Informe 2**, junto con profundizar en el chequeo de supuestos, casos influyentes, interacciones. Aquellos grupos que trabajen con una variable dependiente continua deberán realizar además al menos una estimación de regresión logística (y su correspondiente interpretación) con la variable dependiente dicotomizada (total máximo 3.500 palabras).
 
+**Actualización Informe 3**
+
+- Lo central en este informe es incorporar las correcciones al informe 2
+
+- La estimación de regresión logística es opcional (excepto para quienes tengan una variable dependiente dicotómica o que haya sido sugerido dicotomizarla por temas de distribución)
+
+- No se incluye en la evaluación de este informe el chequeo de supuestos del modelo de regresión. De todas maneras en la página quedará un tutorial disponible sobre este tema.
+
 ## Secciones del trabajo
 
 1. Título: Breve, lo principal es hacer alusión al objeto central de estudio (variable dependiente) (0,5 pto)
@@ -137,6 +145,7 @@ Este trabajo posee dos entregas, tal como se señala en el programa del curso
 7. Discusión de los resultados, con énfasis en la relación entre variable dependiente e independientes, limitaciones, posibles estudios futuros. (500 palabras) (2 puntos)
 
 8. Video-cápsula de presentación del trabajo: video de máximo 5 minutos donde se presente resumidamente el trabajo de investigación (3 puntos)
+**Actualización**: también existe la alterntiva de realizar un poster en lugar del video, los detalles para cada uno de los formatos en [este link](/docs/difusion-trabajos.html)
 
 ## Formato
 
@@ -183,6 +192,36 @@ El documento del trabajo debe ser ingresado además por **Turnitin**, se enviar�
 - [Taller para escritura académica](https://es.scribd.com/document/454444052/Taller-para-escritura-academica)
 
 - - [Publicación de artículos académicos: buenas prácticas y recomendaciones para la redacción y envío a revistas científicas](https://repositori.upf.edu/handle/10230/44599)
+
+### A poner énfasis especialmente en informe 3
+
+- el foco de este enforme es la aplicación de regresión múltiple como herramienta de análisis multivariado a un problema sustantivo de investigación. Por lo tanto, en el análisis se debe enfatizar qué sucede con los predictores en presencia de otros predictores, y en la argumentación esto se relaciona con qué sucede con mi factor explicativo central en presencia de otros factores explicativos
+
+- en relación con lo anterior, se sugiere argumentar en base a una tesis central (ejemplo: influencia de educación en ingreso), luego agregar otros posibles factores explicativos que podrían estar afectando esta relación. No se recomienda presentar un "paquete" de factores explicativos (ej: cómo influye sexo, educación y edad en ingreso), sino jerarquizarlos.
+
+- los conceptos centrales deben estar en las hipótesis y también luego operacionalizarse en variables. No presentar variables que no se relacionen con los conceptos centrales de la argumentación (a menos que solo sean variables de control).
+
+- recordar que el control estadístico es algo que se aplica a todos los predictores del modelo, es decir, vía parcialización al ser una regresión múltiple. No confundir con "variables de control", que son variables que se pueden sumar al modelo sin necesidad de hipótesis sustantivas y por lo tanto sin un énfasis relevante en la interpretación.
+
+- recordar que la tabla de univariados corresponde a sección de variables, no de análisis
+
+- en la sección de metodología se debe presentar un apartado de _métodos_, donde se describa el método de estimación (ej: regresión múltiple por mínimos cuadrados ordinarios) así como la lógica de presentación de modelos
+
+- si hay muchos casos perdidos (mas de un tercio de datos originales), explicar claramente a qué se debe esta pérdida. Existe la posiblidad de recuperar casos perdidos de predictores categóricos (o recodificados a categóricos) agregando una categoría adicional de perdidos. Esto se explica en la guía de [índices y transformación de variables](/assignment/11-code).
+
+
+- interpretación de hipótesis e inferencia: las hipótesis nunca se comprueban o se descartan, solo se puede hablar de que existe o no existe evidencia a favor de la hipótesis planteada. Recordar: la ausencia de evidencia no es evidencia de ausencia.
+
+- evitar términos técnicos estadísticos (ej: correlación ) antes de la sección de metodología
+
+- existen algunas dificultades en el tratamiento de algunas variables como la de ingreso.
+
+- mantener coherencia entre factores explicativos, hipótesis, descripción de variables, incorporación en el modelo, discusión, ojalá siempreen el mismo orden
+
+
+regresión y N: cuántos casos son suficientes?
+
+dicotomización de la dependiente para logística
 
 
 ### Ejemplos de artículos de investigación

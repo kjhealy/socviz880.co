@@ -36,7 +36,7 @@ klippy::klippy(position = c('bottom', 'right')) # chunks con botón de copiar
 ```
 
 # Objetivo
-
+ 
 La siguiente práctica tiene el objetivo de introducir a los estudiantes en los **modelos de regresión logística multivariada**. Al igual que en la práctica anterior emplearemos una variable dependiente *dicotómica*, de modo tal que veremos de qué una serie de variables independientes nos permiten predecir la ocurrencia de un determinado evento. Para ello, utilizaremos la base de datos de la [*Encuesta sobre Conflicto y Cohesion Social en Chile 2014*](https://doi.org/10.7910/DVN/SRPWFW) para analizar los determinantes de la participación en las elecciones del año 2013.
 
 # Librerías

@@ -1,0 +1,45 @@
+---
+title: "Guía para difusión de trabajos"
+---
+
+El propósito de la siguiente guía es presentar los términos de referencia para la elaboración de video cápsulas y pósters que serán clave para la difusión del trabajo que han elaborado durante este semestre en el marco del curso Estadística Multivariada. Para ello, cada grupo deberá elegir uno de los formatos propuestos y atenerse a las indicaciones asociadas a esa modalidad que se presentan a continuación.
+
+## Alternativa 1: Elaboración  de una videocápsula
+
+### 1. Formato
+
+El formato del video a entregar corresponde a .mp4. Este consistirá en una presentación  acompañada de diapositivas que deberá contener las siguientes secciones: (1) Título breve y atractivo, así como los nombres de los autores e institución a la que pertenecen (2) Introducción, (3) Objetivos/Hipótesis, (4) Metodología, (5) Análisis y discusión de resultados con gráficos, tablas, figuras y/o cualquier elemento gráfico que facilite la comprensión de lo expuesto.
+
+### 2. Formalidades
+
+El video tiene una duración máxima de 7 minutos y deberá ser entregado subiéndolo a la carpeta de Google Drive dispuesto en la sección Enlaces de U-Cursos. El nombre del archivo corresponderá al nombre del grupo (por ejemplo, Grupo 1.mp4).
+
+### 3. Recomendaciones
+
+Las y los integrantes del grupo deberán presentar oralmente los contenidos utilizando láminas de apoyo visual que faciliten la comprensión de lo expuesto. Para la elaboración de tales diapositivas será posible utilizar plataformas tales como Canva y las plantillas de diseño disponibles. Se propone grabar el video a través de una plataforma de teleconferencias, tal como Zoom, Meet o Jitsi, idealmente con la cámara encendida.
+
+## Alternativa 2: Elaboración de un póster científico
+
+### 1. Formato
+
+El poster a entregar debe contemplar: (1) Título breve y atractivo, (2) Autores institución a la que pertenecen, (3) Introducción,  incluyendo el problema y los objetivos/hipótesis, (4) Metodología, (5) Resultados en gráficos, tablas, figuras y/o cualquier elemento gráfico que facilite la comprensión y (5) Conclusiones breves y claras.
+
+### 2. Formalidades
+
+El póster deberá ser entregado subiendo el archivo correspondiente a la carpeta de Google Drive dispuesta en la sección Enlaces de U-Cursos. El nombre del archivo corresponderá al nombre del grupo (por ejemplo, Grupo 1.png).
+
+### 3. Recomendaciones
+
+Para la realización de sus posters se recomienda utilizar las plantillas de diseño disponibles en la plataforma Canvas (pueden iniciar sesión con su correo institucional). Para ello, les extendemos una invitación para trabajar sus pósters grupales en conjunto en la plataforma Canvas en el equipo del curso: https://www.canva.com/brand/join?token=-20Vw2w2KJvmlnIRzf58Nw&referrer=team-invite. Ahí encontrarán un archivo con diferentes plantillas que podrían utilizar.
+Del mismo modo, se copia una guía elaborada originalmente por Elsevier para orientar su trabajo:
+
+* El título debe ser descriptivo y capaz de llamar el interés del lector.
+* Todo el poster debe contener un **texto que no supere las 300 palabras**, así como también debe ser gráficamente atractivo.
+* Se deben **organizar claramente los contenidos**, de manera que se distingan los distintos apartados y se ordenen las ideas.
+* Lo ideal es sustituir toda la información textual por **recursos gráficos**, además se deben incluir **sólo los datos relevantes**.
+
+## Entrega e inscripción
+
+Los grupos tienen plazo hasta el día **miércoles 30 de junio** para comunicar vía correo electrónico a su ayudante respectivo el formato que usará para la difusión de su trabajo, de manera que puedan ser asesorados con anticipación.
+
+Finalmente, la fecha límite de entrega de la cápsula o póster será el día *lunes 5 de julio a las 23:59 horas*. Una vez entregados, los videos serán subidos por el Equipo Docente al canal de YouTube del curso, así como también los posters serán publicados en el sitio web https://multivariada.netlify.app/.
