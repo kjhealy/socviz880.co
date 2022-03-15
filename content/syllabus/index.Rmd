@@ -12,7 +12,7 @@ output:
 [^courseinfo]: {-}
   `r blogdown::shortcode("courseinfo")`
 
-## Concepto del curso (nuevo)
+## Concepto del curso
 
 a) A pesar de su nombre, este no es un curso de (mera) estadística. Es un curso que enseña algunas técnicas de análisis cuantitativo orientadas al **contraste empírico de teoría sociológica**, para lo cual se vale de técnicas estadísticas como la regresión múltiple. En este contexto, los métodos son considerados funcionales a preocupaciones sustantivas y relevantes del mundo social
 
@@ -37,7 +37,6 @@ Se espera que los estudiantes sean capaces de:
 - elaborar reportes de resultados y conclusiones a partir de la aplicación de diferentes técnicas de análisis estadístico multivariado.
 
 Complementariamente se espera que los estudiantes adquieran herramientas que les permitan comunicar resultados de investigación en contextos sociales, profesionales y académicos.
-
 
 ## Competencias a las que contribuye el curso
 
@@ -99,9 +98,9 @@ Al finalizar el curso, los estudiantes:
 
 En las circunstancias excepcionales de este semestre dada la crisis sanitaria, se han realizado una serie de ajustes metodológicos. En este contexto, tendremos tres espacios principales de aprendizaje:
 
-1. **Sesiones de clases lectivas**, donde se presentarán los aspectos centrales de los contenidos correspondientes a la semana vía Zoom. Tanto el documento de presentación como el video de la clase se encontrará disponible en la pestaña de [Contenidos](/class/) de este sitio.
+1. **Sesiones de clases lectivas**, donde se presentarán los aspectos centrales de los contenidos correspondientes a la semana. Tanto el documento de presentación como el video de la clase se encontrará disponible en la pestaña de [Contenidos](/class/) de este sitio.
 
-2. **Prácticas guiadas**: cada tema de las sesiones se acompaña de una _guía práctica_ de aplicación de contenidos. Estas guías están diseñadas para ser desarrolladas de manera autónoma por cada estudiante semana a semana. También serán desarrolladas y revisadas cada semana en grupos pequeños con supervisión de ayudantes para dar mayor oportunidad de participación y resolver las dudas respectivas. Existe un reporte de progreso asociado a estas guías que deberá ser completado semanalmente con fines de monitoreo y retroalimentación.
+2. **Prácticos**: cada tema de las sesiones se acompaña de una _guía práctica_ de aplicación de contenidos. Estas guías están diseñadas para ser desarrolladas de manera autónoma por cada estudiante semana a semana. También serán desarrolladas y revisadas cada semana en grupos pequeños con supervisión de ayudantes para dar mayor oportunidad de participación y resolver las dudas respectivas. Existe un reporte de progreso asociado a estas guías que deberá ser completado semanalmente con fines de monitoreo y retroalimentación.
 
 3. **Trabajos**: se desarrollarán trabajos de investigación durante el semestre (ver sección evaluación abajo) que permitirán a l_s participantes aplicar contenidos y recibir retroalimentación de su desempeño. Los trabajos serán asesorados principalmente por ayudantes que se asignarán a cada grupo.
 
@@ -109,11 +108,15 @@ En las circunstancias excepcionales de este semestre dada la crisis sanitaria, s
 
 El curso tendrá tres instancias de evaluación:
 
-- **Trabajo 1** (individual): Correlación y regresión simple (20%).
-- **Trabajo 2** (grupal): Regresión multiple e inferencia estadística (30%)
-- **Trabajo 3** (grupal): Regresión logística, predictores categóricos y supuestos (50%)
+- **Evaluación 1** (individual): Correlación y regresión simple (20%).
+- **Evaluación 2** (trabajo grupal): Regresión multiple e inferencia estadística (30%)
+- **Evaluacion 3** (trabajo grupal): Regresión logística, predictores categóricos y supuestos (50%)
 
 La nota ponderada de los trabajos equivaldrá al 60% de la nota del curso y el examen final al 40% restante.
+
+En el caso de los trabajos, en caso de atraso se descontará 0.5 por día adicional. Si el trabajo no se entrega luego del tercer día de atraso será calificado con nota 1.0
+
+Los justificativos por ausencia o atraso se realizan en la secretaría de carrera.
 
 ## Requisitos de aprobación
 
@@ -121,8 +124,8 @@ Nota mínima de aprobación: 4,0 (en escala de 1 a 7).
 
 Requisitos de eximición de examen:
 
-1. contar con un promedio ponderado igual o superior a 5.5.
-2. no tener nota bajo 4 en ninguno de los trabajos
+1. contar con un promedio ponderado igual o superior a 5.0
+2. no tener nota bajo 4 en ninguna de las evaluaciones
 
 Requisitos para presentación a examen:
 
@@ -132,7 +135,7 @@ Requisitos para presentación a examen:
 
 ## Bibliografía
 
-La bibliografía obligatoria para cada semana se presenta en la [planificación del curso](/schedule/), desde donde se puede acceder directamente a los documentos. De todas maneras, abajo algunos textos comentados y referencias para cada unidad.
+La bibliografía obligatoria para cada semana está disponible en la [planificación del curso](/schedule/), desde donde se puede acceder directamente a los documentos. De todas maneras, abajo algunos textos comentados y referencias para cada unidad.
 
 ### Textos principales.
 
@@ -142,7 +145,7 @@ Hay cuatro referencias principales recomendadas para este curso:
 
 - **Darlington, R. B., & Hayes, A. F. (2017). Regression analysis and linear models: concepts, applications, and implementation. Guilford Press.** Este libro me parece un muy buen texto para acompañar un curso de regresión en ciencias sociales, lamentablemente está en inglés y por lo tanto solo es bibliografía sugerida.
 
-- **Wooldridge, J. M. (2008). Introducción a la econometría: un enfoque moderno. Paraninfo Cengage Learning.** Libro clásico de regresión para economístas, la ventaja es que está en español, la desventaja (para nosotros) es que en ocasiones utiliza un lenguaje y ejemplos lejanos a la sociología.
+- **Wooldridge, J. M. (2008). Introducción a la econometría: un enfoque moderno. Paraninfo Cengage Learning.** Libro clásico de regresión para economistas, la ventaja es que está en español, la desventaja (para nosotros) es que en ocasiones utiliza un lenguaje y ejemplos lejanos a la sociología.
 
 - **Wickham, H., & Grolemund, G. (2016). R for data science: import, tidy, transform, visualize, and model data (First edition). Sebastopol: O’Reilly.** Libro con enfoque en el aprendizaje de R con técnicas que ciertamente van más allá del curso, pero muy util como referencia general. Además, está disponible también en español como ["R para ciencia de datos"](https://es.r4ds.hadley.nz/).
 
@@ -175,13 +178,12 @@ Hay cuatro referencias principales recomendadas para este curso:
 
 ## Software
 
-Usaremos R 4.0 a través de la interfaz de RStudio. También realizaremos ejercicios y prácticas online en RCloud.
+Usaremos R 4.1 a través de la interfaz de RStudio. También realizaremos ejercicios y prácticas online en RCloud.
 
 ## Plataformas de comunicación y discusión
 
 - Foros Ucursos
 - Disqus
-
 
 ## VARIOS
 

@@ -1,8 +1,8 @@
 ---
 title: "Presentación del curso"
 linktitle: "1: Presentación"
-date: "2020-01-10"
-class_date: "2021-03-19"
+date: "2021-03-18"
+class_date: "2021-03-18"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
@@ -22,11 +22,16 @@ editor_options:
 
 ## Documento presentación
 
+Próximamente aquí
+<!---
 <iframe src=/slides/01-intro/01_multiva_intro.html height="550" width=100% allowfullscreen="true">
 </iframe>
+--->
 
 ## Video de la clase
+Próximamente aquí 
 
+<!---
 <span class="sidenote">  </span>
 
 <div style="width: 100%; height: 600px; overflow: hidden;">
@@ -34,3 +39,4 @@ editor_options:
 <source src="https://www.dropbox.com/s/2fm63cyfhsrbmjb/01-intro.webm?raw=1" type="video/mp4">
 </video>
 </div>
+--->

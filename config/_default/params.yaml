@@ -97,19 +97,19 @@ Profesor:
   url: "https://jc-castillo.com"
   twitter: juankcastillo
   github: juancarloscastillo
-  office: "Online vía Zoom"
+  office: "Sala 43 FACSO"
   contact_policy: >-
-    En caso de preguntas asociadas a las clases o prácticas, se recomienda hacerlas públicamente a través de foros, en UCursos o en los foros de las páginas de prácticos vía [Disqus](https://disqus.com/). También es posible anotarse en mis horarios de reunión con estudiantes, link [aquí](https://juancarloscastillo.github.io/jc-castillo/contact.html)(vía Zoom hasta volver a clases presenciales).
+    En caso de preguntas asociadas a las clases o prácticas, se recomienda hacerlas públicamente a través de foros, en UCursos o en los foros de las páginas de prácticos vía [Disqus](https://disqus.com/). También es posible anotarse en mis horarios de reunión con estudiantes, link [aquí](https://juancarloscastillo.github.io/jc-castillo/contact.html).
 
 course:
   number: "SOC 01024"
   semester: "Primer semestre"
   days: "Viernes"
   time: "10:15am - 11:30am"
-  location: "Online vía Zoom"
-  dates: "Marzo-Julio 2021"
+  location: "Sala 43 FACSO"
+  dates: "Marzo-Julio 2022"
   github: "juancarloscastillo/multivariada"
-  copyrightYear: "2021"
+  copyrightYear: "2022"
 
 university:
   name: Universidad de Chile

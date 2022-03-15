@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Estadística Multivariada</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=".small[Valentina Andrade    Departamento de Sociología - UCH / COES   ]" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../custom_2020.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: front
+
+
+
+
+
+
+
+
+
+.pull-left[
+# Estadística Multivariada
+## Valentina Andrade
+.small[
+## Apoyo docente
+## Sociología FACSO - UChile
+## 1er Sem 2021
+## [multivariada.netlify.com](https://multivariada.netlify.com)
+]]
+
+
+.pull-right[
+.right[
+![:scale 70%](https://multivariada.netlify.com/img/hex_multiva.png)
+&lt;br&gt;
+&lt;br&gt;
+## Clase 10: Diagnóstico de la calidad de los modelos: supuestos y transformación de variables
+
+📌[URL a práctica](https://multivariada.netlify.app/assignment/10-code/) 
+]
+
+]
+---
+
+layout: true
+class: animated, fadeIn
+
+---
+class: inverse, bottom, right, animated, slideInRight
+
+# Objetivo
+
+Introducir en aspectos de la evalución de la *calidad de los modelos* a partir del chequeo de supuestos, adjuste y comparación. 
+
+
+---
+class: inverse, bottom, right, animated
+
+## Contenidos
+
+### 0. ¿Cómo se evalúa la calidad de los modelos?
+
+--
+
+#### 1. Robustez
+
+--
+
+#### 2. Bondad de ajuste
+
+--
+
+#### 3. Comparación
+
+---
+
+class: roja, bottom, right, slideInRight
+
+# 0. ¿Cómo se evalúa la calidad de los modelos?
+
+
+---
+class: fadeIn
+
+# 0. ¿Cómo se evalúa la calidad de los modelos?
+
+.pull-right[Una vez que construimos nuestros modelos de regresión, es necesario evaluar la calidad de estos]
+
+.pull-left[![](https://img.buzzfeed.com/buzzfeed-static/static/2017-03/31/1/asset/buzzfeed-prod-fastlane-01/anigif_sub-buzz-31798-1490938366-1.gif)]
+
+---
+
+# 0. ¿Cómo se evalúa la calidad de los modelos?
+
+.pull-left[ ¡A ponerlos a prueba!
+![](https://img.buzzfeed.com/buzzfeed-static/static/2017-03/31/1/asset/buzzfeed-prod-fastlane-03/anigif_sub-buzz-10619-1490939260-2.gif)]
+
+.pull-right[ ¡Evaluarlos! 
+![:scale 70%](https://img.buzzfeed.com/buzzfeed-static/static/2017-03/31/1/asset/buzzfeed-prod-fastlane-03/anigif_sub-buzz-9816-1490938684-3.gif)]
+
+
+---
+
+class: fadeIn
+
+# 0. ¿Cómo se evalúa la calidad de los modelos?
+
+.center[
+![](https://docs.google.com/drawings/d/e/2PACX-1vQU-ZZaq8rGgECgd2uZ_nkbBCncvHWEUZDxkik0C-QBwln43qpOFvp0nv-qCt9p4RelA8TSOlI8gNVk/pub?w=480&amp;amp;h=360)
+
+**Figura 1**. Proceso de evaluación de la calidad de los modelos estimados. Elaboración propia
+
+]
+
+---
+
+# 0. ¿Cómo se evalúa la calidad de los modelos?
+
+**1. Robustez** (*pre-hoc*): los modelos de regresión tienen una serie de **supuestos** que se deben cumplir para que las estimaciones sean **fidedignas**.
+
+- Algunos de ellos son **linealidad**, **normalidad de residuos**, **homogeneidad de la varianza**, **independencia de variables**, **multicolinealidad** y **casos influyentes** (*los primeros tres aplican solo para regresiones lineales*).
+
+---
+
+# 0. ¿Cómo se evalúa la calidad de los modelos?
+
+**2. Ajuste** (*post-hoc*): implica abordar qué tan bien ajustan nuestros modelos con los datos utilizados. La *bondad de ajuste* implica que si trabajamos con una
+
+  - 2.1 *Regresión lineal múltiple*, analizaremos el `\(R^2\)` ajustado
+  
+  - 2.2 *Regresión logística*, analizaremos el `\(Pseudo\)` `\(R^2\)` y los *Criterios de Información* `\(BIC\)` y `\(AIC\)` (ambos nos dicen cuánta información se está "perdiendo" con las variables que se ocupan en cada modelo. Por ello elegiremos el modelo que tenga un BIC y AIC más bajo)
+
+---
+class: inverse
+
+# Pero ¡no te asustes!
+
+- Que no se cumplan algunos supuestos no implica que debas abandonar el **lindo mundo de las regresiones**. Como veremos, existen formas de solucionar los problemas de supuestos y ajuste de los modelos.
+
+.center[
+![](https://2.bp.blogspot.com/-AHnGZDZbTg0/WW4loFfp1oI/AAAAAAAAGeY/SkHb2V91iIEtfZj2FRkgso9GodQ6MyTnACEwYBhgL/s320/tumblr_os4ctxYoEx1uy1m10o1_500.gif)
+]
+
+---
+
+# 0. ¿Cómo se evalúa la calidad de los modelos?
+
+**3. Comparación**: luego de que hacemos **transformaciones** a los modelos, una etapa importante para la **selección** de estos es compararlos. Para ello consideraremos toda la información que tenemos de ellos en su diagnóstico de **pre y post hoc.**
+
+---
+
+# 0. ¿Cómo se evalúa la calidad de los modelos en **R**?
+
+- Existen diversas funciones, pero la gran parte de ello se desenvuelve en distintos paquetes.
+
+--
+
+- ¡Buenas noticias!  **`performace`**  que reúne todas estas herramientas, y de los tres ejes de la **calidad de los modelos**.
+.center[
+![:scale 20%](../../assignment/10code/logo.png)
+]
+
+---
+
+# 0. ¿Cómo se evalúa la calidad de los modelos en **R**?
+
+.center[
+![:scale 40%](https://github.com/easystats/performance/blob/master/paper/figure_workflow.png?raw=true)
+
+**Figura 2.** paquete `performance` del proyecto easystats de [Lüdecke et al. (2021)](https://easystats.github.io/performance/)
+]
+---
+
+class: roja, bottom, right, slideInRight
+
+# Diagnóstico de calidad de los modelos
+
+---
+
+# 0. Construcción del modelo
+
+Imaginemos que queremos analizar los determinantes de la **Fatiga pandémica**, y para ello estimaremos un modelo de regresión lineal.
+
+
+```r
+model1 &lt;- lm(as.numeric(fatiga) ~
+               c2_1 + c2_2 + c2_3 + c2_4 +
+               trabaja + sexo + edad + ingreso,
+             data = movid_proc)
+```
+
+---
+class: slideInRight
+
+# 1. Supuestos
+
+.center[
+![](https://docs.google.com/drawings/d/e/2PACX-1vQbb26p4E5LLFdGLr7t_3fvNHEn38d9E4D8uAdLMYk58GMp98uBpfsDqtEoMY4AdvBYftihC_Bst1G1/pub?w=480&amp;amp;h=360)
+
+**Figura 3**. Diferentes funciones de `performance` para evaluar robustez del modelo
+]
+
+---
+class: slideInRight
+
+# 1.1 Linealidad
+
+Para la regresión lineal múltiple, un supuesto importante es que existe una **relación lineal entre la variable dependiente e independiente**.
+.center[
+![:scale 35%](polinomial.png)
+]
+
+---
+
+# 1.1 Linealidad
+
+- Cumplimiento supuesto: visualizar *gráfico de dispersión de datos*, que relacione la variable dependiente y la independiente, y verificar de manera "intuitiva" si la **tendencia** de esta relación se puede describir por una **línea recta**.
+
+.center[
+![:scale 35%](polinomial2.png)
+]
+
+---
+# 1.1 Linealidad
+
+El paquete `performace` nos permite hacer esto con su función `check_model` indicando en el argumento `check = "ncv", "linearity"`  
+
+
+```r
+check_model(model1, check = c("ncv", "linearity"))
+```
+
+![](10robustez_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+✔️ La línea de referencia es plana y horizontal
+
+
+---
+
+# 1.1 Linealidad
+
+- No siempre es tan claro. Para ello se podría emplear el test de Ramsey
+.center[
+![:scale 50%](../../assignment/10code/linearity.png)
+]
+---
+
+# 1.2 Homocedasticidad
+
+- Concepto indica que **los residuos** se distribuyen de forma **homogénea**.
+
+.center[
+![:scale 60%](homocetastic.jpg)
+]
+
+---
+
+# 1.2 Homocedasticidad
+
+- La variación de los residuos es homogénea,es decir, no veremos un patrón claro y más bien se *distribuirán de forma aleatoria*.
+.center[
+![:scale 35%](../../assignment/10code/homogeinity.png)
+]
+
+---
+
+# 1.2 Homocedasticidad
+
+- Prueba *Breusch-Pagan Godfrey* cuya hipótesis nula indica que
+
+`\(H_0\)`: La varianza de los residuos del modelo de regresión no es constante (**heterocedasticidad**)
+
+---
+
+# 1.2 Homocedasticidad
+
+- Función `check_heteroscedasticity` verificaremos qué ocurre con la hipótesis nula
+
+
+```r
+check_heteroscedasticity(model1)
+```
+
+```
+## OK: Error variance appears to be homoscedastic (p = 0.494).
+```
+
+✔️ La varianza es homocedástica 
+
+---
+
+# 1.3 Normalidad de residuos
+
+- Sin **distribución normal** de los residuos: el modelo no es consistente a través de las variables y observaciones (esto significa que los errores **no son aleteatorios**).
+
+.center[
+![:scale 35%](../../assignment/10code/normality.png)
+]
+
+---
+
+# 1.3 Normalidad de residuos
+
+- Función `check_normality` utilizaremos la prueba *Shapiro-Wilk* para ver qué ocurre con la hipótesis nula
+
+```r
+check_normality(model1)
+```
+
+```
+## Warning: Non-normality of residuals detected (p &lt; .001).
+```
+
+⚠️ Los residuos no son normales
+
+---
+
+# 1.4 Independencia
+
+- Los errores asociados a nuestro modelo de regresión deben ser **independientes** entre sí.
+
+- Prueba de *Durbin-Watson*, donde la `\(H_0\)` supone que **los residuos son independientes**
+
+
+---
+
+# 1.4 Independencia
+
+- Función `check_autocorrelation` utilizaremos la prueba *Durbin-Watson* para ver qué ocurre con la hipótesis nula
+
+
+```r
+check_autocorrelation(model1)
+```
+
+```
+## Warning: Autocorrelated residuals detected (p = 0.022).
+```
+
+⚠️ Hay correlación entre los residuos
+
+---
+
+class: inverse
+
+- La regresión lineal **requiere de una relación lineal** entre sus variables independientes y dependiente.
+
+--
+
+- No solo es importante chequear la **distribución de los residuos**, sino dos posibilidades que pueden *tendenciar* esa relación lineal: como **casos influyentes** en la muestra y **predictores que están altamente relacionados**.
+
+---
+# 1.5 Multicolinealidad
+
+- La multicolinealidad es la relación de **dependencia lineal fuerte** entre más de dos **predictores** de un modelo.
+
+--
+
+- Hace *difícil __cuantificar__ con exactitud el efecto de cada predictor sobre la variable dependiente*
+
+---
+
+# 1.5 Multicolinealidad
+
+- Problemas con parcialización de efectos
+
+- Relación **endógena** entre predictores se examina ante la existencia de altas correlaciones (*lineales*) entre variables.
+
+--
+
+- La aproximación numérica más utilizada es el **VIF** (factor de inflación de varianza) que indica hasta que punto la varianza de los coeficientes de regresión se debe a la colinealidad
+
+---
+
+# 1.5 Multicolinealidad
+
+.pull-left[
+- Ocuparemos el comando `check_collinearity()`. Como podemos ver en el gráfico, todos los valores son menores a 5 (*como recomienda el paquete*).
+]
+
+.pull-code-right[
+
+```r
+plot(check_collinearity(model1))
+```
+
+![](10robustez_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+]
+---
+
+.center[
+![:scale 50%](../../assignment/10code/collinearity.png)
+]
+
+---
+
+# 1.5 Multicolinealidad
+- En ciencias sociales, las relaciones en general *no son tan altas.*
+
+- Criterio: **evitar** valores del **VIF mayores a 2.5**. 
+
+---
+# 1.5 Multicolinealidad
+
+```r
+check_collinearity(model1)
+```
+
+```
+## # Check for Multicollinearity
+## 
+## Low Correlation
+## 
+##  Parameter  VIF Increased SE
+##       c2_1 2.85         1.69
+##       c2_2 2.51         1.59
+##       c2_3 3.66         1.91
+##       c2_4 2.51         1.58
+##    trabaja 1.13         1.06
+##       sexo 1.06         1.03
+##       edad 1.13         1.06
+##    ingreso 1.00         1.00
+```
+
+---
+
+# 1.5 Multicolinealidad
+
+⚠️ Como podemos ver los ítems del módulo de salud mental tienen todos valores sobre 2.5.
+
+- Eliminar alguno de los predictores o *evaluar si es que estas variables más bien son parte de un mismo constructo*
+---
+# 1.6 Casos influyentes
+
+- También llamados en inglés, *outliers*. Son casos que pueden tendenciar nuestras rectas de regresión pese a que no es evidente una relación lineal.
+
+.center[
+![:scale 35%](../../assignment/10code/outliers.png)
+]
+---
+
+# 1.6 Casos influyentes
+
+- Examinaremos si la ausencia o presencia de ese caso genera un **cambio importante** en la estimación del modelo de regresión.
+
+- Cálculo de la **Distancia de Cook** (Cook,1977)
+
+---
+
+# 1.6 Casos influyentes
+
+.pull-left[
+Graficaremos la influencia de los casos con `check_outliers()` dentro de un `plot()`
+]
+.pull-code-right[
+
+```r
+plot(check_outliers(model1))
+```
+
+![](10robustez_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+]
+---
+
+# 1.6 Casos influyentes
+
+- Verificar si la ausencia o presencia de estos casos que presentan mayor distancia producen una **diferencia** significativa en la estimación del modelo:
+
+
+```r
+check_outliers(model1)
+```
+
+```
+## OK: No outliers detected.
+```
+
+✔️ No hay outliers
+
+
+---
+class: roja, bottom, right, slideInRight
+
+# 2. Ajuste de los modelos
+
+---
+class: fadeIn
+
+# 2. Ajuste del modelo
+
+- [Práctica 5](https://multivariada.netlify.app/assignment/05-code/) que podemos evaluar qué tan bien ajustan nuestros modelos con los datos utilizados. Sabemos que:
+
+--
+
+- Si trabajamos una regresión lineal: el `\(R^2\)` ajustado
+
+- Si trabajamos una regresión logística:
+  - Pseudo `\(R^2\)`
+  - *Criterios de Información* BIC y AIC: cuánta información se está "perdiendo" con las variables que se ocupan en cada modelo. Por ello elegiremos el modelo que tenga un BIC y AIC más bajo.
+
+---
+
+# 2. Ajuste del modelo
+
+
+
+```r
+performance::model_performance(model1) %&gt;% 
+  print_md() #print_md() nos permite hacer tablas en buen formato
+```
+
+
+
+Table: Indices of model performance
+
+|AIC     |     BIC |   R2 | R2 (adj.) | RMSE | Sigma |
+|:-------|:-------:|:----:|:---------:|:----:|:-----:|
+|2817.44 | 2904.22 | 0.04 |      0.02 | 1.10 |  1.11 |
+
+---
+
+# 2. Ajuste del modelo
+
+- **Transformaciones luego del chequeo de supuestos**:  no implica necesariamente que el ajuste mejore, sino que seremos más *fieles* a la información que realmente nos están otorgando las variables.
+
+---
+
+# Resumen de transformaciones posibles
+
+&lt;table class="table table-striped table-bordered table-condensed table-responsive" style="font-size: 14px; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Problema &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Soluciones posibles &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;vertical-align: middle !important;" rowspan="3"&gt; No linealidad de variable dependiente e independiente &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Transformar predictor al cuadrado o cubo &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   
+   &lt;td style="text-align:left;"&gt; Logaritmizar variable dependiente &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   
+   &lt;td style="text-align:left;"&gt; Dicotomizar variable dependiente &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;vertical-align: middle !important;" rowspan="3"&gt; No normalidad de residuos &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Transformar predictor al cuadrado o cubo &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   
+   &lt;td style="text-align:left;"&gt; Logaritmizar variable dependiente &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   
+   &lt;td style="text-align:left;"&gt; Dicotomizar variable dependiente &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Heterocedasticidad de residuos &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Calcular errores estándares robustos &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;vertical-align: middle !important;" rowspan="2"&gt; Dependencia entre predictores &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Interacción entre variables &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   
+   &lt;td style="text-align:left;"&gt; Variables no observadas &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;vertical-align: middle !important;" rowspan="3"&gt; Multicolinealidad &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Creación de índices &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   
+   &lt;td style="text-align:left;"&gt; Interacción entre variables &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   
+   &lt;td style="text-align:left;"&gt; Eliminar variables &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Casos influyentes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Eliminar casos influyentes &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# 2.1 Transformar predictor al cuadrado o cubo
+
+- Problemas de linealidad, indicamos que el término cuadrático o al cubo de algún predictor produce que la media de los residuos sea 0.
+
+- Por lo general, por su distribución, esta variable es edad.
+
+
+```r
+movid_proc &lt;- movid_proc %&gt;% mutate(edad2 = (edad)^2)
+```
+
+---
+
+## 2.2 Transformar variable dependiente
+
+- Recuperar casos perdidos
+- Logaritmizar
+- Dicotomizar
+
+---
+
+## 2.2.1 Recuperar casos perdidos
+
+- Datos perdidos, un ejemplo clásico: **ingresos**
+  - Estrategias para solicitar que las personas reporten sus ingresos: (1) reporte directo del monto y (2) tramos.
+
+- En nuestros datos tenemos un *porcentaje 25,3%* de datos perdidos.
+
+---
+
+## 2.2.1 Recuperar casos perdidos
+
+- **Paso 1:** Calcular la media por cada tramo
+- **Paso 2:** En el caso de no tener información, remplazar por la media del tramo
+- **Paso 3:** Comparar el resultado de los tramos
+
+---
+
+## 2.2.1 Recuperar casos perdidos
+
+
+```r
+movid_proc &lt;- movid_proc %&gt;% 
+  mutate(tingreso = case_when(tingreso == "Menos de $200 mil pesos" ~ 200000,
+                              tingreso == "Entre $200 y 350 mil pesos" ~ 275000,
+                              tingreso == "Entre $351 y 500 mil pesos" ~ 425500,
+                              tingreso == "Entre 501 y 800 mil pesos" ~ 650500,
+                              tingreso == "Entre 801 mil y 1 millón 200 mil pesos" ~ 1000500,
+                              tingreso == "Entre 1 millón 201 mil y 2 millones de pesos" ~ 1600500,
+                              tingreso == "Entre 2 millones y 5 millones de pesos" ~ 3500000,
+                              tingreso == "Más de 5 millones de pesos" ~ 5000000), #Paso 1
+         ingreso = if_else(is.na(ingreso), tingreso, ingreso))
+```
+
+---
+
+## 2.2.1 Recuperar casos perdidos
+
+- Pasamos de tener 25,3% de datos perdidos en ingresos a un 8,72% (es decir, recuperamos un 16,58% de los casos).
+
+---
+## 2.2.1 Otras: ingresos
+
+A ingresos se le pueden hacer tres transformaciones más
+
+**1. Logaritmizar**: en caso de que queramos seguir trabajando ingresos como una variable continua es una buena opción.
+
+.center[
+![](logaritmic.png)
+]
+
+---
+## 2.2.1 Otras: ingresos
+
+**2. Calcular el ingreso per cápita**: si dividimos el ingreso por el tamaño del hogar (n° de habitantes en este), obtendremos el ingreso por persona.
+
+
+**3. Cálculo de medidas de posición acumulada**: con los ingresos per cápita se puede calcular la media o mediana de medidas de posición acumulada como quitiles 
+
+---
+
+## 2.2.1 Otras: ingresos
+
+
+```r
+movid_proc &lt;- movid_proc %&gt;%
+  mutate(log_ing = log(ingreso), #Log ingresos
+         ing_per = ingreso/tamanohogar, #Ingreso percapita
+    quintiles = dplyr::ntile(ing_per,
+                              n = 5)) # n de categorias, para quintiles usamos 5
+```
+
+---
+
+## 2.3 Dicotomizar variable dependiente
+
+- Preguntas con *Escala Likert* que no tienen una distribución normal. 
+
+- *Re-especificar la variable como dicotómica* no solo ayudará a trabajar de manera más *realista* el constructo, sino que **facilitará** las interpretaciones que queramos hacer de nuestro modelo. 
+
+---
+
+## 2.3 Dicotomizar variable dependiente
+
+Ocuparemos dos criterios para la **dicotomización**:
+
+1. **Medias**: se ocupará como criterio discriminante la media de la variable (donde 1 puede ser los valores mayores a la media, y 0 los inferiores). 
+
+2. **Mediana**: la más frecuente en medidas ordinales como las *escalas Likert* es cuando el 50% de los casos se concentra en unas pocas categoría de respuesta (eg, "Muy de acuerdo" y "De acuerdo" serán 1 y el resto 0).
+
+---
+
+## 2.3 Dicotomizar variable dependiente
+
+En el caso de la variable `fatiga` que indica *"A medida que ha avanzado la crisis sanitaria, me siento cada vez más desmotivado para seguir las medidas de protección recomendadas"*, recodificaremos a aquellos como *1* a quiénes asienten a esta frase (*"Muy de acuerdo" y "De acuerdo"*)
+
+
+```r
+movid_proc &lt;- movid_proc %&gt;% 
+  mutate(fatigadummy = case_when(fatiga %in% c(5,4) ~ 1,
+                                 fatiga %in% c(3,2,1) ~ 0, TRUE ~ NA_real_))
+```
+
+---
+
+### 2.4 Errores estándares robustos
+
+- Problemas de heterocedasticidad debemos re-estimar nuestro modelo considerando errores estándares robustos
+
+
+```r
+model_robust&lt;- lmtest::coeftest(model1, vcov=sandwich::vcovHC(model1))
+```
+
+- Luego solo reportamos el modelo robusto y comparamos
+
+---
+
+## 2.5 Creación de índices
+
+- [Tutorial de dplyr](https://www.youtube.com/watch?v=APzU10EMMjg&amp;t=321s) y [práctico N°1](https://multivariada.netlify.app/assignment/01-code/#bonus-track-generaci%C3%B3n-de-%C3%ADndices).
+
+1. **Correlacionar** para verificar que estamos ante la presencia de ítems que podrían estar midiendo un constructo común.
+
+---
+
+
+```r
+movid_proc %&gt;% select(starts_with("c2")) %&gt;%
+  mutate_all(~as.numeric(.)) %&gt;% 
+sjPlot::tab_corr(., triangle = "lower")
+```
+
+&lt;table style="border-collapse:collapse; border:none;"&gt;
+&lt;tr&gt;
+&lt;th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;"&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;"&gt;c2_1&lt;/th&gt;
+&lt;th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;"&gt;c2_2&lt;/th&gt;
+&lt;th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;"&gt;c2_3&lt;/th&gt;
+&lt;th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;"&gt;c2_4&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="font-style:italic;"&gt;c2_1&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="font-style:italic;"&gt;c2_2&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;"&gt;0.608&lt;span style="vertical-align:super;font-size:0.8em;"&gt;***&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="font-style:italic;"&gt;c2_3&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;"&gt;0.599&lt;span style="vertical-align:super;font-size:0.8em;"&gt;***&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;"&gt;0.569&lt;span style="vertical-align:super;font-size:0.8em;"&gt;***&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="font-style:italic;"&gt;c2_4&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;"&gt;0.483&lt;span style="vertical-align:super;font-size:0.8em;"&gt;***&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;"&gt;0.465&lt;span style="vertical-align:super;font-size:0.8em;"&gt;***&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;"&gt;0.586&lt;span style="vertical-align:super;font-size:0.8em;"&gt;***&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td colspan="5" style="border-bottom:double black; border-top:1px solid black; font-style:italic; font-size:0.9em; text-align:right;"&gt;Computed correlation used pearson-method with listwise-deletion.&lt;/td&gt;
+&lt;/tr&gt;
+ 
+&lt;/table&gt;
+
+---
+
+## 2.5 Creación de índices
+
+2. **Construcción de índice**: este puede ser sumativo o promedio.
+
+
+```r
+movid_proc &lt;- movid_proc %&gt;% 
+  mutate_at(vars(starts_with("c2")),~as.numeric(.)) %&gt;% 
+  rowwise() %&gt;% 
+  mutate(salud_mental = sum(c2_1,c2_2,c2_3,c2_4, na.rm = T))
+```
+
+---
+
+## 2.6 Eliminar casos influyentes
+
+- Problema de casos influyentes debemos seguir los siguientes pasos
+
+
+```r
+n&lt;- nobs(model1) #n de observaciones
+k&lt;- length(coef(model1)) # n de parametros
+dcook&lt;- 4/(n-k-1) #Punto de corte
+
+# Datos donde se filtran los valores sobre el punto de corte
+
+movid_proc_so &lt;- broom::augment_columns(model1,data = movid_proc) %&gt;% filter(.cooksd&lt;dcook) #Menos observaciones
+```
+
+---
+class: roja, bottom, right, slideInRight
+
+# 3. Comparación
+
+---
+
+# 3.1 Volvemos a estimar modelos
+
+
+```r
+model1_fit &lt;- lm(as.numeric(fatiga) ~ salud_mental +
+               trabaja + sexo + edad + ing_per,
+             data = movid_proc)
+
+model2 &lt;- lm(as.numeric(fatiga) ~ salud_mental +
+               trabaja + sexo + edad2 + ing_per,
+             data = movid_proc)
+
+model3 &lt;- glm(fatigadummy ~ salud_mental +
+               trabaja + sexo + edad2 + ing_per, family = "binomial",
+             data = movid_proc)
+```
+
+---
+
+# 3.2 Chequeo general
+
+- Chequeo general de diagnósticos de robustez con `check_model`, pero ahora indicando que queremos evaluar todos los indicadores posibles
+
+
+```r
+check_model(model1_fit, check = c("vif","normality", "linearity", "ncv", "homogeneity"))
+
+check_model(model2, check = c("vif",  "normality", "linearity", "ncv", "homogeneity"))
+
+check_model(model3, check = c("vif",  "homogeneity"))
+```
+
+---
+.center-code[
+![](10robustez_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+]
+---
+
+- Existen otros diagnósticos posibles:
+
+  - Posibles **interacciones** entre las variables que no han sido modeladas (Fox &amp; Weisberg 2018).
+  - Variable no observada.
+  
+- En caso de su interés pueden revisar esto y ver su [aplicación simple en R en el siguiente link.](https://strengejacke.github.io/ggeffects/articles/introduction_partial_residuals.html)
+
+---
+
+# 3. Comparación
+
+- Con la tabla de regresión podemos tener un panorama, es **imprescindible** recordar que para comparar modelos (en su robustez y ajuste) es necesario que estos tengan *(1) la misma variable de respuesta y (2) el mismo número de observaciones.*
+
+---
+
+# 3. Comparación
+
+
+```r
+compare_performance(model1_fit, model2) %&gt;% 
+  print_md()
+```
+
+
+
+Table: Comparison of Model Performance Indices
+
+|Name       | Model |     AIC |     BIC |   R2 | R2 (adj.) | RMSE | Sigma |
+|:----------|:-----:|:-------:|:-------:|:----:|:---------:|:----:|:-----:|
+|model1_fit |    lm | 3452.28 | 3487.48 | 0.02 |      0.01 | 1.11 |  1.11 |
+|model2     |    lm | 3452.24 | 3487.44 | 0.02 |      0.01 | 1.11 |  1.11 |
+
+```r
+plot(compare_performance(model1_fit, model2))
+```
+
+![](10robustez_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
+
+---
+
+# 3. Comparación
+
+- El ajuste entre el `model1_fit` y `model2` no cambia sustantivamente.
+
+- Podemos seleccionar `model3` por **criterios más sustantivos**.
+
+- Podemos asegurarnos de esta comparación entre el modelo1 y modelo2 con un test que permite facilitar la decisión sobre la significancia de los índices que estamos viendo
+
+
+```r
+test_performance(model1_fit, model2) %&gt;%
+  print_md()
+```
+
+
+
+|Name       | Model|  BF |
+|:----------|-----:|:----|
+|model1_fit |    lm|1.00 |
+|model2     |    lm|1.02 |
+Each model is compared to model1_fit.
+
+---
+class: inverse
+
+.center[
+![](https://docs.google.com/drawings/d/e/2PACX-1vQU-ZZaq8rGgECgd2uZ_nkbBCncvHWEUZDxkik0C-QBwln43qpOFvp0nv-qCt9p4RelA8TSOlI8gNVk/pub?w=480&amp;amp;h=360)
+
+**Figura 1**. Proceso de evaluación de la calidad de los modelos estimados. Elaboración propia
+]
+
+---
+
+# ¿Y eso era?
+
+--
+.center[
+
+# ¡Sí!
+
+![](monster.gif)
+]
+
+---
+class: front
+
+
+.pull-left[
+# Estadística Multivariada
+## Valentina Andrade
+.small[
+## Apoyo docente
+## Sociología FACSO - UChile
+## 1er Sem 2021
+## [multivariada.netlify.com](https://multivariada.netlify.com)
+]]
+
+
+.pull-right[
+.right[
+![:scale 70%](https://multivariada.netlify.com/img/hex_multiva.png)
+&lt;br&gt;
+&lt;br&gt;
+## Clase 10: Diagnóstico de la calidad de los modelos: supuestos y transformación de variables
+
+📌[URL a práctica](https://multivariada.netlify.app/assignment/10-code/) 
+]
+
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="../macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<style>
+.logo {
+  background-image: url("../hex_multiva_white.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 16.3em;
+  right: 31em;
+  width: 110px;
+  height: 70px;
+  z-index: 0;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.title-slide)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="logo"></div>';
+  });
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

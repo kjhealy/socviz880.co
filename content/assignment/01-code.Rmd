@@ -2,8 +2,8 @@
 title: "Práctica 1. Preparación de datos en R"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
 linktitle: "Práctica 1: Preparación datos"
-date: "2020-01-10"
-class_date: "2021-03-19"
+date: "2022-03-18"
+class_date: "2022-03-18"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl

@@ -1,0 +1,963 @@
+---
+title: "Práctica 6.2 Predictores categóricos"
+subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
+author: "Valentina Andrade"
+linktitle: "Práctica 6.2 Predictores categóricos"
+date: "2021-05-25"
+class_date: "2021-05-21"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+    highlight: tango
+    number_sections: FALSE
+menu:
+  class:
+    parent: Practicas
+    weight: 7
+type: docs
+weight: 1
+editor_options:
+  chunk_output_type: console
+---
+
+<!-- BLOGDOWN-HEAD -->
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<script src="/rmarkdown-libs/clipboard/clipboard.min.js"></script>
+<link href="/rmarkdown-libs/primer-tooltips/build.css" rel="stylesheet" />
+<link href="/rmarkdown-libs/klippy/css/klippy.min.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/klippy/js/klippy.min.js"></script>
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<!-- /BLOGDOWN-HEAD -->
+
+<h2>Índice</h2>
+<div id="TOC">
+<ul>
+<li><a href="#objetivo-de-la-práctica">Objetivo de la práctica</a>
+<ul>
+<li><a href="#predictores-dicotómicos">Predictores dicotómicos</a></li>
+<li><a href="#librerías">Librerías</a></li>
+<li><a href="#datos">Datos</a></li>
+<li><a href="#explorar-base-de-datos">Explorar base de datos</a></li>
+<li><a href="#relación-entre-variables">Relación entre variables</a></li>
+<li><a href="#predictores-con-más-de-una-categoría">Predictores con más de una categoría</a>
+<ul>
+<li><a href="#interpretación">Interpretación</a></li>
+<li><a href="#variables-dummy">Variables dummy</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#section"></a></li>
+<li><a href="#video-tutorial">Video Tutorial</a>
+<ul>
+<li><a href="#documento-presentación">Documento presentación</a></li>
+</ul></li>
+<li><a href="#foro-práctica-6.2">Foro práctica 6.2</a></li>
+</ul>
+</div>
+
+<script>
+  addClassKlippyTo("pre.r, pre.markdown");
+  addKlippy('right', 'bottom', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<div id="objetivo-de-la-práctica" class="section level1">
+<h1>Objetivo de la práctica</h1>
+<p>Es esta práctica vamos a aprender a trabajar e interpretar <strong>predictores categóricos</strong> en la regresión.</p>
+<p>Hasta ahora hemos trabajado solamente con predictores a los que asumimos un nivel de medición continua (es decir, al menos intervalar). <em>¿Qué sucede con predictores donde se asume un distinto nivel de medición, como nominal u ordinal?</em> En general este tipo de predictores requiere una interpretación y tratamiento distinto que los predictores continuos.</p>
+<p>Existen dos tipos de predictores categóricos: dicotómicos (<em>dummys</em>) y ordinales.</p>
+<div id="predictores-dicotómicos" class="section level2">
+<h2>Predictores dicotómicos</h2>
+<p>Las variables dicotómicas son aquellas variables <strong>nominales u ordinales</strong> que poseen solo <strong>dos categorías de respuesta</strong>, por ejemplo hombre/mujer, sano/enfermo, deportista/sedentario.</p>
+<p>La inclusión de estas variables en un modelo de regresión no requiere un tratamiento especial, solo hay que considerar que su <strong>interpretación tiene un sentido distinto</strong>. A continuación, veremos un ejemplo respecto a cómo predictores categóricos (de dos o más niveles) permiten modelar el <strong>Estatus Social Subjetivo</strong></p>
+</div>
+<div id="librerías" class="section level2">
+<h2>Librerías</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(dplyr, <span class="co">#manipulacion de datos</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>               sjPlot, <span class="co">#tablas</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>               summarytools, <span class="co">#estadisticos descriptivos</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>               fastDummies, <span class="co"># Crear variable dummy</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>               sjlabelled, <span class="co">#etiquetas variables</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>               coefplot <span class="co"># graficos de coeficientes</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>               )</span></code></pre></div>
+</div>
+<div id="datos" class="section level2">
+<h2>Datos</h2>
+<p>Primero, se cargará la base de datos</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess.RData&quot;</span>)) <span class="co"># Cargar base de datos</span></span></code></pre></div>
+<p>Los datos a utilizar corresponden a la base de datos <strong>ELSOC 2018</strong> que incluye una muestra de <strong>3784</strong> mujeres y hombres adultos entre 18 y 75 años.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><p>[<code>ess</code>]: “Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena” (0 = el nivel mas bajo; 10 = el nivel mas alto)</p></li>
+<li><p>[<code>edcine</code>]: ¿Cuál es su nivel educacional? Indique el tipo de estudio actual (si estudia actualmente) o el último tipo aprobado (si no estudia actualmente) - <strong>CINE 2011 (UNESCO)</strong>.</p></li>
+<li></li>
+<li><p>[<code>edad</code>]: ¿Cuáles su edad? (años cumplidos).</p></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">view_df</span>(elsoc_<span class="dv">18</span>,<span class="dt">encoding =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<table style="border-collapse:collapse; border:none;">
+<caption>
+Data frame: elsoc_18
+</caption>
+<tr>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">
+ID
+</th>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">
+Name
+</th>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">
+Label
+</th>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">
+Values
+</th>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">
+Value Labels
+</th>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+1
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+ess
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+Estatus Social Subjetivo
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+0<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+0 El nivel mas bajo<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10 El nivel mas alto
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+2
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+sexo
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+Sexo (1=Mujer)
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+0<br>1
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+Hombre<br>Mujer
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+3
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+edad
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+Edad
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;" colspan="2">
+<em>range: 18-90</em>
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+4
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+edcine
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+Educación
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+1<br>2<br>3<br>4<br>5
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+Primaria incompleta menos<br>Primaria y secundaria baja<br>Secundaria alta<br>Terciaria ciclo corto<br>Terciaria y Postgrado
+</td>
+</tr>
+</table>
+</div>
+<div id="explorar-base-de-datos" class="section level2">
+<h2>Explorar base de datos</h2>
+<p>A partir de la siguiente tabla se obtienen estadísticos descriptivos que luego serán relevantes para la interpretación de nuestros modelos.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">view</span>(<span class="kw">dfSummary</span>(elsoc_<span class="dv">18</span>, <span class="dt">headings =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="st">&quot;render&quot;</span>))</span></code></pre></div>
+<div class="container st-container">
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline ">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>No</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Label</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Valid</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">1</td>
+      <td align="left">ess
+[numeric]</td>
+      <td align="left">Estatus Social Subjetivo</td>
+      <td align="left">Mean (sd) : 4.4 (1.6)
+min < med < max:
+0 < 5 < 10
+IQR (CV) : 1 (0.4)</td>
+      <td align="left" style="vertical-align:middle">11 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflBR8UGBW+Lp82AAABi0lEQVR42u3cQU7CUBRAUWtYHSvQFcoK3J5Oq7EfLgFa6jkzICnNDY9+2pTp64Xide0deDaCRYJFh/mDR3+fnQZv+DatUGPBfFcOV2/lJo4Lz3+uu1sDRjISLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLLr7zVmnnd3y+4C72Y6Lr2z3nrVlRjISLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLBIsEiwSLLrJRZC9XRkaudFVo31dGRoxkpFgkWCRYJFgkWDRyn+tvGyr/1O92WBbXdkZyUiwSLBIsEiwSLBIsOjiddh/Okk4EhauW11KPpaRjH58wozdeb9G0tidYySjzZ6tGFnz1M9TBlvzi8NIRoJFgkWCRYJFT3mUHLn3kmN3wa5bcox/FL7PQu8u2Mgoy6Whp/k2Pvz4/tP8EzZp1DhKRoJFgkXfK/MiPTU8x4QAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjEtMDUtMzFUMjA6MjQ6MjErMDA6MDCMd5RCAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIxLTA1LTMxVDIwOjI0OjIxKzAwOjAw/Sos/gAAAABJRU5ErkJggg=="></td>
+      <td align="center">3703
+(100.0%)</td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">2</td>
+      <td align="left">sexo
+[numeric]</td>
+      <td align="left">Sexo (1=Mujer)</td>
+      <td align="left">Min : 0
+Mean : 0.4
+Max : 1</td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">0</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">2277</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">61.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1426</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">38.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGkAAAA3CAQAAAClD6w2AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflBR8UGBW+Lp82AAAAoUlEQVRo3u3YQQ5AMBBA0Vaczgk4ISdwPbYlYUGoP/7fdSN9ydRi8pKi1dS+gKR/ktryMGIf1pAPSCl1te92qXlzCjh4kghJIiSJkCRCkghJIiSJkCRCkgjtdg/zta98qlwuhbALolQsiCIOXkDS5i1NFSavz/e/cUJ6fzX5xO8o4OBJIiSJkCRCkghJIiSJkCRCkghJIhR9NRmjgIMnidAKyQQL4dW1/u8AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjEtMDUtMzFUMjA6MjQ6MjErMDA6MDCMd5RCAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIxLTA1LTMxVDIwOjI0OjIxKzAwOjAw/Sos/gAAAABJRU5ErkJggg=="></td>
+      <td align="center">3703
+(100.0%)</td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">3</td>
+      <td align="left">edad
+[numeric]</td>
+      <td align="left">Edad</td>
+      <td align="left">Mean (sd) : 47 (15.5)
+min < med < max:
+18 < 47 < 90
+IQR (CV) : 25 (0.3)</td>
+      <td align="left" style="vertical-align:middle">70 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuCAQAAABxABKuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflBR8UGBW+Lp82AAABvUlEQVR42u3cUW7CMBAA0abidJygPWE5Qa8Hv4ENwmPF8dqZ90crtdEIL04ILPcvEd+9D2A0BoMMBl3WDzLOs9vGQf0sxx7D+t9dqv/KYa4vj/+7Ho1LEjIYZDDIYJDBoGSvkreMO5snyYJl20RELknIYJDBoEYzLMMZYBvNhn724V3LJQkZDOq6D8u/TY06b1zHm3QuSchg0C5LsmwWjTixop1mWMksuoaf5J9YUUWwOZ4ptaqeYeO9tu3HoQ8ZDDIYZDDIYJDBIINBBoMMBqV7I7dEz7dYhgzW8zT+Y7Bzn2pHBc+wM59qRw59yGCQwSCDQQaDhtyHbYnbnzZb2WmCHbX5cUlCBoMMBhkMMhhkMMhgkMEgg0EGgwwGGQya5uQ7anP9YuJgba5fuCQhg0EGgwwGGQwyGGQwyGCQwSCDQQaDDAYZDDIYZDDIYJDBIINBBoMMBhkMMhhkMMhgkMEgg0EGg57urZj907d73J7ycjPKHF+K9s4et6e4JCGDQQaDDAYZDDIYZDDIYJDBIINBBoMMBk38SZAS/PrFyYPF6xdbl7h+VxGX9e//Jr8eVuttMH3m0IcMBhkMegCGqDCZ9JLAJAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMS0wNS0zMVQyMDoyNDoyMSswMDowMIx3lEIAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjEtMDUtMzFUMjA6MjQ6MjErMDA6MDD9Kiz+AAAAAElFTkSuQmCC"></td>
+      <td align="center">3703
+(100.0%)</td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="center">4</td>
+      <td align="left">edcine
+[numeric]</td>
+      <td align="left">Educaci&#0243;n</td>
+      <td align="left">Mean (sd) : 3.2 (1.2)
+min < med < max:
+1 < 3 < 5
+IQR (CV) : 1 (0.4)</td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">442</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">11.9%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">365</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">9.9%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">3</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1589</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">42.9%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">4</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">592</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">16.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">5</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">715</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">19.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAE0AAAB9CAQAAABNeiaWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflBR8UGBW+Lp82AAAA/0lEQVR42u3ZQQ6CMBQEUDGczhPoCfUEXk+3hYUtpR++yZsVxmheMjRhwvS5ZM31bADa2Mzlh2fTjXef4jjlX8/Lr27VH7/jXKskLhQNDQ0NDQ0NDQ2tM6sH8OMer+uZyqVy/lwuZ0viQhPTFvfaq9Jo5AKt0H7v0KOPSOJC0dDQ0NDQ0NDQ0DpjhzZziuvEhSambdqh8XkUjW5+HxqZ5SFMXCgaGhoaGhoaGhpaZ+zQZk5xnbjQxLSdOzTyDemuHRp7aBIXioaGhoaGhoaGhtYZO7SZU1wnLjQxbdj70PGLdND70Ijjk7hQNDQ0NDQ0NDQ0tM78yw7NlcSFovXkC39dHZz2Im1PAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIxLTA1LTMxVDIwOjI0OjIxKzAwOjAwjHeUQgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMS0wNS0zMVQyMDoyNDoyMSswMDowMP0qLP4AAAAASUVORK5CYII="></td>
+      <td align="center">3703
+(100.0%)</td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 0.9.9 (<a href='https://www.r-project.org/'>R</a> version 4.0.2)<br/>2021-05-31</p>
+</div>
+</div>
+<div id="relación-entre-variables" class="section level2">
+<h2>Relación entre variables</h2>
+<p>Visualizar la asociación entre variables puede ser informativo. Sin embargo, en ocasiones es necesario prestar mayor atención al tipo de gráfico que utilizamos para esto. Por ejemplo, veamos un scatter de Estatus social Subjetivo <span class="math inline">\(Y_\text{estatus}\)</span> con sexo como independiente <span class="math inline">\(X_\text{sexo}\)</span> para comparar sus distribuciones y sus pendientes</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">plot_scatter</span>(<span class="dt">data =</span> elsoc_<span class="dv">18</span>,<span class="dt">x =</span> sexo,<span class="dt">y =</span> ess,<span class="dt">fit.grps =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<p><img src="/assignment/06.2-code_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>El scatterplot no es muy informativo debido a que nuestra variable independiente solamente posee dos niveles, de modo tal que la distribución de Estatus Social Subjetivo se separa en dos grandes grupos. Por esta razón, una alternativa para visualizar la distribución es elaborar un gráfico de cajas para ambas categorías:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">plot_grpfrq</span>(<span class="dt">var.cnt =</span> elsoc_<span class="dv">18</span><span class="op">$</span>ess,<span class="dt">var.grp =</span> elsoc_<span class="dv">18</span><span class="op">$</span>sexo,<span class="dt">type =</span> <span class="st">&quot;box&quot;</span>)</span></code></pre></div>
+<p><img src="/assignment/06.2-code_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>En este sentido, al tener solamente dos niveles en los valores de la variable X: 0 (Hombre) y 1 (Mujer). Obtenemos solamente dos medias condicionales.</p>
+<p>Entonces, si calculamos el promedio simple para Estatus Social Subjetivo por sexo tenemos:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>elsoc_<span class="dv">18</span> <span class="op">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(sexo) <span class="op">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_ess=</span><span class="kw">mean</span>(ess,<span class="dt">na.rm =</span> T))</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##    sexo mean_ess
+##   &lt;dbl&gt;    &lt;dbl&gt;
+## 1     0     4.34
+## 2     1     4.47</code></pre>
+<p>Segun esto el promedio para las mujeres es de <strong>4.47</strong> puntos en la escala de Estatus Social Subjetivo, mientras para los hombres es de <strong>4.34</strong>.</p>
+<p>Realizando ahora la regresión:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>reg1&lt;-<span class="kw">lm</span>(ess <span class="op">~</span><span class="st"> </span>sexo, <span class="dt">data=</span>elsoc_<span class="dv">18</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg1), <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">p.style =</span> <span class="st">&quot;stars&quot;</span>,<span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>,<span class="dt">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a>                  <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 1&quot;</span>))</span></code></pre></div>
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+ 
+</th>
+<th colspan="1" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+Modelo 1
+</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+Predictores
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+β
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+4.339 <sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+Sexo(1=Mujer)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.133 <sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+Observations
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="1">
+3703
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+R<sup>2</sup> / R<sup>2</sup> adjusted
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">
+0.002 / 0.001
+</td>
+</tr>
+<tr>
+<td colspan="2" style="font-style:italic; border-top:double black; text-align:right;">
+<ul>
+<li>p&lt;0.05   ** p&lt;0.01   *** p&lt;0.001
+</td>
+</tr></li>
+</ul>
+</table>
+<p>Entonces:</p>
+<p><span class="math display">\[\widehat{Y}_\text{estatus} = 4.339 + \beta_1 \times \text{Sexo} + \epsilon \]</span>
+Tenemos que las mujeres (Sexo = 1) tienen un promedio 0.133 puntos más alto que los hombres (Sexo = 0) en la escala de estatus social subjetivo. En este caso, el grupo de los hombres corresponde a la <strong>categoría de referencia</strong>.</p>
+<p>Por lo tanto, <em>¿cuál es la predicción de estatus social subjetivo para la variable sexo?</em></p>
+<p>Para el caso de los hombres tenemos:</p>
+<p><span class="math display">\[\widehat{Y}_\text{estatus} = 4.339 + 0.133 \times 0 = 4.339\]</span>
+En cambio, para las mujeres tenemos:</p>
+<p><span class="math display">\[\widehat{Y}_\text{estatus} = 4.339 + 0.133 \times 1 = 4.472\]</span></p>
+<p>Entonces cuando calculamos el promedio de Estatus social Subjetivo <span class="math inline">\(Y_\text{estatus}\)</span> para hombre (<span class="math inline">\(X_\text{sexo=0}\)</span>) mujer (<span class="math inline">\(X_\text{sexo=1}\)</span>), podemos observar que son los mismos valores que nos entrega la estimación de la regresión simple empleando Sexo como predictor de Estatus Social Subjetivo. Es decir:</p>
+<ul>
+<li>Al ingresar un regresor dicotómico en regresión simple lo que se obtiene es una estimación de la <strong>diferencia de promedios</strong> de ambas categorías en relación a la variable dependiente -en regresión múltiple esta diferencia se ajusta o controla por la presencia de otras variables, por ejemplo:</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a>reg2&lt;-<span class="kw">lm</span>(ess <span class="op">~</span><span class="st"> </span>sexo<span class="op">+</span>edad, <span class="dt">data=</span>elsoc_<span class="dv">18</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg1,reg2), <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">p.style =</span> <span class="st">&quot;stars&quot;</span>,<span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>,<span class="dt">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a>                  <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 1&quot;</span>, <span class="st">&quot;Modelo 2&quot;</span>))</span></code></pre></div>
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+ 
+</th>
+<th colspan="1" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+Modelo 1
+</th>
+<th colspan="1" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+Modelo 2
+</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+Predictores
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+β
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+β
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+4.339 <sup>***</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+4.602 <sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+Sexo(1=Mujer)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.133 <sup>*</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.126 <sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+Edad
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.006 <sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+Observations
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="1">
+3703
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="1">
+3703
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+R<sup>2</sup> / R<sup>2</sup> adjusted
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">
+0.002 / 0.001
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">
+0.005 / 0.004
+</td>
+</tr>
+<tr>
+<td colspan="3" style="font-style:italic; border-top:double black; text-align:right;">
+<ul>
+<li>p&lt;0.05   ** p&lt;0.01   *** p&lt;0.001
+</td>
+</tr></li>
+</ul>
+</table>
+<p><span class="math display">\[\widehat{Y}_\text{estatus} = 4.602 + 0.126 \times \text{Sexo} + -0.006 \times \text{Edad} + \epsilon \]</span>
+Al controlar por la <em>edad</em> de las personas, <strong>las mujeres tienen un promedio 0.126 más alto que el de los hombres</strong> en la escala de Estatus Social Subjetivo. Vemos que, en comparación con el Modelo 1, la diferencia en el promedio de estatus subjetivo de mujeres respecto de hombres se ajusta al incorporar la <em>edad</em>. En este sentido, ¿por qué la diferencia en el promedio de estatus subjetivo entre mujeres y hombres puede verse afectada por la <em>edad</em>?. Revisemos el promedio de Edad para hombres y mujeres:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a>elsoc_<span class="dv">18</span> <span class="op">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(sexo) <span class="op">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_ess=</span><span class="kw">mean</span>(edad,<span class="dt">na.rm =</span> T))</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##    sexo mean_ess
+##   &lt;dbl&gt;    &lt;dbl&gt;
+## 1     0     47.5
+## 2     1     46.3</code></pre>
+<p>Esta información nos permite observar que los hombres tienen un promedio de edad de 1.2 años mayor que el de las mujeres. En este sentido, lo que vemos es que la diferencia promedio de estatus subjetivo entre hombres y mujeres disminuye de 0.136 a 0.126, es decir, se ajusta al considerar (controlar por) la edad de las personas.</p>
+</div>
+<div id="predictores-con-más-de-una-categoría" class="section level2">
+<h2>Predictores con más de una categoría</h2>
+<p>Una de las características de estatus más importante es el nivel educacional de las personas. En este sentido, el nivel educacional puede considerarse como una variable contínua (p.ej: años de educación) o categórica (nivel/grado educacional), lo cual depende no solo de la distribución empírica de la variable sino que también del criterio de quien investiga.</p>
+<p>Para este ejercicio consideraremos la variable educación en base a las categorías de la Clasificación Internacional Normalizada de la Educación <strong><a href="http://uis.unesco.org/sites/default/files/documents/isced-2011-sp.pdf">(UNESCO)</a></strong>. La cual posee 5 niveles:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a>sjmisc<span class="op">::</span><span class="kw">frq</span>(<span class="dt">x =</span> elsoc_<span class="dv">18</span><span class="op">$</span>edcine,<span class="dt">show.na =</span> F)</span></code></pre></div>
+<pre><code>## 
+## Educación (x) &lt;numeric&gt;
+## # total N=3703  valid N=2988  mean=3.21  sd=1.21
+## 
+## Value |                      Label |    N | Raw % | Valid % | Cum. %
+## --------------------------------------------------------------------
+##     1 |  Primaria incompleta menos |  442 | 11.94 |   11.94 |  11.94
+##     2 | Primaria y secundaria baja |  365 |  9.86 |    9.86 |  21.79
+##     3 |            Secundaria alta | 1589 | 42.91 |   42.91 |  64.70
+##     4 |      Terciaria ciclo corto |  592 | 15.99 |   15.99 |  80.69
+##     5 |      Terciaria y Postgrado |  715 | 19.31 |   19.31 | 100.00</code></pre>
+<p>Y se distribuye de esta manera:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="kw">plot_frq</span>(<span class="dt">data =</span> elsoc_<span class="dv">18</span><span class="op">$</span>edcine)</span></code></pre></div>
+<p><img src="/assignment/06.2-code_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>Para poder incluir esta variable en la regresión como categórica en R la manera más simple es definirla como un factor. Primero necesitamos conocer la estructura de la variable, ya que puede venir previamente definida como factor:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="kw">class</span>(elsoc_<span class="dv">18</span><span class="op">$</span>edcine)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="kw">str</span>(elsoc_<span class="dv">18</span><span class="op">$</span>edcine)</span></code></pre></div>
+<pre><code>##  num [1:3703] 2 3 3 4 3 3 3 4 5 2 ...
+##  - attr(*, &quot;labels&quot;)= Named num [1:5] 1 2 3 4 5
+##   ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Primaria incompleta menos&quot; &quot;Primaria y secundaria baja&quot; &quot;Secundaria alta&quot; &quot;Terciaria ciclo corto&quot; ...
+##  - attr(*, &quot;label&quot;)= chr &quot;Educación&quot;</code></pre>
+<p>Vemos que al emplear <code>class</code>, R nos indica que <code>edcine</code> es una variable numérica con 5 valores distintos. Además, al correr <code>str</code> se nos indica que dichos valores numéricos poseen atributos en forma de etiquetas (labels). Entonces, si estimamos la regresión con la variable tal cual como está, obtenemos lo siguiente:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a>reg3&lt;-<span class="st"> </span><span class="kw">lm</span>(ess<span class="op">~</span>edcine,<span class="dt">data =</span> elsoc_<span class="dv">18</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a>sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg3), <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">p.style =</span> <span class="st">&quot;stars&quot;</span>,<span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>,<span class="dt">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true"></a>                  <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 3&quot;</span>))</span></code></pre></div>
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+ 
+</th>
+<th colspan="1" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+Modelo 3
+</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+Predictores
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+β
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+3.329 <sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+Educación
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.331 <sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+Observations
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="1">
+3703
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+R<sup>2</sup> / R<sup>2</sup> adjusted
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">
+0.064 / 0.064
+</td>
+</tr>
+<tr>
+<td colspan="2" style="font-style:italic; border-top:double black; text-align:right;">
+<ul>
+<li>p&lt;0.05   ** p&lt;0.01   *** p&lt;0.001
+</td>
+</tr></li>
+</ul>
+</table>
+<p>El coeficiente de regresión nos indica que por cada nivel adicional de educación, hay un aumento de 0.331 puntos en la escala de estatus social subjetivo. Sin embargo, dada la naturaleza de nuestra variable, decir “por cada nivel educacional” es poco informativo, por lo tanto la manera más adecuada de utilizar nuestra variable en la estimación de una regresión es transformarla en un <strong>factor</strong> empleando la función <code>as_factor()</code> <span class="sidenote"> De la librería <code>sjlabelled</code> </span>.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a>elsoc_<span class="dv">18</span><span class="op">$</span>edcine&lt;-<span class="st"> </span><span class="kw">as_factor</span>(elsoc_<span class="dv">18</span><span class="op">$</span>edcine)</span></code></pre></div>
+<div class="alert alert-info">
+<p><strong>Nota</strong>: en R existe la función <code>as.factor()</code>, sin embargo, en esa ocasión usamos <code>as_factor()</code> debido a que es compatible los vectores numéricos etiquetados y nos permite matener todos los atributos de las variables, tales como las etiquetas de variable y valores.</p>
+</div>
+<p>Teniendo nuestra variable transformada a factor, estimamos nuevamente la regresión:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a>reg4 &lt;-<span class="st"> </span><span class="kw">lm</span>(ess<span class="op">~</span>edcine,<span class="dt">data =</span> elsoc_<span class="dv">18</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a>sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg3,reg4), <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">p.style =</span> <span class="st">&quot;stars&quot;</span>,<span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>,<span class="dt">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true"></a>                  <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 3&quot;</span>,<span class="st">&quot;Modelo 4&quot;</span>))</span></code></pre></div>
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+ 
+</th>
+<th colspan="1" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+Modelo 3
+</th>
+<th colspan="1" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+Modelo 4
+</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+Predictores
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+β
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+β
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+3.329 <sup>***</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+3.794 <sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+Educación
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.331 <sup>***</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+Educación: Primaria y<br>secundaria baja
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.151 <sup></sup>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+Educación: Secundaria<br>alta
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.476 <sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+Educación: Terciaria<br>ciclo corto
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.811 <sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+Educación: Terciaria y<br>Postgrado
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.279 <sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+Observations
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="1">
+3703
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="1">
+3703
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+R<sup>2</sup> / R<sup>2</sup> adjusted
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">
+0.064 / 0.064
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">
+0.066 / 0.065
+</td>
+</tr>
+<tr>
+<td colspan="3" style="font-style:italic; border-top:double black; text-align:right;">
+<ul>
+<li>p&lt;0.05   ** p&lt;0.01   *** p&lt;0.001
+</td>
+</tr></li>
+</ul>
+</table>
+<div id="interpretación" class="section level3">
+<h3>Interpretación</h3>
+<p>Al igual que en el modelo empleando Educación como variable continua, el modelo con Educación categórica muestra que a medida que aumenta el nivel educacional, el promedio de estatus subjetivo tiende a ser más alto. Por otro lado, en este caso la categoría de referencia es Primaria Incompleta o menos. Entonces:</p>
+<p>El promedio en la escala de Estatus Social subjetivo para el grupo con educación Primaria y Secundaria baja es 0.151 puntos más alto con respecto a las personas con educación Primaria Incompleta o menos.</p>
+<p>El promedio en la escala de Estatus Social subjetivo para el grupo con educación Secundaria Alta es 0.476 más alto con respecto a las personas con educación Primaria Incompleta o menos.</p>
+<p>El promedio en la escala de Estatus Social subjetivo para el grupo con educación Terciaria ciclo corto es 0.811 más alto con respecto a las personas con educación Primaria Incompleta o menos.</p>
+<p>El promedio en la escala de Estatus Social subjetivo para el grupo con educación Terciaria y Postgrado es de 1.279 más alto con respecto a las personas con educación Primaria Incompleta o menos.</p>
+<ul>
+<li>Alternativamente es posible cambiar la categoría de referencia. Por ejemplo, si quisieramos que la referencia fuera el nivel educativo más alto “Terciaria y Postgrado” (5) debemos usar <code>relevel(edcine, ref =5)</code>:</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a>reg4<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(ess<span class="op">~</span><span class="kw">relevel</span>(edcine,<span class="dt">ref=</span><span class="dv">5</span>),<span class="dt">data =</span> elsoc_<span class="dv">18</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true"></a><span class="kw">summary</span>(reg4<span class="fl">.1</span>)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = ess ~ relevel(edcine, ref = 5), data = elsoc_18)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.0727 -0.7941  0.0548  0.7300  6.2059 
+## 
+## Coefficients:
+##                           Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                5.07273    0.05710  88.833  &lt; 2e-16 ***
+## relevel(edcine, ref = 5)1 -1.27861    0.09239 -13.839  &lt; 2e-16 ***
+## relevel(edcine, ref = 5)2 -1.12752    0.09823 -11.479  &lt; 2e-16 ***
+## relevel(edcine, ref = 5)3 -0.80275    0.06876 -11.674  &lt; 2e-16 ***
+## relevel(edcine, ref = 5)4 -0.46800    0.08485  -5.516 3.71e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.527 on 3698 degrees of freedom
+## Multiple R-squared:  0.06634,    Adjusted R-squared:  0.06533 
+## F-statistic: 65.69 on 4 and 3698 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="variables-dummy" class="section level3">
+<h3>Variables dummy</h3>
+<p>La manera tradicional de incluir predictores categóricos de más de dos niveles (variable politómica) es a través de las denominadas <strong>variables dummy</strong>. Tal como vimos en el ejemplo anterior, se incluyen <strong>n-1 categorías</strong> en el modelo dado que siempre se mantiene una como categoría de referencia.</p>
+<p>Para explorar nuestra base de datos, usaremos la función <code>head()</code> que nos mostrará las primeras 6 filas de nuestra base de datos para observar la variable Educación.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true"></a><span class="kw">head</span>(elsoc_<span class="dv">18</span>)</span></code></pre></div>
+<pre><code>##   ess sexo edad edcine
+## 1   9    0   66      2
+## 2   5    0   62      3
+## 3   5    0   28      3
+## 4   5    1   53      4
+## 5   5    1   63      3
+## 6   5    0   56      3</code></pre>
+<p>Para la construcción de las variables dummy, usaremos la función <code>dummy_cols()</code> de la librería <code>fastDummies</code>. En el argumento <code>select_columns</code>, le indicamos cuál es la variable que usaremos para construir las variables dummy:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a><span class="kw">library</span>(fastDummies)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true"></a>elsoc_<span class="dv">18</span> &lt;-<span class="st"> </span><span class="kw">dummy_cols</span>(elsoc_<span class="dv">18</span>,<span class="dt">select_columns =</span> <span class="st">&quot;edcine&quot;</span>)</span></code></pre></div>
+<p>Revisamos nuestra base de datos:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true"></a><span class="kw">head</span>(elsoc_<span class="dv">18</span>)</span></code></pre></div>
+<pre><code>##   ess sexo edad edcine edcine_1 edcine_2 edcine_3 edcine_4 edcine_5
+## 1   9    0   66      2        0        1        0        0        0
+## 2   5    0   62      3        0        0        1        0        0
+## 3   5    0   28      3        0        0        1        0        0
+## 4   5    1   53      4        0        0        0        1        0
+## 5   5    1   63      3        0        0        1        0        0
+## 6   5    0   56      3        0        0        1        0        0</code></pre>
+<p>Tal como se estimó en el modelo anterior, ahora lo que haremos es seleccionar cada dummy para las categorías 2, 3, 4 y 5 de la variable <code>edcine</code>. Esto implica que el nivel 1 (Primaria incompleta o menos) será la categoría de referencia.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true"></a>reg5 &lt;-<span class="st"> </span><span class="kw">lm</span>(ess<span class="op">~</span>edcine_<span class="dv">2</span><span class="op">+</span>edcine_<span class="dv">3</span><span class="op">+</span>edcine_<span class="dv">4</span><span class="op">+</span>edcine_<span class="dv">5</span>,<span class="dt">data =</span> elsoc_<span class="dv">18</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true"></a>sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(reg4, reg5), <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="dt">p.style =</span> <span class="st">&quot;stars&quot;</span>,<span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>,<span class="dt">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true"></a>                  <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 4&quot;</span>,<span class="st">&quot;Modelo 5&quot;</span>))</span></code></pre></div>
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+ 
+</th>
+<th colspan="1" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+Modelo 4
+</th>
+<th colspan="1" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+Modelo 5
+</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+Predictores
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+β
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+β
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+3.794 <sup>***</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+3.794 <sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+Educación: Primaria y<br>secundaria baja
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.151 <sup></sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+Educación: Secundaria<br>alta
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.476 <sup>***</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+Educación: Terciaria<br>ciclo corto
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.811 <sup>***</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+Educación: Terciaria y<br>Postgrado
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.279 <sup>***</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+edcine 2
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.151 <sup></sup>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+edcine 3
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.476 <sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+edcine 4
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.811 <sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+edcine 5
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.279 <sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+Observations
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="1">
+3703
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="1">
+3703
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+R<sup>2</sup> / R<sup>2</sup> adjusted
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">
+0.066 / 0.065
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">
+0.066 / 0.065
+</td>
+</tr>
+<tr>
+<td colspan="3" style="font-style:italic; border-top:double black; text-align:right;">
+<ul>
+<li>p&lt;0.05   ** p&lt;0.01   *** p&lt;0.001
+</td>
+</tr></li>
+</ul>
+</table>
+<p>Si observamos la tabla de arriba, vemos que las estimaciones para el modelo 4 y 5 son idénticas. La única diferencia es que en el Modelo 5 empleamos dummies para cada categoría en vez de utilizar la variable como un factor.</p>
+</div>
+</div>
+</div>
+<div id="section" class="section level1">
+<h1></h1>
+</div>
+<div id="video-tutorial" class="section level1">
+<h1>Video Tutorial</h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NVNrGtNMmbQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<div id="documento-presentación" class="section level2">
+<h2>Documento presentación</h2>
+<iframe src="/slides/06.2-cat/6.2_cat.html" height="550" width="100%" allowfullscreen="true">
+</iframe>
+</div>
+</div>
+<div id="foro-práctica-6.2" class="section level1">
+<h1>Foro práctica 6.2</h1>
+</div>

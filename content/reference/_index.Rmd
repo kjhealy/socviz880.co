@@ -6,54 +6,21 @@ output:
       toc: TRUE
 ---
 
-El curso tendrá tres instancias de evaluación:
+El curso tendrá tres instancias de evaluación (fechas en pestaña de [planificación](/schedule)):
 
-- **Informe 1** (individual): Correlación y regresión simple (20%). **Entrega: Jueves 29 de Abril**
-- **Informe 2** (grupal): Regresión multiple e inferencia estadística (30%). **Entrega: Jueves 3 de Junio**
-- **Informe 3** (grupal): Regresión logística, predictores categóricos y supuestos (50%). **Entrega: Viernes 2 de Julio**
+- **Prueba 1** (individual): Correlación y regresión simple (20%).
+- **Trabajo 1** (grupal): Regresión multiple e inferencia estadística (30%).
+- **Trabajo 2** (grupal): Regresión logística, predictores categóricos y supuestos (50%).
 
-La nota ponderada de los trabajos equivaldrá al 60% de la nota del curso y el examen final al 40% restante.
+La nota ponderada de las evaluaciones equivaldrá al 60% de la nota del curso y el examen final al 40% restante.
 
-# Pauta de trabajo individual (Informe 1)
-
-Este trabajo abarca la primera parte del curso hasta regresión simple (Sesión 4: Regresión simple 2). Es un informe breve, consistente en preparación y análisis de datos incluyendo como producto final la estimación e interpretación de una regresión simple. Para ello, los pasos son los siguientes:
-
-- seleccionar una base de datos de interés (ver abajo las sugeridas para los trabajos grupales)
-- seleccionar las variables a analizar, dar una breve justificación
-- generar el código de preparación de datos y la base procesada
-- generar el código de análisis y reportar los resultados.
-
-El informe tiene las siguientes secciones:
-
-1. Identificación: Tema y nombre de estudiante
-2. Resumen (200 palabras) (0.5p)
-3. Antecedentes de la relación estudiada (300 palabras) (0.5p)
-4. Metodología (1p)
-
-    4.1- Datos (descripción)
-
-    4.2- Variables (descripción y tabla con estadísticos descriptivos)
-5. Análisis (2p)
-
-    5.1 Análisis descriptivo
-
-    5.2 Modelo de regresión
-
-6. Bibliografía
-
-7. Anexos: código de preparación de datos y código de análisis (2p)
-
-Fecha de entrega: ver Planificación.
-
-**Ejemplo para Informe 1 [aquí](../assignment/ejemplocasencovid/ejemploinforme1.html)**
-
-# Pauta de trabajo grupal (Informes 2 y 3)
+# Pauta de trabajo grupal
 
 ## Objetivo general
 
 Aplicar los contenidos del curso a una temática de interés en formato de artículo de investigación breve.
 
-## Sobre los temas
+## Sobre los temas y datos
 
 De modo de lograr una mayor colaboración desde el equipo docente a sus trabajos, sugerimos desarrollar los siguientes temas:
 
@@ -61,8 +28,9 @@ De modo de lograr una mayor colaboración desde el equipo docente a sus trabajos
 - Estratificación social, política educativa, sociología política
 - Economía laboral, relaciones laborales, acción colectiva y condiciones de empleo
 
-Recomendamos utilizar alguna de las siguientes fuentes de datos para realizar los trabajos (para abrir bases de datos en formatos distintos a R revisar nota correspondiente en práctica 1, link [aquí](/assignment/01-code/#2-cargar-base-de-datos)):
+Los datos a utilizar corresponden a bases de datos secundarias que coincidan con los temas de interés del grupo. Algunas sugeridas son:
 
+- [Encuesta bienestar social MIDESOC](http://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-bienestar-social)
 - [ELSOC](https://coes.cl/encuesta-panel/) (Ola 1)
   - [Manual de Usuario](/docs/Manual_Usuario_ELSOC_W01_v2.00.pdf)
   - [base de datos Ola 1](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/0KIRBJ&version=2.0)
@@ -81,7 +49,6 @@ Recomendamos utilizar alguna de las siguientes fuentes de datos para realizar lo
   - [ENE](http://bancodatosene.ine.cl/)
   - [ESI](https://www.ine.cl/estadisticas/sociales/ingresos-y-gastos/encuesta-suplementaria-de-ingresos)
   - [ENUT](https://www.ine.cl/estadisticas/sociales/genero/uso-del-tiempo)
-  - OHL, ENCLA y otras pueden ser solicitadas directamente a **Valentina Andrade**
 
 ## Modalidad de trabajo y asesorías
 
@@ -96,14 +63,14 @@ Recomendamos utilizar alguna de las siguientes fuentes de datos para realizar lo
 
 Este trabajo posee dos entregas, tal como se señala en el programa del curso
 
-- **Informe 2 (avance)**: Su formato es de un borrador de la entrega final. La idea es avanzar en todas las secciones, incluyendo la temática general a abordar así como también datos y variables en la sección de métodos, y análisis descriptivos. El énfasis en esta primera entrega se encuentra en el planteamiento de las hipótesis y el modelo de regresión asociado. Incluye estimar el modelo de regresión múltiple y su  interpretación (total máximo 2000 palabras)
+- **Informe 1 (avance)**: Su formato es de un borrador de la entrega final. La idea es avanzar en todas las secciones, incluyendo la temática general a abordar así como también datos y variables en la sección de métodos, y análisis descriptivos. El énfasis en esta primera entrega se encuentra en el planteamiento de las hipótesis y el modelo de regresión asociado. Incluye estimar el modelo de regresión múltiple y su  interpretación (total máximo 2000 palabras)
 
   - Consideraciones: En el caso de los trabajos donde la variable dependiente sea dicotómica, para esta primera entrega la estimación puede ser realizada preliminarmente con regresión lineal, y para la segunda se espera estimación con regresión logística
 
-- **Informe 3 (final)**: Su formato es de artículo/ reporte breve de investigación. En esta entrega se corrigen aspectos del **Informe 2**, junto con profundizar en el chequeo de supuestos, casos influyentes, interacciones. Aquellos grupos que trabajen con una variable dependiente continua deberán realizar además al menos una estimación de regresión logística (y su correspondiente interpretación) con la variable dependiente dicotomizada (total máximo 3.500 palabras).
+- **Informe 2 (final)**: Su formato es de artículo/ reporte breve de investigación. En esta entrega se corrigen aspectos del **Informe 2**, junto con profundizar en el chequeo de supuestos, casos influyentes, interacciones. Aquellos grupos que trabajen con una variable dependiente continua deberán realizar además al menos una estimación de regresión logística (y su correspondiente interpretación) con la variable dependiente dicotomizada (total máximo 3.500 palabras).
 
 <div class="alert alert-info">
-**Actualización Informe 3**
+**Actualización Informe 2**
 
 - Lo central en este informe es incorporar las correcciones al informe 2
 
@@ -164,14 +131,7 @@ Este trabajo posee dos entregas, tal como se señala en el programa del curso
 
 - Referencias: APA 6ta Edición o [ASA](https://www.asanet.org/sites/default/files/savvy/documents/teaching/pdfs/Quick_Tips_for_ASA_Style.pdf)
 
-- Tablas de calidad: formato APA [(líneas horizontales y señalando fuente)](https://apastyle.apa.org/style-grammar-guidelines/tables-figures/tables).
-
-
-## Fechas:
-
-- Ver planificación
-
-- Descuento por atraso: 0.5 por día corrido, luego de 3 días de atraso se da el trabajo por reprobado.
+- Tablas de calidad: orientarse por formato APA [(líneas horizontales y señalando fuente)](https://apastyle.apa.org/style-grammar-guidelines/tables-figures/tables).
 
 ## Modalidad de entrega
 
@@ -200,7 +160,7 @@ El documento del trabajo debe ser ingresado además por **Turnitin**, se enviar�
 
 - - [Publicación de artículos académicos: buenas prácticas y recomendaciones para la redacción y envío a revistas científicas](https://repositori.upf.edu/handle/10230/44599)
 
-### A poner énfasis especialmente en informe 3
+### A poner énfasis especialmente en informe 2
 
 - el foco de este enforme es la aplicación de regresión múltiple como herramienta de análisis multivariado a un problema sustantivo de investigación. Por lo tanto, en el análisis se debe enfatizar qué sucede con los predictores en presencia de otros predictores, y en la argumentación esto se relaciona con qué sucede con mi factor explicativo central en presencia de otros factores explicativos
 
