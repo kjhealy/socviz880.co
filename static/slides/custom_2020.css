@@ -140,7 +140,7 @@ a, a > code {
 }
 
 .front {
-  background: linear-gradient(90deg, #cd4521 0%, #fae301 100%);
+  background: linear-gradient(180deg, #FB4F03 0%, #292C2C 100%); 
 }
 
 .front h1 {
