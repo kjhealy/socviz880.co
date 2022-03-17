@@ -20,6 +20,10 @@ editor_options:
   chunk_output_type: console
 ---
 
+## Encuesta
+
+[link a Menti](https://www.mentimeter.com/s/2f6f2dd610eaf88ebd0d79979a081a8a/9063b292a908)
+
 ## Documento presentación
 
 Próximamente aquí
@@ -29,7 +33,7 @@ Próximamente aquí
 --->
 
 ## Video de la clase
-Próximamente aquí 
+Próximamente aquí
 
 <!---
 <span class="sidenote">  </span>

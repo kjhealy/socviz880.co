@@ -14,9 +14,9 @@ output:
 
 ## Concepto del curso
 
-a) A pesar de su nombre, este no es un curso de (mera) estadística. Es un curso que enseña algunas técnicas de análisis cuantitativo orientadas al **contraste empírico de teoría sociológica**, para lo cual se vale de técnicas estadísticas como la regresión múltiple. En este contexto, los métodos son considerados funcionales a preocupaciones sustantivas y relevantes del mundo social
+a) A pesar de su nombre, este no es un curso de (mera) estadística. Es un curso que enseña algunas técnicas de análisis cuantitativo orientadas al **contraste empírico de teoría sociológica**, para lo cual se vale de técnicas estadísticas como la regresión múltiple. En este contexto, los métodos son considerados funcionales a preocupaciones sustantivas y relevantes del mundo social.
 
-b) Además de las herramientas de análisis, el curso pone también énfasis en el **reporte y comunicación de resultados**. Los análisis de datos son siempre realizados en relación a otr_s, quienes tienen ser capaz de entender lo que se está presentando. Este aspecto se relaciona con tener en cuenta la relevancia y aporte del conocimiento científico en temas sociales.
+b) Además de las herramientas de análisis, el curso pone también énfasis en el **reporte y comunicación de resultados**. Los análisis de datos son siempre realizados en relación a otr_s, quienes tienen ser capaces de entender lo que se está presentando. Este aspecto se relaciona con tener en cuenta la relevancia y aporte del conocimiento científico en temas sociales.
 
 c) Un tercer énfasis transversal en el curso es la **apertura del proceso de investigación**. Para poder realizar investigación de manera eficiente y generativa es importante no "reinventar la rueda", preocupándose de que nuestros análisis sean comprensibles para los demás (y para nosotr_s en el futuro). Por ello utilizamos programas de análisis de código abierto (como R) y promovemos que los códigos de análisis sean reproducibles.
 
@@ -78,7 +78,7 @@ Al finalizar el curso, los estudiantes:
 - Bases: varianza, covarianza y correlación.
 - Usos y aplicaciones en ciencias sociales de la regresión lineal.
 - Supuestos y condiciones de aplicación de la regresión lineal.
-- Manejo de casos influyentes
+- Manejo de casos influyentes.
 - Procedimientos de estimación e interpretación de parámetros.
 - Introducción de variables de control estadístico.
 - Criterios de validez, capacidad predictiva y evaluación del ajuste de la regresión lineal.
@@ -112,7 +112,7 @@ El curso tendrá tres instancias de evaluación:
 - **Evaluación 2** (trabajo grupal): Regresión multiple e inferencia estadística (30%)
 - **Evaluacion 3** (trabajo grupal): Regresión logística, predictores categóricos y supuestos (50%)
 
-La nota ponderada de los trabajos equivaldrá al 60% de la nota del curso y el examen final al 40% restante.
+La nota ponderada de las evaluaciones equivaldrá al 60% de la nota del curso y el examen final al 40% restante.
 
 En el caso de los trabajos, en caso de atraso se descontará 0.5 por día adicional. Si el trabajo no se entrega luego del tercer día de atraso será calificado con nota 1.0
 
@@ -149,7 +149,7 @@ Hay cuatro referencias principales recomendadas para este curso:
 
 - **Wickham, H., & Grolemund, G. (2016). R for data science: import, tidy, transform, visualize, and model data (First edition). Sebastopol: O’Reilly.** Libro con enfoque en el aprendizaje de R con técnicas que ciertamente van más allá del curso, pero muy util como referencia general. Además, está disponible también en español como ["R para ciencia de datos"](https://es.r4ds.hadley.nz/).
 
-**Abajo bilbiografía recomendada para cada unidad**
+**Abajo bibliografía recomendada para cada unidad**
 
 
 ### MODELOS CIENTÍFICOS (Unidad 1)
@@ -187,13 +187,13 @@ Usaremos R 4.1 a través de la interfaz de RStudio. También realizaremos ejerci
 
 ## VARIOS
 
-- Las clases en general se acompañan de documentos de presentación, que estarán disponibles antes de la sesión en la página de [Materiales](/class/), y están desarrollados con base en Rmarkdown/XaringanRmarkdown/ Xaringan. Estos documentos no son:
+- Las clases en general se acompañan de documentos de presentación, que estarán disponibles antes de la sesión en la página de [Contenidos](/class/), y están desarrollados con base en Rmarkdown/XaringanRmarkdown/ Xaringan. Estos documentos no son:
 
   - “la clase”
   - autoexplicativos (ni aspiran a serlo)
   - “el ppt” (ni mucho menos “la ppt”)
 
-- **Políticas de participación y trato**: se espera y enfatiza la participación por distintos canales disponibles. También se enfatiza un trato respetuoso y horizontal. Quienes están tomando este curso serán referidos como participantes y/o estudiantes, evitar el uso de "l_s cabr_s" o "l_s chiquill_s". Quien no se sienta tratad_ apropiadamente o vea que otr_s no lo estan siendo, se solicita reportar para solucionar la situación.
+- **Políticas de participación y trato**: se espera y enfatiza la participación por distintos canales disponibles. También se enfatiza un trato respetuoso y horizontal. Quienes están tomando este curso serán referidos como participantes y/o estudiantes, evitar el uso de "l_s cabr_s" o "l_s chiquill_s". Quien no se sienta tratad_ apropiadamente o vea que otr_s no lo están siendo, se solicita reportar para solucionar la situación.
 
 
 ## Programación de sesiones

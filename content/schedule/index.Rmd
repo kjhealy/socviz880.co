@@ -7,7 +7,7 @@ Los dos componentes centrales del curso son las clases teóricas y las actividad
 
 - Las **clases** son sesiones donde se exponen y discuten los contenidos programados. Se realizan los días **Viernes 10:15-11:45**
 
-- Las **prácticas** consisten en espacio de revisión de las guías de trabajo semanales. Se espera que estas prácticas sean desarrolladas de manera autónoma por cada estudiante durante la semana siguiente a la presentación de los contenidos. Se realizan los días **Viernes 8:30-10:00**.
+- Las **prácticas** consisten en un espacio de revisión de las guías de trabajo semanales. Se espera que estas prácticas sean desarrolladas de manera autónoma por cada estudiante durante la semana siguiente a la presentación de los contenidos. Se realizan los días **Viernes 8:30-10:00**.
 
 **Formato en contexto de transición a la presencialidad**
 
@@ -27,11 +27,11 @@ Este semestre volvemos a la presencialidad luego de dos años donde las clases s
 | |<i class="fas fa-chalkboard-teacher"></i>  Clases  |  <i class="fas fa-user-edit"></i>  Prácticas y evaluaciones | <i class="fas fa-book-reader"></i> Lecturas y material adicional
 -----|---------|-----------|-----------
 <font color="orange"> **Marzo** </font> |   |   |
-Viernes 18 | [**1. Presentación e introducción**](/class/01-class)  |  [Práctica 1: Preparación de datos](/assignment/01-code) | - Leer detalladamente [programa del curso](/programa) y también sobre la lógica de [clases y prácticos](/class)  
+Viernes 18 | [**1. Presentación e introducción**](/class/01-class)  |  [Práctica 1: Preparación de datos](/assignment/01-code) | - Leer detalladamente [programa del curso](/programa) y también sobre la lógica de [clases y prácticos](/class)
 Viernes 25 | [**2. Bases/Repaso**](/class/02-class) <br> - Datos y variables <br> - Preparación y descripción <br> - Varianza y covarianza <br> - Correlación (descriptiva)  |  [Práctica 2: Descripción de variables](/assignment/02-code)  | - [Lizon (2006) Estadística y causalidad en sociología](/docs/lecturas/Lizon 2006 Estadistica y causalidad en sociologia.pdf) <br> -  [Moore: 1.Comprensión de los datos (1-54)](/docs/lecturas/moore_comprensiondelosdatos.pdf)
 <font color="orange"> **Abril** </font> |   |   |
 Viernes 1 | [**3. Regresión simple I**](/class/03-class)  <br>- Distribución condicional<br> - Mínimos cuadrados y recta de regresión  | [Práctica 3: Correlación y regresión](/assignment/03-code) |- [Salgado (2009) Construyendo explicaciones en sociología](/docs/lecturas/salgado 2009 modelos sociologia.pdf)- <br> [Moore: 2. Análisis de relaciones (97-131)](/docs/lecturas/moore_analisisderelaciones1.pdf) <br>
-Viernes 8 | [**4. Regresión simple II**](/class/04-class) <br> Regresión vs correlación <br> Residuos y ajuste general (R2)  |  [Practica 4: Residuos y ajuste](/assignment/04-code) |- [*Linares (2018) Sociología y teoría social analíticas, cap. 2: La explicación en ciencias sociales](/docs/lecturas/linares 2018 Cap.2 Explicacion en sociologia.pdf) <br> - [Moore: Residuos (144-154)](/docs/lecturas/moore_residuos.pdf)
+Viernes 8 | [**4. Regresión simple II**](/class/04-class) <br> Regresión vs correlación <br> Residuos y ajuste general (R2)  |  [Practica 4: Residuos y ajuste](/assignment/04-code) |- [Linares (2018) Sociología y teoría social analíticas, cap. 2: La explicación en ciencias sociales](/docs/lecturas/linares 2018 Cap.2 Explicacion en sociologia.pdf) <br> - [Moore: Residuos (144-154)](/docs/lecturas/moore_residuos.pdf)
 Viernes 15 | FERIADO |  |
 Viernes 22    |   | [**Evaluación 1: Regresión simple (INDIVIDUAL)**]()  20% |   |
 Viernes 29 | [**5. Regresión múltiple 1**](/class/05-class) <br> - Introducción   | [Práctica 5: Tabla de regresión múltiple y predictores categóricos](/assignment/05-code)  | - [Esser 2010 Sociología de las Variables](/docs/lecturas/Esser 2010 Sociología de las Variables.pdf) <br> - [Wooldridge (2010) Cap 3 (parcial): Análisis de regresión múltiple: estimación (68-80)](/docs/lecturas/Wooldridge_cap3estimacion.pdf)
@@ -39,7 +39,7 @@ Viernes 29 | [**5. Regresión múltiple 1**](/class/05-class) <br> - Introducci�
 Viernes 6  | [**6. Regresión múltiple 2**](/class/06-class) <br> - Coeficientes de regresión parcial <br>  - Correlación parcial y semiparcial <br>    | [Práctica 6: Parcialización y control estadístico](/assignment/06-code)  | - * [Wooldridge (2010) Cap 3 (parcial): Análisis de regresión múltiple: estimación (68-80)](/docs/lecturas/Wooldridge_cap3estimacion.pdf)
 Viernes 13| [**7. Regresión e inferencia**](/class/07-class) <br>- Conceptos y supuestos <br> - Tabla ANOVA <br> - Inferencia sobre coeficientes | [Práctica 7: Inferencia y reporte](/assignment/07-code) |- [Moore 7: Inferencia para medias (482-543)](/docs/lecturas/Moore_inferencia_medias.pdf) |
 Viernes 20  | Semana de receso   |
-Viernes 27  |   | **Evaluación 2 - 30%**: Regresión múltiple (informe grupal) 30% |  - * [Wooldridge (2010) Cap 19: Realización de un proyecto empírico (668-694)](/docs/lecturas/Wooldridge_19proyectoempirico.pdf)
+Viernes 27  |   | **Evaluación 2 - 30%**: Regresión múltiple (informe grupal) 30% |  - [Wooldridge (2010) Cap 19: Realización de un proyecto empírico (668-694)](/docs/lecturas/Wooldridge_19proyectoempirico.pdf)
 <font color="orange"> **Junio** </font> |   |   |
 Viernes 3 | [**8. Regresión logística  I**](/class/09-class) <br> - Probabilidades <br>- Odds ratios   | [Práctica 8: Probabilidades y Odds](/assignment/09-code) | [Camarero et al (2017) Regresión logística (1-29)](/docs/lecturas/Camarero_Odd_Ratio_LogitV2.pdf) <br>
 Viernes 10| [**9. Regresión logística II**](/class/10-class) <br>- Estimación de parámetros <br>- Inferencia <br>- Predicción | [Práctica 9: Estimación logística](/assignment/10-code)  | - [Camarero et al (2017) Regresión logística (30-52)](/docs/lecturas/Camarero_Odd_Ratio_LogitV2.pdf)

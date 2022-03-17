@@ -21,7 +21,7 @@ Todo el material es accesible desde el menú de la izquierda <--
 
 ## Instrucciones generales para las prácticas
 
-- Las instancia práctica consiste en el desarrollo de una guía práctica cada semana donde se aplican y profundizan los contenidos de las clases. La organización de estas prácticas se puede revisar en la [planificación del curso](/schedule).
+- Las instancia prácticas consisten en el desarrollo de una guía práctica cada semana donde se aplican y profundizan los contenidos de las clases. La organización de estas prácticas se puede revisar en la [planificación del curso](/schedule).
 
 - El trabajo con estas guías se organiza en los siguientes momentos:
 
@@ -47,14 +47,14 @@ Como incentivo para completar los reportes de progreso, se entregarán **dos dé
 
 ## Trabajo con software R
 
-Para los análisis estadísticos de este curso usamos el programa R, principalmente porque es gratuito, pero la principal razón es que es de código abierto. Esto quiere decir que cualquier persona puede revisar cómo está hecho y aportar con modificaciones y procedimientos nuevos, como son las librerías que realizan funciones específicas.
+Para los análisis estadísticos de este curso usamos el programa R, en parte porque es gratuito, pero la principal razón es que es de código abierto. Esto quiere decir que cualquier persona puede revisar cómo está hecho y aportar con modificaciones y procedimientos nuevos, como son las librerías que realizan funciones específicas.
 
 El carácter de apertura de R posee muchas ventajas, pero también conlleva complicaciones. Se actualiza permanentemente, así como también las librerías, y esto puede generar problemas de compatibilidad y de fallas en ejecución del código de análisis.
 
 Para minimizar estos posibles problemas en este curso, vamos a:
 
 - trabajar con la misma y última versión de R, que es la 4.1
-- evitar uso de tilde, ñ, espacios y mayúsculas tanto en carpetas y archivos, así como también en los nombres de las variable
+- evitar uso de tilde, ñ, espacios y mayúsculas tanto en carpetas y archivos, así como también en los nombres de las variables
 - al momento de hacer consultas sobre problemas en la ejecución del código, adjuntar la siguiente información:
 
   1. Código completo hasta que se produce el problema
@@ -92,7 +92,7 @@ Si por alguna razón se prefiere trabajar sin descargar, también se puede utili
 
 - Los contenidos de las hojas de código son básicamente 2:
 
-  - comandos o funciones: se escriben en la hoja, y para ejecutarlos posicionar el cursor en la línea respectiva y ctrl+enter, el resultado aparecerá en el panel de resultados o _Consola_.
+  - comandos o funciones: se escriben en la hoja, y para ejecutarlos se debe posicionar el cursor en la línea respectiva y ctrl+enter, el resultado aparecerá en el panel de resultados o _Consola_.
   - texto: para escribir títulos, comentarios, y todo lo que permita entender qué se está haciendo, al principio de la línea respectiva escribir el signo `#`
 
 - Para grabar nuestra hoja de código y así respaldar nuestros análisis, File > Save (o ctrl+s), y dar un nombre al archivo. Recordar: breve, sin espacios ni tildes ni eñes. Por defecto, la extensión de estos archivos es .R
