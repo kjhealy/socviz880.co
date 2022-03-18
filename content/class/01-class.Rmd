@@ -26,14 +26,9 @@ editor_options:
 
 ## Documento presentación
 
-Próximamente aquí
-<!---
 <iframe src=/slides/01-intro/01_multiva_intro.html height="550" width=100% allowfullscreen="true">
 </iframe>
---->
 
-## Video de la clase
-Próximamente aquí
 
 <!---
 <span class="sidenote">  </span>
