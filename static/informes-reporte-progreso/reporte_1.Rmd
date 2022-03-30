@@ -1,0 +1,98 @@
+---
+title: "Resumen reporte de progreso 1"
+author: "Kevin Carrasco"
+date: "30-03-2022"
+output: html_document
+---
+
+```{r include=FALSE}
+pacman::p_load(dplyr)
+```
+
+# Reporte de progreso 1
+
+A continuación, se presentan los resultados generales de cada uno de los elementos consultados en el reporte de progreso 1:
+
+![](https://github.com/Kevin-carrasco/reportes-progreso/blob/main/reporte_1/reporte_1.png?raw=true)
+
+En total se respondieron 66 reportes de progreso (de un total de 97 estudiantes). Los resultados muestran en general un buen nivel de progreso, estando la mayoría de los problemas focalizados en la parte de guardar hoja de código y generar la base de datos preparada para el análisis. Esto también es consistente con la mayoría de los problemas identificados en sus comentarios y sugerencias al final del reporte de progreso.
+
+**Comentarios y sugerencias**
+
+Antes de responder a los problemas señalados en el reporte de progreso, algunos tips para tener en mente siempre que trabajemos en R.
+
+1. Verificar que estamos utilizando la misma versión de R. Con el código sessionInfo()
+
+SessionInfo también entrega datos sobre las versiones de los paquetes instalados y el sistema operativo que utilizamos
+
+```{r}
+sessionInfo()
+```
+
+En mi caso, al inicio se muestra que tengo R versión 4.1.3 (última disponible al 10 de marzo 2022). Ejecutado en windows 10 y al final una serie de paquetes en distintas versiones.
+
+2. Cuando haya algún problema en la ejecución de comandos en R, por favor adjuntar lo que entregue sessionInfo() y también el error que indique R.
+
+3. Establecer directorio (carpeta) de trabajo. Para esto dos opciones:
+
+ a. manualmente: 
+En las opciones de arriba de Rstudio ir a Session -> Set Working Directory -> Choose Directory ... y ahí escoger carpeta
+
+ b. con código setwd():
+setwd("[Ruta_a_carpeta_de_trabajo]")
+
+En mi caso, cree una carpeta en escritorio y la ruta es:
+```{r}
+setwd("C:/Users/kevin/Escritorio/reporte_1")
+
+getwd() # Comprobamos
+```
+
+4. Para el trabajo futuro, procurar siempre evitar el uso de ñ, espacios y tildes en los nombres de archivos, objetos y directorios de trabajo
+
+5. Para guardar bases de datos en carpeta local
+
+El código que se indica en el práctico 1 *save(proc_elsoc,file = "[ruta hacia carpeta local en su computador]/ELSOC_ess_merit2016.RData")* es una estructura de cómo funciona *save*, pero no es el código que se debe correr.
+
+La idea es que cada persona indique dentro de las comillas ("") su propia ruta de trabajo.
+
+Por ejemplo, en el código siguiente *save(proc_elsoc,file = "content/assignment/data/proc/ELSOC_ess_merit2016.RData")* quien hizo el práctico indica que la base de datos se guarde en la carpeta que está ubicada en content/assignment/data/proc/ y bajo el nombre ELSOC_ess_merit2016.RData
+
+En mi caso, si decidiera guardar la base de datos en el escritorio, la dirección sería: C:/Users/kevin/Escritorio/ y el código completo es: *save(proc_elsoc,file = "C:/Users/kevin/Escritorio/ELSOC_ess_merit2016.RData")*
+
+Entonces, como ejemplo:
+
+```{r}
+#cargamos la base de datos desde internet
+load(url("https://multivariada.netlify.com/assignment/data/original/ELSOC_W01_v3.10.RData"))
+```
+
+- Si queremos guardar la base de datos original, utilizamos la misma ruta que escogimos anteriormente (misma carpeta o bien podemos crear una carpeta nueva que se llame "original")
+
+para crear una carpeta desde R: dir.create() o también se puede crear manualmente
+
+```{r warning=FALSE}
+dir.create("C:/Users/kevin/Escritorio/reporte_1/original")
+
+save(elsoc_2016, file="C:/Users/kevin/Escritorio/reporte_1/original/ELSOC_2016.RData") # Agregamos .Rdata luego del nombre del archivo para darle formato
+```
+
+- Si queremos guardar la base de datos procesada
+
+```{r}
+# ejemplo
+proc_elsoc <- elsoc_2016 %>% select(c18_09, # percepción meritocracia esfuerzo
+                          c18_10, # percepción meritocracia talento
+                          d01_01, # estatus social subjetivo
+                          m01,    # nivel educacional
+                          m0_sexo,# sexo
+                          m0_edad)# edad
+```
+
+y ahora la guardamos de la misma forma que la base anterior
+
+```{r warning=FALSE}
+dir.create("C:/Users/kevin/Escritorio/reporte_1/proc") # proc como referencia a base de datos procesada
+
+save(proc_elsoc, file="C:/Users/kevin/Escritorio/reporte_1/proc/proc_elsoc.RData") # Agregamos .Rdata para darle formato
+```
