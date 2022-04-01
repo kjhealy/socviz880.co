@@ -1,0 +1,33 @@
+---
+title: "Regresión simple 1"
+linktitle: "3: Regresión simple 1"
+date: "2021-01-01"
+class_date: "2021-01-01"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+menu:
+  class:
+    parent: Clases
+    weight: 1
+type: docs
+weight: 1
+pdf: /slides/01_dataviz_s20_looking_at_data.pdf
+thumb: /slides/01_dataviz_s20_looking_at_data.png
+editor_options:
+  chunk_output_type: console 
+---
+
+## Documento presentación
+
+<iframe src=/slides/03-regsimple1/03_regsimple1.html height="550" width=100% allowfullscreen="true">
+</iframe>
+
+
+## Lecturas
+
+- [Moore: 2. Análisis de relaciones (97-131)](/docs/lecturas/moore_analisisderelaciones1.pdf)

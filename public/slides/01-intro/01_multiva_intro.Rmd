@@ -61,7 +61,7 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2021 
+## 1er Sem 2022
 ## [.white[multivariada.netlify.app]](https://multivariada.netlify.com)
 ]
 
@@ -84,42 +84,125 @@ class: roja, bottom, center
 
 
 # 1.Presentación
+<br>
+## Quiénes somos
+## De dónde venimos
+## Hacia dónde vamos
 
 ---
-class: inverse, middle, center
+class: roja, bottom, center
 
-# ¿Dónde estamos?
 
+# 1.Presentación
+<br>
+## .yellow[Quiénes somos]
+## De dónde venimos
+## Hacia dónde vamos
+
+---
+class: inverse middle  bcenter
+
+# Nombre... y algo más
+
+---
+class: roja, bottom, center
+
+
+# 1.Presentación
+<br>
+## Quiénes somos
+## .yellow[De dónde venimos]
+## Hacia dónde vamos
 
 ---
 # Ciclo de formación en métodos cuantitativos
 
-![:scale 75%](ciclo.png)
+.center[
+![:scale 90%](ciclo.png)]
+
+
+???
+Descripción -------- Asociación -------- Explicación/predicción 
+
+---
+
+# .black[`menti.com`]
+
+.pull-left[
+
+
+## Código: 1739 2077
+]
+
+.pull-right[
+![:scale 90%](qrcode_menti.png)
+]
+
+---
+
+<iframe src="https://www.mentimeter.com/s/2f6f2dd610eaf88ebd0d79979a081a8a/9063b292a908" height="500" width=100% allowfullscreen="true">
+</iframe>
+
+---
+# Algunos mitos
+
 --
 
-### Descripción --------- Asociación --------- Explicación/predicción 
+.pull-left[
+![](https://jc-castillo.com/media/albums/gallery/IMG-20220312-WA0007.jpg)
+
+]
+
+--
+
+.pull-right[
+- positivismo
+
+- predominante
+
+- foco en los números
+
+- cuadrado
+
+- masculino
+
+- verdad absoluta
+
+]
+
 
 ---
-class: inverse middle center
+# Orientaciones
 
-# Este curso
+.pull-left-wide[
+- lidiar con la .red[incertidumbre]
+
+- parsimonia
+
+- interdisciplina
+
+- foco en teoría
+
+- lenguaje matemático como instrumento
+
+- respuestas científicas (conocimiento)]
+
+.pull-right-narrow[
+![:scale 90%](incertidumbre.png)
+]
+
+
+
 
 ---
+class: roja, bottom, center
 
-# Encuesta ...
-
+# 1.Presentación
 <br>
-<br>
+## Quiénes somos
+## De dónde venimos
+## .yellow[Hacia dónde vamos]
 
-# Ir a [https://www.menti.com/jmasfc4qfd](https://www.menti.com/jmasfc4qfd) (link directo)
-
-...o  a [menti.com](https://www.menti.com/) e introducir código 7645 6449
-
-
----
-
-<iframe src="https://www.mentimeter.com/s/38e390612910ed2287d9ba31316974d4/20834cd3c4a5" height="500" width=100% allowfullscreen="true">
-</iframe>
 
 ---
 class: inverse middle center
@@ -157,7 +240,7 @@ Dar un par de pasos hacia atrás para llegar hasta la la explicación de fenóme
 
 ???
 
-"Todo tiene que ver con todo ... " ,  "La realidad social es compleja ..." ... o, somos capaces de decir algo más como cieníficos sociales.
+"Todo tiene que ver con todo ... " ,  "La realidad social es compleja ..." ... o, somos capaces de decir algo más como científicos sociales.
 
 ---
 class: inverse, middle, center
@@ -167,15 +250,20 @@ class: inverse, middle, center
 ---
 # Estadística multivariada
 
-- provee de **herramientas** estadísticas para el contraste de teorías relacionadas con problemas de investigación en .blue[contextos sociales complejos].
+.pull-left[
+![](../../img/hex_multiva_black.png)
+]
 
---
+.pull-right[
+- **herramientas** estadísticas para contraste de teorías
 
-- para ello se centra en la estimación y análisis de un **modelo** estadístico (probabilístico) que permite comparar la influencia de distintos factores en un fenómeno social de .red[manera simultánea].
+- utiliza **modelos** (probabilísticos) con múltiples variables
 
---
+- supone una probabilidad de **error**
 
-- esta pretensión se acompaña siempre del supuesto del **error**
+]
+
+
 
 
 ---
@@ -259,7 +347,7 @@ class: front
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2021
+## 1er Sem 2022
 ## [multivariada.netlify.app](https://multivariada.netlify.com)
 ]
 

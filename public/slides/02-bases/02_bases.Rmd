@@ -1,7 +1,7 @@
 ---
 title: "Estadística Multivariada"
 author: ".small[Juan Carlos Castillo <br><br> Departamento de Sociología - UCH / COES <br><br>]"
-date: "2do Sem 2019"
+date: "1er Sem 2022"
 output:
   xaringan::moon_reader:
     includes:
@@ -21,9 +21,9 @@ class: front, hide-logo
 
 ```{r xaringanExtra, include=FALSE}
 xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css"))
-xaringanExtra::use_share_again()
+# xaringanExtra::use_share_again()
 xaringanExtra::use_scribble()
-xaringanExtra::style_share_again(share_buttons = c("none"))
+# xaringanExtra::style_share_again(share_buttons = c("none"))
 ```
 
 
@@ -67,7 +67,7 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2021
+## 1er Sem 2022
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 
@@ -151,13 +151,16 @@ class: middle, center
 
 
 ---
-class: inverse middle center
+class: inverse
 
-... y sobre la estructura del curso
+## Actividades del curso (actualizada)
 
----
-
-![](/../img/clasesypracticas.png)
+- .red[PRACTICOS]: 
+  - Viernes 8:30 - 10:00 salas de computación (21 y de postgrado)
+  - Asesoría individual durante la semana con equipo docente y ayudantes (mails, foros, etc)
+  
+- .red[CLASES]: 
+  - Viernes 10:15 a 11:45 Julieta Kirkwood presencial .yellow[PARA TOD_S]
 
 
 ---
@@ -413,7 +416,7 @@ class: roja, center, middle
 
 # 2. Bases
 
-##Datos y variables
+## Datos y variables
 
 ## Tendencia central y variabilidad
 
@@ -422,19 +425,11 @@ class: roja, center, middle
 
 
 ---
-[https://www.menti.com/w2e8w8epgb](https://www.menti.com/w2e8w8epgb)
+class: center
+[menti.com, código 2753 9128](https://www.menti.com/e1w4j7ni8m)
 
-![:scale 90%](corrmenti.png)
-
-
----
-class: inverse middle center
-
-### Respuesta correcta:
-
-
-# ENTRE -1  y +1
-
+<iframe src="https://www.mentimeter.com/s/3bb7c94df244c0c4dffd69fdeb67b124/0172a627d885" height="500" width=100% allowfullscreen="true">
+</iframe>
 
 ---
 class: inverse, center
@@ -448,7 +443,7 @@ class: inverse, center
 ### Si ambas varían de manera **similar** (covarían)
 
 ---
-## Correlación
+# Correlación
 
 - Medida de co-variación lineal estandarizada
 
@@ -496,7 +491,7 @@ class: inverse
 ---
 class: roja, left
 
-## Próxima sesión (ver ajuste en [programación](https://multivariada.netlify.app/schedule/)):
+## Próxima sesión 
 
 - Correlación y regresión simple
 
@@ -515,7 +510,7 @@ class: front hide-logo
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2021
+## 1er Sem 2022
 ## [multivariada.netlify.app](https://multivariada.netlify.com)
 ]
 
