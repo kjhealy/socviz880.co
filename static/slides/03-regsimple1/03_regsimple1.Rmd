@@ -1,7 +1,7 @@
 ---
 title: "Estadística Multivariada"
 author: ".small[Juan Carlos Castillo <br><br> Departamento de Sociología - UCH / COES <br><br>]"
-date: "1er Sem 2021"
+date: "1er Sem 2022"
 output:
   xaringan::moon_reader:
     includes:
@@ -56,7 +56,7 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2021
+## 1er Sem 2022
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 
@@ -92,6 +92,7 @@ class: inverse
 
 3. Regresión simple 1
 
+
 ---
 class: roja, middle, center
 
@@ -103,23 +104,25 @@ class: roja, middle, center
 
 .center[![:scale 60%](../02-bases/ObservacionesyVariables.png)]
 
+
+
 ---
 # Variables
 
 - Categóricas o discretas (Rango finito de valores):
 
-      - Dicotómicas (1. Universidad Pública, 2. Universidad Privada)
-      - Politómicas (1. Chile 2. Argentina 3. Perú ...)
+- Dicotómicas (1. Universidad Pública, 2. Universidad Privada)
+- Politómicas (1. Chile 2. Argentina 3. Perú ...)
 
 - Continuas:
 
-      - Rango (teóricamente) infinito de valores (ej: Edad).
+- Rango (teóricamente) infinito de valores (ej: Edad).
 
 
 ---
 .pull-left-narrow[
-# Dispersión:
-## Varianza
+  # Dispersión:
+  ## Varianza
 ]
 
 .pull-right-wide[
@@ -145,20 +148,20 @@ class: roja, bottom, right
 ---
 # Varianza & desviación estándar
 .pull-left[
-
-.small[
-
-| ID   | Pje (x) | $$x-\bar{x}$$ | $$(x-\bar{x})^{2}$$ |
-|------|---------|----------|-----------|
-| 1    | 6       | 0.4      | 0.16      |
-| 2    | 4       | -1.6     | 2.56      |
-| 3    | 7       | 1.4      | 1.96      |
-| 4    | 2       | -3.6     | 12.96     |
-| 5    | 9       | 3.4      | 11.56     |
-| Sum  | 28      | 0        | 29.2      |
-| Prom | 5.6     |          |           |
-
-]
+  
+  .small[
+    
+    | ID   | Pje (x) | $$x-\bar{x}$$ | $$(x-\bar{x})^{2}$$ |
+      |------|---------|----------|-----------|
+      | 1    | 6       | 0.4      | 0.16      |
+      | 2    | 4       | -1.6     | 2.56      |
+      | 3    | 7       | 1.4      | 1.96      |
+      | 4    | 2       | -3.6     | 12.96     |
+      | 5    | 9       | 3.4      | 11.56     |
+      | Sum  | 28      | 0        | 29.2      |
+      | Prom | 5.6     |          |           |
+      
+  ]
 ]
 
 .pull-right[
@@ -176,7 +179,7 @@ Desv.est=\sigma &=\sqrt(7.3) \\
 # Asociación: covarianza / correlación
 
 .pull-left[
-_¿Se relaciona la variación de una variable, con la variación de otra variable?_
+  _¿Se relaciona la variación de una variable, con la variación de otra variable?_
 ]
 .pull-right[
 .center[![:scale 100%](ingresoeduc.png)]
@@ -195,34 +198,34 @@ alternativamente=r &= \frac{\sum(x-\bar{x})(y-\bar{y})}{\sqrt{\sum(x-\bar{x})^{2
 ---
 
 .pull-left-narrow[
-.left[
-### Ejemplo de correlación
-$r= \frac{\sum(x-\bar{x})(y-\bar{y})}{\sqrt{\sum(x-\bar{x})^{2} \sum(y-\bar{y})^{2}}}$
-$$=\frac{-63}{\sqrt{210*68}}$$
-$$=-0.5272$$
-]
+  .left[
+    ### Ejemplo de correlación
+    $r= \frac{\sum(x-\bar{x})(y-\bar{y})}{\sqrt{\sum(x-\bar{x})^{2} \sum(y-\bar{y})^{2}}}$
+      $$=\frac{-63}{\sqrt{210*68}}$$
+      $$=-0.5272$$
+  ]
 ]
 
 
 .pull-right-wide[
 .tiny[
-<br>
-
-| id| x  | y  | (A) $$x-\bar{x}$$ | (B) $$y-\bar{y}$$ | A*B | $$(x-\bar{x})^{2}$$ | $$(y-\bar{y})^{2}$$ |
-|---:|---:|---:|--------:|--------:|---------:|---------:|---------:|
-| 1    | 17 | 24 | -3      | 3       | -9       | 9        | 9        |
-| 2    | 19 | 23 | -1      | 2       | -2       | 1        | 4        |
-| 3    | 14 | 22 | -6      | 1       | -6       | 36       | 1        |
-| 4    | 22 | 17 | 2       | -4      | -8       | 4        | 16       |
-| 5    | 15 | 23 | -5      | 2       | -10      | 25       | 4        |
-| 6    | 26 | 21 | 6       | 0       | 0        | 36       | 0        |
-| 7    | 23 | 18 | 3       | -3      | -9       | 9        | 9        |
-| 8    | 21 | 17 | 1       | -4      | -4       | 1        | 16       |
-| 9    | 28 | 21 | 8       | 0       | 0        | 64       | 0        |
-| 10   | 15 | 24 | -5      | 3       | -15      | 25       | 9        |
-| **Sum**  |    |    |         |         | -63      | 210      | 68       |
-| Prom | 20 | 21 |         |         |          |          |          |
-
+  <br>
+    
+    | id| x  | y  | (A) $$x-\bar{x}$$ | (B) $$y-\bar{y}$$ | A*B | $$(x-\bar{x})^{2}$$ | $$(y-\bar{y})^{2}$$ |
+    |---:|---:|---:|--------:|--------:|---------:|---------:|---------:|
+    | 1    | 17 | 24 | -3      | 3       | -9       | 9        | 9        |
+    | 2    | 19 | 23 | -1      | 2       | -2       | 1        | 4        |
+    | 3    | 14 | 22 | -6      | 1       | -6       | 36       | 1        |
+    | 4    | 22 | 17 | 2       | -4      | -8       | 4        | 16       |
+    | 5    | 15 | 23 | -5      | 2       | -10      | 25       | 4        |
+    | 6    | 26 | 21 | 6       | 0       | 0        | 36       | 0        |
+    | 7    | 23 | 18 | 3       | -3      | -9       | 9        | 9        |
+    | 8    | 21 | 17 | 1       | -4      | -4       | 1        | 16       |
+    | 9    | 28 | 21 | 8       | 0       | 0        | 64       | 0        |
+    | 10   | 15 | 24 | -5      | 3       | -15      | 25       | 9        |
+    | **Sum**  |    |    |         |         | -63      | 210      | 68       |
+    | Prom | 20 | 21 |         |         |          |          |          |
+    
 ]
 ]
 
@@ -230,6 +233,7 @@ $$=-0.5272$$
 # Nube de puntos (scatterplot) y correlación
 
 .center[![](correlacion2.png)]
+
 
 ---
 class: roja, bottom
@@ -242,13 +246,15 @@ class: inverse
 ...sobre modelos: .orange[Del rigor de la ciencia (Borges)]
 
 .medium[En aquel Imperio, el Arte de la Cartografía logró tal Perfección que el mapa de una sola Provincia ocupaba toda una Ciudad, y el mapa del Imperio, toda una Provincia. Con el tiempo, estos Mapas Desmesurados no satisficieron y los Colegios de Cartógrafos levantaron un Mapa del Imperio, que tenía el tamaño del Imperio y coincidía puntualmente con él.
-
-Menos Adictas al Estudio de la Cartografía, las Generaciones Siguientes entendieron que ese dilatado Mapa era Inútil y no sin Impiedad lo entregaron a las Inclemencias del Sol y los Inviernos. En los desiertos del Oeste perduran despedazadas Ruinas del Mapa, habitadas por Animales y por Mendigos; en todo el País no hay otra reliquia de las Disciplinas Geográficas.]
+      
+Menos Adictas al Estudio de la Cartografía, las Generaciones Siguientes entendieron que ese dilatado Mapa era Inútil y no sin Impiedad lo entregaron a las Inclemencias del Sol y los Inviernos. En los desiertos del Oeste perduran despedazadas Ruinas del Mapa, habitadas por Animales y por Mendigos; en todo el País no hay otra reliquia de las Disciplinas Geográficas.
+]
 
 .tiny[Suárez Miranda, Viajes de Varones Prudentes, Libro Cuarto, Cap. XLV, Lérida, 1658.]
 
 ---
 # Objetivos centrales del modelo de regresión:
+
 
 1. **Conocer**: la variación de la variable dependiente de acuerdo a la variación de otra(s) variable(s) independiente(s)
 
@@ -291,7 +297,7 @@ library(stargazer)
 
 ---
 .left-column[
-# Datos
+  # Datos
 ]
 .pull-left-narrow[
 ![:scale 75%](tacataca.png)
@@ -299,18 +305,18 @@ library(stargazer)
 
 .pull-right[
 .small[
-
-```{r, echo=FALSE}
-pacman::p_load(ggplot2,plotly)
-```
-
-```{r, fig.height = 5.5, fig.width = 5.5}
-ggplotly(ggplot(datos, aes(x=juegos_x, y=puntos_y)) +
-  geom_point() +
-  expand_limits(x=c(0,6), y=c(0,7)) + coord_fixed() +
-  scale_x_continuous(breaks = seq(min(0), max(6), by = 1)) +
-  scale_y_continuous(breaks = seq(min(0), max(6), by = 1)) )
-```
+  
+  ```{r, echo=FALSE}
+  pacman::p_load(ggplot2,plotly)
+  ```
+  
+  ```{r, fig.height = 5.5, fig.width = 5.5}
+  ggplotly(ggplot(datos, aes(x=juegos_x, y=puntos_y)) +
+             geom_point() +
+             expand_limits(x=c(0,6), y=c(0,7)) + coord_fixed() +
+             scale_x_continuous(breaks = seq(min(0), max(6), by = 1)) +
+             scale_y_continuous(breaks = seq(min(0), max(6), by = 1)) )
+  ```
 ]
 ]
 
@@ -324,7 +330,7 @@ stargazer(datos, type = "html")
 
 ---
 .left-column[
-# **Medias condicionales**
+  # **Medias condicionales**
 ]
 .center[![:scale 55%](condmeans.png)]
 
@@ -333,20 +339,20 @@ Ejemplo para los sujetos con 1 en X hay 3 valores de Y: 2, 3 y 4. Por lo tanto, 
 
 ---
 .left-column[
-# Idea de distribución condicional
+  # Idea de distribución condicional
 ]
 .center[![:scale 70%](fig2-1woo.png)]
 
 ---
 .left-column[
-# La recta de regresión
+  # La recta de regresión
 ]
 
 .right-column[
 .center[![:scale 70%](fig2-4woo.png)]
 
 .small[
-La (co) variación general de Y respecto a X se puede expresar en una  ecuación de la recta = **modelo de regresión**
+  La (co) variación general de Y respecto a X se puede expresar en una  ecuación de la recta = **modelo de regresión**
 ]
 ]
 ---
@@ -406,7 +412,10 @@ $$difcru=(x-\bar{x})*(y-\bar{y})$$
 
 ---
 
-`r chunk_reveal("ejemplo", break_type = "auto",display_type = "both", left_assign = TRUE)`
+`r chunk_reveal(chunk_name="ejemplo", 
+#  break_type = "auto",
+#  display_type = "both", 
+  left_assign = TRUE)`
 
 
 ```{r ejemplo, echo=FALSE}
@@ -470,14 +479,14 @@ El valor estimado de puntos para una persona que ha jugado 3 veces es 4.
 ---
 
 .left-column[
-## Cálculo basado en el ejemplo
+  ## Cálculo basado en el ejemplo
 ]
 .small[
 .center[
-```{r, fig.height = 7, fig.width = 7}
-ggplot(datos, aes(x=juegos_x, y=puntos_y)) + geom_point() +
-  geom_smooth(method=lm, se=FALSE)
-```
+  ```{r, fig.height = 7, fig.width = 7}
+  ggplot(datos, aes(x=juegos_x, y=puntos_y)) + geom_point() +
+    geom_smooth(method=lm, se=FALSE)
+  ```
 ]
 ]
 
@@ -503,9 +512,9 @@ class: inverse, middle, center
 
 La función para estimar regresión en `R` es `lm` (linear model):
 .small[
-```
-objeto=lm(dependiente ~ independiente, data=datos)
-```]
+  ```
+  objeto=lm(dependiente ~ independiente, data=datos)
+  ```]
 
 Donde
 
@@ -543,12 +552,12 @@ reg1
 
 ```{r, echo=FALSE}
 sjPlot::tab_model(reg1,
-        show.se=FALSE,
-        show.ci=FALSE,
-        digits=3,
-        dv.labels = c("Modelo 1"),
-        string.pred = "Predictores",
-        string.est = "β")
+                show.se=FALSE,
+                show.ci=FALSE,
+                digits=3,
+                dv.labels = c("Modelo 1"),
+                string.pred = "Predictores",
+                string.est = "β")
 ```
 
 
@@ -563,7 +572,7 @@ class: roja, right
 
 ## - Residuos
 
-## - Lectura: [Moore: 2. Análisis de relaciones](../../docs/lecturas/moore_analisisderelaciones1.pdf)
+## - Lectura: .yellow[Moore: 2. Análisis de relaciones]](../../docs/lecturas/moore_analisisderelaciones1.pdf)
 
 
 ---
@@ -573,15 +582,25 @@ class: front
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2021
+## 1er Sem 2022
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 
 
 .pull-right[
 .right[
-<br>
-![:scale 80%](https://multivariada.netlify.com/img/hex_multiva.png)
+  <br>
+    ![:scale 80%](https://multivariada.netlify.com/img/hex_multiva.png)
 ]
 
 ]
+
+ 
+
+
+
+
+
+
+
+
