@@ -1,0 +1,36 @@
+---
+title: "Regresión simple 2"
+linktitle: "4: Regresión simple 2"
+date: "2022-04-08"
+class_date: "2022-04-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+menu:
+  class:
+    parent: Clases
+    weight: 1
+type: docs
+weight: 1
+pdf: /slides/01_dataviz_s20_looking_at_data.pdf
+thumb: /slides/01_dataviz_s20_looking_at_data.png
+editor_options:
+  chunk_output_type: console
+---
+
+## Documento presentación
+
+<span class="sidenote">Para ver en pantalla completa click [**aquí**](/slides/04-regsimple2/04_regsimple2.html). Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. </span>
+
+<iframe src=/slides/04-regsimple2/04_regsimple2.html height="550" width=100% allowfullscreen="true">
+</iframe>
+
+
+
+## Lecturas
+
+[Moore: Residuos (144-154)](/docs/lecturas/moore_residuos.pdf)
