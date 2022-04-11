@@ -267,6 +267,13 @@ frq(proc_elsoc$mtalento)
 frq(proc_elsoc$pmerit)
 ```
 
+<div class="alert alert-info">
+**Sobre generación de índices**: en este caso aplicamos un promedio simple de dos items, pero hay ciertas consideraciones adicionales a tener cuando existen casos perdidos y también cuando son más de 2 items. Para esto, revisar la guía adicional sobre [índices y transformación de variables
+](/assignment/11-code/)
+</div>
+
+
+
 #### 4.2. Educación
 
 * [`m01`] = ¿Cuál es su nivel educacional? Indique el tipo de estudio actual (si estudia actualmente) o el último tipo aprobado (si no estudia actualmente).
@@ -451,49 +458,36 @@ get_label(proc_elsoc$edad)
 proc_elsoc$edad <- set_label(x = proc_elsoc$edad,label = "Edad")
 ```
 
-
-## Bonus track: generación de índices
-<div class="alert alert-info">
-¿Qué pasa si quiero crear un índice para cada una de mis observaciones?
-El procedimiento consiste en el siguiente. Imaginemos que queremos crear un índice sumativo de puntaje de mérito (pt_merit)
-
-```{r}
-proc_elsoc <- proc_elsoc %>%
-  rowwise() %>%
-  mutate(sum_merit =
-           sum(mtalento,mesfuerzo, na.rm = T))
-```
-
-Con esto estaremos sumando cada puntaje de mtalento y mesfuerzo para cada una de las observaciones. La función que nos permite hacer esto es rowwise(). Luego con mutate crearemos la nueva variable pt_merit basada en la suma de las variables. Para generar el índice en base a el promedio solo indicar `mean`:
-
-```{r}
-proc_elsoc <- proc_elsoc %>%
-  rowwise() %>%
-  mutate(mean_merit =
-           mean(c(mtalento,mesfuerzo), na.rm = T))
-
-proc_elsoc %>% select(mtalento, mesfuerzo,sum_merit,mean_merit) %>% head(.)
-
-
-```
-
-El argumento na.rm = T nos permite lidiar con los NA, esto es, si estamos haciendo una suma considerarlas como un neutro sumativo (0) y si es en las medias no ser consideradas en el cálculo. El valor 0 puede distorsionar los resultados basados en nuestro índice, así que es mejor luego recodificar como NA:
-
-```{r}
-proc_elsoc$pt_merit <- car::recode(proc_elsoc$sum_merit, "0=NA")
-```
-</div>
-
 ## 5. Generación de base de datos procesada para el análisis
 
 Antes de guardar la base procesada, revisamos nuevamente todas las variables con una tabla descriptiva general mediante la función `stargazer` (de la librería homónima)
 
+Primero vamos a reformatear el objeto proc_elsoc como base de datos (as.data.frame), paso necesario para que sea reconocido como tal por `stargazer`
+
 
 ```{r}
+proc_elsoc <-as.data.frame(proc_elsoc)
 stargazer(proc_elsoc, type="text")
 ```
+<div class="alert alert-info">
+Si se desea modificar las columnas que aparecen en la tabla se puede ocupar la opción `summary.stat`, donde se pueden especificar:
+
+- "max" maximum
+- "mean" mean
+- "median" median
+- "min" minimum
+- "n" number of observations
+- "p25" 25th percentile
+- "p75" 75th percentile
+- "sd" standard deviation
+
+Por ejemplo, si quiero una tabla solo con promedio, n, sd y p75: `stargazer(data, type="text", summary.stat = c("mean", "n", "sd", "p75"))`
+
+</div>
 
 - Guardar base de datos procesada: en carpeta local <span class="sidenote">La ruta hacia su carpeta local si está trabajando en windows debería ser algo como "C:/Users/Lenovo/Clases/y aquí nombre del archivo a grabar</span>
+
+El comando para guardar es `save`:
 
 ```{r eval=FALSE}
 save(proc_elsoc,file = "[ruta hacia carpeta local en su computador]/ELSOC_ess_merit2016.RData")
@@ -505,6 +499,21 @@ En este caso, seguimos una estructura de carpetas de datos, separando en una car
 ```{r}
 save(proc_elsoc,file = "content/assignment/data/proc/ELSOC_ess_merit2016.RData")
 ```
+
+<div class="alert alert-info">
+**De rutas, estructura de carpetas y otros **
+
+- **Encontrando la ruta a carpeta local**: lo más fácil es crear la carpeta donde se desean guardar los datos desde el administrador de archivos del computador. Luego, posicionarse con el cursor sobre la carpeta y seleccionar "Propiedades", en la ventana emergente debería aparecer la ruta hacia la carpeta en "Ubicación". Copiar esa ruta y agregar al final el nombre de la carpeta (separada por slash)
+
+- **Sobre los "slashes" (`\` o `/`)**: en la ruta las carpetas y el archivo final aparecen separados por slashes, que según el sistema utilizado pueden ser _slash_ (`/`) o _backslash_ (`\`). En R por defecto se usa _slash_, pero en Windows _backslash_, por lo que si se usa Windows hay que reemplazarlos por _backslash_ o también puede ser por un doble _slash_ (`//`).
+
+- Por temas de compatibilidad general, en las rutas se recomienda evitar tildes, eñes, espacios, mayúsculas y guiones bajos (_).
+
+- **Estructura de carpetas**: para mantener el orden se sugiere seguir un protocolo de estructura de carpetas de proyecto, para lo que recomendamos el protocolo [IPO](https://lisa-coes.com/ipo-protocol/), y que se adapta al flujo de trabajo presentado al principio de este práctico. Básicamente son tres carpetas: **input**, **procesamiento**, **output**. En la carpeta input crear la subcarpeta data-orig para guardar datos originales, y data-proc para los procesados. En procesamiento se guardan los archivos de código y en output las tablas y los gráficos.
+
+
+<div>
+
 
 # Archivo de código
 

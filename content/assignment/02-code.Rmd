@@ -98,7 +98,7 @@ En el caso de esta base, `r dim(proc_elsoc)[1]` casos y `r dim(proc_elsoc)[2]` v
 
 Recordando el contenido de cada variable preparada en la práctica 1:
 
--   [`merit`] = Indice promedio de percepción de meritocracia.
+-   [`pt_merit`] = Indice promedio de percepción de meritocracia.
 
 -   [`ess`] = Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena" (0 = el nivel mas bajo; 10 = el nivel mas alto)
 

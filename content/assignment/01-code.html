@@ -115,7 +115,6 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#sexo">4.4. Sexo</a></li>
 <li><a href="#edad">4.5 Edad</a></li>
 </ul></li>
-<li><a href="#bonus-track-generación-de-índices">Bonus track: generación de índices</a></li>
 <li><a href="#generación-de-base-de-datos-procesada-para-el-análisis">5. Generación de base de datos procesada para el análisis</a></li>
 </ul></li>
 <li><a href="#archivo-de-código">Archivo de código</a></li>
@@ -368,6 +367,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##     4.5                            4.5   38    1.30      1.31   98.55
 ##     5.0          Totalmente de acuerdo   42    1.43      1.45  100.00
 ##      NA                           &lt;NA&gt;   29    0.99        NA      NA</code></pre>
+<div class="alert alert-info">
+<p><strong>Sobre generación de índices</strong>: en este caso aplicamos un promedio simple de dos items, pero hay ciertas consideraciones adicionales a tener cuando existen casos perdidos y también cuando son más de 2 items. Para esto, revisar la guía adicional sobre <a href="/assignment/11-code/">índices y transformación de variables</a></p>
+</div>
 <div id="educación" class="section level4">
 <h4>4.2. Educación</h4>
 <ul>
@@ -635,50 +637,56 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc<span class="sc">$</span>edad <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> proc_elsoc<span class="sc">$</span>edad,<span class="at">label =</span> <span class="st">&quot;Edad&quot;</span>)</span></code></pre></div>
 </div>
 </div>
-<div id="bonus-track-generación-de-índices" class="section level2">
-<h2>Bonus track: generación de índices</h2>
-<div class="alert alert-info">
-<p>¿Qué pasa si quiero crear un índice para cada una de mis observaciones?
-El procedimiento consiste en el siguiente. Imaginemos que queremos crear un índice sumativo de puntaje de mérito (pt_merit)</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc <span class="ot">&lt;-</span> proc_elsoc <span class="sc">%&gt;%</span></span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sum_merit =</span></span>
-<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>           <span class="fu">sum</span>(mtalento,mesfuerzo, <span class="at">na.rm =</span> T))</span></code></pre></div>
-<p>Con esto estaremos sumando cada puntaje de mtalento y mesfuerzo para cada una de las observaciones. La función que nos permite hacer esto es rowwise(). Luego con mutate crearemos la nueva variable pt_merit basada en la suma de las variables. Para generar el índice en base a el promedio solo indicar <code>mean</code>:</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc <span class="ot">&lt;-</span> proc_elsoc <span class="sc">%&gt;%</span></span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_merit =</span></span>
-<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>           <span class="fu">mean</span>(<span class="fu">c</span>(mtalento,mesfuerzo), <span class="at">na.rm =</span> T))</span>
-<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>proc_elsoc <span class="sc">%&gt;%</span> <span class="fu">select</span>(mtalento, mesfuerzo,sum_merit,mean_merit) <span class="sc">%&gt;%</span> <span class="fu">head</span>(.)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 4
-## # Rowwise: 
-##   mtalento mesfuerzo sum_merit mean_merit
-##      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
-## 1        4         4         8        4  
-## 2        4         4         8        4  
-## 3        4         2         6        3  
-## 4        4         4         8        4  
-## 5        2         5         7        3.5
-## 6        5         3         8        4</code></pre>
-<p>El argumento na.rm = T nos permite lidiar con los NA, esto es, si estamos haciendo una suma considerarlas como un neutro sumativo (0) y si es en las medias no ser consideradas en el cálculo. El valor 0 puede distorsionar los resultados basados en nuestro índice, así que es mejor luego recodificar como NA:</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc<span class="sc">$</span>pt_merit <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(proc_elsoc<span class="sc">$</span>sum_merit, <span class="st">&quot;0=NA&quot;</span>)</span></code></pre></div>
-</div>
-</div>
 <div id="generación-de-base-de-datos-procesada-para-el-análisis" class="section level2">
 <h2>5. Generación de base de datos procesada para el análisis</h2>
 <p>Antes de guardar la base procesada, revisamos nuevamente todas las variables con una tabla descriptiva general mediante la función <code>stargazer</code> (de la librería homónima)</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(proc_elsoc, <span class="at">type=</span><span class="st">&quot;text&quot;</span>)</span></code></pre></div>
+<p>Primero vamos a reformatear el objeto proc_elsoc como base de datos (as.data.frame), paso necesario para que sea reconocido como tal por <code>stargazer</code></p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc <span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(proc_elsoc)</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(proc_elsoc, <span class="at">type=</span><span class="st">&quot;text&quot;</span>)</span></code></pre></div>
 <pre><code>## 
-## ===================================================
-## Statistic N Mean St. Dev. Min Pctl(25) Pctl(75) Max
-## ===================================================</code></pre>
+## ==============================================================
+## Statistic   N    Mean  St. Dev.  Min  Pctl(25) Pctl(75)  Max  
+## --------------------------------------------------------------
+## mesfuerzo 2,909 2.573   1.047   1.000  2.000    3.000   5.000 
+## mtalento  2,907 2.739   1.060   1.000  2.000    4.000   5.000 
+## ess       2,915 4.330   1.567   0.000  3.000    5.000   10.000
+## edcine    2,925 3.184   1.207   1.000  3.000    4.000   5.000 
+## sexo      2,927 0.603   0.489     0      0        1       1   
+## edad      2,927 46.091  15.287   18      33       58      88  
+## pmerit    2,898 2.654   0.969   1.000  2.000    3.500   5.000 
+## --------------------------------------------------------------</code></pre>
+<div class="alert alert-info">
+<p>Si se desea modificar las columnas que aparecen en la tabla se puede ocupar la opción <code>summary.stat</code>, donde se pueden especificar:</p>
+<ul>
+<li>“max” maximum</li>
+<li>“mean” mean</li>
+<li>“median” median</li>
+<li>“min” minimum</li>
+<li>“n” number of observations</li>
+<li>“p25” 25th percentile</li>
+<li>“p75” 75th percentile</li>
+<li>“sd” standard deviation</li>
+</ul>
+<p>Por ejemplo, si quiero una tabla solo con promedio, n, sd y p75: <code>stargazer(data, type="text", summary.stat = c("mean", "n", "sd", "p75"))</code></p>
+</div>
 <ul>
 <li>Guardar base de datos procesada: en carpeta local <span class="sidenote">La ruta hacia su carpeta local si está trabajando en windows debería ser algo como “C:/Users/Lenovo/Clases/y aquí nombre del archivo a grabar</span></li>
 </ul>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(proc_elsoc,<span class="at">file =</span> <span class="st">&quot;[ruta hacia carpeta local en su computador]/ELSOC_ess_merit2016.RData&quot;</span>)</span></code></pre></div>
+<p>El comando para guardar es <code>save</code>:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(proc_elsoc,<span class="at">file =</span> <span class="st">&quot;[ruta hacia carpeta local en su computador]/ELSOC_ess_merit2016.RData&quot;</span>)</span></code></pre></div>
 <p>En este caso, seguimos una estructura de carpetas de datos, separando en una carpeta los datos originales, y en otra (proc) los datos procesados:</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(proc_elsoc,<span class="at">file =</span> <span class="st">&quot;content/assignment/data/proc/ELSOC_ess_merit2016.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(proc_elsoc,<span class="at">file =</span> <span class="st">&quot;content/assignment/data/proc/ELSOC_ess_merit2016.RData&quot;</span>)</span></code></pre></div>
+<div class="alert alert-info">
+<p><strong>De rutas, estructura de carpetas y otros </strong></p>
+<ul>
+<li><p><strong>Encontrando la ruta a carpeta local</strong>: lo más fácil es crear la carpeta donde se desean guardar los datos desde el administrador de archivos del computador. Luego, posicionarse con el cursor sobre la carpeta y seleccionar “Propiedades”, en la ventana emergente debería aparecer la ruta hacia la carpeta en “Ubicación”. Copiar esa ruta y agregar al final el nombre de la carpeta (separada por slash)</p></li>
+<li><p><strong>Sobre los “slashes” (<code>\</code> o <code>/</code>)</strong>: en la ruta las carpetas y el archivo final aparecen separados por slashes, que según el sistema utilizado pueden ser <em>slash</em> (<code>/</code>) o <em>backslash</em> (<code>\</code>). En R por defecto se usa <em>slash</em>, pero en Windows <em>backslash</em>, por lo que si se usa Windows hay que reemplazarlos por <em>backslash</em> o también puede ser por un doble <em>slash</em> (<code>//</code>).</p></li>
+<li><p>Por temas de compatibilidad general, en las rutas se recomienda evitar tildes, eñes, espacios, mayúsculas y guiones bajos (_).</p></li>
+<li><p><strong>Estructura de carpetas</strong>: para mantener el orden se sugiere seguir un protocolo de estructura de carpetas de proyecto, para lo que recomendamos el protocolo <a href="https://lisa-coes.com/ipo-protocol/">IPO</a>, y que se adapta al flujo de trabajo presentado al principio de este práctico. Básicamente son tres carpetas: <strong>input</strong>, <strong>procesamiento</strong>, <strong>output</strong>. En la carpeta input crear la subcarpeta data-orig para guardar datos originales, y data-proc para los procesados. En procesamiento se guardan los archivos de código y en output las tablas y los gráficos.</p></li>
+</ul>
+<div>
+
+
 </div>
 </div>
 <div id="archivo-de-código" class="section level1">
