@@ -222,10 +222,6 @@ sjPlot::tab_model(modelo1)
 
 Completar el reporte de progreso [aquí](https://forms.gle/Q1D23W3Cuou5ATkLA).
 
-# Archivo de código
-
-El archivo de código R de esta práctica se puede descargar [aquí](https://raw.githubusercontent.com/juancarloscastillo/multivariada/master/static/assignment/practica_4.R)
-
 
 
 # Foro
