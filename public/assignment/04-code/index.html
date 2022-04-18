@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en-us"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.7.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Juan Castillo">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="pre  code.sourceCode { white-space: pre; position: relative; } pre  code.sourceCode  span { display: inline-block; line-height: 1.25; } pre  code.sourceCode  span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode  span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre  code.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://multivariada.netlify.app/assignment/04-code/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#CF4446">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu1d2581101f943b2ec717907f12f16034_15667_32x32_fill_lanczos_center_3.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu1d2581101f943b2ec717907f12f16034_15667_192x192_fill_lanczos_center_3.png">
+
+  <link rel="canonical" href="https://multivariada.netlify.app/assignment/04-code/">
+
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@juankcastillo">
+  <meta property="twitter:creator" content="@juankcastillo">
+  
+  <meta property="og:site_name" content="Estadística Multivariada">
+  <meta property="og:url" content="https://multivariada.netlify.app/assignment/04-code/">
+  <meta property="og:title" content="Práctica 4. Regresión simple 2 | Estadística Multivariada">
+  <meta property="og:description" content="pre  code.sourceCode { white-space: pre; position: relative; } pre  code.sourceCode  span { display: inline-block; line-height: 1.25; } pre  code.sourceCode  span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode  span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre  code."><meta property="og:image" content="https://multivariada.netlify.app/img/social-image.png">
+  <meta property="twitter:image" content="https://multivariada.netlify.app/img/social-image.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2022-04-17T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2022-03-15T12:57:07-03:00">
+  
+
+  
+
+
+
+  
+
+
+  
+
+
+  <link rel="shortcut icon" href="https://multivariada.netlify.app/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://multivariada.netlify.app/img/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://multivariada.netlify.app/img/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://multivariada.netlify.app/img/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://multivariada.netlify.app/img/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://multivariada.netlify.app/img/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://multivariada.netlify.app/img/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="https://multivariada.netlify.app/img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="https://multivariada.netlify.app/img/favicon-16x16.png" sizes="16x16" />
+  <meta name="application-name" content="SOC 01024: Estadística Multivariada" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="https://multivariada.netlify.app/img/mstile-144x144.png" />
+
+
+  <title>Práctica 4. Regresión simple 2 | Estadística Multivariada</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70"
+    data-target="#TableOfContents"
+    >
+
+    <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+    
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Estadística Multivariada</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Estadística Multivariada</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/programa/"><span>Programa</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/schedule/"><span>Planificación</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/class/"><span>Contenidos</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/reference/"><span>Trabajos</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+    
+
+<div class="container-fluid docs">
+    <div class="row flex-xl-nowrap">
+        <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+            
+
+
+
+
+
+  
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+
+  
+  
+  
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/class/01-class/">Clases</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/class/01-class/">1: Presentación</a>
+      </li>
+      
+      <li >
+        <a href="/class/02-class/">2: Bases</a>
+      </li>
+      
+      <li >
+        <a href="/class/03-class/">3: Regresión simple 1</a>
+      </li>
+      
+      <li >
+        <a href="/class/04-class/">4: Regresión simple 2</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/assignment/01-code/">Practicas</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/assignment/01-code/">Práctica 1: Preparación datos</a>
+      </li>
+      
+      <li >
+        <a href="/assignment/02-code/">Práctica 2: Descripción de variables</a>
+      </li>
+      
+      <li >
+        <a href="/assignment/03-code/">Práctica 3: Regresión simple 1</a>
+      </li>
+      
+      <li class="active">
+        <a href="/assignment/04-code/">Práctica 4: Regresión simple 2</a>
+      </li>
+      
+      <li >
+        <a href="/assignment/11-code/">Guía de índices y transformación de variablesn</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+        </div>
+
+        
+
+        <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+            <article class="article">
+
+                <div class="docs-article-container">
+                    <h1>Práctica 4. Regresión simple 2</h1>
+
+                    
+
+                    
+
+                    
+                    <div class="due-date p-2 mb-3 bg-secondary text-white">
+                        Materiales de la sesión del 17 Apr 2022
+                    </div>
+                    
+
+                    <div class="article-style">
+                        
+<!-- BLOGDOWN-HEAD -->
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<script src="/rmarkdown-libs/clipboard/clipboard.min.js"></script>
+<link href="/rmarkdown-libs/primer-tooltips/build.css" rel="stylesheet" />
+<link href="/rmarkdown-libs/klippy/css/klippy.min.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/klippy/js/klippy.min.js"></script>
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<!-- /BLOGDOWN-HEAD -->
+
+<h2>Índice</h2>
+<div id="TOC">
+<ul>
+<li><a href="#objetivo-de-la-práctica">Objetivo de la práctica</a></li>
+<li><a href="#librerías">Librerías</a></li>
+<li><a href="#datos">Datos</a></li>
+<li><a href="#cálculo-de-los-coeficientes-de-regresión">Cálculo de los coeficientes de regresión</a></li>
+<li><a href="#section"><img src="/slides/04-regsimple2/excel-reg.png" /></a>
+<ul>
+<li><a href="#ajuste-y-residuos">Ajuste y residuos</a></li>
+<li><a href="#cálculo-del-r2">Cálculo del R2</a></li>
+<li><a href="#vamos-a-r">Vamos a R</a></li>
+</ul></li>
+<li><a href="#reporte-de-progreso">Reporte de progreso</a></li>
+<li><a href="#archivo-de-código">Archivo de código</a></li>
+<li><a href="#foro">Foro</a></li>
+</ul>
+</div>
+
+<script>
+  addClassKlippyTo("pre.r, pre.markdown");
+  addKlippy('right', 'bottom', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<div id="objetivo-de-la-práctica" class="section level2">
+<h2>Objetivo de la práctica</h2>
+<p>En esta guía práctica revisaremos un ejemplo distinto al del práctico anterior y que fue presentado en la clase de <a href="/class/04-class/">Regresión Simple 2</a>, se recomienda revisar el documento de presentación antes de realizar esta guía. La idea es volver sobre el cálculo e interpretación de los coeficientes del modelo de regresión paso a paso y de la forma más manual posible, de modo de poder familiarizarse más cercanamente con el sentido de esta técnica y también para darse cuenta que lo que se obtendrá luego con el análisis en R no es magia sino que proviene de un procedimiento que se puede realizar también mediante lapiz y papel … o también con ayuda de una planilla simple de cálculo.</p>
+<p>Además, vamos a revisar el cálculo e interpretación de <span class="math inline">\(R^2\)</span> que es una medida de qué tan bien se ajusta el modelo de regresión a los datos. En otras palabras, qué tan bueno es el modelo, o cuánto de nuestra variable dependiente <span class="math inline">\(Y\)</span> podemos saber/predecir a partir de nuestra variable independiente <span class="math inline">\(X\)</span>.</p>
+</div>
+<div id="librerías" class="section level2">
+<h2>Librerías</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(stargazer, ggplot2, dplyr, webshot, sjPlot)</span></code></pre></div>
+</div>
+<div id="datos" class="section level2">
+<h2>Datos</h2>
+<p>Del ejemplo de la sesión de <a href="/class/04-class/">Regresión Simple 2</a> recordemos que el objetivo del ejercicio es poder predecir cuántos pasos da un hij_ por cada paso que da su madre. Tomemos como supuesto que l_s niñ_s son de la misma edad, y que se midieron los pasos de ambos mientras caminaban juntos. Entonces,la pregunta es: ¿Cuántos pasos da un hij_ (Y) por cada paso que da su mamá (X)? En otras palabras, ¿puedo predecir cuantos pasos da un niñ_ si sé cuantos pasos ha dado su mamá?</p>
+<p>Para esto vamos a generar un set de datos ficticios <code>datos1</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pasos_mama_x<span class="ot">=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">9</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pasos_hijo_y<span class="ot">=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>datos1 <span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(pasos_hijo_y, pasos_mama_x))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>datos1</span></code></pre></div>
+<pre><code>##   pasos_hijo_y pasos_mama_x
+## 1            2            3
+## 2            3            5
+## 3            2            7
+## 4            4            9</code></pre>
+<p>Tenemos una base de datos con cuatro casos y dos variables: pasos_hijo_y y pasos_mama_x. Una representación en un gráfico bivariado de puntos es la siguiente:</p>
+<p><img src="/assignment/04-code_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Vemos la distribución de los cuatro casos, se aprecia en general una relación positiva donde a medida que aumentan los pasos de la madre también aumenta la cantidad de pasos de los hijos.</p>
+</div>
+<div id="cálculo-de-los-coeficientes-de-regresión" class="section level2">
+<h2>Cálculo de los coeficientes de regresión</h2>
+<p>Recordemos la ecuación del modelo de regresión:</p>
+<p><span class="math inline">\(\hat{Y}= \beta_0 + \beta_{1}X_{1}\)</span></p>
+<p>En esta sección vamos a calcular un modelo de regresión para las variables de <code>datos1</code>, siendo pasos_hijo_y nuestra variable dependiente Y, y pasos_mama_x nuestra variable independiente X. Recordemos la fórmula del beta ( <span class="math inline">\(\beta\)</span> ) de regresión:</p>
+<p><span class="math display">\[b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})}\]</span></p>
+<p>En el numerador (parte superior de la fracción) tenemos lo que se llama <em>suma de productos cruzados</em>, que representa la covariación entre x e y, y abajo la <em>suma de los cuadrados de x</em>, que representa la variación (varianza) de x. El sentido de esta formula es llegar a un número que represente cuánto cambia y por cada punto o unidad que aumenta x.</p>
+<p>Este calculo lo vamos a hacer usando una planilla de cálculo, para ellos se puede usar Excel, Drive, o una hoja y un lápiz.</p>
+<p><img src="/images/datos1.png" /></p>
+<p>En la tabla aparecen nuestras variables Y y X en las columnas B y C respectivamente, bajo ellas se calcula la suma y el promedio de cada variable. Para poder calcular el <span class="math inline">\(\beta\)</span> necesitamos obtener cada término de la formula, que finalmente no es más que diferencias de cada caso respecto de su promedio, y luego la suma de ellos. Vamos por parte.</p>
+<ul>
+<li><p>agregamos en la columna D y-promy, que es el caso correspondiente de Y (pasos hijo) menos su promedio. Por ejemplo, el primer caso de y tiene el valor 2, y sy promedio es 2,75. Por lo tanto, 2-2,75=-0.75, que es el valor a anotar en la celda correspondiente (columna D de la fila del caso 1).</p></li>
+<li><p>luego, en la columna x-promx se hace lo mismo pero para la variable X pasos_mama_x</p></li>
+<li><p>en la columna siguiente (x-promx)2 se eleva al cuadrado el valor de la columna anterior para cada caso, y al final se suman. Esto corresponde al denominador del <span class="math inline">\(\beta\)</span> (lo que va en la parte de abajo de la fracción= <span class="math inline">\(\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})\)</span> )</p></li>
+<li><p>y en la columna siguiente multiplicamos x-promx por y-promy para cada caso y lo sumamos al final, que corresponde al numerador de la fracción del beta= <span class="math inline">\(\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})\)</span></p></li>
+</ul>
+<p>El resultado de estos cálculos se puede ver acá:</p>
+</div>
+<div id="section" class="section level1">
+<h1><img src="/slides/04-regsimple2/excel-reg.png" /></h1>
+<p>En la parte de abajo se incluye el cálculo del <span class="math inline">\(\beta\)</span> o más precisamente el <span class="math inline">\(\b_1\)</span>, que es el que corresponde a la (primera) variable independiente X, pasos_mama_x. Este beta se obtiene dividiendo la celda G6 ( <span class="math inline">\(\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})\)</span> ) por la celda F6 ( <span class="math inline">\(\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})\)</span> ), y nos da un resultado de 0,25</p>
+<p>Para el cálculo del intercepto de la ecuación o <span class="math inline">\(\beta_0\)</span> aplicamos la siguiente fórmula:</p>
+<p><span class="math display">\[b_{0}=\bar{Y}-b_{1}\bar{X}\]</span></p>
+<p>Que corresponde al promedio de Y (2,75) menos el <span class="math inline">\(\beta_1\)</span> 0,25 por el promedio de X (6), lo que nos da 1,25.</p>
+<p>Con esto podemos completar nuestra ecuación de regresión:</p>
+<p><span class="math display">\[\widehat{Y}=1.25 +0.25X\]</span></p>
+<p>Entonces:</p>
+<ul>
+<li><p>interpretación del <span class="math inline">\(\beta\)</span> : por cada paso que da la mamá (X), un hij_ (Y) avanza en promedio 0.25 pasos</p></li>
+<li><p>uso en predicción: si una mamá da (por ej) 4 pasos, entonces la cantidad de pasos estimada para su hijo sería 1.25+0.25*4=2.25</p></li>
+</ul>
+<p>La ecuación de regresión se puede representar en una recta, donde cáda valor de la recta corresponde al valor predicho de Y para cada valor de X:</p>
+<p><img src="/assignment/04-code_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div id="ajuste-y-residuos" class="section level2">
+<h2>Ajuste y residuos</h2>
+<p>En el gráfico anterior vemos que la línea resume la relación entre X e Y que se denomina <strong>recta de regresión</strong>, caracterizada por un intercepto y una pendiente o <span class="math inline">\(\beta\)</span>. Claramente, esta recta es una simplificación que no abarca toda la variabilidad de los datos y por lo tanto se generará una diferencia entre el valor observado de Y y el valor predicho por el modelo que se representa en la recta de regresión. Esta diferencia entre predicho y observado (o <span class="math inline">\(\widehat{Y}\)</span>) y el observado <span class="math inline">\(Y\)</span>) es lo que se conoce como <strong>residuo</strong></p>
+<p>Los residuos ayudan en primer lugar a entender el sentido del cálculo de la recta de regresión. La mejor recta será aquella que minimice lo más posible el valor de los residuos. Para realizar la suma de los residuos estos se elevan al cuadrado, lo que se denomina suma de residuos al cuadrado o <span class="math inline">\(SS_{residual}\)</span> (ya que como hay residuos positivos y negativos unos se cancelan a otros y la suma es 0). Por lo tanto, el cálculo de la recta de regresión busca que la suma de todos los residuos (al cuadrado) sea la menor posible, que es justamente lo que hicimos arriba con la fórmula del <span class="math inline">\(\beta\)</span>. Este procedimiento es el que da nombre al proceso de estimación: residuos cuadrados ordinarios, o <em>OLS</em> (Ordinary Least Squares).</p>
+<p>Ahora, considerando que un mismo modelo de regresión puede representar distintas distribuciones de datos con distintos residuos (ver cuarteto de Anscombe en la sesión <a href="/class/04-class/">Regresión Simple 2</a>, pag. 23), se requiere información adicional para poder evaluar qué tan bueno es el modelo, lo que se conoce como bondad de ajuste. La pregunta es: ¿qué tan bien representa mi modelo a la distribución de los datos? ¿Me permite hacer una buena predicción de Y a partir de X, o mi predicción no es tan buena? Una forma de evaluar esto es calcular la cantidad de residuos que genera el modelo. Sin embargo, si sumamos los residuos nos quedamos con un número difícil de interpretar en términos de ajuste. Por ello, el ajuste se representa en un número sencillo que es el <span class="math inline">\(R^2\)</span>.</p>
+<p>El <span class="math inline">\(R^2\)</span> es un número que varía entre 0 y 1 y que representa qué porcentaje de la varianza de Y podemos explicar con X. A menores residuos, mejor predicción, y entonces mayor <span class="math inline">\(R^2\)</span></p>
+</div>
+<div id="cálculo-del-r2" class="section level2">
+<h2>Cálculo del R2</h2>
+<p>Se puede representar de la siguiente manera:</p>
+<p><span class="math display">\[R^2=\frac{SS_{reg}}{SS_{tot}}\]</span></p>
+<ul>
+<li>El primer término <span class="math inline">\(SS_{reg}\)</span> es la <strong>Suma de cuadrados de la regresión</strong>, y representa la diferencia entre lo estimado (<span class="math inline">\(\hat{y}\)</span>) y el promedio de Y ( <span class="math inline">\(\bar{y}\)</span>). Se puede interpretar como cuánto de Y podemos conocer (además de su promedio) si es que conocemos X. Para ello, se resta a lo estimado el promedio de Y para cada caso, y luego se suma:</li>
+</ul>
+<p><span class="math display">\[SS_{reg} = \sum(\hat{y}-\bar{y})^2\]</span></p>
+<ul>
+<li><strong>Suma Total de Cuadrados</strong> ( <span class="math inline">\(SS_{tot}\)</span> ) : La suma de las diferencias del promedio de Y al cuadrado (que representa la varianza total de Y)</li>
+</ul>
+<p><span class="math display">\[SS_{tot} = \sum(y-\bar{y})^2 \]</span></p>
+<p>Para ejemplificar el cálculo vamos a seguir con nuestra planilla de ejemplo, agregando las siguientes columnas:</p>
+<ul>
+<li><p>predY: predicción de Y (pasos hijo) a partir de nuestro modelo de regresión</p></li>
+<li><p>predY-promY : la predicción de Y - su promedio</p></li>
+<li><p>(predY-promY)2: se eleva cada valor al cuadrado; la suma de esto nos da <span class="math inline">\(SS_{reg}\)</span></p></li>
+<li><p>y-promy2: las diferencias de cada valor de Y de su promedio (que ya estaban en la columna D) al cuadrado. La suma de esto nos da <span class="math inline">\(SS_{tot}\)</span></p></li>
+</ul>
+<p><img src="/images/r2.png" /></p>
+<p>Reemplazando,</p>
+<p><span class="math display">\[R^2=\frac{SS_{reg}}{SS_{tot}}=\frac{1,25}{2,75}=0,455\]</span></p>
+<p>Entonces, el porcentaje de varianza de nuestra variable dependiente “pasos hijo” que podemos relacionar con nuestra variable independente X “pasos mamá” es de un 45%. En otras palabras, si conocemos los pasos de la madre podemos explicar/conocer un 45% de los pasos de los hijos. Y de otra manera, hay un 55% de la varianza de Y que no se asocia a X … y que probablemente tiene que ver con otras variables.</p>
+</div>
+<div id="vamos-a-r" class="section level2">
+<h2>Vamos a R</h2>
+<p>Cálculo del modelo de regresión:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>modelo1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(pasos_hijo_y <span class="sc">~</span> pasos_mama_x, <span class="at">data =</span> datos1)</span></code></pre></div>
+<p>Como vimos la práctica anterior, aplicamos la funcion <code>lm</code> (linear model) y obtenemos los parámetros correspondientes que podemos visualizar así:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = pasos_hijo_y ~ pasos_mama_x, data = datos1)
+## 
+## Residuals:
+##    1    2    3    4 
+##  0.0  0.5 -1.0  0.5 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)    1.2500     1.2400   1.008    0.420
+## pasos_mama_x   0.2500     0.1936   1.291    0.326
+## 
+## Residual standard error: 0.866 on 2 degrees of freedom
+## Multiple R-squared:  0.4545, Adjusted R-squared:  0.1818 
+## F-statistic: 1.667 on 1 and 2 DF,  p-value: 0.3258</code></pre>
+<p>Esta tabla es algo rudimentaria y entrega más información de la que podemos interpretar hasta ahora, pero lo importante es que en la columna “Estimate” aparece el cálculo de los parámetros del intercepto (1,25) y del beta de regresión correspondiente a la variable X pasos_mama_x (0,25). Además, abajo en la leyenda aparece “Multiple R-squared”, que corresponde al <span class="math inline">\(R^2\)</span> que calculamos arriba.</p>
+<p>Una tabla con un mejor formato se puede visualizar con el comando tab_model, de la librería sjPlot. Nuevamente, aparece más información de la que podemos interpretar, lo importante es por ahora fijarse en la columna Estimates y en el R2</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">tab_model</span>(modelo1)</span></code></pre></div>
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+ 
+</th>
+<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+pasos hijo y
+</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+Predictors
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+Estimates
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+CI
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+p
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.25
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-4.09 – 6.59
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.420
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+pasos_mama_x
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.25
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.58 – 1.08
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.326
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+Observations
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">
+4
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+R<sup>2</sup> / R<sup>2</sup> adjusted
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
+0.455 / 0.182
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="reporte-de-progreso" class="section level1">
+<h1>Reporte de progreso</h1>
+<p>Completar el reporte de progreso <a href="https://forms.gle/Q1D23W3Cuou5ATkLA">aquí</a>.</p>
+</div>
+<div id="archivo-de-código" class="section level1">
+<h1>Archivo de código</h1>
+<p>El archivo de código R de esta práctica se puede descargar <a href="https://raw.githubusercontent.com/juancarloscastillo/multivariada/master/static/assignment/practica_4.R">aquí</a></p>
+</div>
+<div id="foro" class="section level1">
+<h1>Foro</h1>
+</div>
+
+                    </div>
+
+                    
+
+
+
+                    
+                </div>
+
+                <div class="body-footer">
+                    <p>Last updated on March 15, 2022</p>
+
+                    
+
+
+
+
+                    
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "multivariada-netlify-app" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+                </div>
+
+            </article>
+
+            <footer>
+    <hr>
+
+    <div class="row course-info">
+        <div class="col-md-7">
+            <p>
+                <strong>SOC 01024: Estadística Multivariada (Primer semestre)</strong><br>
+
+                <a href="https://www.uchile.cl/" target="_blank" rel="noopener">Universidad de Chile</a> &emsp;&emsp;
+                <a href="http://www.facso.uchile.cl/sociologia" target="_blank" rel="noopener">Departamento de Sociología</a>
+            </p>
+
+            <p>
+                <a href="https://jc-castillo.com" target="_blank" rel="noopener"><i class="fas fa-user"></i>
+                    Juan Carlos Castillo</a> &emsp;&emsp;
+                <a href="mailto:juancastillov@uchile.cl"><i class="fas fa-envelope"></i>
+                    juancastillov@uchile.cl</a>
+            </p>
+
+            <p>
+                <i class="far fa-calendar-alt"></i> Viernes &emsp;&emsp;
+                <i class="far fa-clock"></i> 10:15am - 11:45am <br>
+                <i class="fas fa-university"></i> Sala 43 FACSO
+            </p>
+        </div>
+
+        <div class="col-md-5 credits">
+            <p>All content licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+            
+            <p>Content <i class="fab fa-creative-commons"></i> 2022 <a href="https://jc-castillo.com" target="_blank" rel="noopener">Juan Carlos Castillo</a></p>                    
+            
+            <p><a href="https://github.com/juancarloscastillo/multivariada" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the source at GitHub.</a></p>
+        </div>
+    </div>
+</footer>
+
+
+        </main>
+    </div>
+</div>
+
+        
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js" integrity="sha256-pB/deHc9CGfFpJRjC43imB29Rse8tak+5eXqntO94ck=" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://multivariada-netlify-app.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/js/academic.min.a1c3596268a997890f5b9089b30365c6.js"></script>
+
+    
+
+
+
+
+
+
+    
+    
+
+    
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

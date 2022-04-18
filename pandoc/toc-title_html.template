@@ -16,7 +16,7 @@ $for(include-before)$
 $include-before$
 $endfor$
 $if(toc)$
-<h2>Contents</h2>
+<h2>Índice</h2>
 <div id="$idprefix$TOC">
 $toc$
 </div>

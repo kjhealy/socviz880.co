@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en-us"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.7.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Juan Castillo">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Presentación El Estudio Longitudinal Social de Chile (ELSOC) es una encuesta desarrollada para analizar intertemporalmente la evolución del conflicto y cohesión en la sociedad chilena.
+Uno de los módulos de ELSOC es “Desigualdad y Legitimidad”. Este módulo busca estudiar las percepciones y atribuciones asociadas a las desigualdades sociales. Se ve motivado por el interés de comprender cómo las personas perciben, legitiman y reproducen las diferencias de ingresos, estatus y poder presentes en el Chile contemporáneo.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://multivariada.netlify.app/assignment/01material/prep-datos/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#CF4446">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu1d2581101f943b2ec717907f12f16034_15667_32x32_fill_lanczos_center_3.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu1d2581101f943b2ec717907f12f16034_15667_192x192_fill_lanczos_center_3.png">
+
+  <link rel="canonical" href="https://multivariada.netlify.app/assignment/01material/prep-datos/">
+
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@juankcastillo">
+  <meta property="twitter:creator" content="@juankcastillo">
+  
+  <meta property="og:site_name" content="Estadística Multivariada">
+  <meta property="og:url" content="https://multivariada.netlify.app/assignment/01material/prep-datos/">
+  <meta property="og:title" content="Material 1. Procesamiento de datos en R | Estadística Multivariada">
+  <meta property="og:description" content="Presentación El Estudio Longitudinal Social de Chile (ELSOC) es una encuesta desarrollada para analizar intertemporalmente la evolución del conflicto y cohesión en la sociedad chilena.
+Uno de los módulos de ELSOC es “Desigualdad y Legitimidad”. Este módulo busca estudiar las percepciones y atribuciones asociadas a las desigualdades sociales. Se ve motivado por el interés de comprender cómo las personas perciben, legitiman y reproducen las diferencias de ingresos, estatus y poder presentes en el Chile contemporáneo."><meta property="og:image" content="https://multivariada.netlify.app/img/social-image.png">
+  <meta property="twitter:image" content="https://multivariada.netlify.app/img/social-image.png"><meta property="og:locale" content="en-us">
+  
+    
+    <meta property="article:modified_time" content="2020-04-02T23:35:06-03:00">
+  
+
+  
+
+
+
+  
+
+
+  
+
+
+  <link rel="shortcut icon" href="https://multivariada.netlify.app/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://multivariada.netlify.app/img/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://multivariada.netlify.app/img/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://multivariada.netlify.app/img/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://multivariada.netlify.app/img/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://multivariada.netlify.app/img/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://multivariada.netlify.app/img/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="https://multivariada.netlify.app/img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="https://multivariada.netlify.app/img/favicon-16x16.png" sizes="16x16" />
+  <meta name="application-name" content="SOC 01024: Estadística Multivariada" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="https://multivariada.netlify.app/img/mstile-144x144.png" />
+
+
+  <title>Material 1. Procesamiento de datos en R | Estadística Multivariada</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70"
+    data-target="#TableOfContents"
+    >
+
+    <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+    
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Estadística Multivariada</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Estadística Multivariada</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/programa/"><span>Programa</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/schedule/"><span>Planificación</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/class/"><span>Contenidos</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/reference/"><span>Trabajos</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Material 1. Procesamiento de datos en R</h1>
+
+  
+  <p class="page-subtitle">Estadistica Multivariada - Sociología FACSO Universidad de Chile</p>
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    April 2, 2020
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+
+<div id="presentación" class="section level1">
+<h1>Presentación</h1>
+<p>El Estudio Longitudinal Social de Chile <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/0KIRBJ">(ELSOC)</a> es una encuesta desarrollada para analizar intertemporalmente la evolución del conflicto y cohesión en la sociedad chilena.</p>
+<p>Uno de los módulos de <strong>ELSOC</strong> es “Desigualdad y Legitimidad”. Este módulo busca estudiar las percepciones y atribuciones asociadas a las desigualdades sociales. Se ve motivado por el interés de comprender cómo las personas perciben, legitiman y reproducen las diferencias de ingresos, estatus y poder presentes en el Chile contemporáneo.</p>
+<p>El presente ejercicio tiene por objetivo el procesar los datos para obtener las variables relevante para el estudio de la <strong>Percepción de Meritocracia</strong>, entendida como el grado en que los individuos consideran que su sociedad cumple con los principios de una meritocracia, es decir, que funciona como un sistema que asigna recompensas en función del esfuerzo y las habilidades.</p>
+</div>
+<div id="preparacion-de-datos-con-elsoc-2016" class="section level1">
+<h1>Preparacion de datos con ELSOC 2016</h1>
+<div id="librerías-y-configuración" class="section level2">
+<h2>Librerías y configuración</h2>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>rm(list=ls()) # borrar todos los objetos en el enviorment
+options(scipen=999) #sin notacion cientifica</code></pre>
+<div id="cargar-base-de-datos" class="section level3">
+<h3>Cargar base de datos</h3>
+<ul>
+<li>Ejemplo de ruta, debe remplazarla por la de su computador.</li>
+</ul>
+<pre class="r"><code>setwd(&quot;C:/usuario/usted/multivariada/materiales/01material&quot;) </code></pre>
+<pre class="r"><code># buscammos la sub carpeta ... datos/original/ELSOC_W01_v3.10.RData
+load(&quot;data/original/ELSOC_W01_v3.10.RData&quot;)
+elsoc &lt;- elsoc_2016; remove(elsoc_2016)
+# load(&quot;link/ELSOC_W01_v3.10.RData&quot;)</code></pre>
+</div>
+<div id="datos-perdidos" class="section level3">
+<h3>Datos perdidos</h3>
+<ul>
+<li>En ELSOC todos los valores -888 y -999 corresponden a valores para las categorias “No sabe” y “No responde”, respectivamente.</li>
+<li>Decidimos dejarlas como valores perdidos (NA)</li>
+</ul>
+<pre class="r"><code>for (i in 1:ncol(elsoc)) {
+  elsoc[,i][elsoc[,i] == c(-888)]  &lt;- NA #Missing 
+  elsoc[,i][elsoc[,i] == c(-999)]  &lt;- NA #Missing   
+  }</code></pre>
+</div>
+</div>
+<div id="recodificacion-variables-percepcion-de-meritocracia" class="section level2">
+<h2>Recodificacion Variables percepcion de meritocracia</h2>
+<ul>
+<li>[<code>c18_09</code>]: “Grado de acuerdo: Las personas son recompensadas por sus esfuerzos” (1 = Totalmente en desacuerdo; 5 = Totalmente de acuerdo)</li>
+<li>[<code>c18_10</code>]: “Grado de acuerdo: Las personas son recompensada por su inteligencia” (1 = Totalmente en desacuerdo; 5 = Totalmente de acuerdo)</li>
+</ul>
+<pre class="r"><code>elsoc$c18_09 &lt;- as.numeric(elsoc$c18_09) 
+elsoc$c18_10 &lt;- as.numeric(elsoc$c18_10) 
+# Variables meritocracia promedio -----------------------------------------
+elsoc &lt;- rename(elsoc,meffort=c18_09) # cambio de nombre de la variable c18_09 a uno mas sustantivo 
+elsoc &lt;- rename(elsoc,mtalent=c18_10) # cambio de nombre de la variable c18_10 a uno mas sustantivo 
+
+# creamos un indice promedio de percepcion de meritocracia usando ambas preguntas
+elsoc$merit &lt;- (elsoc$meffort+elsoc$mtalent)/2 
+
+# re escalamos la variable de 1-5 a una de 0 a 100 (para facilitar interpretacion) 
+elsoc$merit &lt;- 
+  (elsoc$merit-min(elsoc$merit,na.rm=T))/(max(elsoc$merit,na.rm=T)-min(elsoc$merit,na.rm=T))*100</code></pre>
+</div>
+<div id="recodificacion-variable-estatus-subjetivo" class="section level2">
+<h2>Recodificacion variable Estatus subjetivo</h2>
+<ul>
+<li>[<code>d01_01</code>]: “Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena” (0 = el nivel mas bajo; 10 = el nivel mas alto)</li>
+</ul>
+<pre class="r"><code>elsoc$ess &lt;- as.numeric(elsoc$d01_01) # Estatus Social Subjetivo
+table(elsoc$ess)
+summary(elsoc$ess)</code></pre>
+<pre><code>## 
+##   0   1   2   3   4   5   6   7   8   9  10 
+##  44  84 207 439 677 975 310 116  37   4  22 
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##    0.00    3.00    5.00    4.33    5.00   10.00      12</code></pre>
+</div>
+<div id="recodificacion-variables-estatus-objetivo" class="section level2">
+<h2>Recodificacion variables Estatus objetivo</h2>
+<div id="ingresos-del-hogar" class="section level3">
+<h3>Ingresos del hogar</h3>
+<pre class="r"><code>summary(elsoc$m29) # ingresos total ; NA == 587</code></pre>
+<pre><code>##       Min.    1st Qu.     Median       Mean    3rd Qu.       Max.       NA&#39;s 
+##          0     267500     420000    2477852     700000 4000000000        587</code></pre>
+<pre class="r"><code>summary(elsoc$m30) # ingresos tramos </code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##   1.000   3.000   6.000   7.415  11.000  20.000    2479</code></pre>
+<pre class="r"><code>summary(elsoc$nhogar1) # tamannio del hogar</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   1.000   2.000   3.000   3.077   4.000  14.000</code></pre>
+<pre class="r"><code>elsoc$m29[elsoc$m29==0] &lt;- NA
+# Remplazar NA por media de categorias Ingreso -------------------------------#
+elsoc$mean_tramos &lt;- NA # creamos una variable vacia
+# remplazamos ...
+elsoc$mean_tramos[elsoc$m30==1] &lt;-110000
+elsoc$mean_tramos[elsoc$m30==2] &lt;-250000.5
+elsoc$mean_tramos[elsoc$m30==3] &lt;-305000.5
+elsoc$mean_tramos[elsoc$m30==4] &lt;-355000.5
+elsoc$mean_tramos[elsoc$m30==5] &lt;-400000.5
+elsoc$mean_tramos[elsoc$m30==6] &lt;-445000.5
+elsoc$mean_tramos[elsoc$m30==7] &lt;-490000.5
+elsoc$mean_tramos[elsoc$m30==8] &lt;-535000.5
+elsoc$mean_tramos[elsoc$m30==9] &lt;-585000.5
+elsoc$mean_tramos[elsoc$m30==10]&lt;-640000.5
+elsoc$mean_tramos[elsoc$m30==11]&lt;-700000.5
+elsoc$mean_tramos[elsoc$m30==12]&lt;-765000.5
+elsoc$mean_tramos[elsoc$m30==13]&lt;-845000.5
+elsoc$mean_tramos[elsoc$m30==14]&lt;-935000.5
+elsoc$mean_tramos[elsoc$m30==15]&lt;-1040000.5
+elsoc$mean_tramos[elsoc$m30==16]&lt;-1180000.5
+elsoc$mean_tramos[elsoc$m30==17]&lt;-1375000.5
+elsoc$mean_tramos[elsoc$m30==18]&lt;-1670000.5
+elsoc$mean_tramos[elsoc$m30==19]&lt;-2275000.5
+elsoc$mean_tramos[elsoc$m30==20]&lt;-3726106
+table(elsoc$mean_tramos) # chequeamos</code></pre>
+<pre><code>## 
+##    110000  250000.5  305000.5  355000.5  400000.5  445000.5  490000.5  535000.5 
+##        49        42        36        35        33        33        38        21 
+##  585000.5  640000.5  700000.5  765000.5  845000.5  935000.5 1040000.5 1180000.5 
+##        26        16        18        15        11        14        19        13 
+## 1375000.5 1670000.5 2275000.5   3726106 
+##         4        10         8         7</code></pre>
+<pre class="r"><code>elsoc$m29 &lt;- ifelse(test = (is.na(elsoc$m29)),#¿es el valor un NA? 
+                    yes = elsoc$mean_tramos, #Si es verdadero, remplazar por el valor de mean_tramos
+                    no = elsoc$m29)# Si es falso, remplazar por el valor del m29
+
+summary(elsoc$m29) # NA = 147</code></pre>
+<pre><code>##       Min.    1st Qu.     Median       Mean    3rd Qu.       Max.       NA&#39;s 
+##      20000     280000     445000    2182986     700000 4000000000        147</code></pre>
+<pre class="r"><code># cambiamos el nombre de las variables inghogar = m29; nhogar=nhogar1
+elsoc &lt;- rename(elsoc, inghogar=m29, nhogar=nhogar1)       
+# ingreso neto = ingreso del hogar / numero de personas en el hogar
+elsoc$ingneto   &lt;- as.numeric(elsoc$inghogar/elsoc$nhogar) 
+# logaritmo natural del ingreso neto (para normalizar la distribucion sesgada del ingreso)
+elsoc$lningneto &lt;- log(elsoc$ingneto)                      
+
+summary(elsoc$ingneto)</code></pre>
+<pre><code>##       Min.    1st Qu.     Median       Mean    3rd Qu.       Max.       NA&#39;s 
+##       7500      95000     150000    1028152     267500 2000000000        147</code></pre>
+<pre class="r"><code>summary(elsoc$lningneto)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##   8.923  11.462  11.918  12.006  12.497  21.416     147</code></pre>
+<pre class="r"><code>#---Deciles (ingreso per capita hogar)------------------------------------------------
+elsoc &lt;- elsoc %&gt;% mutate(inc10h = ntile(inghogar, 10)) # Crear Deciles de ingreso
+elsoc$D10h &lt;- factor(elsoc$inc10h, levels = c(1,2,3,4,5,6,7,8,9,10), 
+                    labels = c(&quot;D01&quot;,&quot;D02&quot;,&quot;D03&quot;,&quot;D04&quot;,&quot;D05&quot;,
+                               &quot;D06&quot;,&quot;D07&quot;,&quot;D08&quot;,&quot;D09&quot;,&quot;D10&quot;));table(elsoc$D10h)</code></pre>
+<pre><code>## 
+## D01 D02 D03 D04 D05 D06 D07 D08 D09 D10 
+## 278 278 278 278 278 278 278 278 278 278</code></pre>
+</div>
+<div id="educación" class="section level3">
+<h3>Educación</h3>
+<pre class="r"><code>table(elsoc$m01) # Educacion en ELSOC</code></pre>
+<pre><code>## 
+##   1   2   3   4   5   6   7   8   9  10 
+##  37 322 297 394 857 102 381 186 303  46</code></pre>
+<p><strong>Recodificación <a href="http://uis.unesco.org/sites/default/files/documents/isced-2011-sp.pdf">CINE 2011 (UNESCO)</a></strong></p>
+<pre><code>1.  Sin estudios                                = [CINE 0   ] =  1
+2.  Educacion Basica o Preparatoria incompleta  = [CINE 0   ] =  1
+3.  Educacion Basica o Preparatoria completa    = [CINE 1,2 ] =  2
+4.  Educacion Media o Humanidades incompleta    = [CINE 3   ] =  3
+5.  Educacion Media o Humanidades completa      = [CINE 3   ] =  3
+6.  Tecnico Superior incompleta                 = [CINE 5   ] =  4
+7.  Tecnico Superior completa                   = [CINE 5   ] =  4
+8.  Universitaria incompleta                    = [CINE 6   ] =  5
+9.  Universitaria completa                      = [CINE 6   ] =  6
+10. Estudios de posgrado (magister o doctorado) = [CINE 7, 8] =  6</code></pre>
+<pre class="r"><code># recodificacion usando funcion &#39;recode&#39; de la libreria car   
+elsoc$edcine &lt;- car::recode(elsoc$m01, &quot;c(1,2)=1; c(3)=2;c(4,5)=3;c(6,7)=4;c(8,9,10)=5&quot;) 
+round(prop.table(table(elsoc$edcine)), 3)</code></pre>
+<pre><code>## 
+##     1     2     3     4     5 
+## 0.123 0.102 0.428 0.165 0.183</code></pre>
+<pre class="r"><code>elsoc$edcine &lt;- factor(elsoc$edcine,
+                       levels = c(1,2,3,4,5),
+                       labels=c(&quot;Primaria incompleta menos&quot;,
+                                &quot;Primaria y secundaria baja&quot;,
+                                &quot;Secundaria alta&quot;,
+                                &quot;Terciaria ciclo corto&quot;,
+                                &quot;Terciaria y Postgrado&quot;))
+
+table(elsoc$edcine) #chequeamos</code></pre>
+<pre><code>## 
+##  Primaria incompleta menos Primaria y secundaria baja 
+##                        359                        297 
+##            Secundaria alta      Terciaria ciclo corto 
+##                       1251                        483 
+##      Terciaria y Postgrado 
+##                        535</code></pre>
+</div>
+</div>
+<div id="variables-control" class="section level2">
+<h2>Variables control</h2>
+<pre class="r"><code>#---Sexo----
+elsoc$sexo &lt;- car::recode(elsoc$m0_sexo, &quot;1=1;2=0&quot;)
+elsoc$sexo &lt;- factor(elsoc$sexo, levels = c(0,1), labels = c(&quot;Hombre&quot;,&quot;Mujer&quot;)) # Sexo
+#Hombre=0
+#Mujer=1
+
+#---Edad----
+elsoc$edad &lt;- as.numeric(elsoc$m0_edad) #Edad
+
+#---Posicion Politica----
+# PREGUNTA: &quot;Autoubicacion escala izquierda-derecha&quot; 
+  # (0 = izquierda; 10 = Derecha; 11 = Independiente; 12 =Ninguno)
+elsoc$ppolcat  &lt;- car::recode(elsoc$c15, &quot;c(0,1,2,3,4)=1;5=2;c(6,7,8,9,10)=3;11=4;12=5&quot;) 
+elsoc$ppolcat  &lt;- factor(elsoc$ppolcat, levels = c(1,2,3,4,5), 
+                         labels = c(&quot;Izquierda/Centro Izquierda&quot;,
+                                    &quot;Centro&quot;,
+                                    &quot;Derecha/Centro Derecha&quot;,
+                                    &quot;Independiente&quot;,
+                                    &quot;Ninguno&quot;))</code></pre>
+</div>
+</div>
+<div id="mantener-variables-relevantes" class="section level1">
+<h1>Mantener variables relevantes</h1>
+<pre class="r"><code># selecccionamos las variables relevantes
+elsoc_16 &lt;- elsoc %&gt;% dplyr::select(merit,ess,edcine,lningneto,D10h, sexo, edad,ppolcat) 
+# dejamos solamente los casos con informacion completa (listwise deletion)
+elsoc_16 &lt;- na.omit(elsoc_16)
+names(elsoc_16) # comprobamos los nombres de variables</code></pre>
+<pre><code>## [1] &quot;merit&quot;     &quot;ess&quot;       &quot;edcine&quot;    &quot;lningneto&quot; &quot;D10h&quot;      &quot;sexo&quot;     
+## [7] &quot;edad&quot;      &quot;ppolcat&quot;</code></pre>
+<pre class="r"><code>head(elsoc_16) #chequear</code></pre>
+<pre><code>##   merit ess                    edcine lningneto D10h   sexo edad       ppolcat
+## 1  75.0   5 Primaria incompleta menos  11.22524  D03 Hombre   64 Independiente
+## 2  75.0   5           Secundaria alta  12.42922  D06 Hombre   60       Ninguno
+## 3  50.0   3           Secundaria alta  11.31040  D06 Hombre   26       Ninguno
+## 4  75.0   6     Terciaria y Postgrado  13.54763  D08  Mujer   51       Ninguno
+## 5  62.5   4           Secundaria alta  13.10216  D06  Mujer   69       Ninguno
+## 6  75.0   5           Secundaria alta  13.10216  D06  Mujer   62 Independiente</code></pre>
+<pre class="r"><code># Guardar base de datos procesada ---------------------------------------------------------------
+save(elsoc_16,file = &quot;data/proc/ELSOC_ess_merit2016.RData&quot;)</code></pre>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="/authors/juancastillo/">Juan Castillo</a></h5>
+      
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  </div>
+</article>
+
+        
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://multivariada-netlify-app.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/js/academic.min.a1c3596268a997890f5b9089b30365c6.js"></script>
+
+    
+
+
+
+
+
+
+    
+    
+    <div class="container">
+        <footer>
+    <hr>
+
+    <div class="row course-info">
+        <div class="col-md-7">
+            <p>
+                <strong>SOC 01024: Estadística Multivariada (Primer semestre)</strong><br>
+
+                <a href="https://www.uchile.cl/" target="_blank" rel="noopener">Universidad de Chile</a> &emsp;&emsp;
+                <a href="http://www.facso.uchile.cl/sociologia" target="_blank" rel="noopener">Departamento de Sociología</a>
+            </p>
+
+            <p>
+                <a href="https://jc-castillo.com" target="_blank" rel="noopener"><i class="fas fa-user"></i>
+                    Juan Carlos Castillo</a> &emsp;&emsp;
+                <a href="mailto:juancastillov@uchile.cl"><i class="fas fa-envelope"></i>
+                    juancastillov@uchile.cl</a>
+            </p>
+
+            <p>
+                <i class="far fa-calendar-alt"></i> Viernes &emsp;&emsp;
+                <i class="far fa-clock"></i> 10:15am - 11:45am <br>
+                <i class="fas fa-university"></i> Sala 43 FACSO
+            </p>
+        </div>
+
+        <div class="col-md-5 credits">
+            <p>All content licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+            
+            <p>Content <i class="fab fa-creative-commons"></i> 2022 <a href="https://jc-castillo.com" target="_blank" rel="noopener">Juan Carlos Castillo</a></p>                    
+            
+            <p><a href="https://github.com/juancarloscastillo/multivariada" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the source at GitHub.</a></p>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+
+    
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

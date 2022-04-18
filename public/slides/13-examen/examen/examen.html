@@ -1,0 +1,78 @@
+<!-- BLOGDOWN-HEAD -->
+<script src="examen_files/header-attrs-2.9/header-attrs.js"></script>
+<!-- /BLOGDOWN-HEAD -->
+
+<h2>Índice</h2>
+<div id="TOC">
+<ul>
+<li><a href="#descripción-del-ejercicio">Descripción del ejercicio</a></li>
+<li><a href="#hipótesis">Hipótesis</a></li>
+<li><a href="#variables">Variables</a></li>
+<li><a href="#i.-regresión-múltiple">I. Regresión Múltiple</a></li>
+<li><a href="#ii.-solucionario-regresión-lineal">II. Solucionario Regresión Lineal</a></li>
+<li><a href="#iii.-solucionario-regresión-logística">III. Solucionario Regresión Logística</a></li>
+</ul>
+</div>
+
+<div id="descripción-del-ejercicio" class="section level2">
+<h2>Descripción del ejercicio</h2>
+<p>El objetivo de este <strong>examen</strong> es interpretar resultados de la <strong>regresión lineal y logística múltiple</strong>. Cada grupo tiene una muestra aleatoria de 1000 casos de la encuesta <em>ISSP (2015) del módulo “Orientaciones del Trabajo”</em>.</p>
+<p>La pregunta que buscamos contestar en este examen es <strong>“¿Qué factores inciden en una actitud más positiva hacia la participación sindical?”</strong>.</p>
+<p>Utilizaremos el grado de acuerdo con la afirmación <em>“Los trabajadores necesitan sindicatos fuertes para proteger sus intereses”</em> como un indicador de actitud hacia los sindicatos.</p>
+</div>
+<div id="hipótesis" class="section level2">
+<h2>Hipótesis</h2>
+<ul>
+<li><p><strong>H1</strong>: A mayor percepción de bajos salarios, más positiva será la actitud hacia los sindicatos</p></li>
+<li><p><strong>H2</strong>: Las personas que se han sentido discriminadas en el trabajo, presentan una actitud más positiva hacia los sindicatos</p></li>
+<li><p><strong>H3</strong>: Las mujeres presentarán actitudes menos favorables hacia los sindicatos que los hombres.</p></li>
+</ul>
+</div>
+<div id="variables" class="section level2">
+<h2>Variables</h2>
+<p><strong>Variables dependientes</strong></p>
+<ul>
+<li><p><strong>Actitud positiva hacia los sindicatos</strong>: Nivel de acuerdo con la frase “Los trabajadores necesitan sindicatos fuertes para proteger sus intereses” (1= Muy en desacuerdo hasta 5= Muy de acuerdo). Nombre de variable: ‘sindicatos’</p></li>
+<li><p><strong>Actitud positiva hacia los sindicatos</strong> (dicotómica): de la variable ‘sindicatos’ se ha codificado a quienes responden “Muy de acuerdo” y “De acuerdo” como 1 (Actitud positiva) y 0 (Actitud neutra o negativa)</p></li>
+</ul>
+<p><strong>Variables independientes</strong></p>
+<ul>
+<li><p><strong>Percepción de salarios altos</strong>: Nivel de acuerdo con la frase “Mi salario es alto” (1=Muy en desacuerdo hasta 5=Muy de acuerdo). Nombre de variable: ‘salario’</p></li>
+<li><p><strong>Discriminación en el trabajo</strong>: Con la pregunta “Ha sido discriminado en el trabajo, por ejemplo, en relación al aumento de su salario o promoción?”. (1=Sí, 0=No). Nombre de variable: ‘discrimina’</p></li>
+<li><p><strong>Sexo</strong>: Con la pregunta “¿Cuál es su sexo?” (1=Hombre, 0=Mujer). Nombre de variable: ‘sexo’</p></li>
+</ul>
+</div>
+<div id="i.-regresión-múltiple" class="section level2">
+<h2>I. Regresión Múltiple</h2>
+<p><strong>¿Predicen la percepción de salarios, la discriminación y el sexo la actitud hacia los sindicatos? Lleva a cabo los siguientes pasos:</strong></p>
+<div style="page-break-after: always;"></div>
+<p>A partir de la tabla y modelo propuesto, deben responder tanto para la regresión lineal como logística:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>¿Cómo es la ecuación de la recta de la regresión lineal? [6 puntos]</p></li>
+<li><p>Interpreta los coeficientes de regresión para para todas las variables independientes en términos de la dirección y fuerza de la asociación. Describe los efectos aún si los efectos no sean significativos. [9 puntos]</p></li>
+<li><p>Para cada relación, describe si el coeficiente es significativa o no. Considera un 95% de confianza. Considerando ello, argumenta si la hipótesis planteadas, tiene evidencia a favor o no en los resultados de tus análisis. [9 puntos]</p></li>
+<li><p>¿Qué porcentaje de la varianza en la actitud hacia los sindicatos es explicada por el modelo? Interpreta el coeficiente de determinación. [3 puntos]</p></li>
+<li><p>Utiliza la ecuación estimada para calcular la actitud hacia los sindicatos esperada para mujeres, asumiendo una percepción de salarios indiferente (3) y presencia de discriminación (1). [6 puntos]</p></li>
+</ol>
+</div>
+<div id="ii.-solucionario-regresión-lineal" class="section level1">
+<h1>II. Solucionario Regresión Lineal</h1>
+<p><strong>a. La ecuación de modelo de regresión corresponde a:</strong></p>
+<p><span class="math display">\[\widehat{\text{sindicatos}} = 4,03 + (-0,05 \cdot X_{\text{salario}}) + (0,28 \cdot X_{\text{discriminación}}) + (0,02 \cdot X_{\text{sexo}})\]</span></p>
+<p><strong>b. Interpretación de coeficientes</strong></p>
+<p>Como puede verse en la Tabla 1, el coeficiente de la percepción de salarios altos es negativo, aunque no significativo al 95% de confianza, controlando por discriminación y sexo. Esto quiere decir que una mayor percepción de que el salario percibido es alto se relaciona con una actitud más negativa hacia los sindicatos. En particular, por cada aumento en una unidad (en una escala desde 1 = muy en desacuerdo hasta 5 = muy de acuerdo) en la percepción de que el salario es alto, el apoyo a los sindicatos disminuye en promedio en -0,05 puntos (en una escala de 1 = muy en desacuerdo hasta 5 = muy de acuerdo), aunque esta asociación no es significativa a nivel de la población, <span class="math inline">\(\beta\)</span> = -0,05, <em>t</em>(482) = <em>p</em> = 0,25.<br><br></p>
+<p>El coeficiente de discriminación en el trabajo es positivo y significativo al 99% de confianza, controlando por percepción del salario y sexo. Esto quiere decir que haber percibido discriminación en el trabajo, en relación a no haber percibido discriminación, está asociado a un mayor apoyo a los sindicatos. En particular, frente a quienes no percibieron discriminación, las personas que sí la percibieron tienen un nivel de apoyo a los sindicatos que es en promedio mayor en 0,28 puntos (en una escala de 1 = muy en desacuerdo a 5 = muy de acuerdo), <span class="math inline">\(\beta\)</span> = 0,28, <em>t</em>(482) = <em>p</em> &lt; 0.01. <br><br></p>
+<p>Por último, el coeficiente de sexo es positivo, aunque no significativo al 95% de confianza, controlando por percepción del salario y discriminación. Esto quiere decir que ser hombre, en relación a ser mujer, está asociado a un mayor apoyo a los sindicatos. En particular, frente a las mujeres, los hombres tienen un nivel de apoyo a los sindicatos que es en promedio mayor en 0,02 puntos (en una escala de 1 = muy en desacuerdo a 5 = muy de acuerdo), aunque esta asociación no es significativa, <span class="math inline">\(\beta\)</span> = 0,02, t(482)= <em>p</em> = 0,8. <br><br></p>
+<p><strong>c. Inferencia</strong></p>
+<p>Con respecto a las hipótesis propuestas, los resultados del modelo de regresión lineal múltiple muestran evidencia a favor de las Hipótesis 1 y 3. Es decir, a mayores percepciones de amenazas simbólicas y realistas, mayor prejuicio hacia los migrantes peruanos. Estos resultados son cosnistentes con la Teoría de la Identidad Social y la Teoría del Conflicto realista, respectivamente.<br><br></p>
+<p>Ahora bien, con respecto a las diferencias en prejuicio esperadas para personas de distintas clases sociales, se observa que las personas de clase alta no tienen un nivel de prejuicio significativamente menor al de las personas de clase baja.. A su vez, no se encontraron diferencias significativas entre personas de clase media y personas de clase baja, ni entre personas de clase media baja y clase baja. En esta dimensión, se encuentra evidencia en contra de la Hipótesis 3. En general, los resultados muestran evidencia en contra de la Hipótesis 3..<br><br></p>
+<p><strong>d. Ajuste</strong></p>
+<p>El 1,9% de la varianza en la actitud positiva hacia los sindicatos es explicado por la percepción de salario, discriminación en el trabajo y sexo.<br><br></p>
+<p><strong>e. Predicción</strong></p>
+<p>Por último, se procede a calcular los valores predichos de apoyo a los sindicatos (en una escala de 1 = muy en desacuerdo hasta 5 = muy de acuerdo) para hombres y mujeres por separado. Se asumen valores de 3 para la percepción de salario y de presencia de discriminación (1). <br><br></p>
+<p><span class="math display">\[\widehat{\text{sindicatos}_{\text{hombre}}} = 4,03 + -0,05 \cdot 3 + 0,28 \cdot 1 + 0,02 \cdot 1 = 4,18\]</span></p>
+<p><span class="math display">\[\widehat{\text{sindicatos}_{\text{mujer}}} = 4,03 + -0,05 \cdot 3 + 0,28 \cdot 1 + 0,02 \cdot 0 = 4,16\]</span></p>
+</div>
+<div id="iii.-solucionario-regresión-logística" class="section level1">
+<h1>III. Solucionario Regresión Logística</h1>
+</div>

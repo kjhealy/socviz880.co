@@ -1,10 +1,13 @@
 ---
-title: "Assignments"
+title: "Prácticas"
 slug: assignments
+menu:
+  class:
+    parent: Prácticas
+    weight: 2
+type: docs
+weight: 2
+
 ---
 
-# Weekly memos
-
-# Problem sets
-
-# Projects
+### Aquí se accede a las distintas guías prácticas desde el menú de la izquierda

@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Estadística Multivariada</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=".small[Juan Carlos Castillo    Departamento de Sociología - UCH / COES   ]" />
+    <link rel="stylesheet" href="../custom_2020.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: front
+
+
+
+
+
+
+&lt;!---
+Para correr en ATOM
+- open terminal, abrir R (simplemente, R y enter)
+- rmarkdown::render('static/docpres/07_interacciones/7interacciones.Rmd', 'xaringan::moon_reader')
+
+About macros.js: permite escalar las imágenes como [scale 50%](path to image), hay si que grabar ese archivo js en el directorio.
+---&gt;
+
+
+.pull-left[
+# Estadística Multivariada
+## Juan Carlos Castillo
+## Sociología FACSO - UChile
+## 1er Sem 2020
+## [multivariada.netlify.com](https://multivariada.netlify.com)
+]
+
+
+.pull-right[
+.right[
+![:scale 70%](https://multivariada.netlify.com/img/hex_multiva.png)
+&lt;br&gt;
+&lt;br&gt;
+## Sesión 7: Predictores categóricos e inferencia (1)
+]
+
+]
+---
+
+layout: true
+class: animated, fadeIn
+
+
+---
+class: inverse, bottom, right, animated, slideInRight
+
+
+# Contenidos
+
+## 1. Repaso de sesión anterior
+
+## 2. Predictores Categóricos
+
+## 3. Inferencia Estadística (1)
+
+---
+class: roja bottom right slideInRight
+
+# 1. Repaso sesión anterior
+
+
+---
+# Regresión múltiple: más de 1 predictor
+
+
+.pull-left[
+.center[![:scale 60%](../images/ingresoeduc.png)]
+.small[
+`$$\widehat{Ingreso}=b_0+b_1(Educ)$$`
+]
+]
+
+--
+
+.pull-right[
+.center[![:scale 60%](../05-regmul1/ingresoeducexp.png)]
+.small[
+`$$\widehat{Ingreso}=b_0+b_1(Educ)+b_2(Int)$$`
+]]
+
+
+---
+# Control estadístico
+
+- Característico de análisis de datos secundarios (ej: encuestas)
+
+- Se incluyen en el modelo variables que teóricamente podrían dar cuenta o afectar la relación entre X e Y.
+
+- Esto despeja o "controla" la asociación de `\(X_1\)` e `\(Y\)`, aislando el efecto conjunto de `\(X_1\)` y `\(X_2\)` (... y `\(X_n\)`)
+
+
+
+---
+# Regresión simple vs múltiple
+
+
+
+.small[
+
+]
+.small[
+
+&lt;table cellspacing="0" align="center" style="border: none;"&gt;
+&lt;caption align="bottom" style="margin-top:0.3em;"&gt; &lt;/caption&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;&lt;/b&gt;&lt;/th&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 1&lt;/b&gt;&lt;/th&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 2&lt;/b&gt;&lt;/th&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 3&lt;/b&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(Intercept)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;-91566.27&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;93442.62&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;-270638.30&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(183509.80)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(302389.31)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(241882.27)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;educ&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;150401.61&lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;137092.20&lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(43618.69)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(44602.35)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;intelig&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;174590.16&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;100425.53&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(124491.71)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(90114.05)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border-top: 1px solid black;"&gt;R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="border-top: 1px solid black;"&gt;0.60&lt;/td&gt;
+&lt;td style="border-top: 1px solid black;"&gt;0.20&lt;/td&gt;
+&lt;td style="border-top: 1px solid black;"&gt;0.66&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;Adj. R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.55&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.10&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.56&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;Num. obs.&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;RMSE&lt;/td&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;217656.84&lt;/td&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;307471.84&lt;/td&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;214438.31&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;" colspan="5"&gt;&lt;span style="font-size:0.8em"&gt;&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;p &amp;lt; 0.001, &lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;p &amp;lt; 0.01, &lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;p &amp;lt; 0.05&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+]
+
+
+---
+# Parcialización
+
+_¿Cómo se despeja la regresión de `\(Y\)` en `\(X_1\)` del efecto de `\(X_2\)`?_
+
+.pull-left[
+.center[![:scale 65%](../05-regmul1/ingresoeducexp.png)]
+]
+
+--
+
+.pull-right[
+.center[![:scale 65%](../06-regmul2/ingeduc_parint.png)]
+]
+
+---
+.pull-left[
+# Parcialización
+
+.medium[
+¿Como obtenemos una variable `\(X_1\)` parcializada de `\(X_2\)`?
+]
+
+.center[
+![:scale 100%](../images/partial2.png)]
+]
+--
+
+.pull-right[
+
+&lt;br&gt;
+&lt;br&gt;
+
+.medium[
+- Pensemos en que `\(X_1\)` parcializada (de `\(X_2\)` ) es todo lo de `\(X_1\)` (varianza) que no tiene que ver con `\(X_2\)`
+
+- En otras palabras, en un modelo donde `\(X_1\)` es la variable dependiente y `\(X_2\)` la independiente, `\(X_1\)` parcializada equivale al **residuo** de esta regresión
+]
+]
+
+---
+class: inverse
+
+## RESUMEN
+
+- Si hay correlación entre predictores, el valor de los coeficientes de regresión será **distinto** en modelos simples y en modelos múltiples
+
+- Esta diferencia se relaciona con el concepto de  **parcialización**: se extrae la varianza común entre predictores
+
+- La parcialización permite el **control estadístico**: *limpiar* o despejar los efectos de la influencia de otras variables 
+
+
+---
+class: roja, bottom, right, slideInRight
+
+# 2. Predictores Categóricos
+
+
+---
+
+.pull-left[
+## Variables categóricas
+- Hasta el momento sólo hemos considerado variables como **continuas/intervalares**.
+
+- A menudo, las variables explicativas son de naturaleza **categórica**.
+]
+
+--
+.pull-right[
+###Variables binarias / dicotómicas
+- Hombre, Mujer
+- Vivo, Muerto
+- Votó, No Votó.
+
+
+###Variables politómicas:
+- Básica, Medía, Técnica, Universitaria
+- Frente Amplio, Nueva Mayoría, Chile Vamos, No interesado.
+]
+
+---
+
+.pull-left[
+## Predictores categóricos
+
+
+- Ej, Y=ingreso, X= sexo
+
+
+
+`$$X=1(Mujer)$$`
+`$$X=0(Hombre)$$`
+
+- Las variables 1/0 usualmente son llamadas variables **dummy**
+]
+
+
+
+--
+&lt;br&gt;
+&lt;br&gt;
+
+.pull-right[
+
+Para las mujeres: `\(Y=\alpha +\beta X= \alpha+\beta\)`
+
+Para los hombres: `\(Y=\alpha +\beta X= \alpha\)`
+
+### El coeficiente `\(\beta\)` es la **diferencia** esperada de `\(Y\)` (ingreso) entre hombres y mujeres.
+
+
+]
+
+---
+
+## Variables categóricas: Ejemplo (ELSOC)
+
+### Variable dependiente
+.medium[
+*En nuestra sociedad, hay grupos que tienden a ubicarse en los niveles más altos y grupos que tienden a ubicarse en los niveles más bajos de la sociedad.  ¿Dónde se ubicaría usted en la sociedad chilena?*
+
+  -Likert de 0 a 10 donde 0 "El nivel más bajo" y 10 "El nivel más alto"
+
+### Variables independientes
+
+- Ingreso
+- Edad
+- Sexo (Hombre=0; Mujer=1)
+]
+---
+## Ejemplo estimación
+&lt;br&gt;
+.small[
+.pull-left[
+
+
+&lt;table cellspacing="0" align="center" style="border: none;"&gt;
+&lt;caption align="bottom" style="margin-top:0.3em;"&gt;Statistical models&lt;/caption&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;&lt;/b&gt;&lt;/th&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Estatus Social Subjetivo&lt;/b&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;Intercepto&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;4.59 (0.11)&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;Edad&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;-0.00 (0.00)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;Ingreso&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.00 (0.00)&lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;Mujer&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;-0.13 (0.06)&lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border-top: 1px solid black;"&gt;R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="border-top: 1px solid black;"&gt;0.01&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;Adj. R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.00&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;Num. obs.&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;2339&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;RMSE&lt;/td&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;1.53&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;" colspan="3"&gt;&lt;span style="font-size:0.8em"&gt;Elaboración propia en base a Elsoc&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+]
+]
+
+--
+
+.pull-right[
+Las mujeres (sexo=1) obtienen 0.13 puntos promedio menos **en relación** a los hombres (sexo=0) en la variable de estatus social subjetivo, manteniendo las otras variables constantes.
+]
+
+
+---
+# Más de dos categorías (politómicas)
+
+- ¿Qué sucede cuando quiero predecir el estatus social subjetivo en base una variable catégorica con **más de dos valores**? (ej. Educación, Clase Social, Posición política).
+
+- La solución estándar es convertir esta variable en un conjunto de variables binarias 1/0 o variables **dummy**.
+
+- El conjunto de éstas variables dummy representan a la variable categórica completa.
+
+---
+
+## Especificando el conjunto de variables dummy.
+
+&lt;br&gt;
+&lt;br&gt;
+
+.medium[
+
+
+|                 | `\(X_{básica}\)` | `\(X_{media}\)` | `\(X_{tecnica}\)` | `\(X_{universitaria}\)` |
+|------------------|---------|------------|-----------------|
+| Básica           |1 |  0       | 0          | 0               |
+| Media            |0 |1       | 0          | 0               |
+| Técnica Superior |0| 0       | 1          | 0               |
+| Universitaria    | 0|0       | 0          | 1               |
+
+]
+
+--
+
+`$$Y_{ingreso} = \beta_{0}+\beta_{1}X_{media}+\beta_{2}X_{tecnica}+\beta_{3}X_{universitaria}$$`
+
+
+---
+
+## Politómicas como predictores
+
+- Se ingresan **todas las categorías menos una** al modelo
+
+--
+
+- La categoría ausente en el modelo es la **categoría de referencia** para la intepretación
+
+--
+
+- El *coeficiente* de la variable dummy corresponde a su **diferencia** respecto de la categoría de referencia (en relación a la variable dependiente `\(Y\)`) 
+
+--
+
+- La decisión de qué categoría es la referencia obedece a la mejor **interpretación**
+
+
+---
+
+.pull-left[
+# Ejemplo
+]
+
+
+.pull-right[
+### Modelo de regresión lineal:
+
+.small[
+
+&lt;table cellspacing="0" align="center" style="border: none;"&gt;
+&lt;caption align="bottom" style="margin-top:0.3em;"&gt;Statistical models&lt;/caption&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;&lt;/b&gt;&lt;/th&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 1&lt;/b&gt;&lt;/th&gt;
+&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 2&lt;/b&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;(Intercept)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;4.59 (0.11)&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;3.36 (0.14)&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;m0_edad&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;-0.00 (0.00)&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.01 (0.00)&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;m29&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.00 (0.00)&lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.00 (0.00)&lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;sexoMujer&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;-0.13 (0.06)&lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;-0.07 (0.06)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;eduMedia&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.60 (0.08)&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;eduTecnica Superior&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;1.07 (0.10)&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;eduUniversitaria&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;1.37 (0.10)&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border-top: 1px solid black;"&gt;R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="border-top: 1px solid black;"&gt;0.01&lt;/td&gt;
+&lt;td style="border-top: 1px solid black;"&gt;0.08&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;Adj. R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.00&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;0.08&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;Num. obs.&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;2339&lt;/td&gt;
+&lt;td style="padding-right: 12px; border: none;"&gt;2337&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;RMSE&lt;/td&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;1.53&lt;/td&gt;
+&lt;td style="border-bottom: 2px solid black;"&gt;1.47&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="padding-right: 12px; border: none;" colspan="4"&gt;&lt;span style="font-size:0.8em"&gt;Elaboración propia en base a Elsoc&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+]
+]
+
+---
+class: inverse
+
+## Resumen predictores categóricos
+
+- Predictores categóricos se especifican como variables dicotoḿicas o dummy (valores 1/0, presencia/ausencia del atributo)
+
+--
+
+- La variable que no ingresa al modelo es la **categoría de referencia**
+
+--
+
+- El *coeficiente* de la variable dummy corresponde a su **diferencia** respecto de la categoría de referencia (en relación a la variable dependiente `\(Y\)`) 
+
+
+
+
+---
+class: roja, bottom, right, slideInRight
+
+
+# 3. Inferencia Estadística (1)
+
+---
+
+![:scale 60%](../images/cafe.png)
+
+---
+# Diferencias y diferencias **significativas**
+
+- en el ejemplo anterior estimamos que la diferencia en status subjetivo entre hombres y mujeres era 0.13, inferior para las mujeres.
+
+- es esta diferencia *relevante*?
+  - es algo que podemos extrapolar de nuestra muestra a la población?
+  
+  - ... o es algo que se deba simplemente al azar?
+
+
+---
+.pull-left[
+.medium[
+## Conceptos claves de inferencia
+- La **inferencia** en estadística se refiere a la relación que existe entre los resultados obtenidos basados en nuestra muestra y la población
+
+
+- **¿En qué medida podemos hacer inferencias desde nuestra muestra a la población?**
+
+- Un concepto central es el la probabilidad de **ERROR**
+]]
+
+
+.pull-right[
+.center[
+![:scale 70%](../images/inference1.png)
+]
+]
+
+---
+# Parámetros y estadísticos
+
+&lt;br&gt;
+
+|                     	| Población (parámetro)  	| Muestra (estadístico)  	|
+|---------------------	|------------------------	|------------------------	|
+| Promedio            	|       `\(\mu\)`           	|   `\(\bar{x}\)`           	|
+| Varianza            	|        `\(\sigma²\)`      	|  `\(s²\)`                  	|
+| Desviación estándar 	|        `\(\sigma\)`        	| `\(s\)`                    	|
+
+
+
+---
+# Inferencia y regresión
+
+- en regresión la inferencia se relaciona con la significación estadística de los coeficientes beta ( `\(\beta\)` )
+
+- ¿Es significativo un coeficiente de -.13?
+
+- La significación en este caso si el coeficiente es **estadísticamente** distinto de 0
+
+- La estadística hace referencia a la noción de **probabilidad**; por lo tanto se trata de establecer qué tan probable es que nuestro coeficiente sea distinto de 0.
+
+---
+# Bases de inferencia:
+
+- dispersión: varianza y desviación estandar
+
+- curva normal
+
+- error estándar
+
+---
+.pull-left-narrow[
+# Dispersión:
+## Varianza
+]
+
+.pull-right-wide[
+
+![:scale 100%](../02-bases/varianza2.png)
+]
+
+
+---
+# Medidas de Dispersión
+
+.pull-left[
+
+## Varianza
+&lt;br&gt;
+
+&lt;br&gt;
+ 
+&lt;br&gt;
+
+## Desviación estándar
+]
+
+.pull-right[
+
+`$$s^2=\frac{\Sigma(x-\bar{x})²}{N-1}$$`
+
+&lt;br&gt;
+
+`$$s=\sqrt \frac{\Sigma(x-\bar{x})²}{N-1}$$`]
+---
+## Desviación estándar y curva normal
+
+.center[![:scale 70%](../images/normal.png)]
+
+---
+# Desviación estándar y error estándar
+
+.pull-left[
+![:scale 63%](../images/inference1.png)
+
+]
+
+
+- más que el promedio de la variable en nuestra **muestra**, en inferencia nos interesa estimar en qué medida ese promedio da cuenta del promedio de la **población**
+
+- contamos con **una muestra**, pero sabemos que otras muestras podrían haber sido extraídas, probablemente con distintos resultados.
+
+---
+# Error estándar
+
+![](../images/se_1.png)
+---
+# Error estándar
+
+![](../images/se_2.png)
+---
+# Error estándar
+
+![](../images/se_3.png)
+---
+
+# Error estándar
+
+- ¿Cómo calculamos el error estándar a partir de **una** muestra?
+
+- Basados en el **teorema del límite central**, en muestras mayores a 30 la desviación estándar de los promedios (error estándar) equivale a:
+
+`$$\sigma_{\bar{X}}=SE(error estándar)=\frac{s}{\sqrt{N}}$$`
+
+
+---
+# Error, rangos y probabilidad
+
+
+.pull-left[
+.medium[
+
+- Nuestro promedio muestral `\(\bar{x}\)` posee una distribución normal con una desviación estandar = SE (error estándar)
+
+- Esto nos permite calcular una probabilidad de error basados en los valores de la curva normal
+
+]
+]
+.pull-right[
+.center[![:scale 85%](../images/normal.png)]]
+
+---
+# Error, rangos y probabilidad
+
+
+.pull-left[
+.medium[
+
+- Por ejemplo, `\(\bar{x}\)` +/- 2 SE abarca aproximadamente el 95% de los valores probables
+
+- De otra manera, puedo dar un rango de valores donde se encuentra el promedio(+- 2 SE), con un nivel de confianza de 95%
+
+- ... o con una probabilidad de error p&lt;0.05
+
+]
+]
+.pull-right[
+.center[![:scale 85%](../images/normal.png)]]
+
+---
+# Inferencia y significación estadística
+
+- ¿Con qué nivel de **probabilidad** estamos dispuest_s a aceptar que las diferencias son distintas de 0?
+
+- Por convención, una probabilidad de error (o valor *p*) de menos de 0.05 (1 de 20 veces)
+
+- Esto significa una probabilidad de acierto/nivel de confianza de 95% (2 SE)
+
+---
+## Volviendo a regresión
+
+- el error estándar del promedio nos sirve como referencia cálculo de significación estadística de los coeficientes de regresión
+
+- en regresión, las variables independientes poseen distintos niveles/valores, y queremos saber si las diferencias en Y de los valores de X son significativas = **estadísticamente distintas de 0**.
+
+- ej: diferencias de ingreso (Y) entre hombres y mujeres (X)
+
+---
+
+.center[![:scale 70%](../images/inferencia1.png)]
+
+
+---
+# Inferencia y prueba de hipótesis
+
+- La hipótesis nula (o `\(H_0\)` ) se refiere a que las diferencias son = 0
+
+- Por eso, queremos rechazar `\(H_0\)` y para eso tenemos que establecer un nivel de probabilidad aceptable (al menos p&lt;0.05)
+
+- En términos gráficos, si los intervalos de +/- 2 SE de los grupos no se tocan, entonces se puede rechazar `\(H_0\)` con un p&lt;0.05  
+
+---
+## Prueba de hipótesis en regresión
+
+Contrastamos la *hipótesis nula* (no hay asociación entre el predictor y la variable dependiente):
+
+`$$H_{0}: \beta_{j} = 0$$`
+
+En relación a la siguiente hipótesis alternativa:
+
+`$$H_{a}: \beta_{j} \neq 0$$`
+
+---
+# Prueba de hipótesis en regresión
+
+- Se basa en el cálculo de un **intervalo de confianza** para `\(\beta\)`, de (app) +/- 2 SE 
+
+- Si este intervalo no pasa por 0, entonces se rechaza `\(H_0\)`
+
+- Por lo tanto, la inferencia se basa en saber si el `\(\beta\)` es mayor que su error (el doble).
+
+---
+# Prueba de hipótesis en regresión
+
+
+- Ej, para `\(\beta\)`=10, error=6; 
+
+  - intervalo: 10+/-12=[22 / -2], pasa por 0 al 95% de confianza
+
+  - alternativamente: 10/6 &lt; 2 
+
+- La división de `\(\beta\)` por el error estándar es la **prueba t:**
+
+.center[![:scale 40%](../images/t1.png)]
+
+---
+class: inverse, middle, center
+
+
+# Más de inferencia y prueba t: próxima semana
+
+---
+class: inverse, middle
+
+# RESUMEN
+
+- Predictores categóricos, dummies y referencias
+
+- Inferencia estadística: de la muestra a la población
+
+- Error estándar
+
+- En regresión: `\(\beta_j/SE=t\)` , donde _t_ se asocia a un nivel de probabilidad que luego permite decidir sobre el rechazo a la hipótesis nula
+
+
+---
+class: front
+
+.pull-left[
+# Estadística Multivariada
+## Juan Carlos Castillo
+## Sociología FACSO - UChile
+## 1er Sem 2020
+## [multivariada.netlify.com](https://multivariada.netlify.com)
+]
+
+
+.pull-right[
+.right[
+&lt;br&gt;
+![:scale 80%](https://multivariada.netlify.com/img/hex_multiva.png)
+]
+
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://multinivel.netlify.com/docpres/xaringan_custom/macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

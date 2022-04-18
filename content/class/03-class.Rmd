@@ -1,8 +1,8 @@
 ---
-title: "Tables, Text, Labels, Notes"
-linktitle: "3: Work with Geoms"
-date: "2020-01-23"
-class_date: "2020-01-23"
+title: "Regresión simple 1"
+linktitle: "3: Regresión simple 1"
+date: "2021-01-01"
+class_date: "2021-01-01"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
@@ -12,19 +12,22 @@ output:
     toc: true
 menu:
   class:
-    parent: Class sessions
+    parent: Clases
     weight: 1
 type: docs
 weight: 1
-pdf: /slides/03_dataviz_s20_work_with_geoms.pdf
-thumb: /slides/03_dataviz_s20_work_with_geoms.png    
-editor_options: 
-  chunk_output_type: console
+pdf: /slides/01_dataviz_s20_looking_at_data.pdf
+thumb: /slides/01_dataviz_s20_looking_at_data.png
+editor_options:
+  chunk_output_type: console 
 ---
 
-## Slides
+## Documento presentación
 
-`r blogdown::shortcode("slides")`
+<iframe src=/slides/03-regsimple1/03_regsimple1.html height="550" width=100% allowfullscreen="true">
+</iframe>
 
 
+## Lecturas
 
+- [Moore: 2. Análisis de relaciones (97-131)](/docs/lecturas/moore_analisisderelaciones1.pdf)

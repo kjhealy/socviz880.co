@@ -1,0 +1,706 @@
+---
+title: "Práctica 1. Preparación de datos en R"
+subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
+linktitle: "Práctica 1: Preparación datos"
+date: "2022-03-18"
+class_date: "2022-03-18"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+    highlight: tango
+    number_sections: FALSE
+menu:
+  class:
+    parent: Practicas
+    weight: 1
+type: docs
+weight: 1
+editor_options:
+  chunk_output_type: console
+---
+
+<!-- BLOGDOWN-HEAD -->
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<script src="/rmarkdown-libs/clipboard/clipboard.min.js"></script>
+<link href="/rmarkdown-libs/primer-tooltips/build.css" rel="stylesheet" />
+<link href="/rmarkdown-libs/klippy/css/klippy.min.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/klippy/js/klippy.min.js"></script>
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<!-- /BLOGDOWN-HEAD -->
+
+<h2>Índice</h2>
+<div id="TOC">
+<ul>
+<li><a href="#presentación">Presentación</a>
+<ul>
+<li><a href="#objetivo-de-la-práctica">Objetivo de la práctica</a></li>
+<li><a href="#antecedentes-de-los-datos-a-utilizar">Antecedentes de los datos a utilizar</a></li>
+</ul></li>
+<li><a href="#preparación-de-datos-elsoc-2016">Preparación de datos ELSOC 2016</a>
+<ul>
+<li><a href="#librerias">1. Librerías principales (de R) a utilizar en el análisis</a></li>
+<li><a href="#cargar-base-de-datos">2. Cargar base de datos</a></li>
+<li><a href="#selección-de-variables-a-utilizar">3. Selección de variables a utilizar</a></li>
+<li><a href="#procesamiento-de-variables">4. Procesamiento de variables</a>
+<ul>
+<li><a href="#percepción-de-meritocracia">4.1 Percepción de meritocracia</a></li>
+<li><a href="#estatus-subjetivo">4.3. Estatus subjetivo</a></li>
+<li><a href="#sexo">4.4. Sexo</a></li>
+<li><a href="#edad">4.5 Edad</a></li>
+</ul></li>
+<li><a href="#generación-de-base-de-datos-procesada-para-el-análisis">5. Generación de base de datos procesada para el análisis</a></li>
+</ul></li>
+<li><a href="#archivo-de-código">Archivo de código</a></li>
+<li><a href="#reporte-de-progreso">Reporte de progreso</a>
+<ul>
+<li><a href="#informe-reporte-de-progreso">Informe reporte de progreso</a></li>
+</ul></li>
+<li><a href="#foro">Foro</a></li>
+</ul>
+</div>
+
+<script>
+  addClassKlippyTo("pre.r, pre.markdown");
+  addKlippy('right', 'bottom', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<div id="presentación" class="section level1">
+<h1>Presentación</h1>
+<div id="objetivo-de-la-práctica" class="section level2">
+<h2>Objetivo de la práctica</h2>
+<p>El desarrollo de esta guía tiene por objetivo revisar algunos procedimientos básicos de la preparación de datos con R, que son necesarios para luego poder aplicar los contenidos más específicos de este curso.</p>
+<p>Por temas de orden y reproducibilidad, en este curso vamos a separar en <strong>dos momentos</strong> el trabajo con datos, y dos archivos de código correspondientes:</p>
+<ul>
+<li><p><strong>Preparación</strong> corresponde a lo que se conoce generalmente como “limpieza”, es decir, realizar las modificaciones necesarias para poder efectuar los análisis. Estas modificaciones previas al análisis son necesarias ya que los datos originales con los que se va a trabajar en general no vienen perfectamente adaptados a los análisis que se quieren hacer. Por lo tanto, en cuanto a datos también hacemos la distinción entre datos originales y datos preparados (o procesados).</p></li>
+<li><p><strong>Análisis</strong>: se relaciona tanto con análisis descriptivos asociados a las preguntas de investigación y como también modelamiento de datos para contrastar hipótesis de investigación.</p></li>
+</ul>
+<div id="flujo" class="section level4">
+<h4>Los procesos de preparación y análisis vinculados a datos y resultados se presentan en el siguiente esquema:</h4>
+<p><img src="/images/produccion.png" /></p>
+<p>Tanto la preparación como el análisis (que son parte del concepto más general de procesamiento) quedan registrados cada en un <em>archivo de código</em>. Los detalles de este tipo de archivos se pueden revisar <a href="/class/#codigoR">aquí</a>. <span class="sidenote"><strong>Archivo de código R</strong>: archivo con extensión .R donde se almacena el código de análisis. Para generarlo desde RStudio: <em>File &gt; New File &gt; R Script</em> (o ctrl+shift+N), y para grabarlo <em>File &gt; Save (o ctrl+s)</em>, y darle nombre la primera vez (recordar: sin tilde ni ñ, y evitar espacios) </span></p>
+<p>El documento de <strong>código de preparación</strong> posee 5 partes, más una sección de identificación inicial:</p>
+<ol start="0" style="list-style-type: decimal">
+<li>Identificación y descripción general: Título, autor(es), fecha, información breve sobre el contenido del documento</li>
+<li>Librerías: cargar librerías a utilizar</li>
+<li>Datos: carga de datos</li>
+<li>Selección de variables a utilizar</li>
+<li>Procesamiento de variables: en este punto, por cada variable se realiza lo siguiente:
+<ol style="list-style-type: lower-alpha">
+<li>Descriptivo básico</li>
+<li>Recodificación: (datos perdidos y valores (en caso de ser necesario)</li>
+<li>Etiquetamiento: de variable y valores (en caso de ser necesario)</li>
+<li>Otros ajustes</li>
+</ol></li>
+<li>Generación de base de datos preparada para el análisis.</li>
+</ol>
+<p>Al final de esta práctica la idea es que cada un_ elabore y entienda su propio documento de preparación de datos.</p>
+<p>En el ejemplo vamos a procesar variables de meritocracia y estatus (objetivo y subjetivo) utilizando los datos de la encuesta <a href="https://coes.cl/encuesta-panel/">ELSOC</a> .</p>
+</div>
+</div>
+<div id="antecedentes-de-los-datos-a-utilizar" class="section level2">
+<h2>Antecedentes de los datos a utilizar</h2>
+<p>El Estudio Longitudinal Social de Chile (ELSOC) es una encuesta desarrollada para analizar longitudinalmente la evolución del conflicto y cohesión en la sociedad chilena.</p>
+<p>Uno de los módulos de <strong>ELSOC</strong> es “Desigualdad y Legitimidad”. Este módulo busca estudiar las percepciones y atribuciones asociadas a las desigualdades sociales. Se ve motivado por el interés de comprender cómo las personas perciben, legitiman y reproducen las diferencias de ingresos, estatus y poder presentes en el Chile contemporáneo.</p>
+<p>El presente ejercicio tiene por objetivo el procesar los datos para obtener las variables relevantes para el estudio de la <strong>Percepción de Meritocracia</strong>, entendida como el grado en que los individuos consideran que su sociedad cumple con los principios de una meritocracia, es decir, que funciona como un sistema que asigna recompensas en función del esfuerzo y las habilidades. Para ello, junto con variables de meritocracia, consideraremos también variables de estatus (educación y estatus subjetivo), y variables de caracterización sociodemográfica (sexo y edad).</p>
+</div>
+</div>
+<div id="preparación-de-datos-elsoc-2016" class="section level1">
+<h1>Preparación de datos ELSOC 2016</h1>
+<div id="librerias" class="section level2">
+<h2>1. Librerías principales (de R) a utilizar en el análisis</h2>
+<p>Como sabemos, la lógica de R es instalar librerías (solo 1 vez, con <code>install.packages("librería")</code>), y luego cargarlas cada vez que es necesario usarlas (con <code>library(librería)</code>). El problema de esto es que a veces no se sabe claramente qué librerías están instaladas y cuales no, lo que va a arrojar error al cargarlas. Y, como sucede en R, existe una librería para solucionar este problema que se llama <code>pacman</code> (package manager). Lo que hace <code>pacman</code> es cargar la librería, y si no está instalada, la instala y la carga:</p>
+<p>Para utilizar la primera vez (si es que no está instalada):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span></code></pre></div>
+<p>Y en adelante, las librerías se cargan así <span class="sidenote"> pacman::p_load(libreria1,libreria2,libreriaX) </span>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(dplyr, sjmisc, car, sjlabelled, stargazer)</span></code></pre></div>
+<p>Para esta sesión vamos a utilizar Las librerías que vamos a utilizar son:</p>
+<ul>
+<li><code>dplyr</code>: ajuste general de datos</li>
+<li><code>sjmisc</code>: descripción y exploración de base de datos</li>
+<li><code>car</code>: principalmente la función <code>recode</code> para recodificar/agrupar valores de variable</li>
+<li><code>stargazer</code>: para tabla descriptiva</li>
+</ul>
+</div>
+<div id="cargar-base-de-datos" class="section level2">
+<h2>2. Cargar base de datos</h2>
+<p><strong>Ajustar espacio de trabajo</strong></p>
+<p>Previo a la carga de nuestra base de datos, se recomienda ejecutar los siguientes comandos:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())       <span class="co"># borrar todos los objetos en el espacio de trabajo</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen=</span><span class="dv">999</span>) <span class="co"># valores sin notación científica</span></span></code></pre></div>
+<p>La función <code>rm(list=ls())</code> permite comenzar con un espacio de trabajo (environment) vacío y sin otros objetos. Así también, la función <code>options(scipen=999)</code> desactiva la notación científica, es decir, veremos los valores numéricos con todos sus decimales.</p>
+<p><strong>Datos</strong></p>
+<p>Las bases de datos se pueden cargar de un archivo local o en línea. Para este caso utilizaremos un archivo en línea que viene en formato RData: <strong>ELSOC_W01_v3.10.RData</strong>. <span class="sidenote"><strong>Abrir bases de datos en otros formatos</strong>: Los formatos mas comunes en que se almacenan las bases de datos son .dta (Stata) y .sav (Spss). Para abrir desde R utlilizamos la librería <code>haven</code> y sus funciones read_dta y read_sav según corresponda. Ej: <code>datos &lt;- read_dta("base_casen.dta")</code>. Recordar antes instalar/cargar la librería: <code>pacman::p_load(haven)</code> </span></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#cargamos la base de datos desde internet</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">&quot;https://multivariada.netlify.com/assignment/data/original/ELSOC_W01_v3.10.RData&quot;</span>))</span></code></pre></div>
+<p>La base de datos aparece como un objeto en nuestro espacio de trabajo, con el nombre original con la que fue guardada (elsoc_2016):</p>
+<p><img src="/images/basecargada.png" /></p>
+<p>Realizamos un chequeo básico de la lectura de datos: nombres de las variables y tamaño de la base en términos de casos y variables (en este ejemplo, 2927 casos y 383 variables).</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(elsoc_2016) <span class="co"># dimension de la base</span></span></code></pre></div>
+<pre><code>## [1] 2927  383</code></pre>
+<p>Y si se quiere revisar en formato de planilla de datos:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(elsoc_2016)</span></code></pre></div>
+</div>
+<div id="selección-de-variables-a-utilizar" class="section level2">
+<h2>3. Selección de variables a utilizar</h2>
+<p>Este paso consiste en crear un subset reducido de datos que contenga solo las variables de interés. Para ello:</p>
+<ol style="list-style-type: decimal">
+<li>Se identifica el nombre de las variables que registran la información de preguntas o items del instrumento: esto aparece en el libro de códigos y/o en el cuestionario, o también se puede hacer buscando en la base de datos mediante alguna palabra clave asociada a la pregunta. Por ejemplo, si queremos buscar variables asociadas a educación, utilizamos la función <code>find_var</code> (de <code>sjmisc</code>, librería que cargamos en el paso 1), que nos entrega nombre de la variable en columna var.name. Por ejemplo, si buscamos alguna variable asociada al concepto <em>esfuerzo</em>:</li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find_var</span>(<span class="at">data =</span> elsoc_2016,<span class="st">&quot;esfuerzo&quot;</span>)</span></code></pre></div>
+<pre><code>##   col.nr var.name
+## 1    158   c18_09
+##                                                            var.label
+## 1 Grado de acuerdo: Las personas son recompensadas por sus esfuerzos</code></pre>
+<p>Nos informa que esta variable es la <code>c18_09</code>.</p>
+<p>Mediante la función <code>select</code> de <code>dplyr</code>, seleccionamos cada una de nuestras variables de interés y creamos una nueva base con el nombre <code>proc_elsoc</code>, donde “proc” hace referencia a base procesada:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc <span class="ot">&lt;-</span> elsoc_2016 <span class="sc">%&gt;%</span> <span class="fu">select</span>(c18_09, <span class="co"># percepción meritocracia esfuerzo</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                          c18_10, <span class="co"># percepción meritocracia talento</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                          d01_01, <span class="co"># estatus social subjetivo</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                          m01,    <span class="co"># nivel educacional</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                          m0_sexo,<span class="co"># sexo</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                          m0_edad)<span class="co"># edad</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Comprobar</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(proc_elsoc)</span></code></pre></div>
+<pre><code>## [1] &quot;c18_09&quot;  &quot;c18_10&quot;  &quot;d01_01&quot;  &quot;m01&quot;     &quot;m0_sexo&quot; &quot;m0_edad&quot;</code></pre>
+<p>Mediante el comando <code>get_label</code> obtenemos el atributo label de las variables.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sjlabelled<span class="sc">::</span><span class="fu">get_label</span>(proc_elsoc)</span></code></pre></div>
+<pre><code>##                                                                   c18_09 
+##     &quot;Grado de acuerdo: Las personas son recompensadas por sus esfuerzos&quot; 
+##                                                                   c18_10 
+##    &quot;Grado de acuerdo: Las personas son recompensada por su inteligencia&quot; 
+##                                                                   d01_01 
+## &quot;Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena&quot; 
+##                                                                      m01 
+##                                                      &quot;Nivel educacional&quot; 
+##                                                                  m0_sexo 
+##                                                  &quot;Sexo del entrevistado&quot; 
+##                                                                  m0_edad 
+##                                                  &quot;Edad del entrevistado&quot;</code></pre>
+<p>Podemos ver que son muy largas, por lo tanto, es necesario cambiarlas por etiquetas más cortas.</p>
+</div>
+<div id="procesamiento-de-variables" class="section level2">
+<h2>4. Procesamiento de variables</h2>
+<p>Para el procesamiento de cada variable se seguirá el siguiente flujo de trabajo:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Descriptivo general</li>
+<li>Recodificación: de casos perdidos y otros valores (en caso necesario)</li>
+<li>Etiquetado: cambio de nombres de variables y valores (en caso necesario)</li>
+<li>Otros ajustes</li>
+</ol>
+<p>Y se recomienda también un descriptivo final para revisar que el procesamiento de cada variable está ok.</p>
+<div id="percepción-de-meritocracia" class="section level3">
+<h3>4.1 Percepción de meritocracia</h3>
+<p>En ELSOC, las variables que permiten medir la percepción de las personas con respecto al funcionamiento de la meritocracia en Chile son las siguientes:</p>
+<ul>
+<li>[<code>c18_09</code>]: “Grado de acuerdo: Las personas son recompensadas por sus esfuerzos” (1 = Totalmente en desacuerdo; 5 = Totalmente de acuerdo)</li>
+<li>[<code>c18_10</code>]: “Grado de acuerdo: Las personas son recompensadas por su inteligencia” (1 = Totalmente en desacuerdo; 5 = Totalmente de acuerdo)</li>
+</ul>
+<p><em>a. Descriptivo</em></p>
+<p>Para los descriptivos se utilizará la función <code>frq</code>, de la librería <code>sjmisc</code>:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_elsoc<span class="sc">$</span>c18_09)</span></code></pre></div>
+<pre><code>## 
+## Grado de acuerdo: Las personas son recompensadas por sus esfuerzos (x) &lt;numeric&gt;
+## # total N=2927  valid N=2927  mean=-3.06  sd=71.66
+## 
+##   val                          label  frq raw.prc valid.prc cum.prc
+##  -999          No Responde (no leer)    4    0.14      0.14    0.14
+##  -888              No Sabe (no leer)   14    0.48      0.48    0.61
+##     1       Totalmente en desacuerdo  357   12.20     12.20   12.81
+##     2                  En desacuerdo 1331   45.47     45.47   58.28
+##     3 Ni de acuerdo ni en desacuerdo  497   16.98     16.98   75.26
+##     4                     De acuerdo  646   22.07     22.07   97.34
+##     5          Totalmente de acuerdo   78    2.66      2.66  100.00
+##    NA                           &lt;NA&gt;    0    0.00        NA      NA</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_elsoc<span class="sc">$</span>c18_10)</span></code></pre></div>
+<pre><code>## 
+## Grado de acuerdo: Las personas son recompensada por su inteligencia (x) &lt;numeric&gt;
+## # total N=2927  valid N=2927  mean=-3.42  sd=74.36
+## 
+##   val                          label  frq raw.prc valid.prc cum.prc
+##  -999          No Responde (no leer)    2    0.07      0.07    0.07
+##  -888              No Sabe (no leer)   18    0.61      0.61    0.68
+##     1       Totalmente en desacuerdo  288    9.84      9.84   10.52
+##     2                  En desacuerdo 1163   39.73     39.73   50.26
+##     3 Ni de acuerdo ni en desacuerdo  559   19.10     19.10   69.35
+##     4                     De acuerdo  814   27.81     27.81   97.16
+##     5          Totalmente de acuerdo   83    2.84      2.84  100.00
+##    NA                           &lt;NA&gt;    0    0.00        NA      NA</code></pre>
+<p>En ambas variables vemos valores asociados a la opción “No responde” (-999) y “No sabe” (-888), que corresponde definirlos como casos perdidos (en el caso de R, como casos NA). El resto de los valores y etiquetas se encuentran en orden, así que en la recodificiación solo nos haremos cargo de los casos perdidos.</p>
+<p><em>b. Recodificación</em></p>
+<p>Para recodificar utilizamos la función <code>recode</code>, de la librería <code>car</code></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc<span class="sc">$</span>c18_09 <span class="ot">&lt;-</span> <span class="fu">recode</span>(proc_elsoc<span class="sc">$</span>c18_09, <span class="st">&quot;c(-888,-999)=NA&quot;</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>proc_elsoc<span class="sc">$</span>c18_10 <span class="ot">&lt;-</span> <span class="fu">recode</span>(proc_elsoc<span class="sc">$</span>c18_10, <span class="st">&quot;c(-888,-999)=NA&quot;</span>)</span></code></pre></div>
+<p><em>c - Etiquetado</em></p>
+<p>Vamos a dar un nombre más sustantivo a las variables con la función <code>rename</code>, de la librería <code>dplyr</code>:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc <span class="ot">&lt;-</span> proc_elsoc <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">&quot;mesfuerzo&quot;</span><span class="ot">=</span>c18_09, <span class="co"># meritocracia esfuerzo</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;mtalento&quot;</span> <span class="ot">=</span>c18_10) <span class="co"># meritocracia talento</span></span></code></pre></div>
+<p>Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_label</span>(proc_elsoc<span class="sc">$</span>mesfuerzo)</span></code></pre></div>
+<pre><code>## [1] &quot;Grado de acuerdo: Las personas son recompensadas por sus esfuerzos&quot;</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc<span class="sc">$</span>mesfuerzo <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> proc_elsoc<span class="sc">$</span>mesfuerzo,<span class="at">label =</span> <span class="st">&quot;Recompensa: esfuerzo&quot;</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">get_label</span>(proc_elsoc<span class="sc">$</span>mtalento)</span></code></pre></div>
+<pre><code>## [1] &quot;Grado de acuerdo: Las personas son recompensada por su inteligencia&quot;</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc<span class="sc">$</span>mtalento  <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> proc_elsoc<span class="sc">$</span>mtalento, <span class="at">label =</span> <span class="st">&quot;Recompensa: talento&quot;</span>)</span></code></pre></div>
+<p><em>d. Otros ajustes</em></p>
+<p>Para este caso vamos a crear una variable que sea el promedio de los dos items de meritocracia.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc<span class="sc">$</span>pmerit <span class="ot">&lt;-</span> (proc_elsoc<span class="sc">$</span>mesfuerzo<span class="sc">+</span>proc_elsoc<span class="sc">$</span>mtalento)<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(proc_elsoc<span class="sc">$</span>pmerit)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##   1.000   2.000   2.500   2.654   3.500   5.000      29</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_label</span>(proc_elsoc<span class="sc">$</span>pmerit)</span></code></pre></div>
+<pre><code>## [1] &quot;Recompensa: esfuerzo&quot;</code></pre>
+<p>Vemos que todavía tiene la etiqueta de la variable “Recompensa: esfuerzo”</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc<span class="sc">$</span>pmerit  <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> proc_elsoc<span class="sc">$</span>pmerit, <span class="at">label =</span> <span class="st">&quot;Meritocracia promedio&quot;</span>)</span></code></pre></div>
+<p><em>Revisión final</em></p>
+<p>Nuevamente un descriptivo de cada variable para confirmar que el procesamiento está ok:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_elsoc<span class="sc">$</span>mesfuerzo)</span></code></pre></div>
+<pre><code>## 
+## Recompensa: esfuerzo (x) &lt;numeric&gt;
+## # total N=2927  valid N=2909  mean=2.57  sd=1.05
+## 
+##   val                          label  frq raw.prc valid.prc cum.prc
+##  -999          No Responde (no leer)    0    0.00      0.00    0.00
+##  -888              No Sabe (no leer)    0    0.00      0.00    0.00
+##     1       Totalmente en desacuerdo  357   12.20     12.27   12.27
+##     2                  En desacuerdo 1331   45.47     45.75   58.03
+##     3 Ni de acuerdo ni en desacuerdo  497   16.98     17.08   75.11
+##     4                     De acuerdo  646   22.07     22.21   97.32
+##     5          Totalmente de acuerdo   78    2.66      2.68  100.00
+##    NA                           &lt;NA&gt;   18    0.61        NA      NA</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_elsoc<span class="sc">$</span>mtalento)</span></code></pre></div>
+<pre><code>## 
+## Recompensa: talento (x) &lt;numeric&gt;
+## # total N=2927  valid N=2907  mean=2.74  sd=1.06
+## 
+##   val                          label  frq raw.prc valid.prc cum.prc
+##  -999          No Responde (no leer)    0    0.00      0.00    0.00
+##  -888              No Sabe (no leer)    0    0.00      0.00    0.00
+##     1       Totalmente en desacuerdo  288    9.84      9.91    9.91
+##     2                  En desacuerdo 1163   39.73     40.01   49.91
+##     3 Ni de acuerdo ni en desacuerdo  559   19.10     19.23   69.14
+##     4                     De acuerdo  814   27.81     28.00   97.14
+##     5          Totalmente de acuerdo   83    2.84      2.86  100.00
+##    NA                           &lt;NA&gt;   20    0.68        NA      NA</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_elsoc<span class="sc">$</span>pmerit)</span></code></pre></div>
+<pre><code>## 
+## Meritocracia promedio (x) &lt;numeric&gt;
+## # total N=2927  valid N=2898  mean=2.65  sd=0.97
+## 
+##     val                          label  frq raw.prc valid.prc cum.prc
+##  -999.0          No Responde (no leer)    0    0.00      0.00    0.00
+##  -888.0              No Sabe (no leer)    0    0.00      0.00    0.00
+##     1.0       Totalmente en desacuerdo  243    8.30      8.39    8.39
+##     1.5                            1.5   79    2.70      2.73   11.11
+##     2.0                  En desacuerdo 1041   35.57     35.92   47.03
+##     2.5                            2.5  222    7.58      7.66   54.69
+##     3.0 Ni de acuerdo ni en desacuerdo  536   18.31     18.50   73.19
+##     3.5                            3.5  169    5.77      5.83   79.02
+##     4.0                     De acuerdo  528   18.04     18.22   97.24
+##     4.5                            4.5   38    1.30      1.31   98.55
+##     5.0          Totalmente de acuerdo   42    1.43      1.45  100.00
+##      NA                           &lt;NA&gt;   29    0.99        NA      NA</code></pre>
+<div class="alert alert-info">
+<p><strong>Sobre generación de índices</strong>: en este caso aplicamos un promedio simple de dos items, pero hay ciertas consideraciones adicionales a tener cuando existen casos perdidos y también cuando son más de 2 items. Para esto, revisar la guía adicional sobre <a href="/assignment/11-code/">índices y transformación de variables</a></p>
+</div>
+<div id="educación" class="section level4">
+<h4>4.2. Educación</h4>
+<ul>
+<li>[<code>m01</code>] = ¿Cuál es su nivel educacional? Indique el tipo de estudio actual (si estudia actualmente) o el último tipo aprobado (si no estudia actualmente).</li>
+</ul>
+<p><em>a. Descriptivo</em></p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_elsoc<span class="sc">$</span>m01)</span></code></pre></div>
+<pre><code>## 
+## Nivel educacional (x) &lt;numeric&gt;
+## # total N=2927  valid N=2927  mean=4.57  sd=26.34
+## 
+##   val                                       label frq raw.prc valid.prc cum.prc
+##  -999                       No Responde (no leer)   2    0.07      0.07    0.07
+##  -888                           No Sabe (no leer)   0    0.00      0.00    0.07
+##     1                                Sin estudios  37    1.26      1.26    1.33
+##     2  Educacion Basica o Preparatoria incompleta 322   11.00     11.00   12.33
+##     3    Educacion Basica o Preparatoria completa 297   10.15     10.15   22.48
+##     4    Educacion Media o Humanidades incompleta 394   13.46     13.46   35.94
+##     5      Educacion Media o Humanidades completa 857   29.28     29.28   65.22
+##     6                 Tecnica Superior incompleta 102    3.48      3.48   68.71
+##     7                   Tecnica Superior completa 381   13.02     13.02   81.72
+##     8                    Universitaria incompleta 186    6.35      6.35   88.08
+##     9                      Universitaria completa 303   10.35     10.35   98.43
+##    10 Estudios de posgrado (magister o doctorado)  46    1.57      1.57  100.00
+##    NA                                        &lt;NA&gt;   0    0.00        NA      NA</code></pre>
+<p><em>b. Recodificación</em></p>
+<ul>
+<li>Datos perdidos:</li>
+</ul>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc<span class="sc">$</span>m01 <span class="ot">&lt;-</span> <span class="fu">recode</span>(proc_elsoc<span class="sc">$</span>m01, <span class="st">&quot;c(-888,-999)=NA&quot;</span>)</span></code></pre></div>
+<ul>
+<li>Valores</li>
+</ul>
+<p><strong>Recodificación de acuerdo a las categorías <a href="http://uis.unesco.org/sites/default/files/documents/isced-2011-sp.pdf">CINE 2011 (UNESCO)</a></strong></p>
+<pre><code>1.  Sin estudios                                = [CINE 0   ] =  1
+2.  Educacion Basica o Preparatoria incompleta  = [CINE 0   ] =  1
+3.  Educacion Basica o Preparatoria completa    = [CINE 1,2 ] =  2
+4.  Educacion Media o Humanidades incompleta    = [CINE 3   ] =  3
+5.  Educacion Media o Humanidades completa      = [CINE 3   ] =  3
+6.  Tecnico Superior incompleta                 = [CINE 5   ] =  4
+7.  Tecnico Superior completa                   = [CINE 5   ] =  4
+8.  Universitaria incompleta                    = [CINE 6   ] =  5
+9.  Universitaria completa                      = [CINE 6   ] =  6
+10. Estudios de posgrado (magister o doctorado) = [CINE 7, 8] =  6</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recodificacion usando funcion &#39;recode&#39; de la libreria car</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>proc_elsoc<span class="sc">$</span>m01 <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(proc_elsoc<span class="sc">$</span>m01, <span class="st">&quot;c(1,2)=1; c(3)=2;c(4,5)=3;c(6,7)=4;c(8,9,10)=5&quot;</span>)</span></code></pre></div>
+<p>Comprobar con un nuevo descriptivo:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_elsoc<span class="sc">$</span>m01)</span></code></pre></div>
+<pre><code>## 
+## Nivel educacional (x) &lt;numeric&gt;
+## # total N=2927  valid N=2925  mean=3.18  sd=1.21
+## 
+##   val                                       label  frq raw.prc valid.prc
+##  -999                       No Responde (no leer)    0    0.00      0.00
+##  -888                           No Sabe (no leer)    0    0.00      0.00
+##     1                                Sin estudios  359   12.27     12.27
+##     2  Educacion Basica o Preparatoria incompleta  297   10.15     10.15
+##     3    Educacion Basica o Preparatoria completa 1251   42.74     42.77
+##     4    Educacion Media o Humanidades incompleta  483   16.50     16.51
+##     5      Educacion Media o Humanidades completa  535   18.28     18.29
+##     6                 Tecnica Superior incompleta    0    0.00      0.00
+##     7                   Tecnica Superior completa    0    0.00      0.00
+##     8                    Universitaria incompleta    0    0.00      0.00
+##     9                      Universitaria completa    0    0.00      0.00
+##    10 Estudios de posgrado (magister o doctorado)    0    0.00      0.00
+##    NA                                        &lt;NA&gt;    2    0.07        NA
+##  cum.prc
+##     0.00
+##     0.00
+##    12.27
+##    22.43
+##    65.20
+##    81.71
+##   100.00
+##   100.00
+##   100.00
+##   100.00
+##   100.00
+##   100.00
+##       NA</code></pre>
+<p>Se observa que los valores coinciden con la recodificación (los casos se acumulan entre las categorías 1 y 5), pero las etiquetas ahora no coinciden; se soluciona en el siguiente paso.</p>
+<p><em>c. Etiquetado</em></p>
+<p>Para re-etiquetar valores usamos la función <code>set_labels</code>, de la librería <code>sjlabelled</code></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc<span class="sc">$</span>m01 <span class="ot">&lt;-</span> <span class="fu">set_labels</span>(proc_elsoc<span class="sc">$</span>m01,</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">labels=</span><span class="fu">c</span>( <span class="st">&quot;Primaria incompleta menos&quot;</span><span class="ot">=</span><span class="dv">1</span>,</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;Primaria y secundaria baja&quot;</span><span class="ot">=</span><span class="dv">2</span>,</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;Secundaria alta&quot;</span><span class="ot">=</span><span class="dv">3</span>,</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;Terciaria ciclo corto&quot;</span><span class="ot">=</span><span class="dv">4</span>,</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;Terciaria y Postgrado&quot;</span><span class="ot">=</span><span class="dv">5</span>))</span></code></pre></div>
+<p>Luego renombramos la variable con un nombre más sustantivo</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc <span class="ot">&lt;-</span> <span class="fu">rename</span>(proc_elsoc,<span class="st">&quot;edcine&quot;</span><span class="ot">=</span>m01)</span></code></pre></div>
+<p>Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_label</span>(proc_elsoc<span class="sc">$</span>edcine)</span></code></pre></div>
+<pre><code>## [1] &quot;Nivel educacional&quot;</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc<span class="sc">$</span>edcine <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> proc_elsoc<span class="sc">$</span>edcine,<span class="at">label =</span> <span class="st">&quot;Educación&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="estatus-subjetivo" class="section level3">
+<h3>4.3. Estatus subjetivo</h3>
+<p><em>a. Descriptivo</em></p>
+<ul>
+<li>[<code>d01_01</code>]: “Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena” (0 = el nivel mas bajo; 10 = el nivel mas alto)</li>
+</ul>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_elsoc<span class="sc">$</span>d01_01)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(proc_elsoc<span class="sc">$</span>d01_01)</span></code></pre></div>
+<pre><code>## 
+## Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena (x) &lt;numeric&gt;
+## # total N=2927  valid N=2927  mean=0.63  sd=57.67
+## 
+##   val                 label frq raw.prc valid.prc cum.prc
+##  -999 No Responde (no leer)   1    0.03      0.03    0.03
+##  -888     No Sabe (no leer)  11    0.38      0.38    0.41
+##     0   0 El nivel mas bajo  44    1.50      1.50    1.91
+##     1                     1  84    2.87      2.87    4.78
+##     2                     2 207    7.07      7.07   11.86
+##     3                     3 439   15.00     15.00   26.85
+##     4                     4 677   23.13     23.13   49.98
+##     5                     5 975   33.31     33.31   83.29
+##     6                     6 310   10.59     10.59   93.88
+##     7                     7 116    3.96      3.96   97.85
+##     8                     8  37    1.26      1.26   99.11
+##     9                     9   4    0.14      0.14   99.25
+##    10  10 El nivel mas alto  22    0.75      0.75  100.00
+##    NA                  &lt;NA&gt;   0    0.00        NA      NA
+## 
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -999.0000    3.0000    5.0000    0.6338    5.0000   10.0000</code></pre>
+<p><em>b. Recodificación</em></p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc<span class="sc">$</span>d01_01 <span class="ot">&lt;-</span> <span class="fu">recode</span>(proc_elsoc<span class="sc">$</span>d01_01, <span class="st">&quot;c(-888,-999)=NA&quot;</span>)</span></code></pre></div>
+<p><em>c. Etiquetado</em></p>
+<ul>
+<li>Cambio de nombre de variable a etiqueta más sustantiva ess (estatus social subjetivo)</li>
+</ul>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc <span class="ot">&lt;-</span> proc_elsoc <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">&quot;ess&quot;</span><span class="ot">=</span>d01_01) <span class="co"># estatus social subjetivo</span></span></code></pre></div>
+<p>Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_label</span>(proc_elsoc<span class="sc">$</span>ess)</span></code></pre></div>
+<pre><code>## [1] &quot;Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena&quot;</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc<span class="sc">$</span>ess <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> proc_elsoc<span class="sc">$</span>ess,<span class="at">label =</span> <span class="st">&quot;Estatus Social Subjetivo&quot;</span>)</span></code></pre></div>
+</div>
+<div id="sexo" class="section level3">
+<h3>4.4. Sexo</h3>
+<ul>
+<li>[<code>m0_sexo</code>] = Indicar el sexo del entrevistado.</li>
+</ul>
+<p><em>a. Descriptivo</em></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_elsoc<span class="sc">$</span>m0_sexo)</span></code></pre></div>
+<pre><code>## 
+## Sexo del entrevistado (x) &lt;numeric&gt;
+## # total N=2927  valid N=2927  mean=1.60  sd=0.49
+## 
+##  val  label  frq raw.prc valid.prc cum.prc
+##    1 Hombre 1163   39.73     39.73   39.73
+##    2  Mujer 1764   60.27     60.27  100.00
+##   NA   &lt;NA&gt;    0    0.00        NA      NA</code></pre>
+<p><em>b. Recodificación</em></p>
+<p>En general esta variable no tiene problemas de casos perdidos ni de etiquetas, pero de todas maneras vamos a hacer un cambio de acuerdo a convenciones en análisis de datos, donde por lo general hombres tienen valor 0 y mujeres 1:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc<span class="sc">$</span>m0_sexo <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(proc_elsoc<span class="sc">$</span>m0_sexo, <span class="st">&quot;1=0;2=1&quot;</span>)</span></code></pre></div>
+<p><em>c. Etiquetado</em></p>
+<p>Y ahora cambiamos las etiquetas de acuerdo a la recodificación anterior:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc<span class="sc">$</span>m0_sexo <span class="ot">&lt;-</span> <span class="fu">set_labels</span>(proc_elsoc<span class="sc">$</span>m0_sexo,</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">labels=</span><span class="fu">c</span>( <span class="st">&quot;Hombre&quot;</span><span class="ot">=</span><span class="dv">0</span>,</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;Mujer&quot;</span><span class="ot">=</span><span class="dv">1</span>))</span></code></pre></div>
+<p>También el nombre de la variable a algo más simple:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc <span class="ot">&lt;-</span> <span class="fu">rename</span>(proc_elsoc,<span class="st">&quot;sexo&quot;</span><span class="ot">=</span>m0_sexo)</span></code></pre></div>
+<p>Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_label</span>(proc_elsoc<span class="sc">$</span>sexo)</span></code></pre></div>
+<pre><code>## [1] &quot;Sexo del entrevistado&quot;</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc<span class="sc">$</span>sexo <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> proc_elsoc<span class="sc">$</span>sexo,<span class="at">label =</span> <span class="st">&quot;Sexo&quot;</span>)</span></code></pre></div>
+<p>Revisar con un nuevo descriptivo:</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_elsoc<span class="sc">$</span>sexo)</span></code></pre></div>
+<pre><code>## 
+## Sexo (x) &lt;numeric&gt;
+## # total N=2927  valid N=2927  mean=0.60  sd=0.49
+## 
+##  val  label  frq raw.prc valid.prc cum.prc
+##    0 Hombre 1163   39.73     39.73   39.73
+##    1  Mujer 1764   60.27     60.27  100.00
+##   NA   &lt;NA&gt;    0    0.00        NA      NA</code></pre>
+</div>
+<div id="edad" class="section level3">
+<h3>4.5 Edad</h3>
+<ul>
+<li>[<code>m0_edad</code>] = ¿Cuáles su edad? (años cumplidos).</li>
+</ul>
+<p><em>a. Descriptivo</em></p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_elsoc<span class="sc">$</span>m0_edad)</span></code></pre></div>
+<pre><code>## 
+## Edad del entrevistado (x) &lt;numeric&gt;
+## # total N=2927  valid N=2927  mean=46.09  sd=15.29
+## 
+##   val                 label frq raw.prc valid.prc cum.prc
+##  -999 No Responde (no leer)   0    0.00      0.00    0.00
+##  -888     No Sabe (no leer)   0    0.00      0.00    0.00
+##    18                    18  19    0.65      0.65    0.65
+##    19                    19  32    1.09      1.09    1.74
+##    20                    20  26    0.89      0.89    2.63
+##    21                    21  39    1.33      1.33    3.96
+##    22                    22  49    1.67      1.67    5.64
+##    23                    23  44    1.50      1.50    7.14
+##    24                    24  51    1.74      1.74    8.88
+##    25                    25  46    1.57      1.57   10.45
+##    26                    26  44    1.50      1.50   11.96
+##    27                    27  51    1.74      1.74   13.70
+##    28                    28  58    1.98      1.98   15.68
+##    29                    29  47    1.61      1.61   17.29
+##    30                    30  66    2.25      2.25   19.54
+##    31                    31  48    1.64      1.64   21.18
+##    32                    32  64    2.19      2.19   23.37
+##    33                    33  55    1.88      1.88   25.25
+##    34                    34  55    1.88      1.88   27.13
+##    35                    35  67    2.29      2.29   29.42
+##    36                    36  70    2.39      2.39   31.81
+##    37                    37  46    1.57      1.57   33.38
+##    38                    38  57    1.95      1.95   35.33
+##    39                    39  37    1.26      1.26   36.59
+##    40                    40  57    1.95      1.95   38.54
+##    41                    41  58    1.98      1.98   40.52
+##    42                    42  67    2.29      2.29   42.81
+##    43                    43  54    1.84      1.84   44.65
+##    44                    44  45    1.54      1.54   46.19
+##    45                    45  53    1.81      1.81   48.00
+##    46                    46  77    2.63      2.63   50.63
+##    47                    47  56    1.91      1.91   52.55
+##    48                    48  72    2.46      2.46   55.01
+##    49                    49  53    1.81      1.81   56.82
+##    50                    50  69    2.36      2.36   59.17
+##    51                    51  55    1.88      1.88   61.05
+##    52                    52  69    2.36      2.36   63.41
+##    53                    53  57    1.95      1.95   65.36
+##    54                    54  76    2.60      2.60   67.95
+##    55                    55  72    2.46      2.46   70.41
+##    56                    56  76    2.60      2.60   73.01
+##    57                    57  53    1.81      1.81   74.82
+##    58                    58  57    1.95      1.95   76.77
+##    59                    59  44    1.50      1.50   78.27
+##    60                    60  57    1.95      1.95   80.22
+##    61                    61  33    1.13      1.13   81.35
+##    62                    62  33    1.13      1.13   82.47
+##    63                    63  49    1.67      1.67   84.15
+##    64                    64  39    1.33      1.33   85.48
+##    65                    65  60    2.05      2.05   87.53
+##    66                    66  39    1.33      1.33   88.86
+##    67                    67  39    1.33      1.33   90.19
+##    68                    68  35    1.20      1.20   91.39
+##    69                    69  32    1.09      1.09   92.48
+##    70                    70  37    1.26      1.26   93.75
+##    71                    71  29    0.99      0.99   94.74
+##    72                    72  28    0.96      0.96   95.70
+##    73                    73  42    1.43      1.43   97.13
+##    74                    74  39    1.33      1.33   98.46
+##    75                    75  37    1.26      1.26   99.73
+##    77                    77   1    0.03      0.03   99.76
+##    78                    78   3    0.10      0.10   99.86
+##    80                    80   1    0.03      0.03   99.90
+##    81                    81   1    0.03      0.03   99.93
+##    88                    88   2    0.07      0.07  100.00
+##    NA                  &lt;NA&gt;   0    0.00        NA      NA</code></pre>
+<p><em>b. Recodificación</em>: no es necesario en este caso</p>
+<p><em>c. Etiquetado</em></p>
+<p>Cambio del nombre de la variable a algo más simple:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc <span class="ot">&lt;-</span> <span class="fu">rename</span>(proc_elsoc,<span class="st">&quot;edad&quot;</span><span class="ot">=</span>m0_edad)</span></code></pre></div>
+<p>Además de cambiar el nombre, queremos cambiar la etiqueta de la variable.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_label</span>(proc_elsoc<span class="sc">$</span>edad)</span></code></pre></div>
+<pre><code>## [1] &quot;Edad del entrevistado&quot;</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc<span class="sc">$</span>edad <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> proc_elsoc<span class="sc">$</span>edad,<span class="at">label =</span> <span class="st">&quot;Edad&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="generación-de-base-de-datos-procesada-para-el-análisis" class="section level2">
+<h2>5. Generación de base de datos procesada para el análisis</h2>
+<p>Antes de guardar la base procesada, revisamos nuevamente todas las variables con una tabla descriptiva general mediante la función <code>stargazer</code> (de la librería homónima)</p>
+<p>Primero vamos a reformatear el objeto proc_elsoc como base de datos (as.data.frame), paso necesario para que sea reconocido como tal por <code>stargazer</code></p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>proc_elsoc <span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(proc_elsoc)</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(proc_elsoc, <span class="at">type=</span><span class="st">&quot;text&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## ==============================================================
+## Statistic   N    Mean  St. Dev.  Min  Pctl(25) Pctl(75)  Max  
+## --------------------------------------------------------------
+## mesfuerzo 2,909 2.573   1.047   1.000  2.000    3.000   5.000 
+## mtalento  2,907 2.739   1.060   1.000  2.000    4.000   5.000 
+## ess       2,915 4.330   1.567   0.000  3.000    5.000   10.000
+## edcine    2,925 3.184   1.207   1.000  3.000    4.000   5.000 
+## sexo      2,927 0.603   0.489     0      0        1       1   
+## edad      2,927 46.091  15.287   18      33       58      88  
+## pmerit    2,898 2.654   0.969   1.000  2.000    3.500   5.000 
+## --------------------------------------------------------------</code></pre>
+<div class="alert alert-info">
+<p>Si se desea modificar las columnas que aparecen en la tabla se puede ocupar la opción <code>summary.stat</code>, donde se pueden especificar:</p>
+<ul>
+<li>“max” maximum</li>
+<li>“mean” mean</li>
+<li>“median” median</li>
+<li>“min” minimum</li>
+<li>“n” number of observations</li>
+<li>“p25” 25th percentile</li>
+<li>“p75” 75th percentile</li>
+<li>“sd” standard deviation</li>
+</ul>
+<p>Por ejemplo, si quiero una tabla solo con promedio, n, sd y p75: <code>stargazer(data, type="text", summary.stat = c("mean", "n", "sd", "p75"))</code></p>
+</div>
+<ul>
+<li>Guardar base de datos procesada: en carpeta local <span class="sidenote">La ruta hacia su carpeta local si está trabajando en windows debería ser algo como “C:/Users/Lenovo/Clases/y aquí nombre del archivo a grabar</span></li>
+</ul>
+<p>El comando para guardar es <code>save</code>:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(proc_elsoc,<span class="at">file =</span> <span class="st">&quot;[ruta hacia carpeta local en su computador]/ELSOC_ess_merit2016.RData&quot;</span>)</span></code></pre></div>
+<p>En este caso, seguimos una estructura de carpetas de datos, separando en una carpeta los datos originales, y en otra (proc) los datos procesados:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(proc_elsoc,<span class="at">file =</span> <span class="st">&quot;content/assignment/data/proc/ELSOC_ess_merit2016.RData&quot;</span>)</span></code></pre></div>
+<div class="alert alert-info">
+<p><strong>De rutas, estructura de carpetas y otros </strong></p>
+<ul>
+<li><p><strong>Encontrando la ruta a carpeta local</strong>: lo más fácil es crear la carpeta donde se desean guardar los datos desde el administrador de archivos del computador. Luego, posicionarse con el cursor sobre la carpeta y seleccionar “Propiedades”, en la ventana emergente debería aparecer la ruta hacia la carpeta en “Ubicación”. Copiar esa ruta y agregar al final el nombre de la carpeta (separada por slash)</p></li>
+<li><p><strong>Sobre los “slashes” (<code>\</code> o <code>/</code>)</strong>: en la ruta las carpetas y el archivo final aparecen separados por slashes, que según el sistema utilizado pueden ser <em>slash</em> (<code>/</code>) o <em>backslash</em> (<code>\</code>). En R por defecto se usa <em>slash</em>, pero en Windows <em>backslash</em>, por lo que si se usa Windows hay que reemplazarlos por <em>backslash</em> o también puede ser por un doble <em>slash</em> (<code>//</code>).</p></li>
+<li><p>Por temas de compatibilidad general, en las rutas se recomienda evitar tildes, eñes, espacios, mayúsculas y guiones bajos (_).</p></li>
+<li><p><strong>Estructura de carpetas</strong>: para mantener el orden se sugiere seguir un protocolo de estructura de carpetas de proyecto, para lo que recomendamos el protocolo <a href="https://lisa-coes.com/ipo-protocol/">IPO</a>, y que se adapta al flujo de trabajo presentado al principio de este práctico. Básicamente son tres carpetas: <strong>input</strong>, <strong>procesamiento</strong>, <strong>output</strong>. En la carpeta input crear la subcarpeta data-orig para guardar datos originales, y data-proc para los procesados. En procesamiento se guardan los archivos de código y en output las tablas y los gráficos.</p></li>
+</ul>
+<div>
+
+
+</div>
+</div>
+<div id="archivo-de-código" class="section level1">
+<h1>Archivo de código</h1>
+<p>El archivo de código R de esta práctica se puede descargar <a href="https://raw.githubusercontent.com/juancarloscastillo/multivariada/master/static/assignment/practica_1.R">aquí</a></p>
+</div>
+<div id="reporte-de-progreso" class="section level1">
+<h1>Reporte de progreso</h1>
+<p>Completar el reporte de progreso correspondiente a esta práctica <a href="https://forms.gle/nn6gbTuE39aWd6Be6">aquí</a>. El plazo para contestarlo es antes que se publique la siguiente práctica el día viernes después de clases.</p>
+<div id="informe-reporte-de-progreso" class="section level2">
+<h2>Informe reporte de progreso</h2>
+<p>Disponible <a href="/informes-reporte-progreso/reporte_1.html">aquí</a></p>
+</div>
+</div>
+<div id="foro" class="section level1">
+<h1>Foro</h1>
+</div>

@@ -1,0 +1,422 @@
+---
+title: "Práctica 7. Inferencia y reporte"
+subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
+author: "Juan Castillo"
+linktitle: "Práctica 7. Inferencia y reporte"
+date: "2021-05-28"
+class_date: "2021-05-28"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+    highlight: tango
+    number_sections: FALSE
+menu:
+  class:
+    parent: Practicas
+    weight: 8
+type: docs
+weight: 1
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=FALSE, warning=FALSE, message=FALSE)
+knitr::opts_knit$set(root.dir ="../../")
+Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position = c('bottom', 'right')) # chunks con botón de copiar
+```
+
+# Inferencia
+
+Una de las ideas fundamentales de la inferencia es determinar si nuestros análisis estadísticos pueden ser extrapolados a la población que estamos estudiando. En el contexto de regresión, esto se traduce en **la significación estadística del coeficiente** $\beta$, lo que es distinto del tamaño del efecto del $\beta$. Por ejemplo, podemos tener un $\beta$ de tamaño 3, pero eso no nos dice nada todavía sobre si es estadísticamente significativo.
+
+Entonces, la pregunta central de inferencia en regresión es: **¿Es nuestro coeficiente $\beta$ estadísticamente significativo?**
+
+La significación estadística se refiere a poder afirmar si el $\beta$ es **distinto de cero** en la población. Esta afirmación se puede realizar con un cierto nivel de **probabilidad de error _p_**, donde el concepto central es el **error estándar**.
+
+## Error estándar (SE) y tamaño muestral
+
+El error estándar (SE, por su sigla en inglés) es un concepto central en inferencia ya que nos permite aseverar con un grado de probabilidad de error si nuestro coeficiente existe en la población (o en otras palabras, que nuestro coeficiente es distinto de cero en la población).
+
+El ejemplo más simple para dar cuenta del error estándar es relativo al promedio: podemos calcular el promedio de la muestra, pero no sabemos con certeza si este promedio corresponde al de la población. Podríamos hacer una estimación más apropiada si extrajéramos varias muestras de datos, obtuviéramos el promedio de cada una y calcularamos una desviación estándar de estos promedios. Esta es justamente la idea detrás del cálculo del error estándar: entregar un posible rango de variación del promedio en la población (sumando y restando errores estándar al promedio). Y para ello, hacemos referencia a la distribución normal, que nos dice que aproximadamente el 68% de los valores se encuentran a +/- 1 SE y un 95% de los valores a +/- 2 SE.
+
+Pero claramente es muy costoso extraer varias muestras y en general trabajamos con una; por ello, se utiliza una fórmula de SE para una muestra basada en el teorema central del límite, que nos dice (para el caso del promedio) que $SE_{\bar{x}}\frac{s}{\sqrt{N}}$ donde $s$ es la desviación estándar y $N$ es el tamaño de la muestra.
+
+Ahora, como N está en el denominador, en la medida que aumente el N de la muestra, el error estándar será más pequeño. Esto es relevante saberlo, ya que un promedio o también un $\beta$ puede ser o no estadísticamente significativo según el tamaño muestral, y por lo tanto el tamaño del coeficiente no está relacionado directamente con su significación estadística.
+
+_Ejemplo_
+
+Supongamos que nuestra muestra de 3703 casos en realidad corresponde a la **Población**, de modo tal que vamos a extraer 14 muestras aleatorias de distinto tamaño a modo de ilustrar cambios en la estimación en la medida que aumenta el tamaño muestral.
+
+```{r}
+library(dplyr)
+load(url("https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess.RData")) # Cargar base de datos
+set.seed(123)
+elsoc_n30  <- sample_n(tbl = elsoc_18,size = 30 )  %>% mutate(dataset=30 ,mean_ess=mean(ess,na.rm = T))
+elsoc_n50  <- sample_n(tbl = elsoc_18,size = 50 )  %>% mutate(dataset=50 ,mean_ess=mean(ess,na.rm = T))
+elsoc_n75  <- sample_n(tbl = elsoc_18,size = 75 )  %>% mutate(dataset=75 ,mean_ess=mean(ess,na.rm = T))
+elsoc_n100 <- sample_n(tbl = elsoc_18,size = 100)  %>% mutate(dataset=100,mean_ess=mean(ess,na.rm = T))
+elsoc_n200 <- sample_n(tbl = elsoc_18,size = 200)  %>% mutate(dataset=200,mean_ess=mean(ess,na.rm = T))
+elsoc_n300 <- sample_n(tbl = elsoc_18,size = 300)  %>% mutate(dataset=300 ,mean_ess=mean(ess,na.rm = T))
+elsoc_n400 <- sample_n(tbl = elsoc_18,size = 400)  %>% mutate(dataset=400,mean_ess=mean(ess,na.rm = T))
+elsoc_n700 <- sample_n(tbl = elsoc_18,size = 700)  %>% mutate(dataset=700,mean_ess=mean(ess,na.rm = T))
+elsoc_n800 <- sample_n(tbl = elsoc_18,size = 800)  %>% mutate(dataset=800,mean_ess=mean(ess,na.rm = T))
+elsoc_n900 <- sample_n(tbl = elsoc_18,size = 900)  %>% mutate(dataset=900,mean_ess=mean(ess,na.rm = T))
+elsoc_n1000<- sample_n(tbl = elsoc_18,size = 1000) %>% mutate(dataset=1000,mean_ess=mean(ess,na.rm = T))
+elsoc_n1500<- sample_n(tbl = elsoc_18,size = 1500) %>% mutate(dataset=1500,mean_ess=mean(ess,na.rm = T))
+elsoc_n2000<- sample_n(tbl = elsoc_18,size = 2000) %>% mutate(dataset=2000,mean_ess=mean(ess,na.rm = T))
+elsoc_n2500<- sample_n(tbl = elsoc_18,size = 2500) %>% mutate(dataset=2500,mean_ess=mean(ess,na.rm = T))
+# elsoc      <- elsoc_18 %>% mutate(dataset=3703,mean_ess=mean(ess,na.rm = T))
+
+fullmat<- bind_rows(elsoc_n30 ,elsoc_n50 ,elsoc_n75 ,elsoc_n100,elsoc_n200,elsoc_n300,elsoc_n400,elsoc_n700,elsoc_n800,elsoc_n900,elsoc_n1000,elsoc_n1500,elsoc_n2000,elsoc_n2500)
+fullmat <- fullmat %>% mutate(mean_ssta=mean(elsoc_18$ess,na.rm = T))
+```
+
+Luego de obtener las muestras, calculamos la media, desviación estándar y error estándar para cada una de ellas:
+
+```{r}
+tab_full<- fullmat %>% group_by(dataset) %>% summarise(mean=mean(ess,na.rm = T), sd=sd(ess,na.rm = T),SE=sd/sqrt(n()))
+tab_full
+```
+
+Es posible observar que tanto la media como la desviación estándar van cambiando en la medida que aumenta el tamaño de la muestra, pero si observamos el error estándar, este va sistemáticamente disminuyendo en la medida que aumenta el tamaño muestral.
+
+Para ilustrar cómo va cambiando la dispersión y la media "muestral" (rojo) con respecto a la "poblacional" (verde), se puede observar el siguiente gráfico:
+
+```{r eval=FALSE, include=FALSE}
+pacman::p_load(gganimate, transformr)
+
+anim_plot1 <- ggplot(fullmat,aes(ess)) +
+              geom_histogram(col = "black",fill = "blue",binwidth = 1) +
+              geom_line(data=fullmat, aes(y ), colour="red") +
+              geom_vline(data=fullmat, aes(xintercept=mean_ess),linetype="dashed", size=1.0,color="red")+
+              geom_vline(data=fullmat, aes(xintercept=mean(mean_ssta,na.rm = T)),linetype="solid", size=0.5,color="green")+
+              transition_states(dataset,2,4) +
+              labs(title = 'Muestra: {closest_state}') +
+              xlab(label = "Estatus Social Subjetivo") +
+              ylab(label = "n") +
+              view_follow(fixed_x = TRUE) +
+              ease_aes('sine-in-out')
+
+anim_plot1
+```
+
+```{r eval=FALSE, include=FALSE}
+anim_save(filename = "static/images/ess_hist.gif",animation = anim_plot1,width = 1500, height = 500)
+```
+
+![](/images/ess_hist.gif)
+
+Por lo tanto, el valor del error estándar depende del tamaño de la muestra, y por lo tanto el tamaño de la muestra va a afectar la significación estadística de los coeficientes de regresión.
+
+
+## Inferencia en regresión
+
+En **regresión** nos interesa saber si las diferencias en Y con respecto a los distintos niveles o valores de X son significativas, es decir **estadísticamente distintas de 0** con un cierto nivel de probabilidad.
+
+Para poder calcular la probabilidad de error nos basamos en una distribución teórica, que es la distribución normal en su versión ajustada al tamaño muestral: la distribución **T**. Esta distribución nos permite obtener un valor de contraste o **valor crítico** para un cierto nivel de probabilidad de error (por ejemplo, p=0.05), con el cual contrastamos el T obtenido en nuestra estimación.
+
+Por lo tanto, para esto se requiere:
+
+- calcular el T de cada $\beta$ de regresión
+- establecer un nivel de probabilidad de error (ej: p=0.05, para un 95% de confianza)
+- calcular el valor crítico
+- contrastar: si T > valor crítico T, entonces se puede establecer que el coeficiente es estadísticamente significativo con una probabilidad de error p<0.05. O alternativamente, se rechaza la hipótesis nula (que nos dice que $\beta=0$) con un 95% de confianza.
+
+Todos estos pasos son realizados automáticamente mediante software de estimación (como R), pero vamos a hacerlo paso a paso en un ejemplo mínimo (=pocos datos) con los datos de la [práctica 3 de regresión simple](/assignment/03-code/):
+
+```{r}
+datos <- read.csv("https://multivariada.netlify.app/slides/03-regsimple1/tacataca.txt", sep="")
+```
+
+![](../../slides/03-regsimple1/tacataca.png)
+
+
+Tenemos entonces tres columnas:
+
+- `id`: número único que identifica a cada sujeto
+
+- `juegos_x`: número de veces que ha jugado previamente
+
+- `puntos_y`: numero de puntos que obtuvo en el juego actual
+
+Estimamos el modelo de regresión y vemos los resultados:
+
+```{r}
+reg1 <-lm(puntos_y ~ juegos_x, data = datos)
+stargazer::stargazer(reg1, type = "text")
+```
+
+El $\beta$ (calculado paso a paso en la [Práctica 3](/assignment/03-code/)) nos dice que por cada punto que aumenta la experiencia en juegos (X), el puntaje obtenido (Y) aumenta 0.5 puntos. Atendamos ahora a la información adicional de la tabla relacionada con inferencia:
+
+- un número entre paréntesis bajo el $\beta$, corresponde al error estándar
+- tres asteriscos al lado del $\beta$, que refieren al pie de la tabla donde el número de asteriscos (entre 1 y 3) se asocia a distintos niveles de probabilidad de error.
+
+El error estándar del $\beta$ o $SE_{\beta}$ es lo que nos permite calcular T, ya que $T=\beta / SE_{\beta}$. Existen diferentes alternativas para el cálculo de $SE_{\beta}$, para el caso de este ejemplo con un predictor X continuo vamos a utilizar:
+
+$$SE_{\beta}=\sqrt{\frac{ \frac{1}{N-2}-\sum(\hat{y}-y)²}{\sum(x-\bar{x})²}}$$
+
+Donde en el numerador se encuentra la sumatoria de los residuos al cuadrado multiplicado por 1/N-2, y en el denominador es la suma de cuadrados de X. Para demostrar paso a paso la obtención de estos términos vamos a agregar una serie de columnas a nuestra base de datos:
+
+```{r}
+#Variable de valores predichos
+datos$estimado<- (2.5 + datos$juegos_x*0.5)
+
+# Estimamos el residuo
+datos$residuo <- datos$puntos_y - datos$estimado
+
+# Estimamos los residuos al cuadrado
+datos$residuo2 <- datos$residuo^2
+
+# Y finalmente las diferencias de X del promedio
+datos$xprom_x <- datos$juegos_x - mean(datos$juegos_x)
+
+# ... al cuadrado
+datos$xprom_x2 <- (datos$xprom_x)^2
+
+datos
+
+```
+Ahora obtenemos la suma de los residuos al cuadrado (residuo2) y la suma de las diferencias de promedio de X al cuadrado:
+
+```{r}
+sum(datos$residuo2)
+sum(datos$xprom_x2)
+```
+
+Reemplazamos en la fórmula:
+
+$SE_{\beta}=\sqrt{\frac{ \frac{1}{N-2}*\sum(\hat{y}-y)²}{\sum(x-\bar{x})²}}=\sqrt{\frac{ \frac{1}{23-2}*25}{68}}$
+
+Y realizamos el cálculo:
+
+```{r}
+sqrt(((1/21)*25)/68 )
+```
+Que es equivalente al valor entre paréntesis bajo el $\beta$ en la tabla de regresión de arriba, y que corresponde al error estándar.
+
+Con el error estándar, ahora calculamos T:
+
+$T=\frac{\beta}{SE_{\beta}}=\frac{0.5}{0.132}=3.787$
+
+Y ahora contrastamos este valor con el **valor crítico de T**, basado en la distribución T y que se obtiene de la tabla de valores correspondiente o de un software estadístico como R. Para esto necesitamos establecer el nivel deseado de probabilidad de error, convencionalmente p=0.05, y los **grados de libertad (gl)** que se calculan como N-k-1, donde _k_ equivale al número de predictores (en este caso 1). Por lo tanto gl=23-1-1=21.
+
+Y un tema adicional sobre el valor p: vamos a establecer un valor que considere tanto situaciones de coeficiente positivo como negativo (prueba de dos colas), que es la manera convencional para rechazar hipótesis nulas en el caso de regresión. Por lo tanto, para la búsqueda del valor crítico dividimos el p a la mitad (0.05/2), quedando entonces en 0.025.
+
+Con p=0.025 y gl=21 obtenemos el valor crítico:
+
+```{r}
+qt(0.975, 21)
+```
+
+Nuestro valor T de 3.387 es mayor que el valor crítico de 2.07, por lo tanto podemos decir que nuestro beta es estadísticamente significativo con un 95% de confianza. Veamos ahora si podemos hacer esta afirmación con un mayor nivel de confianza: 99%. Para eso, calculamos la T de dos colas para un p=0.01/2=0.005, por lo tanto el valor crítico se calcula a partir de 0.995
+
+```{r}
+qt(0.995, 21)
+```
+
+En este caso, el T del $\beta$ de nuestro modelo también es superior a este valor crítico (3.387>2.831), por lo que podemos decir que nuestro beta es estadísticamente significativo con un 99% de confianza. Alternativamente, que rechazamos la hipótesis nula (que dice que $\beta=0$ en la población) con una probabilidad de error p<0.01. Esto se representa en la tabla de regresión con asteriscos al lado del $\beta$, lo cual puede variar según la función que produzca la tabla. En la tabla de arriba generada con `stargazer` un nivel de probabilidad de error p<0.01 se representa con 3 asteriscos, pero otras funciones  como la que veremos más adelante sjPlot::tab_model los dos asteriscos equivalen a p<0.01 y tres a p<0.001:
+
+### Intervalos de confianza
+
+Otro concepto asociado con inferencia es el intervalo de confianza, que se obtiene sumando y restando errores estándar al $\beta$ de regresión. Con esto no solo se obtiene un rango probable de variación del $\beta$, sino que también es posible establecer falta de significancia estadística cuando el intervalo pasa por el valor 0. De esta manera, es una manera relacionada y complementaria de hacer análisis de inferencia además de la prueba T.
+
+Para obtener el intervalo de confianza se suma/resta al $\beta$ el error estándar por el valor crítico de T para el nivel de confianza correspondiente. En nuestro ejemplo, para un 95% de confianza el T crítico es 2.079, por lo tanto considerando el $\beta$ de 0.5 y el error de 0.132:
+
+```{r}
+0.5 - (2.079 * 0.132)
+
+0.5 + (2.079 * 0.132)
+```
+Por lo tanto, podemos decir con un 95% de confianza que $\beta$ varía entre 0.225 y 0.774, y que es estadísticamente significativo ya que el intervalo no pasa por cero, que es lo mismo que decir que es estadísticamente distinto de 0.
+
+Toda esta información la podemos obtener en R con tablas como la siguiente:
+
+```{r}
+sjPlot::tab_model(reg1,
+        show.se=TRUE,
+        digits=3,
+        p.style = "star")
+```
+
+A continuación más detalles de generación de tablas e interpretación
+
+
+# Reporte e interpretación
+
+En esta sección se presenta un ejemplo de análisis e interpretación de una tabla de regresión múltiple, que puede servir como referencia para la entrega de los informes 2 y 3. El ejemplo está adaptado de [https://stats.idre.ucla.edu/stata/output/regression-analysis/](https://stats.idre.ucla.edu/stata/output/regression-analysis/)
+
+## Librerías
+
+```{r}
+pacman::p_load(dplyr,readxl, summarytools, stargazer, equatiomatic)
+```
+
+```{r echo=FALSE, eval=FALSE}
+remotes::install_github("datalorax/equatiomatic")
+```
+
+## Datos
+
+Los datos a utilizar corresponden a resultados de pruebas de conocimiento en distintas areas de 200 estudiantes de educación secundaria.
+
+```{r echo=FALSE }
+data <-read.csv("content/assignment/data/hsb2.csv")
+```
+
+```{r eval=FALSE}
+data <- read.csv("https://multivariada.netlify.app/assignment/data/hsb2.csv")
+```
+
+## Ajustes y descriptivos
+
+Primero seleccionamos las variables que vamos a usar en el ejemplo y cambiamos las etiquetas de las variables a español.
+
+```{r}
+names(data)
+
+data <- data %>% select (science,math,female, socst, read)
+data <- data %>% rename(ciencia=science, matematicas =math, mujer=female, status=socst, lectura=read)
+```
+
+```{r}
+print(dfSummary(data, headings = FALSE), method = "render")
+```
+
+## Modelos de regresión
+
+### Lógica de presentación de modelos
+
+La forma en que se presentan los modelos en regresión múltiple depende de las hipótesis que se estan contrastando, y de la definición del/a investigador/a sobre cuáles son los predictores principales y cuáles son las variables de control. Pensemos en este caso que nuestra hipótesis principal es que el puntaje de ciencias se puede predecir con los puntajes de matemáticas y lectura, pero queremos controlar estas asociaciones por sexo y estatus. En este caso, podríamos presentar dos modelos, uno solamente con los predictores principales, y luego un segundo modelo con los controles para ver si los efectos se mantienen. También podríamos pensar en tres modelos: uno con matemáticas, otro con ciencias, y otro con ambos y además controles. La decisión de cómo presentar los modelos depende principalmente de las hipótesis que se están contrastando, y también de que los resultados permitan hacer la mejor discusión posible.
+
+### Estimación
+
+Vamos a estimar un primer modelo con las variables asociadas a la hipótesis principal, y luego un segundo con las variables control:
+
+```{r echo=FALSE}
+reg1 <- lm(ciencia ~ matematicas + lectura, data=data)
+reg2 <- lm(ciencia ~ matematicas + lectura + mujer + status, data=data)
+```
+
+```{r results='asis', echo=FALSE}
+extract_eq(reg1)
+extract_eq(reg2)
+```
+
+Para estimar estos modelos en `R`:
+
+```{r eval=FALSE}
+reg1 <- lm(ciencia ~ matematicas + lectura, data=data)
+reg2 <- lm(ciencia ~ matematicas + lectura + mujer + status, data=data)
+```
+
+Para presentar los resultados de regresión existen diferentes librerías en R, como
+stargazer, texreg, sjPlot. En este caso vamos a utilizar la función tab_model de sjPlot:
+
+```{r}
+sjPlot::tab_model(list(reg1,reg2))
+```
+
+Esta tabla tiene las opciones por defecto. En general, para cada predictor hay dos piezas de información importante: la estimación del coeficiente de regresión $\beta$ (estimates), y una estimación referida a inferencia/significación estadística (en este caso CI, intervalo de confianza). Esta segunda información es en general el error estándar, pero también puede ser _t_ (que es el coeficiente dividido por el error estándar), o el intervalo de confianza, dado usualmente por el $\beta$ +/- 1.96 SE para un 95% de confianza (como aparece en esta tabla). Según el output, la información de inferencia puede aparecer abajo del coeficiente, o al lado como en esta tabla.
+
+Abajo vamos a hacer algunos ajustes en la tabla, presentando el error estándar en lugar del intervalo, y reemplazando la columna del nivel de probabilidad de error (_p_) por asteriscos que indican el nivel de significación de cada coeficiente, lo cual hace más rápida la interpretación. También cambiamos algunas etiquetas de la tabla para que sea más fácil de leer:
+
+```{r}
+sjPlot::tab_model(list(reg1,reg2),
+        show.se=TRUE,
+        show.ci=FALSE,
+        digits=3,
+        p.style = "stars",
+        dv.labels = c("Modelo 1", "Modelo 2"),
+        string.pred = "Predictores",
+        string.est = "β")
+```
+
+Y para presentar en forma de ecuaciones, quedaría de la siguiente manera:
+
+```{r results='asis', echo=FALSE}
+extract_eq(reg1, use_coefs = TRUE)
+extract_eq(reg2, use_coefs = TRUE)
+```
+
+<div class="alert alert-info">
+Para transformar automáticamente las estimaciones de regresión en R a ecuaciones:
+
+Esto se puede hacer si se utiliza RMarkdown (no es requisito en este curso, para los interesad_s pueden revisar material del curso [ciencia social abierta](https://cienciasocialabierta.netlify.app/class/04-class/) )
+
+1. Instalar librería **equatiomatic**. No está en CRAN, así que para instalar:` remotes::install_github("datalorax/equatiomatic")`
+
+2. La función para extraer la ecuación es `extract_eq`, por ejemplo: `extract_eq(reg1)`
+
+3. Para que el resultado pueda ser `renderizado` desde un documento RMarkdown a pdf o html, debe estar en un chunk con las siguientes especificaciones:
+
+
+````
+```{r results='asis', echo=FALSE}`r ''`
+extract_eq(reg1)
+extract_eq(reg2)
+```
+````
+
+4. Para presentar las ecuaciones con los coeficientes ya estimados, `extract_eq(reg1, use_coefs = TRUE)`
+</div>
+
+
+
+### Interpretación
+
+Los coeficientes nos hablan de la relación entre las variables independientes y la variable dependiente. Nos muestran la magnitud del cambio predicho en el puntaje de ciencia por cada 1 unidad en que aumenta el predictor.
+
+Para `matematica` el coeficiente es de 0.402 en el modelo 1 y baja a  0.389 en el modelo 2. Entonces, por cada punto adicional en la prueba de matemáticas en el modelo 2 se presenta un incremento de 0.389 en el puntaje de `ciencia`, **manteniendo todas las demás variables constantes**. Respecto a la inferencia, existen distintas maneras de dar cuenta de la significación estadística. Por ejemplo, se puede decir que este valor es estadísticamente significativo con un 99,9% de confianza, o con una probabilidad de error p<0.001.
+
+<div class="alert alert-info">
+Para reportar estos resultados de manera más resumida siguiendo las indicaciones de reporte de **APA** (American Psychological Association): El puntaje en matemáticas predice significativamente el puntaje de ciencias (modelo 1), b = -.40, SE = .07, p < .001, controlando por el puntaje en lectura. Al agregar los controles de sexo y estatus (modelo 2), el puntaje en matemáticas disminuye levemente pero mantiene su nivel de significación, b = -.39, SE = .07, p < .001.
+</div>
+
+Con respecto a `lectura`, en el modelo 2 es posible observar un coeficiente de 0.335. Esto implica que por cada unidad que aumenta el puntaje de `lectura` se predice un incremento de 0.335 puntos en `ciencia`, manteniendo todas las demás variables contantes. El coeficiente es estadísticamente significativo con una probabilidad de error p<0.001.
+
+Para la variable `mujer` podemos observar que el coeficiente tiene un valor de -2.010 en el modelo 2. Al ser `mujer` una variable dicotómica donde 1 es mujer y 0 es hombre, la estimación nos indica que para las mujeres el puntaje predicho promedio en ciencias es -2.010 puntos más bajo con respecto al promedio de los hombres, manteniendo todas las demás variables constantes. En términos exclusivamente estadísticos, la variable `mujer` no es significativamente distinta de 0 cuando empleamos un nivel de confianza del 95%, debido a que el valor $p$ es mayor a 0.05.
+
+Si observamos el coeficiente de `status` tenemos un valor de 0.050. Entonces, por cada unidad en que incrementa el estatus se predice un incremento de 0.050 puntos en `ciencia`, manteniendo todas las demás variables constantes. Sin embargo, no es estadísticamente significativo a un 95% de confianza.
+
+
+**Std Error**: Esta columna corresponde a los errores estándar de los coeficientes de regresión (Estimate). Estos errores estándar son empleados para testear en qué medida los coeficientes son distintos de 0 en la población. El procedimiento es dividir el coeficiente por su error estándar para obtener el valor $t$, los que luego se contrastan con la tabla de valores críticos t para obtener la probabilidad de error (que ya aparece automáticamente en la tabla). Además, los errores estándar pueden ser utilizados para calcular los intervalos de confianza.
+
+Una manera de presentar los resultados de un modelo de regresión es a través de la visualización de los coeficientes de regresión con sus respectivos intervalos de confianza. La ventaja de este tipo de gráficos es que podemos observar la magnitud del coeficiente y las "barras de error" que representan el intervalo de confianza inferior y superior. Utilizando un intervalo de confianza de 95% de confianza:
+
+```{r fig.cap="Modelo 2"}
+sjPlot::plot_model(reg2,ci.lvl = c(0.95), title = "",vline.color = "grey",line.size = 1)
+```
+
+Lo que nos muestra este gráfico es el valor del coeficiente en el punto, y en las líneas que salen del punto se extienden según su intervalo de confianza. De acuerdo a las reglas de inferencia en regresión, lo que estamos contrastando es que el valor de este coeficiente es distinto de 0 en la población, con un cierto valor de probabilidad. Por lo tanto, si agregamos un intervalo de confianza (valores probables) asociado a una probabilidad de error, entonces podemos decir que este coeficiente es estadísticamente distinto de 0 en la población. Y en el gráfico, esto sucede cuando los intervalos no tocan el 0.
+
+### Ajuste global del modelo
+
+**`R2`**: El R2 (R-cuadrado) es la proporción de la varianza de la variable dependiente (ciencias) la cual puede ser predicha por las variables independientes (matemáticas, mujer, estatus, lectura). En la Tabla 1 tenemos que para el Modelo (1), este valor nos indica que un 47,7% de la varianza en el puntaje de ciencias se asocia a matemáticas. Luego, en el Modelo (2), el R-cuadrado nos indica que el 48,9% de la varianza de ciencias puede ser predicha conjuntamente por las variables independientes matemáticas, lectura, mujer y status. Como vemos, la incorporación de controles aporta levemente al R2, lo cual se relaciona con que estos predictores no son estadísticamente significativos.
+
+**`Adjusted R2`**: En la medida que se incorporan predictores al modelo, cada uno va contribuyendo a explicar la varianza de la variable dependiente. Así, se podría continuar agregando predictores al modelo, incrementando la capacidad explicativa pero también de cierto modo debido a la variabilidad adicional en una muestra particular con la que estemos trabajando. Por esta razón, el **R-cuadrado ajustado** busca demostrar un valor estimado más realista del R-cuadrado para la población bajo análisis, penalizando por la inclusión de predictores adicionales. En el caso del Modelo (2) de la Tabla 1, el valor del R-cuadrado es de **0.489**, mientras que el R-cuadrado ajustado es de **0.479**, el cual es calculado a través de la fórmula $1 – ((1 – R^2)((N – 1) /( N – k – 1))$.
+
+Entonces, si el número de observaciones ($N$) es pequeño y el número de predictores ($k$)es grande, tendremos una mayor discrepancia entre el R-cuadrado y el R-cuadrado ajustado. Por otro lado, cuando el número de observaciones es grande en contraste con el número de predictores tendremos que el valor del R-cuadrado y el R-cuadrado ajustado serán mucho más similares debido.
+
+Por lo tanto, al momento de realizar la intepretación **corresponde basarse en los coeficientes del R2 ajustado**.
+
+# Video tutorial
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LOqsepqM02E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
+
+# Reporte de progreso
+
+Completar el reporte de progreso correspondiente a esta práctica [aquí.](https://forms.gle/3wk98kEk2UwyYfBTA)
+
+# Foro práctica 7

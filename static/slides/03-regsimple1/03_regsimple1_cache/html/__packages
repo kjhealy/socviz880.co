@@ -1,0 +1,16 @@
+base
+knitr
+RefManageR
+stargazer
+ggplot2
+plotly
+flipbookr
+tidyverse
+tibble
+gapminder
+stringr
+dplyr
+tidyr
+readr
+purrr
+forcats

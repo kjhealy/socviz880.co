@@ -1,0 +1,128 @@
+---
+title: RStudio.cloud
+slug: tutorial
+output:
+  blogdown::html_page:
+      toc: TRUE
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#rstudio-cloud">RStudio Cloud</a></li>
+<li><a href="#estructura-básica-de-rstudio-cloud">Estructura básica de RStudio Cloud</a>
+<ul>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#your-workspace">Your Workspace</a></li>
+<li><a href="#trabajo-colaborativo">Trabajo colaborativo</a></li>
+<li><a href="#video-tutorial">Video tutorial</a></li>
+</ul></li>
+<li><a href="#rstudio-cloud-para-estadística-multivariada">RStudio Cloud para Estadística Multivariada</a>
+<ul>
+<li><a href="#estadística-multivariada-space">“Estadística Multivariada” Space</a></li>
+<li><a href="#proyecto-de-investigación">Proyecto de investigación</a></li>
+<li><a href="#cargar-elementos-a-mi-proyecto">Cargar elementos a mi proyecto</a></li>
+<li><a href="#guardar">Guardar</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="rstudio-cloud" class="section level2">
+<h2>RStudio Cloud</h2>
+<p>La plataforma <a href="https://rstudio.cloud/">RStudio Cloud</a> se define como un <em>Cloud computing</em>. En esta el hardware, software, datos y recursos que utilizabas para tus cursos de estadística pasan de estar en nuestras computadoras a estar <em>“en la nube”</em>. RStudio Cloud será el sitio donde podremos interactuar de manera directa para la elaboración de los trabajos de investigación.</p>
+</div>
+<div id="estructura-básica-de-rstudio-cloud" class="section level2">
+<h2>Estructura básica de RStudio Cloud</h2>
+<ul>
+<li>Debes iniciar sesión con un cuenta de gmail (o tu cuenta github asociada a tu correo).
+<ul>
+<li>Este correo electrónico es el que indicaste en la <a href="https://docs.google.com/spreadsheets/d/1bS5n9en7nDXnRhZZPzS-RO1UdmM6ofCJ69wPqmajYLU/edit#gid=0">inscripción de grupos</a></li>
+</ul></li>
+</ul>
+<div id="projects" class="section level3">
+<h3>Projects</h3>
+<p>Un <em>project</em> es la unidad fundamental de trabajo en RStudio Cloud. Reúne el código R, los paquetes y los archivos de datos, y proporciona aislamiento de otros análisis. Es muy similiar a los <em>proyect</em> del RStudio que tienes en tu computadora, solo que tiene algunos metadatos adicionales para acceder y compartir tus análisis.</p>
+<p>Para crear un nuevo proyecto desde cero, simplemente debes pulsar el botón “New Proyect”. Sin embargo, para efectos del curso, tu proyecto ya estará creado previamente. Este debería aparecer en “Your Workspace”</p>
+<p><img src="image1.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="your-workspace" class="section level3">
+<h3>Your Workspace</h3>
+<p>Cada usuario de RStudio Cloud obtiene un espacio de trabajo personal, llamado “Your Workspace”, en el que se pueden crear proyectos.</p>
+<p>Sólo tú puedes trabajar en los proyectos en tu espacio de trabajo, pero puedes elegir dejar que sean vistos (y copiados) por otros usuarios de RStudio Cloud.</p>
+<p>De manera predeterminada, cualquier proyecto que creas sólo puede ser accedido por ti. Para compartir un proyecto con otros, abra el proyecto, haga clic en el botón “Project Settings” (el engranaje en la parte superior derecha), seleccione el panel “Access” y cambie “Who can view this project” a “Everyone”.</p>
+<p><img src="image2.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><strong>¿Cómo compartir mi proyecto?</strong></p>
+<p>Debes dar la dirección del proyecto que aparece en tu navegador y enviar el enlace. Ten en cuenta que cualquier usuario con el enlace podrá ver tu proyecto.</p>
+</div>
+<div id="trabajo-colaborativo" class="section level3">
+<h3>Trabajo colaborativo</h3>
+<ul>
+<li><p>Cuando accedes a un proyecto creado por otra persona, RStudio Cloud crea automáticamente una copia temporal del proyecto original para ti.</p></li>
+<li><p><strong>Puedes hacer ediciones, pero ninguno de tus cambios se reflejará en el original.</strong></p></li>
+<li><p>Si quieres conservar los cambios que has hecho, sólo tienes que guardar una copia del proyecto para ti mismo presionando el botón “Save a Permanent Copy”.</p></li>
+</ul>
+<p><img src="image3.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>En consecuencia, esta nube les permite trabajar colaborativamente pero <strong>no al mismo tiempo</strong> o simultáneamente. Nuevamente, si no guardas tu trabajo, tus compañeros no podrán ver lo que hiciste.</p>
+</div>
+<div id="video-tutorial" class="section level3">
+<h3>Video tutorial</h3>
+<p>En el siguiente video podrán ver de manera directa todos los elementos señalados anteriormente</p>
+<div style="width: 100%; height: 600px; overflow: hidden;">
+<video  style="width: 100%;" controls>
+<source src="https://www.dropbox.com/s/6nqm99dqnjvtmry/rcloud.mp4?raw=1" type="video/mp4">
+</video>
+</div>
+</div>
+</div>
+<div id="rstudio-cloud-para-estadística-multivariada" class="section level2">
+<h2>RStudio Cloud para Estadística Multivariada</h2>
+<div id="estadística-multivariada-space" class="section level3">
+<h3>“Estadística Multivariada” Space</h3>
+<p>Al costado izquierdo de tu RStudio Cloud aparecerá un espacio de trabajo que será un área específica de trabajo que compartirás y colaborarás con tus compañeras/os, ayudantes y apoyo docente. Cada sección tendrá su propio espacio de trabajo.</p>
+<p><img src="image4.png" width="80%" style="display: block; margin: auto;" /></p>
+<ul>
+<li><p>Roles del espacio de trabajo</p>
+<ul>
+<li><p>Admin: es quién puede incorporar a miembros al espacio de trabajo, editar y administrar proyectos. Este rol lo tiene tu <strong>apoyo docente</strong></p></li>
+<li><p>Moderador: puede ver y editar todos los proyectos del espacio. Este rol lo tienen <strong>ayudantes</strong></p></li>
+<li><p>Contribuidor: puede editar y ver su propio proyecto de investigación del curso. Este rol estará previamente asignado a <strong>estudiantes</strong>.</p></li>
+</ul></li>
+</ul>
+</div>
+<div id="proyecto-de-investigación" class="section level3">
+<h3>Proyecto de investigación</h3>
+<p>Como notarás, cada grupo tendrá asignado un <strong>proyecto</strong>.</p>
+<p>Como habíamos mencionado antes los proyectos en RStudio Cloud tienen la misma funcionalidad que en RStudio de tu computadora. Estos buscan agrupar todos las sintaxis (códigos) y archivos que utilizas en tu proyecto (es <em>básicamente</em> una carpeta). Puedes comprobar en “Files” que los proyectos pueden contener:</p>
+<ul>
+<li>RScript (códigos para el análisis de tu proyecto)</li>
+<li>RMarkdown (documento para las entregas o presentaciones)</li>
+<li>Bases de datos (en los distintos formatos)</li>
+<li>Otros archivos (imágenes, logos, etc).</li>
+</ul>
+<p><img src="image5.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>En tu <strong>proyecto</strong> deberás cargar en “Files” los distintos archivos que necesites para elaborar tu trabajo</p>
+<ul>
+<li>Código de preparación</li>
+<li>Código de análisis</li>
+<li>Base de datos</li>
+<li>Base de datos procesada</li>
+</ul>
+<p><img src="image6.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="cargar-elementos-a-mi-proyecto" class="section level3">
+<h3>Cargar elementos a mi proyecto</h3>
+<p>Para cargar alguno de estos elementos solo debes ir a “Upload”. Por ejemplo, si necesitas cargar la base de datos necesaria para tu proyecto presiona el botón “Upload” y se abriran tus archivos del computador.</p>
+<p><img src="image7.gif" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="guardar" class="section level3">
+<h3>Guardar</h3>
+<ul>
+<li>Algunos pasos que no debes olvidar es guardar tu RScript. Los pasos a seguir es presionar el botón “File”, “Save” y luego nombrar tu archivo, por ejemplo, “Codigo de preparacion”. Como podrás ver, luego de eso aparecerá en “Files”</li>
+</ul>
+<p><img src="image8.png" width="80%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Una vez que la hayas trabajado <strong>no olvides apretar el botón “Save a Permanent Copy”</strong> de modo que tus compañeras/os de grupo puedan ver los cambios que realizaste.</li>
+</ul>
+</div>
+</div>

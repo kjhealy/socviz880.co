@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Estadística Multivariada</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=".small[Juan Carlos Castillo    Departamento de Sociología - UCH / COES   ]" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <script src="libs/twitter-widget/widgets.js"></script>
+    <link rel="stylesheet" href="../custom_2020.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: front
+
+
+
+
+
+
+
+
+
+
+<style>.shareagain-bar {
+--shareagain-foreground: rgb(255, 255, 255);
+--shareagain-background: rgba(0, 0, 0, 0.5);
+--shareagain-twitter: none;
+--shareagain-facebook: none;
+--shareagain-linkedin: none;
+--shareagain-pinterest: none;
+--shareagain-pocket: none;
+--shareagain-reddit: none;
+}</style>
+
+
+&lt;!---
+Para correr en ATOM 
+- open terminal, abrir R (simplemente, R y enter)
+- rmarkdown::render('static/docpres/07_interacciones/7interacciones.Rmd', 'xaringan::moon_reader')
+
+About macros.js: permite escalar las imágenes como [scale 50%](path to image), hay si que grabar ese archivo js en el directorio.
+---&gt;
+
+
+.pull-left[
+# Estadística Multivariada
+## Juan Carlos Castillo
+## Sociología FACSO - UChile
+## 1er Sem 2022
+## [multivariada.netlify.com](https://multivariada.netlify.com)
+]
+
+
+.pull-right[
+.right[
+![:scale 70%](https://multivariada.netlify.com/img/hex_multiva.png)
+&lt;br&gt;
+&lt;br&gt;
+## Sesión 4: Regresión simple 2
+] 
+]
+
+]
+---
+
+layout: true
+class: animated, fadeIn
+
+---
+class: inverse
+
+
+##.red[Contenidos]
+
+### .red[1.] Siguiendo con regresión simple
+
+### .red[2.]  Ajuste y residuos
+
+### .red[3.] Notas sobre regresión y correlación
+
+
+---
+class: roja, bottom, right
+
+# 1. Regresión simple
+
+
+---
+class: inverse, center
+
+# .yellow[¿Qué buscamos?]
+--
+.content-box-red[
+## .red[Contrastar empíricamente teorías sociológicas
+]
+]
+.medium[(con datos cuantitativos)]
+
+
+---
+# Hechos sociales son multideterminados
+
+.pull-left[
+.center[
+![](../05-regmul1/regmod3.png)
+]]
+
+.pull-right[
+- Limitaciones de herramientas bivariadas (tablas de contingencia, coeficiente de correlación)
+
+- Necesidad de contar con herramientas más eficientes que incluyan múltiples determinantes
+
+- -&gt; .red[MODELO DE REGRESIÓN]
+
+]
+???
+
+- por qué "modelo"
+- por qué "regresión"
+- partir por un determinante y luego se expande a múltiples determinantes
+
+---
+# ¿MODELO?= representación simplificada
+
+
+
+
+.pull-left[
+![:scale 80%](cat-real.jpg)
+]
+
+.pull-right[
+.center[
+&lt;br&gt;
+![.scale 110%](cat.png)
+]]
+---
+# ¿Regresión?
+
+
+.pull-left[
+
+- el **modelo de regresión** busca representar matemáticamente la relación entre una variable dependiente (Y) y una o más independientes (X)
+]
+
+.pull-right[
+![](../05-regmul1/regmod3.png)
+]
+
+---
+# ¿Regresión?
+
+
+.pull-left[
+
+- el **modelo de regresión** busca representar matemáticamente la relación entre una variable dependiente (Y) y una o más independientes (X)
+
+- esta relación se expresa en un parámetro `\(\beta\)`  o "beta de regresión"
+]
+
+.pull-right[
+![](../05-regmul1/regmod4.png)
+]
+
+---
+# Regresión simple
+
+- esta primera parte del curso veremos modelos con solo 1 variable independiente (X) o .red[regresión simple]
+.center[
+![](../05-regmul1/regmod2.png)]
+
+`$$\widehat{Y}=\beta_{0} +\beta_{1}X_{1}$$`
+- con este modelo podemos saber el valor de `\(Y\)` si conocemos el valor de `\(X\)` usando el valor de los parámetros `\(\beta_{0}\)` y `\(\beta_{1}\)`
+
+---
+# Componentes de la ecuación de la recta de regresión
+
+.pull-left-narrow[
+![](reg_equation.png)
+`$$\widehat{Y}=\beta_{0} +\beta_{1}X_{1}$$`
+
+
+]
+
+.pull-right-wide[
+
+
+Donde
+
+- `\(\widehat{Y}\)` es el valor estimado de `\(Y\)`
+
+- `\(\beta_{0}\)` es el intercepto de la recta (el valor de Y cuando X es 0)
+
+- `\(\beta_{1}\)` es el coeficiente de regresión, que nos dice .red[cuánto aumenta Y por cada punto que aumenta X]
+]
+---
+# Estimación de los coeficientes de la ecuación:
+
+`$$b_{1}=\frac{Cov(XY)}{VarX}$$`
+
+`$$b_{1}=\frac{\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {n-1}}{\frac{\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})} {n-1}}$$`
+
+Y simplificando
+
+`$$b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})}$$`
+
+---
+# Estimación de los coeficientes de la ecuación: 
+
+Luego despejando el valor de `\(b_{0}\)`
+
+`$$b_{0}=\bar{Y}-b_{1}\bar{X}$$`
+---
+
+.pull-left-narrow[
+**Ejemplo**: 
+¿Cuántos pasos da un hijo (Y) por cada paso que da su mamá (x)?
+
+![:scale 50%](walking.png)
+]
+
+.pull-right-wide[
+
+.small[
+
+
+
+```
+##   pasos_mama_x pasos_hijo_y
+## 1            3            2
+## 2            5            3
+## 3            7            2
+## 4            9            4
+```
+
+]
+
+
+```
+## [1] "pasos_mama_x" "pasos_hijo_y"
+```
+
+![](04_regsimple2_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+
+]
+
+---
+class: middle center
+
+`$$b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})};b_{0}=\bar{Y}-b_{1}\bar{X}$$`
+![:scale 100%](excel-reg.png)
+
+
+---
+
+`$$\widehat{Y}=\beta_{0} +\beta_{1}X_{1}$$`
+Reemplazando:
+
+`$$\widehat{Y}=1.25 +0.25X$$`
+Entonces:
+
+- por cada paso que da la mamá (X), un hij_ (Y) avanza en promedio 0.25 pasos
+
+- si una mamá da (por ej) .blue[4] pasos, entonces la cantidad de pasos estimada para su hijo sería 1.25+0.25*.blue[4]=.red[2.25]
+
+---
+
+.pull-left[
+
+`$$\widehat{Y}=1.25 +0.25X$$`
+
+![](04_regsimple2_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+&lt;br&gt;
+- la ecuación del modelo de regresión se puede expresar en una .red[recta de regresión]
+
+- esta recta representa la predicción de los valores de `\(Y\)` a partir de `\(X\)`
+]
+
+
+
+---
+# Estimación del modelo de regresión simple en `R`
+
+La función para estimar regresión en `R` es `lm` (linear model):
+
+`objeto &lt;- lm(dependiente ~ independiente, data=datos)`
+
+--
+
+Donde
+.medium[
+- **objeto**: el nombre (cualquiera) que le damos al objeto donde se guardan los resultados de la estimación
+- **dependiente / independiente**: los nombres de las variables en los datos
+- **datos** = el nombre del objeto de nuestros datos en R
+]
+
+---
+
+
+```r
+lm(pasos_hijo_y ~ pasos_mama_x, data = datos1)
+```
+
+```
+## 
+## Call:
+## lm(formula = pasos_hijo_y ~ pasos_mama_x, data = datos1)
+## 
+## Coefficients:
+##  (Intercept)  pasos_mama_x  
+##         1.25          0.25
+```
+
+
+---
+class: inverse, middle, center
+# INTERPRETACIÓN
+
+#por cada unidad que aumenta .red[X], .yellow[Y] aumenta en .orange[*Beta*]
+
+
+
+---
+.pull-left[
+# Ejemplo
+
+&lt;br&gt;
+Si tenemos
+
+- Y = ingreso al egresar de la universidad  
+
+- X = puntaje PSU
+
+&lt;br&gt;
+`$$Ingreso=200.000+400(puntajePSU)$$`
+&lt;br&gt;
+&lt;br&gt;
+
+]
+
+--
+
+.pull-right[
+**1 - ¿Cuál es el valor estimado de Ingreso para un puntaje PSU de 500?**
+{{content}}
+]
+
+--
+
+- 400.000
+{{content}}
+
+--
+
+**2 - ¿Cuál es el valor estimado de Ingreso para un puntaje (hipotético) de PSU=0?**
+{{content}}
+
+--
+
+- 200.000
+{{content}}
+
+---
+class: inverse
+
+## Hasta ahora deberíamos saber:
+
+--
+
+1- Modelo de regresión como una **representación simplificada** de la relación compleja entre variables
+
+--
+
+2- El `\(\beta\)` de regresión nos dice **cuanto aumenta `\(Y\)` ** (variable dependiente) *en promedio* por ** cada punto que aumenta** `\(X\)` (variable independiente).
+
+--
+
+3- El modelo nos permite **estimar** el puntaje de `\(Y\)` para cada valor de `\(X\)`
+
+---
+class: roja, bottom, right
+
+# 2. Ajuste y residuos
+
+---
+.pull-left-wide[
+![:scale 80%](anscombe.png)
+]
+
+
+.pull-right-narrow[
+&lt;br&gt;
+# El cuarteto de Anscombe (1973)
+.small[
+Podemos tener un mismo modelo de regresión para relaciones distintas entre datos
+]
+]
+
+---
+# ¿Qué tan bueno es nuestro modelo?
+
+- El cálculo del `\(\beta\)` busca minimizar los residuos (de ahí "mínimos cuadrados ordinarios")
+
+- Una vez minimizados los residuos, se puede evaluar el ajuste
+  - qué tan bien representa nuestro modelo la realidad
+  
+  - cuánto error (de predicción) estamos cometiendo con nuestro modelo
+
+
+
+---
+
+.medium[
+<blockquote class="twitter-tweet" data-width="550" data-lang="en" data-dnt="true" data-theme="light"><p lang="es" dir="ltr">Tuve un ataque de artemanía es intenté replicar una recta de regresión. <a href="https://t.co/b7OXZrK26J">pic.twitter.com/b7OXZrK26J</a></p>&mdash; Jorge Pacheco Jara (@jorge_pacheco) <a href="https://twitter.com/jorge_pacheco/status/1327398681239314434?ref_src=twsrc%5Etfw">November 13, 2020</a></blockquote>
+
+]
+
+
+---
+class: inverse, right
+
+## Un modelo es mejor mientras **mejor refleje** lo que sucede con los datos
+
+--
+
+## En otras palabras, cuando se parece o **ajusta** mejor a los datos
+
+--
+
+## ... y en otras: cuando los **residuos** son menores
+---
+# Observado, estimado &amp; residuo
+
+.pull-left-wide[
+![:scale 80%](residuals.png)
+]
+
+.pull-right-narrow[
+
+
+- observado: `\(Y\)`  
+
+- estimado: `\(\widehat{Y}\)`
+
+- residuo: `\(Y-\widehat{Y}\)`
+]
+
+---
+# Varianza explicada de Y
+
+¿Qué parte de la varianza de ingreso (Y) se asocia a educación? 
+
+.center[![:scale 50%](ingresoeduc.png)]
+
+---
+# Varianza explicada de Y: `\(R^2\)`
+
+- ¿Cuánto de los ingresos puedo predecir con educación (regresión) y cuánto me estoy equivocando (residuos)?
+
+--
+
+- el `\(R^2\)`
+  - es la proporción de la varianza de Y que se asocia a X
+  - varía entre 0 y 1, y se puede expresar en porcentaje
+
+--
+
+- Entonces, podemos descomponer la varianza de Y en 2: aquella asociada a X (regresión) y la que no se asocia a X (residuos) 
+
+
+---
+# ¿Cómo se calcula el `\(R^2\)`? 
+
+- para saber qué porcentaje de `\(Y\)` se asocia a `\(X\)` vamos a considerar los siguientes valores de `\(Y\)`: 
+
+
+`\(Y\)` = Valor observado de Y
+
+`\(\widehat{Y}\)` = estimación de Y a partir de X
+
+`\(\bar{Y}\)` = promedio de Y
+
+---
+# Descomponiendo Y
+
+Conceptualmente:
+
+`$$SS_{tot}=SS_{reg} + SS_{error}$$`
+.center[
+![:scale 70%](resid_3.JPG)
+]
+
+
+---
+.pull-left-wide[
+![:scale 100](resid2.png)]
+
+.pull-right-narrow[
+.right[
+## Descomponiendo Y
+]]
+
+.pull-left-wide[
+`$$Y=\bar{Y}+(\widehat{Y}-\bar{Y}) + (Y-\widehat{Y})$$`
+
+$$ \Sigma(y_i - \bar{y})^2=\Sigma (\hat{y}_i-\bar{y})^2 +\Sigma(y_i-\hat{y}_i)^2$$
+]
+
+---
+# Varianza explicada
+
+Por lo tanto:
+
+`$$SS_{tot}=SS_{reg} + SS_{error}$$`
+
+--
+
+`$$\frac{SS_{tot}}{SS_{tot}}=\frac{SS_{reg}}{SS_{tot}} + \frac{SS_{error}}{SS_{tot}}$$`
+
+--
+
+`$$1=\frac{SS_{reg}}{SS_{tot}}+\frac{SS_{error}}{SS_{tot}}$$`
+
+`$$\frac{SS_{reg}}{SS_{tot}}= 1- \frac{SS_{error}}{SS_{tot}}=R^2$$`
+
+&lt;br&gt;
+
+### .center[¿Qué quiere decir esto?]
+
+
+
+---
+# Directamente en R
+
+.pull-left[
+
+.medium[
+
+```r
+reg1 &lt;-lm(pasos_hijo_y ~ 
+              pasos_mama_x, 
+              data = datos1)
+```
+]
+]
+
+
+.pull-right[
+.medium[
+&lt;table style="border-collapse:collapse; border:none;"&gt;
+&lt;tr&gt;
+&lt;th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; "&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; "&gt;Modelo 1&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; "&gt;Predictores&lt;/td&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  "&gt;β&lt;/td&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  "&gt;p&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;(Intercept)&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;1.250&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.420&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;pasos_mama_x&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.250&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.326&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;"&gt;Observations&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2"&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;"&gt;R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2"&gt;0.455 / 0.182&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;
+]
+
+Un 45.5% de la varianza de Y se relaciona con X
+]
+---
+class:roja, right, bottom
+
+
+# 3. Correlación y regresión
+
+---
+## Equivalencias en regresión y correlación
+
+
+```r
+cor(datos1$pasos_mama_x,datos1$pasos_hijo_y)
+```
+
+```
+## [1] 0.6741999
+```
+
+Correlación entre juegos y puntos **al cuadrado**
+
+
+```r
+(cor(datos1$pasos_mama_x,datos1$pasos_hijo_y))^2
+```
+
+```
+## [1] 0.4545455
+```
+
+  - Es decir: correlación de Pearson al cuadrado ( `\(r^2\)` ) es `\(R^2\)`
+---
+## Diferencias en regresión y correlación
+
+.pull-left-narrow[
+
+- La correlación entre X e Y es la misma que entre Y e X
+
+]
+
+.pull-right-wide[
+
+.small[
+
+```r
+cor(datos1$pasos_mama_x,datos1$pasos_hijo_y)
+```
+
+```
+## [1] 0.6741999
+```
+
+```r
+cor(datos1$pasos_hijo_y,datos1$pasos_mama_x)
+```
+
+```
+## [1] 0.6741999
+```
+]
+]
+
+
+---
+## Diferencias en regresión y correlación
+
+.pull-left-narrow[
+
+- La regresión entre X e Y **no** es la misma que entre Y y X
+]
+
+.pull-right-wide[
+
+.small[
+
+```r
+lm(datos1$pasos_hijo_y ~ datos1$pasos_mama_x)$coefficients
+```
+
+```
+##         (Intercept) datos1$pasos_mama_x 
+##                1.25                0.25
+```
+
+```r
+lm(datos1$pasos_mama_x ~ datos1$pasos_hijo_y)$coefficients
+```
+
+```
+##         (Intercept) datos1$pasos_hijo_y 
+##            1.000000            1.818182
+```
+]
+]
+
+---
+class: inverse
+
+##RESUMEN
+
+### - .red[Ajuste] del modelo de regresión (R2): porcentaje de la varianza de la variable dependiente (Y) que se asocia a la independiente (X) 
+
+### - .red[Correlación y regresión]: primos cercanos, principalmente en regresión simple.
+
+
+---
+class: roja, right
+# Próximas semanas:
+
+## Práctica 3: Regresión simple
+## Práctica 4: Ajuste y residuos
+## Preparar Evaluación 1
+ 
+Lectura: [Moore: Residuos (144-154)](https://multivariada.netlify.app/docs/lecturas/moore_residuos.pdf)
+
+
+---
+class: front
+
+.pull-left-narrow[
+# Estadística Multivariada
+
+## multivariada.netlify.com
+
+## Sociología FACSO 
+## UChile
+## 1er Sem 2022
+
+]
+
+ 
+.pull-right-wide[
+.right[
+![:scale 50%](https://multivariada.netlify.com/img/hex_multiva.png)
+
+
+
+]
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="../macros.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<style>
+.logo {
+  background-image: url("../hex_multiva_white.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 16.3em;
+  right: 31em;
+  width: 110px;
+  height: 70px;
+  z-index: 0;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.title-slide)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="logo"></div>';
+  });
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
