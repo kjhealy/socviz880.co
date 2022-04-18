@@ -1,7 +1,7 @@
 ---
 title: "Estadística Multivariada"
 author: ".small[Juan Carlos Castillo <br><br> Departamento de Sociología - UCH / COES <br><br>]"
-date: "1er Sem 2021"
+date: "1er Sem 2022"
 output:
   xaringan::moon_reader:
     includes:
@@ -45,7 +45,7 @@ library(tidyverse)
 
 ```{r xaringanExtra, include=FALSE}
 xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css"))
-xaringanExtra::use_share_again()
+# xaringanExtra::use_share_again()
 xaringanExtra::use_scribble()
 ```
 
@@ -70,7 +70,7 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2021
+## 1er Sem 2022
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 
@@ -96,7 +96,7 @@ class: inverse
 
 ##.red[Contenidos]
 
-### .red[1.] Repaso de sesión anterior
+### .red[1.] Siguiendo con regresión simple
 
 ### .red[2.]  Ajuste y residuos
 
@@ -104,53 +104,119 @@ class: inverse
 
 
 ---
-class: roja, middle, bottom, slideInRight
+class: roja, bottom, right
 
-# 1. Repaso sesión anterior
----
-class: inverse, middle, center
+# 1. Regresión simple
 
-.pull-left[
-<br>
-# .red[MODELO:] 
-]
 
-.pull-right[
-##  representación simplificada
-
-![](cat.png)]
 ---
 class: inverse, center
 
-## El **modelo de regresión** busca representar de manera simplificada la relación entre dos variables 
-
+# .yellow[¿Qué buscamos?]
 --
+.content-box-red[
+## .red[Contrastar empíricamente teorías sociológicas
+]
+]
+.medium[(con datos cuantitativos)]
 
-## Permite el **contraste empírico de teoría** con datos cuantitativos
 
 ---
-# Objetivos centrales del modelo de regresión:
+# Hechos sociales son multideterminados
 
-1. **Conocer**: la variación de la variable dependiente de acuerdo a la variación de otra(s) variable(s) independiente(s)
+.pull-left[
+.center[
+![](../05-regmul1/regmod3.png)
+]]
 
-2. **Predecir**: estimar el valor de una variable (dependiente) de acuerdo al valor de otra(s)
+.pull-right[
+- Limitaciones de herramientas bivariadas (tablas de contingencia, coeficiente de correlación)
 
-3. **Inferir**: Establecer en que medida esta asociación es estadísticamente significativa
+- Necesidad de contar con herramientas más eficientes que incluyan múltiples determinantes
 
+- -> .red[MODELO DE REGRESIÓN]
+
+]
+???
+
+- por qué "modelo"
+- por qué "regresión"
+- partir por un determinante y luego se expande a múltiples determinantes
+
+---
+# ¿MODELO?= representación simplificada
+
+
+
+
+.pull-left[
+![:scale 80%](cat-real.jpg)
+]
+
+.pull-right[
+.center[
+<br>
+![.scale 110%](cat.png)
+]]
+---
+# ¿Regresión?
+
+
+.pull-left[
+
+- el **modelo de regresión** busca representar matemáticamente la relación entre una variable dependiente (Y) y una o más independientes (X)
+]
+
+.pull-right[
+![](../05-regmul1/regmod3.png)
+]
+
+---
+# ¿Regresión?
+
+
+.pull-left[
+
+- el **modelo de regresión** busca representar matemáticamente la relación entre una variable dependiente (Y) y una o más independientes (X)
+
+- esta relación se expresa en un parámetro $\beta$  o "beta de regresión"
+]
+
+.pull-right[
+![](../05-regmul1/regmod4.png)
+]
+
+---
+# Regresión simple
+
+- esta primera parte del curso veremos modelos con solo 1 variable independiente (X) o .red[regresión simple]
+.center[
+![](../05-regmul1/regmod2.png)]
+
+$$\widehat{Y}=\beta_{0} +\beta_{1}X_{1}$$
+- con este modelo podemos saber el valor de $Y$ si conocemos el valor de $X$ usando el valor de los parámetros $\beta_{0}$ y $\beta_{1}$
 
 ---
 # Componentes de la ecuación de la recta de regresión
 
-$$\widehat{Y}=b_{0} +b_{1}X$$
+.pull-left-narrow[
+![](reg_equation.png)
+$$\widehat{Y}=\beta_{0} +\beta_{1}X_{1}$$
+
+
+]
+
+.pull-right-wide[
+
 
 Donde
 
 - $\widehat{Y}$ es el valor estimado de $Y$
 
-- $b_{0}$ es el intercepto de la recta (el valor de Y cuando X es 0)
+- $\beta_{0}$ es el intercepto de la recta (el valor de Y cuando X es 0)
 
-- $b_{1}$ es el coeficiente de regresión, que nos dice .red[cuánto aumenta Y por cada punto que aumenta X]
-
+- $\beta_{1}$ es el coeficiente de regresión, que nos dice .red[cuánto aumenta Y por cada punto que aumenta X]
+]
 ---
 # Estimación de los coeficientes de la ecuación:
 
@@ -169,6 +235,85 @@ Luego despejando el valor de $b_{0}$
 
 $$b_{0}=\bar{Y}-b_{1}\bar{X}$$
 ---
+
+.pull-left-narrow[
+**Ejemplo**: 
+¿Cuántos pasos da un hijo (Y) por cada paso que da su mamá (x)?
+
+![:scale 50%](walking.png)
+]
+
+.pull-right-wide[
+
+.small[
+```{r echo=FALSE}
+pasos_mama_x=c(3,5,7,9)
+pasos_hijo_y=c(2,3,2,4)
+datos1 <-as.data.frame(cbind(pasos_mama_x,pasos_hijo_y))
+options(scipen=3)
+```
+
+```{r echo=FALSE, results='markup'}
+print(datos1)
+```
+
+]
+
+```{r echo=FALSE}
+names(datos1)
+ggplot(datos1, aes(pasos_mama_x, pasos_hijo_y)) + geom_point()+   ylim(0, 5) +
+  scale_x_continuous(limits = c(0,10),
+                     breaks = seq(0,10,1))
+```
+
+
+]
+
+---
+class: middle center
+
+$$b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})};b_{0}=\bar{Y}-b_{1}\bar{X}$$
+![:scale 100%](excel-reg.png)
+
+
+---
+
+$$\widehat{Y}=\beta_{0} +\beta_{1}X_{1}$$
+Reemplazando:
+
+$$\widehat{Y}=1.25 +0.25X$$
+Entonces:
+
+- por cada paso que da la mamá (X), un hij_ (Y) avanza en promedio 0.25 pasos
+
+- si una mamá da (por ej) .blue[4] pasos, entonces la cantidad de pasos estimada para su hijo sería 1.25+0.25*.blue[4]=.red[2.25]
+
+---
+
+.pull-left[
+
+$$\widehat{Y}=1.25 +0.25X$$
+
+```{r echo=FALSE}
+ggplot(datos1, aes(pasos_mama_x, pasos_hijo_y)) + 
+  geom_point() +
+  ylim(0, 5) +
+  scale_x_continuous(limits = c(0,10),
+                     breaks = seq(0,10,1)) +
+  stat_smooth(method = "lm", se = FALSE, fullrange = T)
+```
+]
+
+.pull-right[
+<br>
+- la ecuación del modelo de regresión se puede expresar en una .red[recta de regresión]
+
+- esta recta representa la predicción de los valores de $Y$ a partir de $X$
+]
+
+
+
+---
 # Estimación del modelo de regresión simple en `R`
 
 La función para estimar regresión en `R` es `lm` (linear model):
@@ -185,48 +330,19 @@ Donde
 ]
 
 ---
+
+```{r}
+lm(pasos_hijo_y ~ pasos_mama_x, data = datos1)
+```
+
+
+---
 class: inverse, middle, center
 # INTERPRETACIÓN
 
 #por cada unidad que aumenta .red[X], .yellow[Y] aumenta en .orange[*Beta*]
 
 
----
-
-.pull-left-narrow[
-![:scale 70%](walking.png)
-]
-
-.pull-right-wide[
-**Ejemplo**: 
-¿Cuántos pasos da un hijo (Y) por cada paso que da su mamá (x)?
-
-.small[
-```{r echo=FALSE}
-pasos_mama_x=c(1,3,5)
-pasos_hijo_y=c(3,9,15)
-datos1 <-as.data.frame(cbind(pasos_mama_x,pasos_hijo_y))
-options(scipen=3)
-```
-
-```{r echo=FALSE, results='markup'}
-print(datos1)
-```
-
-```{r results='hide'}
-reg<-lm(pasos_hijo_y ~ pasos_mama_x, data = datos1)
-```
-
-```
-Coefficients:
-(Intercept)       pasos_mama_x  
-     0.0            3.0  
-```
-]]
-
---
-
-**POR CADA PASO QUE DA LA MAMÁ (X), UN HIJO (Y) AVANZA (EN PROMEDIO) 3 PASOS**
 
 ---
 .pull-left[
@@ -291,13 +407,6 @@ class: roja, bottom, right
 # 2. Ajuste y residuos
 
 ---
-#¿Qué tan bueno es nuestro modelo?
-
-.center[
-![:scale 65%](ajuste.png)]
-]
-
----
 .pull-left-wide[
 ![:scale 80%](anscombe.png)
 ]
@@ -312,11 +421,14 @@ Podemos tener un mismo modelo de regresión para relaciones distintas entre dato
 ]
 
 ---
-# Minimización de residuos y ajuste
+# ¿Qué tan bueno es nuestro modelo?
 
 - El cálculo del $\beta$ busca minimizar los residuos (de ahí "mínimos cuadrados ordinarios")
 
 - Una vez minimizados los residuos, se puede evaluar el ajuste
+  - qué tan bien representa nuestro modelo la realidad
+  
+  - cuánto error (de predicción) estamos cometiendo con nuestro modelo
 
 
 
@@ -337,7 +449,7 @@ class: inverse, right
 
 --
 
-## En otras palabras, cuando se **ajusta** mejor a los datos
+## En otras palabras, cuando se parece o **ajusta** mejor a los datos
 
 --
 
@@ -350,70 +462,60 @@ class: inverse, right
 ]
 
 .pull-right-narrow[
-El ajuste del modelo se relaciona con la diferencia entre:
 
-- pje. observado: $Y$  
 
-- pje. estimado: $\widehat{Y}$
+- observado: $Y$  
+
+- estimado: $\widehat{Y}$
+
+- residuo: $Y-\widehat{Y}$
 ]
+
 ---
-.pull-left-narrow[
-.smally[
-```{r echo=FALSE}
-datos<- read.csv("../03-regsimple1/tacataca.txt", sep="")
-reg1 <-lm(puntos_y ~ juegos_x, data = datos)
-datos$estimado <- fitted(reg1)
-datos$residuo = datos$puntos-datos$estimado
-round(datos,2)
-```
-$$\widehat{Y}=2.5 + 0.5X$$
+# Varianza explicada de Y
 
-]
-]
+¿Qué parte de la varianza de ingreso (Y) se asocia a educación? 
+
+.center[![:scale 50%](ingresoeduc.png)]
+
+---
+# Varianza explicada de Y: $R^2$
+
+- ¿Cuánto de los ingresos puedo predecir con educación (regresión) y cuánto me estoy equivocando (residuos)?
 
 --
 
-.pull-right[
-.right[
-## Ajuste y Residuos 
+- el $R^2$
+  - es la proporción de la varianza de Y que se asocia a X
+  - varía entre 0 y 1, y se puede expresar en porcentaje
 
-$$\widehat{Y}=b_{0} +b_{1}X$$
+--
 
-$$Y=b_{0}+b_{1}X+e$$
-]
-
-.small[
-- X = puntaje observado juegos
-
-- Y = puntaje observado puntos
-
-- $\widehat{Y}$ = puntaje estimado puntos
-
-- $b_{0}$= intercepto
-
-- $b_{1}$= coeficiente de regresión de juegos
-
-- $e$ = residuo (observado y - estimado)
-]]
-
----
-class: inverse, center
-
-# ¿Cómo dar cuenta del ajuste total? 
-
-# Calculando qué **proporción** de la varianza de Y se asocia a X
+- Entonces, podemos descomponer la varianza de Y en 2: aquella asociada a X (regresión) y la que no se asocia a X (residuos) 
 
 
 ---
-# Descomposición de Y
+# ¿Cómo se calcula el $R^2$? 
 
-### -   Tres piezas de información relevante:
+- para saber qué porcentaje de $Y$ se asocia a $X$ vamos a considerar los siguientes valores de $Y$: 
+
 
 $Y$ = Valor observado de Y
 
 $\widehat{Y}$ = estimación de Y a partir de X
 
 $\bar{Y}$ = promedio de Y
+
+---
+# Descomponiendo Y
+
+Conceptualmente:
+
+$$SS_{tot}=SS_{reg} + SS_{error}$$
+.center[
+![:scale 70%](resid_3.JPG)
+]
+
 
 ---
 .pull-left-wide[
@@ -430,15 +532,6 @@ $$Y=\bar{Y}+(\widehat{Y}-\bar{Y}) + (Y-\widehat{Y})$$
 $$ \Sigma(y_i - \bar{y})^2=\Sigma (\hat{y}_i-\bar{y})^2 +\Sigma(y_i-\hat{y}_i)^2$$
 ]
 
----
-# Descomponiendo Y
-
-Conceptualmente:
-
-$$SS_{tot}=SS_{reg} + SS_{error}$$
-.center[
-![:scale 70%](resid_3.JPG)
-]
 ---
 # Varianza explicada
 
@@ -460,56 +553,6 @@ $$\frac{SS_{reg}}{SS_{tot}}= 1- \frac{SS_{error}}{SS_{tot}}=R^2$$
 
 ### .center[¿Qué quiere decir esto?]
 
----
-# Varianza explicada R2
-
-.center[![:scale 60%](ingresoeduc.png)]
-
-- Parte de la variación de Y (ej: ingreso) se asocia a la variación de X (ej: educación)
-
----
-# Varianza explicada R2
-
-.pull-left-wide[
-![:scale 80%](plotreg.png)]
-
-.pull-rigth-narrow[
-<br>
-<br>
-<br>
-Porcentaje de la variación de Y que puede ser asociado a la variación de X]
-
----
-.pull-left[
-.smally[
-```{r echo=FALSE}
-reg1 <-lm( puntos_y ~juegos_x, data = datos)
-datos$estimado <- fitted(reg1)
-datos$residuo = datos$puntos_y-datos$estimado
-round(datos,2)
-```
-]
-]
-
-.pull-right[
-.small[
-### Volviendo al ejemplo: Puntos en partido
-
-```{r}
-ss_tot<- sum((datos$puntos_y-
-          mean(datos$puntos_y))^2); ss_tot
-ss_reg<- sum((datos$estimado -
-          mean(datos$puntos_y))^2); ss_reg
-ss_reg/ss_tot
-
-```
-]]
-
----
-class: inverse, middle, center 
-
-
-# Un 40% de la varianza en los puntos obtenidos en el juego se relaciona con la (varianza de) experiencia previa en juegos
 
 
 ---
@@ -519,15 +562,16 @@ class: inverse, middle, center
 
 .medium[
 ```{r}
-reg1 <-lm( puntos_y ~ 
-              juegos_x, 
-              data = datos)
+reg1 <-lm(pasos_hijo_y ~ 
+              pasos_mama_x, 
+              data = datos1)
 ```
 ]
 ]
 
 
 .pull-right[
+.medium[
 ```{r, echo=FALSE}
 sjPlot::tab_model(reg1,
         show.se=FALSE,
@@ -539,6 +583,8 @@ sjPlot::tab_model(reg1,
 ```
 ]
 
+Un 45.5% de la varianza de Y se relaciona con X
+]
 ---
 class:roja, right, bottom
 
@@ -549,13 +595,13 @@ class:roja, right, bottom
 ## Equivalencias en regresión y correlación
 
 ```{r}
-cor(datos$juegos_x,datos$puntos_y)
+cor(datos1$pasos_mama_x,datos1$pasos_hijo_y)
 ```
 
 Correlación entre juegos y puntos **al cuadrado**
 
 ```{r}
-(cor(datos$juegos_x,datos$puntos_y))^2
+(cor(datos1$pasos_mama_x,datos1$pasos_hijo_y))^2
 ```
 
   - Es decir: correlación de Pearson al cuadrado ( $r^2$ ) es $R^2$
@@ -572,8 +618,8 @@ Correlación entre juegos y puntos **al cuadrado**
 
 .small[
 ```{r}
-cor(datos$juegos_x,datos$puntos_y)
-cor(datos$puntos_y,datos$juegos_x)
+cor(datos1$pasos_mama_x,datos1$pasos_hijo_y)
+cor(datos1$pasos_hijo_y,datos1$pasos_mama_x)
 ```
 ]
 ]
@@ -591,8 +637,8 @@ cor(datos$puntos_y,datos$juegos_x)
 
 .small[
 ```{r}
-lm(datos$puntos_y ~ datos$juegos_x)$coefficients
-lm(datos$juegos_x ~ datos$puntos_y)$coefficients
+lm(datos1$pasos_hijo_y ~ datos1$pasos_mama_x)$coefficients
+lm(datos1$pasos_mama_x ~ datos1$pasos_hijo_y)$coefficients
 ```
 ]
 ]
@@ -609,12 +655,13 @@ class: inverse
 
 ---
 class: roja, right
-# Próxima semana:
+# Próximas semanas:
 
+## Práctica 3: Regresión simple
 ## Práctica 4: Ajuste y residuos
-## Preparar Informe 1
-
-## - Lectura: [Moore: Residuos (144-154)](https://multivariada.netlify.app/docs/lecturas/moore_residuos.pdf)
+## Preparar Evaluación 1
+ 
+Lectura: [Moore: Residuos (144-154)](https://multivariada.netlify.app/docs/lecturas/moore_residuos.pdf)
 
 
 ---
@@ -627,7 +674,7 @@ class: front
 
 ## Sociología FACSO 
 ## UChile
-## 1er Sem 2021
+## 1er Sem 2022
 
 ]
 

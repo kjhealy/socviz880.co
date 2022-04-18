@@ -8,15 +8,10 @@
     <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
     <script src="libs/tile-view/tile-view.js"></script>
     <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
-    <script src="libs/clipboard/clipboard.min.js"></script>
-    <link href="libs/shareon/shareon.min.css" rel="stylesheet" />
-    <script src="libs/shareon/shareon.min.js"></script>
-    <link href="libs/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
-    <script src="libs/xaringanExtra-shareagain/shareagain.js"></script>
     <script src="libs/fabric/fabric.min.js"></script>
     <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
     <script src="libs/xaringanExtra-scribble/scribble.js"></script>
-    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30}) })</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
     <script src="libs/twitter-widget/widgets.js"></script>
     <link rel="stylesheet" href="../custom_2020.css" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" type="text/css" />
@@ -60,7 +55,7 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2021
+## 1er Sem 2022
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 
@@ -86,7 +81,7 @@ class: inverse
 
 ##.red[Contenidos]
 
-### .red[1.] Repaso de sesión anterior
+### .red[1.] Siguiendo con regresión simple
 
 ### .red[2.]  Ajuste y residuos
 
@@ -94,53 +89,119 @@ class: inverse
 
 
 ---
-class: roja, middle, bottom, slideInRight
+class: roja, bottom, right
 
-# 1. Repaso sesión anterior
----
-class: inverse, middle, center
+# 1. Regresión simple
 
-.pull-left[
-&lt;br&gt;
-# .red[MODELO:] 
-]
 
-.pull-right[
-##  representación simplificada
-
-![](cat.png)]
 ---
 class: inverse, center
 
-## El **modelo de regresión** busca representar de manera simplificada la relación entre dos variables 
-
+# .yellow[¿Qué buscamos?]
 --
+.content-box-red[
+## .red[Contrastar empíricamente teorías sociológicas
+]
+]
+.medium[(con datos cuantitativos)]
 
-## Permite el **contraste empírico de teoría** con datos cuantitativos
 
 ---
-# Objetivos centrales del modelo de regresión:
+# Hechos sociales son multideterminados
 
-1. **Conocer**: la variación de la variable dependiente de acuerdo a la variación de otra(s) variable(s) independiente(s)
+.pull-left[
+.center[
+![](../05-regmul1/regmod3.png)
+]]
 
-2. **Predecir**: estimar el valor de una variable (dependiente) de acuerdo al valor de otra(s)
+.pull-right[
+- Limitaciones de herramientas bivariadas (tablas de contingencia, coeficiente de correlación)
 
-3. **Inferir**: Establecer en que medida esta asociación es estadísticamente significativa
+- Necesidad de contar con herramientas más eficientes que incluyan múltiples determinantes
 
+- -&gt; .red[MODELO DE REGRESIÓN]
+
+]
+???
+
+- por qué "modelo"
+- por qué "regresión"
+- partir por un determinante y luego se expande a múltiples determinantes
+
+---
+# ¿MODELO?= representación simplificada
+
+
+
+
+.pull-left[
+![:scale 80%](cat-real.jpg)
+]
+
+.pull-right[
+.center[
+&lt;br&gt;
+![.scale 110%](cat.png)
+]]
+---
+# ¿Regresión?
+
+
+.pull-left[
+
+- el **modelo de regresión** busca representar matemáticamente la relación entre una variable dependiente (Y) y una o más independientes (X)
+]
+
+.pull-right[
+![](../05-regmul1/regmod3.png)
+]
+
+---
+# ¿Regresión?
+
+
+.pull-left[
+
+- el **modelo de regresión** busca representar matemáticamente la relación entre una variable dependiente (Y) y una o más independientes (X)
+
+- esta relación se expresa en un parámetro `\(\beta\)`  o "beta de regresión"
+]
+
+.pull-right[
+![](../05-regmul1/regmod4.png)
+]
+
+---
+# Regresión simple
+
+- esta primera parte del curso veremos modelos con solo 1 variable independiente (X) o .red[regresión simple]
+.center[
+![](../05-regmul1/regmod2.png)]
+
+`$$\widehat{Y}=\beta_{0} +\beta_{1}X_{1}$$`
+- con este modelo podemos saber el valor de `\(Y\)` si conocemos el valor de `\(X\)` usando el valor de los parámetros `\(\beta_{0}\)` y `\(\beta_{1}\)`
 
 ---
 # Componentes de la ecuación de la recta de regresión
 
-`$$\widehat{Y}=b_{0} +b_{1}X$$`
+.pull-left-narrow[
+![](reg_equation.png)
+`$$\widehat{Y}=\beta_{0} +\beta_{1}X_{1}$$`
+
+
+]
+
+.pull-right-wide[
+
 
 Donde
 
 - `\(\widehat{Y}\)` es el valor estimado de `\(Y\)`
 
-- `\(b_{0}\)` es el intercepto de la recta (el valor de Y cuando X es 0)
+- `\(\beta_{0}\)` es el intercepto de la recta (el valor de Y cuando X es 0)
 
-- `\(b_{1}\)` es el coeficiente de regresión, que nos dice .red[cuánto aumenta Y por cada punto que aumenta X]
-
+- `\(\beta_{1}\)` es el coeficiente de regresión, que nos dice .red[cuánto aumenta Y por cada punto que aumenta X]
+]
 ---
 # Estimación de los coeficientes de la ecuación:
 
@@ -159,6 +220,78 @@ Luego despejando el valor de `\(b_{0}\)`
 
 `$$b_{0}=\bar{Y}-b_{1}\bar{X}$$`
 ---
+
+.pull-left-narrow[
+**Ejemplo**: 
+¿Cuántos pasos da un hijo (Y) por cada paso que da su mamá (x)?
+
+![:scale 50%](walking.png)
+]
+
+.pull-right-wide[
+
+.small[
+
+
+
+```
+##   pasos_mama_x pasos_hijo_y
+## 1            3            2
+## 2            5            3
+## 3            7            2
+## 4            9            4
+```
+
+]
+
+
+```
+## [1] "pasos_mama_x" "pasos_hijo_y"
+```
+
+![](04_regsimple2_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+
+]
+
+---
+class: middle center
+
+`$$b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})};b_{0}=\bar{Y}-b_{1}\bar{X}$$`
+![:scale 100%](excel-reg.png)
+
+
+---
+
+`$$\widehat{Y}=\beta_{0} +\beta_{1}X_{1}$$`
+Reemplazando:
+
+`$$\widehat{Y}=1.25 +0.25X$$`
+Entonces:
+
+- por cada paso que da la mamá (X), un hij_ (Y) avanza en promedio 0.25 pasos
+
+- si una mamá da (por ej) .blue[4] pasos, entonces la cantidad de pasos estimada para su hijo sería 1.25+0.25*.blue[4]=.red[2.25]
+
+---
+
+.pull-left[
+
+`$$\widehat{Y}=1.25 +0.25X$$`
+
+![](04_regsimple2_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+&lt;br&gt;
+- la ecuación del modelo de regresión se puede expresar en una .red[recta de regresión]
+
+- esta recta representa la predicción de los valores de `\(Y\)` a partir de `\(X\)`
+]
+
+
+
+---
 # Estimación del modelo de regresión simple en `R`
 
 La función para estimar regresión en `R` es `lm` (linear model):
@@ -175,48 +308,30 @@ Donde
 ]
 
 ---
+
+
+```r
+lm(pasos_hijo_y ~ pasos_mama_x, data = datos1)
+```
+
+```
+## 
+## Call:
+## lm(formula = pasos_hijo_y ~ pasos_mama_x, data = datos1)
+## 
+## Coefficients:
+##  (Intercept)  pasos_mama_x  
+##         1.25          0.25
+```
+
+
+---
 class: inverse, middle, center
 # INTERPRETACIÓN
 
 #por cada unidad que aumenta .red[X], .yellow[Y] aumenta en .orange[*Beta*]
 
 
----
-
-.pull-left-narrow[
-![:scale 70%](walking.png)
-]
-
-.pull-right-wide[
-**Ejemplo**: 
-¿Cuántos pasos da un hijo (Y) por cada paso que da su mamá (x)?
-
-.small[
-
-
-
-```
-##   pasos_mama_x pasos_hijo_y
-## 1            1            3
-## 2            3            9
-## 3            5           15
-```
-
-
-```r
-reg&lt;-lm(pasos_hijo_y ~ pasos_mama_x, data = datos1)
-```
-
-```
-Coefficients:
-(Intercept)       pasos_mama_x  
-     0.0            3.0  
-```
-]]
-
---
-
-**POR CADA PASO QUE DA LA MAMÁ (X), UN HIJO (Y) AVANZA (EN PROMEDIO) 3 PASOS**
 
 ---
 .pull-left[
@@ -281,13 +396,6 @@ class: roja, bottom, right
 # 2. Ajuste y residuos
 
 ---
-#¿Qué tan bueno es nuestro modelo? 
-
-.center[
-![:scale 65%](ajuste.png)]
-]
-
----
 .pull-left-wide[
 ![:scale 80%](anscombe.png)
 ]
@@ -302,11 +410,14 @@ Podemos tener un mismo modelo de regresión para relaciones distintas entre dato
 ]
 
 ---
-# Minimización de residuos y ajuste
+# ¿Qué tan bueno es nuestro modelo?
 
 - El cálculo del `\(\beta\)` busca minimizar los residuos (de ahí "mínimos cuadrados ordinarios")
 
 - Una vez minimizados los residuos, se puede evaluar el ajuste
+  - qué tan bien representa nuestro modelo la realidad
+  
+  - cuánto error (de predicción) estamos cometiendo con nuestro modelo
 
 
 
@@ -325,7 +436,7 @@ class: inverse, right
 
 --
 
-## En otras palabras, cuando se **ajusta** mejor a los datos
+## En otras palabras, cuando se parece o **ajusta** mejor a los datos
 
 --
 
@@ -338,90 +449,60 @@ class: inverse, right
 ]
 
 .pull-right-narrow[
-El ajuste del modelo se relaciona con la diferencia entre:
 
-- pje. observado: `\(Y\)`  
 
-- pje. estimado: `\(\widehat{Y}\)`
+- observado: `\(Y\)`  
+
+- estimado: `\(\widehat{Y}\)`
+
+- residuo: `\(Y-\widehat{Y}\)`
 ]
+
 ---
-.pull-left-narrow[
-.smally[
+# Varianza explicada de Y
 
-```
-##    id juegos_x puntos_y estimado residuo
-## 1   1        0        2      2.5    -0.5
-## 2   2        0        3      2.5     0.5
-## 3   3        1        2      3.0    -1.0
-## 4   4        1        3      3.0     0.0
-## 5   5        1        4      3.0     1.0
-## 6   6        2        2      3.5    -1.5
-## 7   7        2        3      3.5    -0.5
-## 8   8        2        4      3.5     0.5
-## 9   9        2        5      3.5     1.5
-## 10 10        3        2      4.0    -2.0
-## 11 11        3        3      4.0    -1.0
-## 12 12        3        4      4.0     0.0
-## 13 13        3        5      4.0     1.0
-## 14 14        3        6      4.0     2.0
-## 15 15        4        3      4.5    -1.5
-## 16 16        4        4      4.5    -0.5
-## 17 17        4        5      4.5     0.5
-## 18 18        4        6      4.5     1.5
-## 19 19        5        4      5.0    -1.0
-## 20 20        5        5      5.0     0.0
-## 21 21        5        6      5.0     1.0
-## 22 22        6        5      5.5    -0.5
-## 23 23        6        6      5.5     0.5
-```
-`$$\widehat{Y}=2.5 + 0.5X$$`
+¿Qué parte de la varianza de ingreso (Y) se asocia a educación? 
 
-]
-]
+.center[![:scale 50%](ingresoeduc.png)]
+
+---
+# Varianza explicada de Y: `\(R^2\)`
+
+- ¿Cuánto de los ingresos puedo predecir con educación (regresión) y cuánto me estoy equivocando (residuos)?
 
 --
 
-.pull-right[
-.right[
-## Ajuste y Residuos 
+- el `\(R^2\)`
+  - es la proporción de la varianza de Y que se asocia a X
+  - varía entre 0 y 1, y se puede expresar en porcentaje
 
-`$$\widehat{Y}=b_{0} +b_{1}X$$`
+--
 
-`$$Y=b_{0}+b_{1}X+e$$`
-]
-
-.small[
-- X = puntaje observado juegos
-
-- Y = puntaje observado puntos
-
-- `\(\widehat{Y}\)` = puntaje estimado puntos
-
-- `\(b_{0}\)`= intercepto
-
-- `\(b_{1}\)`= coeficiente de regresión de juegos
-
-- `\(e\)` = residuo (observado y - estimado)
-]]
-
----
-class: inverse, center
-
-# ¿Cómo dar cuenta del ajuste total? 
-
-# Calculando qué **proporción** de la varianza de Y se asocia a X
+- Entonces, podemos descomponer la varianza de Y en 2: aquella asociada a X (regresión) y la que no se asocia a X (residuos) 
 
 
 ---
-# Descomposición de Y
+# ¿Cómo se calcula el `\(R^2\)`? 
 
-### -   Tres piezas de información relevante:
+- para saber qué porcentaje de `\(Y\)` se asocia a `\(X\)` vamos a considerar los siguientes valores de `\(Y\)`: 
+
 
 `\(Y\)` = Valor observado de Y
 
 `\(\widehat{Y}\)` = estimación de Y a partir de X
 
 `\(\bar{Y}\)` = promedio de Y
+
+---
+# Descomponiendo Y
+
+Conceptualmente:
+
+`$$SS_{tot}=SS_{reg} + SS_{error}$$`
+.center[
+![:scale 70%](resid_3.JPG)
+]
+
 
 ---
 .pull-left-wide[
@@ -438,15 +519,6 @@ class: inverse, center
 $$ \Sigma(y_i - \bar{y})^2=\Sigma (\hat{y}_i-\bar{y})^2 +\Sigma(y_i-\hat{y}_i)^2$$
 ]
 
----
-# Descomponiendo Y
-
-Conceptualmente:
-
-`$$SS_{tot}=SS_{reg} + SS_{error}$$`
-.center[
-![:scale 70%](resid_3.JPG)
-]
 ---
 # Varianza explicada
 
@@ -468,95 +540,6 @@ Por lo tanto:
 
 ### .center[¿Qué quiere decir esto?]
 
----
-# Varianza explicada R2
-
-.center[![:scale 60%](ingresoeduc.png)]
-
-- Parte de la variación de Y (ej: ingreso) se asocia a la variación de X (ej: educación)
-
----
-# Varianza explicada R2
-
-.pull-left-wide[
-![:scale 80%](plotreg.png)]
-
-.pull-rigth-narrow[
-&lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
-Porcentaje de la variación de Y que puede ser asociado a la variación de X]
-
----
-.pull-left[
-.smally[
-
-```
-##    id juegos_x puntos_y estimado residuo
-## 1   1        0        2      2.5    -0.5
-## 2   2        0        3      2.5     0.5
-## 3   3        1        2      3.0    -1.0
-## 4   4        1        3      3.0     0.0
-## 5   5        1        4      3.0     1.0
-## 6   6        2        2      3.5    -1.5
-## 7   7        2        3      3.5    -0.5
-## 8   8        2        4      3.5     0.5
-## 9   9        2        5      3.5     1.5
-## 10 10        3        2      4.0    -2.0
-## 11 11        3        3      4.0    -1.0
-## 12 12        3        4      4.0     0.0
-## 13 13        3        5      4.0     1.0
-## 14 14        3        6      4.0     2.0
-## 15 15        4        3      4.5    -1.5
-## 16 16        4        4      4.5    -0.5
-## 17 17        4        5      4.5     0.5
-## 18 18        4        6      4.5     1.5
-## 19 19        5        4      5.0    -1.0
-## 20 20        5        5      5.0     0.0
-## 21 21        5        6      5.0     1.0
-## 22 22        6        5      5.5    -0.5
-## 23 23        6        6      5.5     0.5
-```
-]
-]
-
-.pull-right[
-.small[
-### Volviendo al ejemplo: Puntos en partido
-
-
-```r
-ss_tot&lt;- sum((datos$puntos_y-
-          mean(datos$puntos_y))^2); ss_tot
-```
-
-```
-## [1] 42
-```
-
-```r
-ss_reg&lt;- sum((datos$estimado -
-          mean(datos$puntos_y))^2); ss_reg
-```
-
-```
-## [1] 17
-```
-
-```r
-ss_reg/ss_tot
-```
-
-```
-## [1] 0.4047619
-```
-]]
-
----
-class: inverse, middle, center 
-
-
-# Un 40% de la varianza en los puntos obtenidos en el juego se relaciona con la (varianza de) experiencia previa en juegos
 
 
 ---
@@ -567,15 +550,16 @@ class: inverse, middle, center
 .medium[
 
 ```r
-reg1 &lt;-lm( puntos_y ~ 
-              juegos_x, 
-              data = datos)
+reg1 &lt;-lm(pasos_hijo_y ~ 
+              pasos_mama_x, 
+              data = datos1)
 ```
 ]
 ]
 
 
 .pull-right[
+.medium[
 &lt;table style="border-collapse:collapse; border:none;"&gt;
 &lt;tr&gt;
 &lt;th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; "&gt;&amp;nbsp;&lt;/th&gt;
@@ -588,26 +572,28 @@ reg1 &lt;-lm( puntos_y ~
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;(Intercept)&lt;/td&gt;
-&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;2.500&lt;/td&gt;
-&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;strong&gt;&amp;lt;0.001&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;1.250&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.420&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;juegos_x&lt;/td&gt;
-&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.500&lt;/td&gt;
-&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;strong&gt;0.001&lt;/strong&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;pasos_mama_x&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.250&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.326&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;"&gt;Observations&lt;/td&gt;
-&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2"&gt;23&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2"&gt;4&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;"&gt;R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted&lt;/td&gt;
-&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2"&gt;0.405 / 0.376&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2"&gt;0.455 / 0.182&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;/table&gt;
 ]
 
+Un 45.5% de la varianza de Y se relaciona con X
+]
 ---
 class:roja, right, bottom
 
@@ -619,22 +605,22 @@ class:roja, right, bottom
 
 
 ```r
-cor(datos$juegos_x,datos$puntos_y)
+cor(datos1$pasos_mama_x,datos1$pasos_hijo_y)
 ```
 
 ```
-## [1] 0.636209
+## [1] 0.6741999
 ```
 
 Correlación entre juegos y puntos **al cuadrado**
 
 
 ```r
-(cor(datos$juegos_x,datos$puntos_y))^2
+(cor(datos1$pasos_mama_x,datos1$pasos_hijo_y))^2
 ```
 
 ```
-## [1] 0.4047619
+## [1] 0.4545455
 ```
 
   - Es decir: correlación de Pearson al cuadrado ( `\(r^2\)` ) es `\(R^2\)`
@@ -652,19 +638,19 @@ Correlación entre juegos y puntos **al cuadrado**
 .small[
 
 ```r
-cor(datos$juegos_x,datos$puntos_y)
+cor(datos1$pasos_mama_x,datos1$pasos_hijo_y)
 ```
 
 ```
-## [1] 0.636209
+## [1] 0.6741999
 ```
 
 ```r
-cor(datos$puntos_y,datos$juegos_x)
+cor(datos1$pasos_hijo_y,datos1$pasos_mama_x)
 ```
 
 ```
-## [1] 0.636209
+## [1] 0.6741999
 ```
 ]
 ]
@@ -683,21 +669,21 @@ cor(datos$puntos_y,datos$juegos_x)
 .small[
 
 ```r
-lm(datos$puntos_y ~ datos$juegos_x)$coefficients
+lm(datos1$pasos_hijo_y ~ datos1$pasos_mama_x)$coefficients
 ```
 
 ```
-##    (Intercept) datos$juegos_x 
-##            2.5            0.5
+##         (Intercept) datos1$pasos_mama_x 
+##                1.25                0.25
 ```
 
 ```r
-lm(datos$juegos_x ~ datos$puntos_y)$coefficients
+lm(datos1$pasos_mama_x ~ datos1$pasos_hijo_y)$coefficients
 ```
 
 ```
-##    (Intercept) datos$puntos_y 
-##     -0.2380952      0.8095238
+##         (Intercept) datos1$pasos_hijo_y 
+##            1.000000            1.818182
 ```
 ]
 ]
@@ -714,12 +700,13 @@ class: inverse
 
 ---
 class: roja, right
-# Próxima semana:
+# Próximas semanas:
 
+## Práctica 3: Regresión simple
 ## Práctica 4: Ajuste y residuos
-## Preparar Informe 1
-
-## - Lectura: [Moore: Residuos (144-154)](https://multivariada.netlify.app/docs/lecturas/moore_residuos.pdf)
+## Preparar Evaluación 1
+ 
+Lectura: [Moore: Residuos (144-154)](https://multivariada.netlify.app/docs/lecturas/moore_residuos.pdf)
 
 
 ---
@@ -732,7 +719,7 @@ class: front
 
 ## Sociología FACSO 
 ## UChile
-## 1er Sem 2021
+## 1er Sem 2022
 
 ]
 
