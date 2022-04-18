@@ -3,8 +3,8 @@ title: "Práctica 4. Regresión simple 2"
 subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
 author: "Juan Carlos Castillo"
 linktitle: "Práctica 4: Regresión simple 2"
-date: "2022-04-17"
-class_date: "2022-04-17"
+date: "2022-04-18"
+class_date: "2022-04-18"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
@@ -106,6 +106,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#ajuste-y-residuos">Ajuste y residuos</a></li>
 <li><a href="#cálculo-del-r2">Cálculo del R2</a></li>
 <li><a href="#vamos-a-r">Vamos a R</a></li>
+<li><a href="#correlación-y-regresión">Correlación y regresión</a></li>
 <li><a href="#reporte-de-progreso">Reporte de progreso</a></li>
 <li><a href="#foro">Foro</a></li>
 </ul>
@@ -117,7 +118,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </script>
 <div id="objetivo-de-la-práctica" class="section level2">
 <h2>Objetivo de la práctica</h2>
-<p>En esta guía práctica revisaremos un ejemplo distinto al del práctico anterior y que fue presentado en la clase de <a href="/class/04-class/">Regresión Simple 2</a>, se recomienda revisar el documento de presentación antes de realizar esta guía. La idea es volver sobre el cálculo e interpretación de los coeficientes del modelo de regresión paso a paso y de la forma más manual posible, de modo de poder familiarizarse más cercanamente con el sentido de esta técnica y también para darse cuenta que lo que se obtendrá luego con el análisis en R no es magia sino que proviene de un procedimiento que se puede realizar también mediante lapiz y papel … o también con ayuda de una planilla simple de cálculo.</p>
+<p>En esta guía práctica revisaremos un ejemplo que fue presentado en la clase de <a href="/class/04-class/">Regresión Simple 2</a>, se recomienda revisar el documento de presentación antes de realizar esta guía.</p>
+<p>La idea es volver sobre el cálculo e interpretación de los coeficientes del modelo de regresión paso a paso y de la forma más manual posible, de modo de poder familiarizarse más cercanamente con el sentido de esta técnica y también para darse cuenta que lo que se obtendrá luego con el análisis en R no es magia sino que proviene de un procedimiento que se puede realizar también mediante lápiz y papel … o también con ayuda de una planilla simple de cálculo. Para ello usaremos un ejemplo con solo cuatro casos a modo ilustrativo.</p>
 <p>Además, vamos a revisar el cálculo e interpretación de <span class="math inline">\(R^2\)</span> que es una medida de qué tan bien se ajusta el modelo de regresión a los datos. En otras palabras, qué tan bueno es el modelo, o cuánto de nuestra variable dependiente <span class="math inline">\(Y\)</span> podemos saber/predecir a partir de nuestra variable independiente <span class="math inline">\(X\)</span>.</p>
 </div>
 <div id="librerías" class="section level2">
@@ -139,70 +141,72 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## 4            4            9</code></pre>
 <p>Tenemos una base de datos con cuatro casos y dos variables: pasos_hijo_y y pasos_mama_x. Una representación en un gráfico bivariado de puntos es la siguiente:</p>
 <p><img src="/assignment/04-code_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>Vemos la distribución de los cuatro casos, se aprecia en general una relación positiva donde a medida que aumentan los pasos de la madre también aumenta la cantidad de pasos de los hijos.</p>
+<p>Vemos la distribución de los cuatro casos, se aprecia en general una relación positiva donde a medida que aumentan los pasos de la madre también aumenta la cantidad de pasos de los hij_s.</p>
 </div>
 <div id="cálculo-de-los-coeficientes-de-regresión" class="section level2">
 <h2>Cálculo de los coeficientes de regresión</h2>
 <p>Recordemos la ecuación del modelo de regresión:</p>
 <p><span class="math inline">\(\hat{Y}= \beta_0 + \beta_{1}X_{1}\)</span></p>
-<p>En esta sección vamos a calcular un modelo de regresión para las variables de <code>datos1</code>, siendo pasos_hijo_y nuestra variable dependiente Y, y pasos_mama_x nuestra variable independiente X. Recordemos la fórmula del beta ( <span class="math inline">\(\beta\)</span> ) de regresión:</p>
+<p>En esta sección vamos a calcular un modelo de regresión para las variables de <code>datos1</code>, siendo pasos_hijo_y nuestra variable dependiente <span class="math inline">\(Y\)</span>, y pasos_mama_x nuestra variable independiente <span class="math inline">\(X\)</span>. Recordemos la fórmula del beta ( <span class="math inline">\(\beta\)</span> ) de regresión:</p>
 <p><span class="math display">\[b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})}\]</span></p>
-<p>En el numerador (parte superior de la fracción) tenemos lo que se llama <em>suma de productos cruzados</em>, que representa la covariación entre x e y, y abajo la <em>suma de los cuadrados de x</em>, que representa la variación (varianza) de x. El sentido de esta formula es llegar a un número que represente cuánto cambia y por cada punto o unidad que aumenta x.</p>
-<p>Este calculo lo vamos a hacer usando una planilla de cálculo, para ellos se puede usar Excel, Drive, o una hoja y un lápiz.</p>
+<p>En el numerador (parte superior de la fracción) tenemos lo que se llama <em>suma de productos cruzados</em>, que representa la covariación entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>, y abajo la <em>suma de los cuadrados de x</em>, que representa la variación (varianza) de <span class="math inline">\(X\)</span>. El sentido de esta formula es llegar a un número que represente cuánto cambia <span class="math inline">\(Y\)</span> por cada punto o unidad que aumenta <span class="math inline">\(X\)</span>.</p>
+<p>Este calculo lo vamos a hacer usando una planilla de cálculo, para ellos se puede usar Excel, Drive, o una hoja y un lápiz. Se recomienda hacerlo paso a paso siguiendo las indicaciones que vienen a continuación.</p>
 <p><img src="/images/datos1.png" /></p>
-<p>En la tabla aparecen nuestras variables Y y X en las columnas B y C respectivamente, bajo ellas se calcula la suma y el promedio de cada variable. Para poder calcular el <span class="math inline">\(\beta\)</span> necesitamos obtener cada término de la formula, que finalmente no es más que diferencias de cada caso respecto de su promedio, y luego la suma de ellos. Vamos por parte.</p>
+<p>En la tabla aparecen nuestras variables <span class="math inline">\(Y\)</span> y <span class="math inline">\(X\)</span> en las columnas B y C respectivamente, bajo ellas se calcula la suma y el promedio de cada variable. Para poder calcular el <span class="math inline">\(\beta\)</span> necesitamos obtener cada término de la formula, que finalmente no son más que diferencias de cada caso respecto de su promedio, y luego la suma de ellos. Vamos por parte.</p>
 <ul>
-<li><p>agregamos en la columna D y-promy, que es el caso correspondiente de Y (pasos hijo) menos su promedio. Por ejemplo, el primer caso de y tiene el valor 2, y sy promedio es 2,75. Por lo tanto, 2-2,75=-0.75, que es el valor a anotar en la celda correspondiente (columna D de la fila del caso 1).</p></li>
-<li><p>luego, en la columna x-promx se hace lo mismo pero para la variable X pasos_mama_x</p></li>
+<li><p>agregamos en la columna D y-promy, que es el caso correspondiente de <span class="math inline">\(Y\)</span> (pasos hijo) menos su promedio. Por ejemplo, el primer caso de <span class="math inline">\(Y\)</span> tiene el valor 2, y su promedio es 2,75. Por lo tanto, 2-2,75=-0.75, que es el valor a anotar en la celda correspondiente (columna D de la fila del caso 1).</p></li>
+<li><p>luego, en la columna x-promx se hace lo mismo pero para la variable <span class="math inline">\(X\)</span> pasos_mama_x</p></li>
 <li><p>en la columna siguiente (x-promx)2 se eleva al cuadrado el valor de la columna anterior para cada caso, y al final se suman. Esto corresponde al denominador del <span class="math inline">\(\beta\)</span> (lo que va en la parte de abajo de la fracción= <span class="math inline">\(\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})\)</span> )</p></li>
 <li><p>y en la columna siguiente multiplicamos x-promx por y-promy para cada caso y lo sumamos al final, que corresponde al numerador de la fracción del beta= <span class="math inline">\(\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})\)</span></p></li>
 </ul>
 <p>El resultado de estos cálculos se puede ver acá:</p>
 <p><img src="/slides/04-regsimple2/excel-reg.png" /></p>
-<p>En la parte de abajo se incluye el cálculo del <span class="math inline">\(\beta\)</span> o más precisamente el <span class="math inline">\(\b_1\)</span>, que es el que corresponde a la (primera) variable independiente X, pasos_mama_x. Este beta se obtiene dividiendo la celda G6 ( <span class="math inline">\(\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})\)</span> ) por la celda F6 ( <span class="math inline">\(\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})\)</span> ), y nos da un resultado de 0,25</p>
+<p>En la parte de abajo se incluye el cálculo del <span class="math inline">\(\beta\)</span> o más precisamente el <span class="math inline">\(\b_1\)</span>, que es el que corresponde a la (primera) variable independiente X, pasos_mama_x. Este beta se obtiene dividiendo la celda G6 ( <span class="math inline">\(\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})\)</span> ) por la celda F6 ( <span class="math inline">\(\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})\)</span> ), y nos da un resultado de 0,25. **Este es el valor del <span class="math inline">\(\beta\)</span> de regresión para esta ecuación.</p>
 <p>Para el cálculo del intercepto de la ecuación o <span class="math inline">\(\beta_0\)</span> aplicamos la siguiente fórmula:</p>
 <p><span class="math display">\[b_{0}=\bar{Y}-b_{1}\bar{X}\]</span></p>
-<p>Que corresponde al promedio de Y (2,75) menos el <span class="math inline">\(\beta_1\)</span> 0,25 por el promedio de X (6), lo que nos da 1,25.</p>
+<p>Que corresponde al promedio de <span class="math inline">\(Y\)</span> (2,75) menos el <span class="math inline">\(\beta_1\)</span> 0,25 por el promedio de <span class="math inline">\(X\)</span> (6), lo que nos da 1,25.</p>
 <p>Con esto podemos completar nuestra ecuación de regresión:</p>
 <p><span class="math display">\[\widehat{Y}=1.25 +0.25X\]</span></p>
 <p>Entonces:</p>
 <ul>
-<li><p>interpretación del <span class="math inline">\(\beta\)</span> : por cada paso que da la mamá (X), un hij_ (Y) avanza en promedio 0.25 pasos</p></li>
+<li><p>interpretación del <span class="math inline">\(\beta\)</span> : por cada paso que da la mamá (<span class="math inline">\(X\)</span>), un hij_ (<span class="math inline">\(Y\)</span>) avanza en promedio 0.25 pasos</p></li>
 <li><p>uso en predicción: si una mamá da (por ej) 4 pasos, entonces la cantidad de pasos estimada para su hijo sería 1.25+0.25*4=2.25</p></li>
 </ul>
-<p>La ecuación de regresión se puede representar en una recta, donde cáda valor de la recta corresponde al valor predicho de Y para cada valor de X:</p>
+<p>La ecuación de regresión se puede representar en una recta, donde cada valor de la recta corresponde al valor predicho de <span class="math inline">\(Y\)</span> para cada valor de <span class="math inline">\(X\)</span>:</p>
 <p><img src="/assignment/04-code_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 <div id="ajuste-y-residuos" class="section level2">
 <h2>Ajuste y residuos</h2>
-<p>En el gráfico anterior vemos que la línea resume la relación entre X e Y que se denomina <strong>recta de regresión</strong>, caracterizada por un intercepto y una pendiente o <span class="math inline">\(\beta\)</span>. Claramente, esta recta es una simplificación que no abarca toda la variabilidad de los datos y por lo tanto se generará una diferencia entre el valor observado de Y y el valor predicho por el modelo que se representa en la recta de regresión. Esta diferencia entre predicho y observado (o <span class="math inline">\(\widehat{Y}\)</span>) y el observado <span class="math inline">\(Y\)</span>) es lo que se conoce como <strong>residuo</strong></p>
-<p>Los residuos ayudan en primer lugar a entender el sentido del cálculo de la recta de regresión. La mejor recta será aquella que minimice lo más posible el valor de los residuos. Para realizar la suma de los residuos estos se elevan al cuadrado, lo que se denomina suma de residuos al cuadrado o <span class="math inline">\(SS_{residual}\)</span> (ya que como hay residuos positivos y negativos unos se cancelan a otros y la suma es 0). Por lo tanto, el cálculo de la recta de regresión busca que la suma de todos los residuos (al cuadrado) sea la menor posible, que es justamente lo que hicimos arriba con la fórmula del <span class="math inline">\(\beta\)</span>. Este procedimiento es el que da nombre al proceso de estimación: residuos cuadrados ordinarios, o <em>OLS</em> (Ordinary Least Squares).</p>
+<p>En el gráfico anterior vemos la línea que representa la relación entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> que se denomina <strong>recta de regresión</strong>, caracterizada por un intercepto (valor de <span class="math inline">\(Y\)</span> cuando <span class="math inline">\(X\)</span> es cero) y una pendiente o <span class="math inline">\(\beta\)</span>. Claramente, esta recta es una simplificación que no abarca toda la variabilidad de los datos y por lo tanto se generará una diferencia entre los valores observados de <span class="math inline">\(Y\)</span> y los valores predichos por el modelo que aparecen en la recta de regresión. Esta diferencia entre predicho (<span class="math inline">\(\widehat{Y}\)</span>) y observado (<span class="math inline">\(Y\)</span>) es lo que se conoce como <strong>residuo</strong>.</p>
+<p><img src="/slides/04-regsimple2/residuals.png" /></p>
+<p>En la imagen, los circulos corresponden a los valores observados, y lo que está en la recta son los valores predichos. La línea punteada entre ambos representa el residuo.</p>
+<p>Los residuos ayudan en primer lugar a entender el sentido del cálculo de la recta de regresión. La mejor recta será aquella que minimice lo más posible el valor de los residuos. Para realizar la suma de los residuos estos se elevan al cuadrado, lo que se denomina suma de residuos al cuadrado o <span class="math inline">\(SS_{residual}\)</span> (ya que como hay residuos positivos y negativos unos se cancelan a otros y la suma es 0). Por lo tanto, el cálculo de la recta de regresión busca que la suma de todos los residuos (al cuadrado) sea la menor posible, que es justamente lo que hicimos arriba con la fórmula del <span class="math inline">\(\beta\)</span>. Este procedimiento es el que da nombre al proceso de estimación: minimos cuadrados ordinarios, o <em>OLS</em> (Ordinary Least Squares).</p>
 <p>Ahora, considerando que un mismo modelo de regresión puede representar distintas distribuciones de datos con distintos residuos (ver cuarteto de Anscombe en la sesión <a href="/class/04-class/">Regresión Simple 2</a>, pag. 23), se requiere información adicional para poder evaluar qué tan bueno es el modelo, lo que se conoce como bondad de ajuste. La pregunta es: ¿qué tan bien representa mi modelo a la distribución de los datos? ¿Me permite hacer una buena predicción de Y a partir de X, o mi predicción no es tan buena? Una forma de evaluar esto es calcular la cantidad de residuos que genera el modelo. Sin embargo, si sumamos los residuos nos quedamos con un número difícil de interpretar en términos de ajuste. Por ello, el ajuste se representa en un número sencillo que es el <span class="math inline">\(R^2\)</span>.</p>
-<p>El <span class="math inline">\(R^2\)</span> es un número que varía entre 0 y 1 y que representa qué porcentaje de la varianza de Y podemos explicar con X. A menores residuos, mejor predicción, y entonces mayor <span class="math inline">\(R^2\)</span></p>
+<p>El <span class="math inline">\(R^2\)</span> es un número que varía entre 0 y 1 y que representa qué porcentaje de la varianza de <span class="math inline">\(Y\)</span> podemos explicar con <span class="math inline">\(X\)</span>. A menores residuos, mejor predicción, y entonces mayor <span class="math inline">\(R^2\)</span>. De otra manera, si todos los valores predichos calzaran perfecto en la recta de regresión tendríamos cero residuos, y por lo tanto el <span class="math inline">\(R^2\)</span> sería 1.</p>
 </div>
 <div id="cálculo-del-r2" class="section level2">
 <h2>Cálculo del R2</h2>
 <p>Se puede representar de la siguiente manera:</p>
 <p><span class="math display">\[R^2=\frac{SS_{reg}}{SS_{tot}}\]</span></p>
 <ul>
-<li>El primer término <span class="math inline">\(SS_{reg}\)</span> es la <strong>Suma de cuadrados de la regresión</strong>, y representa la diferencia entre lo estimado (<span class="math inline">\(\hat{y}\)</span>) y el promedio de Y ( <span class="math inline">\(\bar{y}\)</span>). Se puede interpretar como cuánto de Y podemos conocer (además de su promedio) si es que conocemos X. Para ello, se resta a lo estimado el promedio de Y para cada caso, y luego se suma:</li>
+<li>El primer término <span class="math inline">\(SS_{reg}\)</span> es la <strong>Suma de cuadrados de la regresión</strong>, y representa la diferencia entre lo estimado (<span class="math inline">\(\hat{y}\)</span>) y el promedio de Y ( <span class="math inline">\(\bar{y}\)</span>). Se puede interpretar como cuánto de Y podemos conocer (además de su promedio) si es que también conocemos X. En otras palabras: ¿cuánto me aporta <span class="math inline">\(X\)</span> para saber de <span class="math inline">\(Y\)</span>, más allá del mero promedio de <span class="math inline">\(Y\)</span>? Para ello, se resta a lo estimado el promedio de Y para cada caso, y luego se suma:</li>
 </ul>
 <p><span class="math display">\[SS_{reg} = \sum(\hat{y}-\bar{y})^2\]</span></p>
 <ul>
 <li><strong>Suma Total de Cuadrados</strong> ( <span class="math inline">\(SS_{tot}\)</span> ) : La suma de las diferencias del promedio de Y al cuadrado (que representa la varianza total de Y)</li>
 </ul>
 <p><span class="math display">\[SS_{tot} = \sum(y-\bar{y})^2 \]</span></p>
-<p>Para ejemplificar el cálculo vamos a seguir con nuestra planilla de ejemplo, agregando las siguientes columnas:</p>
+<p>Para ejemplificar el cálculo vamos a seguir con la misma planilla que usamos para calcular los parámetros del modelo de regresión, agregando las siguientes columnas:</p>
 <ul>
-<li><p>predY: predicción de Y (pasos hijo) a partir de nuestro modelo de regresión</p></li>
-<li><p>predY-promY : la predicción de Y - su promedio</p></li>
+<li><p>predY: predicción de <span class="math inline">\(Y\)</span> (pasos hijo) a partir de nuestro modelo de regresión</p></li>
+<li><p>predY-promY : la predicción de <span class="math inline">\(Y\)</span> - su promedio</p></li>
 <li><p>(predY-promY)2: se eleva cada valor al cuadrado; la suma de esto nos da <span class="math inline">\(SS_{reg}\)</span></p></li>
-<li><p>y-promy2: las diferencias de cada valor de Y de su promedio (que ya estaban en la columna D) al cuadrado. La suma de esto nos da <span class="math inline">\(SS_{tot}\)</span></p></li>
+<li><p>y-promy2: las diferencias de cada valor de <span class="math inline">\(Y\)</span> de su promedio (que ya estaban en la columna D) al cuadrado. La suma de esto nos da <span class="math inline">\(SS_{tot}\)</span></p></li>
 </ul>
 <p><img src="/images/r2.png" /></p>
 <p>Reemplazando,</p>
 <p><span class="math display">\[R^2=\frac{SS_{reg}}{SS_{tot}}=\frac{1,25}{2,75}=0,455\]</span></p>
-<p>Entonces, el porcentaje de varianza de nuestra variable dependiente “pasos hijo” que podemos relacionar con nuestra variable independente X “pasos mamá” es de un 45%. En otras palabras, si conocemos los pasos de la madre podemos explicar/conocer un 45% de los pasos de los hijos. Y de otra manera, hay un 55% de la varianza de Y que no se asocia a X … y que probablemente tiene que ver con otras variables.</p>
+<p>Entonces, el porcentaje de varianza de nuestra variable dependiente <span class="math inline">\(Y\)</span> “pasos_hijo_y” que podemos relacionar con nuestra variable independente X “pasos_mama_x” es de un 45%. En otras palabras, si conocemos los pasos de la madre podemos explicar/conocer un 45% de los pasos de los hijos. Y de otra manera, hay un 55% de la varianza de <span class="math inline">\(Y\)</span> que no se asocia a <span class="math inline">\(X\)</span> … y que probablemente tiene que ver con otras variables.</p>
 </div>
 <div id="vamos-a-r" class="section level2">
 <h2>Vamos a R</h2>
@@ -226,8 +230,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error: 0.866 on 2 degrees of freedom
 ## Multiple R-squared:  0.4545, Adjusted R-squared:  0.1818 
 ## F-statistic: 1.667 on 1 and 2 DF,  p-value: 0.3258</code></pre>
-<p>Esta tabla es algo rudimentaria y entrega más información de la que podemos interpretar hasta ahora, pero lo importante es que en la columna “Estimate” aparece el cálculo de los parámetros del intercepto (1,25) y del beta de regresión correspondiente a la variable X pasos_mama_x (0,25). Además, abajo en la leyenda aparece “Multiple R-squared”, que corresponde al <span class="math inline">\(R^2\)</span> que calculamos arriba.</p>
-<p>Una tabla con un mejor formato se puede visualizar con el comando tab_model, de la librería sjPlot. Nuevamente, aparece más información de la que podemos interpretar, lo importante es por ahora fijarse en la columna Estimates y en el R2</p>
+<p>Esta tabla es algo rudimentaria y entrega más información de la que podemos interpretar hasta ahora, pero lo importante es que en la columna “Estimate” aparece el cálculo de los parámetros del intercepto (1,25) y del beta de regresión correspondiente a la variable <span class="math inline">\(X\)</span> pasos_mama_x (0,25). Además, abajo en la leyenda aparece “Multiple R-squared”, que corresponde al <span class="math inline">\(R^2\)</span> que calculamos arriba.</p>
+<p>Una tabla con un mejor formato se puede visualizar con el comando tab_model, de la librería sjPlot. Nuevamente, aparece más información de la que podemos interpretar, lo importante es por ahora fijarse en la columna Estimates y en el <span class="math inline">\(R^2\)</span></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">tab_model</span>(modelo1)</span></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
@@ -298,9 +302,32 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 </tr>
 </table>
 </div>
+<div id="correlación-y-regresión" class="section level2">
+<h2>Correlación y regresión</h2>
+<p>Siguiendo con el ejemplo, la correlación entre las variables dependiente e independiente del ejemplo con <code>datos1</code> es la siguiente:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(datos1<span class="sc">$</span>pasos_hijo_y, datos1<span class="sc">$</span>pasos_mama_x)</span></code></pre></div>
+<pre><code>## [1] 0.6741999</code></pre>
+<p>Si elevamos este valor al cuadrado</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">0.674</span>)<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 0.454276</code></pre>
+<p>… que es el valor que habíamos calculado para <span class="math inline">\(R^2\)</span>. Es decir, en este caso particular de regresión simple (una variable independiente <span class="math inline">\(X\)</span>) <span class="math inline">\(r\)</span> de Pearson al cuadrado es = <span class="math inline">\(R^2\)</span>, y nos dice qué parte de la varianza es compartida entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>.</p>
+<p>Si bien hay similitudes entre correlación y regresión en términos de varianza compartida, también hay diferencias. La correlación es conmutativa, es decir, el orden de los factores no altera el producto:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(datos1<span class="sc">$</span>pasos_hijo_y, datos1<span class="sc">$</span>pasos_mama_x)</span></code></pre></div>
+<pre><code>## [1] 0.6741999</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(datos1<span class="sc">$</span>pasos_mama_x, datos1<span class="sc">$</span>pasos_hijo_y)</span></code></pre></div>
+<pre><code>## [1] 0.6741999</code></pre>
+<p>Sin embargo, la regresión entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> <strong>no</strong> es la misma que entre <span class="math inline">\(Y\)</span> y <span class="math inline">\(X\)</span>:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(datos1<span class="sc">$</span>pasos_hijo_y <span class="sc">~</span> datos1<span class="sc">$</span>pasos_mama_x)<span class="sc">$</span>coefficients</span></code></pre></div>
+<pre><code>##         (Intercept) datos1$pasos_mama_x 
+##                1.25                0.25</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(datos1<span class="sc">$</span>pasos_mama_x <span class="sc">~</span> datos1<span class="sc">$</span>pasos_hijo_y)<span class="sc">$</span>coefficients</span></code></pre></div>
+<pre><code>##         (Intercept) datos1$pasos_hijo_y 
+##            1.000000            1.818182</code></pre>
+<p>Esto se produce porque con la regresión se predice el valor de <span class="math inline">\(Y\)</span> a partir de <span class="math inline">\(X\)</span>, y los valores de <span class="math inline">\(X\)</span> son distintos en los dos casos.</p>
+</div>
 <div id="reporte-de-progreso" class="section level1">
 <h1>Reporte de progreso</h1>
-<p>Completar el reporte de progreso <a href="https://forms.gle/Q1D23W3Cuou5ATkLA">aquí</a>.</p>
+<p>Completar el reporte de progreso <a href="https://forms.gle/9AoTHwxcBuNBgVkdA">aquí</a>.</p>
 </div>
 <div id="foro" class="section level1">
 <h1>Foro</h1>
