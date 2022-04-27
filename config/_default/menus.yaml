@@ -9,5 +9,5 @@ main:
     url: /class/
     weight: 3
   - name: Trabajos
-    url: /reference/
+    url: /trabajos/
     weight: 4
