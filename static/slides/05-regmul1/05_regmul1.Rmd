@@ -1,12 +1,12 @@
 ---
 title: "Estadística Multivariada"
 author: ".small[Juan Carlos Castillo <br><br> Departamento de Sociología - UCH / COES <br><br>]"
-date: "2do Sem 2019"
+date: "2do Sem 2022"
 output:
   xaringan::moon_reader:
     includes:
       after_body: "../insert-logo.html"     
-    css: ["../custom_2020.css","https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"] # "../ninjutsu.css", paraflipbook
+    css: ["../custom_2020.css"] # "../ninjutsu.css", paraflipbook
     lib_dir: libs
     nature:
       ratio: '16:9'
@@ -45,16 +45,9 @@ library(tidyverse)
 
 ```{r xaringanExtra, include=FALSE}
 xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css"))
-xaringanExtra::use_share_again()
 xaringanExtra::use_scribble()
 ```
 
-
-```{r style-share-again, echo=FALSE}
-xaringanExtra::style_share_again(
-  share_buttons = c("none")
-)
-```
 
 
 <!---
@@ -70,7 +63,7 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2021
+## 1er Sem 2022
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 
@@ -92,18 +85,18 @@ class: animated, fadeIn
 
 
 ---
-class: inverse, bottom, right, animated, slideInRight
+class: roja middle center
 
 
-# **Contenidos**
+## Concepto clave de la sesión de hoy: 
 
-### Repaso regresión simple
+# control estadísitico en regresión múltiple
 
-### Introducción a regresión múltiple
+
 
 
 ---
-class: inverse, bottom, right
+class: roja left
 
 # Repaso regresión simple
 
@@ -126,16 +119,35 @@ Donde
 ![](regmod.png)
 
 - Se estima mediante el método de mínimos cuadrados ordinarios (OLS)
+
 ]
+
+--
 
 .pull-right[
 
+{{content}}
+
+]
+
+--
+
 - Permite estimar el valor de una variable ( $\widehat{Y}$ ) a partir del valor conocido de otra variable ( $X$ )
+
+{{content}}
+
+--
 
 - La estimación se expresa en el coeficiente de regresión $b_{1}$, también llamado "beta" o pendiente
 
+{{content}}
+
+--
+
 - *"Por cada unidad que aumenta X, Y aumenta en $b_{1}$ unidades"*
-]
+
+{{content}}
+
 
 ---
 # Descomponiendo Y
@@ -219,43 +231,44 @@ $$\widehat{Y}=\beta_{0} +\beta_{1}X_{1}$$
 ![:scale 55%](regmod4.png)
 ]
 
-$$\widehat{Y}=\beta_{0} +\beta_{1}X_{1} + \beta_{2}X_{2}+ \beta_{3}X_{3}$$
+$$\widehat{Y}=\beta_{0} +\beta_{1}X_{1} + \beta_{2}X_{2}+ \beta_{3}X_{3} + \beta_{i}X_{i}$$
 ---
 class: inverse, middle, center
 
 .large[
 # El modelo de regresión es un modelo .red[SUMATIVO]
-
 ]
 
+<br>
+$$\widehat{Y}=\beta_{0} +\beta_{1}X_{1} + \beta_{2}X_{2}+ \beta_{3}X_{3} + \beta_{i}X_{i}$$
 ---
-# Problema de la multicausalidad
 
-- posibilidad de predictores correlacionados 
+class: inverse, center
+
+
+# entonces ... ¿simplemente agregar más predictores al modelo?
+
+.medium[
+$$\widehat{ingreso}=\beta_{0} +\beta_{1}educación + \beta_{2}edad+ \beta_{3}género + ... + \beta_{i}X_{i}$$
+]
+
+--
+
+# si, .red[pero ...] 
+
+---
+# Posibilidad de predictores correlacionados 
 
 
 .center[
 ![:scale 55%](regmod5.png)
 ]
 
----
-# Problema de la multicausalidad 
-
-\begin{align*}
-(1) Y(ingreso) &=\beta_0 + \beta_1(educación) \\ 
-(2) Y(ingreso) &=\beta_0 + \beta_1(inteligencia) \\
-(3) Y(ingreso) &=\beta_0 + \beta_1(educación) + \beta_2(inteligencia) \\
-\end{align*}
-
 --
 
-
 .center[
-## ¿Qué sucedería si la educación estuviera relacionada con la inteligencia? 
--> estaríamos sobreestimando el ingreso al hacer un modelo sumativo "puro"
-]
-
-
+.red[¿Qué implicancias puede tener para la estimación la correlación entre predictores?
+]]
 
 ---
 # Agregando predictores al modelo
@@ -295,10 +308,21 @@ $$\widehat{Ingreso}=b_0+b_1(Educ)+b_2(Int)$$
 
 - Teóricamente el modelo asume covariación entre Ingreso y Educación, y entre _Ingreso_ e _Inteligencia_
 
+{{content}}
+
+]
+
+--
+
 - Pero ... también existe la posibilidad de covariación entre los predictores _Educación_ e _Inteligencia_
 
+{{content}}
+
+--
+
 - Para poder sumar el efecto neto de cada predictor se debe **controlar** la covariación entre predictores
-]
+
+
 
 ---
 class:roja
@@ -315,16 +339,33 @@ class: inverse, middle, center
 
 ---
 
-## 1. Control por diseño
+.pull-left-narrow[
+# 1. Control por diseño
 
+<br>
+![](experimental_groups.svg)
+
+
+]
+
+.pull-right-wide[
 - Característico de la metodología experimental
+
+{{content}}
+
+]
+
+--
 
 - El control se logra por diseño mediante **aleatorización** (distribución al azar) de sujetos a diferentes situaciones experimentales, generando **grupos equivalentes**
 
-- La aleatorización intenta aislar el **efecto del tratamiento** de todas las otras variables que podrían afectar en la respuesta
+{{content}}
 
+--
+
+- La aleatorización intenta aislar el **efecto del tratamiento** de todas las otras variables que podrían afectar en la respuesta
+]
 ---
-# Concepto de control
 
 ## 2. Control estadístico
 
@@ -332,11 +373,11 @@ class: inverse, middle, center
 
 --
 
-- Se logra incluyendo predictores que teóricamente podrían dar cuenta o afectar la relación entre X e Y.
+- En el **modelo de regresión** se logra incluyendo predictores que teóricamente podrían dar cuenta o afectar la relación entre X e Y.
 
 --
 
-- La inclusión de otros predictores despeja o "controla" la asociación de $X_1$ e $Y$, aislando el efecto conjunto de $X_1$ y $X_2$ (... y $X_n$)
+- La inclusión de **otros predictores** despeja o "controla" la asociación de $X_1$ e $Y$, aislando el efecto conjunto de $X_1$ y $X_2$ (... y $X_n$)
 
 ---
 .pull-left-wide[
@@ -362,7 +403,7 @@ class: inverse, center, middle, exclude
 
 # POR LO TANTO
 
-## Un aspecto **clave** de la regresión múltiple, tanto conceptual como estadísticamente, tiene que ver con el .yellow[control de la CORRELACION] ENTRE .red[PREDICTORES] O VARIABLES INDEPENDIENTES (X)
+## Un aspecto **central** en regresión múltiple, tanto conceptual como estadísticamente, tiene que ver con el .yellow[control de la CORRELACION] ENTRE .red[PREDICTORES] O VARIABLES INDEPENDIENTES (X)
 
 ---
 ### Simulación 1: sin correlación relevante entre predictores
@@ -546,7 +587,7 @@ class: front
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2021
+## 1er Sem 2022
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 

@@ -8,17 +8,11 @@
     <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
     <script src="libs/tile-view/tile-view.js"></script>
     <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
-    <script src="libs/clipboard/clipboard.min.js"></script>
-    <link href="libs/shareon/shareon.min.css" rel="stylesheet" />
-    <script src="libs/shareon/shareon.min.js"></script>
-    <link href="libs/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
-    <script src="libs/xaringanExtra-shareagain/shareagain.js"></script>
     <script src="libs/fabric/fabric.min.js"></script>
     <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
     <script src="libs/xaringanExtra-scribble/scribble.js"></script>
-    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30}) })</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
     <link rel="stylesheet" href="../custom_2020.css" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -34,17 +28,6 @@ class: front
 
 
 
-<style>.shareagain-bar {
---shareagain-foreground: rgb(255, 255, 255);
---shareagain-background: rgba(0, 0, 0, 0.5);
---shareagain-twitter: none;
---shareagain-facebook: none;
---shareagain-linkedin: none;
---shareagain-pinterest: none;
---shareagain-pocket: none;
---shareagain-reddit: none;
-}</style>
-
 
 &lt;!---
 Para correr en ATOM
@@ -59,7 +42,7 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2021
+## 1er Sem 2022
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 
@@ -81,18 +64,18 @@ class: animated, fadeIn
 
 
 ---
-class: inverse, bottom, right, animated, slideInRight
+class: roja middle center
 
 
-# **Contenidos**
+## Concepto clave de la sesión de hoy: 
 
-### Repaso regresión simple
+# control estadísitico en regresión múltiple
 
-### Introducción a regresión múltiple
+
 
 
 ---
-class: inverse, bottom, right
+class: roja left
 
 # Repaso regresión simple
 
@@ -115,16 +98,35 @@ Donde
 ![](regmod.png)
 
 - Se estima mediante el método de mínimos cuadrados ordinarios (OLS)
+
 ]
+
+--
 
 .pull-right[
 
+{{content}}
+
+]
+
+--
+
 - Permite estimar el valor de una variable ( `\(\widehat{Y}\)` ) a partir del valor conocido de otra variable ( `\(X\)` )
+
+{{content}}
+
+--
 
 - La estimación se expresa en el coeficiente de regresión `\(b_{1}\)`, también llamado "beta" o pendiente
 
+{{content}}
+
+--
+
 - *"Por cada unidad que aumenta X, Y aumenta en `\(b_{1}\)` unidades"*
-]
+
+{{content}}
+
 
 ---
 # Descomponiendo Y
@@ -208,43 +210,44 @@ class: roja left
 ![:scale 55%](regmod4.png)
 ]
 
-`$$\widehat{Y}=\beta_{0} +\beta_{1}X_{1} + \beta_{2}X_{2}+ \beta_{3}X_{3}$$`
+`$$\widehat{Y}=\beta_{0} +\beta_{1}X_{1} + \beta_{2}X_{2}+ \beta_{3}X_{3} + \beta_{i}X_{i}$$`
 ---
 class: inverse, middle, center
 
 .large[
 # El modelo de regresión es un modelo .red[SUMATIVO]
-
 ]
 
+&lt;br&gt;
+`$$\widehat{Y}=\beta_{0} +\beta_{1}X_{1} + \beta_{2}X_{2}+ \beta_{3}X_{3} + \beta_{i}X_{i}$$`
 ---
-# Problema de la multicausalidad
 
-- posibilidad de predictores correlacionados 
+class: inverse, center
+
+
+# entonces ... ¿simplemente agregar más predictores al modelo?
+
+.medium[
+`$$\widehat{ingreso}=\beta_{0} +\beta_{1}educación + \beta_{2}edad+ \beta_{3}género + ... + \beta_{i}X_{i}$$`
+]
+
+--
+
+# si, .red[pero ...] 
+
+---
+# Posibilidad de predictores correlacionados 
 
 
 .center[
 ![:scale 55%](regmod5.png)
 ]
 
----
-# Problema de la multicausalidad 
-
-`\begin{align*}
-(1) Y(ingreso) &amp;=\beta_0 + \beta_1(educación) \\ 
-(2) Y(ingreso) &amp;=\beta_0 + \beta_1(inteligencia) \\
-(3) Y(ingreso) &amp;=\beta_0 + \beta_1(educación) + \beta_2(inteligencia) \\
-\end{align*}`
-
 --
 
-
 .center[
-## ¿Qué sucedería si la educación estuviera relacionada con la inteligencia? 
--&gt; estaríamos sobreestimando el ingreso al hacer un modelo sumativo "puro"
-]
-
-
+.red[¿Qué implicancias puede tener para la estimación la correlación entre predictores?
+]]
 
 ---
 # Agregando predictores al modelo
@@ -284,10 +287,21 @@ class: inverse, middle, center
 
 - Teóricamente el modelo asume covariación entre Ingreso y Educación, y entre _Ingreso_ e _Inteligencia_
 
+{{content}}
+
+]
+
+--
+
 - Pero ... también existe la posibilidad de covariación entre los predictores _Educación_ e _Inteligencia_
 
+{{content}}
+
+--
+
 - Para poder sumar el efecto neto de cada predictor se debe **controlar** la covariación entre predictores
-]
+
+
 
 ---
 class:roja
@@ -304,16 +318,33 @@ class: inverse, middle, center
 
 ---
 
-## 1. Control por diseño
+.pull-left-narrow[
+# 1. Control por diseño
 
+&lt;br&gt;
+![](experimental_groups.svg)
+
+
+]
+
+.pull-right-wide[
 - Característico de la metodología experimental
+
+{{content}}
+
+]
+
+--
 
 - El control se logra por diseño mediante **aleatorización** (distribución al azar) de sujetos a diferentes situaciones experimentales, generando **grupos equivalentes**
 
-- La aleatorización intenta aislar el **efecto del tratamiento** de todas las otras variables que podrían afectar en la respuesta
+{{content}}
 
+--
+
+- La aleatorización intenta aislar el **efecto del tratamiento** de todas las otras variables que podrían afectar en la respuesta
+]
 ---
-# Concepto de control
 
 ## 2. Control estadístico
 
@@ -321,11 +352,11 @@ class: inverse, middle, center
 
 --
 
-- Se logra incluyendo predictores que teóricamente podrían dar cuenta o afectar la relación entre X e Y.
+- En el **modelo de regresión** se logra incluyendo predictores que teóricamente podrían dar cuenta o afectar la relación entre X e Y.
 
 --
 
-- La inclusión de otros predictores despeja o "controla" la asociación de `\(X_1\)` e `\(Y\)`, aislando el efecto conjunto de `\(X_1\)` y `\(X_2\)` (... y `\(X_n\)`)
+- La inclusión de **otros predictores** despeja o "controla" la asociación de `\(X_1\)` e `\(Y\)`, aislando el efecto conjunto de `\(X_1\)` y `\(X_2\)` (... y `\(X_n\)`)
 
 ---
 .pull-left-wide[
@@ -351,7 +382,7 @@ class: inverse, center, middle, exclude
 
 # POR LO TANTO
 
-## Un aspecto **clave** de la regresión múltiple, tanto conceptual como estadísticamente, tiene que ver con el .yellow[control de la CORRELACION] ENTRE .red[PREDICTORES] O VARIABLES INDEPENDIENTES (X)
+## Un aspecto **central** en regresión múltiple, tanto conceptual como estadísticamente, tiene que ver con el .yellow[control de la CORRELACION] ENTRE .red[PREDICTORES] O VARIABLES INDEPENDIENTES (X)
 
 ---
 ### Simulación 1: sin correlación relevante entre predictores
@@ -745,7 +776,7 @@ class: front
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2021
+## 1er Sem 2022
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 
