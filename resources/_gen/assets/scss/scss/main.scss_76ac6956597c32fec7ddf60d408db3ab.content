@@ -7099,7 +7099,7 @@ video {
 video {
   width: 100%;
   height: auto;
-  max-height: 400px; }
+  max-height: 800px; }
 
 .img-responsive {
   /* Extend Bootstrap declaration with centering. */
@@ -7121,25 +7121,27 @@ figcaption.numbered:before {
 figcaption.numbered {
   counter-increment: captions; }
 
+/*
 pre,
 code {
-  font-family: "Source Code Pro", "Inconsolata", "Liberation Mono", Menlo, Courier, monospace, monospace;
+  font-family: $sta-font-mono, monospace;
   color: #c7254e;
-  background-color: #f9f2f4; }
+  background-color: #f9f2f4;
+}
 
 pre {
   margin: 0 0 1rem 0;
-  background-color: #f8f8f8;
-  /* Match default highlight theme. */
-  border-color: #f8f8f8;
+  background-color: rgb(248, 248, 248); /* Match default highlight theme.
+  border-color: rgb(248, 248, 248);
   font-size: 0.7rem;
-  border-radius: 4px; }
+  border-radius: 4px;
+}
 
 pre code {
-  white-space: pre;
-  /* Override Bootstrap to preserve line breaks in code. */
-  overflow-x: auto; }
-
+  white-space: pre; /* Override Bootstrap to preserve line breaks in code.
+  overflow-x: auto;
+}
+*/
 hr {
   border: 0;
   height: 1px;

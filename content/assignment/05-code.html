@@ -25,25 +25,25 @@ editor_options:
 ---
 
 <!-- BLOGDOWN-HEAD -->
-<script src="/rmarkdown-libs/accessible-code-block/empty-anchor.js"></script>
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 <script src="/rmarkdown-libs/clipboard/clipboard.min.js"></script>
 <link href="/rmarkdown-libs/primer-tooltips/build.css" rel="stylesheet" />
 <link href="/rmarkdown-libs/klippy/css/klippy.min.css" rel="stylesheet" />
 <script src="/rmarkdown-libs/klippy/js/klippy.min.js"></script>
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -63,7 +63,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {  background-color: #f8f8f8; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -99,14 +99,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2>Índice</h2>
 <div id="TOC">
 <ul>
-<li><a href="#objetivo-de-la-práctica">Objetivo de la práctica</a><ul>
+<li><a href="#objetivo-de-la-práctica">Objetivo de la práctica</a>
+<ul>
 <li><a href="#librerías">Librerías</a></li>
 <li><a href="#datos">Datos</a></li>
 <li><a href="#explorar-base-de-datos">Explorar base de datos</a></li>
 <li><a href="#modelo-de-regresión-simple">Modelo de regresión simple</a></li>
 <li><a href="#relacion-entre-variables">Relacion entre variables</a></li>
 <li><a href="#modelo-de-regresión-multiple">Modelo de regresión multiple</a></li>
-<li><a href="#interpretación">Interpretación</a><ul>
+<li><a href="#interpretación">Interpretación</a>
+<ul>
 <li><a href="#intercepto">Intercepto</a></li>
 <li><a href="#coeficientes-de-regresión">Coeficientes de regresión</a></li>
 </ul></li>
@@ -128,29 +130,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>En esta práctica nos enfocaremos en el concepto de regresión múltiple, a partir de la incorporación de dos o más predictores en el modelo. Para ello utilizaremos el ejemplo 3.1 de Wooldridge (2010) cap. 3 (Análisis de regresion múltiple) (p.68-80) sobre las <strong>determinantes del promedio en la universidad</strong>.</p>
 <div id="librerías" class="section level2">
 <h2>Librerías</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(ggpubr, <span class="co">#graficos</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>               dplyr, <span class="co">#manipulacion de datos</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>               sjPlot, <span class="co">#tablas</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>               gridExtra, <span class="co">#unir graficos</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>               texreg, <span class="co">#mostrar regresion multiple</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a>               summarytools, <span class="co">#estadisticos descriptivos</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>               wooldridge) <span class="co">#paquete con los ejemplos del libro</span></span></code></pre></div>
-<pre><code>## package &#39;corrplot&#39; successfully unpacked and MD5 sums checked
-## package &#39;ggrepel&#39; successfully unpacked and MD5 sums checked
-## package &#39;ggsci&#39; successfully unpacked and MD5 sums checked
-## package &#39;cowplot&#39; successfully unpacked and MD5 sums checked
-## package &#39;ggsignif&#39; successfully unpacked and MD5 sums checked
-## package &#39;gridExtra&#39; successfully unpacked and MD5 sums checked
-## package &#39;polynom&#39; successfully unpacked and MD5 sums checked
-## package &#39;rstatix&#39; successfully unpacked and MD5 sums checked
-## package &#39;ggpubr&#39; successfully unpacked and MD5 sums checked
-## 
-## The downloaded binary packages are in
-##  C:\Users\kevin\AppData\Local\Temp\RtmpcHo4Md\downloaded_packages
-## package &#39;wooldridge&#39; successfully unpacked and MD5 sums checked
-## 
-## The downloaded binary packages are in
-##  C:\Users\kevin\AppData\Local\Temp\RtmpcHo4Md\downloaded_packages</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(ggpubr, <span class="co">#graficos</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>               dplyr, <span class="co">#manipulacion de datos</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>               sjPlot, <span class="co">#tablas</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>               gridExtra, <span class="co">#unir graficos</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>               texreg, <span class="co">#mostrar regresion multiple</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>               summarytools, <span class="co">#estadisticos descriptivos</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>               wooldridge) <span class="co">#paquete con los ejemplos del libro</span></span></code></pre></div>
 </div>
 <div id="datos" class="section level2">
 <h2>Datos</h2>
@@ -161,20 +147,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>ACT</code>: puntaje en el examen de admisión a la universidad, que va de 16 a 33 puntos</p></li>
 </ul>
 <p>Primero, se cargará la base de datos que contiene la librería <code>wooldridge</code> y se seleccionarán las variables señaladas</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">data</span>(<span class="st">&#39;gpa1&#39;</span>) <span class="co"># Cargar base de datos</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>gpa1 &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(gpa1, colGPA, hsGPA, ACT) <span class="co">#Seleccion de variables</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&#39;gpa1&#39;</span>) <span class="co"># Cargar base de datos</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>gpa1 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(gpa1, colGPA, hsGPA, ACT) <span class="co">#Seleccion de variables</span></span></code></pre></div>
 </div>
 <div id="explorar-base-de-datos" class="section level2">
 <h2>Explorar base de datos</h2>
 <p>A partir de la siguiente tabla se obtienen estadísticos descriptivos que luego serán relevantes para la interpretación de nuestros modelos.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">view</span>(<span class="kw">dfSummary</span>(gpa1, <span class="dt">headings =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="st">&#39;render&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(<span class="fu">dfSummary</span>(gpa1, <span class="at">headings =</span> <span class="cn">FALSE</span>, <span class="at">method =</span> <span class="st">&#39;render&#39;</span>))</span></code></pre></div>
 </div>
 <div id="modelo-de-regresión-simple" class="section level2">
 <h2>Modelo de regresión simple</h2>
 <p>Si solo nos centramos en el análisis de regresión simple, intuitivamente partiremos por predecir las calificaciones de la universidad a partir del puntaje obtenido en la prueba de admisión a esta. Formalmente</p>
 <p><span class="math display">\[\widehat{colGPA} = b_{0} +b_{1}ACT \]</span></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>col_actmodel&lt;-<span class="kw">lm</span>(colGPA <span class="op">~</span><span class="st"> </span>ACT, <span class="dt">data=</span>gpa1) <span class="co">#Crear regresion simple</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">summary</span>(col_actmodel)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>col_actmodel<span class="ot">&lt;-</span><span class="fu">lm</span>(colGPA <span class="sc">~</span> ACT, <span class="at">data=</span>gpa1) <span class="co">#Crear regresion simple</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(col_actmodel)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = colGPA ~ ACT, data = gpa1)
@@ -194,14 +180,14 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.04275,    Adjusted R-squared:  0.03586 
 ## F-statistic: 6.207 on 1 and 139 DF,  p-value: 0.0139</code></pre>
 <p>En formato publicable:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>sjPlot<span class="op">::</span><span class="kw">tab_model</span>(col_actmodel, <span class="dt">show.ci=</span><span class="ot">FALSE</span>) <span class="co">#Tabla resumen de resultados</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">tab_model</span>(col_actmodel, <span class="at">show.ci=</span><span class="cn">FALSE</span>) <span class="co">#Tabla resumen de resultados</span></span></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
  
 </th>
 <th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-colGPA
+col GPA
 </th>
 </tr>
 <tr>
@@ -261,17 +247,17 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 <div id="relacion-entre-variables" class="section level2">
 <h2>Relacion entre variables</h2>
 <p>Se grafican las variables que determinarían <span class="math inline">\(colGPA\)</span> para comparar sus distribuciones y sus pendientes (<span class="math inline">\(b\)</span>) de sus respectivas regresiones simples.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">#Grafico x1 = ACT</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>gact &lt;-<span class="st"> </span><span class="kw">ggscatter</span>(gpa1, <span class="dt">x =</span> <span class="st">&quot;ACT&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;colGPA&quot;</span>,</span>
-<span id="cb8-3"><a href="#cb8-3"></a>          <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="co"># Forma y tamaño de puntos</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a>   <span class="dt">add =</span> <span class="st">&quot;reg.line&quot;</span>, <span class="co">#Agregar recta de regresion</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>   <span class="dt">cor.coef =</span> <span class="ot">TRUE</span>)<span class="co"># Agregar coeficiente correlacion</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="co">#Grafico x2 = hsGPA</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a>ghsGPA &lt;-<span class="st"> </span><span class="kw">ggscatter</span>(gpa1, <span class="dt">x =</span> <span class="st">&quot;hsGPA&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;colGPA&quot;</span>,</span>
-<span id="cb8-8"><a href="#cb8-8"></a>          <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">size =</span> <span class="dv">3</span>,</span>
-<span id="cb8-9"><a href="#cb8-9"></a>   <span class="dt">add =</span> <span class="st">&quot;reg.line&quot;</span>,</span>
-<span id="cb8-10"><a href="#cb8-10"></a>   <span class="dt">cor.coef =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="kw">grid.arrange</span>(gact, ghsGPA, <span class="dt">nrow =</span> <span class="dv">1</span>) <span class="co"># Unir graficos</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grafico x1 = ACT</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>gact <span class="ot">&lt;-</span> <span class="fu">ggscatter</span>(gpa1, <span class="at">x =</span> <span class="st">&quot;ACT&quot;</span>, <span class="at">y =</span> <span class="st">&quot;colGPA&quot;</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="co"># Forma y tamaño de puntos</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>, <span class="co">#Agregar recta de regresion</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">cor.coef =</span> <span class="cn">TRUE</span>)<span class="co"># Agregar coeficiente correlacion</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Grafico x2 = hsGPA</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>ghsGPA <span class="ot">&lt;-</span> <span class="fu">ggscatter</span>(gpa1, <span class="at">x =</span> <span class="st">&quot;hsGPA&quot;</span>, <span class="at">y =</span> <span class="st">&quot;colGPA&quot;</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>   <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>   <span class="at">cor.coef =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(gact, ghsGPA, <span class="at">nrow =</span> <span class="dv">1</span>) <span class="co"># Unir graficos</span></span></code></pre></div>
 <p><img src="/assignment/05-code_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>Con el gráfico anterior podemos notar que, si bien ambas variables tienen una asociación positiva con <span class="math inline">\(colGPA\)</span>, el tamaño efecto de esta relación es distinto. Incluso, <span class="math inline">\(hsGPA\)</span> que no había sido considerada en nuestro modelo inicial, tiene una asociación más grande con nuestra variable dependiente.
 Ahora bien, ¿cómo incide <span class="math inline">\(ACT\)</span> y <span class="math inline">\(hsGPA\)</span> en conjunto sobre <span class="math inline">\(colGPA\)</span>?</p>
@@ -283,14 +269,14 @@ Ahora bien, ¿cómo incide <span class="math inline">\(ACT\)</span> y <span clas
 <p><strong>Grabar / exportar tablas</strong> :<span class="sidenote">Exportar tablas </span>
 modelo &lt;- lm(y ~ x1 + x2 , data = data)</p>
 </div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>col_actmodel&lt;-<span class="kw">lm</span>(colGPA <span class="op">~</span><span class="st"> </span>ACT, <span class="dt">data=</span>gpa1)</span>
-<span id="cb9-2"><a href="#cb9-2"></a>col_hsmodel&lt;-<span class="kw">lm</span>(colGPA <span class="op">~</span><span class="st">  </span>hsGPA, <span class="dt">data=</span>gpa1)</span>
-<span id="cb9-3"><a href="#cb9-3"></a>col_model &lt;-<span class="st"> </span><span class="kw">lm</span>(colGPA <span class="op">~</span><span class="st"> </span>ACT <span class="op">+</span><span class="st"> </span>hsGPA, <span class="dt">data =</span> gpa1)</span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>sjPlot<span class="op">::</span><span class="kw">tab_model</span>(<span class="kw">list</span>(col_actmodel, col_hsmodel,col_model), <span class="co"># los modelos estimados</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>  <span class="dt">show.ci=</span><span class="ot">FALSE</span>, <span class="co"># no mostrar intervalo de confianza (por defecto lo hace)</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>  <span class="dt">p.style =</span> <span class="st">&quot;stars&quot;</span>, <span class="co"># asteriscos de significación estadística</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a>  <span class="dt">dv.labels =</span> <span class="kw">c</span>(<span class="st">&quot;Modelo 1&quot;</span>, <span class="st">&quot;Modelo 2&quot;</span>, <span class="st">&quot;Modelo 3&quot;</span>), <span class="co"># etiquetas de modelos o variables dep.</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a>  <span class="dt">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="dt">string.est =</span> <span class="st">&quot;β&quot;</span>) <span class="co"># nombre predictores y símbolo beta en tabla</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>col_actmodel<span class="ot">&lt;-</span><span class="fu">lm</span>(colGPA <span class="sc">~</span> ACT, <span class="at">data=</span>gpa1)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>col_hsmodel<span class="ot">&lt;-</span><span class="fu">lm</span>(colGPA <span class="sc">~</span>  hsGPA, <span class="at">data=</span>gpa1)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>col_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(colGPA <span class="sc">~</span> ACT <span class="sc">+</span> hsGPA, <span class="at">data =</span> gpa1)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">tab_model</span>(<span class="fu">list</span>(col_actmodel, col_hsmodel,col_model), <span class="co"># los modelos estimados</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">show.ci=</span><span class="cn">FALSE</span>, <span class="co"># no mostrar intervalo de confianza (por defecto lo hace)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">p.style =</span> <span class="st">&quot;stars&quot;</span>, <span class="co"># asteriscos de significación estadística</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dv.labels =</span> <span class="fu">c</span>(<span class="st">&quot;Modelo 1&quot;</span>, <span class="st">&quot;Modelo 2&quot;</span>, <span class="st">&quot;Modelo 3&quot;</span>), <span class="co"># etiquetas de modelos o variables dep.</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">string.pred =</span> <span class="st">&quot;Predictores&quot;</span>, <span class="at">string.est =</span> <span class="st">&quot;β&quot;</span>) <span class="co"># nombre predictores y símbolo beta en tabla</span></span></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -311,13 +297,13 @@ Modelo 3
 Predictores
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-ß
+β
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-ß
+β
 </td>
 <td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-ß
+β
 </td>
 </tr>
 <tr>
