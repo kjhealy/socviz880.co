@@ -2,8 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://multivariada.netlify.app/class/05-class/</loc>
+    <lastmod>2022-04-29T08:55:36-04:00</lastmod>
+  </url><url>
+    <loc>https://multivariada.netlify.app/assignment/05-code/</loc>
+    <lastmod>2022-05-06T09:15:36-04:00</lastmod>
+  </url><url>
     <loc>https://multivariada.netlify.app/assignment/04-code/</loc>
-    <lastmod>2022-03-15T12:57:07-03:00</lastmod>
+    <lastmod>2022-04-27T13:42:39-04:00</lastmod>
   </url><url>
     <loc>https://multivariada.netlify.app/assignment/11-code/</loc>
     <lastmod>2022-04-11T12:28:01-04:00</lastmod>
@@ -51,6 +57,8 @@
     <lastmod>2020-04-02T23:35:06-03:00</lastmod>
   </url><url>
     <loc>https://multivariada.netlify.app/schedule/</loc>
+  </url><url>
+    <loc>https://multivariada.netlify.app/schedule/</loc>
     <lastmod>2022-04-08T10:09:12-04:00</lastmod>
   </url><url>
     <loc>https://multivariada.netlify.app/programa/</loc>
@@ -59,8 +67,8 @@
     <loc>https://multivariada.netlify.app/tutorial/</loc>
     <lastmod>2021-03-11T13:25:45-03:00</lastmod>
   </url><url>
-    <loc>https://multivariada.netlify.app/reference/</loc>
-    <lastmod>2022-03-17T18:41:33-03:00</lastmod>
+    <loc>https://multivariada.netlify.app/trabajos/</loc>
+    <lastmod>2022-04-27T13:42:39-04:00</lastmod>
   </url><url>
     <loc>https://multivariada.netlify.app/reading/01-reading/</loc>
     <lastmod>2021-03-11T13:25:45-03:00</lastmod>
