@@ -1,0 +1,328 @@
+---
+title: "Práctica 6.2 Predictores categóricos"
+subtitle: "Estadistica Multivariada - Sociología FACSO Universidad de Chile"
+author: " "
+linktitle: "Práctica 6.2 Predictores categóricos"
+date: "2022-06-24"
+class_date: "2022-06-24"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+    highlight: tango
+    number_sections: FALSE
+menu:
+  class:
+    parent: Practicas
+    weight: 7
+type: docs
+weight: 1
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=FALSE, warning=FALSE, message=FALSE)
+knitr::opts_knit$set(root.dir ="../../")
+Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position = c('bottom', 'right')) # chunks con botón de copiar
+```
+
+# Objetivo de la práctica
+
+Es esta práctica vamos a aprender a trabajar e interpretar  **predictores categóricos** en la regresión.
+
+Hasta ahora hemos trabajado solamente con predictores a los que asumimos un nivel de medición continua (es decir, al menos intervalar). *¿Qué sucede con predictores donde se asume un distinto nivel de medición, como nominal u ordinal?* En general este tipo de predictores requiere una interpretación y tratamiento distinto que los predictores continuos.
+
+Existen dos tipos de predictores categóricos: dicotómicos (*dummys*) y ordinales.
+
+## Predictores dicotómicos
+
+Las variables dicotómicas son aquellas variables **nominales u ordinales** que poseen solo **dos categorías de respuesta**, por ejemplo hombre/mujer, sano/enfermo, deportista/sedentario.
+
+La inclusión de estas variables en un modelo de regresión no requiere un tratamiento especial, solo hay que considerar que su **interpretación tiene un sentido distinto**. A continuación, veremos un ejemplo respecto a cómo predictores categóricos (de dos o más niveles) permiten modelar el **Estatus Social Subjetivo**
+
+## Librerías
+
+```{r, warning= FALSE}
+pacman::p_load(dplyr, #manipulacion de datos
+               sjPlot, #tablas
+               summarytools, #estadisticos descriptivos
+               fastDummies, # Crear variable dummy
+               sjlabelled, #etiquetas variables
+               coefplot # graficos de coeficientes
+               )
+```
+
+## Datos
+
+Primero, se cargará la base de datos
+
+```{r eval=FALSE, include=TRUE}
+load(url("https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess.RData")) # Cargar base de datos
+
+```
+
+Los datos a utilizar corresponden a la base de datos **ELSOC 2018** que incluye una muestra de **3784** mujeres y hombres adultos entre 18 y 75 años.
+
+```{r include=FALSE}
+# load("content/assignment/data/proc/ELSOC_ess_merit2018.RData") # Cargar base de datos
+# elsoc_18 <- elsoc_18 %>% select(ess,sexo,edad,edcine=edcine2)
+# elsoc_18 <- na.omit(elsoc_18)
+# elsoc_18$ess <- sjlabelled::set_labels(elsoc_18$ess,labels = c("0 El nivel mas bajo"=0,"1"=1,"2"=2,"3"=3,"4"=4,"5"=5,"6"=6,"7"=7,"8"=8,"9"=9,"10 El nivel mas alto"=10))
+# elsoc_18$sexo <- as.numeric(elsoc_18$sexo)
+# elsoc_18$sexo[elsoc_18$sexo==1] <- 0
+# elsoc_18$sexo[elsoc_18$sexo==2] <- 1
+#
+# elsoc_18$sexo <- sjlabelled::set_labels(elsoc_18$sexo,labels = c("Hombre"=0,"Mujer"=1))
+# elsoc_18$edcine <- sjlabelled::set_labels(x = as.numeric(elsoc_18$edcine),labels = sjlabelled::get_labels(proc_elsoc$edcine))
+# elsoc_18$ess     <- set_label(x = elsoc_18$ess,label  = "Estatus Social Subjetivo")
+# elsoc_18$sexo    <- set_label(x = elsoc_18$sexo,label = "Sexo (1=Mujer)")
+# elsoc_18$edad    <- set_label(x = elsoc_18$edad,label = "Edad")
+# elsoc_18$edcine  <- set_label(x = elsoc_18$edcine,label = "Educación")
+#
+# save(elsoc_18,file = "content/assignment/data/proc/ELSOC_ess.RData")
+load(file = "content/assignment/data/proc/ELSOC_ess.RData")
+```
+
+**Variables**
+
+* [`ess`]: "Estatus Social Subjetivo: Donde se ubicaria ud. en la sociedad chilena" (0 = el nivel mas bajo; 10 = el nivel mas alto)
+
+* [`edcine`]: ¿Cuál es su nivel educacional? Indique el tipo de estudio actual (si estudia actualmente) o el último tipo aprobado (si no estudia actualmente) -  **CINE 2011 (UNESCO)**.
+
+* [`sexo`]: Sexo entrevistado.
+
+* [`edad`]: ¿Cuáles su edad? (años cumplidos).
+
+
+```{r}
+view_df(elsoc_18,encoding = "")
+```
+
+
+
+## Explorar base de datos
+
+A partir de la siguiente tabla se obtienen estadísticos descriptivos que luego serán relevantes para la interpretación de nuestros modelos.
+
+```{r eval=FALSE}
+view(dfSummary(elsoc_18, headings = FALSE, method = "render"))
+```
+
+```{r echo=FALSE}
+print(dfSummary(elsoc_18, headings = FALSE), method = 'render')
+
+#print(dfSummary(proc_elsoc, headings = FALSE), method = "render")
+```
+
+## Relación entre variables
+
+Visualizar la asociación entre variables puede ser informativo. Sin embargo, en ocasiones es necesario prestar mayor atención al tipo de gráfico que utilizamos para esto. Por ejemplo, veamos un scatter de Estatus social Subjetivo $Y_\text{estatus}$ con sexo como independiente $X_\text{sexo}$ para comparar sus distribuciones y sus pendientes
+
+```{r}
+plot_scatter(data = elsoc_18,x = sexo,y = ess,fit.grps = "lm")
+```
+
+El scatterplot no es muy informativo debido a que nuestra variable independiente solamente posee dos niveles, de modo tal que la distribución de Estatus Social Subjetivo se separa en dos grandes grupos. Por esta razón, una alternativa para visualizar la distribución es elaborar un gráfico de cajas para ambas categorías:
+
+```{r,message=FALSE, warning=FALSE}
+plot_grpfrq(var.cnt = elsoc_18$ess,var.grp = elsoc_18$sexo,type = "box")
+```
+
+En este sentido, al tener solamente dos niveles en los valores de la variable X: 0 (Hombre) y 1 (Mujer). Obtenemos solamente dos medias condicionales.
+
+Entonces, si calculamos el promedio simple para Estatus Social Subjetivo por sexo tenemos:
+
+```{r}
+elsoc_18 %>%
+  group_by(sexo) %>%
+  summarise(mean_ess=mean(ess,na.rm = T))
+```
+
+Segun esto el promedio para las mujeres es de **4.47** puntos en la escala de Estatus Social Subjetivo, mientras para los hombres es de **4.34**.
+
+Realizando ahora la regresión:
+
+```{r}
+reg1<-lm(ess ~ sexo, data=elsoc_18)
+```
+
+```{r}
+sjPlot::tab_model(list(reg1), show.ci=FALSE, p.style = "stars",string.pred = "Predictores", string.est = "β",digits = 3,
+                  dv.labels = c("Modelo 1"))
+```
+
+Entonces:
+
+$$\widehat{Y}_\text{estatus} = 4.339 + \beta_1 \times \text{Sexo} + \epsilon $$
+Tenemos que las mujeres (Sexo = 1) tienen un promedio 0.133 puntos más alto que los hombres (Sexo = 0) en la escala de estatus social subjetivo. En este caso, el grupo de los hombres corresponde a la **categoría de referencia**.
+
+Por lo tanto, _¿cuál es la predicción de estatus social subjetivo para la variable sexo?_
+
+Para el caso de los hombres tenemos:
+
+$$\widehat{Y}_\text{estatus} = 4.339 + 0.133 \times 0 = 4.339$$
+En cambio, para las mujeres tenemos:
+
+$$\widehat{Y}_\text{estatus} = 4.339 + 0.133 \times 1 = 4.472$$
+
+Entonces cuando calculamos el promedio de Estatus social Subjetivo $Y_\text{estatus}$ para hombre ($X_\text{sexo=0}$) mujer ($X_\text{sexo=1}$), podemos observar que son los mismos valores que nos entrega la estimación de la regresión simple empleando Sexo como predictor de Estatus Social Subjetivo. Es decir:
+
+
+* Al ingresar un regresor dicotómico en regresión simple lo que se obtiene es una estimación de la **diferencia de promedios** de ambas categorías en relación a la variable dependiente -en regresión múltiple esta diferencia se ajusta o controla por la presencia de otras variables, por ejemplo:
+
+```{r}
+reg2<-lm(ess ~ sexo+edad, data=elsoc_18)
+```
+
+```{r}
+sjPlot::tab_model(list(reg1,reg2), show.ci=FALSE, p.style = "stars",string.pred = "Predictores", string.est = "β",digits = 3,
+                  dv.labels = c("Modelo 1", "Modelo 2"))
+```
+
+$$\widehat{Y}_\text{estatus} = 4.602 + 0.126 \times \text{Sexo} + -0.006 \times \text{Edad} + \epsilon $$
+Al controlar por la *edad* de las personas, **las mujeres tienen un promedio 0.126 más alto que el de los hombres** en la escala de Estatus Social Subjetivo. Vemos que, en comparación con el Modelo 1, la diferencia en el promedio de estatus subjetivo de mujeres respecto de hombres se ajusta al incorporar la *edad*. En este sentido, ¿por qué la diferencia en el promedio de estatus subjetivo entre mujeres y hombres puede verse afectada por la *edad*?. Revisemos el promedio de Edad para hombres y mujeres:
+
+```{r}
+elsoc_18 %>%
+  group_by(sexo) %>%
+  summarise(mean_ess=mean(edad,na.rm = T))
+```
+
+Esta información nos permite observar que los hombres tienen un promedio de edad de 1.2 años mayor que el de las mujeres. En este sentido, lo que vemos es que la diferencia promedio de estatus subjetivo entre hombres y mujeres disminuye de 0.136 a 0.126, es decir, se ajusta al considerar (controlar por) la edad de las personas.
+
+
+## Predictores con más de una categoría
+
+Una de las características de estatus más importante es el nivel educacional de las personas. En este sentido, el nivel educacional puede considerarse como una variable contínua (p.ej: años de educación) o categórica (nivel/grado educacional), lo cual depende no solo de la distribución empírica de la variable sino que también del criterio de quien investiga.
+
+Para este ejercicio consideraremos la variable educación en base a las categorías de la Clasificación Internacional Normalizada de la Educación **[(UNESCO)](http://uis.unesco.org/sites/default/files/documents/isced-2011-sp.pdf)**. La cual posee 5 niveles:
+
+```{r}
+sjmisc::frq(x = elsoc_18$edcine,show.na = F)
+```
+
+Y se distribuye de esta manera:
+
+```{r}
+plot_frq(data = elsoc_18$edcine)
+```
+
+Para poder incluir esta variable en la regresión como categórica en R la manera más simple es definirla como un factor. Primero necesitamos conocer la estructura de la variable, ya que puede venir previamente definida como factor:
+
+```{r}
+class(elsoc_18$edcine)
+str(elsoc_18$edcine)
+```
+
+Vemos que al emplear `class`, R nos indica que `edcine` es una variable numérica con 5 valores distintos. Además, al correr `str` se nos indica que dichos valores numéricos poseen atributos en forma de etiquetas (labels). Entonces, si estimamos la regresión con la variable tal cual como está, obtenemos lo siguiente:
+
+```{r}
+reg3<- lm(ess~edcine,data = elsoc_18)
+```
+
+```{r}
+sjPlot::tab_model(list(reg3), show.ci=FALSE, p.style = "stars",string.pred = "Predictores", string.est = "β",digits = 3,
+                  dv.labels = c("Modelo 3"))
+```
+
+El coeficiente de regresión nos indica que por cada nivel adicional de educación, hay un aumento de 0.331 puntos en la escala de estatus social subjetivo. Sin embargo, dada la naturaleza de nuestra variable, decir "por cada nivel educacional" es poco informativo, por lo tanto la manera más adecuada de utilizar nuestra variable en la estimación de una regresión es transformarla en un **factor** empleando la función `as_factor()` <span class="sidenote"> De la librería `sjlabelled` </span>.
+
+```{r}
+elsoc_18$edcine<- as_factor(elsoc_18$edcine)
+```
+
+<div class="alert alert-info">
+**Nota**: en R existe la función `as.factor()`, sin embargo, en esa ocasión usamos `as_factor()` debido a que es compatible los vectores numéricos etiquetados y nos permite matener todos los atributos de las variables, tales como las etiquetas de variable y valores.
+</div>
+
+Teniendo nuestra variable transformada a factor, estimamos nuevamente la regresión:
+
+```{r}
+reg4 <- lm(ess~edcine,data = elsoc_18)
+```
+
+```{r}
+sjPlot::tab_model(list(reg3,reg4), show.ci=FALSE, p.style = "stars",string.pred = "Predictores", string.est = "β",digits = 3,
+                  dv.labels = c("Modelo 3","Modelo 4"))
+```
+
+
+### Interpretación
+
+Al igual que en el modelo empleando Educación como variable continua, el modelo con Educación categórica muestra que a medida que aumenta el nivel educacional, el promedio de estatus subjetivo tiende a ser más alto. Por otro lado, en este caso la categoría de referencia es Primaria Incompleta o menos. Entonces:
+
+El promedio en la escala de Estatus Social subjetivo para el grupo con educación Primaria y Secundaria baja es 0.151 puntos más alto con respecto a las personas con educación Primaria Incompleta o menos.
+
+El promedio en la escala de Estatus Social subjetivo para el grupo con educación Secundaria Alta es 0.476 más alto con respecto a las personas con educación Primaria Incompleta o menos.
+
+El promedio en la escala de Estatus Social subjetivo para el grupo con educación Terciaria ciclo corto es 0.811 más alto con respecto a las personas con educación Primaria Incompleta o menos.
+
+El promedio en la escala de Estatus Social subjetivo para el grupo con educación Terciaria y Postgrado es de 1.279 más alto con respecto a las personas con educación Primaria Incompleta o menos.
+
+
+* Alternativamente es posible cambiar la categoría de referencia. Por ejemplo, si quisieramos que la referencia fuera el nivel educativo más alto "Terciaria y Postgrado" (5) debemos usar `relevel(edcine, ref =5)`:
+
+```{r}
+reg4.1 <- lm(ess~relevel(edcine,ref=5),data = elsoc_18)
+summary(reg4.1)
+```
+
+### Variables dummy
+
+La manera tradicional de incluir predictores categóricos de más de dos niveles (variable politómica) es a través de las denominadas **variables dummy**. Tal como vimos en el ejemplo anterior, se incluyen **n-1 categorías** en el modelo dado que siempre se mantiene una como categoría de referencia.
+
+Para explorar nuestra base de datos, usaremos la función `head()` que nos mostrará las primeras 6 filas de nuestra base de datos para observar la variable Educación.
+
+```{r}
+head(elsoc_18)
+```
+
+Para la construcción de las variables dummy, usaremos la función `dummy_cols()` de la librería `fastDummies`. En el argumento `select_columns`, le indicamos cuál es la variable que usaremos para construir las variables dummy:
+
+```{r}
+library(fastDummies)
+elsoc_18 <- dummy_cols(elsoc_18,select_columns = "edcine")
+```
+
+Revisamos nuestra base de datos:
+
+```{r}
+head(elsoc_18)
+```
+
+Tal como se estimó en el modelo anterior, ahora lo que haremos es seleccionar cada dummy para las categorías 2, 3, 4 y 5 de la variable `edcine`. Esto implica que el nivel 1 (Primaria incompleta o menos) será la categoría de referencia.
+
+```{r}
+reg5 <- lm(ess~edcine_2+edcine_3+edcine_4+edcine_5,data = elsoc_18)
+```
+
+```{r}
+sjPlot::tab_model(list(reg4, reg5), show.ci=FALSE, p.style = "stars",string.pred = "Predictores", string.est = "β",digits = 3,
+                  dv.labels = c("Modelo 4","Modelo 5"))
+```
+
+Si observamos la tabla de arriba, vemos que las estimaciones para el modelo 4 y 5 son idénticas. La única diferencia es que en el Modelo 5 empleamos dummies para cada categoría en vez de utilizar la variable como un factor.
+
+#
+
+# Video Tutorial
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NVNrGtNMmbQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
+## Documento presentación
+
+<iframe src=/slides/06.2-cat/6.2_cat.html height="550" width=100% allowfullscreen="true">
+</iframe>
+
+
+
+# Foro práctica 6.2

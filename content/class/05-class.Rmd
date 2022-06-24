@@ -27,7 +27,7 @@ editor_options:
 
 <iframe src=/slides/05-regmul1/05_regmul1.html height="550" width=100% allowfullscreen="true">
 </iframe>
-
+ 
 
 ## Lecturas
 

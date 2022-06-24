@@ -15,3 +15,12 @@ corrplot
 scatterplot3d
 texreg
 stargazer
+haven
+sjmisc
+carData
+car
+summarytools
+kableExtra
+sjPlot
+sessioninfo
+sjlabelled
