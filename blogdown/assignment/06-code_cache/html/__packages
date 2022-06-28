@@ -1,0 +1,12 @@
+base
+ggplot2
+ggpubr
+dplyr
+sjPlot
+gridExtra
+texreg
+summarytools
+wooldridge
+fastDummies
+sjlabelled
+coefplot
