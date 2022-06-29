@@ -1,34 +1,9 @@
 lessons:
-  
-  - title: "Looking at Data / Up and Running"
-    date: "Week 1"
+
+  - title: "UNIDAD 1"
+
+  - title: "Presentación e introducción"
+    date: "Semana 1"
     class: "01-class"
-    assignment: ""
-
-  - title: "Mapping Data to Visual Elements"    
-    date: "Week 2"
-    class: "02-class"
-    reading: ""
-    assignment: ""
-
-  - title: "Tables, Text, Labels, Notes"
-    date: "Week 3"
-    class: "03-class"
-    reading: ""
-    assignment: ""
-
-  - title: "Working with Models"
-    date: "Week 4"
-    class: "04-class"
-    reading: ""
-    assignment: ""
-
-  - title: "Maps"
-    date: "Week 5"
-    reading: ""
-    assignment: ""
-    
-  - title: "Polishing your Plots"
-    date: "Week 6"
-    reading: ""
-    assignment: ""    
+    assignment: "01-code"
+    reading: "class/01-class/##Lecturas"

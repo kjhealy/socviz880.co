@@ -2,7 +2,7 @@
 title: Reading
 menu:
   reading:
-    parent: Readings
+    parent: reading
     weight: 1
 type: docs
 weight: 1

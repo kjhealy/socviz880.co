@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en-us"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.7.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Juan Castillo">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="code.sourceCode  span { display: inline-block; line-height: 1.25; } code.sourceCode  span { color: inherit; text-decoration: inherit; } code.sourceCode  span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode  span { text-indent: -5em; padding-left: 5em; } } pre.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://multivariada.netlify.app/assignment/03-code/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#CF4446">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu1d2581101f943b2ec717907f12f16034_15667_32x32_fill_lanczos_center_3.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu1d2581101f943b2ec717907f12f16034_15667_192x192_fill_lanczos_center_3.png">
+
+  <link rel="canonical" href="https://multivariada.netlify.app/assignment/03-code/">
+
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@juankcastillo">
+  <meta property="twitter:creator" content="@juankcastillo">
+  
+  <meta property="og:site_name" content="Estadística Multivariada">
+  <meta property="og:url" content="https://multivariada.netlify.app/assignment/03-code/">
+  <meta property="og:title" content="Práctica 3. Regresión simple 1 | Estadística Multivariada">
+  <meta property="og:description" content="code.sourceCode  span { display: inline-block; line-height: 1.25; } code.sourceCode  span { color: inherit; text-decoration: inherit; } code.sourceCode  span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode { white-space: pre; position: relative; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { code.sourceCode { white-space: pre-wrap; } code.sourceCode  span { text-indent: -5em; padding-left: 5em; } } pre."><meta property="og:image" content="https://multivariada.netlify.app/img/social-image.png">
+  <meta property="twitter:image" content="https://multivariada.netlify.app/img/social-image.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2022-04-01T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2022-04-06T15:07:07-04:00">
+  
+
+  
+
+
+
+  
+
+
+  
+
+
+  <link rel="shortcut icon" href="https://multivariada.netlify.app/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://multivariada.netlify.app/img/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://multivariada.netlify.app/img/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://multivariada.netlify.app/img/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://multivariada.netlify.app/img/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://multivariada.netlify.app/img/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://multivariada.netlify.app/img/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="https://multivariada.netlify.app/img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="https://multivariada.netlify.app/img/favicon-16x16.png" sizes="16x16" />
+  <meta name="application-name" content="SOC 01024: Estadística Multivariada" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="https://multivariada.netlify.app/img/mstile-144x144.png" />
+
+
+  <title>Práctica 3. Regresión simple 1 | Estadística Multivariada</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70"
+    data-target="#TableOfContents"
+    >
+
+    <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+    
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Estadística Multivariada</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Estadística Multivariada</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/programa/"><span>Programa</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/schedule/"><span>Planificación</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/class/"><span>Contenidos</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/trabajos/"><span>Trabajos</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+    
+
+<div class="container-fluid docs">
+    <div class="row flex-xl-nowrap">
+        <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+            
+
+
+
+
+
+  
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+
+  
+  
+  
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/class/01-class/">Clases</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/class/01-class/">1: Presentación</a>
+      </li>
+      
+      <li >
+        <a href="/class/02-class/">2: Bases</a>
+      </li>
+      
+      <li >
+        <a href="/class/03-class/">3: Regresión simple 1</a>
+      </li>
+      
+      <li >
+        <a href="/class/04-class/">4: Regresión simple 2</a>
+      </li>
+      
+      <li >
+        <a href="/class/05-class/">5: Regresión múltiple 1</a>
+      </li>
+      
+      <li >
+        <a href="/class/06-class/">6: Regresión múltiple 2 y predictores categóricos</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/assignment/01-code/">Practicas</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/assignment/01-code/">Práctica 1: Preparación datos</a>
+      </li>
+      
+      <li >
+        <a href="/assignment/02-code/">Práctica 2: Descripción de variables</a>
+      </li>
+      
+      <li class="active">
+        <a href="/assignment/03-code/">Práctica 3: Regresión simple 1</a>
+      </li>
+      
+      <li >
+        <a href="/assignment/04-code/">Práctica 4: Regresión simple 2</a>
+      </li>
+      
+      <li >
+        <a href="/assignment/05-code/">Práctica 5: Regresión múltiple 1</a>
+      </li>
+      
+      <li >
+        <a href="/assignment/06-code/">Práctica 6: Regresión múltiple 2 y Predictores Categóricos</a>
+      </li>
+      
+      <li >
+        <a href="/assignment/11-code/">Guía de índices y transformación de variablesn</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+        </div>
+
+        
+
+        <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+            <article class="article">
+
+                <div class="docs-article-container">
+                    <h1>Práctica 3. Regresión simple 1</h1>
+
+                    
+
+                    
+
+                    
+                    <div class="due-date p-2 mb-3 bg-secondary text-white">
+                        Materiales de la sesión del 01 Apr 2022
+                    </div>
+                    
+
+                    <div class="article-style">
+                        
+<!-- BLOGDOWN-HEAD -->
+<script src="/rmarkdown-libs/accessible-code-block/empty-anchor.js"></script>
+<script src="/rmarkdown-libs/clipboard/clipboard.min.js"></script>
+<link href="/rmarkdown-libs/primer-tooltips/build.css" rel="stylesheet" />
+<link href="/rmarkdown-libs/klippy/css/klippy.min.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/klippy/js/klippy.min.js"></script>
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<!-- /BLOGDOWN-HEAD -->
+
+<h2>Índice</h2>
+<div id="TOC">
+<ul>
+<li><a href="#objetivo-de-la-práctica">Objetivo de la práctica</a></li>
+<li><a href="#sobre-hoja-de-código">Sobre hoja de código</a></li>
+<li><a href="#librerías">Librerías</a></li>
+<li><a href="#datos">Datos</a><ul>
+<li><a href="#verificación-y-descriptivos">Verificación y descriptivos</a></li>
+<li><a href="#experiencia-en-juegos-y-puntuación">Experiencia en juegos y puntuación</a></li>
+<li><a href="#medias-condicionales">Medias condicionales</a></li>
+<li><a href="#residuos">Residuos</a></li>
+<li><a href="#modelo-de-regresión-y-cálculo-de-parámetros">Modelo de regresión y cálculo de parámetros</a></li>
+<li><a href="#cálculo-de-los-parámetros-del-modelo-de-regresión">Cálculo de los parámetros del modelo de regresión</a></li>
+</ul></li>
+<li><a href="#estimación-del-modelo-de-regresión-simple-en-r">Estimación del modelo de regresión simple en <strong>R</strong></a></li>
+<li><a href="#reporte-de-progreso">Reporte de progreso</a></li>
+<li><a href="#archivo-de-código">Archivo de código</a></li>
+<li><a href="#foro-práctica-3">Foro práctica 3</a></li>
+</ul>
+</div>
+
+<script>
+  addClassKlippyTo("pre.r, pre.markdown");
+  addKlippy('right', 'bottom', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<div id="objetivo-de-la-práctica" class="section level1">
+<h1>Objetivo de la práctica</h1>
+<p>En esta práctica se desarrollan ejercicios iniciales de regresión simple, que fueron presentados en la clase respectiva. El ejemplo a utilizar es del libro de Darlington &amp; Hayes cap. 2 (The simple regression model).</p>
+</div>
+<div id="sobre-hoja-de-código" class="section level1">
+<h1>Sobre hoja de código</h1>
+<p>Como vimos en la práctica anterior, al momento de analizar los datos separamos el trabajo en dos hojas de código distintas: <code>preparacion.R</code> (práctica 1) y <code>analisis.R</code> (práctica 2). <span class="sidenote">Recordar nombres de archivos y directorios sin tildes, espacios ni ñ</span>En este caso, los datos son simples y como es un ejemplo no realizaremos código de preparación, solo el correspondiente a análisis. Antes de comenzar, sugerimos crear un archivo de código en R con el nombre analisis: <code>R: File-&gt; New File -&gt; RScript</code>, o simplemente <code>Ctrl + Shift + N.</code></p>
+</div>
+<div id="librerías" class="section level1">
+<h1>Librerías</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(stargazer, ggplot2, dplyr)</span></code></pre></div>
+</div>
+<div id="datos" class="section level1">
+<h1>Datos</h1>
+<p>Los datos a utilizar corresponden a un ejemplo ficticio de 23 casos (individuos) y sus datos en dos variables relacionadas con un juego (originalmente de mini-golf en el texto de referencia … pero pensemos en un ejemplo más cercano, de taca-taca). Las dos variables de esta base de datos son el número de veces que se ha jugado antes (juegos_x) y el número de goles o puntos ganados (puntos_y). El archivo de datos es <code>tacataca.txt</code>.</p>
+<p>Vamos a cargar estos datos en nuestro espacio de trabajo en R dándole el nombre simple de <code>datos</code> Dos opciones de cargar los datos en R:</p>
+<ul>
+<li>bajarlos al computador local desde <a href="https://multivariada.netlify.app/slides/03-regsimple1/tacataca.txt">este link</a> y luego llamarlos desde el directorio respectivo donde se guardaron:</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>datos &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;( ...ruta hacia el archivo ...)</span><span class="ch">\t</span><span class="st">acataca.txt&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<ul>
+<li>llamarlos directamente desde su ubicación en la web:</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>datos &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://multivariada.netlify.app/slides/03-regsimple1/tacataca.txt&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p>Como es un archivo de texto simple (txt), los cargamos con la función <code>read.csv</code>, para datos guardados en texto simple separados por coma. Como en el caso de nuestros datos la separación es por espacios en lugar de comas, agregamos esta información con la instrucción <code>sep=""</code>.</p>
+<p>Para abrir los datos recordemos que en la lógica de R se debe generar un objeto donde se guardan los datos. Este objeto puede tener cualquier nombre, en este caso lo llamaremos simplemente “datos”.</p>
+<div class="alert alert-info">
+<p><strong>Rutas:</strong> ¿Cómo identifico la ruta hacia mi archivo? Dos maneras:</p>
+<ul>
+<li><ol style="list-style-type: decimal">
+<li>Botón derecho sobre el archivo -&gt; propiedades, ahí aparece la ruta completa. Copiar y pegar donde corresponde en el archivo de R, no olvidar agregar al final el nombre completo del archivo.</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li>Más fácil: mouse sobre archivo, boton derecho, <em>copiar</em> (o ctrl+c); luego, en el archivo de R, en el lugar que corresponde dar la ruta <em>pegar</em> (o ctrl+v)</li>
+</ol></li>
+</ul>
+</div>
+<div id="verificación-y-descriptivos" class="section level2">
+<h2>Verificación y descriptivos</h2>
+<p>Verificamos si los datos fueron correctamente cargados con <code>View</code>, también la dimensión de la base de datos con <code>dim</code>, y la naturaleza de las variables con <code>sapply</code> :</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">View</span>(datos)</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">dim</span>(datos)</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="kw">sapply</span>(datos, class)</span></code></pre></div>
+<p><img src="/slides/03-regsimple1/tacataca.png" /></p>
+<p>Tenemos entonces tres columnas:</p>
+<ul>
+<li><p><code>id</code>: número único que identifica a cada sujeto</p></li>
+<li><p><code>juegos_x</code>: número de veces que ha jugado previamente</p></li>
+<li><p><code>puntos_y</code>: numero de puntos que obtuvo en el juego actual</p></li>
+</ul>
+<p>Generamos una tabla de descriptivos básicos con lo aprendido en la práctica de descripción de datos:</p>
+<p>Y para publicar, usando la librería <code>stargazer</code></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">stargazer</span>(datos, <span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## ====================================
+## Statistic N   Mean  St. Dev. Min Max
+## ------------------------------------
+## id        23 12.000  6.782    1  23 
+## juegos_x  23 3.000   1.758    0   6 
+## puntos_y  23 4.000   1.382    2   6 
+## ------------------------------------</code></pre>
+<p>En la tabla vemos los estadísticos básicos de las variables juegos y puntos, y además aparece la variable <code>id</code>, que es el identificador y por lo tanto no tiene sentido que salga en la tabla. Para corregir, seleccionamos las variables de interés de <code>datos</code> con el <strong>operador pipa %&gt;%</strong> <span class="sidenote">operador pipa %&gt;%</span>. Este operador permite unir distintas funciones en una misma línea de código, y es muy utilizado por librerías de manejo de datos como <code>dplyr</code>. Por ejemplo, ahora la instrucción es “de la base de datos <code>datos</code>” %&gt;% “selecciona solo las columnas juegos y puntos”:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">stargazer</span>(datos <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(juegos_x,puntos_y) , <span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## ===================================
+## Statistic N  Mean  St. Dev. Min Max
+## -----------------------------------
+## juegos_x  23 3.000  1.758    0   6 
+## puntos_y  23 4.000  1.382    2   6 
+## -----------------------------------</code></pre>
+</div>
+<div id="experiencia-en-juegos-y-puntuación" class="section level2">
+<h2>Experiencia en juegos y puntuación</h2>
+<p>La pregunta que nos hacemos para este ejercicio de demostración es: <strong>¿tiene relación la experiencia previa (juegos jugados previamente) con el desempeño actual (puntos obtenidos)?</strong></p>
+<p>Veamos un gráfico de nube de puntos / scatter de ambas variables. Para eso, primero cargamos la librería <code>ggplot</code>de R. Recordar que hay que instalarla primero si es que no se ha hecho previamente con <code>install.packages("ggplot")</code><span class="sidenote">ggplot</span>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>g=<span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(<span class="dt">x=</span>juegos_x, <span class="dt">y=</span>puntos_y)) <span class="op">+</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span>
+<span id="cb9-3"><a href="#cb9-3"></a>g</span></code></pre></div>
+<p><img src="/assignment/03-code_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+Primero, sobre librerías y visualización: lo que hicimos fue crear un objeto gráfico scatterplot <code>g</code> con la librería <code>ggplot</code>..</p>
+<p>En términos de correlación se observa una posible asociación positiva, que podemos corroborar con la función <code>cor</code>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">cor</span>(datos<span class="op">$</span>juegos_x,datos<span class="op">$</span>puntos_y)</span></code></pre></div>
+<pre><code>## [1] 0.636209</code></pre>
+<p>Tenemos una <strong>correlación positiva</strong> (dirección de la relación) y de un <strong>tamaño de efecto grande</strong> (magnitud de la relación), para ciencias sociales. Es decir, existe una asociación positiva entre ambas variables: a medida que aumenta la experiencia en juegos, aumentan también los puntos obtenidos en el partido de taca taca. Ahora bien, ¿cómo se relaciona <strong>más específcamente</strong> la experiencia en juegos con los puntos obtenidos posteriormente?</p>
+</div>
+<div id="medias-condicionales" class="section level2">
+<h2>Medias condicionales</h2>
+<p>Antes de avanzar desde la correlación al método de regresión es importante conocer el concepto de <strong>media condicional</strong>.</p>
+<p>Como sabemos el promedio de Y (puntos) es 4. Es decir, si conocemos a algún individuo que pertence al grupo de “datos”, sabemos que su puntaje se encuentra probablemente cercano a 4. ¿Podemos mejorar nuestra estimación utilizando el puntaje de X? Como lo conocemos, si el sujeto nos dice que ha jugado antes 6 veces, dada la información que conocemos probablemente vamos a estimar un puntaje superior de puntos, tal vez más cercano a 6.</p>
+<p>Lo que estamos haciendo es utilizar la información que conocemos de X para dar una estimación de Y, que sea más precisa que el promedio bruto.</p>
+<p><img src="/slides/03-regsimple1/condmeans.png" /></p>
+<p>Mirando el gráfico de nube de puntos, sabemos que tres personas han jugado antes una vez, pero una de ellas tuvo 2 puntos, otra 3 y otra 4. Con estos datos podemos calcular la media de Y para X=1, que sería igual a 3. En otras palabras, <em>la media condicional de Y cuando X=1 es 3</em>. Con esto, uno podría calcular la media condicional para cada punto de X y hacer una estimación más precisa de Y. Sin embargo, este proceso todavía <em>no nos permite generalizar más eficientemte</em> la relación entre X e Y.</p>
+<p><em>¿Cuántos puntos (Y) se obtienen según la experiencia previa de juego (X)?</em> Esta pregunta nos conduce al cálculo de una <strong>recta</strong> que atraviese los puntos y que generalice la relación entre X e Y:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>g2=<span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(<span class="dt">x=</span>juegos_x, <span class="dt">y=</span>puntos_y)) <span class="op">+</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span>lm, <span class="dt">se=</span><span class="ot">FALSE</span>)</span>
+<span id="cb12-4"><a href="#cb12-4"></a>g2</span></code></pre></div>
+<p><img src="/assignment/03-code_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="residuos" class="section level2">
+<h2>Residuos</h2>
+<p>En el gráfico anterior vemos que la línea resume la relación entre X e Y, pero claramente es una simplificación que <strong>no abarca toda la variabilidad de los datos</strong>.</p>
+<p>Por ejemplo, para el sujeto cuya experiencia es haber jugado 1 vez y luego gana 3 puntos, esta línea predice exáctamente su puntaje basada en su experiencia. Sin embargo, el sujeto que ha jugado 3 veces y saca 6 puntos se encuentra más lejos de la línea y por lo tanto esta línea o “modelo predictivo” no representa tan bien su puntaje. A esto se refieren los <em>residuos</em>, que es la diferencia entre el valor predicho (o <span class="math inline">\(\widehat{Y}\)</span>) y el observado <span class="math inline">\(Y\)</span>, siendo los valores predichos de Y los que pasan por la recta a la altura de cada valor de X. Por lo tanto, la mejor recta será aquella que minimice al máximo los residuos.</p>
+<p><img src="/slides/03-regsimple1/fig2-4woo.png" /></p>
+<p>El sentido de la recta que resume de mejor manera la relación entre dos variables es que <strong>minimice la suma de todos los residuos</strong>. ¿Cómo realizar este procedimiento?</p>
+<ul>
+<li><p>Para realizar la suma de los residuos estos se elevan al cuadrado, lo que se denomina <strong>Suma de residuos al cuadrado</strong> o <span class="math inline">\(SS_{residual}\)</span>. Se eleva al cuadrado ya que como hay residuos positivos y negativos, unos cancelarían a otros y la suma seía 0, tal como sucede en la formula de la varianza.</p></li>
+<li><p>De la infinita cantidad de rectas que se pueden trazar, siempre hay una que tiene un valor menor de <span class="math inline">\(SS_{residual}\)</span>. Este procedimiento es el que da nombre al proceso de estimación: mínimos (residuos) cuadrados ordinarios, o <em>OLS</em> (Ordinary Least Squares).</p></li>
+</ul>
+</div>
+<div id="modelo-de-regresión-y-cálculo-de-parámetros" class="section level2">
+<h2>Modelo de regresión y cálculo de parámetros</h2>
+<p><span class="sidenote">El nombre regresión hace alusión a investigaciones sobre estaturas de padres e hij_s en el S.XIX. La estatura de hij_s de padres muy altos es en promedio menor, y si sus padres son baj_s, es mayor (en comparación con sus padres). Este fenómeno se conoce como “regresión hacia el promedio” </span></p>
+<p>El modelo de regresión se representa con una ecuación de la recta, o recta de regresión. Esta recta representa los valores predichos para Y según los distintos valores de X:</p>
+<p><span class="math display" id="eq:reg">\[\begin{equation}
+\widehat{Y}=b_{0} +b_{1}X
+\tag{1}
+\end{equation}\]</span></p>
+<p>Donde</p>
+<ul>
+<li><span class="math inline">\(\widehat{Y}\)</span> es el valor estimado/predicho de <span class="math inline">\(Y\)</span></li>
+<li><span class="math inline">\(b_{0}\)</span> es el <strong>intercepto</strong> de la recta (el valor de Y cuando X es 0)</li>
+<li><span class="math inline">\(b_{1}\)</span> es el <strong>coeficiente de regresión</strong>, que nos dice cuánto aumenta Y por cada punto que aumenta X (pendiente)</li>
+</ul>
+</div>
+<div id="cálculo-de-los-parámetros-del-modelo-de-regresión" class="section level2">
+<h2>Cálculo de los parámetros del modelo de regresión</h2>
+<p><span class="math inline">\(b_{1}\)</span>, o comunmente llamado “beta de regresión” se obtiene de la siguiente manera:</p>
+<p><span class="math display" id="eq:beta">\[\begin{equation}
+b_{1}=\frac{Cov(XY)}{VarX}
+\tag{2}
+\end{equation}\]</span></p>
+<p>En términos más suntantivos se puede entender como qué parte de la covariación que hay entre X e Y se relaciona con (la varianza de) X. Especificando la fórmula:</p>
+<p><span class="math display" id="eq:beta2">\[\begin{equation}
+b_{1}=\frac{\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {n-1}}{\frac{\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})} {n-1}}
+\tag{3}
+\end{equation}\]</span></p>
+<p>Y simplificando</p>
+<p><span class="math display" id="eq:beta3">\[\begin{equation}
+b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})}
+\tag{4}
+\end{equation}\]</span></p>
+<p>Como sabemos, la base para todos estos cálculos es el valor de cada variable menos su promedio. Vamos a crear un vector en nuestra base de datos difx=<span class="math inline">\(x-\bar{x}\)</span> y dify=<span class="math inline">\(y-\bar{y}\)</span></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>datos<span class="op">$</span>difx=datos<span class="op">$</span>juegos_x<span class="op">-</span><span class="kw">mean</span>(datos<span class="op">$</span>juegos_x)</span>
+<span id="cb13-2"><a href="#cb13-2"></a>datos<span class="op">$</span>dify=datos<span class="op">$</span>puntos_y<span class="op">-</span><span class="kw">mean</span>(datos<span class="op">$</span>puntos_y)</span></code></pre></div>
+<p>Y ahora con esto podemos obtener la diferencia de productos cruzados dif_cru=<span class="math inline">\((x-\bar{x})*(y-\bar{y})\)</span>, así como la diferencia de X de su promedio al cuadrado SSx=<span class="math inline">\((x-\bar{x})^2\)</span></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>datos<span class="op">$</span>difcru=datos<span class="op">$</span>difx<span class="op">*</span>datos<span class="op">$</span>dify</span>
+<span id="cb14-2"><a href="#cb14-2"></a>datos<span class="op">$</span>difx2=datos<span class="op">$</span>difx<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>datos</span></code></pre></div>
+<pre><code>##    id juegos_x puntos_y difx dify difcru difx2
+## 1   1        0        2   -3   -2      6     9
+## 2   2        0        3   -3   -1      3     9
+## 3   3        1        2   -2   -2      4     4
+## 4   4        1        3   -2   -1      2     4
+## 5   5        1        4   -2    0      0     4
+## 6   6        2        2   -1   -2      2     1
+## 7   7        2        3   -1   -1      1     1
+## 8   8        2        4   -1    0      0     1
+## 9   9        2        5   -1    1     -1     1
+## 10 10        3        2    0   -2      0     0
+## 11 11        3        3    0   -1      0     0
+## 12 12        3        4    0    0      0     0
+## 13 13        3        5    0    1      0     0
+## 14 14        3        6    0    2      0     0
+## 15 15        4        3    1   -1     -1     1
+## 16 16        4        4    1    0      0     1
+## 17 17        4        5    1    1      1     1
+## 18 18        4        6    1    2      2     1
+## 19 19        5        4    2    0      0     4
+## 20 20        5        5    2    1      2     4
+## 21 21        5        6    2    2      4     4
+## 22 22        6        5    3    1      3     9
+## 23 23        6        6    3    2      6     9</code></pre>
+<p>Y con esto podemos obtener la suma de productos cruzados y la suma de cuadrados de X</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">sum</span>(datos<span class="op">$</span>difcru)</span></code></pre></div>
+<pre><code>## [1] 34</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">sum</span>(datos<span class="op">$</span>difx2)</span></code></pre></div>
+<pre><code>## [1] 68</code></pre>
+<p>Reemplazando en la fórmula</p>
+<p><span class="math display">\[b_{1}=\frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})} {\sum_{i=1}^{n}(x_i - \bar{x})(x_i - \bar{x})}=\frac{34}{68}=0.5\]</span></p>
+<p>Y con esto podemos obtener el valor de <span class="math inline">\(b_{0}\)</span></p>
+<p><span class="math display">\[b_{0}=\bar{Y}-b_{1}\bar{X}\]</span>
+<span class="math display">\[b_{0}=4-(3 * 0.5)=2.5\]</span></p>
+<p>Completando la ecuación:</p>
+<p><span class="math display">\[\bar{Y}=2.5+0.5X\]</span></p>
+<p>Esto nos permite estimar el valor de <span class="math inline">\(Y\)</span> (o su media condicional) basado en el puntaje <span class="math inline">\(X\)</span>.
+Por ejemplo, cuál es el valor estimado de <span class="math inline">\(Y\)</span> dado <span class="math inline">\(X=5\)</span>?</p>
+</div>
+</div>
+<div id="estimación-del-modelo-de-regresión-simple-en-r" class="section level1">
+<h1>Estimación del modelo de regresión simple en <strong>R</strong></h1>
+<p>La función para estimar regresión en <code>R</code> es <code>lm</code> (linear model). Su forma general es:</p>
+<pre><code>objeto=lm(dependiente ~ independiente, data=datos)</code></pre>
+<p>Donde</p>
+<ul>
+<li>objeto: el nombre (cualquiera) que le damos al objeto donde se guardan los resultados de la estimación</li>
+<li>dependiente / independiente: los nombres de las variables en los datos</li>
+<li>data = el nombre del objeto de nuestros datos en R</li>
+</ul>
+<p>Ejemplo con los datos de taca taca:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>reg1 &lt;-<span class="kw">lm</span>(puntos_y <span class="op">~</span><span class="st"> </span>juegos_x, <span class="dt">data =</span> datos)</span></code></pre></div>
+<p>Con esta operación ya estimamos nuestra primera regresión simple. Para ver la estimación de los parámetros principales (intercepto y pendiente) simplemente ejecutamos el nombre del objeto:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>reg1</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = puntos_y ~ juegos_x, data = datos)
+## 
+## Coefficients:
+## (Intercept)     juegos_x  
+##         2.5          0.5</code></pre>
+<p>Y obtenemos los valores que calculamos previamente.</p>
+<p>Podemos tener un output en un formato más apropiado utilizando la librería <code>stargazer</code></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">stargazer</span>(reg1, <span class="dt">type =</span> <span class="st">&quot;text&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## ===============================================
+##                         Dependent variable:    
+##                     ---------------------------
+##                              puntos_y          
+## -----------------------------------------------
+## juegos_x                     0.500***          
+##                               (0.132)          
+##                                                
+## Constant                     2.500***          
+##                               (0.458)          
+##                                                
+## -----------------------------------------------
+## Observations                    23             
+## R2                             0.405           
+## Adjusted R2                    0.376           
+## Residual Std. Error       1.091 (df = 21)      
+## F Statistic           14.280*** (df = 1; 21)   
+## ===============================================
+## Note:               *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+<p>Vemos que en la tabla aparecen una serie de elementos adicionales, además de <span class="math inline">\(b_{1}\)</span> (juegos) y el intercepto o constante (“Constant”). Esto será tema de la siguiente sesión.</p>
+</div>
+<div id="reporte-de-progreso" class="section level1">
+<h1>Reporte de progreso</h1>
+<p>Completar el reporte de progreso correspondiente a esta práctica <a href="https://forms.gle/anSSKohFFSGsTBAm9">aquí</a></p>
+</div>
+<div id="archivo-de-código" class="section level1">
+<h1>Archivo de código</h1>
+<p>El archivo de código R de esta práctica se puede descargar <a href="https://raw.githubusercontent.com/juancarloscastillo/multivariada/master/static/assignment/practica_3.R">aquí</a></p>
+</div>
+<div id="foro-práctica-3" class="section level1">
+<h1>Foro práctica 3</h1>
+</div>
+
+                    </div>
+
+                    
+
+
+
+                    
+                </div>
+
+                <div class="body-footer">
+                    <p>Last updated on April 6, 2022</p>
+
+                    
+
+
+
+
+                    
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "multivariada-netlify-app" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+                </div>
+
+            </article>
+
+            <footer>
+    <hr>
+
+    <div class="row course-info">
+        <div class="col-md-7">
+            <p>
+                <strong>SOC 01024: Estadística Multivariada (Primer semestre)</strong><br>
+
+                <a href="https://www.uchile.cl/" target="_blank" rel="noopener">Universidad de Chile</a> &emsp;&emsp;
+                <a href="http://www.facso.uchile.cl/sociologia" target="_blank" rel="noopener">Departamento de Sociología</a>
+            </p>
+
+            <p>
+                <a href="https://jc-castillo.com" target="_blank" rel="noopener"><i class="fas fa-user"></i>
+                    Juan Carlos Castillo</a> &emsp;&emsp;
+                <a href="mailto:juancastillov@uchile.cl"><i class="fas fa-envelope"></i>
+                    juancastillov@uchile.cl</a>
+            </p>
+
+            <p>
+                <i class="far fa-calendar-alt"></i> Viernes &emsp;&emsp;
+                <i class="far fa-clock"></i> 10:15am - 11:45am <br>
+                <i class="fas fa-university"></i> Sala 43 FACSO
+            </p>
+        </div>
+
+        <div class="col-md-5 credits">
+            <p>All content licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+            
+            <p>Content <i class="fab fa-creative-commons"></i> 2022 <a href="https://jc-castillo.com" target="_blank" rel="noopener">Juan Carlos Castillo</a></p>                    
+            
+            <p><a href="https://github.com/juancarloscastillo/multivariada" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the source at GitHub.</a></p>
+        </div>
+    </div>
+</footer>
+
+
+        </main>
+    </div>
+</div>
+
+        
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js" integrity="sha256-pB/deHc9CGfFpJRjC43imB29Rse8tak+5eXqntO94ck=" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://multivariada-netlify-app.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/js/academic.min.a1c3596268a997890f5b9089b30365c6.js"></script>
+
+    
+
+
+
+
+
+
+    
+    
+
+    
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

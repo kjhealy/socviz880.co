@@ -1,0 +1,34 @@
+---
+title: "12: Pendientes y complementos"
+linktitle: "12: Pendientes y complementos"
+date: "2020-08-21"
+class_date: "2020-08-21"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+menu:
+  class:
+    parent: Contenidos
+    weight: 12
+type: docs
+weight: 1
+pdf: /slides/01_dataviz_s20_looking_at_data.pdf
+thumb: /slides/01_dataviz_s20_looking_at_data.png
+editor_options:
+  chunk_output_type: console
+---
+
+## Documento presentación
+
+<span class="sidenote">Para ver en pantalla completa click [**aquí**](/slides/12-apendice/12_apendice.html). Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. </span>
+
+<iframe src=/slides/12-apendice/12_apendice.html height="550" width=100% allowfullscreen="true">
+</iframe>
+
+## Video de la clase
+
+<iframe src="https://www.dropbox.com/s/9xsd338xjlufrbb/clase12.webm?raw=1" width="940" height="520"></iframe>

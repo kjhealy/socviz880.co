@@ -1,8 +1,8 @@
 ---
-title: "Look at Data / Up and Running in R and ggplot"
-linktitle: "1: Look at Data"
-date: "2020-01-10"
-class_date: "2020-01-10"
+title: "Presentación del curso"
+linktitle: "1: Presentación"
+date: "2021-03-18"
+class_date: "2021-03-18"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
@@ -12,22 +12,30 @@ output:
     toc: true
 menu:
   class:
-    parent: Class sessions
+    parent: Clases
     weight: 1
 type: docs
 weight: 1
-pdf: /slides/01_dataviz_s20_looking_at_data.pdf
-thumb: /slides/01_dataviz_s20_looking_at_data.png    
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
-## Slides
+## Encuesta
 
-`r blogdown::shortcode("slides")`
+[link a Menti](https://www.mentimeter.com/s/2f6f2dd610eaf88ebd0d79979a081a8a/9063b292a908)
+
+## Documento presentación
+
+<iframe src=/slides/01-intro/01_multiva_intro.html height="550" width=100% allowfullscreen="true">
+</iframe>
 
 
-## Links
+<!---
+<span class="sidenote">  </span>
 
-- [The R Project for Statistical Computing](https://www.r-project.org/)
-- [R Studio](https://www.rstudio.com)
+<div style="width: 100%; height: 600px; overflow: hidden;">
+<video  style="width: 100%;" controls>
+<source src="https://www.dropbox.com/s/2fm63cyfhsrbmjb/01-intro.webm?raw=1" type="video/mp4">
+</video>
+</div>
+--->

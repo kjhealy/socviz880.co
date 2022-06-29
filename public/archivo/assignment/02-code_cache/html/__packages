@@ -1,0 +1,9 @@
+base
+dplyr
+stargazer
+sjmisc
+summarytools
+kableExtra
+sjPlot
+corrplot
+sessioninfo

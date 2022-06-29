@@ -1,8 +1,8 @@
 ---
-title: "Models and Pipelines"
-linktitle: "4: Work with Models"
-date: "2020-01-30"
-class_date: "2020-01-30"
+title: "Regresión simple 2"
+linktitle: "4: Regresión simple 2"
+date: "2022-04-08"
+class_date: "2022-04-08"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-syllabus-no-bib.csl
@@ -12,19 +12,25 @@ output:
     toc: true
 menu:
   class:
-    parent: Class sessions
+    parent: Clases
     weight: 1
 type: docs
 weight: 1
-pdf: /slides/04_dataviz_s20_work_with_models.pdf
-thumb: /slides/04_dataviz_s20_work_with_models.png    
-editor_options: 
+pdf: /slides/01_dataviz_s20_looking_at_data.pdf
+thumb: /slides/01_dataviz_s20_looking_at_data.png
+editor_options:
   chunk_output_type: console
 ---
 
-## Slides
+## Documento presentación
 
-`r blogdown::shortcode("slides")`
+<span class="sidenote">Para ver en pantalla completa click [**aquí**](/slides/04-regsimple2/04_regsimple2.html). Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. </span>
+
+<iframe src=/slides/04-regsimple2/04_regsimple2.html height="550" width=100% allowfullscreen="true">
+</iframe>
 
 
 
+## Lecturas
+
+[Moore: Residuos (144-154)](/docs/lecturas/moore_residuos.pdf)

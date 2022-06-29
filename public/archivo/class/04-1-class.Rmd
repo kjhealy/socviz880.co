@@ -1,0 +1,36 @@
+---
+title: "Repaso informe 1"
+linktitle: "Repaso informe 1"
+date: "2021-04-23"
+class_date: "2021-04-23"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+menu:
+  class:
+    parent: Clases
+    weight: 1
+type: docs
+weight: 1
+pdf: /slides/01_dataviz_s20_looking_at_data.pdf
+thumb: /slides/01_dataviz_s20_looking_at_data.png
+editor_options:
+  chunk_output_type: console
+---
+
+## Documento presentación
+
+<iframe src=/slides/informe1/informe1.html height="550" width=100% allowfullscreen="true">
+</iframe>
+
+## Video de la clase
+
+<div style="width: 1  00%; height: 600px; overflow: hidden;">
+<video  style="width: 100%;" controls>
+<source src="https://www.dropbox.com/s/mpjvq5wiv83xwzk/trabajo1.webm?raw=1" type="video/mp4">
+</video>
+</div>

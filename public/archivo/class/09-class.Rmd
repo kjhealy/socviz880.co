@@ -1,0 +1,41 @@
+---
+title: "9: Regresión logística (2)"
+linktitle: "9: Regresión Logística (2)"
+date: "2020-06-18"
+class_date: "2020-06-18"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+menu:
+  class:
+    parent: Clases
+    weight: 9
+type: docs
+weight: 1
+pdf: /slides/01_dataviz_s20_looking_at_data.pdf
+thumb: /slides/01_dataviz_s20_looking_at_data.png
+editor_options:
+  chunk_output_type: console
+---
+
+## Documento presentación
+
+<span class="sidenote">Para ver en pantalla completa click [**aquí**](/slides/09-logit2/09_logit2.html). Para guardar/imprimir (en modo pantalla completa): botón derecho, imprimir/guardar como pdf. </span>
+
+<iframe src=/slides/09-logit2/09_logit2.html height="550" width=100% allowfullscreen="true">
+</iframe>
+
+## Video de la clase 
+
+<iframe src="https://www.dropbox.com/s/tecpe7tbkhh6rbi/09-logit.mp4?raw=1" width="940" height="520"></iframe>
+
+
+## Links
+
+- [Goodness of Fit and Significance Testing for Logistic Regression Models](http://www.jtrive.com/goodness-of-fit-and-significance-testing-for-logistic-regression-models.html)
+
+- [Likelihood Ratio Test (LRT) in R (video)](https://www.youtube.com/watch?v=xoM1ynjQYtc)

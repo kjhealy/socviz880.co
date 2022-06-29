@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en-us"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.7.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Juan Castillo">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Estadística Multivariada - Sociología FACSO UChile">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://multivariada.netlify.app/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#CF4446">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Estadística Multivariada">
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu1d2581101f943b2ec717907f12f16034_15667_32x32_fill_lanczos_center_3.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu1d2581101f943b2ec717907f12f16034_15667_192x192_fill_lanczos_center_3.png">
+
+  <link rel="canonical" href="https://multivariada.netlify.app/">
+
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@juankcastillo">
+  <meta property="twitter:creator" content="@juankcastillo">
+  
+  <meta property="og:site_name" content="Estadística Multivariada">
+  <meta property="og:url" content="https://multivariada.netlify.app/">
+  <meta property="og:title" content="Estadística Multivariada">
+  <meta property="og:description" content="Estadística Multivariada - Sociología FACSO UChile"><meta property="og:image" content="https://multivariada.netlify.app/img/social-image.png">
+  <meta property="twitter:image" content="https://multivariada.netlify.app/img/social-image.png"><meta property="og:locale" content="en-us">
+  
+    
+  
+
+  
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite","url": "https://multivariada.netlify.app/"
+}
+</script>
+
+
+  
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "@id": "https://multivariada.netlify.app/",
+  "name": "Estadística Multivariada",
+  
+  "image": "https://multivariada.netlify.app/img/social-image.png",
+  
+  
+  
+  "url": "https://multivariada.netlify.app/"
+}
+</script>
+
+  
+
+
+  
+
+
+  <link rel="shortcut icon" href="https://multivariada.netlify.app/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://multivariada.netlify.app/img/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://multivariada.netlify.app/img/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://multivariada.netlify.app/img/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://multivariada.netlify.app/img/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://multivariada.netlify.app/img/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://multivariada.netlify.app/img/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="https://multivariada.netlify.app/img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="https://multivariada.netlify.app/img/favicon-16x16.png" sizes="16x16" />
+  <meta name="application-name" content="SOC 01024: Estadística Multivariada" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="https://multivariada.netlify.app/img/mstile-144x144.png" />
+
+
+  <title>Estadística Multivariada</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70"
+    data-target="#navbar-main"
+    >
+
+    <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+    
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Estadística Multivariada</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Estadística Multivariada</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/programa/"><span>Programa</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/schedule/"><span>Planificación</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/class/"><span>Contenidos</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/trabajos/"><span>Trabajos</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+<span class="js-widget-page d-none"></span>
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  <section id="hero" class="home-section wg-hero dark  " style="background-image: linear-gradient(#535A5A, #FB4F03);" >
+    <div class="container">
+      
+
+
+
+
+<div class="row">
+  <div class="col-md-6 order-md-1 text-center text-md-left">
+
+
+    <h1 class="hero-title">
+      Estadística Multivariada
+    </h1>
+
+    
+    <div class="hero-lead"><p><strong>SOC 01024 / 2022</strong></p>
+</div>
+    
+
+    
+    
+
+    
+    
+    <p class="hero-note text-muted mb-0">
+      Primer Semestre<br>Departamento de Sociología<br>Universidad de Chile<br><a href="">multivariada.netlify.app</a>
+    </p>
+    
+
+  
+  
+  </div>
+  <div class="col-6 mx-auto col-md-6 order-md-2 hero-media">
+    <img src="/img/hex_multiva.png" alt="">
+  </div>
+</div>
+
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+    
+    
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  <section id="outline" class="home-section wg-blank   " style="background-color: #ffffff;padding: 20px 0 10px 0;" >
+    <div class="container">
+      
+
+
+<div class="row">
+  
+    <div class="col-lg-12">
+      
+      
+      
+
+<style>
+box {
+  background-color: lightgrey;
+  width: 300px;
+  border: 15px solid green;
+  padding: 50px;
+  margin: 20px;
+}
+</style>
+
+
+
+<h3>Muro (en Padlet)</h3>
+
+<div class="padlet-embed" style="border:1px solid rgba(0,0,0,0.1);border-radius:2px;box-sizing:border-box;overflow:hidden;position:relative;width:100%;background:#F4F4F4"><p style="padding:0;margin:0"><iframe src="https://padlet.com/embed/qd2w3s5iovpv22d6" frameborder="0" allow="camera;microphone;geolocation" style="width:100%;height:608px;display:block;padding:0;margin:0"></iframe></p><div style="padding:8px;text-align:right;margin:0;"><a href="https://padlet.com?ref=embed" style="padding:0;margin:0;border:none;display:block;line-height:1;height:16px" target="_blank"><img src="https://padlet.net/embeds/made_with_padlet.png" width="86" height="16" style="padding:0;margin:0;background:none;border:none;display:inline;box-shadow:none" alt="Hecho con Padlet"></a></div></div>
+
+<hr>
+
+<div class="row">
+    <div class="col-md-4" >
+        <h3>Profesor</h3>
+        <div class="image-cropper">
+          <img src="https://ca.slack-edge.com/T010LAFTYQK-U010XQDP40Y-f64e624eab35-512" alt="avatar" class="profile-pic">
+        </div>
+        <ul class="icon-list">
+            <li><i class="fas fa-user"></i> <a href="https://jc-castillo.com" target="_blank" rel="noopener"> Juan Carlos Castillo</a></li>
+            <li><i class="fas fa-browser"></i> <a href="https://jc-castillo.com"> jc-castillo.com</a></li>
+            <li><i class="fas fa-envelope"></i> <a href="mailto:juancastillov@uchile.cl"> juancastillov@uchile.cl</a></li>
+            <li><i class="fab fa-github"></i> <a href="https://github.com/juancarloscastillo/multivariada" target="_blank" rel="noopener"> juancarloscastillo</a></li>
+            <li><i class="fas fa-university"></i> <a href="https://jc-castillo.com/contacto/">Horas de reunión: Jueves 14:30 a 16:00</a></li>
+        </ul>
+    </div>
+
+    <div class="col-md-4">
+        <h3>Apoyo docente</h3>
+        <div class="image-cropper">
+          <img src="https://ca.slack-edge.com/T010LAFTYQK-U036CTU4MSQ-73d257361938-512" alt="avatar" class="profile-pic">
+        </div>
+
+        <ul class="icon-list">
+            <li><i class="fas fa-user"></i> <a href="">Anaís Herrera (Sección A)</a></li>
+            <li><i class="fas fa-envelope"></i> <a href="mailto:anais.herrera@ug.uchile.cl ">anais.herrera@ug.uchile.cl </a></li>
+            <li><i class="fab fa-github"></i> <a href="https://github.com/anaisherrera"anaisherrera target="_blank" rel="noopener"> anaisherrera</a></li>
+        </ul>
+
+        <div class="image-cropper">
+          <img src="https://ca.slack-edge.com/T010LAFTYQK-U011ARE24HM-418d7a7e413d-512" alt="avatar" alt="avatar" class="profile-pic">
+        </div>
+
+        <ul class="icon-list">
+            <li><i class="fas fa-user"></i> <a href="">Kevin Carrasco (Sección B)</a></li>
+            <li><i class="fas fa-envelope"></i> <a href="mailto:kevin.carrasco@ug.uchile.cl ">kevin.carrasco@ug.uchile.cl </a></li>
+            <li><i class="fab fa-github"></i> <a href="https://github.com/orgs/lisa-coes/people/Kevin-carrasco"Kevin-carrasco target="_blank" rel="noopener"> Kevin-carrasco</a></li>
+        </ul>
+
+    </div>
+
+
+    <div class="col-md-4">
+        <h3>Horario clases</h3>
+
+        <ul class="icon-list">
+            <li><i class="far fa-calendar"></i> Viernes</li>
+            <li><i class="far fa-clock"></i> 10:15am - 11:45am</li>
+        </ul>
+
+        <h3>Horario prácticos</h3>
+
+        <ul class="icon-list">
+            <li><i class="far fa-calendar"></i> Viernes </li>
+            <li><i class="far fa-clock"></i> 8:30am - 10:00am </li>
+        </ul>
+
+        <ul class="icon-list">
+            <li><i class="far fa-calendar-alt"></i> Marzo-Julio 2022</li>
+            <li><i class="fas fa-university"></i> Sala 43 FACSO</li>
+            
+        </ul>
+
+    </div>
+  </div>
+
+    <h3>Ayudantes Sección A</h3>
+
+<div class="row">
+
+  <div class="col-md-3">
+    <center>
+    <div class="image-cropper"><img src="https://ucampus.uchile.cl/d/r/usuario/5d/5d72ce26a7667990e9e726469b5b165c/perfil/11af4889dd88fb2b75bd1dc2dc5ed276.jpg" alt="avatar" class="profile-pic"></div>
+    Carolina Carrillo<br><br>
+    </center>
+  </div>
+
+  <div class="col-md-3">
+    <center>
+    <div class="image-cropper"><img src="https://ucampus.uchile.cl/d/r/usuario/34/34c21f88fd64ce00a7acde71cc47c8ea/perfil/798404d5c89d46115f45cfaee00e4bed.jpg" alt="avatar" class="profile-pic"></div>
+    Sebastián Budnevich<br><br>
+    </center>
+  </div>
+
+  <div class="col-md-3">
+    <center>
+    <div class="image-cropper"><img src="https://ucampus.uchile.cl/d/r/usuario/83/83383a560c92f7ccbfa624dd16b09fb6/perfil/dca6b769706e15981e727b6d8f4ab38f.jpg" alt="avatar" class="profile-pic"></div>
+    Moira Martínez<br>
+    </center>
+  </div>
+
+  <div class="col-md-3">
+    <center>
+    <div class="image-cropper"><img src="https://ca.slack-edge.com/T010LAFTYQK-U01R10KHHHR-eee19b35e141-512" alt="avatar" class="profile-pic"></div>
+    Pablo Campos<br><br>
+    </center>
+  </div>
+</div>
+
+    <h3>Ayudantes Sección B</h3>
+<div class="row">
+    <div class="col-md-3">
+      <center>
+        <div class="image-cropper"><img src="https://ca.slack-edge.com/T010LAFTYQK-U01RDD151FB-1fff37c94abb-512" alt="avatar" class="profile-pic"></div>
+        Nicolás Godoy<br>
+      </center>
+    </div>
+
+    <div class="col-md-3">
+      <center>
+      <div class="image-cropper"><img src="https://ucampus.uchile.cl/d/r/usuario/3c/3c0477bf7a6a665950cb745475272195/perfil/16c7da466d455ec5e4090b27da0181ad.jpg" alt="avatar" class="profile-pic"></div>
+      Valentina González<br><br>
+      </center>
+    </div>
+
+    <div class="col-md-3">
+      <center>
+      <div class="image-cropper"><img src="https://ucampus.uchile.cl/d/r/usuario/06/06ecf638f7d42c5fd8c102102f5f92ef/perfil/cdb7f784105819eff0c46b5bb7724353.jpg" alt="avatar" class="profile-pic"></div>
+      Lucas Martin<br>
+      </center>
+    </div>
+
+    <div class="col-md-3">
+      <center>
+        <div class="image-cropper"><img src="https://ucampus.uchile.cl/d/r/usuario/1d/1d8f506ed575b64c014b0664c02f0116/perfil/1bf0d6a711e83526f5c7d640d2402b2a.jpg" alt="avatar" class="profile-pic"></div>
+        Monserrat Greene<br><br>
+      </center>
+    </div>
+  </div>
+
+<br>
+
+<div class="contact-policy">
+  <h3>Contacto</h3>
+
+      <p>En caso de preguntas asociadas a las clases o prácticas, se recomienda hacerlas públicamente a través de foros, en UCursos o en los foros de las páginas de prácticos vía <a href="https://disqus.com/">Disqus</a>. También es posible anotarse en mis horarios de reunión con estudiantes, link <a href="https://juancarloscastillo.github.io/jc-castillo/contact.html">aquí</a>.</p>
+
+</div>
+
+<div class="contact-policy">
+  <h3>Versiones anteriores del sitio del curso:</h3>
+<p>- <a href="https://version2021--multivariada.netlify.app/">2021</a></p>
+<p>- <a href="https://version2020--multivariada.netlify.app/">2020</a></p>
+<p>- <a href="https://juancarloscastillo.github.io/metsoc-facsouchile/index.html">2019</a></p>
+</div>
+
+
+    </div>
+  
+</div>
+
+    </div>
+  </section>
+
+
+
+        
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://multivariada-netlify-app.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/js/academic.min.a1c3596268a997890f5b9089b30365c6.js"></script>
+
+    
+
+
+
+
+
+
+    
+    
+    <div class="container">
+        <footer>
+    <hr>
+
+    <div class="row course-info">
+        <div class="col-md-7">
+            <p>
+                <strong>SOC 01024: Estadística Multivariada (Primer semestre)</strong><br>
+
+                <a href="https://www.uchile.cl/" target="_blank" rel="noopener">Universidad de Chile</a> &emsp;&emsp;
+                <a href="http://www.facso.uchile.cl/sociologia" target="_blank" rel="noopener">Departamento de Sociología</a>
+            </p>
+
+            <p>
+                <a href="https://jc-castillo.com" target="_blank" rel="noopener"><i class="fas fa-user"></i>
+                    Juan Carlos Castillo</a> &emsp;&emsp;
+                <a href="mailto:juancastillov@uchile.cl"><i class="fas fa-envelope"></i>
+                    juancastillov@uchile.cl</a>
+            </p>
+
+            <p>
+                <i class="far fa-calendar-alt"></i> Viernes &emsp;&emsp;
+                <i class="far fa-clock"></i> 10:15am - 11:45am <br>
+                <i class="fas fa-university"></i> Sala 43 FACSO
+            </p>
+        </div>
+
+        <div class="col-md-5 credits">
+            <p>All content licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+            
+            <p>Content <i class="fab fa-creative-commons"></i> 2022 <a href="https://jc-castillo.com" target="_blank" rel="noopener">Juan Carlos Castillo</a></p>                    
+            
+            <p><a href="https://github.com/juancarloscastillo/multivariada" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the source at GitHub.</a></p>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+
+    
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

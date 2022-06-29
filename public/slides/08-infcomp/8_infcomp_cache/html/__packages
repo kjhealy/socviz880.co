@@ -1,0 +1,17 @@
+base
+knitr
+RefManageR
+flipbookr
+tidyverse
+ggplot2
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
+corrplot
+scatterplot3d
+texreg
+stargazer

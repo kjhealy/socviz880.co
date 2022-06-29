@@ -1,19 +1,13 @@
 main:
-  - name: Syllabus
-    url: /syllabus/
+  - name: Programa
+    url: /programa/
     weight: 1
-  - name: Schedule
+  - name: Planificación
     url: /schedule/
     weight: 2
-  - name: Readings
-    url: /reading/
-    weight: 3
-  - name: Class
+  - name: Contenidos
     url: /class/
+    weight: 3
+  - name: Trabajos
+    url: /trabajos/
     weight: 4
-  - name: Reference
-    url: /reference/
-    weight: 5
-  - name: RStudio.cloud
-    url: https://rstudio.cloud/
-    weight: 6
