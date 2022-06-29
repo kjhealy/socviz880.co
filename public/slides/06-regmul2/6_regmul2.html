@@ -9,8 +9,7 @@
     <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
     <script src="libs/xaringanExtra-scribble/scribble.js"></script>
     <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30}) })</script>
-    <link rel="stylesheet" href="custom_2020.css" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" type="text/css" />
+    <link rel="stylesheet" href="../custom_2020.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -50,15 +49,15 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2021
-## [.purple[multivariada.netlify.com]](https://multivariada.netlify.com)
+## 1er Sem 2022
+## [.yellow[multivariada.netlify.com]](https://multivariada.netlify.com)
 ]
 
 
 .pull-right[
 .right[
 &lt;br&gt;
-## Sesión 6: .purple[Regresión múltiple (2)]
+## Sesión 6: .yellow[Regresión múltiple (2) &amp; predictores categóricos]
 ![:scale 70%](https://multivariada.netlify.com/img/hex_multiva.png)
 
 ]
@@ -71,17 +70,17 @@ class: animated, fadeIn
 
 
 ---
-class: inverse, bottom, right, animated, slideInRight
+class: inverse, bottom, animated, slideInRight
 
+.pull-left-narrow[
+## .red[Contenidos]
+]
 
-
-# **Contenidos**
-
-## 1. Repaso de sesión anterior
-
-## 2. Bases de control y parcialización
-
-## 3. Demostración parcialización
+.pull-right-wide[
+### 1. Repaso de sesión anterior
+### 2. Bases de control y parcialización
+### 3. Demostración parcialización
+### 4. Predictores categóricos ]
 
 ---
 class: roja, middle, right
@@ -157,10 +156,6 @@ class: roja, middle, right
 - estimación del efecto de educación en ingreso _ceteris paribus_ (manteniendo el efecto del resto de los predictores constante)
 ]
 
----
-
-
-
 
 ---
 class: inverse
@@ -169,7 +164,11 @@ class: inverse
 
 - Los coeficientes de regresión (X) no alteran su valor en los modelos en ausencia de correlación entre ellos
 
+--
+
 - Si hay correlación entre predictores, el valor de los coeficientes de regresión será distinto en modelos simples y en modelos múltiples
+
+--
 
 - Por ello, en regresión múltiple se habla de coeficientes de regresión **parciales**
 
@@ -204,11 +203,11 @@ class: roja, middle, center
 ---
 # Ejemplo: Descriptivos
 
+&lt;br&gt;
 .medium[
 
 &lt;table style="text-align:center"&gt;&lt;tr&gt;&lt;td colspan="8" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Statistic&lt;/td&gt;&lt;td&gt;N&lt;/td&gt;&lt;td&gt;Mean&lt;/td&gt;&lt;td&gt;St. Dev.&lt;/td&gt;&lt;td&gt;Min&lt;/td&gt;&lt;td&gt;Pctl(25)&lt;/td&gt;&lt;td&gt;Pctl(75)&lt;/td&gt;&lt;td&gt;Max&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan="8" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;ID&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;3.2&lt;/td&gt;&lt;td&gt;7.8&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;ingr&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;495,000&lt;/td&gt;&lt;td&gt;323,565&lt;/td&gt;&lt;td&gt;100,000&lt;/td&gt;&lt;td&gt;225,000&lt;/td&gt;&lt;td&gt;762,500&lt;/td&gt;&lt;td&gt;1,000,000&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="8" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;ingr&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;495,000&lt;/td&gt;&lt;td&gt;323,565&lt;/td&gt;&lt;td&gt;100,000&lt;/td&gt;&lt;td&gt;225,000&lt;/td&gt;&lt;td&gt;762,500&lt;/td&gt;&lt;td&gt;1,000,000&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td style="text-align:left"&gt;educ&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td style="text-align:left"&gt;intelig&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td colspan="8" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
@@ -269,78 +268,77 @@ class: roja, middle, center
 
 ]
 .small[
-
-&lt;table cellspacing="0" align="center" style="border: none;"&gt;
-&lt;caption align="bottom" style="margin-top:0.3em;"&gt; &lt;/caption&gt;
+&lt;table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;"&gt;
+&lt;caption&gt; &lt;/caption&gt;
+&lt;thead&gt;
 &lt;tr&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 1&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 2&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 3&lt;/b&gt;&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 1&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 2&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 3&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr style="border-top: 1px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(Intercept)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;-91566.27&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;93442.62&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;-270638.30&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(Intercept)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;-91566.27&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;93442.62&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;-270638.30&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(183509.80)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(302389.31)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(241882.27)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(183509.80)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(302389.31)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(241882.27)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;educ&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;150401.61&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;137092.20&lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;educ&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;150401.61&lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;137092.20&lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(43618.69)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(44602.35)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(43618.69)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(44602.35)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;intelig&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;174590.16&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;100425.53&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;intelig&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;174590.16&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;100425.53&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(124491.71)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(90114.05)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style="border-top: 1px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.60&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.20&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.66&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(124491.71)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(90114.05)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;Adj. R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.55&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.10&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.56&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr style="border-bottom: 2px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;Num. obs.&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;10&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;10&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;
 &lt;tr&gt;
-&lt;td style="border-top: 1px solid black;"&gt;R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.60&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.20&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.66&lt;/td&gt;
+&lt;td style="font-size: 0.8em;" colspan="4"&gt;&lt;sup&gt;***&lt;/sup&gt;p &amp;lt; 0.001; &lt;sup&gt;**&lt;/sup&gt;p &amp;lt; 0.01; &lt;sup&gt;*&lt;/sup&gt;p &amp;lt; 0.05&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;Adj. R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.55&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.10&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.56&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;Num. obs.&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;RMSE&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;217656.84&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;307471.84&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;214438.31&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;" colspan="5"&gt;&lt;span style="font-size:0.8em"&gt;&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;p &amp;lt; 0.001, &lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;p &amp;lt; 0.01, &lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;p &amp;lt; 0.05&lt;/span&gt;&lt;/td&gt;
-&lt;/tr&gt;
+&lt;/tfoot&gt;
 &lt;/table&gt;
 ]
 
@@ -513,103 +511,101 @@ Estimando valor predicho según nuestro modelo:
 
 
 .small[
-
-&lt;table cellspacing="0" align="center" style="border: none;"&gt;
-&lt;caption align="bottom" style="margin-top:0.3em;"&gt; &lt;/caption&gt;
+&lt;table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;"&gt;
+&lt;caption&gt; &lt;/caption&gt;
+&lt;thead&gt;
 &lt;tr&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 1&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 2&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 3&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 4&lt;/b&gt;&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 1&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 2&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 3&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 4&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr style="border-top: 1px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(Intercept)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;-91566.27&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;93442.62&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;-270638.30&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;495000.00&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(Intercept)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;-91566.27&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;93442.62&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;-270638.30&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;495000.00&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(183509.80)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(302389.31)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(241882.27)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(79673.16)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(183509.80)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(302389.31)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(241882.27)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(79673.16)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;educ&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;150401.61&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;137092.20&lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;educ&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;150401.61&lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;137092.20&lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(43618.69)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(44602.35)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(43618.69)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(44602.35)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;intelig&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;174590.16&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;100425.53&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;intelig&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;174590.16&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;100425.53&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(124491.71)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(90114.05)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(124491.71)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(90114.05)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;resx1_2&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;137092.20&lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;resx1_2&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;137092.20&lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(52404.36)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style="border-top: 1px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.60&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.20&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.66&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.46&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(52404.36)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;Adj. R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.55&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.10&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.56&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.39&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr style="border-bottom: 2px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;Num. obs.&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;10&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;10&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;10&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;
 &lt;tr&gt;
-&lt;td style="border-top: 1px solid black;"&gt;R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.60&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.20&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.66&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.46&lt;/td&gt;
+&lt;td style="font-size: 0.8em;" colspan="5"&gt;&lt;sup&gt;***&lt;/sup&gt;p &amp;lt; 0.001; &lt;sup&gt;**&lt;/sup&gt;p &amp;lt; 0.01; &lt;sup&gt;*&lt;/sup&gt;p &amp;lt; 0.05&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;Adj. R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.55&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.10&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.56&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.39&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;Num. obs.&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;RMSE&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;217656.84&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;307471.84&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;214438.31&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;251948.67&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;" colspan="6"&gt;&lt;span style="font-size:0.8em"&gt;&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;p &amp;lt; 0.001, &lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;p &amp;lt; 0.01, &lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;p &amp;lt; 0.05&lt;/span&gt;&lt;/td&gt;
-&lt;/tr&gt;
+&lt;/tfoot&gt;
 &lt;/table&gt;
 ]
 
@@ -624,7 +620,7 @@ Ahora, lo mismo pero parcializando inteligencia ( `\(X_2\)` ) de educación ( `\
 
 
 
-**2. Obtención del residuo de la regresión (inteligencia parcializada de educación)**
+**2. Obtención del residuo de la regresión (inteligencia parcializada de educación)** 
 
 
 
@@ -636,132 +632,129 @@ Ahora, lo mismo pero parcializando inteligencia ( `\(X_2\)` ) de educación ( `\
 ### Comparación final modelos
 
 .small[
-
-&lt;table cellspacing="0" align="center" style="border: none;"&gt;
-&lt;caption align="bottom" style="margin-top:0.3em;"&gt; &lt;/caption&gt;
+&lt;table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;"&gt;
+&lt;caption&gt; &lt;/caption&gt;
+&lt;thead&gt;
 &lt;tr&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 1&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 2&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 3&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 4&lt;/b&gt;&lt;/th&gt;
-&lt;th style="text-align: left; border-top: 2px solid black; border-bottom: 1px solid black; padding-right: 12px;"&gt;&lt;b&gt;Model 5&lt;/b&gt;&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 1&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 2&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 3&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 4&lt;/th&gt;
+&lt;th style="padding-left: 5px;padding-right: 5px;"&gt;Model 5&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr style="border-top: 1px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(Intercept)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;-91566.27&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;93442.62&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;-270638.30&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;495000.00&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;495000.00&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(Intercept)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;-91566.27&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;93442.62&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;-270638.30&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;495000.00&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;495000.00&lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(183509.80)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(302389.31)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(241882.27)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(79673.16)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(105186.77)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(183509.80)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(302389.31)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(241882.27)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(79673.16)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(105186.77)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;educ&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;150401.61&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;137092.20&lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;educ&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;150401.61&lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;137092.20&lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(43618.69)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(44602.35)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(43618.69)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(44602.35)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;intelig&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;174590.16&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;100425.53&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;intelig&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;174590.16&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;100425.53&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(124491.71)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(90114.05)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(124491.71)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(90114.05)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;resx1_2&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;137092.20&lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;resx1_2&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;137092.20&lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(52404.36)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(52404.36)&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;resx2_1&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;100425.53&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;resx2_1&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;100425.53&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;(139782.00)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style="border-top: 1px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.60&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.20&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.66&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.46&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.06&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;(139782.00)&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;Adj. R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.55&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.10&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.56&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;0.39&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;-0.06&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr style="border-bottom: 2px solid #000000;"&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;Num. obs.&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;10&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;10&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;10&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;10&lt;/td&gt;
+&lt;td style="padding-left: 5px;padding-right: 5px;"&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;
 &lt;tr&gt;
-&lt;td style="border-top: 1px solid black;"&gt;R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.60&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.20&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.66&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.46&lt;/td&gt;
-&lt;td style="border-top: 1px solid black;"&gt;0.06&lt;/td&gt;
+&lt;td style="font-size: 0.8em;" colspan="6"&gt;&lt;sup&gt;***&lt;/sup&gt;p &amp;lt; 0.001; &lt;sup&gt;**&lt;/sup&gt;p &amp;lt; 0.01; &lt;sup&gt;*&lt;/sup&gt;p &amp;lt; 0.05&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;Adj. R&lt;sup style="vertical-align: 0px;"&gt;2&lt;/sup&gt;&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.55&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.10&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.56&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;0.39&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;-0.06&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;Num. obs.&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
-&lt;td style="padding-right: 12px; border: none;"&gt;10&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;RMSE&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;217656.84&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;307471.84&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;214438.31&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;251948.67&lt;/td&gt;
-&lt;td style="border-bottom: 2px solid black;"&gt;332629.78&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style="padding-right: 12px; border: none;" colspan="7"&gt;&lt;span style="font-size:0.8em"&gt;&lt;sup style="vertical-align: 0px;"&gt;***&lt;/sup&gt;p &amp;lt; 0.001, &lt;sup style="vertical-align: 0px;"&gt;**&lt;/sup&gt;p &amp;lt; 0.01, &lt;sup style="vertical-align: 0px;"&gt;*&lt;/sup&gt;p &amp;lt; 0.05&lt;/span&gt;&lt;/td&gt;
-&lt;/tr&gt;
+&lt;/tfoot&gt;
 &lt;/table&gt;
 ]
 
@@ -829,6 +822,551 @@ class: roja
 
 
 ---
+class: roja, middle, right, slideInRight
+
+# 4. Predictores Categóricos
+
+
+---
+
+.pull-left[
+## Variables categóricas
+- Hasta el momento sólo hemos considerado variables como **continuas/intervalares**.
+
+- A menudo, las variables explicativas son de naturaleza **categórica**.
+]
+
+--
+.pull-right[
+###Variables binarias / dicotómicas
+- Hombre, Mujer
+- Vivo, Muerto
+- Votó, No Votó.
+
+
+###Variables politómicas:
+- Básica, Medía, Técnica, Universitaria
+- Frente Amplio, Nueva Mayoría, Chile Vamos, No interesado.
+]
+
+---
+
+.pull-left[
+## Predictores categóricos
+
+
+- Ej, Y=ingreso, X= sexo
+
+
+
+`$$X=1(Mujer)$$`
+`$$X=0(Hombre)$$`
+
+- Las variables 1/0 usualmente son llamadas variables **dummy**
+]
+
+
+
+--
+&lt;br&gt;
+&lt;br&gt;
+
+.pull-right[
+
+Para las mujeres: `\(Y=\alpha +\beta X= \alpha+\beta\)`
+
+Para los hombres: `\(Y=\alpha +\beta X= \alpha\)`
+
+### El coeficiente `\(\beta\)` es la **diferencia** esperada de `\(Y\)` (ingreso) entre hombres y mujeres.
+
+
+]
+
+---
+
+## Variables categóricas: Ejemplo (ELSOC)
+
+### Variable dependiente
+.medium[
+*En nuestra sociedad, hay grupos que tienden a ubicarse en los niveles más altos y grupos que tienden a ubicarse en los niveles más bajos de la sociedad.  ¿Dónde se ubicaría usted en la sociedad chilena?*
+
+  -Likert de 0 a 10 donde 0 "El nivel más bajo" y 10 "El nivel más alto"
+
+### Variables independientes
+
+- Ingreso
+- Edad
+- Sexo (Hombre=0; Mujer=1)
+]
+
+---
+
+.pull-left-narrow[
+
+# Sexo / estatus subjetivo
+]
+
+.pull-right-wide[
+.small[
+&lt;table style="border-collapse:collapse; border:none;"&gt;
+ &lt;tr&gt;
+ &lt;th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2"&gt;Estatus Social&lt;br&gt;Subjetivo&lt;/th&gt;
+ &lt;th style="border-top:double; text-align:center; font-style:italic; font-weight:normal;" colspan="2"&gt;Sexo (1=Mujer)&lt;/th&gt;
+ &lt;th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; font-weight:bolder; font-style:italic; border-bottom:1px solid; " rowspan="2"&gt;Total&lt;/th&gt;
+ &lt;/tr&gt;
+ 
+&lt;tr&gt;
+ &lt;td style="border-bottom:1px solid; text-align:center; padding:0.2cm;"&gt;Hombre&lt;/td&gt;
+ &lt;td style="border-bottom:1px solid; text-align:center; padding:0.2cm;"&gt;Mujer&lt;/td&gt;
+ &lt;/tr&gt;
+ 
+&lt;tr&gt; 
+&lt;td style="padding:0.2cm;  text-align:left; vertical-align:middle;"&gt;0 El nivel mas bajo&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;46&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;32&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;  "&gt;&lt;span style="color:black;"&gt;78&lt;/span&gt;&lt;/td&gt; 
+&lt;/tr&gt;
+ 
+&lt;tr&gt; 
+&lt;td style="padding:0.2cm;  text-align:left; vertical-align:middle;"&gt;1&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;80&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;31&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;  "&gt;&lt;span style="color:black;"&gt;111&lt;/span&gt;&lt;/td&gt; 
+&lt;/tr&gt;
+ 
+&lt;tr&gt; 
+&lt;td style="padding:0.2cm;  text-align:left; vertical-align:middle;"&gt;2&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;137&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;88&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;  "&gt;&lt;span style="color:black;"&gt;225&lt;/span&gt;&lt;/td&gt; 
+&lt;/tr&gt;
+ 
+&lt;tr&gt; 
+&lt;td style="padding:0.2cm;  text-align:left; vertical-align:middle;"&gt;3&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;289&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;181&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;  "&gt;&lt;span style="color:black;"&gt;470&lt;/span&gt;&lt;/td&gt; 
+&lt;/tr&gt;
+ 
+&lt;tr&gt; 
+&lt;td style="padding:0.2cm;  text-align:left; vertical-align:middle;"&gt;4&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;491&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;291&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;  "&gt;&lt;span style="color:black;"&gt;782&lt;/span&gt;&lt;/td&gt; 
+&lt;/tr&gt;
+ 
+&lt;tr&gt; 
+&lt;td style="padding:0.2cm;  text-align:left; vertical-align:middle;"&gt;5&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;909&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;537&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;  "&gt;&lt;span style="color:black;"&gt;1446&lt;/span&gt;&lt;/td&gt; 
+&lt;/tr&gt;
+ 
+&lt;tr&gt; 
+&lt;td style="padding:0.2cm;  text-align:left; vertical-align:middle;"&gt;6&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;203&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;156&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;  "&gt;&lt;span style="color:black;"&gt;359&lt;/span&gt;&lt;/td&gt; 
+&lt;/tr&gt;
+ 
+&lt;tr&gt; 
+&lt;td style="padding:0.2cm;  text-align:left; vertical-align:middle;"&gt;7&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;79&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;67&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;  "&gt;&lt;span style="color:black;"&gt;146&lt;/span&gt;&lt;/td&gt; 
+&lt;/tr&gt;
+ 
+&lt;tr&gt; 
+&lt;td style="padding:0.2cm;  text-align:left; vertical-align:middle;"&gt;8&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;23&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;26&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;  "&gt;&lt;span style="color:black;"&gt;49&lt;/span&gt;&lt;/td&gt; 
+&lt;/tr&gt;
+ 
+&lt;tr&gt; 
+&lt;td style="padding:0.2cm;  text-align:left; vertical-align:middle;"&gt;9&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;6&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;6&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;  "&gt;&lt;span style="color:black;"&gt;12&lt;/span&gt;&lt;/td&gt; 
+&lt;/tr&gt;
+ 
+&lt;tr&gt; 
+&lt;td style="padding:0.2cm;  text-align:left; vertical-align:middle;"&gt;10 El nivel mas alto&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;14&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center; "&gt;&lt;span style="color:black;"&gt;11&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;  "&gt;&lt;span style="color:black;"&gt;25&lt;/span&gt;&lt;/td&gt; 
+&lt;/tr&gt;
+ 
+&lt;tr&gt; 
+&lt;td style="padding:0.2cm;  border-bottom:double; font-weight:bolder; font-style:italic; text-align:left; vertical-align:middle;"&gt;Total&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;   border-bottom:double;"&gt;&lt;span style="color:black;"&gt;2277&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;   border-bottom:double;"&gt;&lt;span style="color:black;"&gt;1426&lt;/span&gt;&lt;/td&gt;
+&lt;td style="padding:0.2cm; text-align:center;   border-bottom:double;"&gt;&lt;span style="color:black;"&gt;3703&lt;/span&gt;&lt;/td&gt; 
+&lt;/tr&gt;
+ &lt;td style="text-align:right; font-size:0.9em; font-style:italic; padding:0.2cm;" colspan="4"&gt;&amp;chi;&lt;sup&gt;2&lt;/sup&gt;=19.632 &amp;middot; df=10 &amp;middot; Cramer's V=0.073 &amp;middot; p=0.033&lt;/td&gt; 
+&lt;/tr&gt;
+ 
+&lt;/table&gt;
+]
+]
+
+---
+# Promedio de estatus subjetivo según sexo
+
+
+```r
+elsoc_18 %&gt;%
+  group_by(as_label(sexo)) %&gt;%
+  summarise(mean_ess=mean(ess,na.rm = T))
+```
+
+```
+## # A tibble: 2 x 2
+##   `as_label(sexo)` mean_ess
+##   &lt;fct&gt;               &lt;dbl&gt;
+## 1 Hombre               4.34
+## 2 Mujer                4.47
+```
+
+
+
+
+
+---
+## Ejemplo estimación
+.small[
+.pull-left[
+
+```r
+reg1&lt;- lm(ess ~ sexo, data=elsoc_18)
+```
+
+&lt;table style="border-collapse:collapse; border:none;"&gt;
+&lt;tr&gt;
+&lt;th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; "&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th colspan="1" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; "&gt;Modelo 1&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; "&gt;Predictores&lt;/td&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  "&gt;β&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;(Intercept)&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;4.339 &lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;Sexo(1=Mujer)&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.133 &lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;"&gt;Observations&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="1"&gt;3703&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;"&gt;R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1"&gt;0.002 / 0.001&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td colspan="2" style="font-style:italic; border-top:double black; text-align:right;"&gt;* p&amp;lt;0.05&amp;nbsp;&amp;nbsp;&amp;nbsp;** p&amp;lt;0.01&amp;nbsp;&amp;nbsp;&amp;nbsp;*** p&amp;lt;0.001&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;
+]
+]
+
+--
+
+.pull-right[
+Las mujeres (sexo=1) obtienen en promedio 0.133 puntos más   **en relación** a los hombres (sexo=0) en la variable de estatus social subjetivo.
+]
+
+
+---
+# Predicción
+
+
+Para el caso de los **hombres** tenemos:
+
+`$$\widehat{Y}_\text{estatus} = 4.339 + 0.133 \times 0 = 4.339$$`
+&lt;br&gt;
+En cambio, para las **mujeres** tenemos:
+
+`$$\widehat{Y}_\text{estatus} = 4.339 + 0.133 \times 1 = 4.472$$`
+
+
+---
+# Más de dos categorías (politómicas)
+
+- ¿Qué sucede cuando quiero predecir el estatus social subjetivo en base una variable catégorica con **más de dos valores**? (ej. Educación, Clase Social, Posición política).
+
+- La solución estándar es convertir esta variable en un conjunto de variables binarias 1/0 o variables **dummy**.
+
+- El conjunto de éstas variables dummy representan a la variable categórica completa.
+
+---
+
+## Especificando el conjunto de variables dummy Educación.
+
+&lt;br&gt;
+
+.medium[
+
+
+|                 | `\(X_{básica}\)` | `\(X_{media}\)` | `\(X_{tecnica}\)` | `\(X_{universitaria}\)` |
+|------------------|---------|------------|-----------------|
+| Básica           |1 |  0       | 0          | 0               |
+| Media            |0 |1       | 0          | 0               |
+| Técnica Superior |0| 0       | 1          | 0               |
+| Universitaria    | 0|0       | 0          | 1               |
+
+]
+
+--
+
+`$$Y_{ingreso} = \beta_{0}+\beta_{1}X_{media}+\beta_{2}X_{tecnica}+\beta_{3}X_{universitaria}$$`
+
+
+---
+
+## Politómicas como predictores
+
+- Se ingresan **todas las categorías menos una** al modelo
+
+--
+
+- La categoría ausente en el modelo es la **categoría de referencia** para la intepretación
+
+--
+
+- El *coeficiente* de la variable dummy corresponde a su **diferencia** respecto de la categoría de referencia (en relación a la variable dependiente `\(Y\)`) 
+
+--
+
+- La decisión de qué categoría es la referencia obedece a la mejor **interpretación**, pero por defecto es la categoría con el valor más bajo
+
+---
+# Variable educación en ELSOC
+
+.small[
+
+```
+## 
+## Educación (x) &lt;numeric&gt;
+## # total N=3703  valid N=3703  mean=3.21  sd=1.21
+## 
+## Value |                      Label |    N | Raw % | Valid % | Cum. %
+## --------------------------------------------------------------------
+##     1 |  Primaria incompleta menos |  442 | 11.94 |   11.94 |  11.94
+##     2 | Primaria y secundaria baja |  365 |  9.86 |    9.86 |  21.79
+##     3 |            Secundaria alta | 1589 | 42.91 |   42.91 |  64.70
+##     4 |      Terciaria ciclo corto |  592 | 15.99 |   15.99 |  80.69
+##     5 |      Terciaria y Postgrado |  715 | 19.31 |   19.31 | 100.00
+##  &lt;NA&gt; |                       &lt;NA&gt; |    0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;
+```
+]
+
+---
+.pull-left[
+# Ejemplo
+
+&lt;br&gt;
+.small[
+&lt;table style="border-collapse:collapse; border:none;"&gt;
+&lt;tr&gt;
+&lt;th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; "&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th colspan="1" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; "&gt;Modelo 1&lt;/th&gt;
+&lt;th colspan="1" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; "&gt;Modelo 2&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; "&gt;Predictores&lt;/td&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  "&gt;β&lt;/td&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  "&gt;β&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;(Intercept)&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;4.339 &lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;3.308 &lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;Sexo(1=Mujer)&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.133 &lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.071 &lt;sup&gt;&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;Educación&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.328 &lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;"&gt;Observations&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="1"&gt;3703&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="1"&gt;3703&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;"&gt;R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1"&gt;0.002 / 0.001&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1"&gt;0.065 / 0.064&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td colspan="3" style="font-style:italic; border-top:double black; text-align:right;"&gt;* p&amp;lt;0.05&amp;nbsp;&amp;nbsp;&amp;nbsp;** p&amp;lt;0.01&amp;nbsp;&amp;nbsp;&amp;nbsp;*** p&amp;lt;0.001&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;
+]
+]
+
+
+.pull-right[
+- **¿Qué sucedió?** el predictor educación se tomó como continuo, y nos dice que hay un aumento de **0.331 puntos** en la escala de estatus social subjetivo por cada aumento de nivel educacional.
+
+- Para poder trabajar correctamente los predictores categóricos en la regresión, en R la manera más simple es definirlos como un **factor**.
+]
+
+---
+# Factores en R
+
+- en R la información de las variables (vectores) se puede almacenar de distintas maneras
+
+--
+
+- las variables **numéricas** son aquellas que permiten realizar operaciones como promedios, sumas, etc.
+
+--
+
+- las variables se pueden también definir como categóricas (nominales/ordinales), bajo la denominación de **factor**
+
+---
+# Factores y regresión en R
+
+- si una variable está definida como **factor** en un modelo de regresión, entonces R automáticamente ingresa al modelo **todos los niveles de la variable menos uno**
+
+- el nivel que no aparece en el modelo sirve como **categoría de referencia**
+
+- para transformar a factor se utiliza la función general `as.factor`, pero se recomienda mejor **`as_factor`** de la librería **`sjlabelled`** que conserva mejor las etiquetas
+
+
+---
+# Factores y regresión en R
+
+  - crear variable educación como factor (**`edcine_fac`**)y luego ingresarla al modelo de regresión:
+
+
+
+```r
+library(sjlabelled)
+
+elsoc_18$edcine_fac &lt;- as_factor(elsoc_18$edcine)
+
+reg3&lt;-lm(ess ~ sexo + edcine_fac, data=elsoc_18)
+```
+
+---
+
+.small[
+&lt;table style="border-collapse:collapse; border:none;"&gt;
+&lt;tr&gt;
+&lt;th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; "&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th colspan="1" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; "&gt;Modelo 1&lt;/th&gt;
+&lt;th colspan="1" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; "&gt;Modelo 2&lt;/th&gt;
+&lt;th colspan="1" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; "&gt;Modelo 3&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; "&gt;Predictores&lt;/td&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  "&gt;β&lt;/td&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  "&gt;β&lt;/td&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  "&gt;β&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;(Intercept)&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;4.339 &lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;3.308 &lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;3.771 &lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;Sexo(1=Mujer)&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.133 &lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.071 &lt;sup&gt;&lt;/sup&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.070 &lt;sup&gt;&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;Educación&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.328 &lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;Educación: Educación:&lt;br&gt;Primaria y secundaria&lt;br&gt;baja&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.150 &lt;sup&gt;&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;Educación: Educación:&lt;br&gt;Secundaria alta&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.472 &lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;Educación: Educación:&lt;br&gt;Terciaria ciclo corto&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.805 &lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;Educación: Educación:&lt;br&gt;Terciaria y Postgrado&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;1.270 &lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;"&gt;Observations&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="1"&gt;3703&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="1"&gt;3703&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="1"&gt;3703&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;"&gt;R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1"&gt;0.002 / 0.001&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1"&gt;0.065 / 0.064&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1"&gt;0.067 / 0.066&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td colspan="4" style="font-style:italic; border-top:double black; text-align:right;"&gt;* p&amp;lt;0.05&amp;nbsp;&amp;nbsp;&amp;nbsp;** p&amp;lt;0.01&amp;nbsp;&amp;nbsp;&amp;nbsp;*** p&amp;lt;0.001&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;
+]
+
+---
+# Interpretación
+
+- `\(\beta\)` de nivel educacional secundaria alta: 0.472 
+
+  - las personas con nivel secundario alto tienen en promedio un nivel de estatus subjetivo 0.472 puntos mayor que aquellos con educación primaria incompleta (categoría de referencia)
+
+
+---
+class: inverse
+
+## Resumen predictores categóricos
+
+- Predictores categóricos se especifican como variables dicotoḿicas o dummy (valores 1/0, presencia/ausencia del atributo)
+
+--
+
+- La variable que no ingresa al modelo es la **categoría de referencia**
+
+--
+
+- El *coeficiente* de la variable dummy corresponde a su **diferencia** respecto de la categoría de referencia (en relación a la variable dependiente `\(Y\)`) 
+
+
+
+
+
+
+
+---
 class: inverse, middle, center
 
 ## PROXIMA CLASE:
@@ -843,7 +1381,7 @@ class: front
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2021
+## 1er Sem 2022
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 

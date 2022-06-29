@@ -1,12 +1,12 @@
 ---
 title: "Estadística Multivariada"
 author: ".small[Juan Carlos Castillo <br><br> Departamento de Sociología - UCH / COES <br><br>]"
-date: "2do Sem 2019"
+date: "2do Sem 2022"
 output:
   xaringan::moon_reader:
     includes:
-      after_body: "../insert-logo.html"  
-    css: ["custom_2020.css","https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"] # "../ninjutsu.css", paraflipbook
+       after_body: "../insert-logo.html"     
+    css: ["../custom_2020.css"] # "../ninjutsu.css", paraflipbook
     lib_dir: libs
     nature:
       ratio: '16:9'
@@ -69,15 +69,15 @@ About macros.js: permite escalar las imágenes como [scale 50%](path to image), 
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2021
-## [.purple[multivariada.netlify.com]](https://multivariada.netlify.com)
+## 1er Sem 2022
+## [.yellow[multivariada.netlify.com]](https://multivariada.netlify.com)
 ]
 
 
 .pull-right[
 .right[
 <br>
-## Sesión 6: .purple[Regresión múltiple (2)]
+## Sesión 6: .yellow[Regresión múltiple (2) & predictores categóricos]
 ![:scale 70%](https://multivariada.netlify.com/img/hex_multiva.png)
 
 ]
@@ -90,17 +90,17 @@ class: animated, fadeIn
 
 
 ---
-class: inverse, bottom, right, animated, slideInRight
+class: inverse, bottom, animated, slideInRight
 
+.pull-left-narrow[
+## .red[Contenidos]
+]
 
-
-# **Contenidos**
-
-## 1. Repaso de sesión anterior
-
-## 2. Bases de control y parcialización
-
-## 3. Demostración parcialización
+.pull-right-wide[
+### 1. Repaso de sesión anterior
+### 2. Bases de control y parcialización
+### 3. Demostración parcialización
+### 4. Predictores categóricos ]
 
 ---
 class: roja, middle, right
@@ -176,10 +176,6 @@ $$\widehat{Y}=\beta_{0} +\beta_{1}X_{1} + \beta_{2}X_{2}+ \beta_{3}X_{3}+...+\be
 - estimación del efecto de educación en ingreso _ceteris paribus_ (manteniendo el efecto del resto de los predictores constante)
 ]
 
----
-
-
-
 
 ---
 class: inverse
@@ -188,7 +184,11 @@ class: inverse
 
 - Los coeficientes de regresión (X) no alteran su valor en los modelos en ausencia de correlación entre ellos
 
+--
+
 - Si hay correlación entre predictores, el valor de los coeficientes de regresión será distinto en modelos simples y en modelos múltiples
+
+--
 
 - Por ello, en regresión múltiple se habla de coeficientes de regresión **parciales**
 
@@ -221,9 +221,10 @@ datos
 ---
 # Ejemplo: Descriptivos
 
+<br>
 .medium[
 ```{r message=FALSE, results='asis'}
-stargazer(datos, type = "html", digits=0)
+stargazer(datos %>% select(-ID), type = "html", digits=0)
 ```
 ]
 ---
@@ -476,7 +477,7 @@ Ahora, lo mismo pero parcializando inteligencia ( $X_2$ ) de educación ( $X_1$ 
 reg_x2_x1=lm(intelig ~ educ, data=datos)
 ```
 
-**2. Obtención del residuo de la regresión (inteligencia parcializada de educación)**
+**2. Obtención del residuo de la regresión (inteligencia parcializada de educación)** 
 
 ```{r}
 resx2_1=residuals(reg_x2_x1)
@@ -575,6 +576,318 @@ class: roja
 
 
 ---
+class: roja, middle, right, slideInRight
+
+# 4. Predictores Categóricos
+
+
+---
+
+.pull-left[
+## Variables categóricas
+- Hasta el momento sólo hemos considerado variables como **continuas/intervalares**.
+
+- A menudo, las variables explicativas son de naturaleza **categórica**.
+]
+
+--
+.pull-right[
+###Variables binarias / dicotómicas
+- Hombre, Mujer
+- Vivo, Muerto
+- Votó, No Votó.
+
+
+###Variables politómicas:
+- Básica, Medía, Técnica, Universitaria
+- Frente Amplio, Nueva Mayoría, Chile Vamos, No interesado.
+]
+
+---
+
+.pull-left[
+## Predictores categóricos
+
+
+- Ej, Y=ingreso, X= sexo
+
+
+
+$$X=1(Mujer)$$
+$$X=0(Hombre)$$
+
+- Las variables 1/0 usualmente son llamadas variables **dummy**
+]
+
+
+
+--
+<br>
+<br>
+
+.pull-right[
+
+Para las mujeres: $Y=\alpha +\beta X= \alpha+\beta$
+
+Para los hombres: $Y=\alpha +\beta X= \alpha$
+
+### El coeficiente $\beta$ es la **diferencia** esperada de $Y$ (ingreso) entre hombres y mujeres.
+
+
+]
+
+---
+
+## Variables categóricas: Ejemplo (ELSOC)
+
+### Variable dependiente
+.medium[
+*En nuestra sociedad, hay grupos que tienden a ubicarse en los niveles más altos y grupos que tienden a ubicarse en los niveles más bajos de la sociedad.  ¿Dónde se ubicaría usted en la sociedad chilena?*
+
+  -Likert de 0 a 10 donde 0 "El nivel más bajo" y 10 "El nivel más alto"
+
+### Variables independientes
+
+- Ingreso
+- Edad
+- Sexo (Hombre=0; Mujer=1)
+]
+
+---
+
+.pull-left-narrow[
+
+# Sexo / estatus subjetivo
+]
+
+.pull-right-wide[
+.small[
+```{r}
+pacman::p_load(dplyr, #Manipulacion de datos
+              stargazer, #Tablas
+              sjmisc, # Tablas
+              summarytools, # Tablas
+              kableExtra, #Tablas
+              sjPlot, #Tablas y gráficos
+              corrplot, # Correlaciones
+              sjlabelled,
+              sessioninfo) # Información de la sesión de trabajo
+
+load(url("https://multivariada.netlify.app/assignment/data/proc/ELSOC_ess.RData")) # Cargar base de datos
+
+sjt.xtab(elsoc_18$ess, elsoc_18$sexo)
+```
+]
+]
+
+---
+# Promedio de estatus subjetivo según sexo
+
+```{r echo=TRUE}
+
+elsoc_18 %>%
+  group_by(as_label(sexo)) %>%
+  summarise(mean_ess=mean(ess,na.rm = T))
+
+```
+
+
+
+
+
+---
+## Ejemplo estimación
+.small[
+.pull-left[
+```{r, echo=TRUE}
+reg1<- lm(ess ~ sexo, data=elsoc_18)
+```
+
+```{r, echo = F, include = T}
+sjPlot::tab_model(list(reg1), show.ci=FALSE, p.style = "stars",string.pred = "Predictores", string.est = "β",digits = 3,
+                  dv.labels = c("Modelo 1"))
+```
+]
+]
+
+--
+
+.pull-right[
+Las mujeres (sexo=1) obtienen en promedio 0.133 puntos más   **en relación** a los hombres (sexo=0) en la variable de estatus social subjetivo.
+]
+
+
+---
+# Predicción
+
+
+Para el caso de los **hombres** tenemos:
+
+$$\widehat{Y}_\text{estatus} = 4.339 + 0.133 \times 0 = 4.339$$
+<br>
+En cambio, para las **mujeres** tenemos:
+
+$$\widehat{Y}_\text{estatus} = 4.339 + 0.133 \times 1 = 4.472$$
+
+
+---
+# Más de dos categorías (politómicas)
+
+- ¿Qué sucede cuando quiero predecir el estatus social subjetivo en base una variable catégorica con **más de dos valores**? (ej. Educación, Clase Social, Posición política).
+
+- La solución estándar es convertir esta variable en un conjunto de variables binarias 1/0 o variables **dummy**.
+
+- El conjunto de éstas variables dummy representan a la variable categórica completa.
+
+---
+
+## Especificando el conjunto de variables dummy Educación.
+
+<br>
+
+.medium[
+
+
+|                 | $X_{básica}$ | $X_{media}$ | $X_{tecnica}$ | $X_{universitaria}$ |
+|------------------|---------|------------|-----------------|
+| Básica           |1 |  0       | 0          | 0               |
+| Media            |0 |1       | 0          | 0               |
+| Técnica Superior |0| 0       | 1          | 0               |
+| Universitaria    | 0|0       | 0          | 1               |
+
+]
+
+--
+
+$$Y_{ingreso} = \beta_{0}+\beta_{1}X_{media}+\beta_{2}X_{tecnica}+\beta_{3}X_{universitaria}$$
+
+
+---
+
+## Politómicas como predictores
+
+- Se ingresan **todas las categorías menos una** al modelo
+
+--
+
+- La categoría ausente en el modelo es la **categoría de referencia** para la intepretación
+
+--
+
+- El *coeficiente* de la variable dummy corresponde a su **diferencia** respecto de la categoría de referencia (en relación a la variable dependiente $Y$) 
+
+--
+
+- La decisión de qué categoría es la referencia obedece a la mejor **interpretación**, pero por defecto es la categoría con el valor más bajo
+
+---
+# Variable educación en ELSOC
+
+.small[
+```{r}
+frq(elsoc_18$edcine)
+```
+]
+
+---
+.pull-left[
+# Ejemplo
+
+<br>
+.small[
+```{r echo=F, warning=FALSE, message=FALSE,results='asis'}
+reg2<-lm(ess ~ sexo + edcine, data=elsoc_18)
+sjPlot::tab_model(list(reg1, reg2), show.ci=FALSE, p.style = "stars",string.pred = "Predictores", string.est = "β",digits = 3, dv.labels = c("Modelo 1", "Modelo 2"))
+```
+]
+]
+
+
+.pull-right[
+- **¿Qué sucedió?** el predictor educación se tomó como continuo, y nos dice que hay un aumento de **0.331 puntos** en la escala de estatus social subjetivo por cada aumento de nivel educacional.
+
+- Para poder trabajar correctamente los predictores categóricos en la regresión, en R la manera más simple es definirlos como un **factor**.
+]
+
+---
+# Factores en R
+
+- en R la información de las variables (vectores) se puede almacenar de distintas maneras
+
+--
+
+- las variables **numéricas** son aquellas que permiten realizar operaciones como promedios, sumas, etc.
+
+--
+
+- las variables se pueden también definir como categóricas (nominales/ordinales), bajo la denominación de **factor**
+
+---
+# Factores y regresión en R
+
+- si una variable está definida como **factor** en un modelo de regresión, entonces R automáticamente ingresa al modelo **todos los niveles de la variable menos uno**
+
+- el nivel que no aparece en el modelo sirve como **categoría de referencia**
+
+- para transformar a factor se utiliza la función general `as.factor`, pero se recomienda mejor **`as_factor`** de la librería **`sjlabelled`** que conserva mejor las etiquetas
+
+
+---
+# Factores y regresión en R
+
+  - crear variable educación como factor (**`edcine_fac`**)y luego ingresarla al modelo de regresión:
+
+
+```{r, echo=TRUE, eval=FALSE}
+library(sjlabelled)
+
+elsoc_18$edcine_fac <- as_factor(elsoc_18$edcine)
+
+reg3<-lm(ess ~ sexo + edcine_fac, data=elsoc_18)
+
+```
+
+---
+
+.small[
+```{r, echo=FALSE}
+library(sjlabelled)
+elsoc_18$edcine_fac <- as_factor(elsoc_18$edcine)
+reg3<-lm(ess ~ sexo + edcine_fac, data=elsoc_18)
+sjPlot::tab_model(list(reg1, reg2, reg3), show.ci=FALSE, p.style = "stars",string.pred = "Predictores", string.est = "β",digits = 3, dv.labels = c("Modelo 1", "Modelo 2", "Modelo 3"))
+```
+]
+
+---
+# Interpretación
+
+- $\beta$ de nivel educacional secundaria alta: 0.472 
+
+  - las personas con nivel secundario alto tienen en promedio un nivel de estatus subjetivo 0.472 puntos mayor que aquellos con educación primaria incompleta (categoría de referencia)
+
+
+---
+class: inverse
+
+## Resumen predictores categóricos
+
+- Predictores categóricos se especifican como variables dicotoḿicas o dummy (valores 1/0, presencia/ausencia del atributo)
+
+--
+
+- La variable que no ingresa al modelo es la **categoría de referencia**
+
+--
+
+- El *coeficiente* de la variable dummy corresponde a su **diferencia** respecto de la categoría de referencia (en relación a la variable dependiente $Y$) 
+
+
+
+
+
+
+
+---
 class: inverse, middle, center
 
 ## PROXIMA CLASE:
@@ -589,7 +902,7 @@ class: front
 # Estadística Multivariada
 ## Juan Carlos Castillo
 ## Sociología FACSO - UChile
-## 1er Sem 2021
+## 1er Sem 2022
 ## [multivariada.netlify.com](https://multivariada.netlify.com)
 ]
 
